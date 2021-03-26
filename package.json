@@ -53,6 +53,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "@emotion/babel-plugin": "^11.2.0",
+    "@netlify/plugin-nextjs": "^3.0.3",
     "babel-plugin-styled-components": "^1.12.0"
   }
 }

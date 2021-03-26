@@ -5,6 +5,7 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'public/scss')],
   },
+  target: 'serverless',
   distDir: 'dist',
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Note: we provide webpack above so you should not `require` it
