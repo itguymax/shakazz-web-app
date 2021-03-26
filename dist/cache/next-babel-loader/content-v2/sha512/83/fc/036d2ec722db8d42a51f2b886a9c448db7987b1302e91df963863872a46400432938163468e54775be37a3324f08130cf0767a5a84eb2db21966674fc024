@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\nimport Public from '../../layouts/Public';\n\nfunction Services() {\n  return /*#__PURE__*/_jsx(\"div\", {\n    children: \"Services\"\n  });\n}\n\nServices.layout = Public;\nexport default Services;","map":null,"metadata":{},"sourceType":"module"}

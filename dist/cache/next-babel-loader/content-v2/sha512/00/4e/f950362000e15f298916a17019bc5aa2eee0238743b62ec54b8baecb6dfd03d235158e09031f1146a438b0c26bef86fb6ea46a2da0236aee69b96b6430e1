@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React, { Component } from \"react\";\nimport Router from \"next/router\";\nexport default function Error404() {\n  React.useEffect(function () {\n    Router.push(\"/portal/dashboard\");\n  });\n  return /*#__PURE__*/_jsx(\"div\", {});\n}","map":null,"metadata":{},"sourceType":"module"}
