@@ -1,0 +1,1 @@
+_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[21],{MTsT:function(n,u,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/about-us",function(){return t("OjcB")}])},OjcB:function(n,u,t){"use strict";t.r(u);var o=t("nKUr"),i=(t("q1tI"),t("i10T"));function _(){return Object(o.jsx)("div",{children:"About us"})}_.layout=i.a,u.default=_}},[["MTsT",0,1,2,3,4,5,10]]]);
