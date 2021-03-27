@@ -1,1 +1,0 @@
-_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[29],{PWkC:function(n,i,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/plan",function(){return t("k37Z")}])},k37Z:function(n,i,t){"use strict";t.r(i);var _=t("nKUr"),o=(t("q1tI"),t("i10T"));function u(){return Object(_.jsx)("div",{children:"Plan"})}u.layout=o.a,i.default=u}},[["PWkC",0,1,2,3,4,5,10]]]);
