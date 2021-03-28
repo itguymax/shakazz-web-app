@@ -34,7 +34,7 @@ function Portal(props) {
         routes={routes}
         logo={{
           innerLink: "/portal",
-          imgSrc: require("../public/img/brand/logoshakazz.png"),
+          imgSrc: require("../assets/img/brand/logoshakazz.png"),
           imgAlt: "Logo Shakazz",
         }}
       />

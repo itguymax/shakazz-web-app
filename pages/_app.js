@@ -5,9 +5,9 @@ import Head from "next/head";
 import Router from "next/router";
 import PageChange from "../components/PageChange/PageChange.js";
 
-import "../public/plugins/nucleo/css/nucleo.css";
+import "../assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "../public/scss/nextjs-argon-dashboard.scss";
+import "../assets/scss/nextjs-argon-dashboard.scss";
 
 
 Router.events.on("routeChangeStart", (url) => {

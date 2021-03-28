@@ -60,7 +60,7 @@ function Auth(props) {
               </h3>
               <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}}>
                 <Image  
-                  src={ router.pathname === "/auth/login" ? require("../public/img/login.png"): require("../public/img/inscription.png")}
+                  src={ router.pathname === "/auth/login" ? require("../assets/img/login.png"): require("../assets/img/inscription.png")}
                   // layout="responsive"
                   width={500}
                   height={500}

@@ -5,10 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "preexport": "npm run build",
-    "export": "next export",
-    "prestart": "npm run export",
-    "start": "serve out"
+    "build:dev": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",

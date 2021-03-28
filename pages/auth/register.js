@@ -25,25 +25,25 @@ const options = [
     key: 'JennyHess',
     text: 'JennyHess',
     value: 'JennyHess',
-    image: { avatar: true, src: require("../../public/img/theme/react.jpg") },
+    image: { avatar: true, src: require("../../assets/img/theme/react.jpg") },
   },
   {
     key: 'ElliotFu',
     text: 'ElliotFu',
     value: 'ElliotFu',
-    image: { avatar: true, src: require("../../public/img/theme/react.jpg") },
+    image: { avatar: true, src: require("../../assets/img/theme/react.jpg") },
   },
   {
     key: 'StevieFel',
     text: 'StevieFel',
     value: 'StevieFel',
-    image: { avatar: true, src: require("../../public/img/theme/react.jpg") },
+    image: { avatar: true, src: require("../../assets/img/theme/react.jpg") },
   },
   {
     key: 'Christian',
     text: 'Christian',
     value: 'Christian',
-    image: { avatar: true, src: require("../../public/img/theme/react.jpg")},
+    image: { avatar: true, src: require("../../assets/img/theme/react.jpg")},
   },
 ]
 function Register( {user}) {
