@@ -1,6 +1,6 @@
 
 
-const apiUrl = "http://localhost:5000/api/v1/services/auth"
+const apiUrl = "https://shakazz-server.herokuapp.com/api/v1/services/auth"
 
   const signup = async (data) => {
     try {
