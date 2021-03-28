@@ -15,7 +15,6 @@ export default function VerifyEmail({ success }) {
 
 export async function getServerSideProps(ctx) {
 
-
   // const { token } = ctx.query;
 
   // const deletedToken = await findAndDeleteTokenByIdAndType(ctx.req.db, token, 'emailVerify');
