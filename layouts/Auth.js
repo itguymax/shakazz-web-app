@@ -7,7 +7,7 @@ import Image from 'next/image'
 import AuthNavbar from "../components/Navbars/AuthNavbar.js";
 import AuthFooter from "../components/Footers/AuthFooter.js";
 import styled from 'styled-components';
-import routes from "../routes.js";
+
 
 
 function Auth(props) {
@@ -60,7 +60,7 @@ function Auth(props) {
               </h3>
               <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}}>
                 <Image  
-                  src={ router.pathname === "/auth/login" ? require("../assets/img/login.png"): require("../assets/img/inscription.png")}
+                  src={ router.pathname === "/auth/login" ? "../assets/img/login.png": "../assets/img/inscription.png"}
                   // layout="responsive"
                   width={500}
                   height={500}

@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = {
   sassOptions: {
-    includePaths: [path.join(__dirname, 'public/scss')],
+    includePaths: [path.join(__dirname, '/assets/scss')],
   },
   target: 'serverless',
   distDir: 'dist',
