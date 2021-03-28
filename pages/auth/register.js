@@ -46,7 +46,7 @@ const options = [
     image: { avatar: true, src: require("../../assets/img/theme/react.jpg")},
   },
 ]
-function Register( {user}) {
+function Register() {
   
 const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(registrationSchema),
@@ -347,17 +347,3 @@ Register.layout = Auth;
 
 export default Register;
 
-// export async function getStaticProps(context) {
-//   const res = await fetch(`http://localhost:5000`)
-//   const data = await res.json()
-//  console.log("fffff props", context);
-//   if (!data) {
-//     return {
-//       notFound: true,
-//     }
-//   }
-
-//   return {
-//     props: { user: data }, // will be passed to the page component as props
-//   }
-// }
