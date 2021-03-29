@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default [{\n  path: '/about-us',\n  label: 'QUI SOMMES NOUS'\n}, {\n  path: '/services',\n  label: 'SERVICES'\n}, {\n  path: '/plan',\n  label: 'PLAN'\n}, {\n  path: '/blog',\n  label: 'BLOG'\n}, {\n  path: '/contactez-nous',\n  label: 'NOUS CONTACTER'\n}];","map":null,"metadata":{},"sourceType":"module"}

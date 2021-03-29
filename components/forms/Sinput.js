@@ -8,7 +8,8 @@ import {
   Col,
   Row,
 } from "reactstrap";
-export default function Sinput({ disabled,label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
+import Dot from '../common/dot'
+export default function Sinput({ disabled, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
   const ibg = inputBg || '#f5f5f5'
   const style = inline? {display: 'flex', flexDirection: 'row'}:null
   return (
@@ -17,7 +18,10 @@ export default function Sinput({ disabled,label,btc, usd, inline, inputBg, autoC
              {inline? ( 
             <Row className="mt-3">
                <Col xl="3">
-                  <label style={{font: 'normal normal italic 20px/25px Ubuntu', color:"#fff"}}>{label}{":"}</label>
+                 <div>
+                    <label style={{font: 'normal normal italic 20px/25px Ubuntu', color:"#fff"}}>{label}{":"}</label>
+                  {required && <Dot info={ info?true:false}/>}
+                 </div>
                </Col>
                 <Col xl="6" >
                    <div className=" d-flex justify-content-center">
@@ -46,7 +50,10 @@ export default function Sinput({ disabled,label,btc, usd, inline, inputBg, autoC
               </Row>
              ):( 
                <>
-               <label>{label}</label>
+               <div>
+                 <label>{label+":"}</label>
+                {required && <Dot info={ info?true:false} />}
+               </div>
                  <InputGroup className="input-group-alternative  mb-1">
                    {prepend && icon && (
                      <InputGroupAddon addonType="append">

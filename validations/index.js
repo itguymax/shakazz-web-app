@@ -81,5 +81,15 @@ const retraitSchema = yup.object().shape({
   transactionPassword: yup.string(),
   quantitebtc: yup.string(),
 })
+const legacySchema = yup.object().shape({
+  name: yup.string().required(),
+  dateDeNaissance: yup.date().required(),
+  nationnalite: yup.string().required(),
+  adresse: yup.string(),
+  telephone: yup.string(),
+  parente: yup.string(),
+  officialDoc: yup.string(),
 
-export {registrationSchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+})
+
+export {registrationSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;

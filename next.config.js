@@ -45,7 +45,6 @@ module.exports = withFonts(
     includePaths: [path.join(__dirname, '/assets/scss')],
   },
   target: 'serverless',
-  distDir: 'dist',
       })
     )
   )

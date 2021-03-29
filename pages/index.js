@@ -17,6 +17,7 @@ function Index() {
           title="Shakazz"
         />
       <UserHeader/>
+    
   </>
 }
 

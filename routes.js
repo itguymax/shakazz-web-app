@@ -33,18 +33,26 @@ var routes = [
     displayName: "Transaction",
     icon: "ni ni-chart-pie-35 text-red",
     layout: "/portal",
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
-    layout: "/auth",
-  },
-  {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
-    layout: "/auth",
-  },
+    children: [
+        {
+      path: "/securite",
+      name: "securite",
+      displayName: "Sécurité",
+      layout: "/portal"
+    },
+    {
+      path: "/Legacy",
+      name: "Legacy",
+      displayName: "Legacy",
+      layout: "/portal"
+    },
+     {
+      path: "/transactions",
+      name: "securite",
+      displayName: "Sécurité",
+      layout: "/portal"
+    },
+  ]
+  }
 ];
 export default routes;

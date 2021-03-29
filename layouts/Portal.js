@@ -24,6 +24,15 @@ function Portal(props) {
       if (router.route.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].displayName;
       }
+      if(routes[i].children){
+       
+         for (let j = 0; j < routes[i].children.length; j++){
+            console.log("has chil", router.route,  routes[i].children[j].layout + routes[i].children[j].path)
+           if (router.route.indexOf(routes[i].children[j].layout + routes[i].children[j].path) !== -1) {
+        return routes[i].children[j].displayName;
+      }
+         }
+      }
     }
     return "Brand";
   };

@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport React from 'react';\n\nfunction Legacy() {\n  return /*#__PURE__*/_jsx(\"div\", {\n    children: \"Legacy\"\n  });\n}\n\nexport default Legacy;","map":null,"metadata":{},"sourceType":"module"}

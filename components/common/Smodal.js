@@ -1,22 +1,22 @@
 import React, {useEffect} from 'react'
+import { useRouter } from 'next/router';
 import {
   Button,
   Modal,
   Row
 } from "reactstrap";
-const LineItem = ({textLeft, textRight}) => (
-   <div className=" d-flex " style={{justifyContent: 'space-between'}}>
-        <h6 className="text-left" style={{font: 'normal normal bold 14px/15px Ubuntu', color: '#444'}}>{textLeft}</h6>
-        <h6 className="text-right" style={{font: 'normal normal bold 14px/15px Ubuntu', color: '#679966'}}>{textRight}</h6>
-    </div>
-)
-export default function Smodal({ open,handleClose, data }) {
+import LineItem from './LineItem'
+export default function Smodal({ open,handleClose, data, path }) {
+  const router = useRouter();
   return (
     <div style={{filter: 'blur(20px)'}}>
          <Row>
             <Modal
             isOpen={open}
-            onClick={() => handleClose()}
+            onClick={() => {
+              handleClose()
+             if(path)  return router.push(path);
+            }}
             style={{width: '500px', borderRadius:'50px'}}
           >
             <div className=" modal-header pb-0">
@@ -40,7 +40,7 @@ export default function Smodal({ open,handleClose, data }) {
                 {/* <LineItem textLeft="ID:" textRight="Skz0052"/> */}
                 <LineItem textLeft="Montant:" textRight={`${data.montant}`+ " $"}/>
                 <LineItem textLeft="Méthode de paiement:" textRight={data.method}/>
-                <hr style={{backgroundnpm : '#B7B7B7 0% 0% no-repeat padding-box'}}/>
+                <hr style={{background : '#B7B7B7 0% 0% no-repeat padding-box'}}/>
                 <LineItem textLeft="Total:" textRight={`${data.quantitebtc}` + "₿"}/>
               </div>
             </div>

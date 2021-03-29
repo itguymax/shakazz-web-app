@@ -42,6 +42,7 @@ function Sidebar(props) {
   // used for checking current route
   const router = useRouter();
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const [isOpen, openSubmenu] = React.useState(false);
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return router.route.indexOf(routeName) > -1;
@@ -53,12 +54,14 @@ function Sidebar(props) {
   // closes the collapse
   const closeCollapse = () => {
     setCollapseOpen(false);
+    openSubmenu(!isOpen);
   };
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
     return routes.map((prop, key) => {
       return (
-        <NavItem key={key} active={activeRoute(prop.layout + prop.path)}>
+        <React.Fragment key={key}>
+        <NavItem  active={activeRoute(prop.layout + prop.path)}>
           <Link href={prop.layout + prop.path}>
             <NavLink
               href="#itguymax"
@@ -70,6 +73,26 @@ function Sidebar(props) {
             </NavLink>
           </Link>
         </NavItem>
+        <Collapse isOpen={isOpen}>
+        {prop.children?(
+          prop.children.map((level, key)=> {
+            console.log("level", level);
+        <NavItem style={{backgroundColor: '#fff'}} key={ key+ Math.random()} active={activeRoute(level.layout + level.path)}>
+            <Link href={level.layout + level.path}>
+              <NavLink
+                href="#itguymax"
+                active={activeRoute(level.layout + level.path)}
+                onClick={closeCollapse}
+              >
+                
+                {level.name}
+              </NavLink>
+            </Link>
+        </NavItem>
+          })
+        ):null}
+      </Collapse>
+      </React.Fragment>
       );
     });
   };

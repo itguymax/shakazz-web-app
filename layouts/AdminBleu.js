@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 import AuthFooter from "../components/Footers/AuthFooter.js";
 import AdminNavbar from '../components/Navbars/AdminNavbar';
-
+import {Link} from '../components/Link'
 
 function AdminBleu(props) {
   const router = useRouter();
@@ -18,7 +18,13 @@ function AdminBleu(props) {
         <AdminNavbar l/>
           <Container>
             {props.children}
+            <Row>
+            {props.back && <Link path="/portal/depot">{`<--- Retour`}</Link>}
+            {props.menu && <Link path="/portal/dashboard">{`<--- Menu`}</Link>}
+            <hr style={{backgroundColor: '#679966', height:'2px', width: '100%'}}/>
+            </Row>
           </Container>
+           
           <AuthFooter white/>  
         </div>
        </Container>

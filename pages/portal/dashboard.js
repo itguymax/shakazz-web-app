@@ -42,7 +42,7 @@ function Dashboard() {
   return (
       <Container>
       <h1>Dashboard</h1>
-          {/* <Row className="mt-5">
+         <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
                 <Col xl="8" className="p-4 col-xl-8" >
@@ -203,7 +203,7 @@ function Dashboard() {
                 </div>
             </LightBoxContainer>
           </Col>
-        </Row>    */}
+        </Row>    
       </Container>
   )
 }
