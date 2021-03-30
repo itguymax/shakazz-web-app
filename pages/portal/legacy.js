@@ -5,6 +5,8 @@ import Sinput from "../../components/forms/Sinput"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { legacySchema } from "../../validations";
+import LinearProgress from "../../components/common/linearProgress"
+import Image from 'next/image'
 
 function Legacy() {
    const { register, handleSubmit, watch, errors } = useForm({
@@ -29,10 +31,9 @@ function Legacy() {
       </div>
       <div>
        
-      <Form role="form" onSubmit={handleSubmit(onSubmit)}>
-       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#444"}}> Ajouter</h1>
+      <Row> <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#444"}}> Ajouter</h1></Row>
       <Row className="mt-4 justify-content-between">
-        <Col xl="9">
+        <Form   className="col-xl-7" role="form" onSubmit={handleSubmit(onSubmit)}>
           <Row>
             <Col>
               <Sinput
@@ -101,17 +102,68 @@ function Legacy() {
               />
             </Col>
           </Row>
-        </Col>
-        <Col xl="3"></Col>
-      </Row>
        <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933', borderRadius:'40px', width:'200px'}} >
            Valider
         </Button>
-      </Form>
+        </Form>
+        <Col xl="5">
+          <Row>
+           <Col xl="5">
+              <LinearProgress label="Pourcentage héritage" val={60} pColor="#CC9933"/>
+           </Col>
+           <Col xl="7" style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+              
+                  <div className="rounded-circle " style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center", height:'200px', width:'200px', backgroundColor:'#b7b7b7'}}>
+                  <a href="#itguymax">
+                    <img
+                      alt="..."
+                  
+                      src="https://accounts.google.com/SignOutOptions?hl=en&continue=https://www.google.com/search%3Fq%3Dadd%2Bcountry%2Bflag%2Bin%2Bnext%2Bjs%26oq%3Dadd%2Bcontry%2Bflag%2Bin%2Bnext%26aqs%3Dchrome.1.69i57j33i10i160l3.12407j0j4%26sourceid%3Dchrome%26ie%3DUTF-8"
+                    ></img>
+                  </a>
+                </div>
+                <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
+                  Ajouter une image
+                </Button>
+              
+           </Col>
+         </Row> 
+        </Col>
+      </Row>
       {
         legacies.length >0 ? <>
          <hr style={{backgroundColor: '#b7b7b7', height:'1px', marginBottom: '10px', marginTop: '10px'}}/>
-         { legacies.map((item, key)=> <div key={key}>{item.name}</div>)}
+         { legacies.map((item, key)=> <> <Container style={{ width:"70%"}} className="mb-3"> 
+         <Row key={key} style={{backgroundColor:"#F0F0F0",height: '50px', borderRadius:"40px",overflow:'hidden'}} >
+        <div style={{display:'flex', flexDirection:'row', justifyContent:"space-between", width:"100%", paddingTop:"10px" }}>
+           <Image 
+            src="https://accounts.google.com/SignOutOptions?hl=en&continue=https://www.google.com/search%3Fq%3Dadd%2Bcountry%2Bflag%2Bin%2Bnext%2Bjs%26oq%3Dadd%2Bcontry%2Bflag%2Bin%2Bnext%26aqs%3Dchrome.1.69i57j33i10i160l3.12407j0j4%26sourceid%3Dchrome%26ie%3DUTF-8"
+            alt="..." 
+            className="rounded-circle" 
+            height={45} width={45}
+            style={{backgroundColor:"#000"}}  
+            />
+            <p>{item.name}</p>
+            <p>{item.name}</p>
+            <p>{item.name}</p>
+            <div className="rounded-circle" style={{backgroundColor: "#CC9933", marginTop:"-8px",marginRight:"2px", height: "45px",display:"flex", justifyContent:'center', alignItems:'center', width:"45px", fontSize:"12px", color:'#fff'}}>
+              <span>100%</span>
+            </div>
+        </div>
+
+         </Row>
+         <div className="text-right">
+           <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
+                  Modifier
+                </Button>
+                <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#D20000', borderColor:'#D20000', borderRadius:'40px', }} >
+                  Supprimer
+                </Button>
+         </div>
+         </Container>
+        
+         
+         </> )}
         </>: null
       }
       </div>

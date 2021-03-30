@@ -74,7 +74,8 @@ $colors: map-merge(
   ),
   $colors
 );
-
+$text-color: #444444 !default;
+$jaune: #cc9933 !default;
 $default: #444444 !default;
 $primary: #143427 !default;
 $secondary: #fcca00 !default;
@@ -546,8 +547,7 @@ $input-disabled-bg: $gray-200 !default;
 $input-muted-bg: #f7fafe !default;
 $input-focus-muted-bg: lighten($input-muted-bg, 1%) !default;
 
-$input-alternative-box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15),
-  0 1px 0 rgba(0, 0, 0, 0.02) !default;
+$input-alternative-box-shadow: none;
 $input-focus-alternative-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
   0 1px 3px rgba(0, 0, 0, 0.08) !default;
 

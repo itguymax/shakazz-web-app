@@ -51,7 +51,7 @@ export default function Sinput({ disabled, info, required, label,btc, usd, inlin
              ):( 
                <>
                <div>
-                 <label>{label+":"}</label>
+                 <label style={{fontWeight: '300'}}>{label+":"}</label>
                 {required && <Dot info={ info?true:false} />}
                </div>
                  <InputGroup className="input-group-alternative  mb-1">

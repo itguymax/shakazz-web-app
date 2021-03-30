@@ -41,6 +41,9 @@ module.exports = withFonts(
     // Important: return the modified config
     return config
   },
+  images: {
+    domains: ['accounts.google.com'],
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, '/assets/scss')],
   },
