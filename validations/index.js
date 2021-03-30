@@ -89,6 +89,7 @@ const legacySchema = yup.object().shape({
   telephone: yup.string(),
   parente: yup.string(),
   officialDoc: yup.string(),
+  pourcentageHeritage: yup.number().max(100, "should be less or equal to 100")
 
 })
 const twofaSchema = yup.object().shape({
@@ -102,5 +103,11 @@ const passwordSchema = yup.object().shape({
   repeatNewPassword: yup.string().required('Confirmer le nouveau mot de passe').oneOf([yup.ref('newPassword'), null], 'Le mot de passe de confirmation doit etre identique'),
 
 })
+const contactFormSchema = yup.object().shape({
+  name:yup.string().required('Entrez votre nom'),
+  phone: yup.string().required('Entrez votre numero de telephone'),
+  email: yup.string().matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide"),
+  message: yup.string(),
+})
 
-export {registrationSchema,passwordSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+export {registrationSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;

@@ -41,7 +41,7 @@ var routes = [
       layout: "/portal"
     },
     {
-      path: "/Legacy",
+      path: "/legacy",
       name: "Legacy",
       displayName: "Legacy",
       layout: "/portal"

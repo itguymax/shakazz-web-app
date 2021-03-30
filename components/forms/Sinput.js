@@ -9,7 +9,7 @@ import {
   Row,
 } from "reactstrap";
 import Dot from '../common/dot'
-export default function Sinput({mgl, disabled,iStyle, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
+export default function Sinput({mgl, rows, inputvalue,handleOnchange, disabled,iStyle, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
   const ibg = inputBg || '#f5f5f5'
   const style = inline? {display: 'flex', flexDirection: 'row'}:null
   return (
@@ -19,8 +19,7 @@ export default function Sinput({mgl, disabled,iStyle, info, required, label,btc,
             <Row className="mt-3">
                <Col xl="3">
                  <div>
-                 
-                    <label style={{font: 'normal normal italic 20px/25px Ubuntu', color:"#fff"}}>{label}{":"}</label>
+                   {label?  <label style={{font: 'normal normal italic 20px/25px Ubuntu', color:"#fff"}}>{label}{":"}</label>:null}
                   {required && <Dot info={ info?true:false}/>}
                  </div>
                </Col>
@@ -34,7 +33,7 @@ export default function Sinput({mgl, disabled,iStyle, info, required, label,btc,
                     </InputGroupText>
                   </InputGroupAddon>
                    )}
-                  <Input  disabled={disabled?true:false} autoComplete={autoComplete} className=" font-italic" innerRef={register()} name={name} placeholder={placeholder} type={type}  style={{backgroundColor: ibg, color: '#FFF'}}/>
+                  <Input rows={rows} onChange={handleOnchange}  value={inputvalue} disabled={disabled?true:false} autoComplete={autoComplete} className=" font-italic" innerRef={register()} name={name} placeholder={placeholder} type={type}  style={{backgroundColor: ibg, color: '#FFF', borderRadius:'15px'}}/>
                   
                    {append && icon && (
                      <InputGroupAddon addonType="append">
@@ -52,7 +51,7 @@ export default function Sinput({mgl, disabled,iStyle, info, required, label,btc,
              ):( 
                <>
                <div>
-               {mgl? <label  className="ml-3" style={{font: "normal normal bold 18px/19px Ubuntu"}}>{label+":"}</label>:<label style={{fontWeight: '300'}}>{label+":"}</label>}
+               {mgl && label ? <label  className="ml-3" style={{font: "normal normal bold 18px/19px Ubuntu", fontWeight:mgl?"":"300"}}>{label+":"}</label>:null}
                  
                 {required && <Dot info={ info?true:false} />}
                </div>
@@ -64,7 +63,7 @@ export default function Sinput({mgl, disabled,iStyle, info, required, label,btc,
                     </InputGroupText>
                   </InputGroupAddon>
                    )}
-                  <Input autoComplete={autoComplete} className="text-muted font-italic" innerRef={register()} name={name} placeholder={placeholder} type={type}  style={{backgroundColor: ibg}}/>
+                  <Input rows={rows} onChange={handleOnchange} disabled={disabled?true:false} value={inputvalue} autoComplete={autoComplete} className="text-muted font-italic" innerRef={register()} name={name} placeholder={placeholder} type={type}  style={{backgroundColor: ibg, borderRadius:"15px"}}/>
                   
                    {append && icon && (
                      <InputGroupAddon addonType="append">

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Progress } from 'reactstrap'
 
 export default function LinearProgress({label, val, pColor}) {
+ 
   return (
     <div>
        <div className=" progress-wrapper">
@@ -10,7 +11,7 @@ export default function LinearProgress({label, val, pColor}) {
             <span>{label+ ":"}</span>
           </div>
           <div className=" progress-percentage">
-            <span>{val +"%"}</span>
+            <span>{val}<span>{"%"}</span></span>
           </div>
         </div>
         <Progress max="100" value={val} color={pColor}></Progress>
