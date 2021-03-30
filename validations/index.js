@@ -95,4 +95,12 @@ const twofaSchema = yup.object().shape({
   canal: yup.string(),
 })
 
-export {registrationSchema,twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+
+const passwordSchema = yup.object().shape({
+  oldPassword: yup.string().required('Entrez votre mot de passe actuel'),
+  newPassword: yup.string().required('Entrez votre nouveau mot de passe'),
+  repeatNewPassword: yup.string().required('Confirmer le nouveau mot de passe').oneOf([yup.ref('newPassword'), null], 'Le mot de passe de confirmation doit etre identique'),
+
+})
+
+export {registrationSchema,passwordSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;

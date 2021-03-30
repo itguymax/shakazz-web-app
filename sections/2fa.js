@@ -18,7 +18,7 @@ export default function Twofa({ col,sublabel, label, options, onSubmit, faOption
         </div>
         <div className={col?"": "d-flex align-items-center"}>
           <DropDownC label="Choisir le canal" register={register} name="canal" selectedOption={faOption} handleOnSelect={handleOnSelect} options={options||[]}/>
-          <Button className={col?" mt-3":"py-0 mb--4 ml-5"} type="submit"  style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', height:"40px"}} >
+          <Button className={col?" mt-3":"py-0 mb--4 ml-5"} type="submit"  style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'15px', height:"40px"}} >
                       Confirmer
             </Button>
         </div>
