@@ -14,7 +14,7 @@
   font-weight: 300;
 
   &:hover {
-    @include box-shadow($btn-hover-box-shadow);
+    // @include box-shadow($btn-hover-box-shadow);
     transform: translateY($btn-hover-translate-y);
   }
 

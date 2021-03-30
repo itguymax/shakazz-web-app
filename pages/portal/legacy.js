@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { legacySchema } from "../../validations";
 import LinearProgress from "../../components/common/linearProgress"
 import Image from 'next/image'
+import Line from '../../components/common/line'
 
 function Legacy() {
    const { register, handleSubmit, watch, errors } = useForm({
@@ -132,7 +133,7 @@ function Legacy() {
       </Row>
       {
         legacies.length >0 ? <>
-         <hr style={{backgroundColor: '#b7b7b7', height:'1px', marginBottom: '10px', marginTop: '10px'}}/>
+        <Line bgc='#b7b7b7' height="1px"/>
          { legacies.map((item, key)=> <> <Container style={{ width:"70%"}} className="mb-3"> 
          <Row key={key} style={{backgroundColor:"#F0F0F0",height: '50px', borderRadius:"40px",overflow:'hidden'}} >
         <div style={{display:'flex', flexDirection:'row', justifyContent:"space-between", width:"100%", paddingTop:"10px" }}>

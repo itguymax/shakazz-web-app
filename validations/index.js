@@ -91,5 +91,8 @@ const legacySchema = yup.object().shape({
   officialDoc: yup.string(),
 
 })
+const twofaSchema = yup.object().shape({
+  canal: yup.string(),
+})
 
-export {registrationSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+export {registrationSchema,twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
