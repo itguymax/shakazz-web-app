@@ -42,7 +42,7 @@ module.exports = withFonts(
     return config
   },
   images: {
-    domains: ['accounts.google.com'],
+    domains: ['accounts.google.com', '3.64.214.244'],
   },
   sassOptions: {
     includePaths: [path.join(__dirname, '/assets/scss')],

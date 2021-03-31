@@ -4,12 +4,12 @@ import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
 import PageChange from "../components/PageChange/PageChange.js";
-
+import { ApolloProvider } from '@apollo/client';
 import "../assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../assets/scss/nextjs-argon-dashboard.scss";
 // import "../styles/nextjs-argon-dashboard.css"
-
+import {client } from "../lib/apollo"
 
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`);
@@ -52,7 +52,9 @@ export default class MyApp extends App {
         </Head>
         
         <Layout>
+        <ApolloProvider client={client}>
           <Component {...pageProps} />
+        </ApolloProvider>
         </Layout>
         
       </React.Fragment>
