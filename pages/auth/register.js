@@ -20,6 +20,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Sinput from "../../src/components/forms/Sinput";
 import { registrationSchema } from "../../src/validations";
+import Head from "next/head";
+import config from "../../src/config";
 const options = [
   {
     key: 'JennyHess',
@@ -112,6 +114,42 @@ const { register, handleSubmit, watch, errors } = useForm({
 
   return (
     <>
+     <Head>
+        {/* META tags */}
+        <title>Inscription | Shakazz</title>
+        <meta
+          name="description"
+          content="Inscription a Shakazz"
+        />
+        <link
+          rel="canonical"
+          href={`${config.canonicalLink}/auth/login`}
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Connexion | Shakazz" />
+        <meta
+          property="og:description"
+          content="Inscription a Shakazz"
+        />
+        <meta
+          property="og:image"
+          content={`${config.seoShakazzLogo}`}
+        />
+        <meta
+          property="og:url"
+          content={`${config.canonicalLink}/auth/register`}
+        />
+        <meta property="og:site_name" content="Shakazz" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Webpage" />
+        <meta
+          name="twitter:description"
+          content="Inscription a Shakazz"
+        />
+      </Head>
       <Row>
         <Card className="bg-white container border-0" style={{minWidth:'100%'}}>
           <CardBody className="px-lg-5 py-lg-2">

@@ -5,7 +5,7 @@ import { client } from '../../src/lib/apollo';
 import Public from '../../src/layouts/Public';
 import styles from '../../styles/Blog.module.css';
 import Head from "next/head";
-import config from "../../config";
+import config from "../../src/config";
 
 function Blog({ posts }) {
   console.log("posts", posts);

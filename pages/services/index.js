@@ -1,7 +1,7 @@
 import React from 'react';
 import Public from '../../src/layouts/Public';
 import Head from "next/head";
-import config from "../../config";
+import config from "../../src/config";
 
 function Services () {
   return (
