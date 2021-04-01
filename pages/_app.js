@@ -5,9 +5,9 @@ import Head from "next/head";
 import Router from "next/router";
 import PageChange from "../src/components/PageChange/PageChange.js";
 import { ApolloProvider } from '@apollo/client';
-import "../src/assets/plugins/nucleo/css/nucleo.css";
+import "../public/assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "../src/assets/scss/nextjs-argon-dashboard.scss";
+import "../public/assets/scss/nextjs-argon-dashboard.scss";
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
 

@@ -48,7 +48,7 @@ function AdminNavbar() {
                   <Link href="/admin/dashboard">
                     <img
                       alt="..."
-                      src={require("../../assets/img/brand/nextjs_argon_black.png")}
+                      src="/assets/img/brand/nextjs_argon_black.png"
                     />
                   </Link>
                 </Col>
