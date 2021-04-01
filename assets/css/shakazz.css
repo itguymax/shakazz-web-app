@@ -270,6 +270,7 @@
 	color:white;
 }
 /*End Home Page*/
+/*Start about Page*/
 .aboutus_page_section_team{
 	padding-top:5em;
 	height:20em;
@@ -432,6 +433,8 @@
 	letter-spacing: 1.3px;
 	line-height: 200%;
 }
+/*End about Page*/
+/*Start Services Page*/
 .services_page_section_image{
 	height:36em;
 	padding-top:8em !important;
@@ -445,6 +448,130 @@
 	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
 	}
 }
+.services_page_section_presentation{
+	height:60em;
+	width:90%;
+	margin:auto;
+	padding:3em !important;
+	background-color:white !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:left;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.services_page_section_presentation_jombotron{
+	background:white !important;
+}
+.services_page_section_presentation_jombotron h1{
+	text-align:left !important;
+	font-size:2em !important;
+	opacity:0.8;
+}
+.services_page_section_presentation_jombotron p{
+	color:black;
+	opacity:0.8;
+}
+.services_page_section_presentation h1{
+	font-size:2.5em;
+	text-align:center;
+	margin-bottom:1em;
+	color:black;
+	opacity:0.8;
+}
+.services_page_section_presentation h4{
+	color:black;
+}
+.services_page_section_presentation img{
+	display:inline-block;
+}
+.services_page_section_presentation_tab{
+	width:20%;
+	font-weight:900 !important;
+	border:1px solid white !important;
+
+}
+.services_page_section_presentation_tab a{
+	color:black !important;
+	cursor:pointer;
+	font-size:0.8em;
+
+}
+.services_page_section_presentation_tab a{
+	border:1px solid white;
+
+}
+.services_page_section_networking{
+	height:60em;
+	width:100%;
+	margin:auto;
+	padding:3em !important;
+	background-color:#f5f5f5 !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:left;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.services_page_section_partenaires{
+	height:35em;
+	width:100%;
+	margin:auto;
+	padding:3em !important;
+	background-color:white !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:left;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.services_page_section_networking h1{
+	font-size:2.5em;
+	text-align:center;
+	margin-bottom:1em;
+	color:black;
+	opacity:0.8;
+}
+.services_page_section_partenaires h1{
+	font-size:2.5em;
+	text-align:center;
+	margin-bottom:1em;
+	color:black;
+	opacity:0.8;
+}
+/*End Services Page*/
+.nav{
+	border:none !important;
+}
+.nav a:hover{
+	border:none !important;
+}
+.nav a:selection{
+	border:none !important;
+}
+.nav.active {
+	border-bottom:8px solid blue !important;
+}
+.nav-tabs li{
+	border-bottom:6px solid white !important;
+}
+.nav-tabs li:hover{
+	border-bottom:6px solid #143427 !important;
+}
+.nav-link a:active{
+	border:none !important;
+}
+/*End about Page*/
+/*Start plans Page*/
 .plans_page_section_image{
 	height:36em;
 	padding-top:8em !important;
@@ -536,3 +663,4 @@
 	background-color:#143427;
 	border:1px solid #143427;
 }
+/*End about Page*/
