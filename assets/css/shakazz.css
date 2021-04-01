@@ -1,0 +1,538 @@
+/*Start Home Page*/
+.home_page_section_shakazz{
+	height:35em;
+	background-color:#0e251d;
+	color:white;
+}
+.home_page_section_shakazz_jumbotron{
+	background-color:transparent !important;
+	margin-bottom:0;
+	margin:auto !important;
+	margin-top:5em !important;
+	width:60em;
+}
+.home_page_section_shakazz_jumbotron h1{
+	font-size:2.5em;
+	color:white;
+}
+.home_page_section_shakazz_jumbotron button{
+	background-color:#cc9933;
+	color:black;
+	border:1px solid #cc9933 !important; 
+}
+.home_page_section_shakazz_jumbotron button:hover{
+	background-color:white;
+	color:black;
+	border:1px solid white !important; 
+}
+.home_page_section_presentation{
+	height:35em;
+	padding-top:8em !important;
+	background-color:#333333 !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:center;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.home_page_section_presentation h1{
+	color:white;
+	font-size:2.5em;
+}
+.home_page_section_presentation p{
+	margin:auto;
+	width:60%;
+}
+.home_page_section_presentation a{
+	margin:auto;
+	cursor:pointer;
+	text-decoration:none;
+}
+.home_page_section_whyus{
+	height:30em;
+	width:80%;
+	margin:auto;
+	box-shadow:
+  0 3.4px 2.7px rgba(0, 0, 0, 0.031),
+  0 8.7px 6.9px rgba(0, 0, 0, 0.044),
+  0 17.7px 14.2px rgba(0, 0, 0, 0.056),
+  0 36.5px 29.2px rgba(0, 0, 0, 0.069),
+  0 100px 80px rgba(0, 0, 0, 0.1)
+;
+	margin-top:-8em;
+	padding-top:2em !important;
+	padding-left:6em !important;
+	background-color:white !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.home_page_section_whyus h1{
+	font-size:2.5em;
+	color:black;
+}
+.home_page_section_market{
+	height:30em;
+	width:80%;
+	margin:auto;
+	margin-top:6em;
+	padding-top:2em !important;
+	padding-left:6em !important;
+	background-color:#24422f !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.home_page_section_market h1{
+	font-size:2.5em;
+	color:white;
+}
+.home_page_section_market_carddeck{
+	margin-right:6em !important;
+}
+.home_page_section_market_card{
+	background-color:none !important;
+	width:10em !important;
+}
+.home_page_section_plans{
+	height:30em;
+	width:70%;
+	margin:auto;
+	margin-top:6em;
+	padding-top:2em !important;
+	padding-left:6em !important;
+	background-color:white !important;
+	border-radius:0 !important;
+	text-align:center;
+}
+.home_page_section_plans button{
+	margin-bottom:2em !important;
+	background-color:white;
+	border-radius:18px;
+	border:1px solid #e5e5e5;
+	color:black;
+}
+.home_page_section_plans p{
+	opacity:0.6;
+}
+.home_page_section_plans div{
+	border:none !important;
+}
+.home_page_section_plans_buttonlink{
+	background-color:#cc9933 !important;
+	color:white;
+	border:0px solid white !important;
+	color:white !important;
+	border-radius:4px !important;
+}
+.home_page_section_plans_div{
+	border:1px solid #e5e5e5;
+	border-radius:4px;
+	padding-left:1em;
+	padding-right:1em;
+}
+.home_page_section_plans button:hover{
+	margin-bottom:2em !important;
+	background-color:#244230 !important;
+	border:1px solid #244230;
+}
+.home_page_section_plans h1{
+	color:black;
+	opacity:0.5;
+}
+.home_page_section_trust{
+	height:25em;
+	width:80%;
+	margin:auto;
+	margin-top:10em;
+	padding-top:2em !important;
+	padding-left:6em !important;
+	background-color:#f5f5f5 !important;
+	border-radius:0 !important;	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.home_page_section_trust h1{
+	margin-bottom:2em;
+	color:black;
+	opacity:0.5;
+	font-size:2.5em;
+}
+.home_page_section_started{
+	height:21em;
+	width:80%;
+	margin:auto;
+	background-color:#24422f !important;
+	border-radius:0 !important;	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.home_page_section_started h1{
+	color:black;
+}
+.home_page_section_started_jumbotron{
+	height:21em;
+	width:100%;
+	text-align:center;
+	margin-top:0 !important;
+	background-color:white !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+}
+.home_page_section_started_jumbotron button{
+	background-color:white !important;
+	border-radius:20px;
+	border:2px solid black;
+	color:black;
+}
+.home_page_section_started_jumbotron button:hover{
+	background-color:#244230 !important;
+	border-radius:8px;
+	border:2px solid white;
+}
+.home_page_section_started_col1{
+	height:19em;
+}
+.home_page_section_started_col1 iframe{
+	width:100% !important;
+	height:100% !important;
+	margin:1em !important;
+}
+.home_page_footer{
+	background-color:#333333 !important;
+	color:white !important;
+}
+.home_page_footer_nav{
+	background-color:#333333 !important;
+	color:white !important
+}
+.home_page_footer_first{
+	height:20em !important;
+	padding-left:6em !important;
+	padding-right:6em !important;
+	padding-top:3em !important;
+	display:flex;
+	justify-content:space-between;
+}
+.home_page_footer_last{
+	border-top:1px solid #e5e5e5;
+	padding-left:6em !important;
+	padding-right:6em !important;
+}
+.home_page_footer_last p{
+	background-color:#333333 !important;
+	font-size:1em;
+	opacity:0.3;
+}
+.home_page_footer_first h1 {
+  color:white;
+}
+.home_page_footer_first h2 {
+  color:white;
+}
+.home_page_footer_first ul {
+  list-style-type: none;
+  margin: 0;
+  width: 23%;
+}
+
+.home_page_footer_first li {
+  float: left;
+  font-size:1em;
+  left:2em;
+  margin-top:1em;
+  color:white;
+  opacity:0.6;
+}
+
+.home_page_footer_first li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.home_page_footer_first h5{
+	font-size:0.65em;
+	color:white;
+}
+/*End Home Page*/
+.aboutus_page_section_team{
+	padding-top:5em;
+	height:20em;
+	width:80%;
+	margin:auto;
+	text-align:center;
+	background-color:white !important;
+	border-radius:0 !important;	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.aboutus_page_section_team h1{
+	color:black;
+}
+.aboutus_page_section_team h3{
+	color:black;
+	opacity:0.6;
+}
+.aboutus_page_section_team h5{
+	color:black;
+	font-size:0.6em;
+	width:80%;
+	margin:auto;
+}
+.aboutus_page_section_team_div{
+	background-color:#f5f5f5;
+	width:20em !important;
+	display:block;
+	padding-top:1em;
+	padding-bottom:1em;
+}
+.aboutus_page_section_team_div_bottom{
+	text-align:left;
+	height:5em !important;
+	padding:1em;
+}
+.aboutus_page_section_team_div p{
+	font-weight:bold;
+	font-size:1.5em;
+}
+.aboutus_page_section_team_div h6{
+	font-size:0.8em;
+	font-weight: normal;
+}
+.aboutus_page_section_mission{
+	padding:5em;
+	color:white;
+	height:30em;
+	width:100%;
+	text-align:left !important;
+	margin:auto;
+	text-align:center;
+	background-color:#24422f !important;
+	border-radius:0 !important;	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.aboutus_page_section_mission h1{
+	color:white;
+	font-size:2.5em;
+}
+.aboutus_page_section_vision{
+	padding:5em;
+	color:white;
+	height:30em;
+	width:100%;
+	text-align:left !important;
+	margin:auto;
+	text-align:center;
+	background-color:#cc9933 !important;
+	border-radius:0 !important;	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.aboutus_page_section_vision h1{
+	color:white;
+	font-size:2.5em;
+}
+.aboutus_page_section_presentation{
+	padding:5em;
+	padding-top:0em;
+	color:white;
+	height:40em;
+	width:100%;
+	text-align:center !important;
+	margin:auto;
+	text-align:center;
+	background-color:white !important;
+	border-radius:0 !important;	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.aboutus_page_section_presentation_jombotron{
+	background-color:transparent !important;
+}
+.aboutus_page_section_presentation_jombotron h1{
+	font-size:2.5em;
+	color:black;
+	opacity:0.7;
+}
+.aboutus_page_section_presentation_jombotron p{
+	font-size:1em;
+	color:black;
+	width:80%;
+	margin:auto;
+}
+.aboutus_page_section_presentation_jombotron_text{
+	text-align:left;
+}
+.aboutus_page_section_presentation_jombotron_text h3{
+	color:black !important;
+	opacity:0.7;
+}
+.aboutus_page_section_presentation_jombotron_text h4{
+	color:black !important;
+	opacity:0.5;
+	font-size:0.8em;
+	width:20em;
+}
+.aboutus_page_section_image{
+	height:36em;
+	padding-top:8em !important;
+	background-color:#333333 !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:left;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.aboutus_page_section_image_jombotron{
+	background-color:transparent !important;
+	margin-bottom:0;
+	margin:auto !important;
+	margin-top:8em !important;
+	width:85%;
+}
+.aboutus_page_section_image_jombotron h1{
+	font-size:2.5em;
+	font-weight:100;
+	color:white;
+	letter-spacing: 2px;
+	line-height: 100%;
+}
+.aboutus_page_section_image_jombotron h2{
+	font-size:2.8em;
+	font-weight:bold;
+	color:white;
+	line-height: 130%;
+}
+.aboutus_page_section_image_jombotron p{
+	font-size:1em;
+	font-weight:bold;
+	letter-spacing: 1.3px;
+	line-height: 200%;
+}
+.services_page_section_image{
+	height:36em;
+	padding-top:8em !important;
+	background-color:#143427 !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:left;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.plans_page_section_image{
+	height:36em;
+	padding-top:8em !important;
+	background-color:#143427 !important;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:left;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.plans_page_section_image_jombotron{
+	background-color:transparent !important;
+	margin-bottom:0;
+	margin:auto !important;
+	margin-top:8em !important;
+	width:85%;
+}
+.plans_page_section_image_jombotron h1{
+	font-size:2.5em;
+	font-weight:100;
+	color:white;
+	letter-spacing: 2px;
+	line-height: 150%;
+}
+.plans_page_section_image_jombotron p{
+	font-size:1.1em;
+	font-weight:thin;
+	line-height: 150%;
+	width:75%;
+}
+.plans_page_section_plan{
+	height:75em;
+	padding-top:3em !important;
+	background-color:white !important;
+	width:90%;
+	margin:auto;
+	border-radius:0 !important;
+	margin-bottom:0 !important;
+	color:white;
+	text-align:left;
+	@font-face {
+	  font-family: 'Ubuntu';
+	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+	}
+}
+.plans_page_section_plan h1{
+ font-size:2.5em;
+ color:black;
+}
+.plans_page_section_plan_tables{
+ text-align:left;
+ width:50em;
+ margin:auto;
+}
+.plans_page_section_plan_tables td{
+ width:30em !important;
+}
+.plans_page_section_plan_tables td{
+ width:30em;
+ min-height:15em;
+}
+.plans_page_section_plan_tables h1{
+ font-size:2em;
+ font-weight:900;
+}
+.plans_page_section_plan_tables h2{
+ font-size:1.3em;
+ font-weight:100;
+ color:black;
+ opacity:0.5;
+}
+.plans_page_section_plan_tables span{
+ font-size:1em;
+ width:5em;
+ font-weight:100;
+ color:black;
+ opacity:0.5;
+ display: inline-block;
+}
+.plans_page_section_plan_tables button{
+	width:80%;
+	background-color:#cc9933;
+	border:1px solid #cc9933;
+}
+.plans_page_section_plan_tables button:hover{
+	background-color:#143427;
+	border:1px solid #143427;
+}

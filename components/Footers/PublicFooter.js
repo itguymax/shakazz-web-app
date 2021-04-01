@@ -1,46 +1,48 @@
 /*eslint-disable*/
 import React from "react";
 import menuItems from './PublicFooterData';
+import Navbar from 'react-bootstrap/Navbar'
+import ListGroup from 'react-bootstrap/ListGroup'
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 
 function PublicFooter() {
   return (
     <>
-      <footer className="px-3" style={styles.footer}>
-        <Container style={styles.footer.container}>
-          <Row style={styles.footer.footerTopArea}>
-             <Col md="4" style={styles.footer.footerTopArea}>
-                <div>
-                  Shakazz
-                </div>
-             </Col>
-             <Col md="8">
-                <Nav style={styles.footer.menuArea}>
-                    {menuItems &&
-                      menuItems.map(({ header, items }, i) => (
-                        <div style={styles.footer.menus} key={i}>
-                          <h3 style={styles.footer.heading}>{header}</h3>
-                          <nav>
-                            {items.map(({ path, label, name, icon }, i) => (
-                              <NavLink
-                                className={name}
-                                path={path}
-                                key={i}
-                                style={styles.footer.link}
-                              >
-                                {icon}
-                                {label}
-                              </NavLink>
-                            ))}
-                          </nav>
-                        </div>
-                      ))}
-                </Nav>
-             </Col>
-          </Row>
-        </Container>
-      </footer>
+          <div className="home_page_footer home_page_footer_first">
+                <ul>
+                  <h1>SHAKAZZ</h1>
+                  <li><h5>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum.</h5></li>
+                </ul>
+                <ul>
+                  <h2>Services</h2>
+                  <li>Crowndlending &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</li>
+                  <li>Networking</li>
+                </ul>
+                <ul>
+                  <h2>Légal</h2>
+                  <li>Condition d'utilisation</li>
+                  <li>Politique de confidentialité</li>
+                </ul>
+                <ul>
+                  <h2>Contact</h2>
+                </ul>
+          </div>
+          <div className="home_page_footer home_page_footer_last">
+                <Navbar className="home_page_footer" collapseOnSelect expand="lg">
+                  <Navbar><p>©Shakazz All Right Reserved</p></Navbar>
+                  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                  <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                    </Nav>
+                    <Nav>
+                      <Nav eventKey={2} href="#memes">
+                        Français
+                      </Nav>
+                    </Nav>
+                  </Navbar.Collapse>
+                </Navbar>
+          </div>
     </>
   );
 }
@@ -152,7 +154,7 @@ const styles = {
       mt: [3, null, null, null, 4],
       a: {
         fontSize: ['14px', 1],
-        color: 'text_secondary',
+        color: 'white',
         fontWeight: 'body',
         mb: 1,
         cursor: 'pointer',

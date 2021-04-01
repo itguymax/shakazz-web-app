@@ -1,5 +1,13 @@
 export default [
   {
+    header: 'Shakazz',
+    items: [
+    {
+      label: 'Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum.',
+    }
+    ]
+  },
+  {
     header: 'Services',
     items: [
     

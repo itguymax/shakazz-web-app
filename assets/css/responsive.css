@@ -1,0 +1,113 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 760px) {
+	.home_page_section_shakazz_jumbotron{
+		width:22em !important;
+		margin-top:1em !important;
+	}
+	.home_page_section_presentation{
+		height:57em !important;
+	}
+	.home_page_section_whyus{
+		height:45em;
+	}
+	.home_page_section_market{
+		height:52em;
+		width:100%;
+		padding-left:2em !important;
+	}
+	.home_page_section_market_card{
+		margin:auto;
+		width:20em !important;
+	}
+	.home_page_section_market_carddeck{
+		width:20em !important;
+	}
+	.home_page_section_plans{
+		height:90em !important;
+		margin-top:2em;
+		height:30em;
+		padding-left:2em !important;
+		width:100%;
+	}
+	.home_page_section_trust{
+		height:35em;
+		width:100%;
+		margin:auto;
+		margin-top:10em;
+		padding-top:2em !important;
+		padding-left:2em !important;
+	}
+	.home_page_section_started{
+		height:24em;
+		width:100%;
+	}
+	.home_page_section_started_jumbotron{
+		height:24em;
+		width:100%;
+	}
+	.home_page_footer_first{
+		padding-left:0 !important;
+		display:block;
+		height:25em !important;
+	}
+	.home_page_footer_first ul{
+		width:100%;
+	}
+	.aboutus_page_section_presentation{
+		padding:1em;
+		height:30em;
+	}
+	.aboutus_page_section_mission{
+		padding:1em;
+		height:30em;
+	}
+	.aboutus_page_section_vision{
+		padding:1em;
+		height:30em;
+		margin-top:25em;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+	.home_page_section_plans{
+		width:100%;
+		height:35em;
+	}
+	.home_page_section_whyus{
+		width:100%;
+		padding-left:2em !important;
+		padding-right:2em !important;
+	}
+	.home_page_section_presentation{
+		height:40em;
+	}
+	.home_page_section_shakazz_jumbotron{
+		width:40em;
+	}
+	.aboutus_page_section_presentation{
+		height:53em;
+	}
+	.aboutus_page_section_team{
+		height:40em;
+	}
+	.plans_page_section_plan{
+		width:99%;
+	}
+	.plans_page_section_image{
+		height:40em;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.home_page_section_trust{
+		margin-top:20em;
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

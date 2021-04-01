@@ -5,6 +5,8 @@ import Head from "next/head";
 import Router from "next/router";
 import PageChange from "../components/PageChange/PageChange.js";
 
+import "../assets/css/shakazz.css";
+import "../assets/css/responsive.css";
 import "../assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../assets/scss/nextjs-argon-dashboard.scss";
