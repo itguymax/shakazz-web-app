@@ -1,14 +1,14 @@
 import React ,{useState, useRef} from 'react';
 import { useRouter } from 'next/router';
-import Bleu from '../../layouts/Bleu';
+import Bleu from '../../src/layouts/Bleu';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import Sinput from "../../components/forms/Sinput";
-import { forgotPasswordSchema } from "../../validations";
-import { requestPasswordReset } from '../../services/auth.service';
+import Sinput from "../../src/components/forms/Sinput";
+import { forgotPasswordSchema } from "../../src/validations";
+import { requestPasswordReset } from '../../src/services/auth.service';
 
 import {Card,Button, CardBody } from 'reactstrap'
-import Captcha from '../../components/Captcha';
+import Captcha from '../../src/components/Captcha';
 function ForgotPassword() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(forgotPasswordSchema),
@@ -71,12 +71,15 @@ function ForgotPassword() {
                 type="email"
                 register={register}
                 name="email"
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
                 append
+         
               />
                {errors.email && <div className="text-muted font-italic">
                 
                   <span className="text-danger font-weight-700">{errors.email.message}</span>
-               
+
+
               </div> }
 
               <Captcha recaptchaRef={recaptchaRef} onChange={executeCaptcha}/>

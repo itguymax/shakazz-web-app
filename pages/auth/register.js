@@ -9,41 +9,41 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { signup } from '../../services/auth.service'
+import { signup } from '../../src/services/auth.service'
 // layout for this page
-import Auth from "../../layouts/Auth.js";
+import Auth from "../../src/layouts/Auth.js";
 import { useRouter } from 'next/router'
-import Sbutton from "../../components/forms/Sbutton";
-import Sdropdown from "../../components/forms/Sdropdown"
-import Captcha from "../../components/Captcha";
+import Sbutton from "../../src/components/forms/Sbutton";
+import Sdropdown from "../../src/components/forms/Sdropdown"
+import Captcha from "../../src/components/Captcha";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import Sinput from "../../components/forms/Sinput";
-import { registrationSchema } from "../../validations";
+import Sinput from "../../src/components/forms/Sinput";
+import { registrationSchema } from "../../src/validations";
 const options = [
   {
     key: 'JennyHess',
     text: 'JennyHess',
     value: 'JennyHess',
-    image: { avatar: true, src: require("../../assets/img/theme/react.jpg") },
+    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
   },
   {
     key: 'ElliotFu',
     text: 'ElliotFu',
     value: 'ElliotFu',
-    image: { avatar: true, src: require("../../assets/img/theme/react.jpg") },
+    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
   },
   {
     key: 'StevieFel',
     text: 'StevieFel',
     value: 'StevieFel',
-    image: { avatar: true, src: require("../../assets/img/theme/react.jpg") },
+    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
   },
   {
     key: 'Christian',
     text: 'Christian',
     value: 'Christian',
-    image: { avatar: true, src: require("../../assets/img/theme/react.jpg")},
+    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
   },
 ]
 function Register() {
@@ -170,6 +170,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 placeholder="Entrez votre prénom"
                 type="text"
                 register={register}
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
                 
               />
               {errors.firstName && <div className="text-muted font-italic">
@@ -186,6 +187,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 placeholder="Entrez votre nom"
                 type="text"
                 register={register}
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
                 
               />
               {errors.lastName && <div className="text-muted font-italic">
@@ -201,6 +203,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 placeholder="Entrez le nom de l'entreprise"
                 type="text"
                 register={register}
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
               />
               {errors.companyName && <div className="text-muted font-italic">
                 
@@ -215,6 +218,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 placeholder="Entrez votre nom d'utilisateur"
                 type="text"
                 register={register}
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
               
               />
 
@@ -229,6 +233,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 type="email"
                 name="email"
                 register={register}
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
               />
                {errors.email && <div className="text-muted font-italic">
                 
@@ -245,6 +250,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 handleToggleshow={handleToggleshow }
                 append
                 autoComplete="new-password"
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
               />
               {errors.password && <div className="text-muted font-italic">
                 
@@ -261,6 +267,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 icon={showc?"fa fa-eye":"fa fa-eye-slash"}
                 handleToggleshow={handleToggleshowc }
                 append
+                iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
                 autocomplete="new-password"
               />
               {errors.confirmpassword && <div className="text-muted font-italic">

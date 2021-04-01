@@ -1,5 +1,5 @@
 import React from 'react'
-import AdminBleu from '../../layouts/AdminBleu'
+import AdminBleu from '../../src/layouts/AdminBleu'
 
 function paymentSummary() {
   return (

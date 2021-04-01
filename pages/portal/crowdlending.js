@@ -13,9 +13,9 @@ import {
   
 } from "reactstrap";
 // layout for this page
-import Portal from "../../layouts/Portal";
+import Portal from "../../src/layouts/Portal";
 // core components
-import Header from "../../components/Headers/Header.js";
+import Header from "../../src/components/Headers/Header.js";
 
 const Crowdlending = () => {
   const [copiedText, setCopiedText] = useState();

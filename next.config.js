@@ -1,54 +1,72 @@
-const withPlugins = require("next-compose-plugins");
-const withImages = require("next-images");
-const withSass = require("@zeit/next-sass");
-const withCSS = require("@zeit/next-css");
-const withFonts = require("next-fonts");
-const webpack = require("webpack");
-const path = require("path");
+// const withPlugins = require("next-compose-plugins");
+// const withImages = require("next-images");
+// const withSass = require("@zeit/next-sass");
+// const withCSS = require("@zeit/next-css");
+// const withFonts = require("next-fonts");
+// const webpack = require("webpack");
+// const path = require("path");
 
  
-module.exports = withFonts(
-  withCSS(
-    withImages(
-      withSass({
-       webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Note: we provide webpack above so you should not `require` it
-    // Perform customizations to webpack config
-    
-    config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//));
-    config.module.rules.push({
-            test: /\.(eot|ttf|woff|woff2)$/,
-            use: {
-              loader: "url-loader",
-            },
-          });
-      config.module.rules.push({
-        test: /\.(woff(2)?|ttf|eot|svg|jpg|png|ico)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options:{
-            // optional, just to prettify file names
-             publicPath: './assets',
-              name: '[name].[ext]',
-              emitFile: false,
-              esModule: false,
-            }
-          },
-        ],
-      });
+// module.exports = withImages(
+//    {
 
-    // Important: return the modified config
-    return config
+
+//        webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+//     // Note: we provide webpack above so you should not `require` it
+//     // Perform customizations to webpack config
+//     config.module.rules.push({
+//             test: /\.(eot|ttf|woff|woff2)$/,
+//             use: {
+//               loader: "url-loader",
+//             },
+//           });
+//       config.module.rules.push({
+//         test: /\.(woff(2)?|ttf|eot|svg|jpg|png|ico)(\?v=\d+\.\d+\.\d+)?$/,
+//         use: [
+          
+//           {
+//             loader:'file-loader' ,
+//           },
+//         ],
+//       });
+
+//     // Important: return the modified config
+//     return config
+//   },
+//   images: {
+//     domains: ['accounts.google.com', '3.64.214.244'],
+//    },
+//   target: 'serverless',
+// }
+// )
+// next.config.js
+
+module.exports =  {
+   
+  webpack: (config) => {
+    config.module.rules.push({
+      issuer: {
+        // nextjs already handles url() in css/sass/scss files
+        test: /\.\w+(?<!(s?c|sa)ss)$/i,
+      },
+      test: /\.(jpg|gif|png|svg|ico)$/i,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            // sample options
+            limit: 8192,
+            outputPath: '...',
+            context: 'src',
+            name: '[path][name].[hash:8].[ext]',
+            
+          },
+        },
+      ],
+    });
+
+    return config;
   },
-  images: {
-    domains: ['accounts.google.com', '3.64.214.244'],
-  },
-  sassOptions: {
-    includePaths: [path.join(__dirname, '/assets/scss')],
-  },
-  target: 'serverless',
-      })
-    )
-  )
-);
+  
+}
+

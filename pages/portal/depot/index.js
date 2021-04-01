@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import AdminBleu from '../../../layouts/AdminBleu'
+import AdminBleu from '../../../src/layouts/AdminBleu'
 import {
   Card,
   Container,
@@ -11,12 +11,12 @@ import {
   Progress,
   Form,
 } from "reactstrap"
-import Sinput from "../../../components/forms/Sinput";
+import Sinput from "../../../src/components/forms/Sinput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import  LightBoxContainer from '../../../components/common/lightBoxContainer';
-import Smodal from '../../../components/common/Smodal'
-import { depotSchema } from "../../../validations";
+import  LightBoxContainer from '../../../src/components/common/lightBoxContainer';
+import Smodal from '../../../src/components/common/Smodal'
+import { depotSchema } from "../../../src/validations";
 
 
 

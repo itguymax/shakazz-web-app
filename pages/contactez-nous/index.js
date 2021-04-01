@@ -1,8 +1,8 @@
 import React from 'react'
-import Public from '../../layouts/Public';
+import Public from '../../src/layouts/Public';
 import { CardBody, Container,Row, Col, Card} from 'reactstrap';
-import ContactForm from '../../components/forms/ContactForm'
-import ContactHero from '../../sections/contactHero'
+import ContactForm from '../../src/components/forms/ContactForm'
+import ContactHero from '../../src/sections/contactHero'
  function ContactezNous() {
   return (
      <>

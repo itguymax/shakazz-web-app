@@ -17,14 +17,14 @@ import {
   Progress,
 } from "reactstrap";
 // layout for this page
-import Portal from "../../layouts/Portal.js";
+import Portal from "../../src/layouts/Portal.js";
 // core components
 import {
   chartOptions,
   parseOptions,
 } from "../../variables/charts.js";
-import  { Link } from "../../components/Link";
-import  LightBoxContainer from '../../components/common/lightBoxContainer';
+import  { Link } from "../../src/components/Link";
+import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);

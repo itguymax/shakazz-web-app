@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import { Col, Container, Form, Row } from 'reactstrap';
-import Portal from '../../layouts/Portal';
-import Line from '../../components/common/line';
-import DropDownC from '../../components/forms/Dropdownc';
-import SecForm from '../../sections/2fa';
-import Modificationpwd from '../../sections/modificationpwd'
+import Portal from '../../src/layouts/Portal';
+import Line from '../../src/components/common/line';
+import DropDownC from '../../src/components/forms/Dropdownc';
+import SecForm from '../../src/sections/2fa';
+import Modificationpwd from '../../src/sections/modificationpwd'
 const options = [{
   val: "Email"
 }, {

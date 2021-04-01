@@ -20,18 +20,20 @@ import  NavigationLink from '../NavigationLink'
 
 function AdminNavbar() {
   const router = useRouter();
+  console.log("route", router.pathname);
+  const isBlog = router.pathname ==="/blog"? true: false;
   return (
     <>
-      <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md" style={{backgroundColor:'#244230', opacity:1}}>
+      <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md" style={{backgroundColor: isBlog?'#fff':'#244230', opacity:1}}>
         <Container className="px-4">
-          <Link href="/admin/dashboard">
+          <Link href="/admin/portal">
             <span>
               <NavbarBrand href="/">
                 {/* <img
                   alt="..."
                   src={require("assets/img/brand/nextjs_argon_white.png")}
                 /> */}
-                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color:'#fff', letterSpacing: 0}}>Shakazz</h3>
+                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog?'#244230':'#fff', letterSpacing: 0}}>Shakazz</h3>
 
               </NavbarBrand>
             </span>

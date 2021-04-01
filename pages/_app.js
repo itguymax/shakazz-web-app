@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
-import PageChange from "../components/PageChange/PageChange.js";
+import PageChange from "../src/components/PageChange/PageChange.js";
 import { ApolloProvider } from '@apollo/client';
-import "../assets/plugins/nucleo/css/nucleo.css";
+import "../src/assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "../assets/scss/nextjs-argon-dashboard.scss";
+import "../src/assets/scss/nextjs-argon-dashboard.scss";
 // import "../styles/nextjs-argon-dashboard.css"
-import {client } from "../lib/apollo"
+import {client } from "../src/lib/apollo"
 
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`);

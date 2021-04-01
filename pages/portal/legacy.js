@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { Row , Col, Container, Form, Button} from 'reactstrap';
-import Portal from "../../layouts/Portal.js";
-import Sinput from "../../components/forms/Sinput"
+import Portal from "../../src/layouts/Portal.js";
+import Sinput from "../../src/components/forms/Sinput"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { legacySchema } from "../../validations";
-import LinearProgress from "../../components/common/linearProgress"
+import { legacySchema } from "../../src/validations";
+import LinearProgress from "../../src/components/common/linearProgress"
 import Image from 'next/image'
-import Line from '../../components/common/line'
+import Line from '../../src/components/common/line'
 
 function Legacy() {
    const { register, handleSubmit, watch, errors } = useForm({

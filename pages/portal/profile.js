@@ -14,9 +14,9 @@ import {
   Col,
 } from "reactstrap";
 // layout for this page
-import Portal from "../../layouts/Portal.js";
+import Portal from "../../src/layouts/Portal.js";
 // core components
-import UserHeader from "../../components/Headers/UserHeader.js";
+import UserHeader from "../../src/components/Headers/UserHeader.js";
 
 function Profile() {
   return (
@@ -34,7 +34,7 @@ function Profile() {
                       <img
                         alt="..."
                         className="rounded-circle"
-                        src={require("../../assets/img/theme/team-4-800x800.jpg")}
+                        src={require("../../src/assets/img/theme/team-4-800x800.jpg")}
                       />
                     </a>
                   </div>

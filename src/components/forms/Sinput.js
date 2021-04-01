@@ -14,7 +14,7 @@ export default function Sinput({mgl, rows, inputvalue,handleOnchange, disabled,i
   const style = inline? {display: 'flex', flexDirection: 'row'}:null
   return (
     <>
-        <FormGroup >
+        <FormGroup  >
              {inline? ( 
             <Row className="mt-3">
                <Col xl="3">
@@ -50,7 +50,7 @@ export default function Sinput({mgl, rows, inputvalue,handleOnchange, disabled,i
               </Row>
              ):( 
                <>
-               <div>
+               <div className="mt-3">
                {mgl && label ? <label  className="ml-3" style={{font: "normal normal bold 18px/19px Ubuntu", fontWeight:mgl?"":"300"}}>{label+":"}</label>:null}
                  
                 {required && <Dot info={ info?true:false} />}

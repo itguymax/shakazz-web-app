@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
-import AdminBleu from '../../layouts/AdminBleu'
+import AdminBleu from '../../src/layouts/AdminBleu'
 import {
   Row,
   Col,
   Button,
   Form,
 } from "reactstrap"
-import Sinput from "../../components/forms/Sinput";
+import Sinput from "../../src/components/forms/Sinput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import  LightBoxContainer from '../../components/common/lightBoxContainer';
+import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 
 
 function Transfert() {

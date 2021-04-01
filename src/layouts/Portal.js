@@ -36,6 +36,7 @@ function Portal(props) {
     }
     return "Brand";
   };
+  
   return (
     <>
       <Sidebar
@@ -43,7 +44,7 @@ function Portal(props) {
         routes={routes}
         logo={{
           innerLink: "/portal",
-          imgSrc: require("../assets/img/brand/logoshakazz.png"),
+          imgSrc: "/assets/img/brand/logoshakazz.png",
           imgAlt: "Logo Shakazz",
         }}
       />

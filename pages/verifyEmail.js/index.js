@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import  Bleu from '../../layouts/Bleu'
+import  Bleu from '../../src/layouts/Bleu'
 
 function VerifyEmail({ success }) {
   return (

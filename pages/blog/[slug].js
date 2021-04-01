@@ -1,6 +1,6 @@
 
 import { gql } from '@apollo/client';
-import { client } from '../../lib/apollo'; 
+import { client } from '../../src/lib/apollo'; 
 
 export default function BlogPage({post}){
 

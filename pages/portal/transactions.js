@@ -22,9 +22,9 @@ import {
   
 } from "reactstrap";
 // layout for this page
-import Portal from "../../layouts/Portal.js";
+import Portal from "../../src/layouts/Portal.js";
 // core components
-import Header from "../../components/Headers/Header.js";
+import Header from "../../src/components/Headers/Header.js";
 
 function Transactions() {
   return (

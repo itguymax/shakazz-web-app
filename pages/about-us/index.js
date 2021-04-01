@@ -1,5 +1,5 @@
 import React from 'react'
-import Public from '../../layouts/Public';
+import Public from '../../src/layouts/Public';
 
  function AboutUs() {
   return (

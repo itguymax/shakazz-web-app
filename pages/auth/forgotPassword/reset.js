@@ -1,14 +1,14 @@
 import React ,{useState, useRef} from 'react';
 import { useRouter } from 'next/router';
-import Bleu from '../../../layouts/Bleu';
+import Bleu from '../../../src/layouts/Bleu';
 import Link from 'next/link';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import {Card,Button, CardBody, FormGroup, InputGroup, Input} from 'reactstrap'
-import Captcha from '../../../components/Captcha';
-import Sinput from '../../../components/forms/Sinput';
-import { resetPasswordSchema } from '../../../validations'
-import { resetPassword } from '../../../services/auth.service';
+import Captcha from '../../../src/components/Captcha';
+import Sinput from '../../../src/components/forms/Sinput';
+import { resetPasswordSchema } from '../../../src/validations'
+import { resetPassword } from '../../../src/services/auth.service';
 
 function ForgotPassword() {
 const  recaptchaRef = useRef();

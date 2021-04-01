@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { gql } from '@apollo/client';
-import { client } from '../../lib/apollo';
-import Public from '../../layouts/Public';
+import { client } from '../../src/lib/apollo';
+import Public from '../../src/layouts/Public';
 import styles from '../../styles/Blog.module.css';
 
 function Blog({ posts }) {

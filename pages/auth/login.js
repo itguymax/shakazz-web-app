@@ -2,7 +2,7 @@ import React, {useRef, useState} from "react";
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { login } from '../../services/auth.service'
+import { login } from '../../src/services/auth.service'
 // reactstrap components
 import {
   Button,
@@ -13,10 +13,10 @@ import {
   Row,
 } from "reactstrap";
 // layout for this page
-import Auth from "../../layouts/Auth.js";
-import Sinput from "../../components/forms/Sinput";
-import Captcha from "../../components/Captcha";
-import { loginSchema } from "../../validations";
+import Auth from "../../src/layouts/Auth.js";
+import Sinput from "../../src/components/forms/Sinput";
+import Captcha from "../../src/components/Captcha";
+import { loginSchema } from "../../src/validations";
 
 
 function Login() {
@@ -80,7 +80,7 @@ function Login() {
             {/* <div className="text-center text-muted mb-4">
               <small>Or sign in with credentials</small>
             </div> */}
-            <Form role="form" onSubmit={handleSubmit(onSubmit)} >
+            <Form role="form" onSubmit={handleSubmit(onSubmit)} className="mt-4" >
             <Sinput
               label="Nom d'utilisateur"
               icon="far fa-user"
@@ -89,6 +89,7 @@ function Login() {
               register={register}
               name="userName"
               append
+              iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
             />
              {errors.userName && <div className="text-muted font-italic">
                 
@@ -105,6 +106,7 @@ function Login() {
               icon={show ? "fa fa-eye":"fa fa-eye-slash"}
               handleToggleshow={handleToggleshow }
               append
+              iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
             />
                {errors.password && <div className="text-muted font-italic">
                 

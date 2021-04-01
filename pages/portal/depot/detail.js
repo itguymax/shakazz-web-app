@@ -1,6 +1,6 @@
 import React from 'react'
-import AdminBleu from '../../../layouts/AdminBleu'
-import LineItem from '../../../components/common/LineItem'
+import AdminBleu from '../../../src/layouts/AdminBleu'
+import LineItem from '../../../src/components/common/LineItem'
 
 import {
   Card,

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import AdminBleu from '../../layouts/AdminBleu'
+import AdminBleu from '../../src/layouts/AdminBleu'
 import {
   Card,
   Container,
@@ -11,12 +11,12 @@ import {
   Progress,
   Form,
 } from "reactstrap"
-import Sinput from "../../components/forms/Sinput";
+import Sinput from "../../src/components/forms/Sinput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import  LightBoxContainer from '../../components/common/lightBoxContainer';
-import { retraitSchema } from "../../validations";
-import Smodal from '../../components/common/Smodal';
+import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
+import { retraitSchema } from "../../src/validations";
+import Smodal from '../../src/components/common/Smodal';
 function Retrait() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(retraitSchema),
