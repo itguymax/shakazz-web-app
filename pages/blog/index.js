@@ -44,7 +44,7 @@ function Blog({ posts }) {
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Shakazz Nos services description"
+          content="Shakazz Nos articles description"
         />
       </Head>
     <main >
