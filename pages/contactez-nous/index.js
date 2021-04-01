@@ -3,9 +3,47 @@ import Public from '../../src/layouts/Public';
 import { CardBody, Container,Row, Col, Card} from 'reactstrap';
 import ContactForm from '../../src/components/forms/ContactForm'
 import ContactHero from '../../src/sections/contactHero'
+import Head from "next/head"
+import config from '../../src/config'
  function ContactezNous() {
   return (
      <>
+     <Head>
+        {/* META tags */}
+        <title>Contactez nous | Shakazz</title>
+        <meta
+          name="description"
+          content="Shakazz contact page description"
+        />
+        <link
+          rel="canonical"
+          href={`${config.canonicalLink}/contactez-nous`}
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="A propos | Shakazz" />
+        <meta
+          property="og:description"
+          content="Shakazz contact page description"
+        />
+        <meta
+          property="og:image"
+          content={`${config.seoShakazzLogo}`}
+        />
+        <meta
+          property="og:url"
+          content={`${config.canonicalLink}/contactez-nous`}
+        />
+        <meta property="og:site_name" content="Shakazz" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Webpage" />
+        <meta
+          name="twitter:description"
+          content="Shakazz contact page description"
+        />
+      </Head>
      <ContactHero/>
      <Container className="mt--7" fluid>
       <Row className="justify-content-center mb-9">
