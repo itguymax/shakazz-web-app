@@ -19,7 +19,7 @@ function Plan() {
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="A propos | Shakazz" />
+        <meta property="og:title" content="Nos plans | Shakazz" />
         <meta
           property="og:description"
           content="Shakazz plan page description"
