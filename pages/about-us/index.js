@@ -8,10 +8,10 @@ import config from '../../src/config'
     <>
       <Head>
         {/* META tags */}
-        <title>A propos | Shakazz</title>
+        <title>Qui sommes-nous ? | Shakazz</title>
         <meta
           name="description"
-          content="Shakazz about page description"
+          content="Plateforme d’investissement numérique africaine."
         />
         <link
           rel="canonical"
@@ -19,10 +19,10 @@ import config from '../../src/config'
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="A propos | Shakazz" />
+        <meta property="og:title" content="Qui sommes-nous ? | Shakazz" />
         <meta
           property="og:description"
-          content="Shakazz about page description"
+          content="Plateforme d’investissement numérique africaine."
         />
         <meta
           property="og:image"
@@ -39,7 +39,7 @@ import config from '../../src/config'
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Shakazz twitter description"
+          content="Plateforme d’investissement numérique africaine."
         />
       </Head>
       <div> About us </div>

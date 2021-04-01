@@ -11,7 +11,7 @@ function Services () {
         <title>Nos services | Shakazz</title>
         <meta
           name="description"
-          content="Shakazz Nos services description"
+          content="Formations – investissements – informations"
         />
         <link
           rel="canonical"
@@ -22,7 +22,7 @@ function Services () {
         <meta property="og:title" content="Nos Services | Shakazz" />
         <meta
           property="og:description"
-          content="Shakazz Nos services description"
+          content="Formations – investissements – informations"
         />
         <meta
           property="og:image"
@@ -39,7 +39,7 @@ function Services () {
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Shakazz Nos services description"
+          content="Formations – investissements – informations"
         />
       </Head>
     <div>

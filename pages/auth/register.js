@@ -119,7 +119,7 @@ const { register, handleSubmit, watch, errors } = useForm({
         <title>Inscription | Shakazz</title>
         <meta
           name="description"
-          content="Inscription a Shakazz"
+          content="Saisissez L'opportunité pour une indépendance financière."
         />
         <link
           rel="canonical"
@@ -130,7 +130,7 @@ const { register, handleSubmit, watch, errors } = useForm({
         <meta property="og:title" content="Connexion | Shakazz" />
         <meta
           property="og:description"
-          content="Inscription a Shakazz"
+          content="Saisissez L'opportunité pour une indépendance financière."
         />
         <meta
           property="og:image"
@@ -147,7 +147,7 @@ const { register, handleSubmit, watch, errors } = useForm({
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Inscription a Shakazz"
+          content="Saisissez L'opportunité pour une indépendance financière."
         />
       </Head>
       <Row>

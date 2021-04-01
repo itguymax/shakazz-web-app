@@ -11,7 +11,7 @@ function Plan() {
         <title>Nos plans | Shakazz</title>
         <meta
           name="description"
-          content="Shakazz plan page description"
+          content="Découvrez  et profitez de la puissance du crowdlending."
         />
         <link
           rel="canonical"
@@ -22,7 +22,7 @@ function Plan() {
         <meta property="og:title" content="Nos plans | Shakazz" />
         <meta
           property="og:description"
-          content="Shakazz plan page description"
+          content="Découvrez  et profitez de la puissance du crowdlending."
         />
         <meta
           property="og:image"
@@ -39,7 +39,7 @@ function Plan() {
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Shakazz plan page description"
+          content="Découvrez  et profitez de la puissance du crowdlending."
         />
       </Head>
     <div>

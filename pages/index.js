@@ -15,10 +15,10 @@ function Index() {
   // });
   return <>
       <Head>
-          <title>Shakazz | Independance financiere a portee de main</title>
+          <title>Shakazz | Elargissez vos opportunités d’affaires</title>
         <meta
           name="description"
-          content="Shakazz landing page description ici"
+          content="Shakazz vous propose des plans d’investissement adaptés à votre environnement socioéconomique et au confort financier de votre portefeuille."
         />
         <link rel="canonical" href={`${config.canonicalLink}`}/>
 
@@ -26,7 +26,7 @@ function Index() {
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
-          content="Shakazz | Independance financiere a portee de main"
+          content="Shakazz | Elargissez vos opportunités d’affaires"
         />
 
         <meta
@@ -41,7 +41,7 @@ function Index() {
         <meta name="twitter:title" content="Website" />
         <meta
           name="twitter:description"
-          content="Shakazz landing page description ici"
+          content="Shakazz vous propose des plans d’investissement adaptés à votre environnement socioéconomique et au confort financier de votre portefeuille."
         />
       </Head>
       <UserHeader/>

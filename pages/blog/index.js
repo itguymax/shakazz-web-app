@@ -16,7 +16,7 @@ function Blog({ posts }) {
         <title>Nos articles | Shakazz</title>
         <meta
           name="description"
-          content="Shakazz Nos articles description"
+          content="Découvrez nos articles, et apprenez des experts."
         />
         <link
           rel="canonical"
@@ -27,7 +27,7 @@ function Blog({ posts }) {
         <meta property="og:title" content="Nos Services | Shakazz" />
         <meta
           property="og:description"
-          content="Shakazz Nos services description"
+          content="Découvrez nos articles, et apprenez des experts."
         />
         <meta
           property="og:image"
@@ -44,7 +44,7 @@ function Blog({ posts }) {
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Shakazz Nos articles description"
+          content="Découvrez nos articles, et apprenez des experts."
         />
       </Head>
     <main >

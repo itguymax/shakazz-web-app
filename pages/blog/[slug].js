@@ -12,7 +12,7 @@ export default function BlogPage({post}){
         <title>{` ${post.title} | Shakazz`}</title>
         <meta
           name="description"
-          content="Shakazz Nos articles description"
+          content={post.title}
         />
         <link
           rel="canonical"
@@ -23,7 +23,7 @@ export default function BlogPage({post}){
         <meta property="og:title" content={` ${post.title} | Shakazz`} />
         <meta
           property="og:description"
-          content="Shakazz Nos articles description"
+          content={post.title}
         />
         <meta
           property="og:image"
@@ -40,7 +40,7 @@ export default function BlogPage({post}){
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Shakazz Nos articles description"
+          content={post.title}
         />
       </Head>
     <div>

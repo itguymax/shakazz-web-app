@@ -71,7 +71,7 @@ function Login() {
         <title>Connexion | Shakazz</title>
         <meta
           name="description"
-          content="Connexion a Shakazz"
+          content="Bienvenue Leader"
         />
         <link
           rel="canonical"
@@ -82,7 +82,7 @@ function Login() {
         <meta property="og:title" content="Connexion | Shakazz" />
         <meta
           property="og:description"
-          content="Connexion a Shakazz"
+          content="Bienvenue Leader"
         />
         <meta
           property="og:image"
@@ -99,7 +99,7 @@ function Login() {
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content="Connexion a Shakazz"
+          content="Bienvenue Leader"
         />
       </Head>
       <Row>
