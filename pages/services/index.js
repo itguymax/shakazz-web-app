@@ -109,28 +109,22 @@ function Services () {
 	        onExiting={() => setAnimating(true)}
 	        onExited={() => setAnimating(false)}
 	      >
-	      	  <Row>
+	      	  <Row className="services_page_section_partenaires_row">
 		        <Col xs="6">
 		        	<Card>
-				        <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
 				        <CardBody>
-				          <CardTitle tag="h5">Card Title</CardTitle>
-				          <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-				          <CardText>
-				            <small className="text-muted">Last updated 3 mins ago</small>
-				          </CardText>
+				          <h2>Umdeny Logo</h2><h6>Visiter<span> ></span></h6>
+				          <h4>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou</h4>
+				          <h3>Secteur activité</h3>
 				        </CardBody>
 				      </Card>
 		        </Col>
 		        <Col xs="6">
 		        	<Card>
-				        <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" />
 				        <CardBody>
-				          <CardTitle tag="h5">Card Title</CardTitle>
-				          <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-				          <CardText>
-				            <small className="text-muted">Last updated 3 mins ago</small>
-				          </CardText>
+				        	<h2>Hannibal Logo</h2><h6>Visiter<span> ></span></h6>
+				        	<h4>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou</h4>
+				        	<h3>Secteur activité</h3>
 				        </CardBody>
 				      </Card>
 		        </Col>
@@ -324,6 +318,8 @@ function Services () {
 				      >
 				        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
 				        {slides3}
+				         <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+      					 <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
 				      </Carousel>
 	    </div>
     </div>
