@@ -5,6 +5,7 @@ import { TabContent, TabPane, Nav, CardImg, CardBody, NavItem, NavLink, Card, Bu
 import classnames from 'classnames';
 import { Media } from 'reactstrap';
 import { Jumbotron, Container } from 'reactstrap';
+import Image from 'next/image'
 import {
   Carousel,
   CarouselItem,
@@ -14,6 +15,12 @@ import {
 } from 'reactstrap';
 
 function Services () {
+	//Tabs
+	  const [activeTab, setActiveTab] = useState('1');
+	  const toggle = tab => {
+	    if(activeTab !== tab) setActiveTab(tab);
+	  }
+	//
 	//Slider
 	const items = [
 		  {
@@ -72,7 +79,7 @@ function Services () {
 	  const slides = items.map((item) => {
 	    return (
 	      <CarouselItem
-	        className="custom-tag"
+	        className="services_page_section_presentation_caroussel"
 	        tag="div"
 	        key={item.id}
 	        onExiting={() => setAnimating(true)}
@@ -85,14 +92,45 @@ function Services () {
 				          <h1>Participer au pool de liquidité</h1>
 				          <p className="lead">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil</p>
 				          <p className="lead">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil</p>
-				          <h4>LEARN MORE</h4><img src="../../../../assets/img/theme/profile-cover.jpg"/>
+				          <h4>LEARN MORE<img className="services_page_section_networking_jombotron_icon" src="/img/icons/arrow dark.svg"/></h4>
 				        </Container>
 				      </Jumbotron>
 		        </Col>
 		        <Col xs="6">
 		        	<Jumbotron fluid className="services_page_section_presentation_jombotron">
 				        <Container fluid>
-				          <img src="/img/theme/profile-cover.jpg"/>
+				          <img src="/img/crowdlending.png"/>
+				        </Container>
+				      </Jumbotron>
+		        </Col>
+		      </Row>
+	      </CarouselItem>
+	    );
+	  });
+	  const slides2 = items.map((item) => {
+	    return (
+	      <CarouselItem
+	      className="services_page_section_networking_caroussel"
+	        tag="div"
+	        key={item.id}
+	        onExiting={() => setAnimating(true)}
+	        onExited={() => setAnimating(false)}
+	      >
+	      	  <Row>
+		        <Col xs="6">
+		        	<Jumbotron fluid className="services_page_section_networking_jombotron">
+				        <Container fluid>
+				          <h1>Participer au pool de liquidité</h1>
+				          <p className="lead">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil</p>
+				          <p className="lead">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil</p>
+				          <h4>LEARN MORE<img className="services_page_section_networking_jombotron_icon" src="/img/icons/arrow dark.svg"/></h4>
+				        </Container>
+				      </Jumbotron>
+		        </Col>
+		        <Col xs="6">
+		        	<Jumbotron fluid className="services_page_section_networking_jombotron">
+				        <Container fluid>
+				          <img src="/img/networking.png"/>
 				        </Container>
 				      </Jumbotron>
 		        </Col>
@@ -103,28 +141,52 @@ function Services () {
 	  const slides3 = items3.map((item) => {
 	    return (
 	      <CarouselItem
-	        className="custom-tag"
+	      	className="services_page_section_partenaires_caroussel"
 	        tag="div"
 	        key={item.id}
 	        onExiting={() => setAnimating(true)}
 	        onExited={() => setAnimating(false)}
 	      >
 	      	  <Row className="services_page_section_partenaires_row">
-		        <Col xs="6">
+		        <Col xs="6" className="services_page_section_partenaires_col">
 		        	<Card>
 				        <CardBody>
 				          <h2>Umdeny Logo</h2><h6>Visiter<span> ></span></h6>
 				          <h4>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou</h4>
-				          <h3>Secteur activité</h3>
+				          <Row className="services_page_section_partenaires_row2">
+		        				<Col xs="6">
+		        					<h3>Secteur activité</h3>
+		        			  	</Col>
+		        			  	<Col xs="6">
+		        			  		<Image className="services_page_section_partenaires_row_image"
+								        src="/img/brand/umdeny-logo-XL.png"
+								        alt=""
+								        width={280}
+								        height={200}
+								      />
+		        			  	</Col>
+		        			  </Row>
 				        </CardBody>
 				      </Card>
 		        </Col>
-		        <Col xs="6">
+		        <Col xs="6" className="services_page_section_partenaires_col">
 		        	<Card>
 				        <CardBody>
 				        	<h2>Hannibal Logo</h2><h6>Visiter<span> ></span></h6>
 				        	<h4>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou</h4>
-				        	<h3>Secteur activité</h3>
+						      <Row className="services_page_section_partenaires_row2">
+		        				<Col xs="6">
+		        					<h3>Secteur activité</h3>
+		        			  	</Col>
+		        			  	<Col xs="6">
+		        			  		<Image className="services_page_section_partenaires_row_image"
+								        src="/img/brand/Logo-HANNIBAL-CONSULTING-AICNF-Annuaire-Afro-lesiteafro.png"
+								        alt=""
+								        width={200}
+								        height={200}
+								      />
+		        			  	</Col>
+		        			  </Row>
 				        </CardBody>
 				      </Card>
 		        </Col>
@@ -133,10 +195,6 @@ function Services () {
 	    );
 	  });
 	//
-  const [activeTab, setActiveTab] = useState('1');
-  const toggle = tab => {
-    if(activeTab !== tab) setActiveTab(tab);
-  }
   return (
     <div>
       	<div className="services_page_section_image">
@@ -149,39 +207,74 @@ function Services () {
 			            className={classnames({ active: activeTab === '1' })}
 			            onClick={() => { toggle('1'); }}
 			          >
-			            Participation au pool de liquidité
+			            <Row>
+				            <Col sm="3">
+				            	<img src="/img/icons/icon_non-activated.svg"/>
+				            </Col>
+				            <Col sm="9">
+				            	Participation au pool de liquidité
+				            </Col>
+				          </Row>
 			          </NavLink>
 			        </NavItem>
 			        <NavItem className="services_page_section_presentation_tab">
 			          <NavLink
 			            className={classnames({ active: activeTab === '2' })}
-			            onClick={() => { toggle('1'); }}
+			            onClick={() => { toggle('2'); }}
 			          >
-			            Gestion, acquisition de produits numériques
+			            <Row>
+				            <Col sm="3">
+				            	<img src="/img/icons/icon_non-activated.svg"/>
+				            </Col>
+				            <Col sm="9">
+				            	Gestion, acquisition de produits numériques
+				            </Col>
+				          </Row>
 			          </NavLink>
 			         </NavItem> 
 		           <NavItem className="services_page_section_presentation_tab">
 			          <NavLink
 			            className={classnames({ active: activeTab === '3' })}
-			            onClick={() => { toggle('1'); }}
+			            onClick={() => { toggle('3'); }}
 			          >
-			            Monitoring et suivie des positions de participation
+			             <Row>
+				            <Col sm="3">
+				            	<img src="/img/icons/icon_non-activated.svg"/>
+				            </Col>
+				            <Col sm="9">
+				            	Monitoring et suivie des positions de participation
+				            </Col>
+				          </Row>
 			          </NavLink>
 		          </NavItem>
 		          <NavItem className="services_page_section_presentation_tab">
 			          <NavLink
-			            className={classnames({ active: activeTab === '3' })}
-			            onClick={() => { toggle('1'); }}
+			            className={classnames({ active: activeTab === '4' })}
+			            onClick={() => { toggle('4'); }}
 			          >
-			            Partage des intérêts
+			            <Row>
+				            <Col sm="3">
+				            	<img src="/img/icons/icon_non-activated.svg"/>
+				            </Col>
+				            <Col sm="9">
+				            	Partage des intérêts
+				            </Col>
+				          </Row>
 			          </NavLink>
 		          </NavItem> 
 		           <NavItem className="services_page_section_presentation_tab">
 			          <NavLink
-			            className={classnames({ active: activeTab === '4' })}
-			            onClick={() => { toggle('1'); }}
+			            className={classnames({ active: activeTab === '5' })}
+			            onClick={() => { toggle('5'); }}
 			          >
-			            Satisfactions des membres de la communauté
+			            <Row>
+				            <Col sm="3">
+				            	<img src="/img/icons/icon_non-activated.svg"/>
+				            </Col>
+				            <Col sm="9">
+				            	Satisfactions des membres de la communauté
+				            </Col>
+				          </Row>
 			          </NavLink>
 		        	</NavItem>
 		      </Nav>
@@ -189,18 +282,6 @@ function Services () {
 	        <TabPane tabId="1">
 	          <Row>
 	            <Col sm="12">
-		            <Media left href="#">
-			          <Media object data-src="./assets/login.png"/>
-			        </Media>
-	              	 <style>
-				        {
-				          `.custom-tag {
-				              max-width: 100%;
-				              height: 500px;
-				              background: transparent;
-				            }`
-				        }
-				      </style>
 				      <Carousel
 				        activeIndex={activeIndex}
 				        next={next}
@@ -213,49 +294,46 @@ function Services () {
 	          </Row>
 	        </TabPane>
 	        <TabPane tabId="2">
-	          <Row>
-	            <Col sm="6">
-	              <Card body>
-	                <CardTitle>Special Title Treatment</CardTitle>
-	                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-	                <Button>Go somewhere</Button>
-	              </Card>
-	            </Col>
-	            <Col sm="6">
-	              <Card body>
-	                <CardTitle>Special Title Treatment</CardTitle>
-	                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-	                <Button>Go somewhere</Button>
-	              </Card>
-	            </Col>
-	          </Row>
+	          <h1>Tab2</h1>
+	        </TabPane>
+	        <TabPane tabId="3">
+	          <h1>Tab3</h1>
+	        </TabPane>
+	        <TabPane tabId="4">
+	          <h1>Tab4</h1>
+	        </TabPane>
+	        <TabPane tabId="5">
+	          <h1>Tab5</h1>
 	        </TabPane>
 	      </TabContent>
 	    </div>
 	    <div className="services_page_section_networking">
 	    	<h1>Présentation Networking</h1>
 			    	   <Nav tabs>
-					        <NavItem className="services_page_section_presentation_tab">
+					        <NavItem className="services_page_section_networking_tab">
 					          <NavLink
 					            className={classnames({ active: activeTab === '1' })}
 					            onClick={() => { toggle('1'); }}
 					          >
+					            <img src="/img/icons/icon_non-activated.svg"/>
 					            Notre système d'affiliation
 					          </NavLink>
 					        </NavItem>
-					        <NavItem className="services_page_section_presentation_tab">
+					        <NavItem className="services_page_section_networking_tab">
 					          <NavLink
 					            className={classnames({ active: activeTab === '2' })}
-					            onClick={() => { toggle('1'); }}
+					            onClick={() => { toggle('2'); }}
 					          >
+					            <img src="/img/icons/icon_non-activated.svg"/>
 					            Plan de compensation
 					          </NavLink>
 					         </NavItem> 
-				           <NavItem className="services_page_section_presentation_tab">
+				           <NavItem className="services_page_section_networking_tab">
 					          <NavLink
 					            className={classnames({ active: activeTab === '3' })}
-					            onClick={() => { toggle('1'); }}
+					            onClick={() => { toggle('3'); }}
 					          >
+					            <img src="/img/icons/icon_non-activated.svg"/>
 					            La licence
 					          </NavLink>
 				          </NavItem>
@@ -272,7 +350,7 @@ function Services () {
 						          `.custom-tag {
 						              max-width: 100%;
 						              height: 500px;
-						              background: transparent;
+						              background: transparent !important;
 						            }`
 						        }
 						      </style>
@@ -281,31 +359,19 @@ function Services () {
 						        next={next}
 						        previous={previous}
 						      >
-						        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-						        {slides}
+						        <CarouselIndicators items={items3} activeIndex={activeIndex} onClickHandler={goToIndex} />
+						        {slides2}
 						        <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
 						        <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
 						      </Carousel>
 			            </Col>
 			          </Row>
 			        </TabPane>
-			        <TabPane tabId="2">
-			          <Row>
-			            <Col sm="6">
-			              <Card body>
-			                <CardTitle>Special Title Treatment</CardTitle>
-			                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-			                <Button>Go somewhere</Button>
-			              </Card>
-			            </Col>
-			            <Col sm="6">
-			              <Card body>
-			                <CardTitle>Special Title Treatment</CardTitle>
-			                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-			                <Button>Go somewhere</Button>
-			              </Card>
-			            </Col>
-			          </Row>
+			       <TabPane tabId="2">
+			          <h1>Tab2</h1>
+			        </TabPane>
+			        <TabPane tabId="3">
+			          <h1>Tab3</h1>
 			        </TabPane>
 			      </TabContent>
 	    </div>
