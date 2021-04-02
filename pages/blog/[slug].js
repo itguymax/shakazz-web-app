@@ -71,17 +71,14 @@ function BlogPage({post}){
           width: 100%;
           display: flex;
          
-          twitter-widget {
-            margin-left: auto;
-            margin-right: auto;
-          }
         `}
       >
         <Container
           css={css`
             padding-top: 20px;
+            width: 70%;
           `}
-        >
+         fluid>
           <h1
             css={css`
               text-align: center;
@@ -118,7 +115,10 @@ function BlogPage({post}){
         </Container>
         {/* <SubscribeForm /> */}
       </article>
-       <Container>
+       <Container css={css`
+            padding-top: 20px;
+            width: 70%;
+          `} fluid>
         <BlogPostFooter authorInfo={authorInfo} />
       </Container>
   </>

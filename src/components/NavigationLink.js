@@ -6,7 +6,7 @@ function NavigationLink({ label, href }) {
   const router = useRouter()
   const style = {
     
-    color: router.pathname === href ? '#CC9933' : router.pathname==="/blog" | router.pathname==="/blog/[slug]" ? "#244230": null,
+    color: router.asPath.startsWith(href)  ? '#CC9933' : router.pathname==="/blog" | router.pathname==="/blog/[slug]" ? "#244230": null,
   }
 
   const handleClick = (e) => {
