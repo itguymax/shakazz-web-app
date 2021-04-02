@@ -3,13 +3,18 @@ import Link from 'next/link';
 import moment from 'moment';
 import Image from 'next/image';
 export default function BigFeaturedArticles({ bigFeaturedPost}) {
-  const {title, slug, date} = bigFeaturedPost;
+  const {title, slug, date, featuredImage} = bigFeaturedPost;
+  let featuredImageUrl="";
+  if(featuredImage){
+   featuredImageUrl =  featuredImage.node.sourceUrl
+  }
+  
   return (
     
      <div >
      <Image
         alt={title}
-        src="/assets/img/theme/profile-cover.jpg"
+        src={ featuredImageUrl|| "/assets/img/theme/profile-cover.jpg"}
         layout="fill"
         objectFit="cover"
         quality={100}

@@ -73,6 +73,11 @@ export async function getStaticProps() {
               title
               excerpt
               slug
+               featuredImage {
+                node {
+                  sourceUrl
+                }
+              }
             }
           }
         }

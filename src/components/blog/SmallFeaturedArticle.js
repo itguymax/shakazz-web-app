@@ -3,12 +3,17 @@ import Link from 'next/link';
 import moment from 'moment';
 import Image from 'next/image'
 export default function SmallFeaturedArticle({smallFeaturedPost}) {
-  const {title, slug, date} = smallFeaturedPost;
+  const {title, slug, date, featuredImage} = smallFeaturedPost;
+  let featuredImageUrl="";
+  if(featuredImage){
+   featuredImageUrl =  featuredImage.node.sourceUrl
+  }
+  
   return (
     <div className=" pt-3 pb-3 pl-3 pr-0 d-flex" style={{backgroundColor:"#205447", position:"relative", height: "200px"}}>
        <Image
         alt={title}
-        src="/assets/img/theme/profile-cover.jpg"
+        src= { featuredImageUrl || "/assets/img/theme/profile-cover.jpg" }
         layout="fill"
         objectFit="cover"
         quality={100}

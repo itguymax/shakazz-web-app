@@ -8,23 +8,30 @@ import {
 } from "reactstrap";
 import Link from "next/link"
 import moment from "moment";
+import Image from "next/image"
 const cardStyle = { width: "20rem" };
 export default function ArticlePreview({data}) {
+  const { slug, title, date, featuredImage } = data;
+   let featuredImageUrl="";
+  if(featuredImage){
+   featuredImageUrl =  featuredImage.node.sourceUrl
+  }
   return (
-     <Link href={`/blog/${data.slug}`} style={{cursor: "pointer"}}>
+     <Link href={`/blog/${slug}`} style={{cursor: "pointer"}}>
       <Card >
         <CardImg
-          alt="..."
-          src="assets/img/theme/img-1-1000x600.jpg"
+          alt={title}
+          src= { featuredImageUrl || "/assets/img/theme/profile-cover.jpg" }
           top
-        ></CardImg>
+        ></CardImg> 
+      
         <CardBody>
           <CardTitle className="mb-0" style={{fontWeight: "bold", color:"#444444"}}>{data.title}</CardTitle>
           <CardText style={{fontWeight: "300", color:"#444444"}}>
-            {data.title}
+            {title}
           </CardText>
           <p className=" mb-4" style={{fontSize:"14px"}}>
-              {moment(data.date).format('YYYY/MM/DD')} 
+              {moment(date).format('YYYY/MM/DD')} 
             </p>
         </CardBody>
       </Card>

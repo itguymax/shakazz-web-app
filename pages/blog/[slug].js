@@ -87,6 +87,11 @@ export async function getStaticProps({ params }) {
          post(idType: SLUG, id: $slug) {
             content
             title
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
           }
       }
     `,
