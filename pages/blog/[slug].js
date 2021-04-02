@@ -2,8 +2,26 @@
 import { gql } from '@apollo/client';
 import { client } from '../../src/lib/apollo'; 
 import Head from "next/head";
+import Image from "next/image"
+import Public from '../../src/layouts/Public';
 import config from "../../src/config";
-export default function BlogPage({post}){
+import { useRouter } from "next/router";
+import BlogPostFooter from "../../src/components/blog/BlogPostFooter"
+// reactstrap components
+import {Container} from "reactstrap";
+
+function BlogPage({post}){
+  const router = useRouter();
+
+  console.log("BlogPage", router);
+  let featuredImageUrl="";
+  let authorInfo=""
+  if(post.featuredImage){
+   featuredImageUrl =  post.featuredImage.node.sourceUrl
+  }
+  if(post.author){
+     authorInfo = post.author.node;
+  }
 
   return (
     <>
@@ -43,10 +61,66 @@ export default function BlogPage({post}){
           content={post.title}
         />
       </Head>
-    <div>
+    {/* <div>
       <h1>{post.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
-    </div>
+      
+    </div> */}
+     <article
+        css={css`
+          width: 100%;
+          display: flex;
+         
+          twitter-widget {
+            margin-left: auto;
+            margin-right: auto;
+          }
+        `}
+      >
+        <Container
+          css={css`
+            padding-top: 20px;
+          `}
+        >
+          <h1
+            css={css`
+              text-align: center;
+              margin-bottom: 20px;
+              margin-top: 0;
+              
+            `}
+          >
+            {post.title}
+          </h1>
+          {featuredImageUrl && (
+            <div
+              css={css`
+                text-align: center;
+
+                p {
+                  margin-bottom: 0;
+                }
+               
+              `}
+            >
+              <Image
+                src={featuredImageUrl}
+                alt={post.title}
+                width={700}
+                height={400}
+              />
+             
+            </div>
+          )}
+          <br />
+         
+           <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        </Container>
+        {/* <SubscribeForm /> */}
+      </article>
+       <Container>
+        <BlogPostFooter authorInfo={authorInfo} />
+      </Container>
   </>
   )
 }
@@ -85,8 +159,18 @@ export async function getStaticProps({ params }) {
     query: gql`
       query GetWordPressPostBySlug($slug: ID!) {
          post(idType: SLUG, id: $slug) {
-            content
-            title
+             content(format: RENDERED)
+              title
+              author {
+                node {
+                  avatar {
+                    url
+                  }
+                  nickname
+                  email
+                  description
+                }
+              }
             featuredImage {
               node {
                 sourceUrl
@@ -104,3 +188,6 @@ export async function getStaticProps({ params }) {
     },
   };
 }
+
+BlogPage.layout = Public;
+export default BlogPage;

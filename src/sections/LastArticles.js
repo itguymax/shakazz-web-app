@@ -21,9 +21,8 @@ export default function LastArticles({posts}) {
            <Row>
             {
               posts.map((item, key)=> {
-                console.log("post", item);
                 return(
-                   <Col key={key} xl="3" className="mb-3">
+                   <Col key={key} xl="3" className="mb-3 mr-0">
                    <ArticlePreview data={item}/>
                  </Col>
                 )

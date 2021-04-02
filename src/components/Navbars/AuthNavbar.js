@@ -21,7 +21,7 @@ import  NavigationLink from '../NavigationLink'
 function AdminNavbar() {
   const router = useRouter();
   console.log("route", router.pathname);
-  const isBlog = router.pathname ==="/blog"? true: false;
+  const isBlog = router.pathname ===  "/blog" | router.pathname === "/blog/[slug]"? true: false;
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md" style={{backgroundColor: isBlog?'#fff':'#244230', opacity:1}}>
@@ -33,7 +33,7 @@ function AdminNavbar() {
                   alt="..."
                   src={require("assets/img/brand/nextjs_argon_white.png")}
                 /> */}
-                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog?'#244230':'#fff', letterSpacing: 0}}>Shakazz</h3>
+                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0}}>Shakazz</h3>
 
               </NavbarBrand>
             </span>

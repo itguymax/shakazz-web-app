@@ -72,6 +72,7 @@ export async function getStaticProps() {
               date
               title
               excerpt
+              content(format: RENDERED)
               slug
                featuredImage {
                 node {
