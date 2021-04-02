@@ -42,10 +42,32 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <link
+          href="assets/img/brand/apple-icon.png"
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+        />
+        <link
+          href="assets/img/brand/apple-icon.png"
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+        />
+         
+          <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="assets/img/brand/apple-icon.png"
           />
+       
+        <meta name="theme-color" content="#317EFB" />
           <title>Shakazz web App</title>
           
           {/* <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> */}

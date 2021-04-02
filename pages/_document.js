@@ -38,11 +38,7 @@ class MyDocument extends Document {
             rel="shortcut icon"
             href="assets/img/brand/favicon.ico"
           />
-          <link
-            rel="apple-touch-icon"
-            sizes="76x76"
-            href="assets/img/brand/apple-icon.png"
-          />
+         
           {/* Fonts and icons */}
           <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
