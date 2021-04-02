@@ -67,6 +67,9 @@ module.exports =  {
 
     return config;
   },
+  images: {
+     domains: ['accounts.google.com', '3.64.214.244'],
+   },
   
 }
 

@@ -6,6 +6,9 @@ import Public from '../../src/layouts/Public';
 import styles from '../../styles/Blog.module.css';
 import Head from "next/head";
 import config from "../../src/config";
+import BlogHero from '../../src/sections/BlogHero';
+import Subscription from '../../src/sections/Subscription';
+import LastArticles from '../../src/sections/LastArticles';
 
 function Blog({ posts }) {
   console.log("posts", posts);
@@ -47,21 +50,11 @@ function Blog({ posts }) {
           content="Découvrez nos articles, et apprenez des experts."
         />
       </Head>
-    <main >
-        <ul>
-          {posts.map(({ title, slug, date, excerpt }) => ( 
-            <div key={title}>
-            <h1 >{title}</h1>
-            <li key={slug}>
-              <Link href={`/blog/${slug}`}>
-                <a>
-                  [{date}] {title}
-                </a>
-              </Link>
-            </li>
-          </div>))}
-        </ul>
-      </main>
+    
+       <BlogHero featuredPosts={posts}/>
+       <LastArticles posts={posts}/>
+       <Subscription/>
+      
     </>
   )
 }
