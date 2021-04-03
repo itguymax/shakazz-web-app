@@ -28,7 +28,7 @@ function AdminNavbar() {
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md" style={{backgroundColor: isBlog?'#fff':'#244230', opacity:1}}>
         <Container className="px-4">
-          <Link href="/admin/portal">
+          <Link href="/">
             <span>
               <NavbarBrand href="/">
                 {/* <img
