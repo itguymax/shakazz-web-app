@@ -8,6 +8,8 @@ import { ApolloProvider } from '@apollo/client';
 import "../public/assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../public/assets/scss/nextjs-argon-dashboard.scss";
+import "../public/assets/css/responsive.css";
+import "../public/assets/css/shakazz.css"
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
 

@@ -3,260 +3,311 @@
   width: 15px;
   height: 15px;
   border-radius: 100%;
-  background-color:black;
+  background-color: black;
 }
-.nav-tabs a{
-   height:100%;
-   border-bottom: 6px solid transparent !important;
+.nav-tabs a {
+  height: 100%;
+  border-bottom: 6px solid transparent !important;
 }
-.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link { 
- color: rgb(825, 9, 127); background-color: transparent !important;
- border: transparent; 
- border-bottom: 6px solid #143427 !important;
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: rgb(825, 9, 127);
+  background-color: transparent !important;
+  border: transparent;
+  border-bottom: 6px solid #143427 !important;
 }
-.home_page_section_shakazz{
-	height:35em;
-	background-color:#0e251d;
-	color:white;
+.home_page_section_shakazz {
+  height: 35em;
+  background-color: #0e251d;
+  color: white;
 }
-.home_page_section_shakazz_jumbotron{
-	background-color:transparent !important;
-	margin-bottom:0;
-	margin:auto !important;
-	margin-top:5em !important;
-	width:60em;
+.home_page_section_shakazz_jumbotron {
+  background-color: transparent !important;
+  margin-bottom: 0;
+  margin: auto !important;
+  margin-top: 5em !important;
+  width: 60em;
 }
-.home_page_section_shakazz_jumbotron h1{
-	font-size:2.5em;
-	color:white;
+.home_page_section_shakazz_jumbotron h1 {
+  font-size: 2.5em;
+  color: white;
 }
-.home_page_section_shakazz_jumbotron button{
-	background-color:#cc9933;
-	color:black;
-	border:1px solid #cc9933 !important; 
+.home_page_section_shakazz_jumbotron button {
+  background-color: #cc9933;
+  color: black;
+  border: 1px solid #cc9933 !important;
 }
-.home_page_section_shakazz_jumbotron button:hover{
-	background-color:white;
-	color:black;
-	border:1px solid white !important; 
+.home_page_section_shakazz_jumbotron button:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid white !important;
 }
-.home_page_section_presentation{
-	height:35em;
-	padding-top:8em !important;
-	background-color:#333333 !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:center;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.home_page_section_presentation {
+  height: 35em;
+  padding-top: 8em !important;
+  background-color: #333333 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: center;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.home_page_section_presentation h1{
-	color:white;
-	font-size:2.5em;
+.home_page_section_presentation h1 {
+  color: white;
+  font-size: 2.5em;
 }
-.home_page_section_presentation p{
-	margin:auto;
-	width:60%;
+.home_page_section_presentation p {
+  margin: auto;
+  width: 60%;
 }
-.home_page_section_presentation a{
-	margin:auto;
-	cursor:pointer;
-	text-decoration:none;
+.home_page_section_presentation a {
+  margin: auto;
+  cursor: pointer;
+  text-decoration: none;
 }
-.home_page_section_whyus{
-	height:30em;
-	width:80%;
-	margin:auto;
-	box-shadow:
-  0 3.4px 2.7px rgba(0, 0, 0, 0.031),
-  0 8.7px 6.9px rgba(0, 0, 0, 0.044),
-  0 17.7px 14.2px rgba(0, 0, 0, 0.056),
-  0 36.5px 29.2px rgba(0, 0, 0, 0.069),
-  0 100px 80px rgba(0, 0, 0, 0.1)
-;
-	margin-top:-8em;
-	padding-top:2em !important;
-	padding-left:6em !important;
-	background-color:white !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.home_page_section_presentation_jombotron_icon {
+  margin-left: 1em;
+  width: 2em !important;
+  height: 1.2em;
 }
-.home_page_section_whyus h1{
-	font-size:2.5em;
-	color:black;
+.home_page_section_presentation h4 {
+  width: 22em;
+  margin: auto;
+  cursor: pointer;
+  color: white;
+  margin-top: 1em;
+  font-weight: 900 !important;
 }
-.home_page_section_market{
-	height:30em;
-	width:80%;
-	margin:auto;
-	margin-top:6em;
-	padding-top:2em !important;
-	padding-left:6em !important;
-	background-color:#24422f !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.home_page_section_whyus {
+  height: 30em;
+  width: 80%;
+  margin: auto;
+  box-shadow: 0 3.4px 2.7px rgba(0, 0, 0, 0.031),
+    0 8.7px 6.9px rgba(0, 0, 0, 0.044), 0 17.7px 14.2px rgba(0, 0, 0, 0.056),
+    0 36.5px 29.2px rgba(0, 0, 0, 0.069), 0 100px 80px rgba(0, 0, 0, 0.1);
+  margin-top: -8em;
+  padding-top: 2em !important;
+  padding-left: 6em !important;
+  background-color: white !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.home_page_section_market h1{
-	font-size:2.5em;
-	color:white;
+.home_page_section_whyus h1 {
+  font-size: 2.5em;
+  color: black;
 }
-.home_page_section_market_carddeck{
-	margin-right:6em !important;
+.home_page_section_market {
+  height: 40em;
+  width: 80%;
+  margin: auto;
+  margin-top: 6em;
+  padding-top: 2em !important;
+  padding-left: 6em !important;
+  background-color: #24422f !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.home_page_section_market_card{
-	background-color:none !important;
-	width:10em !important;
+.home_page_section_market_jombotron_icon {
+  margin-left: 1em;
+  width: 2em !important;
+  height: 1.2em;
 }
-.home_page_section_plans{
-	height:30em;
-	width:70%;
-	margin:auto;
-	margin-top:6em;
-	padding-top:2em !important;
-	padding-left:6em !important;
-	background-color:white !important;
-	border-radius:0 !important;
-	text-align:center;
+.home_page_section_market h1 {
+  font-size: 2.5em;
+  color: white;
 }
-.home_page_section_plans button{
-	margin-bottom:2em !important;
-	background-color:white;
-	border-radius:18px;
-	border:1px solid #e5e5e5;
-	color:black;
+.home_page_section_market_carddeck {
+  margin-right: 6em !important;
 }
-.home_page_section_plans p{
-	opacity:0.6;
+.home_page_section_market_card {
+  background-color: transparent !important;
+  width: 10em !important;
+  text-align: center !important;
+  margin-top: 3em;
 }
-.home_page_section_plans div{
-	border:none !important;
+.home_page_section_market_card img {
+  width: 220px !important;
+  margin: auto;
 }
-.home_page_section_plans_buttonlink{
-	background-color:#cc9933 !important;
-	color:white;
-	border:0px solid white !important;
-	color:white !important;
-	border-radius:4px !important;
+.home_page_section_market_card h1 {
+  width: 80%;
+  margin: auto;
+  margin-top: 1em;
+  font-weight: 200 !important;
 }
-.home_page_section_plans_div{
-	border:1px solid #e5e5e5;
-	border-radius:4px;
-	padding-left:1em;
-	padding-right:1em;
+.home_page_section_market_card h4 {
+  width: 22em;
+  margin: auto;
+  cursor: pointer;
+  color: white;
+  margin-top: 1em;
+  font-weight: 900 !important;
 }
-.home_page_section_plans button:hover{
-	margin-bottom:2em !important;
-	background-color:#244230 !important;
-	border:1px solid #244230;
+.home_page_section_market_card p {
+  width: 80%;
+  font-weight: 100 !important;
+  margin: auto;
 }
-.home_page_section_plans h1{
-	color:black;
-	opacity:0.5;
+.home_page_section_plans {
+  height: 30em;
+  width: 70%;
+  margin: auto;
+  margin-top: 6em;
+  padding-top: 2em !important;
+  padding-left: 6em !important;
+  background-color: white !important;
+  border-radius: 0 !important;
+  text-align: center;
 }
-.home_page_section_trust{
-	height:25em;
-	width:80%;
-	margin:auto;
-	margin-top:10em;
-	padding-top:2em !important;
-	padding-left:6em !important;
-	background-color:#f5f5f5 !important;
-	border-radius:0 !important;	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.home_page_section_plans button {
+  margin-bottom: 2em !important;
+  background-color: white;
+  border-radius: 18px;
+  border: 1px solid #e5e5e5;
+  color: black;
 }
-.home_page_section_trust h1{
-	margin-bottom:2em;
-	color:black;
-	opacity:0.5;
-	font-size:2.5em;
+.home_page_section_plans p {
+  opacity: 0.6;
 }
-.home_page_section_started{
-	height:21em;
-	width:80%;
-	margin:auto;
-	background-color:#24422f !important;
-	border-radius:0 !important;	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.home_page_section_plans div {
+  border: none !important;
 }
-.home_page_section_started h1{
-	color:black;
+.home_page_section_plans_buttonlink {
+  background-color: #cc9933 !important;
+  color: white;
+  border: 0px solid white !important;
+  color: white !important;
+  border-radius: 4px !important;
 }
-.home_page_section_started_jumbotron{
-	height:21em;
-	width:100%;
-	text-align:center;
-	margin-top:0 !important;
-	background-color:white !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
+.home_page_section_plans_div {
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding-left: 1em;
+  padding-right: 1em;
 }
-.home_page_section_started_jumbotron button{
-	background-color:white !important;
-	border-radius:20px;
-	border:2px solid black;
-	color:black;
+.home_page_section_plans button:hover {
+  margin-bottom: 2em !important;
+  background-color: #244230 !important;
+  border: 1px solid #244230;
 }
-.home_page_section_started_jumbotron button:hover{
-	background-color:#244230 !important;
-	border-radius:8px;
-	border:2px solid white;
+.home_page_section_plans h1 {
+  color: black;
+  opacity: 0.5;
 }
-.home_page_section_started_col1{
-	height:19em;
+.home_page_section_trust {
+  height: 20em;
+  width: 80%;
+  margin: auto;
+  margin-top: 10em;
+  padding-top: 2em;
+  background-color: #f5f5f5 !important;
+  border-radius: 0 !important;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.home_page_section_started_col1 iframe{
-	width:100% !important;
-	height:100% !important;
-	margin:1em !important;
+.home_page_section_trust_container {
+  width: 70% !important;
+  margin: auto;
+  height: 10em !important;
 }
-.home_page_footer{
-	background-color:#333333 !important;
-	color:white !important;
+.home_page_section_trust_container img {
+  width: 220px;
+  height: 200px;
+  cursor: pointer;
 }
-.home_page_footer_nav{
-	background-color:#333333 !important;
-	color:white !important
+.home_page_section_trust h1 {
+  color: black;
+  opacity: 0.5;
+  font-size: 2.5em;
 }
-.home_page_footer_first{
-	height:20em !important;
-	padding-left:6em !important;
-	padding-right:6em !important;
-	padding-top:3em !important;
-	display:flex;
-	justify-content:space-between;
+.home_page_section_started {
+  height: 21em;
+  width: 80%;
+  margin: auto;
+  background-color: #24422f !important;
+  border-radius: 0 !important;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.home_page_footer_last{
-	border-top:1px solid #e5e5e5;
-	padding-left:6em !important;
-	padding-right:6em !important;
+.home_page_section_started h1 {
+  color: black;
 }
-.home_page_footer_last p{
-	background-color:#333333 !important;
-	font-size:1em;
-	opacity:0.3;
+.home_page_section_started_jumbotron {
+  height: 21em;
+  width: 100%;
+  text-align: center;
+  margin-top: 0 !important;
+  background-color: white !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+}
+.home_page_section_started_jumbotron button {
+  background-color: white !important;
+  border-radius: 20px;
+  border: 2px solid #244230;
+  color: black;
+}
+.home_page_section_started_jumbotron button:hover {
+  background-color: #244230 !important;
+  border-radius: 20px;
+  border: transparent;
+}
+.home_page_section_started_col1 {
+  height: 19em;
+}
+.home_page_section_started_col1 iframe {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 1em !important;
+}
+.home_page_footer {
+  background-color: #333333 !important;
+  color: white !important;
+}
+.home_page_footer_nav {
+  background-color: #333333 !important;
+  color: white !important;
+}
+.home_page_footer_first {
+  height: 20em !important;
+  padding-left: 6em !important;
+  padding-right: 6em !important;
+  padding-top: 3em !important;
+  display: flex;
+  justify-content: space-between;
+}
+.home_page_footer_last {
+  border-top: 1px solid #e5e5e5;
+  padding-left: 6em !important;
+  padding-right: 6em !important;
+}
+.home_page_footer_last p {
+  background-color: #333333 !important;
+  font-size: 1em;
+  opacity: 0.3;
 }
 .home_page_footer_first h1 {
-  color:white;
+  color: white;
 }
 .home_page_footer_first h2 {
-  color:white;
+  color: white;
 }
 .home_page_footer_first ul {
   list-style-type: none;
@@ -266,11 +317,11 @@
 
 .home_page_footer_first li {
   float: left;
-  font-size:1em;
-  left:2em;
-  margin-top:1em;
-  color:white;
-  opacity:0.6;
+  font-size: 1em;
+  left: 2em;
+  margin-top: 1em;
+  color: white;
+  opacity: 0.6;
 }
 
 .home_page_footer_first li a {
@@ -280,530 +331,527 @@
   padding: 14px 16px;
   text-decoration: none;
 }
-.home_page_footer_first h5{
-	font-size:0.65em;
-	color:white;
+.home_page_footer_first h5 {
+  font-size: 0.65em;
+  color: white;
 }
 /*End Home Page*/
 /*Start about Page*/
-.aboutus_page_section_team{
-	padding-top:5em;
-	height:20em;
-	width:80%;
-	margin:auto;
-	text-align:center;
-	background-color:white !important;
-	border-radius:0 !important;	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.aboutus_page_section_team {
+  padding-top: 5em;
+  height: 20em;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  background-color: white !important;
+  border-radius: 0 !important;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.aboutus_page_section_team h1{
-	color:black;
+.aboutus_page_section_team h1 {
+  color: black;
 }
-.aboutus_page_section_team h3{
-	color:black;
-	opacity:0.6;
+.aboutus_page_section_team h3 {
+  color: black;
+  opacity: 0.6;
 }
-.aboutus_page_section_team h5{
-	color:black;
-	font-size:0.6em;
-	width:80%;
-	margin:auto;
+.aboutus_page_section_team h5 {
+  color: black;
+  font-size: 0.6em;
+  width: 80%;
+  margin: auto;
 }
-.aboutus_page_section_team_div{
-	background-color:#f5f5f5;
-	width:20em !important;
-	display:block;
-	padding-top:1em;
-	padding-bottom:1em;
+.aboutus_page_section_team_div {
+  background-color: #f5f5f5;
+  width: 20em !important;
+  display: block;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
-.aboutus_page_section_team_div_bottom{
-	text-align:left;
-	height:5em !important;
-	padding:1em;
+.aboutus_page_section_team_div_bottom {
+  text-align: left;
+  height: 5em !important;
+  padding: 1em;
 }
-.aboutus_page_section_team_div p{
-	font-weight:bold;
-	font-size:1.5em;
+.aboutus_page_section_team_div p {
+  font-weight: bold;
+  font-size: 1.5em;
 }
-.aboutus_page_section_team_div h6{
-	font-size:0.8em;
-	font-weight: normal;
+.aboutus_page_section_team_div h6 {
+  font-size: 0.8em;
+  font-weight: normal;
 }
-.aboutus_page_section_mission{
-	padding:5em;
-	color:white;
-	height:30em;
-	width:100%;
-	text-align:left !important;
-	margin:auto;
-	text-align:center;
-	background-color:#24422f !important;
-	border-radius:0 !important;	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.aboutus_page_section_mission {
+  padding: 5em;
+  color: white;
+  height: 30em;
+  width: 100%;
+  text-align: left !important;
+  margin: auto;
+  text-align: center;
+  background-color: #24422f !important;
+  border-radius: 0 !important;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.aboutus_page_section_mission h1{
-	color:white;
-	font-size:2.5em;
+.aboutus_page_section_mission h1 {
+  color: white;
+  font-size: 2.5em;
 }
-.aboutus_page_section_vision{
-	padding:5em;
-	color:white;
-	height:30em;
-	width:100%;
-	text-align:left !important;
-	margin:auto;
-	text-align:center;
-	background-color:#cc9933 !important;
-	border-radius:0 !important;	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.aboutus_page_section_vision {
+  padding: 5em;
+  color: white;
+  height: 30em;
+  width: 100%;
+  text-align: left !important;
+  margin: auto;
+  text-align: center;
+  background-color: #cc9933 !important;
+  border-radius: 0 !important;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.aboutus_page_section_vision h1{
-	color:white;
-	font-size:2.5em;
+.aboutus_page_section_vision h1 {
+  color: white;
+  font-size: 2.5em;
 }
-.aboutus_page_section_presentation{
-	padding:5em;
-	padding-top:0em;
-	color:white;
-	height:40em;
-	width:100%;
-	text-align:center !important;
-	margin:auto;
-	text-align:center;
-	background-color:white !important;
-	border-radius:0 !important;	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.aboutus_page_section_presentation {
+  padding: 5em;
+  padding-top: 0em;
+  color: white;
+  height: 40em;
+  width: 100%;
+  text-align: center !important;
+  margin: auto;
+  text-align: center;
+  background-color: white !important;
+  border-radius: 0 !important;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.aboutus_page_section_presentation_jombotron{
-	background-color:transparent !important;
+.aboutus_page_section_presentation_jombotron {
+  background-color: transparent !important;
 }
-.aboutus_page_section_presentation_jombotron h1{
-	font-size:2.5em;
-	color:black;
-	opacity:0.7;
+.aboutus_page_section_presentation_jombotron h1 {
+  font-size: 2.5em;
+  color: black;
+  opacity: 0.7;
 }
-.aboutus_page_section_presentation_jombotron p{
-	font-size:1em;
-	color:black;
-	width:80%;
-	margin:auto;
+.aboutus_page_section_presentation_jombotron p {
+  font-size: 1em;
+  color: black;
+  width: 80%;
+  margin: auto;
 }
-.aboutus_page_section_presentation_jombotron_text{
-	text-align:left;
+.aboutus_page_section_presentation_jombotron_text {
+  text-align: left;
 }
-.aboutus_page_section_presentation_jombotron_text h3{
-	color:black !important;
-	opacity:0.7;
+.aboutus_page_section_presentation_jombotron_text h3 {
+  color: black !important;
+  opacity: 0.7;
 }
-.aboutus_page_section_presentation_jombotron_text h4{
-	color:black !important;
-	opacity:0.5;
-	font-size:0.8em;
-	width:20em;
+.aboutus_page_section_presentation_jombotron_text h4 {
+  color: black !important;
+  opacity: 0.5;
+  font-size: 0.8em;
+  width: 20em;
 }
-.aboutus_page_section_image{
-	height:36em;
-	padding-top:8em !important;
-	background-color:#333333 !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:left;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.aboutus_page_section_image {
+  height: 36em;
+  padding-top: 8em !important;
+  background-color: #333333 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: left;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.aboutus_page_section_image_jombotron{
-	background-color:transparent !important;
-	margin-bottom:0;
-	margin:auto !important;
-	margin-top:8em !important;
-	width:85%;
+.aboutus_page_section_image_jombotron {
+  background-color: transparent !important;
+  margin-bottom: 0;
+  margin: auto !important;
+  margin-top: 8em !important;
+  width: 85%;
 }
-.aboutus_page_section_image_jombotron h1{
-	font-size:2.5em;
-	font-weight:100;
-	color:white;
-	letter-spacing: 2px;
-	line-height: 100%;
+.aboutus_page_section_image_jombotron h1 {
+  font-size: 2.5em;
+  font-weight: 100;
+  color: white;
+  letter-spacing: 2px;
+  line-height: 100%;
 }
-.aboutus_page_section_image_jombotron h2{
-	font-size:2.8em;
-	font-weight:bold;
-	color:white;
-	line-height: 130%;
+.aboutus_page_section_image_jombotron h2 {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: white;
+  line-height: 130%;
 }
-.aboutus_page_section_image_jombotron p{
-	font-size:1em;
-	font-weight:bold;
-	letter-spacing: 1.3px;
-	line-height: 200%;
+.aboutus_page_section_image_jombotron p {
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  line-height: 200%;
 }
 /*End about Page*/
 /*Start Services Page*/
-.services_page_section_image{
-	height:36em;
-	padding-top:8em !important;
-	background-color:#143427 !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:left;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.services_page_section_image {
+  height: 36em;
+  padding-top: 8em !important;
+  background-color: #143427 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: left;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.services_page_section_presentation{
-	height:60em;
-	width:100%;
-	margin:auto;
-	padding:3em !important;
-	background-color:white !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:left;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.services_page_section_presentation {
+  height: 60em;
+  width: 100%;
+  margin: auto;
+  padding: 3em !important;
+  background-color: white !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: left;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.services_page_section_presentation_caroussel{
-	height:46em;
+.services_page_section_presentation_caroussel {
+  height: 46em;
 }
-.services_page_section_presentation_jombotron{
-	background:white !important;
+.services_page_section_presentation_jombotron {
+  background: white !important;
 }
-.services_page_section_presentation_jombotron h1{
-	text-align:left !important;
-	font-size:2em !important;
-	opacity:0.8;
+.services_page_section_presentation_jombotron h1 {
+  text-align: left !important;
+  font-size: 2em !important;
+  opacity: 0.8;
 }
-.services_page_section_presentation_jombotron p{
-	color:black;
-	opacity:0.8;
+.services_page_section_presentation_jombotron p {
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_presentation h1{
-	font-size:2.5em;
-	text-align:center;
-	margin-bottom:1em;
-	color:black;
-	opacity:0.8;
+.services_page_section_presentation h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 1em;
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_presentation h4{
-	color:black;
-	cursor:pointer;
+.services_page_section_presentation h4 {
+  color: black;
+  cursor: pointer;
 }
-.services_page_section_presentation img{
-	display:inline-block;
+.services_page_section_presentation img {
+  display: inline-block;
 }
-.services_page_section_presentation_tab{
-	width:20%;
-	font-weight:900 !important;
-	border:1px solid white !important;
-	text-align:left;
-
+.services_page_section_presentation_tab {
+  width: 20%;
+  font-weight: 900 !important;
+  border: 1px solid white !important;
+  text-align: left;
 }
-.services_page_section_presentation_tab img{
-	margin-right:1em;
+.services_page_section_presentation_tab img {
+  margin-right: 1em;
 }
-.services_page_section_presentation_tab a{
-	color:black !important;
-	cursor:pointer;
-	font-size:0.8em;
-
+.services_page_section_presentation_tab a {
+  color: black !important;
+  cursor: pointer;
+  font-size: 0.8em;
 }
-.services_page_section_presentation_tab a{
-	border:1px solid white;
-
+.services_page_section_presentation_tab a {
+  border: 1px solid white;
 }
-.services_page_section_networking{
-	height:60em;
-	width:100%;
-	margin:auto;
-	padding:3em !important;
-	background-color:#f5f5f5 !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:left;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.services_page_section_networking {
+  height: 60em;
+  width: 100%;
+  margin: auto;
+  padding: 3em !important;
+  background-color: #f5f5f5 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: left;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.services_page_section_networking_caroussel{
-	height:46em;
+.services_page_section_networking_caroussel {
+  height: 46em;
 }
-.services_page_section_networking_caroussel img{
-	max-width:550px;
+.services_page_section_networking_caroussel img {
+  max-width: 550px;
 }
-.services_page_section_networking_jombotron{
-	background:transparent !important;
+.services_page_section_networking_jombotron {
+  background: transparent !important;
 }
-.services_page_section_networking_jombotron_icon{
-	margin-left:1em;
-	width:2em;
-	height:1.2em;
+.services_page_section_networking_jombotron_icon {
+  margin-left: 1em;
+  width: 2em;
+  height: 1.2em;
 }
-.services_page_section_networkingn_jombotron h1{
-	text-align:left !important;
-	font-size:2em !important;
-	opacity:0.8;
+.services_page_section_networkingn_jombotron h1 {
+  text-align: left !important;
+  font-size: 2em !important;
+  opacity: 0.8;
 }
-.services_page_section_networking_jombotron p{
-	color:black;
-	opacity:0.8;
+.services_page_section_networking_jombotron p {
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_networking h1{
-	font-size:2.5em;
-	text-align:center;
-	margin-bottom:1em;
-	color:black;
-	opacity:0.8;
+.services_page_section_networking h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 1em;
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_networking h4{
-	color:black;
+.services_page_section_networking h4 {
+  color: black;
 }
-.services_page_section_networking img{
-	display:inline-block;
+.services_page_section_networking img {
+  display: inline-block;
 }
-.services_page_section_networking_tab{
-	width:20%;
-	font-weight:900 !important;
-
+.services_page_section_networking_tab {
+  width: 20%;
+  font-weight: 900 !important;
 }
-.services_page_section_networking_tab{
-	width:33%;
+.services_page_section_networking_tab {
+  width: 33%;
 }
-.services_page_section_networking_tab img{
-	margin-right:1em;
+.services_page_section_networking_tab img {
+  margin-right: 1em;
 }
-.services_page_section_networking_tab a{
-	color:black !important;
-	cursor:pointer;
-	font-size:0.8em;
-
+.services_page_section_networking_tab a {
+  color: black !important;
+  cursor: pointer;
+  font-size: 0.8em;
 }
-.services_page_section_networking_tab a{
-	border:0px solid white;
-
+.services_page_section_networking_tab a {
+  border: 0px solid white;
 }
-.services_page_section_networking h1{
-	font-size:2.5em;
-	text-align:center;
-	margin-bottom:1em;
-	color:black;
-	opacity:0.8;
+.services_page_section_networking h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 1em;
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_partenaires{
-	height:40em;
-	width:100%;
-	margin:auto;
-	padding:3em !important;
-	background-color:white !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:left;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.services_page_section_partenaires {
+  height: 40em;
+  width: 100%;
+  margin: auto;
+  padding: 3em !important;
+  background-color: white !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: left;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.services_page_section_partenaires_row{
-	width:75% !important;
-	height:20em !important;
+.services_page_section_partenaires_row {
+  width: 75% !important;
+  height: 20em !important;
 }
-.services_page_section_partenaires_caroussel{
-	height:27em;
+.services_page_section_partenaires_caroussel {
+  height: 27em;
 }
 .services_page_section_partenaires .carousel-control-prev-icon,
 .services_page_section_partenaires .carousel-control-next-icon {
-  margin-top:-15em;
+  margin-top: -15em;
   outline: black;
   background-size: 100%, 100%;
   background-image: none;
 }
-.services_page_section_partenaires .carousel-control-next-icon:after
-{
-  content: '>';
+.services_page_section_partenaires .carousel-control-next-icon:after {
+  content: ">";
   font-size: 30px;
-  margin-left:-2em;
+  margin-left: -2em;
   color: black;
-  font-weight:600;
-  padding-left:0.35em !important;
-  padding-right:0.35em !important;
-  padding:0.1em;
-  border-radius:60px !important;
-  border:1px solid black;
+  font-weight: 600;
+  padding-left: 0.35em !important;
+  padding-right: 0.35em !important;
+  padding: 0.1em;
+  border-radius: 60px !important;
+  border: 1px solid black;
 }
 
 .services_page_section_partenaires .carousel-control-prev-icon:after {
-  content: '<';
+  content: "<";
   font-size: 30px;
-  border-radius:20px;
-  margin-right:-2em;
-  padding-left:0.35em !important;
-  padding-right:0.35em !important;
-  padding:0.1em;
-  font-weight:600;
+  border-radius: 20px;
+  margin-right: -2em;
+  padding-left: 0.35em !important;
+  padding-right: 0.35em !important;
+  padding: 0.1em;
+  font-weight: 600;
   color: black;
-  border:1px solid black;
+  border: 1px solid black;
 }
-.services_page_section_partenaires_row{
-	width:80%;
-	margin:auto !important;
+.services_page_section_partenaires_row {
+  width: 80%;
+  margin: auto !important;
 }
-.services_page_section_partenaires h1{
-	font-size:2.5em;
-	text-align:left;
-	margin-bottom:1em;
-	color:black;
-	opacity:0.8;
+.services_page_section_partenaires h1 {
+  font-size: 2.5em;
+  text-align: left;
+  margin-bottom: 1em;
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_partenaires h2{
-	font-size:1.8em;
-	text-align:left;
-	margin-bottom:1em;
-	color:black;
-	opacity:0.8;
+.services_page_section_partenaires h2 {
+  font-size: 1.8em;
+  text-align: left;
+  margin-bottom: 1em;
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_partenaires h3{
-	font-size:1em;
-	text-align:left;
-	margin-bottom:1em;
-	color:black;
-	opacity:0.8;
+.services_page_section_partenaires h3 {
+  font-size: 1em;
+  text-align: left;
+  margin-bottom: 1em;
+  color: black;
+  opacity: 0.8;
 }
-.services_page_section_partenaires h4{
-	font-size:0.8em;
-	text-align:left;
-	margin-bottom:1em;
-	font-weight:200;
-	color:black;
-	opacity:0.6;
-	width:55%;
+.services_page_section_partenaires h4 {
+  font-size: 0.8em;
+  text-align: left;
+  margin-bottom: 1em;
+  font-weight: 200;
+  color: black;
+  opacity: 0.6;
+  width: 55%;
 }
-.services_page_section_partenaires h6{
-	font-size:0.9em;
-	text-align:right;
-	margin-top:-4em;
-	color:black;
-	opacity:0.8;
-	cursor:pointer
+.services_page_section_partenaires h6 {
+  font-size: 0.9em;
+  text-align: right;
+  margin-top: -4em;
+  color: black;
+  opacity: 0.8;
+  cursor: pointer;
 }
-.services_page_section_partenaires_row2{
-	margin-top:2em;
+.services_page_section_partenaires_row2 {
+  margin-top: 2em;
 }
-.services_page_section_partenaires_row_image{
-	position:relative;
-	top:-9em !important;
-	cursor:pointer;
-	padding:0!important;
+.services_page_section_partenaires_row_image {
+  position: relative;
+  top: -9em !important;
+  cursor: pointer;
+  padding: 0 !important;
 }
 /*End Services Page*/
 /*End about Page*/
 /*Start plans Page*/
-.plans_page_section_image{
-	height:36em;
-	padding-top:8em !important;
-	background-color:#143427 !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:left;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.plans_page_section_image {
+  height: 36em;
+  padding-top: 8em !important;
+  background-color: #143427 !important;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: left;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.plans_page_section_image_jombotron{
-	background-color:transparent !important;
-	margin-bottom:0;
-	margin:auto !important;
-	margin-top:8em !important;
-	width:85%;
+.plans_page_section_image_jombotron {
+  background-color: transparent !important;
+  margin-bottom: 0;
+  margin: auto !important;
+  margin-top: 8em !important;
+  width: 85%;
 }
-.plans_page_section_image_jombotron h1{
-	font-size:2.5em;
-	font-weight:100;
-	color:white;
-	letter-spacing: 2px;
-	line-height: 150%;
+.plans_page_section_image_jombotron h1 {
+  font-size: 2.5em;
+  font-weight: 100;
+  color: white;
+  letter-spacing: 2px;
+  line-height: 150%;
 }
-.plans_page_section_image_jombotron p{
-	font-size:1.1em;
-	font-weight:thin;
-	line-height: 150%;
-	width:75%;
+.plans_page_section_image_jombotron p {
+  font-size: 1.1em;
+  font-weight: thin;
+  line-height: 150%;
+  width: 75%;
 }
-.plans_page_section_plan{
-	height:75em;
-	padding-top:3em !important;
-	background-color:white !important;
-	width:90%;
-	margin:auto;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
-	color:white;
-	text-align:left;
-	@font-face {
-	  font-family: 'Ubuntu';
-	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-	}
+.plans_page_section_plan {
+  height: 75em;
+  padding-top: 3em !important;
+  background-color: white !important;
+  width: 90%;
+  margin: auto;
+  border-radius: 0 !important;
+  margin-bottom: 0 !important;
+  color: white;
+  text-align: left;
+  @font-face {
+    font-family: "Ubuntu";
+    src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
+  }
 }
-.plans_page_section_plan h1{
- font-size:2.5em;
- color:black;
+.plans_page_section_plan h1 {
+  font-size: 2.5em;
+  color: black;
 }
-.plans_page_section_plan_tables{
- text-align:left;
- width:50em;
- margin:auto;
+.plans_page_section_plan_tables {
+  text-align: left;
+  width: 50em;
+  margin: auto;
 }
-.plans_page_section_plan_tables td{
- width:30em !important;
+.plans_page_section_plan_tables td {
+  width: 30em !important;
 }
-.plans_page_section_plan_tables td{
- width:30em;
- min-height:15em;
+.plans_page_section_plan_tables td {
+  width: 30em;
+  min-height: 15em;
 }
-.plans_page_section_plan_tables h1{
- font-size:2em;
- font-weight:900;
+.plans_page_section_plan_tables h1 {
+  font-size: 2em;
+  font-weight: 900;
 }
-.plans_page_section_plan_tables h2{
- font-size:1.3em;
- font-weight:100;
- color:black;
- opacity:0.5;
+.plans_page_section_plan_tables h2 {
+  font-size: 1.3em;
+  font-weight: 100;
+  color: black;
+  opacity: 0.5;
 }
-.plans_page_section_plan_tables span{
- font-size:1em;
- width:5em;
- font-weight:100;
- color:black;
- opacity:0.5;
- display: inline-block;
+.plans_page_section_plan_tables span {
+  font-size: 1em;
+  width: 5em;
+  font-weight: 100;
+  color: black;
+  opacity: 0.5;
+  display: inline-block;
 }
-.plans_page_section_plan_tables button{
-	width:80%;
-	background-color:#cc9933;
-	border:1px solid #cc9933;
+.plans_page_section_plan_tables button {
+  width: 80%;
+  background-color: #cc9933;
+  border: 1px solid #cc9933;
 }
-.plans_page_section_plan_tables button:hover{
-	background-color:#143427;
-	border:1px solid #143427;
+.plans_page_section_plan_tables button:hover {
+  background-color: #143427;
+  border: 1px solid #143427;
 }
 /*End about Page*/
