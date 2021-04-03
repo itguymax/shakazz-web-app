@@ -66,6 +66,19 @@
 	cursor:pointer;
 	text-decoration:none;
 }
+.home_page_section_presentation_jombotron_icon{
+	margin-left:1em;
+	width:2em !important;
+	height:1.2em;
+}
+.home_page_section_presentation h4{
+	width:22em;
+	margin:auto;
+	cursor:pointer;
+	color:white;
+	margin-top:1em;
+	font-weight:900 !important;
+}
 .home_page_section_whyus{
 	height:30em;
 	width:80%;
@@ -94,7 +107,7 @@
 	color:black;
 }
 .home_page_section_market{
-	height:30em;
+	height:40em;
 	width:80%;
 	margin:auto;
 	margin-top:6em;
@@ -109,6 +122,11 @@
 	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
 	}
 }
+.home_page_section_market_jombotron_icon{
+	margin-left:1em;
+	width:2em !important;
+	height:1.2em;
+}
 .home_page_section_market h1{
 	font-size:2.5em;
 	color:white;
@@ -117,8 +135,33 @@
 	margin-right:6em !important;
 }
 .home_page_section_market_card{
-	background-color:none !important;
+	background-color:transparent !important;
 	width:10em !important;
+	text-align:center !important;
+	margin-top:3em;
+}
+.home_page_section_market_card img{
+	width:220px !important;
+	margin:auto;
+}
+.home_page_section_market_card h1{
+	width:80%;
+	margin:auto;
+	margin-top:1em;
+	font-weight:200 !important;
+}
+.home_page_section_market_card h4{
+	width:22em;
+	margin:auto;
+	cursor:pointer;
+	color:white;
+	margin-top:1em;
+	font-weight:900 !important;
+}
+.home_page_section_market_card p{
+	width:80%;
+	font-weight:100 !important;
+	margin:auto;
 }
 .home_page_section_plans{
 	height:30em;
@@ -167,20 +210,28 @@
 	opacity:0.5;
 }
 .home_page_section_trust{
-	height:25em;
+	height:20em;
 	width:80%;
 	margin:auto;
 	margin-top:10em;
-	padding-top:2em !important;
-	padding-left:6em !important;
+	padding-top:2em;
 	background-color:#f5f5f5 !important;
 	border-radius:0 !important;	@font-face {
 	  font-family: 'Ubuntu';
 	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
 	}
 }
+.home_page_section_trust_container{
+	width:70% !important;
+	margin:auto;
+	height:10em !important;
+}
+.home_page_section_trust_container img{
+	width:220px;
+	height:200px;
+	cursor:pointer;
+}
 .home_page_section_trust h1{
-	margin-bottom:2em;
 	color:black;
 	opacity:0.5;
 	font-size:2.5em;
@@ -210,13 +261,13 @@
 .home_page_section_started_jumbotron button{
 	background-color:white !important;
 	border-radius:20px;
-	border:2px solid black;
+	border:2px solid #244230;
 	color:black;
 }
 .home_page_section_started_jumbotron button:hover{
 	background-color:#244230 !important;
-	border-radius:8px;
-	border:2px solid white;
+	border-radius:20px;
+	border:transparent;
 }
 .home_page_section_started_col1{
 	height:19em;

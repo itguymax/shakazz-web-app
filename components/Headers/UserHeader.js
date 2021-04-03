@@ -61,7 +61,7 @@ function UserHeader() {
           Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas valide et que l'attention du lecteur n'est pas dérangée par le contenu, lui permettant de demeurer concentré sur le seul aspect graphique.
         </p>
         <br/>
-        <a><strong>En savoir plus</strong></a>
+        <h4>En savoir plus<img className="home_page_section_presentation_jombotron_icon" src="/img/icons/arrow white.svg"/></h4>
     </Jumbotron>
     <div className="home_page_section_whyus">
       <h1>Pourquoi nous choisir?</h1>
@@ -99,26 +99,22 @@ function UserHeader() {
       <h1>Notre marché en un coup d'oeil</h1>
          <CardDeck className="home_page_section_market_carddeck">
           <Card className="home_page_section_market_card">
-            <Card.Img variant="top" src="holder.js/100px160" />
-            <Card.Body>
-              <Card.Title></Card.Title>
-            </Card.Body>
+            <img src="/img/icons/Afrique.svg"/>
+            <h1>Afrique</h1>
             <p>
-              <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
+              Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
             </p>
             <br/>
-            <center><h2>En savoir plus</h2></center>
+            <h4>En savoir plus<img className="home_page_section_market_jombotron_icon" src="/img/icons/arrow white.svg"/></h4>
           </Card>
-          <Card className="home_page_section_market_card">
-            <Card.Img variant="top" src="holder.js/100px160" />
-            <Card.Body>
-              <Card.Title>Cryptomonaies</Card.Title>
-            </Card.Body>
+           <Card className="home_page_section_market_card">
+            <img src="/img/icons/cryptomonnaie.svg"/>
+            <h1>Cryptomonnaies</h1>
             <p>
-              <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
+              Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
             </p>
             <br/>
-            <center><h2>En savoir plus</h2></center>
+            <h4>En savoir plus<img className="home_page_section_market_jombotron_icon" src="/img/icons/arrow white.svg"/></h4>
           </Card>
         </CardDeck>
       </div>
@@ -178,22 +174,22 @@ function UserHeader() {
       </div>
       <div className="home_page_section_trust">
       <center><h1>Ils nous font confiance</h1></center>
-      <Container>
-        <Row>
-          <Col xs={5} md={4}>
-            <Image src="img/brand/logoshakazz.png" rounded />
-          </Col>
-          <Col xs={5} md={4}>
-            <Image src="holder.js/171x180" roundedCircle />
-          </Col>
-          <Col xs={5} md={4}>
-            <Image src="holder.js/171x180" thumbnail />
-          </Col>
-          <Col xs={5} md={4}>
-            <Image src="holder.js/171x180" thumbnail />
-          </Col>
-        </Row>
-      </Container>
+        <Container className="home_page_section_trust_container">
+          <Row>
+            <Col xs={5} sm={3}>
+              <Image src="/img/brand/jf.png"/>
+            </Col>
+            <Col xs={5} sm={3}>
+              <Image src="/img/brand/umdeny-logo-XL.png"/>
+            </Col>
+            <Col xs={5} sm={3}>
+              <Image src="/img/brand/UTHAN_GO 3.png"/>
+            </Col>
+            <Col xs={5} sm={3}>
+              <Image src="/img/brand/hannibal.png"/>
+            </Col>
+          </Row>
+        </Container>
       </div>
        <div className="home_page_section_started">
         <Row>
