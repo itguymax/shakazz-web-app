@@ -95,29 +95,29 @@ function UserHeader() {
         </Card>
       </CardDeck>
       </div>
-          <div className="home_page_section_market">
-      <h1>Notre marché en un coup d'oeil</h1>
-         <CardDeck className="home_page_section_market_carddeck">
-          <Card className="home_page_section_market_card">
-            <img src="/img/icons/Afrique.svg"/>
-            <h1>Afrique</h1>
-            <p>
-              Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
-            </p>
-            <br/>
-            <h4>En savoir plus<img className="home_page_section_market_jombotron_icon" src="/img/icons/arrow white.svg"/></h4>
-          </Card>
-           <Card className="home_page_section_market_card">
-            <img src="/img/icons/cryptomonnaie.svg"/>
-            <h1>Cryptomonnaies</h1>
-            <p>
-              Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
-            </p>
-            <br/>
-            <h4>En savoir plus<img className="home_page_section_market_jombotron_icon" src="/img/icons/arrow white.svg"/></h4>
-          </Card>
-        </CardDeck>
-      </div>
+        <div className="home_page_section_market">
+            <h1>Notre marché en un coup d'oeil</h1>
+               <CardDeck className="home_page_section_market_carddeck">
+                <Card className="home_page_section_market_card">
+                  <img src="/img/icons/Afrique.svg"/>
+                  <h1>Afrique</h1>
+                  <p>
+                    Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
+                  </p>
+                  <br/>
+                  <h4>En savoir plus<img className="home_page_section_market_jombotron_icon" src="/img/icons/arrow white.svg"/></h4>
+                </Card>
+                 <Card className="home_page_section_market_card">
+                  <img src="/img/icons/cryptomonnaie.svg"/>
+                  <h1>Cryptomonnaies</h1>
+                  <p>
+                    Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
+                  </p>
+                  <br/>
+                  <h4>En savoir plus<img className="home_page_section_market_jombotron_icon" src="/img/icons/arrow white.svg"/></h4>
+                </Card>
+              </CardDeck>
+       </div>
       <div className="home_page_section_plans">
       <center><h1>Plans</h1></center>
       <p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum.</p>
