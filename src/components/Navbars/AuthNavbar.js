@@ -14,6 +14,8 @@ import {
   Button,
   
 } from "reactstrap";
+import { css } from "@emotion/react";
+import { device } from "../../lib/device"
 import menuItems from './PublicHeaderData';
 import { useRouter } from "next/router";
 import  NavigationLink from '../NavigationLink'
@@ -21,7 +23,7 @@ import  NavigationLink from '../NavigationLink'
 function AdminNavbar() {
   const router = useRouter();
   console.log("route", router.pathname);
-  const isBlog = router.pathname ===  "/blog" | router.pathname === "/blog/[slug]"? true: false;
+  const isBlog = router.asPath.startsWith("/blog") ? true: false;
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md" style={{backgroundColor: isBlog?'#fff':'#244230', opacity:1}}>
@@ -47,13 +49,15 @@ function AdminNavbar() {
                 <Col className="collapse-brand" xs="6">
                   <Link href="/admin/dashboard">
                     <img
-                      alt="..."
-                      src="/assets/img/brand/nextjs_argon_black.png"
+                      alt="Logo shakazz"
+                      src="/assets/img/brand/logoshakazz.png"
                     />
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
-                  <button className="navbar-toggler" id="navbar-collapse-main">
+                  <button className="navbar-toggler" id="navbar-collapse-main" 
+                 
+                  >
                     <span />
                     <span />
                   </button>
@@ -71,11 +75,17 @@ function AdminNavbar() {
             
              
             </Nav>
-             <div className="text-center">
+             <div className="text-center" css={css`
+                  @media ${device.smMobileMax}{
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                  }
+               `}>
                <Button 
                onClick={()=> router.push('/auth/login')}
                className="btn-white mr-lg-3" 
                style={{height: '40px', border: '2px solid #707070', width: '130px', border:"1px solid #707070 "}}
+               
                >Connexion</Button>
               </div>
               <div className="text-center">

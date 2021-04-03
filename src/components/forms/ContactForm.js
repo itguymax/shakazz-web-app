@@ -5,7 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { contactFormSchema} from '../../validations'
 import { submitContactData} from '../../services/contact-us.service'
-
+import { device} from "../../lib/device"
+import {css} from "@emotion/react"
 export default function ContactForm() {
   const { register, handleSubmit, watch, errors , reset} = useForm({
     resolver: yupResolver(contactFormSchema),
@@ -45,7 +46,14 @@ export default function ContactForm() {
     console.log("forem data", data,res );
   }
   return (
-    <Form style={{display:"flex", justifyContent:"center", flexDirection:"column"}} onSubmit={handleSubmit(onSubmit)}>
+    <Form css={css`
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        @media ${device.smMobileMax} {
+          
+        }
+    `} style={{display:"flex", justifyContent:"center", flexDirection:"column"}} onSubmit={handleSubmit(onSubmit)}>
         { serverError && <div className="text-muted font-italic">
                 
                   <span className="text-danger font-weight-700">Une erreur est survenue lors de la soumision du formulaire </span>
@@ -71,32 +79,58 @@ export default function ContactForm() {
                   <span className="text-danger font-weight-700">{errors.name.message}</span>
                
               </div> }
-        <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between" }}>
-          <Sinput
+        <div css={css`
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+
+              @media ${device.smMobileMax} {
+                flex-direction: column;
+              }
+        `}>
+          <div 
+          css={css`
+              width:230px;
+              @media ${device.smMobileMax} {
+                width: 100%;
+              }
+           `}>
+          <Sinput 
+            
             name="phone"
             placeholder="(code) Numéro de téléphone"
             register={register}
-            iStyle={{border:'1px solid #707070', borderRadius:"15px", overflow:"hidden",width:"230px"}}
+            iStyle={{border:'1px solid #707070', borderRadius:"15px", overflow:"hidden"}}
             inputBg="#fff"
             type="text"
             inputvalue={data.phone}
             handleOnchange={handleChange}
             />
+            </div>
              {errors.phone && <div className="text-muted font-italic">
                 
                   <span className="text-danger font-weight-700">{errors.phone.message}</span>
                
               </div> }
+
+          <div 
+          css={css`
+              width:230px;
+              @media ${device.smMobileMax} {
+                width: 100%;
+              }
+           `}>
           <Sinput
             name="email"
             placeholder="Votre Adresse Email"
             register={register}
-            iStyle={{border:'1px solid #707070', borderRadius:"15px", overflow:"hidden",width:"230px", }}
+            iStyle={{border:'1px solid #707070', borderRadius:"15px", overflow:"hidden" }}
             inputBg="#fff"
             type="text"
             inputvalue={data.email}
             handleOnchange={handleChange}
             />
+            </div>
              {errors.phone && <div className="text-muted font-italic">
                 
                   <span className="text-danger font-weight-700">{errors.phone.message}</span>

@@ -14,11 +14,11 @@ function ContactHero() {
           //   "url(" + require("../assets/img/theme/profile-cover.jpg") + ")",
           backgroundSize: "cover",
           backgroundPosition: "center top",
+          backgroundColor: "#143427",
          
         }}
       >
-        {/* Mask */}
-        <span className="mask bg-gradient-default opacity-8" />
+        
         {/* Header container */}
         <Container className="d-flex align-items-center" fluid >
           <Row>
