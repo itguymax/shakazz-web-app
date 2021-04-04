@@ -28,7 +28,7 @@ function Retrait() {
   const onSubmit = (data) => {
     setData(data);
     openDepotModal();
-    console.log('form ', data);
+   
   };
    const handleToggleshow = () => setShow(!show);
   return (

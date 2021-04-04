@@ -30,7 +30,7 @@ function Depot() {
   const onSubmit = (data) =>{
     setData(data);
     openDepotModal();
-    console.log('form ', data);
+   
     
   };
   const openDepotModal = () => setOpenModal(!openModal);

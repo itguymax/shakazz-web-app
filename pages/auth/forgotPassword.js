@@ -20,7 +20,6 @@ function ForgotPassword() {
   const [emailSend, setEmail] = useState(false);
   const executeCaptcha = () => setVerified(!verified);
   const onSubmit = async (data) => {
-    console.log("data pw", data)
       let userdata;
   if(verified){
       setSubmitting(true);
@@ -28,7 +27,6 @@ function ForgotPassword() {
     userdata = {email }
    try{
        let datares = await requestPasswordReset(userdata);
-       console.log('forgot password data',datares);
        const { data, error, success, message } = datares;
        if(error && !success){
         setSuccessmsg(null);
@@ -40,7 +38,7 @@ function ForgotPassword() {
          setEmail(!emailSend);
        }
        
-       console.log("data", data);  
+       
 
    }catch(err){
         console.log("error", err);

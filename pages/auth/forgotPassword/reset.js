@@ -31,7 +31,7 @@ const [show, setShow] = useState(false);
   } 
   const userId = router.query?.id;
   const token = router.query?.token
-  console.log('route', router);
+  
   const onSubmit = async (data) => {
     let userdata;
   if(verified){
@@ -40,7 +40,6 @@ const [show, setShow] = useState(false);
     userdata = { password, userId, token }
    try{
        let datares = await resetPassword(userdata);
-       console.log('login data',datares);
        const { data, error, success, message } = datares;
        if(error && !success){
         setSuccessmsg(null);
@@ -52,7 +51,6 @@ const [show, setShow] = useState(false);
          updateUserpassword(true)
        }
        
-       console.log("data", data);  
 
    }catch(err){
         console.log("error", err);

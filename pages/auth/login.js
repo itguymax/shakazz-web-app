@@ -35,7 +35,7 @@ function Login() {
   const handleToggleshow = () => setShow(!show);
   const executeCaptcha = () => setVerified(!verified);
   const onSubmit = async (data)  => {
-    console.log("submit");
+    
      let userdata;
     if(verified){
       setSubmitting(true);
@@ -43,7 +43,7 @@ function Login() {
     userdata = {password, userName }
    try{
        let datares = await login(userdata);
-       console.log('login data',datares);
+      
        const { data, error, success, message } = datares;
        if(error && !success){
         setSuccessmsg(null);
@@ -55,7 +55,7 @@ function Login() {
          router.push('/portal/dashboard');
        }
        
-       console.log("data", data);  
+       
 
    }catch(err){
         console.log("error", err);

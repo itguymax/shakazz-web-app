@@ -1,7 +1,7 @@
 import React from 'react'
 
 function BlogFooter({authorInfo}) {
-  console.log("blog footer", authorInfo);
+  
   return (
     <div style={{display: 'flex'}}>
       <div

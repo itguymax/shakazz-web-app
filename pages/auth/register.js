@@ -88,7 +88,7 @@ const { register, handleSubmit, watch, errors } = useForm({
          setSuccessmsg(message);
          router.push('/portal/dashboard');
        }
-       console.log("data", data);  
+       
 
    }catch(err){
         console.log("error", err);
@@ -102,7 +102,7 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handleToggleshowc = () => setShowc(!showc);
   const executeCaptcha = () => setVerified(!verified)
   const handleOnBlur = () => {
-    console.log("blur");
+    
   }
   useEffect( ()=>{
     const addData= {

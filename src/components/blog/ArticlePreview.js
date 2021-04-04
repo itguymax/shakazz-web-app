@@ -9,6 +9,7 @@ import {
 import Link from "next/link"
 import moment from "moment";
 import Image from "next/image"
+import {css} from "@emotion/react"
 const cardStyle = { width: "20rem" };
 export default function ArticlePreview({data}) {
   const { slug, title, date, featuredImage, excerpt } = data;
@@ -17,19 +18,23 @@ export default function ArticlePreview({data}) {
    featuredImageUrl =  featuredImage.node.sourceUrl
   }
   return (
-     <Link href={`/blog/${slug}`} style={{cursor: "pointer"}} className="p-0">
-      <Card >
+     <Link href={`/blog/${slug}`} className="p-0" css={
+       css`
+       
+       `
+     }>
+      <Card className="ml--2 mr--2 mt-3"  style={{height:"400px", backgroundColor: "#fff", overflow: "hidden"}}>
         <CardImg
-          height={150}
+          
           alt={title}
           src= { featuredImageUrl || "/assets/img/theme/profile-cover.jpg" }
           top
-        ></CardImg> 
+        />
       
         <CardBody>
           <CardTitle className="mb-0" style={{fontWeight: "bold", color:"#444444"}}>{data.title}</CardTitle>
           { excerpt && <CardText style={{fontWeight: "300", color:"#444444"}}>
-            <div dangerouslySetInnerHTML= {{ __html: excerpt.substr(0,80).concat("...")}}/>
+            <div dangerouslySetInnerHTML= {{ __html: excerpt.substr(0,90).concat("...")}}/>
           </CardText>}
           <p className=" mb-4" style={{fontSize:"14px"}}>
               {moment(date).format('YYYY/MM/DD')} 

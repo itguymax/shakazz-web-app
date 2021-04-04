@@ -22,7 +22,7 @@ import  NavigationLink from '../NavigationLink'
 
 function AdminNavbar() {
   const router = useRouter();
-  console.log("route", router.pathname);
+ 
   const isBlog = router.asPath.startsWith("/blog") ? true: false;
   return (
     <>

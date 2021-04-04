@@ -1,7 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import moment from 'moment';
-import Image from 'next/image'
+import Image from 'next/image';
+import {css} from "@emotion/react";
+import {device } from "../../lib/device";
 export default function SmallFeaturedArticle({smallFeaturedPost}) {
   const {title, slug, date, featuredImage} = smallFeaturedPost;
   let featuredImageUrl="";
@@ -19,7 +21,7 @@ export default function SmallFeaturedArticle({smallFeaturedPost}) {
         quality={100}
       />
       <div style={{position:"absolute", bottom:"0px"}} >
-            <Link href={`/blog/${slug}`}><h1 className=" text-white">{title}</h1></Link>
+            <Link href={`/blog/${slug}`}><h1 className=" text-white" style={{fontSize:"20px"}}>{title}</h1></Link>
             <p className="text-white  mb-4" style={{fontSize:"14px"}}>
               {moment(date).format('YYYY/MM/DD')} 
             </p>

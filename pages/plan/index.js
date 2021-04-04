@@ -45,9 +45,9 @@ function Plan() {
       </Head>
     <div className="plans_page_section_image">
 		    <Jumbotron className="plans_page_section_image_jombotron">
-		        <h1>Plan or something</h1>
+		        <h1>Découvrez  nos plans</h1>
 		        <p>
-		          Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil
+		          Profitez de plus de cinq ans d’expérience sur les marchés financiers,  au travers des différents pools que nous mettons à  votre disposition.
 		        </p>
 		    </Jumbotron>
 	    </div>

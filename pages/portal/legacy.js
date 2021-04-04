@@ -24,7 +24,7 @@ function Legacy() {
         if(sumper === 100){
           alert("la somme doit etre egal a cent ")
         }
-        console.log("sumper ", sumper);
+        
         return;
      }
      let ldata = [...legacies,data]
@@ -32,9 +32,9 @@ function Legacy() {
       
   };
   const onPercentageInputChange = (event)=> {
-    console.log("input data", event.target.value);
+    
      let x = parseInt(event.target.value);
-     console.log("dfffff", x);
+    
      if(x==="NaN"){
        setPercentage(0);
      } else {
@@ -42,18 +42,18 @@ function Legacy() {
      }
 }
 const handleEdition = (event) => {
-    console.log(" event", event);
+    
 }
 const handleDelete = (name) => {
   const newList = legacies.filter((item) => item.name !== name);
   setLegacies(newList);
-  console.log("del event", event);
+  
 }
 useEffect((data)=>{
   if(legacies.length <= 1){
     setPercentage(100);
   } 
-console.log("use effect", legacies.length);
+
 },[legacies])
   return (
     <Container className="mb-4" fluid>

@@ -8,7 +8,29 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Image from "next/image";
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import {WeCard } from "../../src/sections/NousChoisir";
+
+const TeamCard = ({nom, poste, img}) => {
+	return (
+				<Col  xl="4" className="mb-4">
+							<Card  style={{
+          height: "400px",
+          backgroundImage: "url(" + `${img}` + ")",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+					overflow:"hidden",
+					position: "relative",
+        }}>
+								<div className="ml-3" style={{position: "absolute", bottom:10}}>
+									<h1 style={{color: "#fff", fontWeight:"bold"}}>{nom}</h1>
+									<h3 style={{color: "#cc9933", fontWeight:"200"}}>{poste}</h3>
+								</div>
+							</Card>
+						</Col>
+	)
+}
  function AboutUs() {
   return (
     <>
@@ -32,6 +54,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
         />
         <meta
           property="og:image"
+					
           content={`${config.seoShakazzLogo}`}
         />
         <meta
@@ -48,108 +71,98 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
           content="Plateforme d’investissement numérique africaine."
         />
       </Head>
-      <div>
-       <div className="aboutus_page_section_image">
-	    <Jumbotron className="aboutus_page_section_image_jombotron">
-	        <h1>Qu'est ce que</h1>
-	        <h2>Shakazz?</h2>
-	        <p>
-	          Généralement, on utilise un texte en faux latin.
-	        </p>
-	    </Jumbotron>
+      <div >
+			<div className="aboutus_page_section_image">
+				<Jumbotron className="aboutus_page_section_image_jombotron" >
+						<h1>Qu'est ce que</h1>
+						<h2>Shakazz?</h2>
+						<p>
+							Découvrez la nouvelle plateforme de solution financière africaine.
+						</p>
+				</Jumbotron>
+			</div>
+    <div style={{backgroundColor: "#fff"}} >
+	    <Container fluid className="d-flex justify-content-center py-6">
+					
+					<Row style={{width: "80%"}}>
+						<div>
+						<h2 className="text-center py-2" style={{color: "#333"}}>Shakazz est une plateforme de solutions financières par le biais des crypto-monnaies.</h2>
+						<p className="text-center px-6">Shakazz implémente un ensemble de solutions connectées, pour divers clients, grâce
+aux possibilités nombreuses et avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du
+crowdlending et du networking qui implémentent la gestion-acquisition de produits
+numériques.</p>
+					</div>
+						<Row className="mt-5 pb-8">
+							<WeCard title="Sécurité" subtitle="un service de garde renforcé par une technologie de pointe et l’expertise de nos différents partenaires." imageUrl="/assets/img/Sécurité.svg"/>
+							<WeCard title="Croissance" subtitle="Nos stratégies de diversification boostent votre patrimoine." imageUrl="/assets/img/Croissance.svg"/>
+							<WeCard title="Simplicité" subtitle="Nous vous accompagnons à chaque étape de votre parcours." imageUrl="/assets/img/Simplicité.svg"/>
+					</Row>
+					</Row>
+			</Container>
     </div>
-    <div className="aboutus_page_section_presentation">
-	    <Jumbotron className="aboutus_page_section_presentation_jombotron">
-	        <h1>Présentation de Shakazz</h1>
-	        <p>
-	          Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas valide et que l'attention du lecteur n'est pas dérangée par le contenu, lui permettant de demeurer concentré sur le seul aspect graphique.
-	        </p>
-	        <br/>
-	        <p>
-	          Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas valide et que l'attention du lecteur n'est pas dérangée par le contenu, lui permettant de demeurer concentré sur le seul aspect graphique.
-	        </p>
-	    </Jumbotron>
-	    <Container className="aboutus_page_section_presentation_jombotron_text">
-		  <Row>
-		    <Col xs={{ order: 'last' }}>
-		    	<h3>Caractéristiques</h3>
-		    	<h4>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a</h4>
-		    </Col>
-		    <Col xs>
-		    	<h3>Caractéristiques</h3>
-		    	<h4>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a</h4>
-		    </Col>
-		    <Col xs={{ order: 'first' }}>
-		    	<h3>Caractéristiques</h3>
-		    	<h4>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a</h4>
-		    </Col>
-		  </Row>
-		</Container>
-    </div>
-     <div className="aboutus_page_section_vision">
-    	<Container>
-		  <Row>
+		 
+     <div style={{backgroundColor: "#cc9933"}}>
+    	<Container fluid className="d-flex justify-content-center py-6">
+		  <Row style={{width: "80%"}}>
 		    <Col sm={4}>
-		    	  <img
-				    width={64}
-				    height={64}
-				    className="mr-3"
-				    src="holder.js/64x64"
-				    alt="Generic placeholder"
+		    	  <Image
+				    width={400}
+				    height={400}
+				    src="/assets/img/vision.svg"
+				    alt="Vision shakazz"
 				  />
 		    </Col>
-		    <Col sm={8}>
-				<h1>Notre mission</h1>
-		    	<p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas</p>
-		    	<p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas</p>
+		    <Col sm={8} className="mt-xl-7">
+				<h1 style={{color:"#fff", fontSize: "2.5em"}}>Notre Vision</h1>
+		    	<p style={{color:"#fff"}}>Shakazz souhaite, avec sa communauté, se positionner comme le premier
+moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des freins
+économiques que nous souhaitons construire afin de voir le continent grandir.</p>
+		    	
 		    
 		    </Col>
 		  </Row>
 		</Container>
     </div>
-    <div className="aboutus_page_section_mission">
-    	<Container>
-		  <Row>
-		    <Col sm={8}>
-		    	<h1>Notre mission</h1>
-		    	<p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas</p>
-		    	<p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas</p>
-		    </Col>
-		    <Col sm={4}>
-		    	<img
-				    width={64}
-				    height={64}
-				    className="mr-3"
-				    src="holder.js/64x64"
-				    alt="Generic placeholder"
-				  />
-		    </Col>
-		  </Row>
-		</Container>
+    <div style={{backgroundColor: "#24422F"}}>
+    	<Container fluid className="d-flex justify-content-center py-6">
+					<Row style={{width: "80%"}}>
+							<Col sm={8} className="mt-xl-7">
+								<h1 style={{color:"#fff", fontSize: "2.5em"}}>Notre Mission</h1>
+								<p style={{color:"#fff"}}>La mission de Shakazz est de permettre aux Africains de faire évoluer leurs finances en mettant à leur disposition un panel de solutions dédiées et adaptées à tout type
+			de besoins.</p>
+							</Col>
+							<Col sm={4}>
+								<Image
+									width={500}
+									height={500}
+									src="/assets/img/mission.svg"
+									alt="Mission Shakazz"
+								/>
+							</Col>
+					</Row>
+		  </Container>
     </div>
-      <div className="aboutus_page_section_team">
-      	<CardDeck>
-		  <Card>
-		    <Card.Body>
-		    	<h3>Rencontrez</h3>
-		    	<h1>Notre équipe</h1>
-		    	<h5>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum.</h5>
-		    </Card.Body>
-		  </Card>
-		  <Card className="aboutus_page_section_team_div">
-		    <div className="aboutus_page_section_team_div_bottom">
-		    	<p>Yvan Fotso</p>
-		    	<h6>CEO</h6>
-		    </div>
-		  </Card>
-		  <Card className="aboutus_page_section_team_div">
-		    <div className="aboutus_page_section_team_div_bottom">
-		    	<p>Yvan Fotso</p>
-		    	<h6>CEO</h6>
-		    </div>
-		  </Card>
-		</CardDeck>
-		</div>
+     <div style={{width:"100%"}}  className="my-8">
+      <Container fluid className=" d-flex justify-content-center">
+					<Row style={{width: "80%"}}>
+						<Col xl="4" className="mb-4">
+								<Card className=" d-flex justify-content-center align-items-center" style={{flexDirection:"column",overflow:"hidden", height:"400px"}}>
+								<Card.Body className="mt-5"  className=" d-flex justify-content-center align-items-center" style={{flexDirection:"column"}}>
+									<h3 style={{color: "#6f6f6f", fontWeight:"300px"}}>Rencontrez</h3>
+									<h1 style={{color: "#333"}}>Notre équipe</h1>
+									<h5 style={{color: "#6f6f6f", fontWeight:"200px"}} className="text-center">notre équipe jeune et dévouée désireuse d’impacter son environnement, de concourir à son bien-être.</h5>
+								</Card.Body>
+							</Card>
+						</Col>
+				    <TeamCard nom="Yvan Fotso" poste="CEO" img="/assets/img/photoequipe/yvan.png"/>
+						<TeamCard nom="Toumi Wantcho Maximilien" poste="Responsable IT" img="/assets/img/photoequipe/toumi.png"/>
+						<TeamCard nom="Cyrille FOKA" poste="Analyste financier" img="/assets/img/photoequipe/foka.png"/>
+						<TeamCard nom="Alexandre DJENGUE" poste="Directeur Artistique" img="/assets/img/photoequipe/alex.png"/>
+						<TeamCard nom="Pierre-Lionel Bissohong" poste="Designer" img="/assets/img/photoequipe/bisso.png"/>
+						<TeamCard nom="Ludovic FEUTSE" poste="Developpeur web" img="/assets/img/photoequipe/ludo.png"/>
+				</Row>
+			</Container>
+		 </div>
     </div>
   </>
   )

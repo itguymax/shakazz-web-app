@@ -9,9 +9,9 @@ import config from "../../src/config";
 import BlogHero from '../../src/sections/BlogHero';
 import Subscription from '../../src/sections/Subscription';
 import LastArticles from '../../src/sections/LastArticles';
-
+import {css} from "@emotion/react";
+import {device} from "../../src/lib/device" 
 function Blog({ posts }) {
-  console.log("posts", posts);
   return (
     <>
     <Head>
@@ -50,11 +50,9 @@ function Blog({ posts }) {
           content="Découvrez nos articles, et apprenez des experts."
         />
       </Head>
-    
        <BlogHero featuredPosts={posts}/>
        <LastArticles posts={posts}/>
        <Subscription/>
-      
     </>
   )
 }
@@ -99,7 +97,6 @@ export async function getStaticProps() {
     `,
   });
 
-  console.log("blog page post", result);
   return {
     props: {
       posts: result.data.posts.nodes,

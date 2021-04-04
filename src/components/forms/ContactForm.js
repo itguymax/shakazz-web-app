@@ -43,7 +43,6 @@ export default function ContactForm() {
            setserverSuccess(false);
         }
 
-    console.log("forem data", data,res );
   }
   return (
     <Form css={css`

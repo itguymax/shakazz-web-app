@@ -43,12 +43,13 @@
 
 const   withPWA = require('next-pwa');
 const  runtimeCaching = require ('next-pwa/cache');
-
+const prod = process.env.NODE_ENV === 'production'
 module.exports =  withPWA(
   {
    pwa: {
     dest: 'public',
     register: true,
+    disable: prod ? false : true,
     runtimeCaching,
   },
   webpack: (config) => {

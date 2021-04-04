@@ -75,7 +75,7 @@ import { device, size } from '../../src/lib/device';
                   En face Afriland first bank Mvog-mbi <br/>
                   Yaoundé, Cameroun <br/>
                   +237 691 273 540<br/>
-                  shakazztrading@gmail.com
+                  contact@shakazz.com
                 </div>
               </div>
               <Col>

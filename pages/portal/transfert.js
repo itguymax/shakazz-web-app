@@ -17,7 +17,7 @@ function Transfert() {
     resolver: yupResolver({}),
   });
   const [show, setShow] = useState(false);
-  const onSubmit = (data) => console.log("data", data);
+  const onSubmit = (data) => {};
    const handleToggleshow = () => setShow(!show);
   return (
     <div>

@@ -14,7 +14,7 @@ email: yup.string().email("Entrez une email valide ").required("l'email est requ
                     .test('checkEmailUnique', 'Email existe deja.', async (value) =>{
                      const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueEmail/${value}`); 
                      const resp = await res.json();
-                     console.log("yup", value);
+                    
                      return "ok"
                     }
     ),

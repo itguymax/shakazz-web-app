@@ -11,7 +11,7 @@ export default function Subscription() {
     resolver: yupResolver(subscriptionFormSchema),
   });
   const onSubmit = (data)=> {
-    console.log("forem data", data );
+   
   }
   return (
      <>

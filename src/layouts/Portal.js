@@ -19,7 +19,6 @@ function Portal(props) {
     mainContentRef.current.scrollTop = 0;
   }, []);
   const getBrandText = () => {
-    console.log("routes", router.route, routes[0].layout + routes[0].path);
     for (let i = 0; i < routes.length; i++) {
       if (router.route.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].displayName;
@@ -27,7 +26,6 @@ function Portal(props) {
       if(routes[i].children){
        
          for (let j = 0; j < routes[i].children.length; j++){
-            console.log("has chil", router.route,  routes[i].children[j].layout + routes[i].children[j].path)
            if (router.route.indexOf(routes[i].children[j].layout + routes[i].children[j].path) !== -1) {
         return routes[i].children[j].displayName;
       }

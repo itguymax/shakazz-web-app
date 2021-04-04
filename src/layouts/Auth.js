@@ -15,7 +15,6 @@ function Auth(props) {
   // console.log("path to img", require('../assets/img/login.png').default );
   const router = useRouter();
   React.useEffect(() => {
-      console.log("router", router);
     document.body.classList.add("bg-default");
     // Specify how to clean up after this effect:
     return function cleanup() {

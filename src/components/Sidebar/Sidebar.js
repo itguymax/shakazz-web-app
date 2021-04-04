@@ -76,7 +76,7 @@ function Sidebar(props) {
         <Collapse isOpen={isOpen}>
         {prop.children?(
           prop.children.map((level, key)=> {
-            console.log("level", level);
+           
         <NavItem style={{backgroundColor: '#fff'}} key={ key+ Math.random()} active={activeRoute(level.layout + level.path)}>
             <Link href={level.layout + level.path}>
               <NavLink

@@ -9,13 +9,23 @@ import Carousel from 'react-bootstrap/Carousel';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck';
-import Image from 'react-bootstrap/Image';
+import Image from 'next/image'
 import { Button, Container, Row, Col } from "reactstrap";
+import NousChoisir from "../src/sections/NousChoisir";
+import NotreMarche from "../src/sections/NotreMarche";
+import Confiance from "../src/sections/Confiance";
+import Plans from "../src/sections/Plans";
+import Link from "next/link";
+import PreInscription from "../src/components/pre_inscription"
+
 
 function Index() {
   // React.useEffect(() => {
   //   Router.push("/portal/dashboard");
   // });
+  const gotoService = () => {
+    Router.push("/services")
+  }
   return <>
       <Head>
           <title>Shakazz | Elargissez vos opportunités d’affaires</title>
@@ -51,11 +61,12 @@ function Index() {
     <Carousel className="home_page_section_shakazz">
       <Carousel.Item>
           <Jumbotron className="home_page_section_shakazz_jumbotron">
-            <h1>Découvrez et profiter de la puissance du crownlending</h1>
-            <p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page
+            <h1>Découvrez  et profitez de la puissance du crowdlending.</h1>
+            <p> 
+              Shakazz vous propose de participer à des  pools de liquidités avec des récompenses échelonnées sur l’année.  Profitez-en et choisissez l’échéance qui vous convient dans nos plans.
             </p>
             <p>
-              <Button variant="primary">Learn more</Button>
+              <Button onClick={gotoService} variant="primary">Learn more</Button>
             </p>
           </Jumbotron>
         <Carousel.Caption>
@@ -63,168 +74,58 @@ function Index() {
       </Carousel.Item>
       <Carousel.Item interval={10000}>
         <Jumbotron className="home_page_section_shakazz_jumbotron">
-            <h1>Découvrez et profiter de la puissance du crownlending</h1>
-            <p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page
+            <h1>Faites croître votre patrimoine</h1>
+            <p>
+              Avec Shakazz, construisez une relation forte de confiance dans un système qui récompense efficacement ceux qui l’alimente. 
             </p>
             <p>
-              <Button variant="primary">Learn more</Button>
+              <Button onClick={gotoService} variant="primary">Learn more</Button>
             </p>
           </Jumbotron>
-        <Carousel.Caption>
-        </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={10000}>
-      <Jumbotron className="home_page_section_shakazz_jumbotron">
-            <h1>Découvrez et profiter de la puissance du crownlending</h1>
-            <p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page
+         <Jumbotron className="home_page_section_shakazz_jumbotron">
+            <h1>Elargissez vos opportunités d’affaire.</h1>
+            <p>
+              Shakazz est une plateforme Africaine qui vous propose des solutions financières adaptées à votre environnement socioéconomique et au confort financier de votre portefeuille.
             </p>
             <p>
-              <Button variant="primary">Learn more</Button>
+              <Button onClick={gotoService} variant="primary">Learn more</Button>
             </p>
           </Jumbotron>
-        <Carousel.Caption>
-        </Carousel.Caption>
+      </Carousel.Item>
+       <Carousel.Item interval={10000}>
+         <Jumbotron className="home_page_section_shakazz_jumbotron">
+            <h1>Rejoignez le mouvement.</h1>
+            <p>
+              Parce que nous croyons en l’Afrique, en son potentiel, plus encore nous participons à son développement à travers la blockchain et au crowdlending.
+            </p>
+            <p>
+              <Button onClick={gotoService} variant="primary">Learn more</Button>
+            </p>
+          </Jumbotron>
       </Carousel.Item>
   </Carousel>
       <Jumbotron className="home_page_section_presentation">
         <h1>Présentation de Shakazz</h1>
         <p>
-          Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum. L'avantage du latin est que l'opérateur sait au premier coup d'œil que la page contenant ces lignes n'est pas valide et que l'attention du lecteur n'est pas dérangée par le contenu, lui permettant de demeurer concentré sur le seul aspect graphique.
+         Shakazz est une plateforme de solution financières par le biais de crypto-monnaies.
+Nous implémentons un ensemble de solutions connectées, pour divers clients, grâce aux possibilités nombreuses et
+avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et du networking implémentés par nos algorithmes. 
         </p>
         <br/>
-        <a> <strong> More </strong> </a>
-        <h4> Find out more <img className = "home_page_section_presentation_jombotron_icon" src = "/assets/img/icons/arrow white.svg"/> </h4> 
+        
+       <Link href="/about-us">
+           <h4> En savoir plus <img className = "home_page_section_presentation_jombotron_icon" src = "/assets/img/icons/arrow white.svg"/> </h4> 
+       </Link>
 
     </Jumbotron>
-    <div className="home_page_section_whyus">
-      <h1>Pourquoi nous choisir?</h1>
-      <CardDeck>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Caractéristiques 1</Card.Title>
-          </Card.Body>
-          <p>
-            <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
-          </p>
-        </Card>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Caractéristiques 1</Card.Title>
-          </Card.Body>
-          <p>
-            <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
-          </p>
-        </Card>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Caractéristiques 1</Card.Title>
-          </Card.Body>
-          <p>
-            <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
-          </p>
-        </Card>
-      </CardDeck>
-      </div>
-          <div className="home_page_section_market">
-      <h1>Notre marché en un coup d'oeil</h1>
-         <CardDeck className="home_page_section_market_carddeck">
-          <Card className="home_page_section_market_card">
-             <img src="/assets/img/icons/Afrique.svg"/>
-              <h1>Afrique</h1>
-           
-            <p>
-             Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
-            </p>
-            <br/>
-            <h4>En savoir plus<img className="home_page_section_market_jombotron_icon" src="/assets/img/icons/arrow white.svg"/></h4>
-          </Card>
-          <Card className="home_page_section_market_card">
-            <img  src="/assets/img/icons/cryptomonnaie.svg" />
-           <h1>Cryptomonnaies</h1>
-            <p>
-             Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été
-            </p>
-            <br/>
-            <h4> En savoir plus <img className = "home_page_section_market_jombotron_icon" src = "/assets/img/icons/arrow white.svg"/> </h4>
-          </Card>
-        </CardDeck>
-      </div>
-       <div className="home_page_section_plans">
-      <center><h1>Plans</h1></center>
-      <p>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum.</p>
-         <CardDeck className="home_page_section_market_carddeck">
-          <Card className="home_page_section_market_card">
-            <Button>Pool mensuel</Button>
-            <section className="home_page_section_plans_div">
-            <Card.Body>
-              <Card.Title>1 MOIS</Card.Title>
-              <p>RECOMPENSES</p>
-              <br/>
-              <h1>7.5%</h1>
-            </Card.Body>
-            <p>
-              <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
-            </p>
-            <br/>
-            <Button className="home_page_section_plans_buttonlink">Learn more</Button>
-            </section>
-          </Card>
-          <Card className="home_page_section_market_card">
-          <Button>Pool semi-annuel</Button>
-           <section className="home_page_section_plans_div">
-            <Card.Body>
-              <Card.Title>6 MOIS</Card.Title>
-              <p>RECOMPENSES</p>
-              <br/>
-              <h1>51%</h1>
-            </Card.Body>
-            <p>
-              <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
-            </p>
-            <br/>
-            <Button className="home_page_section_plans_buttonlink">Learn more</Button>
-            </section>
-          </Card>
-          <Card className="home_page_section_market_card">
-          <Button>Pool annuel</Button>
-          <section className="home_page_section_plans_div">
-            <Card.Body>
-              <Card.Title>1 AN</Card.Title>
-              <p>RECOMPENSES</p>
-              <br/>
-              <h1>114%</h1>
-            </Card.Body>
-            <p>
-              <small className="text-muted">Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été</small>
-            </p>
-            <br/>
-            <Button className="home_page_section_plans_buttonlink">Learn more</Button>
-            </section>
-          </Card>
-        </CardDeck>
-      </div>
-      <div className="home_page_section_trust">
-      <center><h1>Ils nous font confiance</h1></center>
-      <Container className="home_page_section_trust_container">
-          <Row>
-            <Col xs={5} sm={3}>
-              <Image src="/assets/img/brand/jf.png"/>
-            </Col>
-            <Col xs={5} sm={3}>
-              <Image src="/assets/img/brand/umdeny-logo-XL.png"/>
-            </Col>
-            <Col xs={5} sm={3}>
-              <Image src="/assets/img/brand/UTHAN_GO 3.png"/>
-            </Col>
-            <Col xs={5} sm={3}>
-              <Image src="/assets/img/brand/hannibal.png"/>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+     <NousChoisir/>
+     <NotreMarche/> 
+     <Plans/>
+     <PreInscription bleu/>    
+    
+      <Confiance/>
        <div className="home_page_section_started">
         <Row>
           <Col className="home_page_section_started_col1">

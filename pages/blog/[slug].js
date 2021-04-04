@@ -12,8 +12,6 @@ import {Container} from "reactstrap";
 
 function BlogPage({post}){
   const router = useRouter();
-
-  console.log("BlogPage", router);
   let featuredImageUrl="";
   let authorInfo=""
   if(post.featuredImage){
@@ -119,7 +117,7 @@ function BlogPage({post}){
             padding-top: 20px;
             width: 70%;
           `} fluid>
-        <BlogPostFooter authorInfo={authorInfo} />
+        {/* <BlogPostFooter authorInfo={authorInfo}/> */}
       </Container>
   </>
   )
@@ -139,7 +137,6 @@ export async function getStaticPaths(){
         }
     `
   });
- console.log("static path", result.data.posts.nodes);
   return {
     paths: result.data.posts.nodes.map(({slug})=>{
       return  {
@@ -153,7 +150,6 @@ export async function getStaticPaths(){
 }
 
 export async function getStaticProps({ params }) {
-  console.log("get static props param",params);
   const { slug } = params;
   const result = await client.query({
     query: gql`
@@ -166,8 +162,7 @@ export async function getStaticProps({ params }) {
                   avatar {
                     url
                   }
-                  nickname
-                  email
+                  username
                   description
                 }
               }
@@ -181,7 +176,6 @@ export async function getStaticProps({ params }) {
     `,
     variables: { slug },
   });
-  console.log("slug page", result);
   return {
     props: {
       post: result.data.post,

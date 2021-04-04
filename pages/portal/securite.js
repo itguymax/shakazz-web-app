@@ -16,27 +16,21 @@ const options = [{
    const [pwdtOption, setpwdtOption] = useState(options[Math.floor(Math.random() * options.length )])
    const selectionOption = ( value ) => {
     setfaOption(value);
-    console.log("dddd", value);
   };
   const selectionOptionpwdc = ( value ) => {
     setpwdcOption(value);
-    console.log("dddd", value);
   };
   const selectionOptionpwdt = ( value ) => {
     setpwdtOption(value);
-    console.log("dddd", value);
   };
   const onSubmit2fa =()=>{
-    console.log("ddddccc", faOption);
   }
    const onSubmitpwdc =()=>{
-    console.log("ddddccc", faOption);
   }
    const onSubmitpwdt =()=>{
-    console.log("ddddccc", faOption);
   }
-  const onSubmitC = (data) => { console.log("dc",data)};
-  const onSubmitT = (data) => { console.log("dT", data)};
+  const onSubmitC = (data) => { };
+  const onSubmitT = (data) => {};
   return (
     <Container fluid>
      <SecForm label="2FA" options={options} onSubmit={onSubmit2fa} faOption={faOption} handleOnSelect={selectionOption}/>

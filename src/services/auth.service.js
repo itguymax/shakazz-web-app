@@ -15,7 +15,7 @@ const apiUrl = "https://shakazz-server.herokuapp.com/api/v1/services/auth"
     let responseJson =  await response.json();
     return responseJson;
   } catch(err) {
-    console.log(err)
+  
   }
   }
 
