@@ -11,8 +11,9 @@ import { useState } from 'react';
 import { Jumbotron} from 'reactstrap';
 import { TabContent, TabPane, Nav, CardImg, CardBody, NavItem, NavLink, Card,CardTitle, CardText} from 'reactstrap';
 import classnames from 'classnames';
+import { UncontrolledCarousel } from 'reactstrap';
 //import  './assets/css/shakazz.css';
-
+let currentTab = 'navImg1';
 function PresentationSection() {
   //Tabs
     const [activeTab, setActiveTab] = useState('1');
@@ -22,8 +23,10 @@ function PresentationSection() {
   //
    function changenavImage(idP,idC){
     return requestAnimationFrame(()=>{
+     document.getElementById(currentTab).src ="/img/icons/icon_non-activated.svg";
      document.getElementById(idP).src ="/img/icons/icon_non-activated.svg";
      document.getElementById(idC).src ="/img/icons/icon_activated.svg";
+     currentTab = idC;
     })
   }
     const items = [
@@ -115,7 +118,7 @@ function PresentationSection() {
                 >
                   <Row>
                     <Col sm="3">
-                      <img id="navImg1" src="/img/icons/icon_non-activated.svg"/>
+                      <img id="navImg1" src="/img/icons/icon_activated.svg"/>
                     </Col>
                     <Col sm="9">
                       Participation au pool de liquidité
@@ -207,6 +210,7 @@ function PresentationSection() {
                 activeIndex={activeIndex}
                 next={next}
                 previous={previous}
+                interval={false}
               >
                 <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
                 {slides}

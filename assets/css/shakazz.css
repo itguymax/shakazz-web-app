@@ -544,6 +544,9 @@
 	color:black;
 	opacity:0.8;
 }
+.services_page_section_presentation_jombotron h1{
+	color:#d1a44b !important;
+}
 .services_page_section_presentation h1{
 	font-size:2.5em;
 	text-align:center;
@@ -656,6 +659,9 @@
 	margin-bottom:1em;
 	color:black;
 	opacity:0.8;
+}
+.services_page_section_networking_jombotron h1{
+	color:#d1a44b;
 }
 .services_page_section_partenaires{
 	height:40em;

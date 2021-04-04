@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import { Media } from 'reactstrap';
 import { Jumbotron, Container } from 'reactstrap';
 import Image from 'react-bootstrap/Image'
-import { UncontrolledCarousel } from 'reactstrap';
 import PresentationSection from '../../components/Sections/Services/presentation';
 import NetworkingSection from '../../components/Sections/Services/networking';
 import PartenairesSection from '../../components/Sections/Services/partenaires';

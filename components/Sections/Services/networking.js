@@ -12,7 +12,7 @@ import { TabContent, TabPane, Nav, CardImg, CardBody, NavItem, NavLink, Card,Car
 import classnames from 'classnames';
 import { Media } from 'reactstrap';
 //import  './assets/css/shakazz.css';
-
+let currentTab = 'nNavImg1';
 function NetworkingSection() {
   //Tabs
     const [activeTab, setActiveTab] = useState('1');
@@ -22,8 +22,10 @@ function NetworkingSection() {
   //
   function changenavImage(idP,idC){
     return requestAnimationFrame(()=>{
+      document.getElementById(currentTab).src ="/img/icons/icon_non-activated.svg";
      document.getElementById(idP).src ="/img/icons/icon_non-activated.svg";
      document.getElementById(idC).src ="/img/icons/icon_activated.svg";
+     currentTab = idC;
     })
   }
     const items = [
@@ -101,10 +103,10 @@ function NetworkingSection() {
                       onClick={() => { 
                         toggle('1');
                         goToIndex(0);
-                        changenavImage("navImg3","navImg1");
+                        changenavImage("nNavImg3","nNavImg1");
                          }}
                     >
-                      <img id="navImg1" src="/img/icons/icon_non-activated.svg"/>
+                      <img id="nNavImg1" src="/img/icons/icon_activated.svg"/>
                       Notre système d'affiliation
                     </NavLink>
                   </NavItem>
@@ -114,10 +116,10 @@ function NetworkingSection() {
                       onClick={() => { 
                         toggle('2');
                         goToIndex(1);
-                        changenavImage("navImg1","navImg2");
+                        changenavImage("nNavImg1","nNavImg2");
                          }}
                     >
-                      <img id="navImg2" src="/img/icons/icon_non-activated.svg"/>
+                      <img id="nNavImg2" src="/img/icons/icon_non-activated.svg"/>
                       Plan de compensation
                     </NavLink>
                    </NavItem> 
@@ -127,10 +129,10 @@ function NetworkingSection() {
                       onClick={() => { 
                         toggle('3');
                         goToIndex(2);
-                        changenavImage("navImg2","navImg3");
+                        changenavImage("nNavImg2","nNavImg3");
                          }}
                     >
-                      <img id="navImg3" src="/img/icons/icon_non-activated.svg"/>
+                      <img id="nNavImg3" src="/img/icons/icon_non-activated.svg"/>
                       La licence
                     </NavLink>
                   </NavItem>
@@ -144,6 +146,7 @@ function NetworkingSection() {
                     activeIndex={activeIndex}
                     next={next}
                     previous={previous}
+                    interval={false}
                   >
                     <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
                     {slides}
