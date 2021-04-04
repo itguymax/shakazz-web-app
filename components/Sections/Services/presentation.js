@@ -33,25 +33,30 @@ function PresentationSection() {
       {
         id: 1,
         altText: 'Participer au pool de liquidité',
-        caption: 'Intégrez la grande team de fournisseurs qui alimentent les nombreux projets déterminés par notre algorithme.'
+        caption: 'Intégrez la grande team de fournisseurs qui alimentent les nombreux projets déterminés par notre algorithme.',
+        logo:'/img/crowdlending.png'
       },
       {
         id: 2,
         altText: 'Gestion-acquisition de produits numériques',
-        caption: 'La liquidité sera repartie suivant une stratégie stricte et rigoureuse, dépendamment du plan choisi.'
+        caption: 'La liquidité sera repartie suivant une stratégie stricte et rigoureuse, dépendamment du plan choisi.',
+        logo:'/img/gestion.png'
       },
       {
         id: 3,
         altText: 'Monitoring et suivi ',
-        caption: 'Notre Algorithme fera la veille et le suivi des différentes positions. Un audit en plus sera fait à la fin de chaque semestre dans le but de vous fournir un rapport détaillé.'
+        caption: 'Notre Algorithme fera la veille et le suivi des différentes positions. Un audit en plus sera fait à la fin de chaque semestre dans le but de vous fournir un rapport détaillé.',
+        logo:'/img/monitoring.png'
       },
        {id: 4,
         altText: 'Partage des récompenses ',
-        caption: 'Tous les fournisseurs de liquidités recevront des perdiems en proportion de leurs fonds bloqués dans le système.'
+        caption: 'Tous les fournisseurs de liquidités recevront des perdiems en proportion de leurs fonds bloqués dans le système.',
+        logo:'/img/partage2.png'
       },
        {id: 5,
         altText: 'Satisfaction des membres de la  communauté',
-        caption: 'Profitez de vos amis, de votre famille et de la vie, nous nous chargeons du reste !'
+        caption: 'Profitez de vos amis, de votre famille et de la vie, nous nous chargeons du reste !',
+        logo:'/img/sourire.png'
       }
     ];
       const next = () => {
@@ -82,7 +87,7 @@ function PresentationSection() {
           onExiting={() => setAnimating(true)}
           onExited={() => setAnimating(false)}
         >
-            <Row>
+            <Row className="services_page_section_presentation_caroussel_row">
             <Col xs="6">
               <Jumbotron fluid className="services_page_section_presentation_jombotron">
                 <Container fluid>
@@ -94,8 +99,8 @@ function PresentationSection() {
             </Col>
             <Col xs="6">
               <Jumbotron fluid className="services_page_section_presentation_jombotron">
-                <Container fluid>
-                  <img src="/img/crowdlending.png"/>
+                <Container fluid className="container-fluid-imageSlide">
+                  <img src={item.logo}/>
                 </Container>
               </Jumbotron>
             </Col>

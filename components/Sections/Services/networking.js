@@ -31,17 +31,20 @@ function NetworkingSection() {
     const items = [
        {id: 1,
         altText: 'Notre système d’affiliation ',
-        caption: 'Nous donnons les moyens à tous les fournisseurs de liquidités désireux de partager leur expérience avec le monde. Nous mettons à disposition des outils et un système unique et performant.'
-      },
+        caption: 'Nous donnons les moyens à tous les fournisseurs de liquidités désireux de partager leur expérience avec le monde. Nous mettons à disposition des outils et un système unique et performant.',
+        logo:'/img/networking.png'
+    },
       {
         id: 2,
         altText: 'Plan de compensation ',
-        caption: 'Progressez au sein de notre système et construisez votre héritage.'
+        caption: 'Progressez au sein de notre système et construisez votre héritage.',
+        logo:'/img/networking1.png'
       },
       {
         id: 3,
         altText: 'La Licence ',
-        caption: 'Afin de garantir la pérennité de notre système, nous travaillons avec des personnes intègres et responsables. Pour cela, nous vous invitons à souscrire à notre licence.'
+        caption: 'Afin de garantir la pérennité de notre système, nous travaillons avec des personnes intègres et responsables. Pour cela, nous vous invitons à souscrire à notre licence.',
+        logo:'/img/payer_une_license.png'
       }
     ];
     const next = () => {
@@ -72,7 +75,7 @@ function NetworkingSection() {
           onExiting={() => setAnimating(true)}
           onExited={() => setAnimating(false)}
         >
-            <Row>
+            <Row className="services_page_section_networking_caroussel_row">
             <Col xs="6">
               <Jumbotron fluid className="services_page_section_networking_jombotron">
                 <Container fluid>
@@ -84,8 +87,8 @@ function NetworkingSection() {
             </Col>
             <Col xs="6">
               <Jumbotron fluid className="services_page_section_networking_jombotron">
-                <Container fluid>
-                  <img src="/img/networking.png"/>
+                <Container fluid className="container-fluid-imageSlide">
+                  <img src={item.logo}/>
                 </Container>
               </Jumbotron>
             </Col>

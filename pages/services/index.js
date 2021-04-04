@@ -22,6 +22,9 @@ function Services () {
   return (
     <div>
       	<div className="services_page_section_image">
+          <div className="services_page_section_image_text">
+            Découvrez nos services
+          </div>
       	</div>
     	<PresentationSection/>
     	<NetworkingSection/>

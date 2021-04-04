@@ -13,6 +13,11 @@ function PublicFooter() {
                 <ul>
                   <h1>SHAKAZZ</h1>
                   <li><h5>Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum.</h5></li>
+                    <Row>
+                      <Col xs="3"><img id="navImg1" src="/img/fbk@300x.png"/></Col>
+                      <Col xs="3"><img id="navImg1" src="/img/linkind@300x.png"/></Col>
+                      <Col xs="3"><img id="navImg1" src="/img/twitter@300x.png"/></Col>
+                    </Row>
                 </ul>
                 <ul>
                   <h2>Services</h2>
@@ -26,6 +31,8 @@ function PublicFooter() {
                 </ul>
                 <ul>
                   <h2>Contact</h2>
+                  <li><img src="/img/mail.png"/> shakazztrading@gmail.com</li>
+                  <li><img src="/img/call.png"/> +237 691 273 540</li>
                 </ul>
           </div>
           <div className="home_page_footer home_page_footer_last">
@@ -37,7 +44,7 @@ function PublicFooter() {
                     </Nav>
                     <Nav>
                       <Nav eventKey={2} href="#memes">
-                        Français
+                        <img id="navImg1" src="/img/language.png"/> Français
                       </Nav>
                     </Nav>
                   </Navbar.Collapse>

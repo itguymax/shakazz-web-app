@@ -14,10 +14,14 @@
  border: transparent; 
  border-bottom: 6px solid #143427 !important;
 }
+.
 .home_page_section_shakazz{
 	height:35em;
 	background-color:#0e251d;
 	color:white;
+}
+.home_page_footer img{
+	width:2em;
 }
 .home_page_section_shakazz_jumbotron{
 	background-color:transparent !important;
@@ -312,7 +316,7 @@
 .home_page_footer_first ul {
   list-style-type: none;
   margin: 0;
-  width: 23%;
+  width: 24%;
 }
 
 .home_page_footer_first li {
@@ -503,10 +507,11 @@
 /*Start Services Page*/
 .services_page_section_image{
 	height:36em;
-	padding-top:8em !important;
-	background-color:#143427 !important;
-	border-radius:0 !important;
-	margin-bottom:0 !important;
+	width:100% !important;
+	background-image:url("/img/servicesBackground.jpg");
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 	color:white;
 	text-align:left;
 	@font-face {
@@ -514,8 +519,20 @@
 	  src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
 	}
 }
+.services_page_section_image_text{
+	position:absolute;
+	width:auto;
+	height:7em;
+	bottom:0em;
+	padding-left:1em;
+	font-size:2.8em;
+	font-weight:bold;
+	color:white;
+	line-height: 130%;
+	color:white;
+}
 .services_page_section_presentation{
-	height:60em;
+	height:50em;
 	width:100%;
 	margin:auto;
 	padding:3em !important;
@@ -530,7 +547,7 @@
 	}
 }
 .services_page_section_presentation_caroussel{
-	height:46em;
+	height:36em;
 }
 .services_page_section_presentation_jombotron{
 	background:white !important;
@@ -546,6 +563,10 @@
 }
 .services_page_section_presentation_jombotron h1{
 	color:#d1a44b !important;
+}
+.services_page_section_presentation_jombotron .container-fluid-imageSlide img{
+	width:25em;
+	float:right;
 }
 .services_page_section_presentation h1{
 	font-size:2.5em;
@@ -565,11 +586,10 @@
 	width:20%;
 	font-weight:900 !important;
 	border:1px solid white !important;
-	text-align:left;
 
 }
-.services_page_section_presentation_tab img{
-	margin-right:1em;
+.services_page_section_presentation_tab .col-sm-3 img{
+	width:2em;
 }
 .services_page_section_presentation_tab a{
 	color:black !important;
@@ -582,7 +602,7 @@
 
 }
 .services_page_section_networking{
-	height:60em;
+	height:55em;
 	width:100%;
 	margin:auto;
 	padding:3em !important;
@@ -597,7 +617,7 @@
 	}
 }
 .services_page_section_networking_caroussel{
-	height:46em;
+	height:36em;
 }
 .services_page_section_networking_caroussel img{
 	max-width:550px;
@@ -605,12 +625,16 @@
 .services_page_section_networking_jombotron{
 	background:transparent !important;
 }
+.services_page_section_networking_jombotron .container-fluid-imageSlide img{
+	width:25em;
+	float:right;
+}
 .services_page_section_networking_jombotron_icon{
 	margin-left:1em;
 	width:2em;
 	height:1.2em;
 }
-.services_page_section_networkingn_jombotron h1{
+.services_page_section_networking_jombotron h1{
 	text-align:left !important;
 	font-size:2em !important;
 	opacity:0.8;
@@ -642,6 +666,12 @@
 }
 .services_page_section_networking_tab img{
 	margin-right:1em;
+}
+.services_page_section_networking_tab .col-sm-3 img{
+	width:2em;
+}
+.services_page_section_presentation_tab .col-sm-3 img{
+	width:2em;
 }
 .services_page_section_networking_tab a{
 	color:black !important;
