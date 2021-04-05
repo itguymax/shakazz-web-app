@@ -10,17 +10,18 @@ import BlogPostFooter from "../../src/components/blog/BlogPostFooter"
 // reactstrap components
 import {Container} from "reactstrap";
 
-function BlogPage({post}){
+function BlogPage(){
   const router = useRouter();
-  let featuredImageUrl="";
-  let authorInfo=""
-  if(post.featuredImage){
-   featuredImageUrl =  post.featuredImage.node.sourceUrl
-  }
-  if(post.author){
-     authorInfo = post.author.node;
-  }
-console.log("blog post",post);
+  
+  // let featuredImageUrl="";
+  // let authorInfo=""
+  // if(post.featuredImage){
+  //  featuredImageUrl =  post.featuredImage.node.sourceUrl
+  // }
+  // if(post.author){
+  //    authorInfo = post.author.node;
+  // }
+
   return (
     <>
     <Head>
