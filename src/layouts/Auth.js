@@ -55,15 +55,15 @@ function Auth(props) {
         </div> */}
         {/* Page content */}
          <div className="main-content row" style={{minHeight:'100vh'}}>
-          <Col lg="6" style={{backgroundColor: '#f5f5f5', justifyContent: 'center', alignItems: 'center'}}> 
-             <h3 style={{textAlign: "left", marginTop:'1.25rem'}}>
-                <a href="/">SHAKAZZ</a>
-              </h3>
-              <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}} css={css`
+          <Col lg="6" style={{backgroundColor: '#f5f5f5', justifyContent: 'center', alignItems: 'center'}} css={css`
                   @media(max-width: 600px){
                     display: none;
                   }
-              `}>
+              `}> 
+             <h3 style={{textAlign: "left", marginTop:'1.25rem'}}>
+                <a href="/">SHAKAZZ</a>
+              </h3>
+              <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}}>
                 <Image  
                   src={ router.pathname === "/auth/login" ? "/assets/img/login.png" : "/assets/img/inscription.png"}
                   // layout="responsive"
