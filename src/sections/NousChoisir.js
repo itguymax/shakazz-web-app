@@ -24,7 +24,7 @@ export const WeCard = (props) => {
 export default function NousChoisir() {
   return (
     <>
-        <Container className="mt--7 p-0 shadow" css={css`
+        <Container className="mt-0 p-0 shadow" css={css`
       width:80%;
       @media (max-width: 6000px){
         width:95%;

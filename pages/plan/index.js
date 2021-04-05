@@ -3,7 +3,9 @@ import Public from '../../src/layouts/Public';
 import Head from 'next/head';
 import config from "../../src/config";
 import { Button, Container, Row, Col,Table, Jumbotron } from "reactstrap";
-
+import PreInscription from "../../src/components/pre_inscription";
+import PlanTable from "../../src/components/planTable";
+import {css} from "@emotion/react"
 function Plan() {
   return (
     <>
@@ -51,82 +53,18 @@ function Plan() {
 		        </p>
 		    </Jumbotron>
 	    </div>
-      <div className="plans_page_section_plan">
-	    	<h1>Plans</h1>
-	    	<div>
-				  <Table responsive="sm" className="plans_page_section_plan_tables">
-				    <thead>
-				      <tr>
-				        <th></th>
-				        <th><h1>MRP</h1></th>
-				        <th><h1>MRP</h1></th>
-				        <th><h1>MRP</h1></th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr>
-				        <td><p>Suspendisse pretium magna</p></td>
-				        <td>
-				        	<h1>4,5% à 7,5%</h1>
-				        	<h2>RECOMPENSE 1 MOIS</h2>
-				        	<span>La liquidité est débloquée au terme des <br/>360 jours après l'ouverture et création du vault.</span>
-				        </td>
-				        <td>
-				        	<h1>4,5% à 7,5%</h1>
-				        	<h2>RECOMPENSE 1 MOIS</h2>
-				        	<span>La liquidité est débloquée au terme des <br/>360 jours après l'ouverture et création du vault.</span>
-				        </td>
-				        <td>
-				        	<h1>4,5% à 7,5%</h1>
-				        	<h2>RECOMPENSE 1 MOIS</h2>
-				        	<span>La liquidité est débloquée au terme des <br/>360 jours après l'ouverture et création du vault.</span>
-				        </td>
-				      </tr>
-				      <tr>
-				        <td><p>Suspendisse pretium magna</p></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>				      </tr>
-				      <tr>
-				        <td><p>Suspendisse pretium magna</p></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>
-				      </tr>
-				      <tr>
-				        <td><p>Suspendisse pretium magna</p></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>				      
-				       </tr>
-				      <tr>
-				        <td><p><strong>Suspendisse pretium magna</strong></p></td>
-				        <td><h1>10000</h1></td>
-				        <td><h1>10000</h1></td>
-				        <td><h1>10000</h1></td>
-				      </tr>
-				      <tr>
-				        <td><p>Suspendisse pretium magna</p></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>
-				      </tr>
-				      <tr>
-				        <td><p>Suspendisse pretium magna</p></td>
-				        <td></td>
-				        <td></td>
-				        <td></td>
-				      </tr>
-				      <tr>
-				        <td><p>Suspendisse pretium magna</p></td>
-				        <td><Button variant="primary">Bouton</Button></td>
-				        <td><Button variant="primary">Bouton</Button></td>
-				        <td><Button variant="primary">Bouton</Button></td>
-				      </tr>
-				    </tbody>
-				  </Table>
-				</div>
-	    </div>
+      <Container fluid className="d-flex  mt-5 justify-content-center align-items-center" style={{flexDirection:"column"}}>
+				<Row css={css`
+						width:70%;
+						@media (max-width: 600px){
+							width: 90%;
+						}
+				`}>
+					<h1 className="mb-2" style={{fontSize:"30px", color:"#333"}}>Plans</h1>
+					<PlanTable/>
+				</Row>
+			</Container>
+			<PreInscription bleu/>
     </>
   )
 }

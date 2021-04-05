@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/Col';
 import Image from "next/image";
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import {WeCard } from "../../src/sections/NousChoisir";
+import PreInscription from "../../src/components/pre_inscription";
 
 const TeamCard = ({nom, poste, img}) => {
 	return (
@@ -142,7 +143,8 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
 					</Row>
 		  </Container>
     </div>
-     <div style={{width:"100%"}}  className="my-8">
+		 <PreInscription/>
+     <div style={{width:"100%"}}  className="mb-8 mt-5">
       <Container fluid className=" d-flex justify-content-center">
 					<Row style={{width: "80%"}}>
 						<Col xl="4" className="mb-4">

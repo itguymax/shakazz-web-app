@@ -5,7 +5,7 @@ import  { Link } from "../components/Link";
 
 const PlanCard = ({pool, durree, roi, description}) => {
   return (
-    <Col xl="4" className="mb-5" >
+    <Col xl="4" className="mb-3" >
           <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
              <div className="d-flex p-2 pt-3 align-items-center justify-content-center" style={{borderRadius:"50px", border:"1px solid #6f6f6f"}}
              css={css`
@@ -58,7 +58,7 @@ const Plans = ()=> {
       }
 
       `}>
-                 <Row className="mt-5 pb-8 mx-9">
+                 <Row className="mt-5 pb-4 mx-9">
                   <PlanCard pool="Pool mensuel" durree="1 MOIS" roi="7,5%" description="La liquidité est débloquée au terme des
 360 jours après l’ouverture
 et création du vault"/>

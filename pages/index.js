@@ -124,6 +124,7 @@ avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et
      <NotreMarche/> 
      <Plans/>
      <PreInscription bleu/>    
+     
     
       <Confiance/>
        <div className="home_page_section_started">

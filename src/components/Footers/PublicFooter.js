@@ -235,7 +235,7 @@ function PublicFooter() {
                     <Nav className="mr-auto">
                     </Nav>
                     <Nav>
-                      <Nav eventKey={2} href="#memes">
+                      <Nav eventkey={2} href="#memes">
                         <img id="navImg1" src="/assets/img/language.png"/> Français
                       </Nav>
                     </Nav>

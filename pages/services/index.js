@@ -18,6 +18,7 @@ import {
 } from 'reactstrap';
 import Head from "next/head";
 import config from '../../src/config';
+import PreInscription from "../../src/components/pre_inscription";
 
 function  Services  ( )  {
   return (
@@ -65,6 +66,7 @@ function  Services  ( )  {
             Découvrez nos services
           </div>
       	</div>
+      <PreInscription/>
     	<PresentationSection/>
     	<NetworkingSection/>
     	<PartenairesSection/>
