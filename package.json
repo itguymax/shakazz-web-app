@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:debug": "NODE_OPTIONS='--inspect' next dev" ,
+    "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "build:dev": "next build",
     "start": "next start",
