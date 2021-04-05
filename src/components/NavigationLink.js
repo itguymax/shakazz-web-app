@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import Link from "next/link";
+import {css } from "@emotion/react"
 // reactstrap components
 import {NavLink} from "reactstrap";
 function NavigationLink({ label, href }) {
@@ -18,7 +19,17 @@ function NavigationLink({ label, href }) {
    <Link href={href} >
      <NavLink href={href} onClick={handleClick}  style={style} className="nav-link-icon">
         <span 
-        style={{font: 'normal normal bold 14px/16px Ubuntu'}} 
+        
+        css={css`
+            font: normal normal bold 14px/16px Ubuntu;
+            @media (max-width: 1200px){
+              font-size:10px;
+            }
+             @media (max-width: 999px){
+              font-size:16px;
+            }
+            
+        `}
         className="nav-link-inner--text">
         {label.toLocaleUpperCase()}
         </span>

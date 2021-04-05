@@ -240,11 +240,7 @@ function PublicFooter() {
             width: 25px;
             margin-bottom: 0px;
           }
-          .i div {
-            display:flex;
-            flex-direction:row;
-            justify-content:center;
-          }
+         
          
          `}>
             <Row className="px-6 d-flex justify-content-center">
@@ -274,6 +270,24 @@ function PublicFooter() {
               </Col>
             </Row>
          </Container> 
+           <div style={{borderTop: "1px solid #fff"}} css={css`
+            img{
+              height:30px;
+              width:30px;
+            }
+            padding: 12px 15px 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items-center: center;
+            p{
+              font-weight: 100;
+              color: #A7A7A7;
+            }
+            
+           `} >
+             <p>©Shakazz All Right Reserved</p>
+              <div><img id="navImg1" src="/assets/img/language.png"/> Français</div>
+          </div>
     </footer>
   );
 }

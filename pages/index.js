@@ -134,9 +134,11 @@ avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et
           </Col>
           <Col>
             <Jumbotron className="home_page_section_started_jumbotron">
-              <h1>Ready to started?</h1>
+              <h1>Prêt à commencer ?</h1>
               <p>
-                Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum.
+                Rejoignez-nous à Yaoundé Cameroun, 
+au lieu-dit Quartier Fouda, 
+Rue 113
               </p>
               <p>
                 <center><Button>Commencez</Button></center>
