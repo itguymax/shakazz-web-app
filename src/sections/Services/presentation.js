@@ -4,31 +4,23 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
+  CarouselCaption,
+  Card,
+  CardBody,
+  NavItem,
+  NavLink,
+  Nav,
+  TabContent,
+  TabPane,
 } from 'reactstrap';
 import { Media } from 'reactstrap';
 import { useState } from 'react';
 import { Jumbotron} from 'reactstrap';
-import { TabContent, TabPane, Nav, CardImg, CardBody, NavItem, NavLink, Card,CardTitle, CardText} from 'reactstrap';
 import classnames from 'classnames';
 import { UncontrolledCarousel } from 'reactstrap';
-//import  './assets/css/shakazz.css';
-let currentTab = 'navImg1';
-function PresentationSection() {
-  //Tabs
-    const [activeTab, setActiveTab] = useState('1');
-    const toggle = tab => {
-      if(activeTab !== tab) setActiveTab(tab);
-    }
-  //
-   function changenavImage(idP,idC){
-    return requestAnimationFrame(()=>{
-     document.getElementById(currentTab).src ="/assets/img/icons/icon_non-activated.svg";
-     document.getElementById(idP).src ="/assets/img/icons/icon_non-activated.svg";
-     document.getElementById(idC).src ="/assets/img/icons/icon_activated.svg";
-     currentTab = idC;
-    })
-  }
+import {css} from "@emotion/react";
+import Image from "next/image";
+
     const items = [
       {
         id: 1,
@@ -59,172 +51,140 @@ function PresentationSection() {
         logo:'/assets/img/sourire.png'
       }
     ];
-      const next = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-        setActiveIndex(nextIndex);
-      }
 
-      const previous = () => {
-        if (animating) return;
-        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-        setActiveIndex(nextIndex);
-      }
 
-      const goToIndex = (newIndex) => {
-        if (animating) return;
-        setActiveIndex(newIndex);
-      }
-      const [activeIndex, setActiveIndex] = useState(0);
-    const [animating, setAnimating] = useState(false);
-      const slides = items.map((item) => {
-      return (
-        <CarouselItem
-          className="services_page_section_presentation_caroussel"
-          tag="div"
-          interval={null}
-          key={item.id}
-          onExiting={() => setAnimating(true)}
-          onExited={() => setAnimating(false)}
-        >
-            <Row className="services_page_section_presentation_caroussel_row">
-            <Col xs="6">
-              <Jumbotron fluid className="services_page_section_presentation_jombotron">
-                <Container fluid>
-                  <h1>{item.altText}</h1>
-                  <p className="lead">{item.caption}</p>
-                  <h4>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4>
-                </Container>
-              </Jumbotron>
-            </Col>
-            <Col xs="6">
-              <Jumbotron fluid className="services_page_section_presentation_jombotron">
-                <Container fluid className="container-fluid-imageSlide">
-                  <img src={item.logo}/>
-                </Container>
-              </Jumbotron>
-            </Col>
-          </Row>
-        </CarouselItem>
-      );
-    });
+const TabH = ({indicator, text,hTabsIcons,handleSetHTabs}) => {
   return (
-       <div className="services_page_section_presentation">
-        <h1>Présentation Crowndlending</h1>
-          <Nav tabs>
-              <NavItem className="services_page_section_presentation_tab">
-                <NavLink
-                  className={classnames({ active: activeTab === '1' })}
-                  onClick={() => { 
-                    toggle('1'); 
-                    goToIndex(0);
-                    changenavImage("navImg5","navImg1");
-                    }}
-                >
-                  <Row>
-                    <Col sm="3">
-                      <img id="navImg1" src="/assets/img/icons/icon_activated.svg"/>
-                    </Col>
-                    <Col sm="9">
-                      Participation au pool de liquidité
-                    </Col>
-                  </Row>
-                </NavLink>
-              </NavItem>
-              <NavItem className="services_page_section_presentation_tab">
-                <NavLink
-                  className={classnames({ active: activeTab === '2' })}
-                  onClick={() => { 
-                    toggle('2'); 
-                    goToIndex(1);
-                    changenavImage("navImg1","navImg2");
-                    }}
-                >
-                  <Row>
-                    <Col sm="3">
-                      <img id="navImg2" src="/assets/img/icons/icon_non-activated.svg"/>
-                    </Col>
-                    <Col sm="9">
-                      Gestion, acquisition de produits numériques
-                    </Col>
-                  </Row>
-                </NavLink>
-               </NavItem> 
-               <NavItem className="services_page_section_presentation_tab">
-                <NavLink
-                  className={classnames({ active: activeTab === '3' })}
-                  onClick={() => { 
-                    toggle('3'); 
-                    goToIndex(2);
-                    changenavImage("navImg2","navImg3");
-                    }}
-                >
-                   <Row>
-                    <Col sm="3">
-                      <img id="navImg3" src="/assets/img/icons/icon_non-activated.svg"/>
-                    </Col>
-                    <Col sm="9">
-                      Monitoring et suivie des positions de participation
-                    </Col>
-                  </Row>
-                </NavLink>
-              </NavItem>
-              <NavItem className="services_page_section_presentation_tab">
-                <NavLink
-                  className={classnames({ active: activeTab === '4' })}
-                  onClick={() => { 
-                    toggle('4'); 
-                    goToIndex(3);
-                    changenavImage("navImg3","navImg4");
-                    }}
-                >
-                  <Row>
-                    <Col sm="3">
-                      <img id="navImg4" src="/assets/img/icons/icon_non-activated.svg"/>
-                    </Col>
-                    <Col sm="9">
-                      Partage des intérêts
-                    </Col>
-                  </Row>
-                </NavLink>
-              </NavItem> 
-               <NavItem className="services_page_section_presentation_tab">
-                <NavLink
-                  className={classnames({ active: activeTab === '5' })}
-                  onClick={() => { 
-                    toggle('5'); 
-                    goToIndex(4);
-                    changenavImage("navImg4","navImg5");
-                    }}
-                >
-                  <Row>
-                    <Col sm="3">
-                      <img id="navImg5" src="/assets/img/icons/icon_non-activated.svg"/>
-                    </Col>
-                    <Col sm="9">
-                      Satisfactions des membres de la communauté
-                    </Col>
-                  </Row>
-                </NavLink>
-              </NavItem>
-          </Nav>
-        <TabContent activeTab={activeTab}>
-         <Row>
-              <Col sm="12">
-              <Carousel
-                activeIndex={activeIndex}
-                next={next}
-                previous={previous}
-                interval={false}
-              >
-                <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-                {slides}
-              </Carousel>
-              </Col>
-            </Row>
-        </TabContent>
+     <NavItem>
+            <NavLink
+              className={
+                "mb-sm-3 mb-md-0 " +
+                ( hTabsIcons === indicator ? "active" : "")
+              }
+              href="#itguymax"
+              onClick={(e) => {
+                e.preventDefault();
+                handleSetHTabs(indicator);
+              }}
+            >
+             <Container fluid>
+                 <Row className="">
+                  <Image className="col" width="40px" height="40px" src={hTabsIcons === indicator ? "/assets/img/icons/icon_activated.svg" : "/assets/img/icons/icon_non-activated.svg"} />
+                <h3 className="col"> {text} { hTabsIcons === indicator && <span/>}</h3>
+              </Row>
+             </Container>
+            
+            </NavLink>
+          </NavItem>
+  )
+}
+const Indicator = ({hTabsIcons,indic, handleClick}) => {
+  
+  return (
+    <span 
+     onClick={()=> handleClick(indic)}
+    style={{backgroundColor:hTabsIcons===indic? "#333333":"#9B9B9B", cursor:"pointer"}}
+    css={css`
+       height: 15px;
+       width: 15px;
+       dispay: flex;
+       border-radius:50%;
+       margin-right:5px;
+      
+    `}/>  
+  )
+}
+const PresentationSection = ()=>{
+  const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
+  const handleSetHTabs = ( indic) => {
+    setHTabsIcons(indic);
+  }
+
+
+  return <>
+        <Row className=" d-flex  justify-content-center pt-6 pb-7">
+        <div className=" pb-5 text-center"  ><h1 style={{color:"#333"}}>Présentation Crowdlending</h1></div>
+           <Container fluid className="mx-5">
+               <div css={css`
+        
+        .nav-pills .nav-link{
+          box-shadow: none;
+        }
+        
+        .nav-pills .nav-link.active, .nav-pills .nav-link, h1 {
+              color:#333;
+              font-size:bold;
+              background-color:#fff;
+              padding:0px;
+        }
+       h3{
+         display: flex;
+         flex-direction: column;
+         font-size: 12px;
+         text-align: center;
+         width:100px;
+
+       }
+       span{
+         border: 4px solid #24422F;
+         position:absolute;
+         width: 180px;
+         bottom: -13px;
+       }
+    `}>
+        <Nav className="nav-fill flex-column flex-md-row" pills role="tablist" 
+          style={{borderBottom:"2px solid #B7B7B7", position: "relative"}}
+        >
+         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-1" text="Participer au pool de liquidité" />
+         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-2" text="Gestion, acquisition de produits numériques" />
+         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="Monitoring et suivie des positions et participation" />
+         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-4"  text="Partage des interêts" />
+         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-5" text="satisfaction des membres de la communauté" />  
+        </Nav>
       </div>
-  );
+      <div className="">
+        <div>
+          <TabContent id="myTabContent" activeTab={hTabsIcons}>
+           {
+              items.map((item, key) =>{
+                console.log("hTabsIcon",`hTabsIcons-${item.id}`);
+                return (
+                   <TabPane key={item.id} tabId={`hTabsIcons-${item.id}`} role="tabpanel">
+                    <Row className="services_page_section_presentation_caroussel_row">
+                      <Col xs="6">
+                        <Jumbotron fluid className="services_page_section_presentation_jombotron">
+                          <Container fluid>
+                            <h1 style={{color:"#CC9933"}}>{item.altText}</h1>
+                            <p className="lead">{item.caption}</p>
+                            <h4 style={{color: "#333"}}>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4>
+                          </Container>
+                        </Jumbotron>
+                      </Col>
+                      <Col xs="6">
+                        <Jumbotron fluid className="services_page_section_presentation_jombotron">
+                          <Container fluid className="container-fluid-imageSlide">
+                            <Image src={item.logo}  src={item.logo} height={200} width={hTabsIcons==="hTabsIcons-1"?190:300}/>
+                          </Container>
+                        </Jumbotron>
+                      </Col>
+                </Row>
+            </TabPane>
+                )
+              })
+           }
+          </TabContent>
+        </div>
+        <Row className="justify-content-center">
+          <Indicator handleClick={handleSetHTabs} indic="hTabsIcons-1" hTabsIcons={hTabsIcons}/>
+          <Indicator handleClick={handleSetHTabs} indic="hTabsIcons-2" hTabsIcons={hTabsIcons}/>
+          <Indicator handleClick={handleSetHTabs} indic="hTabsIcons-3" hTabsIcons={hTabsIcons}/>
+          <Indicator handleClick={handleSetHTabs} indic="hTabsIcons-4" hTabsIcons={hTabsIcons}/>
+          <Indicator handleClick={handleSetHTabs} indic="hTabsIcons-5" hTabsIcons={hTabsIcons}/>
+       </Row>
+      </div>
+           </Container>
+        </Row>
+   </>
 }
 
 export default PresentationSection;
