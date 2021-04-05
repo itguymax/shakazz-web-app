@@ -12,7 +12,7 @@ import {Container} from "reactstrap";
 
 function BlogPage(){
   const router = useRouter();
-  
+
   // let featuredImageUrl="";
   // let authorInfo=""
   // if(post.featuredImage){
@@ -26,10 +26,10 @@ function BlogPage(){
     <>
     <Head>
         {/* META tags */}
-        <title>{` ${post.title} | Shakazz`}</title>
+        <title>{` Post | Shakazz`}</title>
         <meta
           name="description"
-          content={post.title}
+          content="post"
         />
         <link
           rel="canonical"
@@ -37,7 +37,7 @@ function BlogPage(){
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={` ${post.title} | Shakazz`} />
+        <meta property="og:title" content={` post | Shakazz`} />
         <meta
           property="og:description"
           content={post.title}
@@ -57,7 +57,7 @@ function BlogPage(){
         <meta name="twitter:title" content="Webpage" />
         <meta
           name="twitter:description"
-          content={post.title}
+          content={"post"}
         />
       </Head>
     {/* <div>
