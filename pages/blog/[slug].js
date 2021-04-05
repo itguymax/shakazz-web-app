@@ -40,7 +40,7 @@ function BlogPage(){
         <meta property="og:title" content={` post | Shakazz`} />
         <meta
           property="og:description"
-          content={post.title}
+          content={"POST"}
         />
         <meta
           property="og:image"
