@@ -700,7 +700,7 @@
 .services_page_section_partenaires {
   height: 40em;
   width: 100%;
-  margin: auto;
+  margin: 0px auto;
   padding: 3em !important;
   background-color: white !important;
   border-radius: 0 !important;

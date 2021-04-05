@@ -53,7 +53,7 @@ function PartenairesSection() {
         id: 3,
         altText: 'Uthango',
         caption: 'Blockchain Former et sensibiliser sur la blockchain et la Cryptomonnaie',
-        logo:'/assets/img/brand/UTHAN_GO 3.png',
+        logo:'/assets/img/brand/UTHAN_GO.png',
       },
       {
         id: 4,

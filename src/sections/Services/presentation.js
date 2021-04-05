@@ -20,6 +20,8 @@ import classnames from 'classnames';
 import { UncontrolledCarousel } from 'reactstrap';
 import {css} from "@emotion/react";
 import Image from "next/image";
+import Indicator from "../../components/Indicator";
+import TabH from "../../components/TabH"
 
     const items = [
       {
@@ -53,47 +55,7 @@ import Image from "next/image";
     ];
 
 
-const TabH = ({indicator, text,hTabsIcons,handleSetHTabs}) => {
-  return (
-     <NavItem>
-            <NavLink
-              className={
-                "mb-sm-3 mb-md-0 " +
-                ( hTabsIcons === indicator ? "active" : "")
-              }
-              href="#itguymax"
-              onClick={(e) => {
-                e.preventDefault();
-                handleSetHTabs(indicator);
-              }}
-            >
-             <Container fluid>
-                 <Row className="">
-                  <Image className="col" width="40px" height="40px" src={hTabsIcons === indicator ? "/assets/img/icons/icon_activated.svg" : "/assets/img/icons/icon_non-activated.svg"} />
-                <h3 className="col"> {text} { hTabsIcons === indicator && <span/>}</h3>
-              </Row>
-             </Container>
-            
-            </NavLink>
-          </NavItem>
-  )
-}
-const Indicator = ({hTabsIcons,indic, handleClick}) => {
-  
-  return (
-    <span 
-     onClick={()=> handleClick(indic)}
-    style={{backgroundColor:hTabsIcons===indic? "#333333":"#9B9B9B", cursor:"pointer"}}
-    css={css`
-       height: 15px;
-       width: 15px;
-       dispay: flex;
-       border-radius:50%;
-       margin-right:5px;
-      
-    `}/>  
-  )
-}
+
 const PresentationSection = ()=>{
   const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
   const handleSetHTabs = ( indic) => {
@@ -122,19 +84,30 @@ const PresentationSection = ()=>{
          flex-direction: column;
          font-size: 12px;
          text-align: center;
-         width:100px;
+         width:160px;
 
        }
        span{
          border: 4px solid #24422F;
          position:absolute;
          width: 180px;
-         bottom: -13px;
+         bottom: -5px;
+         z-index:999;
        }
     `}>
         <Nav className="nav-fill flex-column flex-md-row" pills role="tablist" 
-          style={{borderBottom:"2px solid #B7B7B7", position: "relative"}}
-        >
+          style={{ position: "relative"}}
+         css={css`
+            border-bottom:2px solid #B7B7B7;
+            @media (max-width: 500px ){
+                border-bottom: none;
+                h3{
+                  font-size: 14px;
+                  width:80%;
+                }
+            }
+         `}
+         >
          <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-1" text="Participer au pool de liquidité" />
          <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-2" text="Gestion, acquisition de produits numériques" />
          <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="Monitoring et suivie des positions et participation" />
@@ -147,7 +120,7 @@ const PresentationSection = ()=>{
           <TabContent id="myTabContent" activeTab={hTabsIcons}>
            {
               items.map((item, key) =>{
-                console.log("hTabsIcon",`hTabsIcons-${item.id}`);
+               
                 return (
                    <TabPane key={item.id} tabId={`hTabsIcons-${item.id}`} role="tabpanel">
                     <Row className="services_page_section_presentation_caroussel_row">
