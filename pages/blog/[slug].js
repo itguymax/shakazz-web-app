@@ -114,12 +114,25 @@ function BlogPage(){
         </Container>
        
       </article> */}
-       <Container css={css`
+      <div
+      css={css`
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      `}
+    >
+      <h1>POST PAGE NOT FOUND</h1>
+      <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
+    </div>
+       {/* <Container css={css`
             padding-top: 20px;
             width: 70%;
-          `} fluid>
+          `} fluid> */}
         {/* <BlogPostFooter authorInfo={authorInfo}/> */}
-      </Container>
+      {/* </Container> */}
   </>
   )
 }
