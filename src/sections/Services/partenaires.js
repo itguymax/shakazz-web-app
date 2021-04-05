@@ -96,7 +96,8 @@ function PartenairesSection() {
             <Col xs="6">
               <Card className="services_page_section_partenaires_col_card">
                 <CardBody>
-                  <h2>{index2<items.length?elt[index2].altText:elt[0].altText}</h2><h6>Visiter<span>&gt;</span></h6>
+                  <h2>{index2<items.length?elt[index2].altText:elt[0].altText}</h2>
+                  <h6>Visiter<span>{`>`} </span></h6>
                   <h4>{index2<items.length?elt[index2].altText:elt[0].caption}</h4>
                   <Row className="services_page_section_partenaires_row2">
                     <Col xs="6">
