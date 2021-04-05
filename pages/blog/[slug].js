@@ -157,15 +157,15 @@ export async function getStaticProps({ params }) {
          post(idType: SLUG, id: $slug) {
              content(format: RENDERED)
               title
-              author {
-                node {
-                  avatar {
-                    url
-                  }
-                  username
-                  description
-                }
-              }
+              # author {
+              #   node {
+              #     avatar {
+              #       url
+              #     }
+              #     username
+              #     description
+              #   }
+              # }
             featuredImage {
               node {
                 sourceUrl
