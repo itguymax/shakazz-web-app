@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Container, Row, Col , Card} from "reactstrap";
-import Image from "next/Image";
+import Image from "next/image";
 import Link from "next/link";
 import {css} from "@emotion/react";
 
