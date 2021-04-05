@@ -7,6 +7,7 @@ import Head from "next/head"
 import { css } from "@emotion/react"
 import config from '../../src/config'
 import { device, size } from '../../src/lib/device';
+import PreInscription from "../../src/components/pre_inscription";
  function ContactezNous() {
   return (
      <>
@@ -48,7 +49,7 @@ import { device, size } from '../../src/lib/device';
       </Head>
      <ContactHero/>
      <Container className="mt--7" fluid>
-      <Row className="justify-content-center mb-9">
+      <Row className="justify-content-center mb-4">
         <Card  
           css={css`
                     width: 80%;
@@ -70,9 +71,9 @@ import { device, size } from '../../src/lib/device';
                       }
                 `}
                 >Get in Touch</h1>
-                <h4 className="mt-4" style={{color:"#A1A1A1", fontWeight: "300"}}>Lorem ipsum dolor sit amet consectetur adipiscing elit</h4>
+                <h4 className="mt-4" style={{color:"#A1A1A1", fontWeight: "300"}}>Des questions ? Des propositions ? Contactez-nous</h4>
                 <div className="mt-xl-5 mt-md-1">
-                  En face Afriland first bank Mvog-mbi <br/>
+                  Quartier Fouda, rue des généraux <br/>
                   Yaoundé, Cameroun <br/>
                   +237 691 273 540<br/>
                   contact@shakazz.com
@@ -81,10 +82,12 @@ import { device, size } from '../../src/lib/device';
               <Col>
 
                 <ContactForm/>
+
               </Col>
           </CardBody>
         </Card>
       </Row>
+      <PreInscription white/>
      </Container>
     </>
   )

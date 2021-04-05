@@ -7,7 +7,7 @@ import { Button, Container, Row, Col , Card} from "reactstrap";
 const Confiance = ()=> {
   return (
     <>
-      <Row className="mt-xl-5 mt-5 d-flex  justify-content-center"
+      <Row className=" d-flex  justify-content-center"
         style={{
           minHeight: "400px",
          backgroundColor: "#f4f4f4"

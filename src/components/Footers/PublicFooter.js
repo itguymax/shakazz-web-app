@@ -4,7 +4,7 @@
 // import { device } from '../../lib/device';
 // import {css} from "@emotion/react";
 // // reactstrap components
-// import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
+
 
 // function PublicFooter() {
 //   return (
@@ -193,15 +193,96 @@
 /*eslint-disable*/
 import React from "react";
 import menuItems from './PublicFooterData';
-import Navbar from 'react-bootstrap/Navbar'
-import ListGroup from 'react-bootstrap/ListGroup'
+ import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 // reactstrap components
-import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
+import {css} from "@emotion/react";
 
 function PublicFooter() {
   return (
-    <>
-          <div className="home_page_footer home_page_footer_first">
+    <footer style={{backgroundColor: "#333333",
+  color: "#fff"}}>
+         <Container className="py-7 " fluid css={css` 
+          img{
+            height:40px;
+            width: 40px;
+          },
+          h1,h2,h5,a{
+            color: #fff;
+          }
+          h5,a {
+            font-weight:200;
+            font-size: 14px;
+            
+            text-aling: center;
+            width: 200px;
+          }
+          h5{
+            margin-bottom: 15px;
+          }
+          a{
+            margin-bottom: 10px;
+          }
+          h2{
+            font-weight:bold;
+            font-size: 1em;
+          }
+          h1{
+            font-weight:bold;
+            font-size: 1.5em;
+          }
+          .l{
+            display: flex;
+            flex-direction:column;
+            justify-content-center: space-between;
+          }
+          .i img {
+            height:25px;
+            width: 25px;
+            margin-bottom: 0px;
+          }
+          .i div {
+            display:flex;
+            flex-direction:row;
+            justify-content:center;
+          }
+         
+         `}>
+            <Row className="px-6 d-flex justify-content-center">
+              <Col xl="3" md="3" sm="10" className="mb-4 l">
+                 <h1>SHAKAZZ</h1>
+                  <h5>Shakazz est une plateforme de solutions financières par le biais des cryptomonnaies.</h5>
+                    <Row style={{width:"250px"}}>
+                      <Col xs="3"><a href="https://www.facebook.com/shakazzcorp/" target="_blank"><img id="navImg1" src="/assets/img/fbk@300x.png"/></a></Col>
+                      <Col xs="3"><a href="https://www.linkedin.com/company/shakazzcorp/about/?viewAsMember=true" target="_blank"><img id="navImg1" src="/assets/img/linkind@300x.png"/></a></Col>
+                      <Col xs="3"><a href="https://twitter.com/shakazzcorp" target="_blank"><img id="navImg1" src="/assets/img/twitter@300x.png"/></a></Col>
+                    </Row>
+              </Col>
+              <Col xl="3" md="3" sm="10" className="mb-4 l">
+                <h2>Services</h2>
+                <a href="/services">Crowndlending &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</a>
+                <a href="/services">Networking</a>
+              </Col>
+              <Col xl="3" md="3" sm="10" className="mb-4 l">
+                <h2>Légal</h2>
+                <a>Condition d'utilisation</a>
+                <a>Politique de confidentialité</a>
+              </Col>
+              <Col xl="3" md="3" sm="10" className="mb-4 l i">
+                 <h2>Contact</h2>
+                  <div><img src="/assets/img/mail.png"/><a>contact@shakazz.com</a></div>
+                  <div><img src="/assets/img/call.png"/> <a>+237 691 273 540</a> </div>
+              </Col>
+            </Row>
+         </Container> 
+    </footer>
+  );
+}
+
+export default PublicFooter;
+
+
+
+{/* <div className="home_page_footer home_page_footer_first">
                 <ul>
                   <h1>SHAKAZZ</h1>
                   <li><h5>Shakazz est une plateforme de solutions financières par le biais des cryptomonnaies.</h5></li>
@@ -241,9 +322,4 @@ function PublicFooter() {
                     </Nav>
                   </Navbar.Collapse>
                 </Navbar>
-          </div>
-    </>
-  );
-}
-
-export default PublicFooter;
+          </div> */}

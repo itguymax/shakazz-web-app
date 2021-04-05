@@ -291,6 +291,7 @@
 .home_page_footer_nav {
   background-color: #333333 !important;
   color: white !important;
+  
 }
 .home_page_footer_first {
   height: 20em !important;
@@ -319,7 +320,7 @@
 .home_page_footer_first ul {
   list-style-type: none;
   margin: 0;
-  width: 24%;
+ 
 }
 
 .home_page_footer_first li {

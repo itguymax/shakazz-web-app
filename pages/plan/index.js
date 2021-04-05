@@ -53,7 +53,7 @@ function Plan() {
 		        </p>
 		    </Jumbotron>
 	    </div>
-      <Container fluid className="d-flex  mt-5 justify-content-center align-items-center" style={{flexDirection:"column"}}>
+      <Container fluid className="d-flex  mt-5 mb-7 justify-content-center align-items-center" style={{flexDirection:"column"}}>
 				<Row css={css`
 						width:70%;
 						@media (max-width: 600px){
