@@ -8,7 +8,7 @@ import AuthNavbar from "../components/Navbars/AuthNavbar.js";
 import AuthFooter from "../components/Footers/AuthFooter.js";
 import styled from 'styled-components';
 
-
+import {css} from "@emotion/react";
 
 
 function Auth(props) {
@@ -59,7 +59,11 @@ function Auth(props) {
              <h3 style={{textAlign: "left", marginTop:'1.25rem'}}>
                 <a href="/">SHAKAZZ</a>
               </h3>
-              <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}}>
+              <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}} css={css`
+                  @media(max-width: 600px){
+                    display: none;
+                  }
+              `}>
                 <Image  
                   src={ router.pathname === "/auth/login" ? "/assets/img/login.png" : "/assets/img/inscription.png"}
                   // layout="responsive"
