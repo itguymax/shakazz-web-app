@@ -174,7 +174,7 @@ function Login() {
                   <span className="text-success font-weight-700">{successmsg}</span>
                
               </div> }
-                <Button className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
+                <Button disabled={true} className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
                   S'identifier
                 </Button>
                 <div>

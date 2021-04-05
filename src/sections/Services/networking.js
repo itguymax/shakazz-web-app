@@ -98,7 +98,7 @@ function NetworkingSection() {
           <TabContent id="myTabContent" activeTab={hTabsIcons}>
            {
               items.map((item, key) =>{
-                console.log("hTabsIcon",`hTabsIcons-${item.id}`);
+                {/* console.log("hTabsIcon",`hTabsIcons-${item.id}`); */}
                 return (
                    <TabPane key={item.id} tabId={`hTabsIcons-${item.id}`} role="tabpanel">
                     <Row className="services_page_section_networking_caroussel_row">
