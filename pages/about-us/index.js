@@ -15,7 +15,7 @@ import PreInscription from "../../src/components/pre_inscription";
 
 const TeamCard = ({nom, poste, img}) => {
 	return (
-				<Col  xl="4" className="mb-4">
+				<Col  xl="4" lg="4" className="mb-4">
 							<Card  style={{
           height: "400px",
           backgroundImage: "url(" + `${img}` + ")",
@@ -26,7 +26,7 @@ const TeamCard = ({nom, poste, img}) => {
         }}>
 								<div className="ml-3" style={{position: "absolute", bottom:10}}>
 									<h1 style={{color: "#fff", fontWeight:"bold"}}>{nom}</h1>
-									<h3 style={{color: "#cc9933", fontWeight:"200"}}>{poste}</h3>
+									<h3 style={{color: "#cc9933", fontWeight:"bold"}}>{poste}</h3>
 								</div>
 							</Card>
 						</Col>
