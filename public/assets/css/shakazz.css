@@ -909,3 +909,46 @@
   border: 1px solid #143427;
 }
 /*End about Page*/
+
+
+/* 
+my globall css */
+
+.table td {
+  vertical-align: bottom;
+                  
+}
+ .table thead th {
+                  border-top:0px !important;
+                  color:#333;
+                  font-size:16px;
+                  text-transform: none;
+                  font-weight:bold;
+
+                }
+                .table thead th, .table td{
+                  border-botom: 2px solid #E5E5E5;
+                }
+                .table td {
+                  vertical-align: bottom;
+                  
+                }
+                .table td, .table th{
+                  white-space:none;
+                  font-size: 10px;
+                  font-weight: 100;
+                }
+              
+                 .l {
+                  color: #cc9933 !important;
+                  font-weight: 100;
+                  margin-top: 0px;
+                }
+                .l span {
+                  color: #cc9933 !important;
+                  font-weight: 500;
+                }
+               .h{
+                 border-top: none;
+                 height: 65px;
+               }

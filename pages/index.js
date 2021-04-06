@@ -16,7 +16,10 @@ import NotreMarche from "../src/sections/NotreMarche";
 import Confiance from "../src/sections/Confiance";
 import Plans from "../src/sections/Plans";
 import Link from "next/link";
-import PreInscription from "../src/components/pre_inscription"
+import PreInscription from "../src/components/pre_inscription";
+import { css } from "@emotion/react";
+import { device } from "../src/lib/device";
+
 
 
 function Index() {
@@ -58,9 +61,9 @@ function Index() {
         />
       </Head>
       <div>
-    <Carousel className="home_page_section_shakazz">
+    <Carousel className="home_page_section_shakazz"> 
       <Carousel.Item>
-          <Jumbotron className="home_page_section_shakazz_jumbotron">
+          <Jumbotron className="home_page_section_shakazz_jumbotron ">
             <h1>Découvrez  et profitez de la puissance du crowdlending.</h1>
             <p> 
               Shakazz vous propose de participer à des  pools de liquidités avec des récompenses échelonnées sur l’année.  Profitez-en et choisissez l’échéance qui vous convient dans nos plans.
@@ -79,7 +82,7 @@ function Index() {
               Avec Shakazz, construisez une relation forte de confiance dans un système qui récompense efficacement ceux qui l’alimente. 
             </p>
             <p>
-              <Button onClick={gotoService} variant="primary">Learn more</Button>
+              <Button onClick={gotoService} variant="primary">En savoir plus</Button>
             </p>
           </Jumbotron>
       </Carousel.Item>
@@ -90,7 +93,7 @@ function Index() {
               Shakazz est une plateforme Africaine qui vous propose des solutions financières adaptées à votre environnement socioéconomique et au confort financier de votre portefeuille.
             </p>
             <p>
-              <Button onClick={gotoService} variant="primary">Learn more</Button>
+              <Button onClick={gotoService} variant="primary">En savoir plus</Button>
             </p>
           </Jumbotron>
       </Carousel.Item>
@@ -101,7 +104,7 @@ function Index() {
               Parce que nous croyons en l’Afrique, en son potentiel, plus encore nous participons à son développement à travers la blockchain et au crowdlending.
             </p>
             <p>
-              <Button onClick={gotoService} variant="primary">Learn more</Button>
+              <Button onClick={gotoService} variant="primary">En savoir plus</Button>
             </p>
           </Jumbotron>
       </Carousel.Item>
@@ -141,7 +144,11 @@ au lieu-dit Quartier Fouda,
 Rue 113
               </p>
               <p>
-                <center><Button>Commencez</Button></center>
+                <center><Button onClick={()=> {
+                  if(window){
+                    window.open(config.preInscriptionLink);
+                  }
+                }} >Commencez</Button></center>
               </p>
                 </Jumbotron>
           </Col>

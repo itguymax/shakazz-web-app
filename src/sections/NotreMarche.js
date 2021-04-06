@@ -3,10 +3,10 @@ import { Button, Container, Row, Col , Card} from "reactstrap";
 import Image from "next/image";
 import Link from "next/link";
 import {css} from "@emotion/react";
-
+import { device } from "../lib/device";
 const MarketCard = ({title, sub, imageUrl}) => {
   return (
-    <Col xl="6" md="10">
+    <Col xl="6" lg="5" md="10">
          <div className="d-flex justify-content-center text-align-items col" style={{flexDirection:"column"}}>
               <Image src={imageUrl}  width={150} height={150} className=""/>  
               <div style={{}} className="text-center mt-3">
@@ -30,6 +30,9 @@ const NotreMarche = () => {
       @media (max-width: 6000px){
         width:95%;
       }
+      @media ${device.tablet}{
+        
+      }
 
       `}
     >
@@ -41,7 +44,7 @@ const NotreMarche = () => {
           >
               <Container fluid>
                   <h1 style={{color: "#fff", fontWeight:"bold"}}>Notre  marché en un coup d'œil </h1>
-                  <Row className="mt-5 pb-8">
+                  <Row className="mt-5 mt-lg-8 pb-8 justify-content-center"  >
                     <MarketCard title="Afrique" imageUrl="/assets/img/icons/Afrique.svg" sub="c’est le marché qui détient le plus fort potentiel de croissance sur les  50  prochaines  années."/>
                     <MarketCard title="Cryptomonnaies" imageUrl="/assets/img/icons/cryptomonnaie.svg" sub="ce sont les actifs financiers qui observent la plus forte croissance sur les 10 dernières années."/>
                  </Row>
@@ -49,6 +52,7 @@ const NotreMarche = () => {
           </Card>
         </Container>
       
+
     </>
   )
 }

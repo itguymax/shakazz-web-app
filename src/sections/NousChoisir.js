@@ -8,7 +8,7 @@ import { Button, Container, Row, Col,Card } from "reactstrap";
 
 export const WeCard = (props) => {
   return (
-      <Col xl="4" sm="10" md="10">
+      <Col xl="4" lg="4" sm="10" md="10">
           <div className="d-flex justify-content-center text-align-items" style={{flexDirection:"column"}}>
               
                   <Image src={props.imageUrl}  width={150} height={150} className=""/>

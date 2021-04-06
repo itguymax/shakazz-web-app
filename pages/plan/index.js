@@ -5,7 +5,8 @@ import config from "../../src/config";
 import { Button, Container, Row, Col,Table, Jumbotron } from "reactstrap";
 import PreInscription from "../../src/components/pre_inscription";
 import PlanTable from "../../src/components/planTable";
-import {css} from "@emotion/react"
+import {css} from "@emotion/react";
+import {device } from "../../src/lib/device";
 function Plan() {
   return (
     <>
@@ -13,6 +14,7 @@ function Plan() {
         {/* META tags */}
         <title>Nos plans | Shakazz</title>
         <meta
+       
           name="description"
           content="Découvrez  et profitez de la puissance du crowdlending."
         />
@@ -55,10 +57,13 @@ function Plan() {
 	    </div>
       <Container fluid className="d-flex  mt-5 mb-7 justify-content-center align-items-center" style={{flexDirection:"column"}}>
 				<Row css={css`
-						width:70%;
+						width:80%;
 						@media (max-width: 600px){
 							width: 90%;
 						}
+            @media ${device.tablet}{
+              width: 100%;
+            }
 				`}>
 					<h1 className="mb-2" style={{fontSize:"30px", color:"#333"}}>Plans</h1>
 					<PlanTable/>

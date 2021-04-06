@@ -8,46 +8,13 @@ const PlanTable = ()=>{
                   *{
                     color:#333;
                   } 
-                .table thead th {
-                  border-top:0px;
-                  color:#333;
-                  font-size:16px;
-                  text-transform: none;
-                  font-weight:bold;
-
-                }
-                .table thead th, .table td{
-                  border-botom: 2px solid #E5E5E5;
-                }
-                .table td {
-                  vertical-align: bottom;
-                  
-                }
-                .table td, .table th{
-                  white-space:none;
-                  font-size: 10px;
-                  font-weight: 100;
-                }
-                p, h1,h2,h3,h4,h5{
+                 p, h1,h2,h3,h4,h5{
                   line-height:none;
                 }
                 h4, .table td{
                   margin-bottom:-10px;
                   margin-top:5px;
                 }
-                 .l {
-                  color: #cc9933 !important;
-                  font-weight: 100;
-                  margin-top: 0px;
-                }
-                .l span {
-                  color: #cc9933 !important;
-                  font-weight: 500;
-                }
-               .h{
-                 border-top: none;
-                 height: 65px;
-               }
                  
           `} >
 				    <thead>
