@@ -65,7 +65,7 @@ import PreInscription from "../../src/components/pre_inscription";
                 css={css`
                     font: "normal normal bold 48px/5px Ubuntu";
                       @media ${device.smMobileMax}{
-                        font-size: 18px;
+                        font-size: 20px;
                         font-weight: bold;
 
                       }
@@ -79,7 +79,7 @@ import PreInscription from "../../src/components/pre_inscription";
                   contact@shakazz.com
                 </div>
               </div>
-              <Col>
+              <Col sm="5">
 
                 <ContactForm/>
 

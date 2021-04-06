@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Form, Button } from 'reactstrap';
+import { Form, Button, Spinner} from 'reactstrap';
 import Sinput from '../forms/Sinput';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,6 +13,7 @@ export default function ContactForm() {
   });
   const [serverError, setServerError] = useState(false);
   const [serverSuccess, setserverSuccess] = useState(false);
+  const [isLoading, setLoader] = useState(false);
   const [data, setData] = useState({
     name: "",
     phone: "",
@@ -28,6 +29,7 @@ export default function ContactForm() {
     
   };
   const onSubmit = async (data)=> {
+      setLoader(true);
         const res = await submitContactData(data);
         if(res.success) {
           setServerError(false)
@@ -38,9 +40,11 @@ export default function ContactForm() {
             email: "",
             message: ""
           })
+          setLoader(false);
         } else {
            setServerError(true)
            setserverSuccess(false);
+           setLoader(false);
         }
 
   }
@@ -130,9 +134,9 @@ export default function ContactForm() {
             handleOnchange={handleChange}
             />
             </div>
-             {errors.phone && <div className="text-muted font-italic">
+             {errors.email && <div className="text-muted font-italic">
                 
-                  <span className="text-danger font-weight-700">{errors.phone.message}</span>
+                  <span className="text-danger font-weight-700">{errors.email.message}</span>
                
               </div> }
         </div>
@@ -153,8 +157,8 @@ export default function ContactForm() {
                
               </div> }
           <div className=" d-flex justify-content-center ">
-          <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#444444', borderColor:'#444444', borderRadius:'40px', width:'150px'}} >
-           Envoyer
+          <Button className="mt-3 mb-1"  disabled={isLoading}  type="submit" style={{ backgroundColor:'#444444', borderColor:'#444444', borderRadius:'40px', width:'150px'}} >
+            {isLoading? <Spinner type="grow" color="#cc993a" />: "Envoyer"}
         </Button></div>
     </Form>
   )
