@@ -47,7 +47,7 @@ function AdminNavbar() {
             <div className="navbar-collapse-header d-md-none">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <Link href="/admin/dashboard">
+                  <Link href="/">
                     <img
                       alt="Logo shakazz"
                       src="/assets/img/brand/logoshakazz.png"
