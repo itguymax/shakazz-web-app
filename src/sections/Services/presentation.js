@@ -21,7 +21,8 @@ import { UncontrolledCarousel } from 'reactstrap';
 import {css} from "@emotion/react";
 import Image from "next/image";
 import Indicator from "../../components/Indicator";
-import TabH from "../../components/TabH"
+import TabH from "../../components/TabH";
+import {device} from "../../lib/device";
 
     const items = [
       {
@@ -95,7 +96,8 @@ const PresentationSection = ()=>{
          z-index:999;
        }
     `}>
-        <Nav className="nav-fill flex-column flex-md-row" pills role="tablist" 
+
+        <Nav className="nav-fill flex-column flex-lg-row flex-md-row" pills role="tablist" 
           style={{ position: "relative"}}
          css={css`
             border-bottom:2px solid #B7B7B7;
@@ -104,6 +106,15 @@ const PresentationSection = ()=>{
                 h3{
                   font-size: 14px;
                   width:80%;
+                }
+            }
+            @media ${device.tablet} {
+                width:100%;
+                .nav {
+                  flex-wrap: unset;
+                }
+                .nav-pills .nav-item {
+                  padding-right: 0px;
                 }
             }
          `}

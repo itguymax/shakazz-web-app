@@ -1,5 +1,5 @@
 export const size = {
-  smMobile: '450px',
+  smMobile: '540px',
   tablet: '768px',
   laptop: '1224px',
 };

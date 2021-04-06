@@ -717,33 +717,34 @@
 	border:1px solid black !important;
 }
 .services_page_section_partenaires_row {
-  width: 75% !important;
+  /* width: 75% !important; */
   height: 20em !important;
 }
 .services_page_section_partenaires_caroussel {
-  height: 27em;
+  
 }
 .services_page_section_partenaires .carousel-control-prev-icon,
 .services_page_section_partenaires .carousel-control-next-icon {
-  margin-top: -15em;
+  /* margin-top: -15em;
   outline: black;
   background-size: 100%, 100%;
-  background-image: none;
+  background-image: none; */
 }
-.services_page_section_partenaires .carousel-control-next-icon:after {
+ /* .carousel-control-next-icon:after {
   content: ">";
   font-size: 30px;
   margin-left: -2em;
-  color: black;
+  color: red;
+  background-color:#000 !important;
   font-weight: 600;
   padding-left: 0.35em !important;
   padding-right: 0.35em !important;
   padding: 0.1em;
   border-radius: 60px !important;
   border: 1px solid black;
-}
-
-.services_page_section_partenaires .carousel-control-prev-icon:after {
+} */
+/* 
+ .carousel-control-prev-icon:after {
   content: "<";
   font-size: 30px;
   border-radius: 20px;
@@ -753,30 +754,26 @@
   padding: 0.1em;
   font-weight: 600;
   color: black;
+  background-color:#000 !important;
   border: 1px solid black;
-}
-.services_page_section_partenaires_row {
+} */
+/* .services_page_section_partenaires_row {
   width: 80%;
   margin: auto !important;
-}
+} */
 .services_page_section_partenaires h1 {
   font-size: 2.5em;
-  text-align: left;
-  margin-bottom: 1em;
-  color: black;
-  opacity: 0.8;
+ 
 }
 .services_page_section_partenaires h2 {
   font-size: 1.8em;
   text-align: left;
-  margin-bottom: 1em;
   color: black;
   opacity: 0.8;
 }
 .services_page_section_partenaires h3 {
   font-size: 1em;
   text-align: left;
-  margin-bottom: 1em;
   color: black;
   opacity: 0.8;
 }
@@ -801,15 +798,7 @@
   margin-top: 2em;
   padding-right:4em;
 }
-.services_page_section_partenaires_row_image {
-  position: relative;
-  /* top: -9em !important; */
-  cursor: pointer;
-  /* padding: 0 !important; */
-  width:15em;
-	height:12em;
-	margin-top:-6em;
-}
+
 /*End Services Page*/
 /*End about Page*/
 /*Start plans Page*/

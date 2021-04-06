@@ -260,13 +260,13 @@ function PublicFooter() {
               </Col>
               <Col xl="3" md="3" sm="10" className="mb-4 l">
                 <h2>Légal</h2>
-                <a>Condition d'utilisation</a>
-                <a>Politique de confidentialité</a>
+                <a style={{color:"#fff"}}>Condition d'utilisation</a>
+                <a style={{color:"#fff"}}>Politique de confidentialité</a>
               </Col>
               <Col xl="3" md="3" sm="10" className="mb-4 l i">
                  <h2>Contact</h2>
-                  <div><img src="/assets/img/mail.png"/><a>contact@shakazz.com</a></div>
-                  <div><img src="/assets/img/call.png"/> <a>+237 691 273 540</a> </div>
+                  <div><img src="/assets/img/mail.png"/><a style={{color:"#fff"}}>contact@shakazz.com</a></div>
+                  <div><img src="/assets/img/call.png"/> <a style={{color:"#fff"}}>+237 691 273 540</a> </div>
               </Col>
             </Row>
          </Container> 
