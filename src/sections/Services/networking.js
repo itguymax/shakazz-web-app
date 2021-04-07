@@ -114,7 +114,7 @@ function NetworkingSection() {
                       <Col xs="6">
                         <Jumbotron fluid className="services_page_section_networking_jombotron">
                           <Container fluid className="container-fluid-imageSlide">
-                            <Image src={item.logo} height={150} width={150}/>
+                            <Image priority={true} quality={100} src={item.logo} height={150} width={150}/>
                           </Container>
                         </Jumbotron>
                       </Col>

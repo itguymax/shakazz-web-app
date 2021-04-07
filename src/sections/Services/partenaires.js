@@ -49,7 +49,7 @@ const PartenairesCard = ({item}) => {
                 </Col>
                 <Col xs="7" className="mt--5" style={{position: 'relative'}}>
                   
-                    <Image className="mb--2" height={140} width={200} quality={100} src={item.logo}/>
+                    <Image  priority={true} className="mb--2" height={140} width={200} quality={100} src={item.logo}/>
                   
                 </Col>
             </Row>

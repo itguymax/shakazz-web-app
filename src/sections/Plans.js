@@ -12,6 +12,10 @@ const PlanCard = ({pool, durree, roi, description}) => {
                    margin-left: -1rem !important;
                    
                 }  */
+                @media(max-width: 370px){
+                    margin-right: 0px;
+                     
+                 }
 
              `}>
           <div  css={css`
@@ -20,6 +24,8 @@ const PlanCard = ({pool, durree, roi, description}) => {
                    
                     margin-left: -30px; 
                  } 
+                  
+                 
                ` }
                  
                  style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
@@ -45,6 +51,10 @@ const PlanCard = ({pool, durree, roi, description}) => {
                  @media ${device.smMobileMax}{
         
                 }
+                 @media(max-width: 370px){
+                     width:250px;
+                     margin-right: 50px;
+                 }
 
              `}
              > 
@@ -55,6 +65,11 @@ const PlanCard = ({pool, durree, roi, description}) => {
                  @media (max-width: 600px){
                    width:300px;
                    /* margin-left: -85px; */
+                 }
+                 @media(max-width: 370px){
+                     width:250px;
+                      margin-right: 55px;
+                     
                  }
 
              `} className="mt-4" style={{ border:"1px solid #6f6f6f", borderRadius:"10px", overflow:"hidden",display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
