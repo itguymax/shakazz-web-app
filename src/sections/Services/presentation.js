@@ -140,7 +140,7 @@ const PresentationSection = ()=>{
                           <Container fluid>
                             <h1 style={{color:"#CC9933"}}>{item.altText}</h1>
                             <p className="lead">{item.caption}</p>
-                            <h4 style={{color: "#333"}}>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4>
+                            {/* <h4 style={{color: "#333"}}>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4> */}
                           </Container>
                         </Jumbotron>
                       </Col>
