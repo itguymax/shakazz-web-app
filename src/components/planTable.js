@@ -15,6 +15,20 @@ const PlanTable = ()=>{
                   margin-bottom:-10px;
                   margin-top:5px;
                 }
+								  .l {
+                  color: #cc9933 !important;
+                  font-weight: 100;
+                  margin-top: 0px;
+                }
+                .l span {
+                  color: #cc9933 !important;
+                  font-weight: 500;
+                }
+               .h{
+                 border-top: none;
+                 height: 100px;
+								 /* margin-top: 10px; */
+               }
                  
           `} >
 				    <thead>
@@ -68,7 +82,7 @@ const PlanTable = ()=>{
 				        <td><h4>X</h4></td>
 				        <td><h4>144%</h4></td>				      
 				      </tr>
-				      <tr>
+				      {/* <tr>
 				        <td>
                   <h2>Durée maximale</h2>
                   <span>Période maximale après laquelle les <br/> fonds peuvent être disponibles.</span>
@@ -85,7 +99,7 @@ const PlanTable = ()=>{
                   <h1>1800 Jours</h1>
                   
                 </td>
-				      </tr>
+				      </tr> */}
               <tr>
                 <td className="h"></td>
                 <td className="h"> <a  href={config.preInscriptionLink}  target="_blank" style={{ background:'#cc9933 0% 0% no-repeat padding-box', cursor:'pointer', width:"200px", textAlign:"center", padding:'10px 45px 10px 45px', borderRadius:'0px',  font: 'normal normal normal 16px/14px Ubuntu', color:'#fff', marginBottom: "20px"}}>Souscrire</a></td>

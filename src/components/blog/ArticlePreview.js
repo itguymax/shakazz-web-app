@@ -23,9 +23,9 @@ export default function ArticlePreview({data}) {
        
        `
      }>
-      <Card className="ml--2 mr--2 mt-3"  style={{height:"400px", backgroundColor: "#fff", overflow: "hidden"}}>
+      <Card className="ml--2 mr--2 mt-3"  style={{height:"500px", backgroundColor: "#fff", overflow: "hidden"}}>
         <CardImg
-          
+          style={{height:"250px"}}
           alt={title}
           src= { featuredImageUrl || "/assets/img/theme/profile-cover.jpg" }
           top

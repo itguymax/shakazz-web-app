@@ -12,10 +12,11 @@ const PlanCard = ({pool, durree, roi, description}) => {
                    margin-left: -1.5rem !important;
                    
                 }
+                 
 
              `}>
           <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
-             <div className="d-flex p-2 pt-3 align-items-center justify-content-center" style={{borderRadius:"50px", border:"1px solid #6f6f6f"}}
+             <div className="d-flex py-1 align-items-center justify-content-center" style={{borderRadius:"50px", border:"1px solid #6f6f6f"}}
              css={css`
                  width:250px;
                  @media (max-width: 600px){
@@ -24,6 +25,10 @@ const PlanCard = ({pool, durree, roi, description}) => {
                  @media ${device.smMobileMax}{
         
                 }
+                @media ${device.tablet}{
+                    width:100%;
+                }
+               
 
              `}
              > 
@@ -64,7 +69,7 @@ const Plans = ()=> {
       <Container fluid className="pt-6" >
           <div className="text-center">  
             <h1 style={{color: "#6F6F6F"}}>Plans</h1>
-             <p>ce sont les actifs financiers qui observent la plus forte croissance sur les 10 dernières années.</p>
+             <p>sélectionnez le plan qui correspond au confort de vos attentes.</p>
           </div>
           
                <Container fluid css={css`
@@ -74,14 +79,14 @@ const Plans = ()=> {
       }
 
       `}>
-                 <Row className="mt-5 pb-4 mx-9 mx-lg-0">
+                 <Row className="mt-5 pb-4 mx-9 mx-lg-0 mx-xl-9">
                   <PlanCard pool="Pool mensuel" durree="1 MOIS" roi="7,5%" description="La liquidité est débloquée au terme des
 360 jours après l’ouverture
 et création du vault"/>
-                  <PlanCard pool="Pool mensuel" durree="6 MOIS" roi="51%" description="La liquidité est débloquée au terme des
+                  <PlanCard pool="Pool semi-annuel" durree="6 MOIS" roi="51%" description="La liquidité est débloquée au terme des
 540 jours après l’ouverture
 et création du vault"/>
-                  <PlanCard pool="Pool mensuel" durree="1 AN" roi="114%" description="La liquidité est débloquée au terme des
+                  <PlanCard pool="Pool annuel" durree="1 AN" roi="114%" description="La liquidité est débloquée au terme des
 1080 jours après l’ouverture
 et création du vault"/>
                  </Row>

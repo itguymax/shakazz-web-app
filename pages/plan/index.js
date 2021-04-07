@@ -62,7 +62,7 @@ function Plan() {
 							width: 90%;
 						}
             @media ${device.tablet}{
-              width: 100%;
+              width: 95%;
             }
 				`}>
 					<h1 className="mb-2" style={{fontSize:"30px", color:"#333"}}>Plans</h1>

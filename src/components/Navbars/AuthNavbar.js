@@ -50,7 +50,7 @@ function AdminNavbar() {
                   <Link href="/">
                     <img
                       alt="Logo shakazz"
-                      src="/assets/img/brand/logoshakazz.png"
+                      src="/assets/img/brand/logo-officiel-shakazz.png"
                     />
                   </Link>
                 </Col>

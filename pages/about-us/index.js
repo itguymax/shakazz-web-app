@@ -106,9 +106,13 @@ numériques.</p>
     </div>
 		 
      <div style={{backgroundColor: "#cc9933"}}>
-    	<Container fluid className="d-flex justify-content-center py-6">
-		  <Row style={{width: "80%"}}>
-		    <Col sm={4}>
+    	<Container fluid className="d-flex justify-content-center align-items-center py-6">
+		  <Row style={{width: "80%"}} >
+		    <Col sm={4} className="mt-xl-4" css={css`
+				   @media ${device.smMobileMax}{
+						 margin-top: -50px !important;
+					 }
+				`}>
 		    	  <Image
 				    width={400}
 				    height={400}
@@ -116,8 +120,8 @@ numériques.</p>
 				    alt="Vision shakazz"
 				  />
 		    </Col>
-		    <Col sm={8} className="mt-xl-7">
-				<h1 style={{color:"#fff", fontSize: "2.5em"}}>Notre Vision</h1>
+		    <Col sm={8} className="mt-xl-7 mt-lg-4">
+				<h1  className="mt-xl-2 mb-xl-3" style={{color:"#fff", fontSize: "2.5em"}}>Notre Vision</h1>
 		    	<p style={{color:"#fff"}}>Shakazz souhaite, avec sa communauté, se positionner comme le premier
 moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des freins
 économiques que nous souhaitons construire afin de voir le continent grandir.</p>
@@ -130,12 +134,12 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
     <div style={{backgroundColor: "#24422F"}}>
     	<Container fluid className="d-flex justify-content-center py-6">
 					<Row style={{width: "80%"}}>
-							<Col sm={8} className="mt-xl-7">
-								<h1 style={{color:"#fff", fontSize: "2.5em"}}>Notre Mission</h1>
+							<Col sm={8} className="mt-xl-7 mt-lg-4">
+								<h1 className="mt-xl-2 mb-xl-3"  style={{color:"#fff", fontSize: "2.5em"}}>Notre Mission</h1>
 								<p style={{color:"#fff"}}>La mission de Shakazz est de permettre aux Africains de faire évoluer leurs finances en mettant à leur disposition un panel de solutions dédiées et adaptées à tout type
 			de besoins.</p>
 							</Col>
-							<Col sm={4}>
+							<Col sm={4} className="mt-xl-4">
 								<Image
 									width={500}
 									height={500}
