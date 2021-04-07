@@ -40,6 +40,7 @@ function Profile() {
     width:10em;
     border:1px solid #679966;
     font-weight:100;
+    transition: all .8s ease-in-out;
     &:hover {
       color: #679966;
       background-color:white;
@@ -51,6 +52,13 @@ function Profile() {
       <Container>
       <Global
       styles={css`
+        img{
+          cursor:pointer;
+          transition: all .8s ease-in-out;
+        }
+        img:hover{
+          transform: scale(1.5);
+        }
         input{
           background-color: #f0f0f0 !important;
           border:1px solid white !important;
@@ -66,6 +74,16 @@ function Profile() {
           width:18em !important;
           border-radius: 15px !important;
           padding-right:1em !important;
+          padding-right:1em !important;
+        }
+        .profileCol{
+          background-color:white;
+          padding-top:1em;
+          width:25em;
+          margin-bottom:0.5em;        
+        }
+        .profileCol:hover{
+          cursor:pointer;
         }
       `}
     />
@@ -247,7 +265,7 @@ function Profile() {
             <Col xs="6" sm="5" style={{marginBottom:"3em"}}>
                       <Container style={{
                       width:"100%",
-                      height:"15em",
+                      height:"14em",
                       marginLeft:"2em",
                       backgroundColor:"#f0f0f0",
                       borderRadius:"16px",
@@ -267,7 +285,8 @@ function Profile() {
                           handleOnchange={()=>{}}
                         />
                          </Row>
-                        <Row>
+                        <Row style={{display:"flex",
+                        justifyContent: "space-around"}}>
                           <Label>Projet d'études:</Label>
                           <Sinput
                             name="name"
@@ -280,13 +299,82 @@ function Profile() {
                             type="text"
                             handleOnchange={()=>{}}
                           />
-                       </Row>
+                         </Row>
                        <Row>
                           <Button style={{margin:"auto",marginTop:"1em"}}>Confirmer</Button>
                        </Row>
                       </Container>
             </Col>
-            <Col xs="6" sm="6">                           
+            <Col xs="6" sm="6" style={{marginBottom:"3em"}}>  
+                <Container style={{
+                      width:"100%",
+                      height:"14em",
+                      marginLeft:"2em",
+                      backgroundColor:"white",
+                      borderRadius:"16px",
+                      padding:"1em"}}>
+                          <Row className="profileCol">
+                             <Col xs="6" sm="2">
+                                <Image 
+                                src="/assets/img/icons/retrait/wallet.svg"
+                                alt="..." 
+                                height={40} width={40}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
+
+                             <Col xs="6" sm="3">
+                              <Image 
+                                src="/assets/img/icons/clic_button_down.svg"
+                                alt="..." 
+                                height={20} width={20}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                           </Row>
+                            <Row className="profileCol">
+                             <Col xs="6" sm="2">
+                                <Image 
+                                src="/assets/img/icons/retrait/wallet.svg"
+                                alt="..." 
+                                height={40} width={40}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
+
+                             <Col xs="6" sm="3">
+                              <Image 
+                                src="/assets/img/icons/clic_button_down.svg"
+                                alt="..." 
+                                height={20} width={20}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                           </Row>
+                            <Row className="profileCol">
+                             <Col xs="6" sm="2">
+                                <Image 
+                                src="/assets/img/icons/retrait/wallet.svg"
+                                alt="..." 
+                                height={40} width={40}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
+
+                             <Col xs="6" sm="3">
+                              <Image 
+                                src="/assets/img/icons/clic_button_down.svg"
+                                alt="..." 
+                                height={20} width={20}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                           </Row>
+
+                      </Container>                         
             </Col>
         </Row>
       </Container>
