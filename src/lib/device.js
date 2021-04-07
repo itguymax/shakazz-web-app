@@ -1,7 +1,7 @@
 export const size = {
   smMobile: '540px',
   tablet: '768px',
-  laptop: '1224px',
+  laptop: '1024px',
 };
 
 export const desktopContainerWidth = '900px';

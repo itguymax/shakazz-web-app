@@ -18,15 +18,33 @@ import {css} from '@emotion/react';
 
 const TeamCard = ({nom, poste, img}) => {
 	return (
-				<Col  xl="4" lg="4" className="mb-4">
+				<Col  xl="4" lg="4" md="6"  className="mb-4" >
 							<Card  style={{
-          height: "400px",
+         
           backgroundImage: "url(" + `${img}` + ")",
           backgroundSize: "cover",
           backgroundPosition: "center top",
-					overflow:"hidden",
+					// overflow:"hidden",
 					position: "relative",
-        }}>
+        }}  css={css`
+							 	height: 450px !important;
+							@media ${device.tablet}{
+									height: 800px !important;
+
+							}
+							@media ${device.laptop}{
+								height: 450px !important;
+							}
+							@media ${device.smMobileMax}{
+									height: 450px !important;
+
+							}
+								@media ${device.smMobile}{
+									height: 450px !important;
+
+							}
+							
+				`}>
 								<div className="ml-3" style={{position: "absolute", bottom:10}}>
 									<h1 style={{color: "#fff", fontWeight:"bold"}}>{nom}</h1>
 									<h3 style={{color: "#cc9933", fontWeight:"bold"}}>{poste}</h3>
@@ -89,14 +107,31 @@ const TeamCard = ({nom, poste, img}) => {
 	    <Container fluid className="d-flex justify-content-center py-6">
 					
 					<Row style={{width: "80%"}}>
-						<div>
+						<div css={css`
+							 	
+							@media ${device.tablet}{
+									
+
+							}
+							@media ${device.laptop}{
+								
+							}
+							@media ${device.smMobileMax}{
+							 
+							}
+								@media ${device.smMobile}{
+									
+
+							}
+							
+				`}>
 						<h2 className="text-center py-2" style={{color: "#333"}}>Shakazz est une plateforme de solutions financières par le biais des crypto-monnaies.</h2>
-						<p className="text-center px-6">Shakazz implémente un ensemble de solutions connectées, pour divers clients, grâce
+						<p className="text-center px-xl-6 px-sm-2 " >Shakazz implémente un ensemble de solutions connectées, pour divers clients, grâce
 aux possibilités nombreuses et avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du
 crowdlending et du networking qui implémentent la gestion-acquisition de produits
 numériques.</p>
 					</div>
-					<Row className="mt-5 pb-8 px-lg-0">
+					<Row className="mt-5 pb-3 px-lg-0">
 							<WeCard title="Sécurité" subtitle="un service de garde renforcé par une technologie de pointe et l’expertise de nos différents partenaires." imageUrl="/assets/img/Sécurité.svg"/>
 							<WeCard title="Croissance" subtitle="Nos stratégies de diversification boostent votre patrimoine." imageUrl="/assets/img/Croissance.svg"/>
 							<WeCard title="Simplicité" subtitle="Nous vous accompagnons à chaque étape de votre parcours." imageUrl="/assets/img/Simplicité.svg"/>
@@ -122,7 +157,7 @@ numériques.</p>
 		    </Col>
 		    <Col sm={8} className="mt-xl-7 mt-lg-4">
 				<h1  className="mt-xl-2 mb-xl-3" style={{color:"#fff", fontSize: "2.5em"}}>Notre Vision</h1>
-		    	<p style={{color:"#fff"}}>Shakazz souhaite, avec sa communauté, se positionner comme le premier
+		    	<p style={{color:"#fff"}} >Shakazz souhaite, avec sa communauté, se positionner comme le premier
 moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des freins
 économiques que nous souhaitons construire afin de voir le continent grandir.</p>
 		    	
@@ -153,8 +188,12 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
 		 <PreInscription/>
      <div style={{width:"100%"}}  className="mb-8 mt-5">
       <Container fluid className=" d-flex justify-content-center">
-					<Row style={{width: "80%"}}>
-						<Col xl="4" className="mb-4" css={css`
+					<Row style={{width: "80%"}} css={css`
+				   @media ${device.smMobileMax}{
+						 width: 90%;
+					 }
+				`}>
+						<Col  xl="4" lg="4" md="6" className="mb-4" css={css`
 										h3{
 
 										}
@@ -178,7 +217,25 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
 							}
 
 						`}>
-								<Card className=" d-flex justify-content-center align-items-center" style={{flexDirection:"column",overflow:"hidden", height:"400px"}}>
+								<Card  css={css`
+							 	height: 450px !important;
+							@media ${device.tablet}{
+									height: 800px !important;
+
+							}
+							@media ${device.laptop}{
+								height: 450px !important;
+							}
+							@media ${device.smMobileMax}{
+									height: 450px !important;
+
+							}
+							@media ${device.smMobile}{
+									height: 450px !important;
+
+							}
+							
+				`} className=" d-flex justify-content-center align-items-center" style={{flexDirection:"column",overflow:"hidden", height:"400px"}}>
 								<Card.Body className="mt-5"  className=" d-flex justify-content-center align-items-center" style={{flexDirection:"column"}}>
 									<h3 style={{color: "#6f6f6f", fontWeight:"300px"}}>Rencontrez</h3>
 									<h1 className="mb-lg-3" style={{color: "#333"}}>Notre équipe</h1>
