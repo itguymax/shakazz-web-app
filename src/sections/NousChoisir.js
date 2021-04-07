@@ -11,7 +11,7 @@ export const WeCard = (props) => {
       <Col xl="4" lg="4" sm="10" md="10" className="mb-6">
           <div className="d-flex justify-content-center text-align-items" style={{flexDirection:"column"}}>
               
-                  <Image src={props.imageUrl}  width={150} height={150} className=" "/>
+                  <Image src={props.imageUrl} priority={true}  width={150} height={150} className=" "/>
               
               <div className="text-center mt-5">
                   <h2 style={{color: "#6F6F6F"}}>{props.title}</h2>

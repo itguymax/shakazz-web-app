@@ -6,29 +6,45 @@ import {device } from "../lib/device"
 
 const PlanCard = ({pool, durree, roi, description}) => {
   return (
-    <Col xl="4" lg="4" className="mb-5" css={css`
+    <Col xl="4" lg="4" md="12" className="mb-5" css={css`
                
-                 @media ${device.smMobileMax}{
-                   margin-left: -1.5rem !important;
+                  /* @media (max-width: 411px){
+                   margin-left: -1rem !important;
                    
-                }
-                 
+                }  */
 
              `}>
-          <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
-             <div className="d-flex py-1 align-items-center justify-content-center" style={{borderRadius:"50px", border:"1px solid #6f6f6f"}}
+          <div  css={css`
+                 
+                 @media (max-width: 400px){
+                   
+                    margin-left: -30px; 
+                 } 
+               ` }
+                 
+                 style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
+             <div className="d-flex p-2 pt-3 align-items-center justify-content-center" style={{borderRadius:"50px", border:"1px solid #6f6f6f"}}
              css={css`
                  width:250px;
                  @media (max-width: 600px){
                    width:300px;
+                   /* margin-left: -85px; */
+                 }
+                 @media (max-width: 770px){
+                   width:100%;
+                   /* margin-left: -85px; */
+                 }
+                 @media (max-width: 400px){
+                   width:300px;
+                   /* margin-left: -85px; */
+                 }
+                  @media (min-width: 400px){
+                   width:300px;
+                   /* margin-left: -85px; */
                  }
                  @media ${device.smMobileMax}{
         
                 }
-                @media ${device.tablet}{
-                    width:100%;
-                }
-               
 
              `}
              > 
@@ -38,6 +54,7 @@ const PlanCard = ({pool, durree, roi, description}) => {
                  
                  @media (max-width: 600px){
                    width:300px;
+                   /* margin-left: -85px; */
                  }
 
              `} className="mt-4" style={{ border:"1px solid #6f6f6f", borderRadius:"10px", overflow:"hidden",display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
@@ -79,7 +96,7 @@ const Plans = ()=> {
       }
 
       `}>
-                 <Row className="mt-5 pb-4 mx-9 mx-lg-0 mx-xl-9">
+                 <Row className="mt-5 pb-4 mx-9 mx-lg-0">
                   <PlanCard pool="Pool mensuel" durree="1 MOIS" roi="7,5%" description="La liquidité est débloquée au terme des
 360 jours après l’ouverture
 et création du vault"/>

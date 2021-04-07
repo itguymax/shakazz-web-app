@@ -8,7 +8,7 @@ const MarketCard = ({title, sub, imageUrl}) => {
   return (
     <Col xl="6" lg="5" md="10" sm="10">
          <div className="d-flex justify-content-center text-align-items " style={{flexDirection:"column"}}>
-              <Image src={imageUrl}  width={150} height={150} className=""/>  
+              <Image src={imageUrl} priority={true}  width={150} height={150} className=""/>  
               <div style={{}} className="text-center mt-5">
                   <h2 style={{color: "#fff", fontWeight:"300",fontSize:"30px"}}>{title}</h2>
                   <p className="pb-3 pt-3" style={{fontSize:"14px", fontWeight:"200",letterSpacing:"0px", lineHeight:"1.2", color:"#fff"}}>{sub} </p>
