@@ -22,7 +22,7 @@ export default function Subscription() {
               <div  className="text-center">
                  <h1 style={{color:"#707070"}}>Souscrivez à notre Newsletter</h1>
                   <p  style={{color:"#707070"}} className="mt-0 mb-5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Optenez nos articles en priorité.
                   </p>
               </div>
                <Form onSubmit={handleSubmit(onSubmit)} style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
