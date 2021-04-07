@@ -51,6 +51,7 @@ function AdminNavbar() {
                     <img
                       alt="Logo shakazz"
                       src="/assets/img/brand/logo-officiel-shakazz.png"
+                      style={{width: "100px", height:"100px"}}
                     />
                   </Link>
                 </Col>
