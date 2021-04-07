@@ -243,7 +243,7 @@
   font-size: 2.5em;
 }
 .home_page_section_started {
-  height: 21em;
+  /* height: 21em;
   width: 80%;
   margin: auto;
   background-color: #24422f !important;
@@ -251,13 +251,13 @@
   @font-face {
     font-family: "Ubuntu";
     src: url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap");
-  }
+  } */
 }
 .home_page_section_started h1 {
   color: black;
 }
 .home_page_section_started_jumbotron {
-  height: 21em;
+  /* height: 21em; */
   width: 100%;
   text-align: center;
   margin-top: 0 !important;
@@ -277,12 +277,12 @@
   border: transparent;
 }
 .home_page_section_started_col1 {
-  height: 19em;
+  /* height: 19em; */
 }
 .home_page_section_started_col1 iframe {
   width: 100% !important;
   height: 100% !important;
-  margin: 1em !important;
+  /* margin: 1em !important; */
 }
 .home_page_footer {
   background-color: #333333 !important;

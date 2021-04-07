@@ -2,10 +2,18 @@
 import { Button, Container, Row, Col, Card, CardBody, CardTitle } from "reactstrap";
 import {css} from "@emotion/react";
 import  { Link } from "../components/Link";
+import {device } from "../lib/device"
 
 const PlanCard = ({pool, durree, roi, description}) => {
   return (
-    <Col xl="4" lg="4" className="mb-3" >
+    <Col xl="4" lg="4" className="mb-5" css={css`
+               
+                 @media ${device.smMobileMax}{
+                   margin-left: -1.5rem !important;
+                   
+                }
+
+             `}>
           <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
              <div className="d-flex p-2 pt-3 align-items-center justify-content-center" style={{borderRadius:"50px", border:"1px solid #6f6f6f"}}
              css={css`
@@ -13,6 +21,9 @@ const PlanCard = ({pool, durree, roi, description}) => {
                  @media (max-width: 600px){
                    width:300px;
                  }
+                 @media ${device.smMobileMax}{
+        
+                }
 
              `}
              > 
@@ -30,12 +41,17 @@ const PlanCard = ({pool, durree, roi, description}) => {
                       <p>RECOMPENSES</p>
                       <div className="text-center py-3" style={{backgroundColor:"#fcfcfc", width:"100%"}}> <h1  style={{color: "#6F6F6F", fontsize:"20px", fontWeight:"bold"}}>{roi}</h1></div>
                       
-                      <p className="text-center mt-6 px-4" style={{color: "#6F6F6F", fontSize:"12px", letterSpacing:"0px", lineHeight:"1.2"}}>
+                      <p css={css`
+                           @media ${device.smMobileMax}{
+                              font-size:18px !important;
+                              
+                          }
+                      `} className="text-center mt-6 px-4" style={{color: "#6F6F6F", fontSize:"12px", letterSpacing:"0px", lineHeight:"1.2"}}>
                          {description}
                       </p>
                       
                   </section>
-                   <Link label="En savoir plus" path="/services" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff', marginBottom: "40px"}}/>
+                   <Link label="En savoir plus" path="/plan" style={{ background: '#cc993a 0% 0% no-repeat padding-box', width:"150px", cursor:'pointer', padding:'15px', borderRadius:'6px', textAlign:"center",  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff', marginBottom: "40px"}}/>
              </div>
          </div>
     </Col>

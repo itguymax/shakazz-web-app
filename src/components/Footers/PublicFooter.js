@@ -266,7 +266,7 @@ function PublicFooter() {
               <Col xl="3" md="3" sm="10" className="mb-4 l i">
                  <h2>Contact</h2>
                   <div><img src="/assets/img/mail.png"/><a style={{color:"#fff"}}>contact@shakazz.com</a></div>
-                  <div><img src="/assets/img/call.png"/> <a style={{color:"#fff"}}>+237 691 273 540</a> </div>
+                  {/* <div><img src="/assets/img/call.png"/> <a style={{color:"#fff"}}>+237 691 273 540</a> </div> */}
               </Col>
             </Row>
          </Container> 

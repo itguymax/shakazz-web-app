@@ -63,20 +63,24 @@ function Index() {
       <div>
     <Carousel className="home_page_section_shakazz"> 
       <Carousel.Item>
-          <Jumbotron className="home_page_section_shakazz_jumbotron ">
+          <Jumbotron className="home_page_section_shakazz_jumbotron mb-7" css={css`
+          @media ${device.smMobileMax}{
+            margin-top: -1px !important;
+          }
+      `}>
             <h1>Découvrez  et profitez de la puissance du crowdlending.</h1>
             <p> 
               Shakazz vous propose de participer à des  pools de liquidités avec des récompenses échelonnées sur l’année.  Profitez-en et choisissez l’échéance qui vous convient dans nos plans.
             </p>
             <p>
-              <Button onClick={gotoService} variant="primary">Learn more</Button>
+              <Button  onClick={gotoService} variant="primary">En savoir plus</Button>
             </p>
           </Jumbotron>
         <Carousel.Caption>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={10000}>
-        <Jumbotron className="home_page_section_shakazz_jumbotron">
+      <Carousel.Item interval={10000} >
+        <Jumbotron className="home_page_section_shakazz_jumbotron" >
             <h1>Faites croître votre patrimoine</h1>
             <p>
               Avec Shakazz, construisez une relation forte de confiance dans un système qui récompense efficacement ceux qui l’alimente. 
@@ -130,12 +134,12 @@ avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et
      
     
       <Confiance/>
-       <div className="home_page_section_started">
-        <Row>
-          <Col className="home_page_section_started_col1">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15282225.79979123!2d73.7250245393691!3d20.750301298393563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1587818542745!5m2!1sen!2sin" width="200" height="100" frameBorder="0" style={{border:0}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+       <Container fluid className=" py-6 home_page_section_started">
+        <Row className="jutify-content-center">
+          <Col xl="6" lg="6"  className="home_page_section_started_col1">
+              <iframe  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=3.880607,%2011.535363+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="200" height="100" frameBorder="0" style={{border:0}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
           </Col>
-          <Col>
+          <Col xl="6"  lg="6">
             <Jumbotron className="home_page_section_started_jumbotron">
               <h1>Prêt à commencer ?</h1>
               <p>
@@ -144,7 +148,7 @@ au lieu-dit Quartier Fouda,
 Rue 113
               </p>
               <p>
-                <center><Button onClick={()=> {
+                <center><Button className="px-5 py-2" onClick={()=> {
                   if(window){
                     window.open(config.preInscriptionLink);
                   }
@@ -153,7 +157,7 @@ Rue 113
                 </Jumbotron>
           </Col>
         </Row>
-      </div>
+      </Container>
     </div>
   </>
 }
