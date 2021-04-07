@@ -18,6 +18,7 @@ export default function BigFeaturedArticles({ bigFeaturedPost}) {
         layout="fill"
         objectFit="cover"
         quality={100}
+        priority={true}
       />
       <div style={{position:"absolute", bottom:0, width:"100%"}}>
          <Link href={`/blog/${slug}`} >
