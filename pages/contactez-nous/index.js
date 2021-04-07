@@ -75,7 +75,6 @@ import PreInscription from "../../src/components/pre_inscription";
                 <div className="mt-xl-5 mt-md-1">
                   Quartier Fouda, rue des généraux <br/>
                   Yaoundé, Cameroun <br/>
-                  +237 691 273 540<br/>
                   contact@shakazz.com
                 </div>
               </div>
