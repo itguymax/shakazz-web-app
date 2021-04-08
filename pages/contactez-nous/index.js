@@ -8,6 +8,7 @@ import { css } from "@emotion/react"
 import config from '../../src/config'
 import { device, size } from '../../src/lib/device';
 import PreInscription from "../../src/components/pre_inscription";
+
  function ContactezNous() {
   return (
      <>
