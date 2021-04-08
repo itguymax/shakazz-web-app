@@ -35,11 +35,10 @@ const PreInscription = ({bleu, white}) => {
                      background-position: center;
                      background-repeat: no-repeat;
                      top: 40px;
-                    left: 175px;
-                    height: 45px;
-                    width: 45px;
-                    transform: rotate(290deg);
-                    
+                     left: 175px;
+                     height: 45px;
+                     width: 45px;
+                     transform: rotate(290deg);
               `}/>
                 <h2 className={white?"":"text-white"} style={{color: white? "#333":""}}>Reservez votre place </h2>
                 <h2 className= { white?"":"text-white p-0 mt--2  mb-4"} style={{color: white? "#333":""}}> en cliquant ici</h2>

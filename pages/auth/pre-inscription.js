@@ -4,7 +4,8 @@ import {css} from '@emotion/react';
 import { Container } from "reactstrap";
 import Image from "next/image";
 import Pi from "../../src/components/pre_inscription";
-export default function PreInscription() {
+import Public from '../../src/layouts/Public';
+ function PreInscription() {
   return (
     <div>
       <div style={{width:"100%"}}>
@@ -19,3 +20,6 @@ export default function PreInscription() {
     </div>
   );
 }
+
+PreInscription.layout = Public;
+export default PreInscription
