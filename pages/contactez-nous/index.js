@@ -63,14 +63,14 @@ import PreInscription from "../../src/components/pre_inscription";
               <div className="col">
                 <h1 style={{color: "#121212"}} 
                 css={css`
-                    font: "normal normal bold 48px/5px Ubuntu";
+                    font: "normal normal bold 48px/45px Ubuntu";
                       @media ${device.smMobileMax}{
                         font-size: 20px;
                         font-weight: bold;
 
                       }
                 `}
-                >Contactez nous</h1>
+                >Nous contacter</h1>
                 <h4 className="mt-4" style={{color:"#A1A1A1", fontWeight: "300"}}>Des questions ? Des propositions ? Contactez-nous</h4>
                 <div className="mt-xl-5 mt-md-1">
                   Quartier Fouda, rue des généraux <br/>

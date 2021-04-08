@@ -12,8 +12,7 @@ import Public from '../../src/layouts/Public';
         <Container className=" d-flex justify-content-center aling-items-center" fluid style = {{
               minHeight: "600px",
             }}> 
-          <Image src= "/assets/img/enconstruction.png" priority={true}  layout="fill"  className=" "/>
-          
+          <Image src= "/assets/img/enconstruction.png" priority={true}  layout="fill"/>
         </Container>
       </div>
       <Pi bleu/>
