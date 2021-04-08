@@ -70,7 +70,7 @@ import PreInscription from "../../src/components/pre_inscription";
 
                       }
                 `}
-                >Get in Touch</h1>
+                >Contactez nous</h1>
                 <h4 className="mt-4" style={{color:"#A1A1A1", fontWeight: "300"}}>Des questions ? Des propositions ? Contactez-nous</h4>
                 <div className="mt-xl-5 mt-md-1">
                   Quartier Fouda, rue des généraux <br/>

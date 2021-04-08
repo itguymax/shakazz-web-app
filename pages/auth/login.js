@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,10 +22,13 @@ import config from "../../src/config";
 
 
 function Login() {
+  const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  const router = useRouter();
+  useEffect(()=>{
+    router.push("pre-inscription");
+  })
   const recaptchaRef = useRef();
   const [show, setShow] = useState(false);
   const [verified, setVerified]= useState(false);
