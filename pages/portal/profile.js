@@ -2,7 +2,9 @@ import React from "react";
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import Sinput from '../../src/components/forms/Sinput';
+import createPortefeuille from '../../src/components/common/createPortefeuille';
 import DropDownC from '../../src/components/forms/Dropdownc'
+import country from '../../src/helpers/countries.js'
 
 // reactstrap components
 import {
@@ -28,7 +30,6 @@ import UserHeader from "../../src/components/Headers/UserHeader.js";
 
 function Profile() {
   let account_type = [{val:'Personnel'},{val:'Particulier'}];
-  let country = [{val:'Cameroun'}];
   let country_indicatif = [{val:'+237'}];
   let currency = [{val:'USD'}];
   const Button = styled.button`
@@ -85,6 +86,47 @@ function Profile() {
         .profileCol:hover{
           cursor:pointer;
         }
+        #navbarDropdownMenuLink2{
+          width:17em !important;
+        }
+        /*Responsive*/
+        @media only screen and (max-width: 360px) {       
+             .profileColWrapper{
+               display:flex;
+               flex-direction: column;            
+             }
+             .createPortefeuille{
+               width:14em !important;
+             }
+             #navbarDropdownMenuLink2{
+                width:17em !important;
+              }
+          }
+        @media only screen and (max-width: 414px) {       
+             .profileColWrapper{
+               display:flex;
+               flex-direction: column;            
+             }
+          .createPortefeuille{
+            width:22em !important;    
+          }
+          .profileCol{
+            width:7em;
+          }
+        }
+        @media only screen and (max-width: 768px) {
+          input[type="text"]{
+            width:13em !important;
+          }
+          #navbarDropdownMenuLink2{
+            width:13em !important;
+          }           
+        }
+        @media only screen and (max-width: 1024px) {
+          .createPortefeuille{
+            height:17em !important;
+          }
+        }
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
@@ -93,58 +135,47 @@ function Profile() {
               <Form>
                 <Row form>
                   <Col md={12}>
-                    <FormGroup>
-                      <FormGroup>
-                      <Label for="exampleDate">Type de compte:</Label>
-                        <DropDownC register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
-                    </FormGroup>
-
-                    </FormGroup>
+                        <DropDownC label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
-                  <Col md={12}>
-                    <FormGroup>
-                    <Label for="exampleDate">Nom complet:</Label>
+                  <Col md={12} className="profileCol">
                       <Sinput
-                      placeholder='entrez le nom complet:'
+                      label="Nom complet"
+                      placeholder='entrez le nom complet'
                       name="name"
                       register={()=>{}}
-                      iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
                       type="text"
                       handleOnchange={()=>{}}
                       />
-                    </FormGroup>
                   </Col>
                    <Col md={12}>
-                     <FormGroup>
-                        <Label for="exampleDate">Date de naissance:</Label>
-                        <Input
-                          type="date"
-                          name="date"
-                          id="exampleDate"
-                          placeholder=""
-                        />
-                    </FormGroup>
+                       <Sinput
+                      label="Date de naissance"
+                      placeholder='entrez le nom complet:'
+                      name="name"
+                      register={()=>{}}
+                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
+                      inputBg="#fff"
+                      type="date"
+                      handleOnchange={()=>{}}
+                      />
                   </Col>
                   <Col md={12}>
                     <FormGroup>
-                        <Label for="exampleDate">Pays:</Label>
-                        <DropDownC register={()=>{}} name="canal" selectedOption={country[0]} handleOnSelect={()=>{}} options={country||[]}/>
+                        <DropDownC label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41]["name"]} handleOnSelect={()=>{}} options={country||[]}/>
                     </FormGroup>
                   </Col>
                   <Col md={12}>
-                     <Label for="exampleDate">Adresse</Label>
-                     <FormGroup>
                         <Sinput
-                        label=''
+                        label="Adresse"
                         name="name"
                         register={()=>{}}
-                        iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                        iStyle={{borderRadius:"15px", overflow:"hidden"}}
                         inputBg="#fff"
                         type="text"
                         handleOnchange={()=>{}}
                         />
-                      </FormGroup>
                   </Col>
                 </Row>
                 <Button>Vérification</Button>
@@ -193,48 +224,34 @@ function Profile() {
                <Form>
                 <Row form>
                   <Col md={12}>
-                    <FormGroup>
-                      <Label for="exampleDate">E-mail:</Label>
                         <Sinput
-                        label='Nom complet:'
+                        label='E-mail'
                         name="name"
                         placeholder="entrez votre e-mail"
                         register={()=>{}}
-                        iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                        iStyle={{borderRadius:"15px", overflow:"hidden"}}
                         inputBg="#fff"
                         type="text"
                         handleOnchange={()=>{}}
                         />
-                      </FormGroup>
                   </Col>
                   <Col md={12}>
-                    <FormGroup>
-                        <Label>Numéro de téléphone:</Label>
-                        <DropDownC register={()=>{}} name="canal" selectedOption={country_indicatif[0]} handleOnSelect={()=>{}} options={country_indicatif||[]}/>
-                    </FormGroup>
+                        <DropDownC label="Numéro de téléphone" register={()=>{}} name="canal" selectedOption={country_indicatif[0]} handleOnSelect={()=>{}} options={country_indicatif||[]}/>
                   </Col>
                   <Col md={12}>
-                      <FormGroup>
-                        <Label>Pseudo:</Label>
-                        <FormGroup>
                           <Sinput
-                            label='Pseudo:'
+                            label='Pseudo'
                             name="name"
                             placeholder=""
                             register={()=>{}}
-                            iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                            iStyle={{borderRadius:"15px", overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
                             handleOnchange={()=>{}}
                             />
-                        </FormGroup>
-                      </FormGroup>
                    </Col> 
                    <Col md={12}>
-                    <FormGroup>
-                        <Label>Monnaie:</Label>
-                        <DropDownC register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
-                    </FormGroup>
+                        <DropDownC label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
                    </Col>                      
                 </Row>
               </Form>
@@ -261,9 +278,9 @@ function Profile() {
         </Row>
       </Container>
       <Container>
-        <Row>
+        <Row className="profileColWrapper" >
             <Col xs="6" sm="5" style={{marginBottom:"3em"}}>
-                      <Container style={{
+                      <Container className="createPortefeuille" style={{
                       width:"100%",
                       height:"14em",
                       marginLeft:"2em",
@@ -303,6 +320,7 @@ function Profile() {
                        <Row>
                           <Button style={{margin:"auto",marginTop:"1em"}}>Confirmer</Button>
                        </Row>
+                       <createPortefeuille/>
                       </Container>
             </Col>
             <Col xs="6" sm="6" style={{marginBottom:"3em"}}>  

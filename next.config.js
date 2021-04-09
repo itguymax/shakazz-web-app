@@ -77,7 +77,7 @@ module.exports =  withPWA(
     return config;
   },
   images: {
-     domains: ['accounts.google.com', '3.64.214.244'],
+     domains: ['accounts.google.com', '3.64.214.244','https://restcountries.eu/data/'],
    },
   
 }

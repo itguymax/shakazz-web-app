@@ -9,8 +9,9 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import Image from 'next/image';
 
-function Sdropdown({ label, register, name, handleOnSelect,selectedOption,options}) {
+function Sdropdown({flag, label, register, name, handleOnSelect,selectedOption,options}) {
  
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
@@ -41,6 +42,24 @@ function Sdropdown({ label, register, name, handleOnSelect,selectedOption,option
 
               ))}
         </DropdownMenu>
+        {flag && <DropdownMenu  name={name}  aria-labelledby="navbarDropdownMenuLink2">
+            {options.map( (option, i) => {
+              return (
+                <li key={i}>
+                  <Image 
+                          src={'/assets/img/icons/retrait/wallet.svg'}
+                          alt="..." 
+                          height={40} width={40}
+                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          />
+                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                    {option.alpha2Code}
+                  </DropdownItem>
+                </li>
+
+              )
+            })}
+        </DropdownMenu>}
       </UncontrolledDropdown>
     </div>
   );
