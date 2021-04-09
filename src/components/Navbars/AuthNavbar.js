@@ -41,16 +41,22 @@ function AdminNavbar() {
             </span>
           </Link>
           <button className="navbar-toggler" id="navbar-collapse-main">
-            <span className="navbar-toggler-icon" />
+            
+            {isBlog? <svg viewBox="0 0 100 80" width="40" height="40">
+  <rect width="80" height="10"></rect>
+  <rect y="20" width="80" height="10"></rect>
+  <rect y="40" width="80" height="10"></rect>
+</svg>:<span className="navbar-toggler-icon" /> }
           </button>
           <UncontrolledCollapse navbar toggler="#navbar-collapse-main">
             <div className="navbar-collapse-header d-md-none">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <Link href="/admin/dashboard">
+                  <Link href="/">
                     <img
                       alt="Logo shakazz"
-                      src="/assets/img/brand/logoshakazz.png"
+                      src="/assets/img/brand/logo-officiel-shakazz.png"
+                      style={{width: "100px", height:"100px"}}
                     />
                   </Link>
                 </Col>

@@ -21,7 +21,8 @@ import { UncontrolledCarousel } from 'reactstrap';
 import {css} from "@emotion/react";
 import Image from "next/image";
 import Indicator from "../../components/Indicator";
-import TabH from "../../components/TabH"
+import TabH from "../../components/TabH";
+import {device} from "../../lib/device";
 
     const items = [
       {
@@ -95,7 +96,8 @@ const PresentationSection = ()=>{
          z-index:999;
        }
     `}>
-        <Nav className="nav-fill flex-column flex-md-row" pills role="tablist" 
+
+        <Nav className="nav-fill flex-column flex-lg-row flex-md-row" pills role="tablist" 
           style={{ position: "relative"}}
          css={css`
             border-bottom:2px solid #B7B7B7;
@@ -104,6 +106,15 @@ const PresentationSection = ()=>{
                 h3{
                   font-size: 14px;
                   width:80%;
+                }
+            }
+            @media ${device.tablet} {
+                width:100%;
+                .nav {
+                  flex-wrap: unset;
+                }
+                .nav-pills .nav-item {
+                  padding-right: 0px;
                 }
             }
          `}
@@ -129,14 +140,14 @@ const PresentationSection = ()=>{
                           <Container fluid>
                             <h1 style={{color:"#CC9933"}}>{item.altText}</h1>
                             <p className="lead">{item.caption}</p>
-                            <h4 style={{color: "#333"}}>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4>
+                            {/* <h4 style={{color: "#333"}}>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4> */}
                           </Container>
                         </Jumbotron>
                       </Col>
                       <Col xs="6">
                         <Jumbotron fluid className="services_page_section_presentation_jombotron">
                           <Container fluid className="container-fluid-imageSlide">
-                            <Image src={item.logo}  src={item.logo} height={200} width={hTabsIcons==="hTabsIcons-1"?190:300}/>
+                            <Image priority={true} quality={100} src={item.logo}  src={item.logo} height={200} width={hTabsIcons==="hTabsIcons-1"?190:300}/>
                           </Container>
                         </Jumbotron>
                       </Col>

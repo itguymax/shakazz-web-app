@@ -107,7 +107,7 @@ const contactFormSchema = yup.object().shape({
   name:yup.string().required('Entrez votre nom'),
   phone: yup.string().required('Entrez votre numero de telephone'),
   email: yup.string().matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide"),
-  message: yup.string(),
+  message: yup.string().required('laissez nous un message'),
 })
 
 const subscriptionFormSchema = yup.object().shape({

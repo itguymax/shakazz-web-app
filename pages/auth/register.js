@@ -104,14 +104,16 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handleOnBlur = () => {
     
   }
-  useEffect( ()=>{
-    const addData= {
-      profil: isParticular? "Particulier":"Entreprise",
-      parent: selectedOption.key
-    }
-    setUserAdditionalData(addData);
-  }, [selectedOption,isParticular])
-
+  // useEffect( ()=>{
+  //   const addData= {
+  //     profil: isParticular? "Particulier":"Entreprise",
+  //     parent: selectedOption.key
+  //   }
+  //   setUserAdditionalData(addData);
+  // }, [selectedOption,isParticular])
+useEffect(()=>{
+    router.push("pre-inscription");
+  })
   return (
     <>
      <Head>

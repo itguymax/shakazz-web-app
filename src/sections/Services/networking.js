@@ -107,14 +107,14 @@ function NetworkingSection() {
                           <Container fluid>
                             <h1 style={{color:"#CC9933"}}>{item.altText}</h1>
                             <p className="lead">{item.caption}</p>
-                            <h4 style={{color: "#333"}}>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4>
+                            {/* <h4 style={{color: "#333"}}>En savoir plus<img className="services_page_section_networking_jombotron_icon" src="/assets/img/icons/arrow dark.svg"/></h4> */}
                           </Container>
                         </Jumbotron>
                       </Col>
                       <Col xs="6">
                         <Jumbotron fluid className="services_page_section_networking_jombotron">
                           <Container fluid className="container-fluid-imageSlide">
-                            <Image src={item.logo} height={150} width={150}/>
+                            <Image priority={true} quality={100} src={item.logo} height={150} width={150}/>
                           </Container>
                         </Jumbotron>
                       </Col>
