@@ -32,10 +32,11 @@ function AdminNavbar() {
             <span>
               <NavbarBrand href="/">
                 {/* <img
-                  alt="..."
-                  src={require("assets/img/brand/nextjs_argon_white.png")}
+                  alt="Logo Shakazz"
+                  src="/assets/img/brand/logo-barre-or-sans-symbole.png"
+                  
                 /> */}
-                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0}}>Shakazz</h3>
+                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0, position:"relative"}}>Shakazz <span style={{ position:"absolute", height:"5px", width:"35px", backgroundColor:"#cc9933", bottom:"-7px", right:"0px" }}/></h3>
 
               </NavbarBrand>
             </span>

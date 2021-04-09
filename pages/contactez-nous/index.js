@@ -87,8 +87,8 @@ import PreInscription from "../../src/components/pre_inscription";
           </CardBody>
         </Card>
       </Row>
-      <PreInscription white/>
      </Container>
+     <PreInscription/>
     </>
   )
 }

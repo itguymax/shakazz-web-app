@@ -132,7 +132,7 @@ crowdlending et du networking qui implémentent la gestion-acquisition de produi
 numériques.</p>
 					</div>
 					<Row className="mt-5 pb-3 px-lg-0">
-							<WeCard title="Sécurité" subtitle="un service de garde renforcé par une technologie de pointe et l’expertise de nos différents partenaires." imageUrl="/assets/img/Sécurité.svg"/>
+							<WeCard title="Sécurité" subtitle="Un service de garde renforcé par une technologie de pointe et l’expertise de nos différents partenaires." imageUrl="/assets/img/Sécurité.svg"/>
 							<WeCard title="Croissance" subtitle="Nos stratégies de diversification boostent votre patrimoine." imageUrl="/assets/img/Croissance.svg"/>
 							<WeCard title="Simplicité" subtitle="Nous vous accompagnons à chaque étape de votre parcours." imageUrl="/assets/img/Simplicité.svg"/>
 					</Row>
@@ -239,15 +239,15 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
 								<Card.Body className="mt-5"  className=" d-flex justify-content-center align-items-center" style={{flexDirection:"column"}}>
 									<h3 style={{color: "#6f6f6f", fontWeight:"300px"}}>Rencontrez</h3>
 									<h1 className="mb-lg-3" style={{color: "#333"}}>Notre équipe</h1>
-									<h5 style={{color: "#6f6f6f", fontWeight:"200px"}} className="text-center">notre équipe jeune et dévouée désireuse d’impacter son environnement, de concourir à son bien-être.</h5>
+									<h5 style={{color: "#6f6f6f", fontWeight:"200px"}} className="text-center">Notre équipe jeune et dévouée désireuse d’impacter son environnement, de concourir à son bien-être.</h5>
 								</Card.Body>
 							</Card>
 						</Col>
-				    <TeamCard nom="Yvan Fotso" poste="CEO" img="/assets/img/photoequipe/yvan.png"/>
-						<TeamCard nom="Toumi Wantcho Maximilien" poste="Responsable IT" img="/assets/img/photoequipe/toumi.png"/>
+				    <TeamCard nom="Yvan FOTSO" poste="CEO" img="/assets/img/photoequipe/yvan.png"/>
+						<TeamCard nom="Maximilien TOUMI WANTCHO" poste="Responsable IT" img="/assets/img/photoequipe/toumi.png"/>
 						<TeamCard nom="Cyrille FOKA" poste="Analyste financier" img="/assets/img/photoequipe/foka.png"/>
 						<TeamCard nom="Alexandre DJENGUE" poste="Directeur Artistique" img="/assets/img/photoequipe/alex.png"/>
-						<TeamCard nom="Pierre-Lionel Bissohong" poste="Designer" img="/assets/img/photoequipe/bisso.png"/>
+						<TeamCard nom="Pierre-Lionel BISSOHONG" poste="Designer" img="/assets/img/photoequipe/bisso.png"/>
 						<TeamCard nom="Ludovic FEUTSE" poste="Developpeur web" img="/assets/img/photoequipe/ludo.png"/>
 				</Row>
 			</Container>
