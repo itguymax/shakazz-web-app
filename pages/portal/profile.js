@@ -1,4 +1,8 @@
 import React from "react";
+import {Global,css} from "@emotion/react"
+import styled from '@emotion/styled'
+import Sinput from '../../src/components/forms/Sinput';
+import DropDownC from '../../src/components/forms/Dropdownc'
 
 // reactstrap components
 import {
@@ -12,300 +16,366 @@ import {
   Container,
   Row,
   Col,
+  Media,
+  DropdownItem,
+  Label,
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal.js";
+import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
 
 function Profile() {
+  let account_type = [{val:'Personnel'},{val:'Particulier'}];
+  let country = [{val:'Cameroun'}];
+  let country_indicatif = [{val:'+237'}];
+  let currency = [{val:'USD'}];
+  const Button = styled.button`
+    background-color: #679966;
+    border-radius: 20px;
+    margin-top:1.8em;
+    color: white;
+    padding:0.6em;
+    width:10em;
+    border:1px solid #679966;
+    font-weight:100;
+    transition: all .8s ease-in-out;
+    &:hover {
+      color: #679966;
+      background-color:white;
+  }
+`
   return (
     <>
-      <UserHeader />
       {/* Page content */}
-      <Container className="mt--7" fluid>
+      <Container>
+      <Global
+      styles={css`
+        img{
+          cursor:pointer;
+          transition: all .8s ease-in-out;
+        }
+        img:hover{
+          transform: scale(1.5);
+        }
+        input{
+          background-color: #f0f0f0 !important;
+          border:1px solid white !important;
+          width:17em !important;
+        }
+        input[type="text"]{
+          background-color: #f0f0f0 !important;
+          border:1px solid white !important;
+        }
+        button[id="navbarDropdownMenuLink2"]{
+          background-color: #f0f0f0 !important;
+          border:1px solid #f0f0f0 !important;
+          width:18em !important;
+          border-radius: 15px !important;
+          padding-right:1em !important;
+          padding-right:1em !important;
+        }
+        .profileCol{
+          background-color:white;
+          padding-top:1em;
+          width:25em;
+          margin-bottom:0.5em;        
+        }
+        .profileCol:hover{
+          cursor:pointer;
+        }
+      `}
+    />
+      <h2>INFORMATIONS PERSONNELLES</h2>
         <Row>
-          <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
-            <Card className="card-profile shadow">
-              <Row className="justify-content-center">
-                <Col className="order-lg-2" lg="3">
-                  <div className="card-profile-image">
-                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                      <img
-                        alt="..."
-                        className="rounded-circle"
-                        src="/assets/img/theme/team-4-800x800.jpg"
-                      />
-                    </a>
-                  </div>
-                </Col>
-              </Row>
-              <CardHeader className="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-                <div className="d-flex justify-content-between">
-                  <Button
-                    className="mr-4"
-                    color="info"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                    size="sm"
-                  >
-                    Connect
-                  </Button>
-                  <Button
-                    className="float-right"
-                    color="default"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                    size="sm"
-                  >
-                    Message
-                  </Button>
-                </div>
-              </CardHeader>
-              <CardBody className="pt-0 pt-md-4">
-                <Row>
-                  <div className="col">
-                    <div className="card-profile-stats d-flex justify-content-center mt-md-5">
-                      <div>
-                        <span className="heading">22</span>
-                        <span className="description">Friends</span>
-                      </div>
-                      <div>
-                        <span className="heading">10</span>
-                        <span className="description">Photos</span>
-                      </div>
-                      <div>
-                        <span className="heading">89</span>
-                        <span className="description">Comments</span>
-                      </div>
-                    </div>
-                  </div>
-                </Row>
-                <div className="text-center">
-                  <h3>
-                    Jessica Jones
-                    <span className="font-weight-light">, 27</span>
-                  </h3>
-                  <div className="h5 font-weight-300">
-                    <i className="ni location_pin mr-2" />
-                    Bucharest, Romania
-                  </div>
-                  <div className="h5 mt-4">
-                    <i className="ni business_briefcase-24 mr-2" />
-                    Solution Manager -  Officer
-                  </div>
-                  <div>
-                    <i className="ni education_hat mr-2" />
-                    University of Computer Science
-                  </div>
-                  <hr className="my-4" />
-                  <p>
-                    Ryan — the name taken by Melbourne-raised, Brooklyn-based
-                    Nick Murphy — writes, performs and records all of his own
-                    music.
-                  </p>
-                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                    Show more
-                  </a>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col className="order-xl-1" xl="8">
-            <Card className="bg-secondary shadow">
-              <CardHeader className="bg-white border-0">
-                <Row className="align-items-center">
-                  <Col xs="8">
-                    <h3 className="mb-0">My account</h3>
-                  </Col>
-                  <Col className="text-right" xs="4">
-                    <Button
-                      color="primary"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      Settings
-                    </Button>
-                  </Col>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                <Form>
-                  <h6 className="heading-small text-muted mb-4">
-                    User information
-                  </h6>
-                  <div className="pl-lg-4">
-                    <Row>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-username"
-                          >
-                            Username
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="lucky.jesse"
-                            id="input-username"
-                            placeholder="Username"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-email"
-                          >
-                            Email address
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            id="input-email"
-                            placeholder="jesse@example.com"
-                            type="email"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-first-name"
-                          >
-                            First name
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="Lucky"
-                            id="input-first-name"
-                            placeholder="First name"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="6">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-last-name"
-                          >
-                            Last name
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="Jesse"
-                            id="input-last-name"
-                            placeholder="Last name"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                  </div>
-                  <hr className="my-4" />
-                  {/* Address */}
-                  <h6 className="heading-small text-muted mb-4">
-                    Contact information
-                  </h6>
-                  <div className="pl-lg-4">
-                    <Row>
-                      <Col md="12">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-address"
-                          >
-                            Address
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                            id="input-address"
-                            placeholder="Home Address"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-city"
-                          >
-                            City
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="New York"
-                            id="input-city"
-                            placeholder="City"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Country
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            defaultValue="United States"
-                            id="input-country"
-                            placeholder="Country"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col lg="4">
-                        <FormGroup>
-                          <label
-                            className="form-control-label"
-                            htmlFor="input-country"
-                          >
-                            Postal code
-                          </label>
-                          <Input
-                            className="form-control-alternative"
-                            id="input-postal-code"
-                            placeholder="Postal code"
-                            type="number"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                  </div>
-                  <hr className="my-4" />
-                  {/* Description */}
-                  <h6 className="heading-small text-muted mb-4">About me</h6>
-                  <div className="pl-lg-4">
+          <Col xs="6" sm="4">
+              <Form>
+                <Row form>
+                  <Col md={12}>
                     <FormGroup>
-                      <label>About Me</label>
-                      <Input
-                        className="form-control-alternative"
-                        placeholder="A few words about you ..."
-                        rows="4"
-                        defaultValue="A beautiful Dashboard for Bootstrap 4. It is Free and
-                          Open Source."
-                        type="textarea"
+                      <FormGroup>
+                      <Label for="exampleDate">Type de compte:</Label>
+                        <DropDownC register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                    </FormGroup>
+
+                    </FormGroup>
+                  </Col>
+                  <Col md={12}>
+                    <FormGroup>
+                    <Label for="exampleDate">Nom complet:</Label>
+                      <Sinput
+                      placeholder='entrez le nom complet:'
+                      name="name"
+                      register={()=>{}}
+                      iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                      inputBg="#fff"
+                      type="text"
+                      handleOnchange={()=>{}}
                       />
                     </FormGroup>
-                  </div>
-                </Form>
-              </CardBody>
-            </Card>
+                  </Col>
+                   <Col md={12}>
+                     <FormGroup>
+                        <Label for="exampleDate">Date de naissance:</Label>
+                        <Input
+                          type="date"
+                          name="date"
+                          id="exampleDate"
+                          placeholder=""
+                        />
+                    </FormGroup>
+                  </Col>
+                  <Col md={12}>
+                    <FormGroup>
+                        <Label for="exampleDate">Pays:</Label>
+                        <DropDownC register={()=>{}} name="canal" selectedOption={country[0]} handleOnSelect={()=>{}} options={country||[]}/>
+                    </FormGroup>
+                  </Col>
+                  <Col md={12}>
+                     <Label for="exampleDate">Adresse</Label>
+                     <FormGroup>
+                        <Sinput
+                        label=''
+                        name="name"
+                        register={()=>{}}
+                        iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                        inputBg="#fff"
+                        type="text"
+                        handleOnchange={()=>{}}
+                        />
+                      </FormGroup>
+                  </Col>
+                </Row>
+                <Button>Vérification</Button>
+                   <Col md={12} style={{marginTop:"3em"}}>
+                     <Row>
+                       <Col xs="6" sm="2">
+                          <Image 
+                          src="/assets/img/icons/retrait/wallet.svg"
+                          alt="..." 
+                          height={40} width={40}
+                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          />
+                       </Col>
+                       <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.5em",fontSize:"1.8em",fontWeight:300}}>Portefeuille</p></Col>
+
+                       <Col xs="6" sm="3">
+                        <Image 
+                          src="/assets/img/icons/clic_button_down.svg"
+                          alt="..." 
+                          height={20} width={20}
+                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          />
+                       </Col>
+
+                     </Row>
+                  <Row>
+                   <Col xs="6" sm="2">
+                      
+                   </Col>
+                   <Col xs="6" sm="6"><p>Portefeuille</p></Col>
+
+                   <Col xs="6" sm="2">
+                    <Image 
+                      src="/assets/img/icons/clic_button_down.svg"
+                      alt="..." 
+                      height={20} width={20}
+                      style={{backgroundColor:"#000",margin:"auto"}}  
+                      />
+                   </Col>
+
+                 </Row>
+                  </Col>
+              </Form>
           </Col>
+          <Col xs="6" sm="4">
+               <Form>
+                <Row form>
+                  <Col md={12}>
+                    <FormGroup>
+                      <Label for="exampleDate">E-mail:</Label>
+                        <Sinput
+                        label='Nom complet:'
+                        name="name"
+                        placeholder="entrez votre e-mail"
+                        register={()=>{}}
+                        iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                        inputBg="#fff"
+                        type="text"
+                        handleOnchange={()=>{}}
+                        />
+                      </FormGroup>
+                  </Col>
+                  <Col md={12}>
+                    <FormGroup>
+                        <Label>Numéro de téléphone:</Label>
+                        <DropDownC register={()=>{}} name="canal" selectedOption={country_indicatif[0]} handleOnSelect={()=>{}} options={country_indicatif||[]}/>
+                    </FormGroup>
+                  </Col>
+                  <Col md={12}>
+                      <FormGroup>
+                        <Label>Pseudo:</Label>
+                        <FormGroup>
+                          <Sinput
+                            label='Pseudo:'
+                            name="name"
+                            placeholder=""
+                            register={()=>{}}
+                            iStyle={{width:"15em",borderRadius:"15px", overflow:"hidden"}}
+                            inputBg="#fff"
+                            type="text"
+                            handleOnchange={()=>{}}
+                            />
+                        </FormGroup>
+                      </FormGroup>
+                   </Col> 
+                   <Col md={12}>
+                    <FormGroup>
+                        <Label>Monnaie:</Label>
+                        <DropDownC register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
+                    </FormGroup>
+                   </Col>                      
+                </Row>
+              </Form>
+          </Col>
+          <Col sm="4">
+            <Col md={12} style={{textAlign:"center"}} >
+              <Image 
+              src="/assets/img/photoequipe/bisso.png"
+              alt="..." 
+              className="rounded-circle" 
+              height={200} width={200}
+              style={{backgroundColor:"#000",margin:"auto"}}  
+              />
+                      <FormGroup>
+                        <Button>Vérification</Button>
+                      </FormGroup>
+               <Image 
+                src="/assets/img/free-badge-icon-1361-thumb@2x.png"
+                alt="..."                 height={150} width={150}
+                style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}  
+                />
+                   </Col>
+          </Col>
+        </Row>
+      </Container>
+      <Container>
+        <Row>
+            <Col xs="6" sm="5" style={{marginBottom:"3em"}}>
+                      <Container style={{
+                      width:"100%",
+                      height:"14em",
+                      marginLeft:"2em",
+                      backgroundColor:"#f0f0f0",
+                      borderRadius:"16px",
+                      padding:"1em",paddingTop:"2em"}}>
+                       <Row style={{display:"flex",
+                      justifyContent: "space-around"}}>
+                        <Label>Projet d'études:</Label>
+                        <Sinput
+                          name="name"
+                          placeholder="projet d'études"
+                          register={()=>{}}
+                          iStyle={{width:"10em",
+                             backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
+                             borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
+                          inputBg="#fff"
+                          type="text"
+                          handleOnchange={()=>{}}
+                        />
+                         </Row>
+                        <Row style={{display:"flex",
+                        justifyContent: "space-around"}}>
+                          <Label>Projet d'études:</Label>
+                          <Sinput
+                            name="name"
+                            placeholder="projet d'études"
+                            register={()=>{}}
+                            iStyle={{width:"10em",
+                               backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
+                               borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
+                            inputBg="#fff"
+                            type="text"
+                            handleOnchange={()=>{}}
+                          />
+                         </Row>
+                       <Row>
+                          <Button style={{margin:"auto",marginTop:"1em"}}>Confirmer</Button>
+                       </Row>
+                      </Container>
+            </Col>
+            <Col xs="6" sm="6" style={{marginBottom:"3em"}}>  
+                <Container style={{
+                      width:"100%",
+                      height:"14em",
+                      marginLeft:"2em",
+                      backgroundColor:"white",
+                      borderRadius:"16px",
+                      padding:"1em"}}>
+                          <Row className="profileCol">
+                             <Col xs="6" sm="2">
+                                <Image 
+                                src="/assets/img/icons/retrait/wallet.svg"
+                                alt="..." 
+                                height={40} width={40}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
+
+                             <Col xs="6" sm="3">
+                              <Image 
+                                src="/assets/img/icons/clic_button_down.svg"
+                                alt="..." 
+                                height={20} width={20}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                           </Row>
+                            <Row className="profileCol">
+                             <Col xs="6" sm="2">
+                                <Image 
+                                src="/assets/img/icons/retrait/wallet.svg"
+                                alt="..." 
+                                height={40} width={40}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
+
+                             <Col xs="6" sm="3">
+                              <Image 
+                                src="/assets/img/icons/clic_button_down.svg"
+                                alt="..." 
+                                height={20} width={20}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                           </Row>
+                            <Row className="profileCol">
+                             <Col xs="6" sm="2">
+                                <Image 
+                                src="/assets/img/icons/retrait/wallet.svg"
+                                alt="..." 
+                                height={40} width={40}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
+
+                             <Col xs="6" sm="3">
+                              <Image 
+                                src="/assets/img/icons/clic_button_down.svg"
+                                alt="..." 
+                                height={20} width={20}
+                                style={{backgroundColor:"#000",margin:"auto"}}  
+                                />
+                             </Col>
+                           </Row>
+
+                      </Container>                         
+            </Col>
         </Row>
       </Container>
     </>
