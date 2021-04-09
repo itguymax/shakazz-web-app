@@ -20,10 +20,10 @@ export default function ArticlePreview({data}) {
   return (
      <Link href={`/blog/${slug}`} className="p-0" css={
        css`
-       
+        cursor:pointer;
        `
      }>
-      <Card className="ml--2 mr--2 mt-3"  style={{height:"500px", backgroundColor: "#fff", overflow: "hidden"}}>
+      <Card className="ml--2 mr--2 mt-3"  style={{height:"450px", backgroundColor: "#fff", overflow: "hidden",cursor:"pointer"}}>
         <Image
           // style={{height:"250px"}}
           alt={title}
@@ -31,7 +31,7 @@ export default function ArticlePreview({data}) {
           priority={true}
           // layout="responsive"
           sizes="100vw"
-          height={150}
+          height={120}
           width={200}
           quality={100}
         />
