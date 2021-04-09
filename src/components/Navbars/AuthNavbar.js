@@ -92,7 +92,7 @@ function AdminNavbar() {
                onClick={()=> router.push('/auth/login')}
                className="btn-white mr-lg-3" 
                style={{height: '40px', border: '2px solid #707070', width: '130px', border:"1px solid #707070 "}}
-               
+               disabled={router.asPath==="/auth/pre-inscription"}
                >Connexion</Button>
               </div>
               <div className="text-center">
@@ -100,7 +100,7 @@ function AdminNavbar() {
                onClick={()=> router.push('/auth/register')}
                style={{height: '40px', border:'none', color:"#fff", width: '130px', backgroundColor:"#707070"}} 
                className="btn-default"
-              
+               disabled={router.asPath==="/auth/pre-inscription"}
                >Inscription</Button>
               </div>
           </UncontrolledCollapse>
