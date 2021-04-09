@@ -6,6 +6,7 @@ import { device } from "../lib/device"
 export default function LastArticles({posts}) {
   return (
       <>
+
       <div
         className="align-items-center"
         style={{
@@ -16,7 +17,7 @@ export default function LastArticles({posts}) {
       >
         <Container className="d-flex align-items-center justify-content-center" fluid>
           <Row  css={css` 
-            width:70%;
+            width:80%;
             @media ${device.smMobileMax}{
                 width: 90%;
             }
@@ -30,7 +31,7 @@ export default function LastArticles({posts}) {
             {
               posts.map((item, key)=> {
                 return(
-                   <Col key={key} xl="4" md="5" sm="6">
+                   <Col key={key} xl="4" md="6" lg="4" sm="6">
                    <ArticlePreview data={item}/>
                  </Col>
                 )

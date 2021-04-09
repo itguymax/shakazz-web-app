@@ -40,7 +40,7 @@ const TabH = ({indicator, text,hTabsIcons,handleSetHTabs}) => {
                  }
              `}>
                  
-                  <Image  width="35px" height="35px" src={hTabsIcons === indicator ? "/assets/img/icons/icon_activated.svg" : "/assets/img/icons/icon_non-activated.svg"} />
+                  <Image priority={true}  quality={100} width="35px" height="35px" src={hTabsIcons === indicator ? "/assets/img/icons/icon_activated.svg" : "/assets/img/icons/icon_non-activated.svg"} />
                 <h3 > {text} { hTabsIcons === indicator && <span/>}</h3>
               
              </Container>

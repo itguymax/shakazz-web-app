@@ -78,6 +78,7 @@ module.exports =  withPWA(
   },
   images: {
      domains: ['accounts.google.com', '3.64.214.244','https://restcountries.eu/data/'],
+     domains: ['accounts.google.com', '3.64.214.244','uploadludovic.s3.eu-central-1.amazonaws.com'],
    },
   
 }

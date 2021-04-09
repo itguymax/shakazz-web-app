@@ -8,34 +8,14 @@ const PlanTable = ()=>{
                   *{
                     color:#333;
                   } 
-                .table thead th {
-                  border-top:0px;
-                  color:#333;
-                  font-size:16px;
-                  text-transform: none;
-                  font-weight:bold;
-
-                }
-                .table thead th, .table td{
-                  border-botom: 2px solid #E5E5E5;
-                }
-                .table td {
-                  vertical-align: bottom;
-                  
-                }
-                .table td, .table th{
-                  white-space:none;
-                  font-size: 10px;
-                  font-weight: 100;
-                }
-                p, h1,h2,h3,h4,h5{
+                 p, h1,h2,h3,h4,h5{
                   line-height:none;
                 }
                 h4, .table td{
                   margin-bottom:-10px;
                   margin-top:5px;
                 }
-                 .l {
+								  .l {
                   color: #cc9933 !important;
                   font-weight: 100;
                   margin-top: 0px;
@@ -46,7 +26,8 @@ const PlanTable = ()=>{
                 }
                .h{
                  border-top: none;
-                 height: 65px;
+                 height: 100px;
+								 /* margin-top: 10px; */
                }
                  
           `} >
@@ -101,7 +82,7 @@ const PlanTable = ()=>{
 				        <td><h4>X</h4></td>
 				        <td><h4>144%</h4></td>				      
 				      </tr>
-				      <tr>
+				      {/* <tr>
 				        <td>
                   <h2>Durée maximale</h2>
                   <span>Période maximale après laquelle les <br/> fonds peuvent être disponibles.</span>
@@ -118,7 +99,7 @@ const PlanTable = ()=>{
                   <h1>1800 Jours</h1>
                   
                 </td>
-				      </tr>
+				      </tr> */}
               <tr>
                 <td className="h"></td>
                 <td className="h"> <a  href={config.preInscriptionLink}  target="_blank" style={{ background:'#cc9933 0% 0% no-repeat padding-box', cursor:'pointer', width:"200px", textAlign:"center", padding:'10px 45px 10px 45px', borderRadius:'0px',  font: 'normal normal normal 16px/14px Ubuntu', color:'#fff', marginBottom: "20px"}}>Souscrire</a></td>

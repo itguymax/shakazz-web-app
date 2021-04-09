@@ -80,6 +80,7 @@ useEffect((data)=>{
                 label="Nom complet"
                 required
                 
+                
               />
               {errors.name && <div className="text-muted font-italic">
                 

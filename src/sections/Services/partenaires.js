@@ -11,8 +11,52 @@ import { Jumbotron} from 'reactstrap';
 import { TabContent, TabPane, Nav, CardImg, CardBody, NavItem, NavLink, Card,CardTitle, CardText} from 'reactstrap';
 import classnames from 'classnames';
 import { Media } from 'reactstrap';
-import Image from 'react-bootstrap/Image'
+import Image from 'next/image'
+import { css } from "@emotion/react";
+import {device} from "../../lib/device";
 //import  './assets/css/shakazz.css';
+
+const PartenairesCard = ({item}) => {
+  return (
+       <Col md="6" lg="6" >
+         <Card className="p-3" css={css` 
+          height:200px;
+          width:430px;
+	        border:2px solid #ccc; 
+          @media ${device.smMobileMax}{
+            width:150%;
+            margin-bottom: 30px;
+            margin-left:-25%;
+            height: 250px;
+            /* margin-right:10px; */
+          } 
+          @media ${device.laptop}{
+            width: 430px;
+          } 
+               
+       `}>
+            <Row> 
+              <Col>
+              <h2 style={{color:"#333333", opacity:1}}>{item.altText}</h2>
+              <h4 style={{color:"#a9a9a9", fontWeight:"100"}}>{item.caption}</h4>
+              </Col>
+                  {/* <h6>Visiter<span>&gt;</span></h6> */}
+                {/* <Col><h4>{item.caption}</h4></Col> */}
+            </Row>
+            <Row className="" >
+                <Col xs="5">
+                  <h3 style={{color:"#333333", opacity:1}}>Secteur activité</h3>
+                </Col>
+                <Col xs="7" className="mt--5" style={{position: 'relative'}}>
+                  
+                    <Image  priority={true} className="mb--2" height={140} width={200} quality={100} src={item.logo}/>
+                  
+                </Col>
+            </Row>
+       </Card>
+      </Col>
+  )
+}
 
 function PartenairesSection() {
  //Tabs
@@ -47,12 +91,14 @@ function PartenairesSection() {
         id: 2,
         altText: 'Hannibal Consulting',
         caption: 'Investissement et gestion des projets',
+        activite: "Hannibal Consulting",
         logo:'/assets/img/brand/hannibal.png',
       },
             {
         id: 3,
         altText: 'Uthango',
-        caption: 'Blockchain Former et sensibiliser sur la blockchain et la Cryptomonnaie',
+        activite: "Blockchain",
+        caption: 'Former et sensibiliser sur la blockchain et la Cryptomonnaie',
         logo:'/assets/img/brand/UTHAN_GO.png',
       },
       {
@@ -64,72 +110,71 @@ function PartenairesSection() {
     ];
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
-     const slides = items.map((item,index,elt) => {
-      let index2 = index +1;
+     const slides = items.map((item,index, el) => {
+      console.log("gdggdffg dex", index, el[index]);
+     let index2 =0
+      let ellet = el.lenght;
+      if(index===3){
+        index2 = 0;
+      }else {
+        index2 = index +1;
+      }
       return (
         <CarouselItem
           className="services_page_section_partenaires_caroussel"
           tag="div"
+          style={{}}
           key={item.id}
           onExiting={() => setAnimating(true)}
           onExited={() => setAnimating(false)}
         >
-            <Row className="services_page_section_partenaires_row">
-            <Col xs="6">
-              <Card className="services_page_section_partenaires_col_card">
-                <CardBody>
-                  <h2>{elt[index].altText}</h2><h6>Visiter<span>&gt;</span></h6>
-                  <h4>{item.caption}</h4>
-                  <Row className="services_page_section_partenaires_row2">
-                    <Col xs="6">
-                      <h3>Secteur activité</h3>
-                      </Col>
-                      <Col xs="6">
-                        <Image className="services_page_section_partenaires_row_image"
-                        src={elt[index].logo}
-                      />
-                      </Col>
-                    </Row>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col xs="6">
-              <Card className="services_page_section_partenaires_col_card">
-                <CardBody>
-                  <h2>{index2<items.length?elt[index2].altText:elt[0].altText}</h2>
-                  <h6>Visiter<span>{`>`} </span></h6>
-                  <h4>{index2<items.length?elt[index2].altText:elt[0].caption}</h4>
-                  <Row className="services_page_section_partenaires_row2">
-                    <Col xs="6">
-                      <h3>Secteur activité</h3>
-                      </Col>
-                      <Col xs="6">
-                        <Image className="services_page_section_partenaires_row_image"
-                        src={index2<items.length?elt[index2].logo:elt[0].logo}
-                        alt=""
-                      />
-                      </Col>
-                    </Row>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
+         <Row className="services_page_section_partenaires_row" css={css` 
+              width: 80%;
+              margin: auto !important;
+              @media ${device.tablet}{
+                width: 100%;
+              }
+               @media ${device.smMobileMax}{
+                 width:88%;
+                 
+           
+                } 
+         `}>
+             <PartenairesCard item={el[index]}/>
+             <PartenairesCard item={el[index2]}/>   
+         </Row>
         </CarouselItem>
       );
     });
   return (
-      <div className="services_page_section_partenaires">
-        <h1>Partenaires</h1>
+      <div 
+      
+      className=" services_page_section_partenaires justify-content-center pt-6 pb-7">
+         <div className=" pb-5 text-center"  ><h1 style={{color:"#333"}}>Partenaires</h1></div>
         <Carousel
+                css={css` 
+                  height: 20em;
+                  
+                   @media ${device.smMobileMax}{
+                      .carousel-inner{
+                    overflow: unset;
+                   
+                  }
+                  .carousel-indicators{
+                    bottom:-90%;
+                  }
+          } 
+                `}
+
                 activeIndex={activeIndex}
                 next={next}
                 previous={previous}
               >
                 <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
                 {slides}
-                 <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-                 <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-              </Carousel>
+                 <CarouselControl className="carousel-control-prev-icon" direction="prev" directionText="Previous" onClickHandler={previous} />
+                 <CarouselControl  className="carousel-control-next-icon" direction="next" directionText="Next" onClickHandler={next} />
+          </Carousel>
       </div>
   );
 }
