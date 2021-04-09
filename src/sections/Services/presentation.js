@@ -121,7 +121,7 @@ const PresentationSection = ()=>{
          >
          <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-1" text="Participer au pool de liquidité" />
          <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-2" text="Gestion, acquisition de produits numériques" />
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="Monitoring et suivie des positions et participation" />
+         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="Monitoring et suivi des positions et participation" />
          <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-4"  text="Partage des interêts" />
          <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-5" text="satisfaction des membres de la communauté" />  
         </Nav>

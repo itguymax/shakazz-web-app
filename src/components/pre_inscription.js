@@ -1,5 +1,5 @@
 import react from "react";
-import {css} from "@emotion/react";
+import {Global,css} from "@emotion/react";
 import  { Link } from "./Link";
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
@@ -7,6 +7,17 @@ import config from "../config"
 const PreInscription = ({bleu, white}) => {
   return (
        <>
+        <Global
+          styles={css`
+            .buttonAnimation{
+              cursor:pointer;
+              transition: all .5s ease-in-out;
+            }
+            .buttonAnimation:hover{
+              transform: scale(1.2);
+            }
+          `}
+        />
       <div
         className="align-items-center"
         style={{

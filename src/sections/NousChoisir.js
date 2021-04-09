@@ -40,7 +40,7 @@ export default function NousChoisir() {
               <Container fluid >
                   <h1>Pourquoi nous choisir?</h1>
                   <Row className="mt-5 pb-8">
-                   <WeCard title="Sécurité" subtitle="un service de garde renforcé par une technologie de pointe et l’expertise de nos différents partenaires." imageUrl="/assets/img/Sécurité.svg"/>
+                   <WeCard title="Sécurité" subtitle="Un service de garde renforcé par une technologie de pointe et l’expertise de nos différents partenaires." imageUrl="/assets/img/Sécurité.svg"/>
                    <WeCard title="Croissance" subtitle="Nos stratégies de diversification boostent votre patrimoine." imageUrl="/assets/img/Croissance.svg"/>
                    <WeCard title="Simplicité" subtitle="Nous vous accompagnons à chaque étape de votre parcours." imageUrl="/assets/img/Simplicité.svg"/>
                  </Row>
