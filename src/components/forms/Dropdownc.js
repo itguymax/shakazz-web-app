@@ -1,5 +1,6 @@
 import { Flex } from "@theme-ui/components";
 import React, {useState, useEffect} from "react";
+import {Global,css} from "@emotion/react"
 // reactstrap components
 import {
   DropdownToggle,
@@ -11,7 +12,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-function Sdropdown({flag, label, register, name, handleOnSelect,selectedOption,options}) {
+function Sdropdown({flag, phone, label, register, name, handleOnSelect,selectedOption,options}) {
  
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
@@ -42,18 +43,36 @@ function Sdropdown({flag, label, register, name, handleOnSelect,selectedOption,o
 
               ))}
         </DropdownMenu>
-        {flag && <DropdownMenu  name={name}  aria-labelledby="navbarDropdownMenuLink2">
+        {flag && <DropdownMenu  name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => {
               return (
-                <li key={i}>
+                <li key={i} style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex',width:'3em !important'}}>
                   <Image 
-                          src={'/assets/img/icons/retrait/wallet.svg'}
+                          src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
                           alt="..." 
-                          height={40} width={40}
+                          height={10} width={20}
                           style={{backgroundColor:"#000",margin:"auto"}}  
                           />
                   <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
-                    {option.alpha2Code}
+                    {option.name}
+                  </DropdownItem>
+                </li>
+
+              )
+            })}
+        </DropdownMenu>}
+        {phone && <DropdownMenu  name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
+            {options.map( (option, i) => {
+              return (
+                <li key={i} style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex',width:'3em !important'}}>
+                  <Image 
+                          src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
+                          alt="..." 
+                          height={10} width={20}
+                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          />
+                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                    {'+'+option.callingCodes}
                   </DropdownItem>
                 </li>
 
