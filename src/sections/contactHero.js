@@ -9,7 +9,7 @@ function ContactHero() {
       <div
         className="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
         style={{
-          minHeight: "600px",
+          height: "calc(100vh - 88px)",
            backgroundImage:
              "url(" + "/assets/img/we.jpg" + ")",
           backgroundSize: "cover",

@@ -18,7 +18,8 @@ import { css } from "@emotion/react";
 import { device } from "../../lib/device"
 import menuItems from './PublicHeaderData';
 import { useRouter } from "next/router";
-import  NavigationLink from '../NavigationLink'
+import  NavigationLink from '../NavigationLink';
+import Image from "next/image";
 
 function AdminNavbar() {
   const router = useRouter();
@@ -36,9 +37,12 @@ function AdminNavbar() {
           <Link href="/">
             <span>
               <NavbarBrand href="/">
-                <img
+                <Image
                   alt="Logo Shakazz"
-                  src="/assets/img/brand/logo-barre-or-sans-symbole.png"
+                  src="/assets/img/brand/logo-barre-or-sans-symbole.svg"
+                  width={500}
+                  height={100}
+                  priority={true}
                   
                 />
                 {/* <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0, position:"relative"}}>Shakazz <span style={{ position:"absolute", height:"5px", width:"35px", backgroundColor:"#cc9933", bottom:"-7px", right:"0px" }}/></h3> */}
@@ -67,9 +71,7 @@ function AdminNavbar() {
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
-                  <button className="navbar-toggler" id="navbar-collapse-main" 
-                 
-                  >
+                  <button className="navbar-toggler" id="navbar-collapse-main">
                     <span />
                     <span />
                   </button>
