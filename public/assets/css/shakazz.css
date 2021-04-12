@@ -1,9 +1,9 @@
 /*Start Home Page*/
 .carousel .carousel-indicators li {
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   border-radius: 100%;
-  background-color: black;
+  background-color: #fff;
 }
 .nav-tabs a {
   height: 100%;

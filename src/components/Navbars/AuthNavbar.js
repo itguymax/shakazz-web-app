@@ -27,16 +27,21 @@ function AdminNavbar() {
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md" style={{backgroundColor: isBlog?'#fff':'#244230', opacity:1}}>
-        <Container className="px-4">
+        <Container className="px-4" css={css` 
+              .navbar-horizontal .navbar-brand img {
+                    height: 46px ;
+                    width: 100%;    
+                }
+        `}>
           <Link href="/">
             <span>
               <NavbarBrand href="/">
-                {/* <img
+                <img
                   alt="Logo Shakazz"
                   src="/assets/img/brand/logo-barre-or-sans-symbole.png"
                   
-                /> */}
-                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0, position:"relative"}}>Shakazz <span style={{ position:"absolute", height:"5px", width:"35px", backgroundColor:"#cc9933", bottom:"-7px", right:"0px" }}/></h3>
+                />
+                {/* <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0, position:"relative"}}>Shakazz <span style={{ position:"absolute", height:"5px", width:"35px", backgroundColor:"#cc9933", bottom:"-7px", right:"0px" }}/></h3> */}
 
               </NavbarBrand>
             </span>

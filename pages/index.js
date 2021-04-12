@@ -61,7 +61,23 @@ function Index() {
         />
       </Head>
       <div>
-    <Carousel className="home_page_section_shakazz"> 
+    <Carousel className="home_page_section_shakazz" 
+        css={css` 
+             
+              .carousel-indicators .active {
+                background-color: #CC9933;
+                opacity: 1;
+              }
+              @media ${device.smMobileMax}{
+                .carousel-control-prev{
+                left: -20px;
+              }
+              .carousel-control-next{
+                right: -20px;
+              }
+              }
+        `}
+    > 
       <Carousel.Item>
           <Jumbotron className="home_page_section_shakazz_jumbotron mb-7" css={css`
           @media ${device.smMobileMax}{

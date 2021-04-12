@@ -1,6 +1,7 @@
 import React from "react";
 import {css} from "@emotion/react";
 import Image from "next/image";
+import {device} from "../lib/device";
 import { TabPane, Nav, Row, NavItem, NavLink, Container} from 'reactstrap';
 const TabH = ({indicator, text,hTabsIcons,handleSetHTabs}) => {
   return (
@@ -37,6 +38,14 @@ const TabH = ({indicator, text,hTabsIcons,handleSetHTabs}) => {
                   justify-content:center;
                   align-items: center;
 
+                 }
+                 @media ${device.laptop}{
+                      h3{
+
+
+                   padding-left: 0px;
+                   
+                 }
                  }
              `}>
                  
