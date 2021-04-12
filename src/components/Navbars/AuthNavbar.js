@@ -39,11 +39,11 @@ function AdminNavbar() {
               <NavbarBrand href="/">
                 <Image
                   alt="Logo Shakazz"
-                  src="/assets/img/brand/logo-barre-or-sans-symbole.svg"
-                  width={500}
-                  height={100}
+                  src={isBlog?"/assets/img/brand/png_logo-vert-sans-symbole.svg" :"/assets/img/brand/logo-barre-or-sans-symbole.svg"}
+                  width={100}
+                  height={50}
                   priority={true}
-                  
+
                 />
                 {/* <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0, position:"relative"}}>Shakazz <span style={{ position:"absolute", height:"5px", width:"35px", backgroundColor:"#cc9933", bottom:"-7px", right:"0px" }}/></h3> */}
 
