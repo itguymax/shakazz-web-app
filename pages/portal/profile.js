@@ -68,6 +68,15 @@ function Profile() {
           background-color: #f0f0f0 !important;
           border:1px solid white !important;
         }
+        .dropdown-menu.show{
+          max-height:'2em !important';
+        }
+        .dropdown button{
+          height:3em !important;
+        }
+        .dropdown-menu{
+          max-height:23em !important;
+        }
         button[id="navbarDropdownMenuLink2"]{
           background-color: #f0f0f0 !important;
           border:1px solid #f0f0f0 !important;
@@ -290,66 +299,6 @@ function Profile() {
                       backgroundColor:"white",
                       borderRadius:"16px",
                       padding:"1em"}}>
-                          <Row className="profileCol">
-                             <Col xs="6" sm="2">
-                                <Image 
-                                src="/assets/img/icons/retrait/wallet.svg"
-                                alt="..." 
-                                height={40} width={40}
-                                style={{backgroundColor:"#000",margin:"auto"}}  
-                                />
-                             </Col>
-                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
-
-                             <Col xs="6" sm="3">
-                              <Image 
-                                src="/assets/img/icons/clic_button_down.svg"
-                                alt="..." 
-                                height={20} width={20}
-                                style={{backgroundColor:"#000",margin:"auto"}}  
-                                />
-                             </Col>
-                           </Row>
-                            <Row className="profileCol">
-                             <Col xs="6" sm="2">
-                                <Image 
-                                src="/assets/img/icons/retrait/wallet.svg"
-                                alt="..." 
-                                height={40} width={40}
-                                style={{backgroundColor:"#000",margin:"auto"}}  
-                                />
-                             </Col>
-                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
-
-                             <Col xs="6" sm="3">
-                              <Image 
-                                src="/assets/img/icons/clic_button_down.svg"
-                                alt="..." 
-                                height={20} width={20}
-                                style={{backgroundColor:"#000",margin:"auto"}}  
-                                />
-                             </Col>
-                           </Row>
-                            <Row className="profileCol">
-                             <Col xs="6" sm="2">
-                                <Image 
-                                src="/assets/img/icons/retrait/wallet.svg"
-                                alt="..." 
-                                height={40} width={40}
-                                style={{backgroundColor:"#000",margin:"auto"}}  
-                                />
-                             </Col>
-                             <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.2em",fontSize:"1.8em",fontWeight:300}}>Portefeuille1</p></Col>
-
-                             <Col xs="6" sm="3">
-                              <Image 
-                                src="/assets/img/icons/clic_button_down.svg"
-                                alt="..." 
-                                height={20} width={20}
-                                style={{backgroundColor:"#000",margin:"auto"}}  
-                                />
-                             </Col>
-                           </Row>
 
                       </Container>                         
             </Col>
