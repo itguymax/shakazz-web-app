@@ -41,7 +41,7 @@ function Retrait() {
                 label="Montant à retirer"
                 name="montant"
                 placeholder="6,000"
-                type="text"
+                type="text"rgba(68, 68, 68, 1)
                 register={register}
                 inputBg="#679966"
                 inline
