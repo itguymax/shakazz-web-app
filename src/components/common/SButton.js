@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { Button } from "reactstrap";
 import {css} from '@emotion/react';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 function ArrowButton({handleClick, label,labelColor, arrowImage}) {
   return (
@@ -11,13 +12,13 @@ function ArrowButton({handleClick, label,labelColor, arrowImage}) {
   )
 }
 
-function FlatButton ({label,type, bgc, handleClick, disabled,width, ...rest}){
+function FlatButton ({label,children ,type, bgc, handleClick, disabled,width, ...rest}){
   return (
     <>
       { type ?<Button type={type} disabled={disabled} className="px-3 py-2"  style={{boxShadow:"none", backgroundColor:bgc?bgc:"#fff", border: "none", borderRadius:"20px", width, padding:"1px", ...rest}}>
      {label}
-    </Button>: <Button  disabled={disabled} className="px-3 py-2"  onClick={handleClick} style={{boxShadow:"none", backgroundColor:bgc?bgc:"#fff", border: "none", borderRadius:"20px", padding:"1px",width:"90px", rest}}>
-     {label}
+    </Button>: <Button  disabled={disabled} className="px-3 py-2"  onClick={handleClick} style={{boxShadow:"none", backgroundColor:bgc?bgc:"#fff", border: "none", borderRadius:"20px", padding:"1px",width, rest}}>
+     {label?label: children}
     </Button>}
     </>
   )

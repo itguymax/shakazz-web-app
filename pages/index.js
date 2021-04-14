@@ -34,7 +34,7 @@ function Index() {
           <title>Shakazz | Elargissez vos opportunités d’affaires</title>
         <meta
           name="description"
-          content="Shakazz vous propose des plans d’investissement adaptés à votre environnement socioéconomique et au confort financier de votre portefeuille."
+          content="Shakazz vous propose des pools de liquidités adaptés à vos besoins."
         />
         <link rel="canonical" href={`${config.canonicalLink}`}/>
 
@@ -57,7 +57,7 @@ function Index() {
         <meta name="twitter:title" content="Website" />
         <meta
           name="twitter:description"
-          content="Shakazz vous propose des plans d’investissement adaptés à votre environnement socioéconomique et au confort financier de votre portefeuille."
+          content="Shakazz vous propose des pools de liquidités adaptés à vos besoins"
         />
       </Head>
       <div>

@@ -9,7 +9,8 @@ import "../public/assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../public/assets/scss/nextjs-argon-dashboard.scss";
 import "../public/assets/css/responsive.css";
-import "../public/assets/css/shakazz.css"
+import "../public/assets/css/shakazz.css";
+import 'react-circular-progressbar/dist/styles.css';
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
 

@@ -12,7 +12,7 @@ export default function SimulationTable({periode,pool,capital}) {
     taux = pool.taux720;
   }
   let recompense = parseInt(capital) * (parseFloat(taux)/100);
-  let total = (parseInt(capital) * (parseFloat(taux)/100)) * (periode/ pool.frequence);
+  let total = (parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence);
   let resume =  parseInt(capital) + total;
   return (
    <Table responsive  css={css`      

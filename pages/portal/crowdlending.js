@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
+
 import {
   Card,
   CardHeader,
@@ -24,8 +25,28 @@ import LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import { Button } from "bootstrap";
 import { ArrowButton , FlatButton} from "../../src/components/common/SButton";
 import Sinput from "../../src/components/forms/Sinput";
-import SimulationTable from "../../src/components/SimulationTable"
+import SimulationTable from "../../src/components/SimulationTable";
+import Coffre from "../../src/components/coffre";
+import moment from "moment";
+
 const Crowdlending = () => {
+    const calculateTimeLeft = () => {
+    let year = new Date().getFullYear();
+    console.log("year", year);
+    const difference = +new Date(`${year}-10-1`) - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
   const [is360, set360] = useState(true);
@@ -45,6 +66,10 @@ const Crowdlending = () => {
      frequence: 30
   }
   );
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [year] = useState(new Date().getFullYear());
+
+
 
   const periode360 = () => {
     console.log("360");
@@ -64,11 +89,30 @@ const Crowdlending = () => {
     setCapital(parseInt(event.target.value));
   };
 
+  const timerComponents = [];
+
+  Object.keys(timeLeft).forEach((interval) => {
+    if (!timeLeft[interval]) {
+      return;
+    }
+
+    timerComponents.push(
+      <span>
+        {timeLeft[interval]} {interval}{" "}
+      </span>
+    );
+  });
+  useEffect(() => {
+    setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+  });
+console.log("date", moment().startOf('day').fromNow());
   return (
     <>
       <Container fluid>
       <WalletHeader wallets={user.wallet}/>
-     <Row className="mt-xl-3">
+     <Row className="mt-xl-3 mb-5">
        <Col xl={4}>
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>
          {
@@ -102,8 +146,8 @@ const Crowdlending = () => {
                   />
                   <small>minimum d'investissement est de 100 $</small>
                   <div className="mb-4 mt-5">
-                    <FlatButton disabled={is360} label="360" bgc={is360?"#cc9933":"#444"} handleClick={ periode360}/>
-                    <FlatButton disabled={is720} label="720"  bgc={is720?"#cc9933":"#444"} handleClick={ periode720}/>
+                    <FlatButton disabled={is360} label="360" width="90px" bgc={is360?"#cc9933":"#444"} handleClick={ periode360}/>
+                    <FlatButton disabled={is720} label="720" width="90px"  bgc={is720?"#cc9933":"#444"} handleClick={ periode720}/>
                   </div>
                  
               </div>
@@ -118,7 +162,12 @@ const Crowdlending = () => {
          </LightBoxContainer>
        </Col>
      </Row>
-                   
+      <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Statistiques</h2> 
+      <Coffre/>
+       <div>
+      
+      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+    </div>
       </Container>
     </>
   );
