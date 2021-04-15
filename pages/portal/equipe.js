@@ -2,7 +2,9 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import WalletHeader from "../../src/layouts/WalletHeader";
 import user from "../../src/__MOCK__/user";
-export default function Equipe() {
+import Portal from "../../src/layouts/Portal";
+
+ function Equipe() {
   return (
     <>
       <Container fluid>
@@ -12,3 +14,7 @@ export default function Equipe() {
     </>
   )
 }
+
+Equipe.layout = Portal;
+
+export default Equipe;
