@@ -1,19 +1,23 @@
 import React from 'react'
 import { Button, Container, Row, Col,Table, Jumbotron } from "reactstrap";
 import {css} from "@emotion/react";
-export default function SimulationTable({periode,pool,capital}) {
-  let taux = 7.5;
+export default function SimulationTable({periode,pool,capital,taux}) {
+  // let taux = 7.5;
   
-  console.log("taux", pool)
-  if(periode===360){
-    taux = pool.taux360;
-    console.log("taux", pool.taux360)
-  } else if (periode===720){
-    taux = pool.taux720;
-  }
+  // console.log("taux", pool)
+  // if(periode===360){
+  //   taux = pool.taux360;
+  //   console.log("taux", pool.taux360)
+  // } else if (periode===720){
+  //   taux = pool.taux720;
+  // } else if (periode===1080){
+  //   taux = pool.taux1080;
+  // } else{
+  //   taux = pool.taux1800;
+  // }
   let recompense = parseInt(capital) * (parseFloat(taux)/100);
-  let total = (parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence);
-  let resume =  parseInt(capital) + total;
+  let interet = (parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence);
+  let resume =  parseInt(capital) + interet;
   return (
    <Table responsive  css={css`      
           `} >
@@ -29,7 +33,7 @@ export default function SimulationTable({periode,pool,capital}) {
               <tr>
 				        <td>{`${periode} Jours`}</td>
 				        <td>{recompense}</td>
-				        <td>{ total }</td>
+				        <td>{ interet }</td>
 				        <td>{resume}</td>				      
 				      </tr>
 				    </tbody>

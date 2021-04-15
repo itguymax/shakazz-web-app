@@ -7,8 +7,8 @@ const pools =  [
      percentage: "7.5%",
      taux360:7.5,
      taux720: 8.5,
-     taux1080: 8.5,
-     taux1800: 8.5,
+     taux1080: null,
+     taux1800: null,
      frequence: 30
   },
    {
@@ -18,7 +18,7 @@ const pools =  [
      taux360:51,
      taux720: 57,
      taux1080: 63,
-     taux1800: 63,
+     taux1800: null,
      frequence: 180
   },
    {
@@ -26,7 +26,7 @@ const pools =  [
      name: "Pool annuelle",
      percentage: "114%",
      taux360: 114,
-     taux720: 114,
+     taux720: null,
      taux1080: 132,
      taux1800: 144,
      frequence: 360

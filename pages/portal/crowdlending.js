@@ -12,6 +12,7 @@ import {
   Col,
   UncontrolledTooltip,
   Form,
+  Button,
   
 } from "reactstrap";
 // layout for this page
@@ -21,39 +22,26 @@ import Header from "../../src/components/Headers/Header.js";
 import WalletHeader from "../../src/layouts/WalletHeader"
 import user from "../../src/__MOCK__/user";
 import pools from "../../src/__MOCK__/pools";
+import coffres from "../../src/__MOCK__/coffres";
 import LightBoxContainer from '../../src/components/common/lightBoxContainer';
-import { Button } from "bootstrap";
 import { ArrowButton , FlatButton} from "../../src/components/common/SButton";
 import Sinput from "../../src/components/forms/Sinput";
 import SimulationTable from "../../src/components/SimulationTable";
 import Coffre from "../../src/components/coffre";
-import moment from "moment";
+import Router from "next/router";
+
 
 const Crowdlending = () => {
-    const calculateTimeLeft = () => {
-    let year = new Date().getFullYear();
-    console.log("year", year);
-    const difference = +new Date(`${year}-10-1`) - +new Date();
-    let timeLeft = {};
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
-  };
+ 
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
   const [is360, set360] = useState(true);
   const [is720, set720] = useState(false);
+  const [is1080, set1080] = useState(false);
+  const [is1800, set1800] = useState(false);
   const [capital, setCapital] = useState(100);
-  const [taux, setTaux] = useState(7.5);
-  const [coffre, setCoffre] = useState([]);
+  // const [taux, setTaux] = useState(7.5);
+  const [coffreDatas, setCoffreDatas] = useState([]);
   const [selectedPool, setSelectedPool] = useState( 
       {
      id: 1,
@@ -61,26 +49,42 @@ const Crowdlending = () => {
      percentage: "7.5%",
      taux360:7.5,
      taux720: 8.5,
-     taux1080: 8.5,
-     taux1800: 8.5,
+     taux1080: null,
+     taux1800: null,
      frequence: 30
   }
   );
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-  const [year] = useState(new Date().getFullYear());
+ 
 
 
 
   const periode360 = () => {
     console.log("360");
-    set360(!is360);
-    set720(!is720);
+    set360(true);
+    set720(false);
+    set1080(false);
+    set1800(false);
   };
   const periode720 = () => {
-     set720(!is720);
-     set360(!is360);
+     set720(true);
+     set360(false);
+     set1080(false);
+    set1800(false);
+  };
+  const periode1080 = () => {
+     set720(false);
+     set360(false);
+     set1080(true);
+    set1800(false);
+  };
+  const periode1800 = () => {
+     set720(false);
+     set360(false);
+     set1080(false);
+    set1800(true);
   };
   const onArrowClick = (pool) => {
+    periode360();
     setSelectedPool(pool);
     console.log("arrow clicked", pool);
   };
@@ -88,30 +92,40 @@ const Crowdlending = () => {
     console.log(parseInt(event.target.value));
     setCapital(parseInt(event.target.value));
   };
+  const periode = is360?360:is720?720:is1080?1080:1800;
+   let t = 7.5;
+  if(periode===360){
+    t = selectedPool.taux360;
+    console.log("taux", selectedPool.taux360)
+  } else if (periode===720){
+    t = selectedPool.taux720;
+  } else if (periode===1080){
+    t = selectedPool.taux1080;
+  } else{
+    t = selectedPool.taux1800;
+  }
+  const mesCoffres = [];
 
-  const timerComponents = [];
+  const ouvrirCoffre = () => {
+    let coffredata = {
+      poolName: selectedPool.name,
+      capital: capital,
+      interet: (parseInt(capital) * (parseFloat(t)/100)) * (periode / selectedPool.frequence),
+      periode: periode,
+      createdAt: new Date(),
 
-  Object.keys(timeLeft).forEach((interval) => {
-    if (!timeLeft[interval]) {
-      return;
     }
-
-    timerComponents.push(
-      <span>
-        {timeLeft[interval]} {interval}{" "}
-      </span>
-    );
-  });
-  useEffect(() => {
-    setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-  });
-console.log("date", moment().startOf('day').fromNow());
+    alert("creation coffre fort");
+    
+    setCoffreDatas([...coffreDatas, coffredata]);
+    console.log("coffre fort", coffreDatas);
+  }
+ console.log("coffre fort2", coffreDatas);
   return (
     <>
       <Container fluid>
       <WalletHeader wallets={user.wallet}/>
+      <Button onClick={()=> Router.push("/equipe") }> Equipe</Button>
      <Row className="mt-xl-3 mb-5">
        <Col xl={4}>
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>
@@ -146,8 +160,10 @@ console.log("date", moment().startOf('day').fromNow());
                   />
                   <small>minimum d'investissement est de 100 $</small>
                   <div className="mb-4 mt-5">
-                    <FlatButton disabled={is360} label="360" width="90px" bgc={is360?"#cc9933":"#444"} handleClick={ periode360}/>
-                    <FlatButton disabled={is720} label="720" width="90px"  bgc={is720?"#cc9933":"#444"} handleClick={ periode720}/>
+                    {selectedPool.taux360 && <FlatButton disabled={is360} label="360" width="90px" bgc={is360?"#cc9933":"#444"} handleClick={ periode360}/>}
+                    {selectedPool.taux720 && <FlatButton disabled={is720} label="720" width="90px"  bgc={is720?"#cc9933":"#444"} handleClick={ periode720}/>}
+                    {selectedPool.taux1080 &&  <FlatButton disabled={is1080} label="1080" width="90px"  bgc={is1080?"#cc9933":"#444"} handleClick={ periode1080}/>}
+                     {selectedPool.taux1800 &&  <FlatButton disabled={is1800} label="1800" width="90px"  bgc={is1800?"#cc9933":"#444"} handleClick={ periode1800}/>}
                   </div>
                  
               </div>
@@ -155,19 +171,21 @@ console.log("date", moment().startOf('day').fromNow());
                 <Container fluid className="py-3">
                    <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>               
                 </Container>
-                 <SimulationTable periode={is360?360:720} taux={taux} pool={selectedPool} capital={capital}/>
-                 <FlatButton  type="submit" label="Confirmer"  bgc="#cc9933" width="250px"/>
+                 <SimulationTable periode={periode} taux={t} pool={{name:selectedPool.name, frequence: selectedPool.frequence}} capital={capital}/>
+                 <FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>
               </Row>            
             </Form>
          </LightBoxContainer>
        </Col>
      </Row>
-      <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Statistiques</h2> 
-      <Coffre/>
-       <div>
-      
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-    </div>
+      {coffreDatas.length  > 0 && <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Mes coffres</h2> }
+      {/* <Coffre taux={t} periode={periode} pool={{name:selectedPool.name}} capital={capital} /> */}
+      {coffreDatas.length  > 0 ? <>
+        {
+          coffreDatas.map((item, key)=> <Coffre key={key} index={key} taux={t} interet={item.interet} periode={item.periode} pool={{name:item.poolName}} capital={item.capital} date={item.createdAt} />)
+        }
+      </> :null}
+       
       </Container>
     </>
   );
