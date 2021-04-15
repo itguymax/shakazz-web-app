@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-function Sdropdown({flag, phone, label, register, name, handleOnSelect,selectedOption,options}) {
+function Sdropdown({flag, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
  
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
@@ -78,6 +78,16 @@ function Sdropdown({flag, phone, label, register, name, handleOnSelect,selectedO
 
               )
             })}
+        </DropdownMenu>}
+         {sample && <DropdownMenu  name={name}  aria-labelledby="navbarDropdownMenuLink2">
+            {options.map( (option, i) => (
+                <li key={i}>
+                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                    {option.val}
+                  </DropdownItem>
+                </li>
+
+              ))}
         </DropdownMenu>}
       </UncontrolledDropdown>
     </div>

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import { Badge } from 'reactstrap';
 import Sinput from '../../src/components/forms/Sinput';
 import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-
+import DropdownSample from '../../src/components/forms/DropdownSample'
+import transactions from '../../src/helpers/transactions.js'
 // reactstrap components
 import {
   Button,
@@ -19,7 +20,6 @@ import {
   Row,
   Col,
   Media,
-  DropdownItem,
   Label,
 } from "reactstrap";
 // layout for this page
@@ -29,7 +29,6 @@ import Image from 'next/image'
 import UserHeader from "../../src/components/Headers/UserHeader.js";
 
 function Daily_transactions() {
-
   const Button = styled.button`
     background-color: #679966;
     border-radius: 20px;
@@ -45,12 +44,29 @@ function Daily_transactions() {
       background-color:white;
   }
 `
+let actual_page = {
+  page:1,
+  paginationId:"pagination1"
+};
+let portefeuille_data = [{val:'Starter::500:: 05-mars-2021'},{val:'Starter::600:: 06-mars-2021'}];
+let table_transaction_state = {paiement_nom:'croissant',
+                               date:'croissant',
+                               sortie_composee:'croissant',
+                               pourcentage_quotidien:'croissant'};
   return (
     <>
       {/* Page content */}
      
       <Global
       styles={css`
+        .bigContainer h1{
+          color:white;
+          font-size:1.1em;
+          cursor:pointer;
+        }
+        .bigContainer img{
+          cursor:pointer;
+        }
         .main-content{
           background-color:#143427 !important;
         }
@@ -61,6 +77,7 @@ function Daily_transactions() {
           height:4em;
           background-color:#679966;
           padding:1em;
+          padding-right:0.1em;
         }
          .dt_rowBlock2{
           margin-top:1.5em;
@@ -73,6 +90,29 @@ function Daily_transactions() {
           padding:1em;
           padding-top:2em;
           padding-bottom:0em;
+        }
+        .dt_rowBlock3_col2{
+        }
+        .dt_rowBlock3_col2 img{
+          cursor:pointer;
+        }
+        .dt_rowBlock3_col2 .page-link{
+          background-color:transparent;
+          border:none;
+          color:white;
+          width:1.4em;
+          height:1.5em;
+        }
+         .numberActive{
+          background-color:white;
+          border-radius:50%;
+          color:#143427;
+        }
+        .numberActive a{
+          background-color:white;
+          border-radius:50%;
+          color:#143427 !important;
+          font-weight:900;
         }
          .dt_rowBlock3_col1 {
           margin-left:4em;
@@ -106,22 +146,38 @@ function Daily_transactions() {
         }
         .buttonCustom{
           background-color:#D20000 !important;
-          width:15em !important;
-          height:3em !important;
-          margin-top:-0.5em !important;
+          width:12em !important;
+          height:2.8em !important;
+          margin-top:-0.1em !important;
           border-radius: 10px !important;
           padding:0.3em !important;
+          font-size:1em !important;
+          float:right;
         }
-        .buttonCustom:hover{
-          color: #D20000 !important;
+        .buttonCustom2{
+          background-color:#CC9933 !important;
+          width:5em !important;
+          height:2.8em !important;
+          margin-top:-0.1em !important;
+          border-radius: 10px !important;
+          padding:0.3em !important;
+          float:right;
+        }
+         .buttonCustom:hover{
+          color:#D20000 !important;
           background-color:white !important;
         }
+        .buttonCustom2:hover{
+          color: #CC9933 !important;
+          background-color:white !important;
+        }
+
         .dt_tableContainer{
           margin-top:-1em;
           width:95%;
           height:50em;
         }
-        .dt_tableContainer th,tr{
+        .dt_tableContainer th,tr,td{
           color:white !important;
           font-size:1em !important;
           font-weight:100 !important;
@@ -129,8 +185,32 @@ function Daily_transactions() {
         .dt_tableContainer tr{
           text-align:center;
         }
-        ..dt_rowBlock3 .pagination{
-          background-color:blue !important;
+        .dropdown-item{
+          background-color:transparent;
+        }
+        .dropdown-item:hover{
+          background-color:transparent !important;
+        }
+
+        .customDropdown .dropdown{
+           background-color:transparent;
+           width:13em;
+           margin-left:-1em;
+        }
+        .customDropdown .btn{
+          background-color:#143427;
+          border:none;
+          height:3em;
+          color:white;        }
+        .customDropdown .btn .dropdown-item{
+          color:white;
+          background-color:transparent;
+        }
+        .customDropdown .btn .dropdown-toggle::after{
+          color:white;
+        }
+        .customDropdown .btn:not(:last-child) {
+            margin-right: 0.1rem !important;
         }
         /*Responsive*/
         @media only screen and (max-width: 360px) {       
@@ -147,14 +227,29 @@ function Daily_transactions() {
         }
       `}
     />
-    <Container>
-        <p><span>
-        </span>Retour
-      </p>
+    <Container className="bigContainer">
+        <h1><span>
+        <Image 
+                              src="/assets/img/Down.png"
+                              alt="..." 
+                              height={15} width={25}
+                              style={{}}  
+                              /> 
+        </span> Retour
+      </h1>
       <Row className="dt_rowBlock1">
          <Col className="dt_rowBlock1_col1" xs="6" sm="4"><p>Package de sortie de composition</p></Col>
-         <Col xs="6" sm="4"></Col>
-         <Col sm="4"><Button className="buttonCustom">Arrêter de compiler</Button></Col>
+         <Col xs="6" sm="4">
+            <Row>
+               <Col className="customDropdown" xs="6" sm="6">
+                   <DropdownSample  selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
+               </Col>
+               <Col xs="6" sm="6">
+                <Button onClick={()=>{transactions.getTransactions()}} className="buttonCustom2">Voir</Button>
+               </Col>
+            </Row>
+         </Col>
+         <Col xs="6" sm="3"><Button className="buttonCustom">Arrêter de compiler</Button></Col>
       </Row>
        <Row className="dt_rowBlock2">
          <Col className="dt_rowBlock1_col2" xs="2" sm="2"><p>Résultats:</p>
@@ -162,14 +257,6 @@ function Daily_transactions() {
           <Col className="dt_rowBlock1_col3" xs="2" sm="3">
               <Row>
                <Col className="dt_rowBlock1_col3" xs="2" sm="2"><p>50</p></Col>
-               <Col xs="6" sm="2">
-                    <Image 
-                              src="/assets/img/icons/clic_button_down.svg"
-                              alt="..." 
-                              height={20} width={20}
-                              style={{}}  
-                              />
-               </Col>
             </Row>
           </Col>
           <Container className="dt_tableContainer">
@@ -178,36 +265,58 @@ function Daily_transactions() {
                       <thead>
                         <tr>
                           <th>S.NOM.</th>
-                          <th><Image 
+                          <th><Image onClick={()=>{
+                                if(table_transaction_state['paiement_nom'] == 'croissant'){
+                                  table_transaction_state['paiement_nom'] = 'decroissant';
+                                }else{
+                                  table_transaction_state['paiement_nom'] = 'croissant';
+                                }
+                                transactions.displayTransactions(table_transaction_state['paiement_nom'],1)
+                            }}
                               src="/assets/img/Down-1.png"
                               alt="..." 
                               height={15} width={15}
                               style={{}}  
                               /> PAIEMENT NOM</th>
-                          <th><Image 
+                          <th><Image onClick={()=>{
+                                if(table_transaction_state['date'] == 'croissant'){
+                                  table_transaction_state['date'] = 'decroissant';
+                                }else{
+                                  table_transaction_state['date'] = 'croissant';
+                                }
+                                transactions.displayTransactions(table_transaction_state['date'],2)
+                            }}
                               src="/assets/img/down up.png"
                               alt="..." 
                               height={15} width={15}
                               style={{}}  
                               /> DATE</th>
-                          <th><Image 
+                          <th><Image onClick={()=>{
+                                if(table_transaction_state['sortie_composee'] == 'croissant'){
+                                  table_transaction_state['sortie_composee'] = 'decroissant';
+                                }else{
+                                  table_transaction_state['sortie_composee'] = 'croissant';
+                                }
+                                transactions.displayTransactions(table_transaction_state['sortie_composee'],3)
+                            }}
                               src="/assets/img/down up.png"
                               alt="..." 
                               height={15} width={15}
                               style={{}}  
                               /> SORTIE COMPOSEE</th>
-                          <th><Image 
+                          <th><Image onClick={()=>{
+                                if(table_transaction_state['pourcentage_quotidien'] == 'croissant'){
+                                  table_transaction_state['pourcentage_quotidien'] = 'decroissant';
+                                }else{
+                                  table_transaction_state['pourcentage_quotidien'] = 'croissant';
+                                }
+                                transactions.displayTransactions(table_transaction_state['pourcentage_quotidien'],4)
+                            }}
                               src="/assets/img/down up.png"
                               alt="..." 
                               height={15} width={15}
                               style={{}}  
-                              /> POURCENTAGE QUOTIDDIEN</th>
-                          <th><Image 
-                              src="/assets/img/down up.png"
-                              alt="..." 
-                              height={15} width={15}
-                              style={{}}  
-                              /> </th>
+                              /> POURCENTAGE QUOTIDIEN</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -218,47 +327,80 @@ function Daily_transactions() {
                           <td>3,23</td>
                           <td>0,65%</td>
                         </tr>
+                        <tr>
+                          <th></th>
+                          <td></td>
+                          <td>Total</td>
+                          <td></td>
+                          <td></td>
+                        </tr>
                       </tbody>
                     </Table>
              </Row>
           </Container>
        </Row>
        <Row className="dt_rowBlock3">
-         <Col className="dt_rowBlock3_col1" xs="6" sm="4"><p>Affichage de page 1 sur 5</p></Col>
-         <Col sm="6">
+         <Col className="dt_rowBlock3_col1" xs="6" sm="3"><p id="update_actual_page" >Affichage de page 1 sur 5</p></Col>
+         <Col className="dt_rowBlock3_col2" sm="8">
                <Row>
                  <Col xs="6" sm="2">
-                      <Image 
+                      <Image onClick={()=>{
+                        if(actual_page['page'] > 1){
+                          transactions.navigationPage(actual_page,"prev",actual_page["page"]);
+                          actual_page['page'] --;
+                          actual_page['paginationId'] = "pagination"+actual_page['page']; 
+                        }    
+                      }}
                               src="/assets/img/Down.png"
                               alt="..." 
                               height={15} width={25}
                               style={{}}  
                               /> 
                  </Col>
-                 <Col xs="6" sm="4">
+                 <Col xs="6" sm="3" style={{marginLeft:"-2em"}}>
                       <Pagination aria-label="Page navigation example">
-                        <PaginationItem>
-                          <PaginationLink href="#">
+                        <PaginationItem id="pagination1" className="numberActive">
+                          <PaginationLink onClick={()=>{
+                                actual_page['page'] = 1;
+                                transactions.changePage("pagination1",actual_page['paginationId'],actual_page["page"]);
+                                actual_page['paginationId'] = "pagination1";
+                            }} href="#">
                             1
                           </PaginationLink>
                         </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#">
+                        <PaginationItem id="pagination2">
+                          <PaginationLink onClick={()=>{
+                                actual_page['page'] = 2;
+                                transactions.changePage("pagination2",actual_page['paginationId'],actual_page["page"]);
+                                 actual_page['paginationId'] = "pagination2";
+                            }} href="#">
                             2
                           </PaginationLink>
                         </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#">
+                        <PaginationItem id="pagination3">
+                          <PaginationLink href="#" onClick={()=>{
+                                actual_page['page'] = 3;
+                                transactions.changePage("pagination3",actual_page['paginationId'],actual_page["page"]);
+                                actual_page['paginationId'] = "pagination3";
+                            }}>
                             3
                           </PaginationLink>
                         </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#">
+                        <PaginationItem id="pagination4">
+                          <PaginationLink href="#" onClick={()=>{
+                                actual_page['page'] = 4;
+                                transactions.changePage("pagination4",actual_page['paginationId'],actual_page["page"]);
+                                actual_page['paginationId'] = "pagination4";
+                            }}>
                             4
                           </PaginationLink>
                         </PaginationItem>
-                        <PaginationItem>
-                          <PaginationLink href="#">
+                        <PaginationItem id="pagination5">
+                          <PaginationLink href="#" onClick={()=>{
+                                actual_page['page'] = 5;          
+                                transactions.changePage("pagination5",actual_page['paginationId'],actual_page["page"]);
+                                actual_page['paginationId'] = "pagination5";
+                            }}>
                             5
                           </PaginationLink>
                         </PaginationItem>
@@ -266,9 +408,17 @@ function Daily_transactions() {
                  </Col>
                  <Col sm="2">
                      <Image 
-                              src="/assets/img/Down-1.png"
+                              onClick={()=>{
+                                  if(actual_page['page'] < 5){
+                                    transactions.navigationPage(actual_page,"next",actual_page["page"]);
+                                    actual_page['page'] ++;
+                                    actual_page['paginationId'] = "pagination"+actual_page['page']; 
+                                  } 
+                                 }
+                              }
+                              src="/assets/img/Down@2x.png"
                               alt="..." 
-                              height={15} width={15}
+                              height={15} width={25}
                               style={{}}  
                               /> 
                  </Col>
