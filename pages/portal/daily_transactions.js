@@ -44,15 +44,47 @@ function Daily_transactions() {
       background-color:white;
   }
 `
+let page_data = [
+  {s_nom:"1",
+    paiement_nom:"20210305",
+    date:"5-mars-2021",
+    sortie_composee:"3.23",
+    pourcentage_quotidien:"0.45"
+  },
+  {s_nom:"1",
+    paiement_nom:"20210304",
+    date:"7-mars-2021",
+    sortie_composee:"1.23",
+    pourcentage_quotidien:"0.25"
+  },
+  {s_nom:"1",
+    paiement_nom:"20210303",
+    date:"8-mars-2021",
+    sortie_composee:"4.23",
+    pourcentage_quotidien:"0.15"
+  },
+  {s_nom:"1",
+    paiement_nom:"20210307",
+    date:"5-mars-2021",
+    sortie_composee:"7.23",
+    pourcentage_quotidien:"0.95"
+  },
+  {s_nom:"1",
+    paiement_nom:"20210309",
+    date:"9-mars-2021",
+    sortie_composee:"9.23",
+    pourcentage_quotidien:"0.85"
+  }
+];
 let actual_page = {
   page:1,
   paginationId:"pagination1"
 };
 let portefeuille_data = [{val:'Starter::500:: 05-mars-2021'},{val:'Starter::600:: 06-mars-2021'}];
-let table_transaction_state = {paiement_nom:'croissant',
-                               date:'croissant',
-                               sortie_composee:'croissant',
-                               pourcentage_quotidien:'croissant'};
+let table_transaction_state = {paiement_nom:'decroissant',
+                               date:'decroissant',
+                               sortie_composee:'decroissant',
+                               pourcentage_quotidien:'decroissant'};
   return (
     <>
       {/* Page content */}
@@ -245,7 +277,7 @@ let table_transaction_state = {paiement_nom:'croissant',
                    <DropdownSample  selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
                </Col>
                <Col xs="6" sm="6">
-                <Button onClick={()=>{transactions.getTransactions()}} className="buttonCustom2">Voir</Button>
+                <Button onClick={()=>{transactions.getTransactions(page_data)}} className="buttonCustom2">Voir</Button>
                </Col>
             </Row>
          </Col>
@@ -268,10 +300,11 @@ let table_transaction_state = {paiement_nom:'croissant',
                           <th><Image onClick={()=>{
                                 if(table_transaction_state['paiement_nom'] == 'croissant'){
                                   table_transaction_state['paiement_nom'] = 'decroissant';
+                                  transactions.sortTransactions(page_data,'paiement_nom',table_transaction_state['paiement_nom']);
                                 }else{
                                   table_transaction_state['paiement_nom'] = 'croissant';
+                                  transactions.sortTransactions(page_data,'paiement_nom',table_transaction_state['paiement_nom']);
                                 }
-                                transactions.displayTransactions(table_transaction_state['paiement_nom'],1)
                             }}
                               src="/assets/img/Down-1.png"
                               alt="..." 
@@ -281,10 +314,11 @@ let table_transaction_state = {paiement_nom:'croissant',
                           <th><Image onClick={()=>{
                                 if(table_transaction_state['date'] == 'croissant'){
                                   table_transaction_state['date'] = 'decroissant';
+                                  transactions.sortTransactions(page_data,'date',table_transaction_state['date']);
                                 }else{
                                   table_transaction_state['date'] = 'croissant';
+                                  transactions.sortTransactions(page_data,'date',table_transaction_state['date']);
                                 }
-                                transactions.displayTransactions(table_transaction_state['date'],2)
                             }}
                               src="/assets/img/down up.png"
                               alt="..." 
@@ -294,10 +328,11 @@ let table_transaction_state = {paiement_nom:'croissant',
                           <th><Image onClick={()=>{
                                 if(table_transaction_state['sortie_composee'] == 'croissant'){
                                   table_transaction_state['sortie_composee'] = 'decroissant';
+                                  transactions.sortTransactions(page_data,'sortie_composee',table_transaction_state['sortie_composee']);
                                 }else{
                                   table_transaction_state['sortie_composee'] = 'croissant';
-                                }
-                                transactions.displayTransactions(table_transaction_state['sortie_composee'],3)
+                                  transactions.sortTransactions(page_data,'sortie_composee',table_transaction_state['sortie_composee']);
+                                }                                
                             }}
                               src="/assets/img/down up.png"
                               alt="..." 
@@ -305,12 +340,13 @@ let table_transaction_state = {paiement_nom:'croissant',
                               style={{}}  
                               /> SORTIE COMPOSEE</th>
                           <th><Image onClick={()=>{
-                                if(table_transaction_state['pourcentage_quotidien'] == 'croissant'){
+                                 if(table_transaction_state['pourcentage_quotidien'] == 'croissant'){
                                   table_transaction_state['pourcentage_quotidien'] = 'decroissant';
+                                  transactions.sortTransactions(page_data,'pourcentage_quotidien',table_transaction_state['pourcentage_quotidien']);
                                 }else{
                                   table_transaction_state['pourcentage_quotidien'] = 'croissant';
+                                  transactions.sortTransactions(page_data,'pourcentage_quotidien',table_transaction_state['pourcentage_quotidien']);
                                 }
-                                transactions.displayTransactions(table_transaction_state['pourcentage_quotidien'],4)
                             }}
                               src="/assets/img/down up.png"
                               alt="..." 
@@ -319,21 +355,7 @@ let table_transaction_state = {paiement_nom:'croissant',
                               /> POURCENTAGE QUOTIDIEN</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <th>1</th>
-                          <td>20210305</td>
-                          <td>5-mars-2021</td>
-                          <td>3,23</td>
-                          <td>0,65%</td>
-                        </tr>
-                        <tr>
-                          <th></th>
-                          <td></td>
-                          <td>Total</td>
-                          <td></td>
-                          <td></td>
-                        </tr>
+                      <tbody id="table_body">
                       </tbody>
                     </Table>
              </Row>
