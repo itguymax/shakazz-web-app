@@ -2,18 +2,51 @@ import React from "react";
 
 // reactstrap components
 import {
-  Badge,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Table,
+    Table,
 } from "reactstrap";
 
-export default  function TabContent(props) {
-  return (
-    <>
-      <Table responsive className="" css={css`
+export default function TabContent(props) {
+
+    function tBody() {
+        let wrapper = [];
+        props.data.forEach(element => {
+            wrapper.push(
+                    <tr>
+                        <td >
+                            <div >
+                                {element.date}
+                            </div>
+                        </td>
+                        <td>
+                            <div >
+                                {element.date}
+                            </div>
+                        </td>
+                        <td>
+                            <div >
+                                {element.type}
+                            </div>
+                        </td>
+                        <td>
+                            <div >
+                                {element.statut}
+                            </div>
+                        </td>
+                        <td>
+                            <div >
+                                {element.montant}
+                            </div>
+                        </td>
+                    </tr>
+            )
+
+        })
+        return wrapper;
+    }
+
+    return (
+        <>
+            <Table responsive className="" css={css`
         border-spacing: 10px 10px!important;
         td:first-child { border-top-left-radius: 10px; }
         td:last-child { border-top-right-radius: 10px; }
@@ -57,10 +90,10 @@ export default  function TabContent(props) {
         
           
     `}>
-        
-        <thead className="" css={css`
+
+                <thead className="" css={css`
         `}>
-          <tr  style = {{ backgroundColor:'#CC9933', lineHeight :'0px'}} css={css`
+                    <tr style={{ backgroundColor: '#CC9933', lineHeight: '0px' }} css={css`
         div{
             color : #fff;
             font-family: 'Ubuntu';
@@ -71,38 +104,39 @@ export default  function TabContent(props) {
         }
         `}>
 
-            <th  className=" sort" rowspan="2" data-sort="ID" scope="col">
-                <div >
-                    ID
+                        <th className=" sort" rowspan="2" data-sort="ID" scope="col">
+                            <div >
+                                ID
                 </div>
-            </th>
-            <th  data-sort="Date" scope="">
-                <div >
-                    Date
+                        </th>
+                        <th data-sort="Date" scope="">
+                            <div >
+                                Date
                 </div>
-                
-            </th>
-            <th  data-sort="Type" scope="">
-                <div >
-                    Type
+
+                        </th>
+                        <th data-sort="Type" scope="">
+                            <div >
+                                Type
                 </div>
-                
-            </th>
-            <th data-sort="Statut" scope="">
-                <div >
-                    Statut
+
+                        </th>
+                        <th data-sort="Statut" scope="">
+                            <div >
+                                Statut
                 </div>
-                
-            </th>
-            <th data-sort="Montant" scope="">
-                <div >
-                    Montant
+
+                        </th>
+                        <th data-sort="Montant" scope="">
+                            <div >
+                                Montant
                 </div>
-                
-            </th>
-          </tr>
-        </thead>
-        <tbody className=""  css={css`
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody className="" css={css`
+            // display: table;
             td{ 
                 padding: 0px;
                 font-weight: bold;
@@ -111,7 +145,6 @@ export default  function TabContent(props) {
             }
             tr{
                 background-color : #9999;
-                border-collapse:separate!important; 
                 border-spacing: 10px 10px!important;
             }
             div{
@@ -124,94 +157,11 @@ export default  function TabContent(props) {
 
         
             `}>
-            
-          <tr className="">
-            <td >
-                <div >
-                    pending
-                </div>
-            </td>
-            <td>
-                <div >
-                    pending
-                </div>
-            </td>
-            <td>
-                <div >
-                    pending
-                </div>
-            </td>
-            <td>
-              <div >
-                iciciciciicicicici
-              </div>
-            </td>
-            <td>
-                <div >
-                    pending
-                </div>
-            </td>
-          </tr>
-            <div></div>
-          <tr className="">
-            <td >
-                <div>
-                    pending
-                </div>
-            </td>
-            <td>
-                <div>
-                    pending
-                </div>
-            </td>
-            <td>
-                <div>
-                    pending
-                </div>
-            </td>
-            <td>
-              <div >
-                iciciciciicicicici
-              </div>
-            </td>
-            <td>
-                <div>
-                    pending
-                </div>
-            </td>
-          </tr>
-          <div></div>
-          <tr className="">
-            <td >
-                <div>
-                    pending
-                </div>
-            </td>
-            <td>
-                <div>
-                    pending
-                </div>
-            </td>
-            <td>
-                <div>
-                    pending
-                </div>
-            </td>
-            <td>
-              <div >
-                iciciciciicicicici
-              </div>
-            </td>
-            <td>
-                <div>
-                    pending
-                </div>
-            </td>
-          </tr>
 
-        </tbody>
-      </Table>
-    </>
-  );
+                    {tBody()}
+                </tbody>
+            </Table>
+        </>
+    );
 }
 

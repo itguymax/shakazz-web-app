@@ -12,33 +12,39 @@ import Portal from "../../src/layouts/Portal.js";
 import Text from "../../src/components/transaction/divText";
 import Button from "../../src/components/transaction/button";
 import NavPil from "../../src/components/transaction/navPil";
+import FakeData from "../../src/__MOCK/transaction"
 
 function Transactions() {
   const [currentHTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
-  
+  // const [hTabsIcons, setHTabsIcons] = React.useState("hTabsIcons-1");
+  const [activeButton, setActiveButton] = useState("");
   function indexPrimaty(tabIndex){
-    console.log('le le le le le :',tabIndex)
-    setHTabsIcons(tabIndex);
+    
+      setHTabsIcons("hTabsIcons-1");
+    
   }
 
-  useEffect(() => {
+  const handleSetHTabs = (indic) => { 
+    setHTabsIcons(indic);
+  }
 
-  });
+  let data = FakeData();
+  console.log('ici ici ici ici ici ici ici ici ici', data)
   
   return (
       <Container fluid>
         <Row className="justify-content-md-center">
-          <Text text = "Historique de vos transactions:"/>
+          <Text text = "WalletHistorique de vos transactions:"/>
         </Row>
         <Row className="justify-content-md-center">
-          <Button index="hTabsIcons-1" setTab={indexPrimaty} color = "#007A5E" nom = "Dépot"/>
-          <Button index="hTabsIcons-2" setTab={indexPrimaty} color = "#CE1126"  nom = "Retrait"/>
-          <Button index="hTabsIcons-3" setTab={indexPrimaty} color = "#CC9933"  nom = "Transfert"/>
+          <Button index="bt-1" setTab={indexPrimaty} color = "#007A5E" nom = "Dépot"/>
+          <Button index="bt-2" setTab={indexPrimaty} color = "#CE1126"  nom = "Retrait"/>
+          <Button index="bt-3" setTab={indexPrimaty} color = "#CC9933"  nom = "Transfert"/>
         </Row>
-        <Row className="">
+        <Row clbt-3assName="">
           <Text text = "Historique"/>
         </Row>
-        <NavPil currentHTabsIcons =  {currentHTabsIcons}/>
+        <NavPil data = {data} handleSetHTabs =  {handleSetHTabs}  currentHTabsIcons =  {currentHTabsIcons}/>
       </Container>
   );
 }

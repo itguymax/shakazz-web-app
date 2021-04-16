@@ -8,7 +8,7 @@ export default function CustomButton(props)  {
 
     const Button = styled.button`
     background-color: ${props.color};
-    border-radius: 10px;
+    border-radius: 10px; 
     color: white;
     padding: 5px;
     margin : 10px;
@@ -19,8 +19,8 @@ export default function CustomButton(props)  {
 //       color: ${props.color};
 //       background-color:white;
 //       div.color:${props.color}; 
-//   }
-`
+    //   }
+    `
 
     return( 
         <Button onClick={()=>props.setTab(props.index)}>
