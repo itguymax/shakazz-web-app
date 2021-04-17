@@ -7,7 +7,7 @@ import config from "../config"
 const PreInscription = ({bleu, white}) => {
   return (
        <>
-       <Global
+        <Global
           styles={css`
             .buttonAnimation{
               cursor:pointer;
@@ -16,7 +16,6 @@ const PreInscription = ({bleu, white}) => {
             .buttonAnimation:hover{
               transform: scale(1.2);
             }
-
           `}
         />
       <div
@@ -55,7 +54,7 @@ const PreInscription = ({bleu, white}) => {
                 <h2 className={white?"":"text-white"} style={{color: white? "#333":""}}>Réservez votre place </h2>
                 <h2 className= { white?"":"text-white p-0 mt--2  mb-4"} style={{color: white? "#333":""}}> en cliquant ici</h2>
               </div>
-               <a href={config.preInscriptionLink}  className="buttonAnimation" target="_blank" style={{ background: bleu|white?'#cc993a 0% 0% no-repeat padding-box':'#24422F 0% 0% no-repeat padding-box', cursor:'pointer', width:"200px", textAlign:"center", padding:'12px 10px 12px 10px', borderRadius:'20px',  font: 'normal normal normal 16px/14px Ubuntu', color:'#fff', marginBottom: "20px"}}>Pré-inscription</a>
+               <a href={config.preInscriptionLink} className="buttonAnimation" target="_blank" style={{ background: bleu|white?'#cc993a 0% 0% no-repeat padding-box':'#24422F 0% 0% no-repeat padding-box', cursor:'pointer', width:"200px", textAlign:"center", padding:'12px 10px 12px 10px', borderRadius:'20px',  font: 'normal normal normal 16px/14px Ubuntu', color:'#fff', marginBottom: "20px"}}>Pré-inscription</a>
         </Container>
       </div>
     </>

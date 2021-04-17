@@ -3,6 +3,7 @@ import Link from "next/link";
 import {css } from "@emotion/react"
 // reactstrap components
 import {NavLink} from "reactstrap";
+
 function NavigationLink({ label, href }) {
   const router = useRouter()
   const style = {

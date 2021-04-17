@@ -72,6 +72,12 @@ const PlanCard = ({pool, durree, roi, description}) => {
                    width:300px;
                    /* margin-left: -85px; */
                  }
+                  .plan_animation{
+                   transition: all .8s ease-in-out;
+                 }
+                 .plan_animation :hover{
+                   transform: scale(1.5);
+                 }
                  @media(max-width: 370px){
                      width:250px;
                       margin-right: 55px;

@@ -18,7 +18,8 @@ import { css } from "@emotion/react";
 import { device } from "../../lib/device"
 import menuItems from './PublicHeaderData';
 import { useRouter } from "next/router";
-import  NavigationLink from '../NavigationLink'
+import  NavigationLink from '../NavigationLink';
+import Image from "next/image";
 
 function AdminNavbar() {
   const router = useRouter();
@@ -27,15 +28,24 @@ function AdminNavbar() {
   return (
     <>
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md" style={{backgroundColor: isBlog?'#fff':'#244230', opacity:1}}>
-        <Container className="px-4">
+        <Container className="px-4" css={css` 
+              .navbar-horizontal .navbar-brand img {
+                    height: 46px ;
+                    width: 100%;    
+                }
+        `}>
           <Link href="/">
             <span>
               <NavbarBrand href="/">
-                {/* <img
-                  alt="..."
-                  src={require("assets/img/brand/nextjs_argon_white.png")}
-                /> */}
-                <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0}}>Shakazz</h3>
+                <Image
+                  alt="Logo Shakazz"
+                  src={isBlog?"/assets/img/brand/png_logo-vert-sans-symbole.svg" :"/assets/img/brand/logo-barre-or-sans-symbole.svg"}
+                  width={100}
+                  height={50}
+                  priority={true}
+
+                />
+                {/* <h3 style={{font: 'normal normal bold 25px/26px Ubuntu', color: isBlog ? '#244230':'#fff', letterSpacing: 0, position:"relative"}}>Shakazz <span style={{ position:"absolute", height:"5px", width:"35px", backgroundColor:"#cc9933", bottom:"-7px", right:"0px" }}/></h3> */}
 
               </NavbarBrand>
             </span>
@@ -61,9 +71,7 @@ function AdminNavbar() {
                   </Link>
                 </Col>
                 <Col className="collapse-close" xs="6">
-                  <button className="navbar-toggler" id="navbar-collapse-main" 
-                 
-                  >
+                  <button className="navbar-toggler" id="navbar-collapse-main">
                     <span />
                     <span />
                   </button>
@@ -88,18 +96,18 @@ function AdminNavbar() {
                   }
                `}>
                <Button 
-               onClick={()=> router.push('/auth/login')}
+               onClick={()=> router.push('/auth/pre-inscription')}
                className="btn-white mr-lg-3" 
                style={{height: '40px', border: '2px solid #707070', width: '130px', border:"1px solid #707070 "}}
-               
+               disabled={router.asPath==="/auth/pre-inscription"}
                >Connexion</Button>
               </div>
               <div className="text-center">
                <Button 
-               onClick={()=> router.push('/auth/register')}
+               onClick={()=> router.push('/auth/pre-inscription')}
                style={{height: '40px', border:'none', color:"#fff", width: '130px', backgroundColor:"#707070"}} 
                className="btn-default"
-              
+               disabled={router.asPath==="/auth/pre-inscription"}
                >Inscription</Button>
               </div>
           </UncontrolledCollapse>

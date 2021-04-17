@@ -34,7 +34,7 @@ function Index() {
           <title>Shakazz | Elargissez vos opportunités d’affaires</title>
         <meta
           name="description"
-          content="Shakazz vous propose des plans d’investissement adaptés à votre environnement socioéconomique et au confort financier de votre portefeuille."
+          content="Shakazz vous propose des pools de liquidités adaptés à vos besoins."
         />
         <link rel="canonical" href={`${config.canonicalLink}`}/>
 
@@ -57,11 +57,27 @@ function Index() {
         <meta name="twitter:title" content="Website" />
         <meta
           name="twitter:description"
-          content="Shakazz vous propose des plans d’investissement adaptés à votre environnement socioéconomique et au confort financier de votre portefeuille."
+          content="Shakazz vous propose des pools de liquidités adaptés à vos besoins"
         />
       </Head>
       <div>
-    <Carousel className="home_page_section_shakazz"> 
+    <Carousel className="home_page_section_shakazz" 
+        css={css` 
+             
+              .carousel-indicators .active {
+                background-color: #CC9933;
+                opacity: 1;
+              }
+              @media ${device.smMobileMax}{
+                .carousel-control-prev{
+                left: -20px;
+              }
+              .carousel-control-next{
+                right: -20px;
+              }
+              }
+        `}
+    > 
       <Carousel.Item>
           <Jumbotron className="home_page_section_shakazz_jumbotron mb-7" css={css`
           @media ${device.smMobileMax}{

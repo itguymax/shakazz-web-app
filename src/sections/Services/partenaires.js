@@ -111,7 +111,7 @@ function PartenairesSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
      const slides = items.map((item,index, el) => {
-      console.log("gdggdffg dex", index, el[index]);
+      // console.log("gdggdffg dex", index, el[index]);
      let index2 =0
       let ellet = el.lenght;
       if(index===3){
