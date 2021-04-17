@@ -43,6 +43,7 @@ function Dashboard() {
       <Container>
       <h1>Dashboard</h1>
       <a href="/portal/kyc">Kyc</a>
+      <a href="/portal/daily_transactions">daily t</a>
          <Row className="mt-5">
                   
            <Col className="mb-5 mb-xl-0" xl="9">

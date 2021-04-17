@@ -89,17 +89,17 @@ function Kyc() {
       `}
     />
      <Container>
-        <h2>IMPORTER LES DOCUMENTS</h2>
+        <h2 style={{color:"black"}}>IMPORTER LES DOCUMENTS</h2>
         <FileUploadBlock text="Votre passport ou CNI"/>
         <FileUploadBlock text="Votre plan de localisation"/>   
         <FileUploadBlock text="Documents facultatifs"/>      
-        <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2>Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2></Col> 
+        <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2></Col> 
         <Button>Envoyez!</Button>
       </Container>
     </>
   );
 }
 
-Kyc.layout = Portal;
+// Kyc.layout = Portal;
 
 export default Kyc;

@@ -23,6 +23,7 @@ function FileUploadBlock({text}) {
     source_file.type = "file";
     source_file.multiple = "false";
     source_file.click();
+    return source_file;
   };
    const Button = styled.button`
     background-color: #679966;
@@ -43,7 +44,7 @@ function FileUploadBlock({text}) {
   return ( 
          <Row className="wrapper"  style={{marginBottom:"1em"}}>
            <Col className="colLeft" xs="5" style={{border:"1px solid #e5e5e5",borderRadius:"10px",paddingLeft:"8em",paddingTop:"0.5em",paddingBottom:"0.5em"}}>
-                <h4>{text}<Badge style={{padding:"0.3em",backgroundColor:"#FF0000"}}color="success"> </Badge>
+                <h4 style={{color:"black"}}>{text}<Badge style={{padding:"0.3em",backgroundColor:"#FF0000"}}color="success"> </Badge>
                 <Badge style={{float:"right",padding:"0.4em",backgroundColor:"#32DC00"}}color="success"> </Badge></h4>
                     <Row>                  
                        <Col xs="12"><Button onClick={() => launchUpload()} style={{padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}}>Ajouter</Button><span> Aucun fichier choisit</span></Col>
