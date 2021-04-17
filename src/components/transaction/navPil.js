@@ -5,6 +5,7 @@ import {
     Nav,
     TabContent,
     TabPane,
+    Container,
     Row,
 } from "reactstrap";
 // Core Components
@@ -30,6 +31,7 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
 
     return (
         <>
+        <Container>
             <div style={{ padding: '0px' }} className="nav-wrapper" css={css`
         .nav-link{
               color:#fff;
@@ -52,7 +54,7 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-4" text={items[3].altText}/>
             </Nav>
             </div>
-            <Row style={{ borderBottom: '2px solid #888 ', marginBottom: '15px', marginTop: '0px' }}>
+            <Row style={{ borderBottom: '2px solid #888 ', marginBottom: '15px', marginTop: '0px', marginLeft : '4px', marginRight :'4px' }}>
             </Row>
                 <CardBody  css={css`
                     padding : 0px;
@@ -72,6 +74,7 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
                         </TabPane>
                     </TabContent>
                 </CardBody>
+                </Container>
         </>
     );
 }
