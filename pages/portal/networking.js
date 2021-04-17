@@ -1,115 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 
 // reactstrap components
-import { Card, Container, Row } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal.js";
+// import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 // core components
-import Header from "../../src/components/Headers/Header.js";
-// const MapWrapper = () => {
-//   const mapRef = React.useRef(null);
-//   React.useEffect(() => {
-//     let google = window.google;
-//     let map = mapRef.current;
-//     let lat = "40.748817";
-//     let lng = "-73.985428";
-//     const myLatlng = new google.maps.LatLng(lat, lng);
-//     const mapOptions = {
-//       zoom: 13,
-//       center: myLatlng,
-//       scrollwheel: false,
-//       zoomControl: true,
-//       styles: [
-//         {
-//           featureType: "administrative",
-//           elementType: "labels.text.fill",
-//           stylers: [{ color: "#444444" }],
-//         },
-//         {
-//           featureType: "landscape",
-//           elementType: "all",
-//           stylers: [{ color: "#f2f2f2" }],
-//         },
-//         {
-//           featureType: "poi",
-//           elementType: "all",
-//           stylers: [{ visibility: "off" }],
-//         },
-//         {
-//           featureType: "road",
-//           elementType: "all",
-//           stylers: [{ saturation: -100 }, { lightness: 45 }],
-//         },
-//         {
-//           featureType: "road.highway",
-//           elementType: "all",
-//           stylers: [{ visibility: "simplified" }],
-//         },
-//         {
-//           featureType: "road.arterial",
-//           elementType: "labels.icon",
-//           stylers: [{ visibility: "off" }],
-//         },
-//         {
-//           featureType: "transit",
-//           elementType: "all",
-//           stylers: [{ visibility: "off" }],
-//         },
-//         {
-//           featureType: "water",
-//           elementType: "all",
-//           stylers: [{ color: "#5e72e4" }, { visibility: "on" }],
-//         },
-//       ],
-//     };
+import  RowUnderline from '../../src/components/networking/RowUnderline';
+import  Youtube from '../../src/components/networking/youtube';
+import  Flyer from '../../src/components/networking/flyer';
+import  Licence from '../../src/components/networking/licence';
+import  Carte from '../../src/components/networking/carte';
+import  Link from '../../src/components/networking/lien';
+import  Pdf from '../../src/components/networking/pdf';
 
-//     map = new google.maps.Map(map, mapOptions);
-
-//     const marker = new google.maps.Marker({
-//       position: myLatlng,
-//       map: map,
-//       animation: google.maps.Animation.DROP,
-//       title: "Light Bootstrap Dashboard PRO React!",
-//     });
-
-//     const contentString =
-//       '<div class="info-window-content"><h2>Argon Dashboard PRO React</h2>' +
-//       "<p>A free Admin for Reactstrap, Bootstrap, React, and React Hooks.</p></div>";
-
-//     const infowindow = new google.maps.InfoWindow({
-//       content: contentString,
-//     });
-
-//     google.maps.event.addListener(marker, "click", function () {
-//       infowindow.open(map, marker);
-//     });
-//   }, []);
-//   return (
-//     <div
-//       style={{ height: `600px` }}
-//       className="map-canvas"
-//       id="map-canvas"
-//       ref={mapRef}
-//     />
-//   );
-// };
 
 function Networking() {
+const onChange = (index) => {
+  setLink(index)
+}
+
+const [link, setLink] = useState(
+ 0
+)
+
+const user = {
+  nom : "Ludovic Feutse",
+  poste : "Poste",
+  email : "feutseludovic@gmail.com",
+  tel : "(+237-696-404-016)",
+  site : "ludovicFeutse.com",
+  address : "ekounou",
+}
+
+function selectComponent(){
+  if(link == 0)
+   return <Carte/>
+  if(link == 1) 
+    return <Flyer/>
+  if(link == 2) 
+    return <Licence/>
+  if(link == 3) 
+    return <Link/>
+  if(link == 4) 
+    return <Pdf/>
+  if(link == 5) 
+    return <Youtube/>  
+  }
+
+
+
   return (
     <>
       {/* <Header /> */}
-      {/* Page content */}
-      <Container fluid>
-         <div style={{ display: 'flex', justifyContent: 'center', alignItems:'center'}}>
-       <p> Networking</p>
-     </div>
-          {/* <div className="col">
-             <Card className="shadow border-0">
-              <MapWrapper />
-            </Card> 
-
-          </div> */}
-        
+      <div style={{height:"150px"}}></div>
+      <Container fluid>   
+        <div className="align-items-center"> 
+          <Row className="" style =  {{  }}>
+            <Col className="" xl="4" lg="5" md="12" xs="12" style =  {{ }}>
+              <div style =  {{ }}>
+                  <RowUnderline user={user} item = "0" selectElement = {onChange} titre = "Carte Visite" image = '/assets/img/download.png' /> 
+                  <RowUnderline item = "1" selectElement = {onChange}  titre = "Flyers" image = '/assets/img/download.png' /> 
+                  <RowUnderline item = "2" selectElement = {onChange} titre = "Licence" image = '/assets/img/download.png' /> 
+                  <RowUnderline item = "3" selectElement = {onChange} titre = "Lien d'affiliation" image = '/assets/img/link.png' /> 
+                  <RowUnderline item = "4" selectElement = {onChange} titre = "PDF networker" image = '/assets/img/download.png' /> 
+                  <RowUnderline item = "5" selectElement = {onChange} titre = "Vidéeo de présentation" image = '/assets/img/download.png' /> 
+              </div>
+            
+            </Col>
+            <Col className="d-flex  flex-wrap align-items-center " xl="8" lg="7" md="12" xs="12" style={{width: '50%'}}  >
+            
+            {selectComponent()}
+          </Col>
+          </Row>
+        </div>
       </Container>
     </>
   );
