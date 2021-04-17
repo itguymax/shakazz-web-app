@@ -24,6 +24,15 @@ const [link, setLink] = useState(
  0
 )
 
+const user = {
+  nom : "Ludovic Feutse",
+  poste : "Poste",
+  email : "feutseludovic@gmail.com",
+  tel : "(+237-696-404-016)",
+  site : "ludovicFeutse.com",
+  address : "ekounou",
+}
+
 function selectComponent(){
   if(link == 0)
    return <Carte/>
@@ -39,6 +48,8 @@ function selectComponent(){
     return <Youtube/>  
   }
 
+
+
   return (
     <>
       {/* <Header /> */}
@@ -48,7 +59,7 @@ function selectComponent(){
           <Row className="" style =  {{  }}>
             <Col className="" xl="4" lg="5" md="12" xs="12" style =  {{ }}>
               <div style =  {{ }}>
-                  <RowUnderline item = "0" selectElement = {onChange} titre = "Carte Visite" image = '/assets/img/download.png' /> 
+                  <RowUnderline user={user} item = "0" selectElement = {onChange} titre = "Carte Visite" image = '/assets/img/download.png' /> 
                   <RowUnderline item = "1" selectElement = {onChange}  titre = "Flyers" image = '/assets/img/download.png' /> 
                   <RowUnderline item = "2" selectElement = {onChange} titre = "Licence" image = '/assets/img/download.png' /> 
                   <RowUnderline item = "3" selectElement = {onChange} titre = "Lien d'affiliation" image = '/assets/img/link.png' /> 

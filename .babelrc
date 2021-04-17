@@ -13,7 +13,6 @@
   "plugins": [
     "@babel/plugin-syntax-jsx",
     "@emotion/babel-plugin",
-    "react-hot-loader/babel",
     [
       "styled-components",
       {
