@@ -7,6 +7,7 @@ import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import DropdownSample from '../../src/components/forms/DropdownSample'
 import transactions from '../../src/helpers/transactions.js'
+import page_data from '../../src/__MOCK__/daily_transactions.js'
 // reactstrap components
 import {
   Button,
@@ -44,38 +45,6 @@ function Daily_transactions() {
       background-color:white;
   }
 `
-let page_data = [
-  {s_nom:"1",
-    paiement_nom:"20210305",
-    date:"5-mars-2021",
-    sortie_composee:"3.23",
-    pourcentage_quotidien:"0.45"
-  },
-  {s_nom:"1",
-    paiement_nom:"20210304",
-    date:"7-mars-2021",
-    sortie_composee:"1.23",
-    pourcentage_quotidien:"0.25"
-  },
-  {s_nom:"1",
-    paiement_nom:"20210303",
-    date:"8-mars-2021",
-    sortie_composee:"4.23",
-    pourcentage_quotidien:"0.15"
-  },
-  {s_nom:"1",
-    paiement_nom:"20210307",
-    date:"5-mars-2021",
-    sortie_composee:"7.23",
-    pourcentage_quotidien:"0.95"
-  },
-  {s_nom:"1",
-    paiement_nom:"20210309",
-    date:"9-mars-2021",
-    sortie_composee:"9.23",
-    pourcentage_quotidien:"0.85"
-  }
-];
 let actual_page = {
   page:1,
   paginationId:"pagination1"
@@ -255,7 +224,20 @@ let table_transaction_state = {paiement_nom:'decroissant',
             
         }
         @media only screen and (max-width: 1024px) {
-         
+         .dt_rowBlock1_col1 p{
+          font-size:0.9em;
+          }
+          .buttonCustom{
+            width:10em !important;
+            margin-right:-4em;
+          }
+          .buttonCustom2{
+            width:5em !important;
+            margin-right:-6em;
+          }
+          .dt_rowBlock3_col2{
+            margin-right:-2em !important;
+          }
         }
       `}
     />
