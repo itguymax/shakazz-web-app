@@ -59,8 +59,8 @@ const NotreMarche = () => {
               `}
               className="pl-lg-5 pl-md-5 " style={{color: "#fff", fontWeight:"bold"}}>Notre  marché en un coup d'œil </h1>
                   <Row className="mt-5 mt-lg-8 pb-8 justify-content-center"  >
-                    <MarketCard title="Afrique" imageUrl="/assets/img/icons/Afrique.svg" sub="c’est le marché qui détient le plus fort potentiel de croissance sur les  50  prochaines  années."/>
-                    <MarketCard title="Cryptomonnaies" imageUrl="/assets/img/icons/cryptomonnaie.svg" sub="ce sont les actifs financiers qui observent la plus forte croissance sur les 10 dernières années."/>
+                    <MarketCard title="Afrique" imageUrl="/assets/img/icons/Afrique.svg" sub="C’est le marché qui détient le plus fort potentiel de croissance sur les  50  prochaines  années."/>
+                    <MarketCard title="Cryptomonnaies" imageUrl="/assets/img/icons/cryptomonnaie.svg" sub="Ce sont les actifs financiers qui observent la plus forte croissance sur les 10 dernières années."/>
                  </Row>
               </Container>
           </Card>

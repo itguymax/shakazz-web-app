@@ -1,15 +1,16 @@
 import React from "react";
 import {css} from "@emotion/react";
 import Image from "next/image";
+import {device} from "../lib/device";
 import { TabPane, Nav, Row, NavItem, NavLink, Container} from 'reactstrap';
-const TabH = ({indicator, text,hTabsIcons,handleSetHTabs}) => {
+const TabH = ({indicator, text,hTabsIcons,handleSetHTabs, image, textStyle}) => {
   return (
      <NavItem css={css`
      
      `}>
             <NavLink
               className={
-                "mb-sm-3 mb-md-3" +
+               (!image ? "": "mb-sm-3 mb-md-3") +
                 ( hTabsIcons === indicator ? "active" : "")
               }
               href="#itguymax"
@@ -38,10 +39,18 @@ const TabH = ({indicator, text,hTabsIcons,handleSetHTabs}) => {
                   align-items: center;
 
                  }
+                 @media ${device.laptop}{
+                      h3{
+
+
+                   padding-left: 0px;
+                   
+                 }
+                 }
              `}>
                  
-                  <Image priority={true}  quality={100} width="35px" height="35px" src={hTabsIcons === indicator ? "/assets/img/icons/icon_activated.svg" : "/assets/img/icons/icon_non-activated.svg"} />
-                <h3 > {text} { hTabsIcons === indicator && <span/>}</h3>
+                 {image &&  <Image priority={true}  quality={100} width="35px" height="35px" src={hTabsIcons === indicator ? "/assets/img/icons/icon_activated.svg" : "/assets/img/icons/icon_non-activated.svg"} />}
+                <h3 style={textStyle}> {text} { hTabsIcons === indicator && <span/>}</h3>
               
              </Container>
             

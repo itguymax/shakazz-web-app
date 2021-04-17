@@ -50,7 +50,7 @@ function Blog({ posts }) {
           content="Découvrez nos articles, et apprenez des experts."
         />
       </Head>
-       <BlogHero featuredPosts={posts}/>
+       {/* <BlogHero featuredPosts={posts}/> */}
        <LastArticles posts={posts}/>
        <Subscription/>
     </>

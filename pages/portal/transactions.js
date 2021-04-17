@@ -12,7 +12,7 @@ import Portal from "../../src/layouts/Portal.js";
 import Text from "../../src/components/transaction/divText";
 import Button from "../../src/components/transaction/button";
 import NavPil from "../../src/components/transaction/navPil";
-import FakeData from "../../src/__MOCK/transaction"
+import FakeData from "../../src/__MOCK__/transaction"
 
 function Transactions() {
   const [currentHTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");

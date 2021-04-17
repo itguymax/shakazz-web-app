@@ -1,9 +1,9 @@
 /*Start Home Page*/
 .carousel .carousel-indicators li {
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   border-radius: 100%;
-  background-color: black;
+  background-color: #fff;
 }
 .nav-tabs a {
   height: 100%;
@@ -20,7 +20,7 @@
 	width:2em;
 }
 .home_page_section_shakazz {
-  height: 35em;
+  height: calc(100vh - 88px);
   background-color: #0e251d;
   color: white;
   background-image: url("/assets/img/we.jpg");
@@ -473,7 +473,7 @@
   width: 20em;
 }
 .aboutus_page_section_image {
-  height: 36em;
+  height: calc(100vh - 88px);
   padding-top: 8em !important;
   background-color: #333333 !important;
   border-radius: 0 !important;
@@ -530,7 +530,7 @@
 	color:white;
 } 
 .services_page_section_image {
-  height: 36em;
+  height: calc( 100vh - 88px);
   padding-top: 8em !important;
   background-color: #143427 !important;
   border-radius: 0 !important;
@@ -803,7 +803,7 @@
 /*End about Page*/
 /*Start plans Page*/
 .plans_page_section_image {
-  height: 36em;
+  height: calc(100vh - 88px);
   padding-top: 8em !important;
   background-color: #143427 !important;
   border-radius: 0 !important;

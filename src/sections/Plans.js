@@ -32,6 +32,12 @@ const PlanCard = ({pool, durree, roi, description}) => {
              <div className="d-flex p-2 pt-3 align-items-center justify-content-center" style={{borderRadius:"50px", border:"1px solid #6f6f6f"}}
              css={css`
                  width:250px;
+                 .plan_animation{
+                   transition: all .8s ease-in-out;
+                 }
+                 .plan_animation :hover{
+                   transform: scale(1.5);
+                 }
                  @media (max-width: 600px){
                    width:300px;
                    /* margin-left: -85px; */
@@ -66,6 +72,12 @@ const PlanCard = ({pool, durree, roi, description}) => {
                    width:300px;
                    /* margin-left: -85px; */
                  }
+                  .plan_animation{
+                   transition: all .8s ease-in-out;
+                 }
+                 .plan_animation :hover{
+                   transform: scale(1.5);
+                 }
                  @media(max-width: 370px){
                      width:250px;
                       margin-right: 55px;
@@ -99,9 +111,9 @@ const Plans = ()=> {
   return (
     <>  
       <Container fluid className="pt-6" >
-          <div className="text-center">  
+          <div className="text-center plan_animation">  
             <h1 style={{color: "#6F6F6F"}}>Plans</h1>
-             <p>sélectionnez le plan qui correspond au confort de vos attentes.</p>
+             <p>Sélectionnez le plan qui correspond au confort de vos attentes.</p>
           </div>
           
                <Container fluid css={css`
