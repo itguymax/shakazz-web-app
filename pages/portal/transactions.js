@@ -13,10 +13,10 @@ import Text from "../../src/components/transaction/divText";
 import Button from "../../src/components/transaction/button";
 import NavPil from "../../src/components/transaction/navPil";
 import FakeData from "../../src/__MOCK__/transaction"
+import  { Link } from "../../src/components/Link";
 
 function Transactions() {
   const [currentHTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
-  // const [hTabsIcons, setHTabsIcons] = React.useState("hTabsIcons-1");
   const [activeButton, setActiveButton] = useState("");
   function indexPrimaty(tabIndex){
     
@@ -29,17 +29,16 @@ function Transactions() {
   }
 
   let data = FakeData();
-  console.log('ici ici ici ici ici ici ici ici ici', data)
   
   return (
       <Container fluid>
         <Row className="justify-content-md-center">
-          <Text text = "WalletHistorique de vos transactions:"/>
+          <Text text = "Faites une transaction:"/>
         </Row>
         <Row className="justify-content-md-center">
-          <Button index="bt-1" setTab={indexPrimaty} color = "#007A5E" nom = "Dépot"/>
-          <Button index="bt-2" setTab={indexPrimaty} color = "#CE1126"  nom = "Retrait"/>
-          <Button index="bt-3" setTab={indexPrimaty} color = "#CC9933"  nom = "Transfert"/>
+          <Link label="Dépot" path="/portal/depot" style={{ margin: '10px',height:'30px' ,backgroundColor: '#007A5E', cursor:'pointer', padding:'5px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
+          <Link label="Retrait" path="/portal/retrait" style={{ margin: '10px',height:'30px' ,backgroundColor: '#CE1126', cursor:'pointer', padding:'5px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
+          <Link label="Transfert" path="/portal/transfert" style={{ margin: '10px',height:'30px' ,backgroundColor: '#CC9933', cursor:'pointer', padding:'5px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
         </Row>
         <Row clbt-3assName="">
           <Text text = "Historique"/>
