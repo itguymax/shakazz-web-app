@@ -7,16 +7,19 @@ import Pi from "../../src/components/pre_inscription";
 import Public from '../../src/layouts/Public';
  function PreInscription() {
   return (
-    <div>
-      <div style={{width:"100%"}}>
-        <Container className=" d-flex justify-content-center aling-items-center" fluid style = {{
-              minHeight: "600px",
-            }}> 
+    <>
+      
+       <div className=" d-flex justify-content-center aling-items-center" css={css`
+          height: calc(90vh - 88px);
+
+       `}>
+           <Container className=" d-flex justify-content-center aling-items-center" fluid > 
           <Image src= "/assets/img/enconstruction.png" priority={true}  layout="fill"/>
         </Container>
-      </div>
+       </div>
+      
       <Pi bleu/>
-    </div>
+    </>
   );
 }
 

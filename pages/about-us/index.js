@@ -244,7 +244,7 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
 								</Card.Body>
 							</Card>
 						</Col>
-				        <TeamCard nom="Yvan FOTSO" poste="CEO" img="/assets/img/photoequipe/yvan.png"/>
+				    <TeamCard nom="Yvan FOTSO" poste="CEO" img="/assets/img/photoequipe/yvan.png"/>
 						<TeamCard nom="Maximilien TOUMI WANTCHO" poste="Responsable IT" img="/assets/img/photoequipe/toumi.png"/>
 						<TeamCard nom="Cyrille FOKA" poste="Analyste financier" img="/assets/img/photoequipe/foka.png"/>
 						<TeamCard nom="Alexandre DJENGUE" poste="Directeur Artistique" img="/assets/img/photoequipe/alex.png"/>

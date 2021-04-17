@@ -1,14 +1,5 @@
 import { Button, Container, Row, Col } from "reactstrap";
 import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-  Card,
-  CardBody,
-  NavItem,
-  NavLink,
   Nav,
   TabContent,
   TabPane,
@@ -119,11 +110,11 @@ const PresentationSection = ()=>{
             }
          `}
          >
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-1" text="Participer au pool de liquidité" />
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-2" text="Gestion, acquisition de produits numériques" />
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="Monitoring et suivi des positions et participation" />
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-4"  text="Partage des interêts" />
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-5" text="satisfaction des membres de la communauté" />  
+         <TabH image={true}  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-1" text="Participer au pool de liquidité" />
+         <TabH  image={true}  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-2" text="Gestion, acquisition de produits numériques" />
+         <TabH image={true}   handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="Monitoring et suivi des positions et participation" />
+         <TabH  image={true}  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-4"  text="Partage des interêts" />
+         <TabH  image={true}  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-5" text="satisfaction des membres de la communauté" />  
         </Nav>
       </div>
       <div className="">

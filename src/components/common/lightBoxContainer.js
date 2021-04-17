@@ -13,7 +13,8 @@ import { Card } from "reactstrap";
           borderRadius: bderr, 
           height,
           width,
-          flexDirection: direction
+          flexDirection: direction,
+          overflow: "hidden"
 
         }}
     >
