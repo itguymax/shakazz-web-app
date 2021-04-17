@@ -255,7 +255,20 @@ let table_transaction_state = {paiement_nom:'decroissant',
             
         }
         @media only screen and (max-width: 1024px) {
-         
+         .dt_rowBlock1_col1 p{
+          font-size:0.9em;
+          }
+          .buttonCustom{
+            width:10em !important;
+            margin-right:-4em;
+          }
+          .buttonCustom2{
+            width:5em !important;
+            margin-right:-6em;
+          }
+          .dt_rowBlock3_col2{
+            margin-right:-2em !important;
+          }
         }
       `}
     />
