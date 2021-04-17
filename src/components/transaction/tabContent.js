@@ -48,7 +48,7 @@ export default function TabContent(props) {
             color : #fff;
             font-family: 'Ubuntu';
             font-weight:' bold';
-            font-size 15px;
+            font-size: 15px;
             text-align: center;
             padding : 5px;
         }
@@ -66,8 +66,8 @@ export default function TabContent(props) {
                 padding: 0px;
                 font-weight: bold;
                 margin : 3px;
-                // vertical-align: middle;
-                // padding:0px
+                /* // vertical-align: middle; */
+                /* // padding:0px */
             }
             tr{
                 background-color : #9999;
@@ -78,7 +78,7 @@ export default function TabContent(props) {
             }
             div{
                 color : #444444;
-                font-size 14px;
+                font-size: 14px;
                 font-family: Ubuntu;
                 text-align: center;
                 vertical-align: center;
