@@ -125,7 +125,7 @@ const Crowdlending = () => {
     <>
       <Container fluid>
       <WalletHeader wallets={user.wallet}/>
-      <Button onClick={()=> Router.push("/equipe") }> Equipe</Button>
+      <Button onClick={()=> Router.push("equipe") }> Equipe</Button>
      <Row className="mt-xl-3 mb-5">
        <Col xl={4}>
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>
