@@ -94,6 +94,7 @@ export default function TabContent(props) {
                         <td><div >{item.statut}</div></td>
                         <td><div >{item.montant}</div></td>
                     </tr>
+                    <div></div>
               </>
                 })}
                 </tbody>
