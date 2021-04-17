@@ -48,7 +48,7 @@ export default function TabContent(props) {
             color : #fff;
             font-family: 'Ubuntu';
             font-weight:' bold';
-            font-size 15px;
+            font-size : 15px;
             text-align: center;
             padding : 5px;
         }
@@ -64,25 +64,21 @@ export default function TabContent(props) {
                 <tbody className="" css={css`
             td{ 
                 padding: 0px;
-                font-weight: bold;
                 margin : 3px;
                 // vertical-align: middle;
                 // padding:0px
             }
             tr{
-                background-color : #9999;
-                border-spacing: 10px!important;
-                border-collapse : separate;
-                height : 40px!important;
-                
+                background-color : rgba(112,112,112,0.1);
             }
             div{
                 color : #444444;
-                font-size 14px;
+                font-size : 14px;
                 font-family: Ubuntu;
                 text-align: center;
                 vertical-align: center;
                 padding : 7px ;
+                opacity: 1!important:
             }
             `}>
                 {props.data.map( (item, key)=> {

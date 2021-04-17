@@ -31,22 +31,31 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
 
     return (
         <>
+
         <Container>
             <div style={{ padding: '0px' }} className="nav-wrapper" css={css`
         .nav-link{
               color:#fff;
               font-size:bold;
-              background-color:#707070;
+             
+              height : 35px;
+              text-align : left;
+              padding : 8px;
+              box-shadow: none;
+              background: #707070;
               &:hover {
                 color:#fff; 
         }
-        .nav-link.active {
-            color:#FFF;
-            font-size:bold;
-            background-color:#679966;
-        }
+        
     `}>
-            <Nav style={{ margin: '0px', padding: '0px' }} className="nav-fill flex-column flex-xl-row flex-lg-row flex-md-row" pills role="">   
+            <Nav style={{ margin: '0px', padding: '0px' }} className="nav-fill flex-column flex-xl-row flex-lg-row flex-md-row" pills css={css`    
+            .nav-link.active{
+                    background-color: #679966;
+                    &:hover {
+                    color:#fff; 
+            }
+                
+            `}>  
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-1"  text={items[0].altText}/>
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-2" text={items[1].altText}/>
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-3" text={items[2].altText}/>
