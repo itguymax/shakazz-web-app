@@ -26,9 +26,9 @@ function Login() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  useEffect(()=>{
-    router.push("pre-inscription");
-  })
+  // useEffect(()=>{
+  //   router.push("pre-inscription");
+  // })
   const recaptchaRef = useRef();
   const [show, setShow] = useState(false);
   const [verified, setVerified]= useState(false);

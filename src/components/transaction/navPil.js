@@ -37,6 +37,7 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
               background-color:#707070;
               &:hover {
                 color:#fff; 
+              }
         }
         .nav-link.active {
             color:#FFF;

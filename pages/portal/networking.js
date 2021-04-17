@@ -13,6 +13,8 @@ import  Licence from '../../src/components/networking/licence';
 import  Carte from '../../src/components/networking/carte';
 import  Link from '../../src/components/networking/lien';
 import  Pdf from '../../src/components/networking/pdf';
+import WalletHeader from "../../src/layouts/WalletHeader";
+import userdata from "../../src/__MOCK__/user";
 
 
 function Networking() {
@@ -53,9 +55,10 @@ function selectComponent(){
   return (
     <>
       {/* <Header /> */}
-      <div style={{height:"150px"}}></div>
+      
       <Container fluid>   
-        <div className="align-items-center"> 
+        <WalletHeader wallets={userdata.wallet}/>
+        <div className="align-items-center mt-5"> 
           <Row className="" style =  {{  }}>
             <Col className="" xl="4" lg="5" md="12" xs="12" style =  {{ }}>
               <div style =  {{ }}>

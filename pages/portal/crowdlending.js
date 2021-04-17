@@ -18,6 +18,7 @@ import {
 // layout for this page
 import Portal from "../../src/layouts/Portal";
 // core components
+
 import Header from "../../src/components/Headers/Header.js";
 import WalletHeader from "../../src/layouts/WalletHeader"
 import user from "../../src/__MOCK__/user";

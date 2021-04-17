@@ -153,7 +153,7 @@ avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et
        <Container fluid className=" py-6 home_page_section_started">
         <Row className="jutify-content-center">
           <Col xl="6" lg="6"  className="home_page_section_started_col1">
-              <iframe  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=3.880607,%2011.535363+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="200" height="100" frameBorder="0" style={{border:0}} allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+              <iframe  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=3.880607,%2011.535363+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="200" height="100" frameBorder="0" style={{border:0}} allowFullScreen="" aria-hidden="false" tabIndex="0"></iframe>
           </Col>
           <Col xl="6"  lg="6">
             <Jumbotron className="home_page_section_started_jumbotron">
