@@ -16,7 +16,9 @@ import {
 import Image from 'next/image';
 
 function FileUploadBlock({text}) {
+	
   const launchUpload = () => {
+    
     const source_file = document.createElement("input");
     source_file.type = "file";
     source_file.multiple = "false";
@@ -45,7 +47,7 @@ function FileUploadBlock({text}) {
                 <h4 style={{color:"black"}}>{text}<Badge style={{padding:"0.3em",backgroundColor:"#FF0000"}}color="success"> </Badge>
                 <Badge style={{float:"right",padding:"0.4em",backgroundColor:"#32DC00"}}color="success"> </Badge></h4>
                     <Row>                  
-                       <Col xs="12"><Button onClick={()=>{launchUpload()}} style={{padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}}>Ajouter</Button><span style={{color:"black",opacity:"0.6"}}> Aucun fichier choisit</span></Col>
+                       <Col xs="12"><Button onClick={() => launchUpload()} style={{padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}}>Ajouter</Button><span> Aucun fichier choisit</span></Col>
                     </Row>
            </Col>
         </Row>

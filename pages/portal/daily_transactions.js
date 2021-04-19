@@ -6,8 +6,9 @@ import Sinput from '../../src/components/forms/Sinput';
 import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import DropdownSample from '../../src/components/forms/DropdownSample'
-import transactions from '../../src/helpers/transactions.js'
-import page_data from '../../src/__MOCK__/daily_transactions.js'
+import transactions from '../../src/helpers/transactions.js';
+import page_data from '../../src/__MOCK__/daily_transactions.js';
+import AdminBleu from '../../src/layouts/AdminBleu';
 // reactstrap components
 import {
   Button,
@@ -241,7 +242,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
         }
       `}
     />
-    <Container className="bigContainer">
+    <Container className="bigContainer" fluid>
         <h1><span>
         <Image 
                               src="/assets/img/Down.png"
@@ -434,6 +435,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
   );
 }
 
-Daily_transactions.layout = Portal;
+// .layout = Portal;
 
+Daily_transactions.layout = AdminBleu;
 export default Daily_transactions;

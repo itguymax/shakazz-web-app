@@ -34,7 +34,7 @@ function DropdownSample({flag, sample, phone, label,name, handleOnSelect,selecte
                     </DropdownToggle>
                     <DropdownMenu>
                        {options.map( (option, i) => (
-                            <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                            <DropdownItem  key={i} tag="button" onClick={onOptionClicked(option)}>
                               {option.val}
                             </DropdownItem>
 
