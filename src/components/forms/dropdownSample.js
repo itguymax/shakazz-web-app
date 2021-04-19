@@ -15,32 +15,31 @@ import Image from 'next/image';
 
 function DropdownSample({flag, sample, phone, label,name, handleOnSelect,selectedOption,options}) {
  
-  // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggle = () => setDropdownOpen(prevState => !prevState);
-  const onOptionClicked = value => () => {
-    handleOnSelect(value);
-    toggle();
-    
+  const [open, setIsOpen] = useState(false);
+   const toggle = () => setIsOpen(prevState => !prevState);
+   const onOptionClicked = (value) => {
+     const actualOption = document.getElementById("actualOption");
+     actualOption.innerHTML = value;
   };
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle caret>
+    //direction="left"
+    <UncontrolledDropdown isOpen={open} toggle={toggle}>
+        <DropdownToggle caret>
                       {selectedOption && (
-                         <DropdownItem  tag="div">
+                         <DropdownItem id="actualOption">
                            {selectedOption.val}
                         </DropdownItem>
                         )}
                     </DropdownToggle>
-                    <DropdownMenu>
+                  <DropdownMenu>
                        {options.map( (option, i) => (
-                            <DropdownItem  key={i} tag="button" onClick={onOptionClicked(option)}>
+                            <DropdownItem  key={i} onClick={()=>{onOptionClicked(option.val)}}>
                               {option.val}
                             </DropdownItem>
 
                         ))}
                     </DropdownMenu>
-                  </Dropdown>
+      </UncontrolledDropdown>
   );
 }
 
