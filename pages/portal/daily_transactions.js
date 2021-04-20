@@ -7,7 +7,7 @@ import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import DropdownSample from '../../src/components/forms/DropdownSample'
 import transactions from '../../src/helpers/transactions.js'
-import {page_data,stakePeriode} from '../../src/__MOCK__/daily_transactions.js'
+import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js'
 // reactstrap components
 import {
   Button,
@@ -49,7 +49,6 @@ let actual_page = {
   page:1,
   paginationId:"pagination1"
 };
-let portefeuille_data = [{val:'Starter::500:: 05-mars-2021'},{val:'Starter::600:: 06-mars-2021'}];
 let table_transaction_state = {paiement_nom:'decroissant',
                                date:'decroissant',
                                sortie_composee:'decroissant',
@@ -245,7 +244,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
     />
     <Container className="bigContainer">
         <h1><span>
-        <Image 
+        <Image onClick={()=>{ window.history.back();}}
                               src="/assets/img/Down.png"
                               alt="..." 
                               height={15} width={25}
@@ -258,7 +257,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
          <Col xs="6" sm="4">
             <Row>
                <Col className="customDropdown" xs="6" sm="6">
-                   <DropdownSample  selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
+                   <DropdownSample idDd={"dt_portefeuilles"} selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
                </Col>
                <Col xs="6" sm="6">
                 <Button onClick={()=>{transactions.getTransactions(page_data)}} className="buttonCustom2">Voir</Button>

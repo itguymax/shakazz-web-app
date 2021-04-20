@@ -143,7 +143,7 @@ function Profile() {
               <Form>
                 <Row form>
                   <Col md={12}>
-                        <DropDownC label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
                   <Col md={12} className="profileCol">
                       <Sinput
@@ -171,7 +171,7 @@ function Profile() {
                   </Col>
                   <Col md={12}>
                     <FormGroup>
-                        <DropDownC label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
+                        <DropDownC idDd={"profile_pays"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
                     </FormGroup>
                   </Col>
                   <Col md={12}>
@@ -244,7 +244,7 @@ function Profile() {
                         />
                   </Col>
                   <Col md={12}>
-                        <DropDownC label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                        <DropDownC  idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
                   </Col>
                   <Col md={12}>
                           <Sinput
@@ -259,7 +259,7 @@ function Profile() {
                             />
                    </Col> 
                    <Col md={6}>
-                        <DropDownC label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
+                        <DropDownC idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
                    </Col>                      
                 </Row>
               </Form>

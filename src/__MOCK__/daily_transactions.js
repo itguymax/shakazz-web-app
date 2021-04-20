@@ -303,4 +303,7 @@ let page_data = [
   },
 ];
 let stakePeriode = 360;
-export {page_data,stakePeriode};
+let portefeuille_data = [{val:'Starter::500:: 05-mars-2021'},{val:'Starter::600:: 06-mars-2021'}];
+export {page_data,
+stakePeriode,
+portefeuille_data};

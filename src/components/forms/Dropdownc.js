@@ -1,6 +1,7 @@
 import { Flex } from "@theme-ui/components";
 import React, {useState, useEffect} from "react";
 import {Global,css} from "@emotion/react"
+import dropdown_toggle from '../../helpers/dropdown_toggle.js'
 // reactstrap components
 import {
   DropdownToggle,
@@ -12,7 +13,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-function Sdropdown({flag, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
+function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
  
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ function Sdropdown({flag, sample, phone, label, register, name, handleOnSelect,s
       <UncontrolledDropdown isOpen={open} toggle={toggle} >
         <DropdownToggle   innerRef={register()}  caret color="" id="navbarDropdownMenuLink2" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
           {selectedOption && (
-           <DropdownItem  tag="div" style={{marginRight: "100px"}}>
+           <DropdownItem  id={idDd} tag="div" style={{marginRight: "100px"}}>
              {selectedOption.val}
           </DropdownItem>
           )}
@@ -36,7 +37,7 @@ function Sdropdown({flag, sample, phone, label, register, name, handleOnSelect,s
         <DropdownMenu  name={name}  aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => (
                 <li key={i}>
-                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                  <DropdownItem id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle(option.val,idDd)}>
                     {option.val}
                   </DropdownItem>
                 </li>
@@ -53,7 +54,7 @@ function Sdropdown({flag, sample, phone, label, register, name, handleOnSelect,s
                           height={10} width={20}
                           style={{backgroundColor:"#000",margin:"auto"}}  
                           />
-                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                  <DropdownItem  tag="button" id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle(option.name,idDd)}>
                     {option.name}
                   </DropdownItem>
                 </li>
@@ -61,17 +62,17 @@ function Sdropdown({flag, sample, phone, label, register, name, handleOnSelect,s
               )
             })}
         </DropdownMenu>}
-        {phone && <DropdownMenu  name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
+        {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => {
               return (
-                <li key={i} style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex',width:'3em !important'}}>
+                <li  style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
                   <Image 
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
                           alt="..." 
                           height={10} width={20}
                           style={{backgroundColor:"#000",margin:"auto"}}  
                           />
-                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                  <DropdownItem key={i} id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle('+'+option.callingCodes,idDd)}>
                     {'+'+option.callingCodes}
                   </DropdownItem>
                 </li>
