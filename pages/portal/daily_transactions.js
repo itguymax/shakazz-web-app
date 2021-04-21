@@ -6,9 +6,8 @@ import Sinput from '../../src/components/forms/Sinput';
 import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import DropdownSample from '../../src/components/forms/DropdownSample'
-import transactions from '../../src/helpers/transactions.js';
-import page_data from '../../src/__MOCK__/daily_transactions.js';
-import AdminBleu from '../../src/layouts/AdminBleu';
+import transactions from '../../src/helpers/transactions.js'
+import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js'
 // reactstrap components
 import {
   Button,
@@ -50,7 +49,6 @@ let actual_page = {
   page:1,
   paginationId:"pagination1"
 };
-let portefeuille_data = [{val:'Starter::500:: 05-mars-2021'},{val:'Starter::600:: 06-mars-2021'}];
 let table_transaction_state = {paiement_nom:'decroissant',
                                date:'decroissant',
                                sortie_composee:'decroissant',
@@ -83,7 +81,8 @@ let table_transaction_state = {paiement_nom:'decroissant',
         }
          .dt_rowBlock2{
           margin-top:1.5em;
-          height:50em;
+          min-height:50em;
+          height:auto;
           background-color:#679966;
           padding:1em;
         }
@@ -177,7 +176,8 @@ let table_transaction_state = {paiement_nom:'decroissant',
         .dt_tableContainer{
           margin-top:-1em;
           width:95%;
-          height:50em;
+          height:auto;
+          min-height:50em;
         }
         .dt_tableContainer th,tr,td{
           color:white !important;
@@ -242,9 +242,9 @@ let table_transaction_state = {paiement_nom:'decroissant',
         }
       `}
     />
-    <Container className="bigContainer" fluid>
+    <Container className="bigContainer">
         <h1><span>
-        <Image 
+        <Image onClick={()=>{ window.history.back();}}
                               src="/assets/img/Down.png"
                               alt="..." 
                               height={15} width={25}
@@ -257,7 +257,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
          <Col xs="6" sm="4">
             <Row>
                <Col className="customDropdown" xs="6" sm="6">
-                   <DropdownSample  selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
+                   <DropdownSample idDd={"dt_portefeuilles"} selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
                </Col>
                <Col xs="6" sm="6">
                 <Button onClick={()=>{transactions.getTransactions(page_data)}} className="buttonCustom2">Voir</Button>
@@ -280,21 +280,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
                       <thead>
                         <tr>
                           <th>S.NOM.</th>
-                          <th><Image onClick={()=>{
-                                if(table_transaction_state['paiement_nom'] == 'croissant'){
-                                  table_transaction_state['paiement_nom'] = 'decroissant';
-                                  transactions.sortTransactions(page_data,'paiement_nom',table_transaction_state['paiement_nom']);
-                                }else{
-                                  table_transaction_state['paiement_nom'] = 'croissant';
-                                  transactions.sortTransactions(page_data,'paiement_nom',table_transaction_state['paiement_nom']);
-                                }
-                            }}
-                              src="/assets/img/Down-1.png"
-                              alt="..." 
-                              height={15} width={15}
-                              style={{}}  
-                              /> PAIEMENT NOM</th>
-                          <th><Image onClick={()=>{
+                          <th><Image id="sortimgdate" onClick={()=>{
                                 if(table_transaction_state['date'] == 'croissant'){
                                   table_transaction_state['date'] = 'decroissant';
                                   transactions.sortTransactions(page_data,'date',table_transaction_state['date']);
@@ -308,7 +294,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
                               height={15} width={15}
                               style={{}}  
                               /> DATE</th>
-                          <th><Image onClick={()=>{
+                          <th><Image id="sortimgsortie_composee" onClick={()=>{
                                 if(table_transaction_state['sortie_composee'] == 'croissant'){
                                   table_transaction_state['sortie_composee'] = 'decroissant';
                                   transactions.sortTransactions(page_data,'sortie_composee',table_transaction_state['sortie_composee']);
@@ -321,8 +307,8 @@ let table_transaction_state = {paiement_nom:'decroissant',
                               alt="..." 
                               height={15} width={15}
                               style={{}}  
-                              /> SORTIE COMPOSEE</th>
-                          <th><Image onClick={()=>{
+                              /> GAIN JOURNALIER</th>
+                          <th><Image id="sortimgpourcentage_quotidien" onClick={()=>{
                                  if(table_transaction_state['pourcentage_quotidien'] == 'croissant'){
                                   table_transaction_state['pourcentage_quotidien'] = 'decroissant';
                                   transactions.sortTransactions(page_data,'pourcentage_quotidien',table_transaction_state['pourcentage_quotidien']);
@@ -435,7 +421,6 @@ let table_transaction_state = {paiement_nom:'decroissant',
   );
 }
 
-// .layout = Portal;
+Daily_transactions.layout = Portal;
 
-Daily_transactions.layout = AdminBleu;
 export default Daily_transactions;
