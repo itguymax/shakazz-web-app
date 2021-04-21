@@ -36,9 +36,9 @@ function Transactions() {
           <Text text = "Faites une transaction:"/>
         </Row>
         <Row className="justify-content-md-center">
-          <Link label="Dépot" path="/portal/depot" style={{ margin: '10px',height:'30px' ,backgroundColor: '#007A5E', cursor:'pointer', padding:'5px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
-          <Link label="Retrait" path="/portal/retrait" style={{ margin: '10px',height:'30px' ,backgroundColor: '#CE1126', cursor:'pointer', padding:'5px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
-          <Link label="Transfert" path="/portal/transfert" style={{ margin: '10px',height:'30px' ,backgroundColor: '#CC9933', cursor:'pointer', padding:'5px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
+          <Link label="Dépot" path="/portal/depot" style={{ margin: '10px',height:'35px' ,backgroundColor: '#007A5E', cursor:'pointer', padding:'8px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
+          <Link label="Retrait" path="/portal/retrait" style={{ margin: '10px',height:'35px' ,backgroundColor: '#CE1126', cursor:'pointer', padding:'8px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
+          <Link label="Transfert" path="/portal/transfert" style={{ margin: '10px',height:'35px' ,backgroundColor: '#CC9933', cursor:'pointer', padding:'8px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
         </Row>
         <Row clbt-3assName="">
           <Text text = "Historique"/>
