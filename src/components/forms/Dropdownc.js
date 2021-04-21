@@ -47,7 +47,7 @@ function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSe
         {flag && <DropdownMenu  name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => {
               return (
-                <li key={i} style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex',width:'3em !important'}}>
+                <li key={i} style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
                   <Image 
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
                           alt="..." 
@@ -62,7 +62,7 @@ function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSe
               )
             })}
         </DropdownMenu>}
-        {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
+        {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
                 <li  style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>

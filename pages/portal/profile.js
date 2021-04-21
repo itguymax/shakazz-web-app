@@ -62,7 +62,7 @@ function Profile() {
         input{
           background-color: #f0f0f0 !important;
           border:1px solid white !important;
-          width:17em !important;
+          width:15em !important;
         }
         input[type="text"]{
           background-color: #f0f0f0 !important;
@@ -80,7 +80,7 @@ function Profile() {
         button[id="navbarDropdownMenuLink2"]{
           background-color: #f0f0f0 !important;
           border:1px solid #f0f0f0 !important;
-          width:18em !important;
+          width:10em !important;
           border-radius: 15px !important;
           padding-right:1em !important;
           padding-right:1em !important;
@@ -95,7 +95,8 @@ function Profile() {
           cursor:pointer;
         }
         #navbarDropdownMenuLink2{
-          width:17em !important;
+          min-width:3em !important;
+          width:auto !important;
         }
         /*Responsive*/
         @media only screen and (max-width: 360px) {       
@@ -243,8 +244,23 @@ function Profile() {
                         handleOnchange={()=>{}}
                         />
                   </Col>
-                  <Col md={12}>
-                        <DropDownC  idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                  <Col md={12} style={{display:"flex"}}>
+                     <Row>
+                        <Col sm={6}>
+                          <DropDownC  idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                        </Col>
+                        <Col sm={6}>
+                           <Sinput
+                              label=""
+                              name="name"
+                              register={()=>{}}
+                              iStyle={{borderRadius:"15px", overflow:"hidden",marginTop:"2.9em"}}
+                              inputBg="#fff"
+                              type="text"
+                              handleOnchange={()=>{}}
+                              />
+                        </Col>
+                     </Row>                      
                   </Col>
                   <Col md={12}>
                           <Sinput
