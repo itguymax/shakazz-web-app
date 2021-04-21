@@ -1,3 +1,4 @@
+import {stakePeriode} from '../__MOCK__/daily_transactions.js'
 const getTransactions = (data)=>{
     displayTransactions(data);
 };
@@ -14,8 +15,17 @@ const sortTransactions = (data,col,mode)=>{
               return comparison;
         }
         data.sort(compare);
+        let imageName = "sortimg"+col;
+        const imageId = document.getElementById(imageName);
         if(mode == "decroissant"){
+            requestAnimationFrame(()=>{
+              imageId.srcset="/assets/img/Down2.png";
+            })
              data.reverse();
+        }else{
+          requestAnimationFrame(()=>{
+              imageId.srcset="/assets/img/Down-1.png";
+            })
         }
     return displayTransactions(data);
 };
@@ -35,22 +45,22 @@ const displayTransactions = (data)=>{
     let total_sortie_composee = 0;
     let total_pourcentage_quotidien = 0;
     data.map((x)=>{
+      let pourcentageQuotidien = x.pourcentage_quotidien/parseInt(stakePeriode);
            wrapper +=`<tr>
                           <th>${x.s_nom}</th>
-                          <td>${x.paiement_nom}</td>
                           <td>${x.date}</td>
                           <td>${x.sortie_composee}</td>
-                          <td>${x.pourcentage_quotidien}</td>
+                          <td>${Math.round((pourcentageQuotidien + Number.EPSILON) * 10000) / 10000}%</td>
                         </tr>`;
                         total_sortie_composee += parseFloat(x.sortie_composee);
                         total_pourcentage_quotidien += parseFloat(x.pourcentage_quotidien);
     });
     wrapper+=`<tr>
                  <th></th>
-                          <td></td>
-                          <td><strong>Total</strong></td>
+                          <td>Total</strong></td>
                           <td><strong>${Math.round((total_sortie_composee + Number.EPSILON) * 100) / 100}</strong></td>
                           <td><strong>${Math.round((total_pourcentage_quotidien + Number.EPSILON) * 100) / 100}</strong></td>
+                          <td></td>
                         </tr>`;
     requestAnimationFrame(()=>{
        table_body.innerHTML = wrapper;
