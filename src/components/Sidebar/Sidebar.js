@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
+import Image from "next/image";
 
 // reactstrap components
 import {
@@ -68,7 +69,8 @@ function Sidebar(props) {
               active={activeRoute(prop.layout + prop.path)}
               onClick={closeCollapse}
             >
-              <i className={prop.icon} />
+             <img className="mr-2"  src={activeRoute(prop.layout + prop.path)? prop.icon1: prop.icon2} style={{width:"15px", height:"20px" }}/>
+              {/* <i className={prop.icon} /> */}
               {prop.name}
             </NavLink>
           </Link>
@@ -248,7 +250,7 @@ function Sidebar(props) {
           <Nav className="mb-md-3 bottom" navbar>
             <NavItem>
               <NavLink href="https://www.itguymax.com">
-                <i className="fas fa-sign-out-alt" />
+                <image src="/assets/img/icons/dashboard/disconnexion1.svg" />
                 Déconnexion
               </NavLink>
             </NavItem>

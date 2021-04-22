@@ -78,11 +78,14 @@ export default class MyApp extends App {
         </Head>
         
         <Layout>
-       <AppWrapper>
+       
           <ApolloProvider client={client}>
-          <Component {...pageProps} />
+          <AppWrapper>
+              <Component {...pageProps} />
+          </AppWrapper>
+          
         </ApolloProvider>
-       </AppWrapper>
+      
         </Layout>
         
       </React.Fragment>

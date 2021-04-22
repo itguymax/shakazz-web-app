@@ -5,6 +5,8 @@ var routes = [
     name: "Home",
     displayName: "Dashboard",
     icon:  "far fa-address-card",
+    icon1:"/assets/img/icons/dashboard/home.svg",
+    icon2:"/assets/img/icons/dashboard/home1.svg",
     layout: "/portal",
   },
   {
@@ -13,6 +15,8 @@ var routes = [
     displayName: "Crowdlending",
     icon: "ni ni-world-2 text-blue",
     layout: "/portal",
+    icon1:"/assets/img/icons/dashboard/crowndlending.svg",
+    icon2:"/assets/img/icons/dashboard/crowndlending1.svg",
   },
   {
     path: "/networking",
@@ -20,6 +24,8 @@ var routes = [
     displayName: "Networking",
     icon: "ni ni-pin-3 text-orange",
     layout: "/portal",
+    icon1:"/assets/img/icons/dashboard/networking.svg",
+    icon2:"/assets/img/icons/dashboard/networking1.svg",
   },
   // {
   //   path: "/profile",
@@ -32,6 +38,8 @@ var routes = [
     name: "Menu",
     displayName: "Transaction",
     icon: "ni ni-chart-pie-35 text-red",
+    icon1:"/assets/img/icons/dashboard/menu.svg",
+    icon2:"/assets/img/icons/dashboard/menu1.svg",
     layout: "/portal",
     children: [
         {

@@ -49,10 +49,12 @@ let actual_page = {
   page:1,
   paginationId:"pagination1"
 };
-let table_transaction_state = {paiement_nom:'decroissant',
-                               date:'decroissant',
-                               sortie_composee:'decroissant',
-                               pourcentage_quotidien:'decroissant'};
+let table_transaction_state = {
+  paiement_nom:'decroissant',
+  date:'decroissant',
+  sortie_composee:'decroissant',
+  pourcentage_quotidien:'decroissant'
+};
   return (
     <>
       {/* Page content */}
@@ -73,7 +75,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
         th{
           border:transparent !important;
         }
-        .dt_rowBlock1{
+        .dt_rowBlock1 {
           height:4em;
           background-color:#679966;
           padding:1em;
