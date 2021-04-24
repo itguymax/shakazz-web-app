@@ -24,7 +24,7 @@ import {
   Label,
 } from "reactstrap";
 // layout for this page
-import Portal from "../../src/layouts/Portal.js";
+import Bleu from "../../src/layouts/Bleu.js";
 import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
@@ -56,9 +56,12 @@ let table_transaction_state = {paiement_nom:'decroissant',
   return (
     <>
       {/* Page content */}
-     
+
       <Global
       styles={css`
+        .bigContainer{
+          width:80em !important;
+        }
         .bigContainer h1{
           color:white;
           font-size:1.1em;
@@ -215,14 +218,14 @@ let table_transaction_state = {paiement_nom:'decroissant',
             margin-right: 0.1rem !important;
         }
         /*Responsive*/
-        @media only screen and (max-width: 360px) {       
-             
+        @media only screen and (max-width: 360px) {
+
           }
-        @media only screen and (max-width: 414px) {       
-           
+        @media only screen and (max-width: 414px) {
+
         }
         @media only screen and (max-width: 768px) {
-            
+
         }
         @media only screen and (max-width: 1024px) {
          .dt_rowBlock1_col1 p{
@@ -246,10 +249,10 @@ let table_transaction_state = {paiement_nom:'decroissant',
         <h1><span>
         <Image onClick={()=>{ window.history.back();}}
                               src="/assets/img/Down.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={25}
-                              style={{}}  
-                              /> 
+                              style={{}}
+                              />
         </span> Retour
       </h1>
       <Row className="dt_rowBlock1">
@@ -290,9 +293,9 @@ let table_transaction_state = {paiement_nom:'decroissant',
                                 }
                             }}
                               src="/assets/img/down up.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={15}
-                              style={{}}  
+                              style={{}}
                               /> DATE</th>
                           <th><Image id="sortimgsortie_composee" onClick={()=>{
                                 if(table_transaction_state['sortie_composee'] == 'croissant'){
@@ -301,12 +304,12 @@ let table_transaction_state = {paiement_nom:'decroissant',
                                 }else{
                                   table_transaction_state['sortie_composee'] = 'croissant';
                                   transactions.sortTransactions(page_data,'sortie_composee',table_transaction_state['sortie_composee']);
-                                }                                
+                                }
                             }}
                               src="/assets/img/down up.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={15}
-                              style={{}}  
+                              style={{}}
                               /> GAIN JOURNALIER</th>
                           <th><Image id="sortimgpourcentage_quotidien" onClick={()=>{
                                  if(table_transaction_state['pourcentage_quotidien'] == 'croissant'){
@@ -318,9 +321,9 @@ let table_transaction_state = {paiement_nom:'decroissant',
                                 }
                             }}
                               src="/assets/img/down up.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={15}
-                              style={{}}  
+                              style={{}}
                               /> POURCENTAGE QUOTIDIEN</th>
                         </tr>
                       </thead>
@@ -339,14 +342,14 @@ let table_transaction_state = {paiement_nom:'decroissant',
                         if(actual_page['page'] > 1){
                           transactions.navigationPage(actual_page,"prev",actual_page["page"]);
                           actual_page['page'] --;
-                          actual_page['paginationId'] = "pagination"+actual_page['page']; 
-                        }    
+                          actual_page['paginationId'] = "pagination"+actual_page['page'];
+                        }
                       }}
                               src="/assets/img/Down.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={25}
-                              style={{}}  
-                              /> 
+                              style={{}}
+                              />
                  </Col>
                  <Col xs="6" sm="3" style={{marginLeft:"-2em"}}>
                       <Pagination aria-label="Page navigation example">
@@ -388,7 +391,7 @@ let table_transaction_state = {paiement_nom:'decroissant',
                         </PaginationItem>
                         <PaginationItem id="pagination5">
                           <PaginationLink href="#" onClick={()=>{
-                                actual_page['page'] = 5;          
+                                actual_page['page'] = 5;
                                 transactions.changePage("pagination5",actual_page['paginationId'],actual_page["page"]);
                                 actual_page['paginationId'] = "pagination5";
                             }}>
@@ -398,20 +401,20 @@ let table_transaction_state = {paiement_nom:'decroissant',
                       </Pagination>
                  </Col>
                  <Col sm="2">
-                     <Image 
+                     <Image
                               onClick={()=>{
                                   if(actual_page['page'] < 5){
                                     transactions.navigationPage(actual_page,"next",actual_page["page"]);
                                     actual_page['page'] ++;
-                                    actual_page['paginationId'] = "pagination"+actual_page['page']; 
-                                  } 
+                                    actual_page['paginationId'] = "pagination"+actual_page['page'];
+                                  }
                                  }
                               }
                               src="/assets/img/Down@2x.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={25}
-                              style={{}}  
-                              /> 
+                              style={{}}
+                              />
                  </Col>
               </Row>
          </Col>
@@ -421,6 +424,6 @@ let table_transaction_state = {paiement_nom:'decroissant',
   );
 }
 
-Daily_transactions.layout = Portal;
+Daily_transactions.layout = Bleu;
 
 export default Daily_transactions;

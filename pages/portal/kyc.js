@@ -100,6 +100,6 @@ function Kyc() {
   );
 }
 
-// Kyc.layout = Portal;
+//Kyc.layout = Portal;
 
 export default Kyc;

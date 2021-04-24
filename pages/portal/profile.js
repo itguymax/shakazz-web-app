@@ -324,6 +324,6 @@ function Profile() {
   );
 }
 
-Profile.layout = Portal;
+//Profile.layout = Portal;
 
 export default Profile;

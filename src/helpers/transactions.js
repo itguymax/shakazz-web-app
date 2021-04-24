@@ -44,16 +44,18 @@ const displayTransactions = (data)=>{
     let wrapper =``;
     let total_sortie_composee = 0;
     let total_pourcentage_quotidien = 0;
+    let cpt = 1;
     data.map((x)=>{
       let pourcentageQuotidien = x.pourcentage_quotidien/parseInt(stakePeriode);
            wrapper +=`<tr>
-                          <th>${x.s_nom}</th>
+                          <th>${cpt}</th>
                           <td>${x.date}</td>
                           <td>${x.sortie_composee}</td>
                           <td>${Math.round((pourcentageQuotidien + Number.EPSILON) * 10000) / 10000}%</td>
                         </tr>`;
                         total_sortie_composee += parseFloat(x.sortie_composee);
                         total_pourcentage_quotidien += parseFloat(x.pourcentage_quotidien);
+                        cpt++;
     });
     wrapper+=`<tr>
                  <th></th>
