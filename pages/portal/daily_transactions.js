@@ -60,11 +60,13 @@ let table_transaction_state = {paiement_nom:'decroissant',
       <Global
       styles={css`
         .bigContainer{
-          width:80em !important;
+          width:90em !important;
+          margin-top:5em;
         }
         .bigContainer h1{
           color:white;
           font-size:1.1em;
+          font-weight:100;
           cursor:pointer;
         }
         .bigContainer img{
@@ -77,9 +79,9 @@ let table_transaction_state = {paiement_nom:'decroissant',
           border:transparent !important;
         }
         .dt_rowBlock1{
-          height:4em;
+          height:7em;
           background-color:#679966;
-          padding:1em;
+          padding:2em;
           padding-right:0.1em;
         }
          .dt_rowBlock2{
@@ -196,14 +198,25 @@ let table_transaction_state = {paiement_nom:'decroissant',
         .dropdown-item:hover{
           background-color:transparent !important;
         }
-
+        .dropdown-toggle::after {
+            display: inline-block;
+            margin-right: -15.5em;
+            vertical-align: 7em !important;
+            margin-top:-2.4em;
+            content: "";
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;
+        }
         .customDropdown .dropdown{
            background-color:transparent;
-           width:13em;
-           margin-left:-1em;
+           width:15em;
         }
         .customDropdown .btn{
           background-color:#143427;
+          border-radius:16px;
+          width:18em;
           border:none;
           height:3em;
           color:white;        }

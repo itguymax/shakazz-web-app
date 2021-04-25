@@ -22,9 +22,9 @@ function DropdownSample({idDd, sample, phone, label,name, handleOnSelect,selecte
     <UncontrolledDropdown isOpen={open} toggle={toggle}>
         <DropdownToggle caret>
                       {selectedOption && (
-                         <DropdownItem id={idDd}>
+                         <p id={idDd}>
                            {selectedOption.val}
-                        </DropdownItem>
+                        </p>
                         )}
                     </DropdownToggle>
                   <DropdownMenu>
