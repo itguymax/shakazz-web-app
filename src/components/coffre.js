@@ -3,6 +3,7 @@ import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import LightBoxContainer from "../components/common/lightBoxContainer";
 import { Container, Row,Col } from "reactstrap";
 import {  FlatButton} from "./common/SButton";
+import ProgressBar from "../components/ProgressBar";
 
 export default function coffre( {pool, capital, periode, interet, index, date}) {
      const calculateTimeLeft = () => {
@@ -70,12 +71,9 @@ export default function coffre( {pool, capital, periode, interet, index, date}) 
                     <div style={{display:"flex",flexDirection:"row", justifyContent:"space-around"}}>{timerComponents}</div>
                  
                </> :
-                  <FlatButton width="150px">
-                  <CircularProgressbar 
-                  
-                        styles={buildStyles({pathColor: '#cc9933',textColor: '#cc9933',})}
-                    counterClockwise value={percentage} text={`${percentage}%`} />
-              </FlatButton>
+                 
+                    (<ProgressBar percentage={percentage}/>)
+              
                 }
                </Col>
              <Col xl="4" style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}} >
