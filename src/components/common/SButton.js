@@ -2,7 +2,6 @@ import React, { Children } from 'react';
 import { Button } from "reactstrap";
 import {css} from '@emotion/react';
 
-
 function ArrowButton({handleClick, label,labelColor, arrowImage}) {
   return (
     <Button onClick={handleClick} style={{boxShadow:"none", backgroundColor:"#fff", border: "none", padding:"1px"}}>
