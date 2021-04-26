@@ -5,7 +5,8 @@ import classnames from "classnames";
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
-
+import settings from "../../src/__MOCK__/settings";
+import {currentUser} from "../../src/__MOCK__/user";
 // reactstrap components
 import {
   Card,
@@ -200,11 +201,14 @@ function Dashboard() {
               </LightBoxContainer> 
              <LightBoxContainer height="300px">
                 <div className="container p-4" >
-                <div >
-                <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Sécurité</h2>
-                <p style={{fontSize: '14px', lineHeight: '1.2'}}>Nul ne sait ce que demain réserve, pensez à votre postérité.</p>
-                <Link label="Mettre à jour votre sécurité" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                <div className="mb-5" >
+                  <h2 className="mb-3" style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Sécurité </h2>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Double vérification</p> {settings.securite.twofaActivated? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Mot de passe de transaction</p>  {settings.securite.transactionPasswordChanged? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>KYC</p>  {settings.securite.submitKyc? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
                 </div>
+                <Link label="Mettre à jour votre sécurité" path="/portal/securite" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                
                 </div>
             </LightBoxContainer>
           </Col>
