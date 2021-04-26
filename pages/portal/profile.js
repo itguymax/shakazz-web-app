@@ -52,6 +52,9 @@ function Profile() {
       <Container>
       <Global
       styles={css`
+        h2{
+          color:#444444 !important;
+        }
         img{
           cursor:pointer;
           transition: all .8s ease-in-out;
@@ -89,7 +92,7 @@ function Profile() {
           background-color:white;
           padding-top:1em;
           width:25em;
-          margin-bottom:0.5em;        
+          margin-bottom:0.5em;
         }
         .profileCol:hover{
           cursor:pointer;
@@ -99,10 +102,10 @@ function Profile() {
           width:auto !important;
         }
         /*Responsive*/
-        @media only screen and (max-width: 360px) {       
+        @media only screen and (max-width: 360px) {
              .profileColWrapper{
                display:flex;
-               flex-direction: column;            
+               flex-direction: column;
              }
              .createPortefeuille{
                width:14em !important;
@@ -111,13 +114,13 @@ function Profile() {
                 width:17em !important;
               }
           }
-        @media only screen and (max-width: 414px) {       
+        @media only screen and (max-width: 414px) {
              .profileColWrapper{
                display:flex;
-               flex-direction: column;            
+               flex-direction: column;
              }
           .createPortefeuille{
-            width:22em !important;    
+            width:22em !important;
           }
           .profileCol{
             width:7em;
@@ -129,7 +132,7 @@ function Profile() {
           }
           #navbarDropdownMenuLink2{
             width:13em !important;
-          }           
+          }
         }
         @media only screen and (max-width: 1024px) {
           .createPortefeuille{
@@ -191,37 +194,37 @@ function Profile() {
                    <Col md={12} style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
-                          <Image 
+                          <Image
                           src="/assets/img/icons/retrait/wallet.svg"
-                          alt="..." 
+                          alt="..."
                           height={40} width={40}
-                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          style={{backgroundColor:"#000",margin:"auto"}}
                           />
                        </Col>
                        <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.5em",fontSize:"1.8em",fontWeight:300}}>Portefeuille</p></Col>
 
                        <Col xs="6" sm="3">
-                        <Image 
+                        <Image
                           src="/assets/img/icons/clic_button_down.svg"
-                          alt="..." 
+                          alt="..."
                           height={20} width={20}
-                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          style={{backgroundColor:"#000",margin:"auto"}}
                           />
                        </Col>
 
                      </Row>
                   <Row>
                    <Col xs="6" sm="2">
-                      
+
                    </Col>
                    <Col xs="6" sm="6"><p>Portefeuille</p></Col>
 
                    <Col xs="6" sm="2">
-                    <Image 
+                    <Image
                       src="/assets/img/icons/clic_button_down.svg"
-                      alt="..." 
+                      alt="..."
                       height={20} width={20}
-                      style={{backgroundColor:"#000",margin:"auto"}}  
+                      style={{backgroundColor:"#000",margin:"auto"}}
                       />
                    </Col>
 
@@ -260,7 +263,7 @@ function Profile() {
                               handleOnchange={()=>{}}
                               />
                         </Col>
-                     </Row>                      
+                     </Row>
                   </Col>
                   <Col md={12}>
                           <Sinput
@@ -273,29 +276,29 @@ function Profile() {
                             type="text"
                             handleOnchange={()=>{}}
                             />
-                   </Col> 
+                   </Col>
                    <Col md={6}>
                         <DropDownC idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
-                   </Col>                      
+                   </Col>
                 </Row>
               </Form>
           </Col>
           <Col sm="4">
             <Col md={12} style={{textAlign:"center"}} >
-              <Image 
+              <Image
               src="/assets/img/photoequipe/bisso.png"
-              alt="..." 
-              className="rounded-circle" 
+              alt="..."
+              className="rounded-circle"
               height={200} width={200}
-              style={{backgroundColor:"#000",margin:"auto"}}  
+              style={{backgroundColor:"#000",margin:"auto"}}
               />
                       <FormGroup>
                         <Button>Vérification</Button>
                       </FormGroup>
-               <Image 
+               <Image
                 src="/assets/img/free-badge-icon-1361-thumb@2x.png"
                 alt="..."                 height={150} width={150}
-                style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}  
+                style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
                 />
                    </Col>
           </Col>
@@ -304,10 +307,10 @@ function Profile() {
       <Container>
         <Row className="profileColWrapper" >
             <Col xs="6" sm="5" style={{marginBottom:"3em"}}>
-                      
+
                       <CreatePortefeuille/>
             </Col>
-            <Col xs="6" sm="6" style={{marginBottom:"3em"}}>  
+            <Col xs="6" sm="6" style={{marginBottom:"3em"}}>
                 <Container style={{
                       width:"100%",
                       height:"14em",
@@ -316,7 +319,7 @@ function Profile() {
                       borderRadius:"16px",
                       padding:"1em"}}>
 
-                      </Container>                         
+                      </Container>
             </Col>
         </Row>
       </Container>

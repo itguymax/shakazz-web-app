@@ -14,14 +14,14 @@ import {
 import Image from 'next/image';
 
 function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
- 
+
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
    const toggle = () => setIsOpen(prevState => !prevState);
    const onOptionClicked = value => () => {
     handleOnSelect(value)
     toggle();
-    
+
   };
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
@@ -47,12 +47,12 @@ function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSe
         {flag && <DropdownMenu  name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => {
               return (
-                <li key={i} style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
-                  <Image 
+                <li key={i} style={{height:"1.5em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
+                  <Image
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
-                          alt="..." 
+                          alt="..."
                           height={10} width={20}
-                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          style={{backgroundColor:"#000",margin:"auto"}}
                           />
                   <DropdownItem  tag="button" id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle(option.name,idDd)}>
                     {option.name}
@@ -65,12 +65,11 @@ function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSe
         {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
-                <li  style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
-                  <Image 
+                <li  style={{height:"1.5em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
+                  <Image
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
-                          alt="..." 
-                          height={10} width={20}
-                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          alt="..."
+                          height={20} width={20}
                           />
                   <DropdownItem key={i} id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle('+'+option.callingCodes,idDd)}>
                     {'+'+option.callingCodes}
