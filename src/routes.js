@@ -8,6 +8,7 @@ var routes = [
     icon1:"/assets/img/icons/dashboard/home.svg",
     icon2:"/assets/img/icons/dashboard/home1.svg",
     layout: "/portal",
+    children:[],
   },
   {
     path: "/crowdlending",
@@ -17,6 +18,8 @@ var routes = [
     layout: "/portal",
     icon1:"/assets/img/icons/dashboard/crowndlending.svg",
     icon2:"/assets/img/icons/dashboard/crowndlending1.svg",
+    children:[],
+
   },
   {
     path: "/networking",
@@ -26,6 +29,22 @@ var routes = [
     layout: "/portal",
     icon1:"/assets/img/icons/dashboard/networking.svg",
     icon2:"/assets/img/icons/dashboard/networking1.svg",
+    childrenRoutes:["/portal/networking","/portal/mon-equipe"],
+    children: [
+        {
+      path: "/networking",
+      name: "kits",
+      displayName: "Mes Kits",
+      layout: "/portal"
+    },
+    {
+      path: "/mon-equipe",
+      name: "mon-equipe",
+      displayName: "Statistiques équipe",
+      layout: "/portal"
+    },
+  
+  ],
   },
   // {
   //   path: "/profile",
@@ -41,6 +60,7 @@ var routes = [
     icon1:"/assets/img/icons/dashboard/menu.svg",
     icon2:"/assets/img/icons/dashboard/menu1.svg",
     layout: "/portal",
+    childrenRoutes:["/portal/securite","/portal/legacy","/portal/transactions"],
     children: [
         {
       path: "/securite",
@@ -56,8 +76,14 @@ var routes = [
     },
      {
       path: "/transactions",
-      name: "securite",
-      displayName: "Sécurité",
+      name: "Transaction",
+      displayName: "Transaction",
+      layout: "/portal"
+    },
+    {
+      path: "/kyc",
+      name: "kyc",
+      displayName: "KYC",
       layout: "/portal"
     },
   ]
