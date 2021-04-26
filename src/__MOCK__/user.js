@@ -61,6 +61,8 @@ const user =
     email: 'ekaterina.tankova@devias.io',
     name: 'Yvan Fotso',
     phone: '691251462',
+    gender:"Male",
+    age:25,
     weeklyTurnOver: 3000000,
   }
 export default user
