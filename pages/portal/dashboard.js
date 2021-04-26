@@ -45,9 +45,9 @@ function Dashboard() {
   return (
       <Container>
       <h1>Dashboard</h1>
-    
+
       <a href="/portal/daily_transactions">daily t</a>
-         <Row className="mt-5">                
+         <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
                 <Col xl="8" className="p-4 col-xl-8" >
@@ -60,9 +60,9 @@ function Dashboard() {
                 <Col xl="4" >
                     <ProgressBar percentage={75}  bgc="#f6f6f6"/>
                 </Col>
-             </LightBoxContainer>   
+             </LightBoxContainer>
              <Row className="mt-5">
-                <Col xl="8"> 
+                <Col xl="8">
                     <LightBoxContainer>
                       <div className="pt-3 pr-3 pl-3 pb-3">
                         <Row className="align-items-center">
@@ -73,7 +73,7 @@ function Dashboard() {
                            us
                           </div>
                         </Row>
-                     </div> 
+                     </div>
                     <Table className="align-items-center table-flush" responsive>
                         <thead style={{backgroundColor: "#cc993a"}}>
                           <tr>
@@ -139,7 +139,7 @@ function Dashboard() {
                         </tbody>
                       </Table>
                    </LightBoxContainer>
-                </Col> 
+                </Col>
                   <Col xl="4">
                     <LightBoxContainer>
                       <div className="container p-4">
@@ -175,10 +175,10 @@ function Dashboard() {
                           </div>
                         </div>
                       </div>
-                   </LightBoxContainer> 
-                 </Col> 
+                   </LightBoxContainer>
+                 </Col>
              </Row>
-           </Col> 
+           </Col>
           <Col xl="3" className="pr-lg-1 pl-lg-2">
                <LightBoxContainer height="300px">
                   <div className="container p-4" >
@@ -197,7 +197,7 @@ function Dashboard() {
                     <Link label="Ajoutez des bénéficiaires" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                     </div>
                   </div>
-              </LightBoxContainer> 
+              </LightBoxContainer>
              <LightBoxContainer height="300px">
                 <div className="container p-4" >
                 <div >
@@ -208,7 +208,7 @@ function Dashboard() {
                 </div>
             </LightBoxContainer>
           </Col>
-        </Row>    
+        </Row>
       </Container>
   )
 }
@@ -216,4 +216,3 @@ function Dashboard() {
 Dashboard.layout = Portal;
 
 export default Dashboard;
-

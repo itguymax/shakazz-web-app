@@ -192,7 +192,7 @@ function Profile() {
                   </Col>
                   <Col md={12}>
                     <FormGroup>
-                        <DropDownC idDd={"profile_pays"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
+                        <DropDownPhone country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
                     </FormGroup>
                   </Col>
                   <Col md={12}>
