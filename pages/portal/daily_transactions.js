@@ -49,10 +49,12 @@ let actual_page = {
   page:1,
   paginationId:"pagination1"
 };
-let table_transaction_state = {paiement_nom:'decroissant',
-                               date:'decroissant',
-                               sortie_composee:'decroissant',
-                               pourcentage_quotidien:'decroissant'};
+let table_transaction_state = {
+  paiement_nom:'decroissant',
+  date:'decroissant',
+  sortie_composee:'decroissant',
+  pourcentage_quotidien:'decroissant'
+};
   return (
     <>
       {/* Page content */}

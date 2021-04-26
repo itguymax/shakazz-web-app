@@ -4,39 +4,31 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
-
+import Image from "next/image";
+import {css} from "@emotion/react";
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  Collapse,
   DropdownMenu,
   DropdownItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Media,
   NavbarBrand,
-  Navbar,
   NavItem,
   NavLink,
-  Nav,
-  Progress,
-  Table,
+  Navbar,
   Container,
-  Row,
   Col,
+  Row,
+  Media ,
+  Collapse,
+  Form,
+  InputGroup,
+  InputGroupAddon,
+  Input,
+  InputGroupText,
+  UncontrolledDropdown,
+  DropdownToggle,
+  Nav,
 } from "reactstrap";
 
-var ps;
 
 function Sidebar(props) {
   // used for checking current route
@@ -47,6 +39,7 @@ function Sidebar(props) {
   const activeRoute = (routeName) => {
     return router.route.indexOf(routeName) > -1;
   };
+  console.log("fffff", router);
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
     setCollapseOpen(!collapseOpen);
@@ -56,52 +49,74 @@ function Sidebar(props) {
     setCollapseOpen(false);
     openSubmenu(!isOpen);
   };
+  const createSubLink = (subLinks) => {
+        console.log("sub link", subLinks);
+        return subLinks.map((level, i)=> {
+            console.log("level", level);
+            return <div className="my-2">
+              <Link href={level.layout + level.path}>
+              <span style={{cursor:"pointer", color:"#fff", fontWeight:"100", opacity: activeRoute(level.layout + level.path)? 0.5:1, fontSize:"0.7rem"}}>{level.displayName}</span>
+              </Link>
+            </div>
+          });
+  }
+
+    const { routes, logo } = props;
+  let navbarBrand = (
+    <NavbarBrand href="/" className="pt-0">
+      <img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc} />
+    </NavbarBrand>
+  );
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
+    console.log("routes ", routes);
     return routes.map((prop, key) => {
+      console.log("children routes ",prop.children );
+      
       return (
         <React.Fragment key={key}>
-        <NavItem  active={activeRoute(prop.layout + prop.path)}>
+        {prop.children.length > 0 ? (
+          <>
+          <NavItem  active={activeRoute(prop.layout + prop.path)} className="mb-3">
+            <Link href={prop.layout + prop.path}>
+              <NavLink
+                href="#itguymax"
+                active={activeRoute(prop.layout + prop.path)|| prop.childrenRoutes.indexOf(router.pathname) > -1}
+                onClick={closeCollapse}
+              >
+              <img className="mr-2"  src={activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1? prop.icon1: prop.icon2} style={{width:"15px", height:"20px" }}/>
+                {/* <i className={prop.icon} /> */}
+                <span style={{color:(activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1)? "#143427":"#fff" }}>{prop.name}</span>
+                 
+                 {(activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1)?<span  className="arrow up  ml-3 mb--1"/>:<span  className="arrow down ml-3 mb--1"/>}
+              </NavLink>
+            </Link>
+            <div className="ml-5 pl-2">
+              {(activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1) && createSubLink(prop.children)}
+            </div>
+          </NavItem>
+          </>
+        ) : (
+           <NavItem  active={activeRoute(prop.layout + prop.path)} className="mb-3">
           <Link href={prop.layout + prop.path}>
             <NavLink
               href="#itguymax"
               active={activeRoute(prop.layout + prop.path)}
               onClick={closeCollapse}
             >
-              <i className={prop.icon} />
-              {prop.name}
+             <img className="mr-2"  src={activeRoute(prop.layout + prop.path)? prop.icon1: prop.icon2} style={{width:"15px", height:"20px" }}/>
+              {/* <i className={prop.icon} /> */}
+              <span style={{color:activeRoute(prop.layout + prop.path)? "#143427":"#fff" }}>{prop.name}</span>
             </NavLink>
           </Link>
+          
         </NavItem>
-        <Collapse isOpen={isOpen}>
-        {prop.children?(
-          prop.children.map((level, key)=> {
-           
-        <NavItem style={{backgroundColor: '#fff'}} key={ key+ Math.random()} active={activeRoute(level.layout + level.path)}>
-            <Link href={level.layout + level.path}>
-              <NavLink
-                href="#itguymax"
-                active={activeRoute(level.layout + level.path)}
-                onClick={closeCollapse}
-              >
-                
-                {level.name}
-              </NavLink>
-            </Link>
-        </NavItem>
-          })
-        ):null}
-      </Collapse>
+        )}
       </React.Fragment>
       );
     });
   };
-  const { routes, logo } = props;
-  let navbarBrand = (
-    <NavbarBrand href="/" className="pt-0">
-      <img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc} />
-    </NavbarBrand>
-  );
+
   return (
     <Navbar
       className="navbar-vertical fixed-left"
@@ -239,7 +254,15 @@ function Sidebar(props) {
             </InputGroup>
           </Form>
           {/* Navigation */}
-          <Nav navbar>{createLinks(routes)}</Nav>
+          <Nav navbar
+          
+          css={css`
+            .nav-link {
+              
+              font-weight: 100;
+            }
+          `}
+          >{createLinks(routes)}</Nav>
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
@@ -248,8 +271,8 @@ function Sidebar(props) {
           <Nav className="mb-md-3 bottom" navbar>
             <NavItem>
               <NavLink href="https://www.itguymax.com">
-                <i className="fas fa-sign-out-alt" />
-                Déconnexion
+                <img className="mr-2" src="/assets/img/icons/dashboard/disconnexion1.svg" style={{width:"15px", height:"20px" }} />
+               <span style={{color: "#fff", fontWeight: "100"}}> Déconnexion</span>
               </NavLink>
             </NavItem>
           </Nav>

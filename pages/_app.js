@@ -13,6 +13,7 @@ import "../public/assets/css/shakazz.css";
 import 'react-circular-progressbar/dist/styles.css';
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
+import { AppWrapper } from '../src/context'
 
 Router.events.on("routeChangeStart", (url) => {
 
@@ -77,9 +78,14 @@ export default class MyApp extends App {
         </Head>
         
         <Layout>
-        <ApolloProvider client={client}>
-          <Component {...pageProps} />
+       
+          <ApolloProvider client={client}>
+          <AppWrapper>
+              <Component {...pageProps} />
+          </AppWrapper>
+          
         </ApolloProvider>
+      
         </Layout>
         
       </React.Fragment>

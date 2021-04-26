@@ -64,17 +64,12 @@ export default function TabContent(props) {
                 <tbody className="" css={css`
             td{ 
                 padding: 0px;
-                font-weight: bold;
                 margin : 3px;
                 // vertical-align: middle;
                 // padding:0px
             }
             tr{
-                background-color : #e0e0e0;
-                border-spacing: 10px!important;
-                border-collapse : separate;
-                height : 40px!important;
-                
+                background-color : rgba(112,112,112,0.1);
             }
             div{
                 color : #444444;
@@ -83,6 +78,7 @@ export default function TabContent(props) {
                 text-align: center;
                 vertical-align: center;
                 padding : 7px ;
+                opacity: 1!important;
             }
             `}>
                 {props.data.map( (item, key)=> {

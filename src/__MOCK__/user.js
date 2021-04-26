@@ -44,4 +44,23 @@ const user =
   },
   };
 
+ export const currentUser = {
+     address: {
+      country: {
+        name: "Cameroun",
+        flag:"/assets/img/country-flags/cameroun.png",
+        indicatif:"+237"
+      },
+      state: 'West Virginia',
+      city: 'Parkersburg',
+      street: '2849 Fulton Street'
+    },
+    grade:"starter 1",
+    avatarUrl: '/assets/img/users/user3.png',
+    createdAt: 1555016400000,
+    email: 'ekaterina.tankova@devias.io',
+    name: 'Yvan Fotso',
+    phone: '691251462',
+    weeklyTurnOver: 3000000,
+  }
 export default user

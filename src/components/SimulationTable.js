@@ -19,8 +19,7 @@ export default function SimulationTable({periode,pool,capital,taux}) {
   let interet = (parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence);
   let resume =  parseInt(capital) + interet;
   return (
-   <Table responsive  css={css`      
-          `} >
+   <Table responsive  css={css` `} >
 				    <thead style={{backgroundColor: "#e2e2e2"}}>
 				      <tr>
 				        <th>periode</th>

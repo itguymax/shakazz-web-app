@@ -5,6 +5,7 @@ import classnames from "classnames";
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+
 // reactstrap components
 import {
   Card,
@@ -25,6 +26,8 @@ import {
 } from "../../variables/charts.js";
 import  { Link } from "../../src/components/Link";
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
+import ProgressBar from "../../src/components/ProgressBar";
+import { currentUser } from "../../src/__MOCK__/user";
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
@@ -42,7 +45,7 @@ function Dashboard() {
   return (
       <Container>
       <h1>Dashboard</h1>
-      <a href="/portal/kyc">Kyc</a>
+    
       <a href="/portal/daily_transactions">daily t</a>
          <Row className="mt-5">                
            <Col className="mb-5 mb-xl-0" xl="9">
@@ -54,8 +57,8 @@ function Dashboard() {
                       <Link label="Consulter" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                   </div>
                 </Col>
-                <Col xl="4">
-                   <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Legacy</h2>
+                <Col xl="4" >
+                    <ProgressBar percentage={75}  bgc="#f6f6f6"/>
                 </Col>
              </LightBoxContainer>   
              <Row className="mt-5">
