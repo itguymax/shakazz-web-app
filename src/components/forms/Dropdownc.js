@@ -14,20 +14,20 @@ import {
 import Image from 'next/image';
 
 function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
- 
+
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
    const toggle = () => setIsOpen(prevState => !prevState);
    const onOptionClicked = value => () => {
     handleOnSelect(value)
     toggle();
-    
+
   };
   return (
     <div style={{display: "flex", flexDirection: "column"}}>
-      <label className="ml-3" style={{font: "normal normal bold 18px/19px Ubuntu"}}>{label}</label>
+      <label className="ml-3" style={{font: "normal normal 18px/19px Ubuntu"}}>{label}</label>
       <UncontrolledDropdown isOpen={open} toggle={toggle} >
-        <DropdownToggle   innerRef={register()}  caret color="" id="navbarDropdownMenuLink2" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
+        <DropdownToggle  innerRef={register()}  caret color="" id="navbarDropdownMenuLink2" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
           {selectedOption && (
            <DropdownItem  id={idDd} tag="div" style={{marginRight: "100px"}}>
              {selectedOption.val}
@@ -47,12 +47,12 @@ function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSe
         {flag && <DropdownMenu  name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => {
               return (
-                <li key={i} style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex',width:'3em !important'}}>
-                  <Image 
+                <li key={i} style={{height:"1.5em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
+                  <Image
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
-                          alt="..." 
+                          alt="..."
                           height={10} width={20}
-                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          style={{marginTop:"0.5em",backgroundColor:"#000",margin:"auto"}}
                           />
                   <DropdownItem  tag="button" id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle(option.name,idDd)}>
                     {option.name}
@@ -62,21 +62,19 @@ function Sdropdown({flag, idDd, sample, phone, label, register, name, handleOnSe
               )
             })}
         </DropdownMenu>}
-        {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink2">
+        {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
-                <li  style={{paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
-                  <Image 
+                <li  style={{width:"2em !important",height:"1.5em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
+                  <Image
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
-                          alt="..." 
-                          height={10} width={20}
-                          style={{backgroundColor:"#000",margin:"auto"}}  
+                          alt="..."
+                          height={20} width={20}
                           />
                   <DropdownItem key={i} id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle('+'+option.callingCodes,idDd)}>
                     {'+'+option.callingCodes}
                   </DropdownItem>
                 </li>
-
               )
             })}
         </DropdownMenu>}

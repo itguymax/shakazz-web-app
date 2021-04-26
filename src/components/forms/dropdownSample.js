@@ -15,17 +15,16 @@ import {
 import Image from 'next/image';
 
 function DropdownSample({idDd, sample, phone, label,name, handleOnSelect,selectedOption,options}) {
- 
+
   const [open, setIsOpen] = useState(false);
    const toggle = () => setIsOpen(prevState => !prevState);
   return (
-    //direction="left"
     <UncontrolledDropdown isOpen={open} toggle={toggle}>
         <DropdownToggle caret>
                       {selectedOption && (
-                         <DropdownItem id={idDd}>
+                         <p id={idDd}>
                            {selectedOption.val}
-                        </DropdownItem>
+                        </p>
                         )}
                     </DropdownToggle>
                   <DropdownMenu>

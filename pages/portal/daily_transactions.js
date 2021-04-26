@@ -24,7 +24,7 @@ import {
   Label,
 } from "reactstrap";
 // layout for this page
-import Portal from "../../src/layouts/Portal.js";
+import Bleu from "../../src/layouts/Bleu.js";
 import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
@@ -58,12 +58,17 @@ let table_transaction_state = {
   return (
     <>
       {/* Page content */}
-     
+
       <Global
       styles={css`
+        .bigContainer{
+          width:90em !important;
+          margin-top:5em;
+        }
         .bigContainer h1{
           color:white;
           font-size:1.1em;
+          font-weight:100;
           cursor:pointer;
         }
         .bigContainer img{
@@ -75,10 +80,10 @@ let table_transaction_state = {
         th{
           border:transparent !important;
         }
-        .dt_rowBlock1 {
-          height:4em;
+        .dt_rowBlock1{
+          height:7em;
           background-color:#679966;
-          padding:1em;
+          padding:2em;
           padding-right:0.1em;
         }
          .dt_rowBlock2{
@@ -195,14 +200,25 @@ let table_transaction_state = {
         .dropdown-item:hover{
           background-color:transparent !important;
         }
-
+        .dropdown-toggle::after {
+            display: inline-block;
+            margin-right: -15.5em;
+            vertical-align: 7em !important;
+            margin-top:-2.4em;
+            content: "";
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;
+        }
         .customDropdown .dropdown{
            background-color:transparent;
-           width:13em;
-           margin-left:-1em;
+           width:15em;
         }
         .customDropdown .btn{
           background-color:#143427;
+          border-radius:16px;
+          width:18em;
           border:none;
           height:3em;
           color:white;        }
@@ -217,14 +233,14 @@ let table_transaction_state = {
             margin-right: 0.1rem !important;
         }
         /*Responsive*/
-        @media only screen and (max-width: 360px) {       
-             
+        @media only screen and (max-width: 360px) {
+
           }
-        @media only screen and (max-width: 414px) {       
-           
+        @media only screen and (max-width: 414px) {
+
         }
         @media only screen and (max-width: 768px) {
-            
+
         }
         @media only screen and (max-width: 1024px) {
          .dt_rowBlock1_col1 p{
@@ -248,10 +264,10 @@ let table_transaction_state = {
         <h1><span>
         <Image onClick={()=>{ window.history.back();}}
                               src="/assets/img/Down.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={25}
-                              style={{}}  
-                              /> 
+                              style={{}}
+                              />
         </span> Retour
       </h1>
       <Row className="dt_rowBlock1">
@@ -292,9 +308,9 @@ let table_transaction_state = {
                                 }
                             }}
                               src="/assets/img/down up.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={15}
-                              style={{}}  
+                              style={{}}
                               /> DATE</th>
                           <th><Image id="sortimgsortie_composee" onClick={()=>{
                                 if(table_transaction_state['sortie_composee'] == 'croissant'){
@@ -303,12 +319,12 @@ let table_transaction_state = {
                                 }else{
                                   table_transaction_state['sortie_composee'] = 'croissant';
                                   transactions.sortTransactions(page_data,'sortie_composee',table_transaction_state['sortie_composee']);
-                                }                                
+                                }
                             }}
                               src="/assets/img/down up.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={15}
-                              style={{}}  
+                              style={{}}
                               /> GAIN JOURNALIER</th>
                           <th><Image id="sortimgpourcentage_quotidien" onClick={()=>{
                                  if(table_transaction_state['pourcentage_quotidien'] == 'croissant'){
@@ -320,9 +336,9 @@ let table_transaction_state = {
                                 }
                             }}
                               src="/assets/img/down up.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={15}
-                              style={{}}  
+                              style={{}}
                               /> POURCENTAGE QUOTIDIEN</th>
                         </tr>
                       </thead>
@@ -341,14 +357,14 @@ let table_transaction_state = {
                         if(actual_page['page'] > 1){
                           transactions.navigationPage(actual_page,"prev",actual_page["page"]);
                           actual_page['page'] --;
-                          actual_page['paginationId'] = "pagination"+actual_page['page']; 
-                        }    
+                          actual_page['paginationId'] = "pagination"+actual_page['page'];
+                        }
                       }}
                               src="/assets/img/Down.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={25}
-                              style={{}}  
-                              /> 
+                              style={{}}
+                              />
                  </Col>
                  <Col xs="6" sm="3" style={{marginLeft:"-2em"}}>
                       <Pagination aria-label="Page navigation example">
@@ -390,7 +406,7 @@ let table_transaction_state = {
                         </PaginationItem>
                         <PaginationItem id="pagination5">
                           <PaginationLink href="#" onClick={()=>{
-                                actual_page['page'] = 5;          
+                                actual_page['page'] = 5;
                                 transactions.changePage("pagination5",actual_page['paginationId'],actual_page["page"]);
                                 actual_page['paginationId'] = "pagination5";
                             }}>
@@ -400,20 +416,20 @@ let table_transaction_state = {
                       </Pagination>
                  </Col>
                  <Col sm="2">
-                     <Image 
+                     <Image
                               onClick={()=>{
                                   if(actual_page['page'] < 5){
                                     transactions.navigationPage(actual_page,"next",actual_page["page"]);
                                     actual_page['page'] ++;
-                                    actual_page['paginationId'] = "pagination"+actual_page['page']; 
-                                  } 
+                                    actual_page['paginationId'] = "pagination"+actual_page['page'];
+                                  }
                                  }
                               }
                               src="/assets/img/Down@2x.png"
-                              alt="..." 
+                              alt="..."
                               height={15} width={25}
-                              style={{}}  
-                              /> 
+                              style={{}}
+                              />
                  </Col>
               </Row>
          </Col>
@@ -423,6 +439,6 @@ let table_transaction_state = {
   );
 }
 
-Daily_transactions.layout = Portal;
+Daily_transactions.layout = Bleu;
 
 export default Daily_transactions;
