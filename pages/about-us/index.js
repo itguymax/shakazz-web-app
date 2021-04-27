@@ -13,11 +13,12 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import {WeCard } from "../../src/sections/NousChoisir";
 import PreInscription from "../../src/components/pre_inscription";
 import {device} from '../../src/lib/device';
-import {css} from '@emotion/react';
+import {Global,css} from '@emotion/react';
 
 
 const TeamCard = ({nom, poste, img}) => {
 	return (
+		
 				<Col  xl="4" lg="4" md="6"  className="mb-4" >
 							<Card  style={{
          

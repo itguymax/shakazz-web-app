@@ -88,9 +88,9 @@ function NetworkingSection() {
             }
          `}
         >
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-1" text="Notre système d'affiliation" />
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-2" text="Plan de compensation" />
-         <TabH  handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="La licence" />
+         <TabH image={true}  handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-1" text="Notre système d'affiliation" />
+         <TabH  image={true} handleSetHTabs={handleSetHTabs} hTabsIcons={hTabsIcons} indicator="hTabsIcons-2" text="Plan de compensation" />
+         <TabH  image={true} handleSetHTabs={handleSetHTabs} hTabsIcons ={hTabsIcons} indicator="hTabsIcons-3"  text="La licence" />
         </Nav>
       </div>
       <div className="">

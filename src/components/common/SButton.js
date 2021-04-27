@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { Children } from 'react';
+import { Button } from "reactstrap";
+import {css} from '@emotion/react';
 
-export default function SButton() {
+function ArrowButton({handleClick, label,labelColor, arrowImage}) {
   return (
-    <div >
-      
-    </div>
+    <Button onClick={handleClick} style={{boxShadow:"none", backgroundColor:"#fff", border: "none", padding:"1px"}}>
+      <span style={{ color: labelColor }}>{label}</span>
+      <img src={arrowImage} className="ml-2" style={{width: "30px"}}/>
+    </Button>
   )
+}
+
+function FlatButton ({label,children ,type, bgc, handleClick, disabled,width, ...rest}){
+  return (
+    <>
+      { type ?<Button type={type} disabled={disabled} className="px-3 py-2"  style={{boxShadow:"none", backgroundColor:bgc?bgc:"#fff", border: "none", borderRadius:"20px", width, padding:"1px", ...rest}}>
+     {label}
+    </Button>: <Button  disabled={disabled} className="px-3 py-2"  onClick={handleClick} style={{boxShadow:"none", backgroundColor:bgc?bgc:"#fff", border: "none", borderRadius:"20px", padding:"1px",width, rest}}>
+     {label?label: children}
+    </Button>}
+    </>
+  )
+}
+
+export {
+  ArrowButton,
+  FlatButton
 }

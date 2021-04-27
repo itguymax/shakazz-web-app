@@ -5,6 +5,8 @@ import classnames from "classnames";
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+import settings from "../../src/__MOCK__/settings";
+
 // reactstrap components
 import {
   Card,
@@ -15,6 +17,7 @@ import {
   Button,
   Table,
   Progress,
+  Media,
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal.js";
@@ -25,6 +28,9 @@ import {
 } from "../../variables/charts.js";
 import  { Link } from "../../src/components/Link";
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
+import ProgressBar from "../../src/components/ProgressBar";
+import { currentUser } from "../../src/__MOCK__/user";
+import { isDirective } from "graphql";
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
@@ -42,6 +48,7 @@ function Dashboard() {
   return (
       <Container>
       <h1>Dashboard</h1>
+      <a href="/portal/daily_transactions">daily t</a>
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
@@ -52,12 +59,12 @@ function Dashboard() {
                       <Link label="Consulter" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                   </div>
                 </Col>
-                <Col xl="4">
-                   <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Legacy</h2>
+                <Col xl="4" >
+                    <ProgressBar percentage={75}  bgc="#f6f6f6"/>
                 </Col>
-             </LightBoxContainer>   
+             </LightBoxContainer>
              <Row className="mt-5">
-                <Col xl="8"> 
+                <Col xl="8">
                     <LightBoxContainer>
                       <div className="pt-3 pr-3 pl-3 pb-3">
                         <Row className="align-items-center">
@@ -68,7 +75,7 @@ function Dashboard() {
                            us
                           </div>
                         </Row>
-                     </div> 
+                     </div>
                     <Table className="align-items-center table-flush" responsive>
                         <thead style={{backgroundColor: "#cc993a"}}>
                           <tr>
@@ -134,7 +141,7 @@ function Dashboard() {
                         </tbody>
                       </Table>
                    </LightBoxContainer>
-                </Col> 
+                </Col>
                   <Col xl="4">
                     <LightBoxContainer>
                       <div className="container p-4">
@@ -170,10 +177,10 @@ function Dashboard() {
                           </div>
                         </div>
                       </div>
-                   </LightBoxContainer> 
-                 </Col> 
+                   </LightBoxContainer>
+                 </Col>
              </Row>
-           </Col> 
+           </Col>
           <Col xl="3" className="pr-lg-1 pl-lg-2">
                <LightBoxContainer height="300px">
                   <div className="container p-4" >
@@ -185,25 +192,51 @@ function Dashboard() {
                   </div>
                </LightBoxContainer>
               <LightBoxContainer height="300px">
-                  <div className="container p-4" >
+                  <div className="container p-4 mb-4" >
                     <div >
-                    <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Legacy</h2>
-                    <p style={{fontSize: '14px', lineHeight: '1.2'}}>Nul ne sait ce que demain réserve, pensez à votre postérité.</p>
-                    <Link label="Ajoutez des bénéficiaires" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                    <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Profil</h2>
+                     <Media className="">
+                      
+                          <img
+                          className=" avatar rounded-circle mr-3"
+                            alt={currentUser.name + "avatar"}
+                            src={currentUser.avatarUrl}
+                          ></img>
+                        
+                      <div style={{flexDirection:"column", display:"flex"}}>
+                        <span className=" name  ">
+                          {currentUser.name}
+                        </span>
+                        <span className="  mb-0 text-sm">
+                          {currentUser.gender}
+                        </span>
+                        <span className=" mb-0 text-sm">
+                         {currentUser.age}
+                        </span>
+                      </div>
+                    </Media>
+                    <div>
+                      <img src={currentUser.address.country.flag} /> <span>{currentUser.address.country.name}</span>
+                      <p>{currentUser.phone}</p>
                     </div>
                   </div>
-              </LightBoxContainer> 
+                    <Link label="Mettre à jour le profil" path="/portal/profile" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                    
+                  </div>
+              </LightBoxContainer>
              <LightBoxContainer height="300px">
                 <div className="container p-4" >
-                <div >
-                <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Sécurité</h2>
-                <p style={{fontSize: '14px', lineHeight: '1.2'}}>Nul ne sait ce que demain réserve, pensez à votre postérité.</p>
-                <Link label="Mettre à jour votre sécurité" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                <div className="mb-5" >
+                  <h2 className="mb-3" style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Sécurité </h2>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Double vérification</p> {settings.securite.twofaActivated? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Mot de passe de transaction</p>  {settings.securite.transactionPasswordChanged? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>KYC</p>  {settings.securite.submitKyc? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
                 </div>
+                <Link label="Mettre à jour votre sécurité" path="/portal/securite" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                 </div>
             </LightBoxContainer>
           </Col>
-        </Row>    
+        </Row>
       </Container>
   )
 }
@@ -211,4 +244,3 @@ function Dashboard() {
 Dashboard.layout = Portal;
 
 export default Dashboard;
-
