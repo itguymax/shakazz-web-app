@@ -1,7 +1,6 @@
 import React, { Children } from 'react';
 import { Button } from "reactstrap";
 import {css} from '@emotion/react';
-//import { propTypes } from 'react-bootstrap/esm/Image';
 
 function ArrowButton({handleClick, label,labelColor, arrowImage}) {
   return (
