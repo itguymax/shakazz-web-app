@@ -40,11 +40,11 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
         {phone &&<DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
-                <li  style={{width:"2em !important",height:"1.5em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
+                <li  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
                   <Image
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
                           alt="..."
-                          height={20} width={20}
+                          height={20} width={50}
                           />
                   <DropdownItem key={i} id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle('+'+option.callingCodes,idDd,idDdM,option.alpha3Code.toLowerCase()+'.svg')}>
                     {'+'+option.callingCodes}
@@ -57,7 +57,7 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
            <Image id={idDdM}
                    src={'/assets/img/flags/cmr.svg'}
                    alt="..."
-                   height={25} width={25}
+                   height={25} width={50}
                    />
           <DropdownItem  id={idDd} tag="div">
             {"Cameroon"}
@@ -66,11 +66,11 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
         {country &&<DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
-                <li  style={{width:"2em !important",height:"1.5em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
+                <li  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
                   <Image
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
                           alt="..."
-                          height={20} width={20}
+                          height={20} width={50}
                           />
                   <DropdownItem key={i} id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle(option.name,idDd,idDdM,option.alpha3Code.toLowerCase()+'.svg')}>
                     {option.name}
