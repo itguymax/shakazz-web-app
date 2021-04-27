@@ -11,6 +11,9 @@ import "../public/assets/scss/nextjs-argon-dashboard.scss";
 import "../public/assets/css/responsive.css";
 import "../public/assets/css/shakazz.css";
 import 'react-circular-progressbar/dist/styles.css';
+import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from 'react-query';
+const queryClient = new QueryClient();
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
 import { AppWrapper } from '../src/context'
@@ -80,10 +83,12 @@ export default class MyApp extends App {
         <Layout>
        
           <ApolloProvider client={client}>
+          <QueryClientProvider client={queryClient}>
           <AppWrapper>
+              <ReactQueryDevtools initialIsOpen={false}/>
               <Component {...pageProps} />
           </AppWrapper>
-          
+          </QueryClientProvider>
         </ApolloProvider>
       
         </Layout>
