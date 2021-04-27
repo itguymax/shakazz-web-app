@@ -42,6 +42,7 @@ function Retrait() {
                 name="montant"
                 placeholder="6,000"
                 type="text"
+                // rgba(68, 68, 68, 1)
                 register={register}
                 inputBg="#679966"
                 inline

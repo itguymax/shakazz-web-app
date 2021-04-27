@@ -41,9 +41,10 @@
 // )
 // next.config.js
 
-const   withPWA = require('next-pwa');
-const  runtimeCaching = require ('next-pwa/cache');
+const  withPWA = require('next-pwa') ;
+const runtimeCaching = require('next-pwa/cache');
 const prod = process.env.NODE_ENV === 'production'
+
 module.exports =  withPWA(
   {
    pwa: {
@@ -77,6 +78,7 @@ module.exports =  withPWA(
     return config;
   },
   images: {
+     domains: ['accounts.google.com', '3.64.214.244','https://restcountries.eu/data/'],
      domains: ['accounts.google.com', '3.64.214.244','uploadludovic.s3.eu-central-1.amazonaws.com'],
    },
   

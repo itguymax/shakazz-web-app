@@ -29,6 +29,18 @@ const PlanTable = ()=>{
                  height: 100px;
 								 /* margin-top: 10px; */
                }
+							  .table thead th, .table td{
+                  border-bottom: 2px solid #E5E5E5;
+                }
+                .table td {
+                  vertical-align: bottom;
+                  
+                }
+                .table td, .table th{
+                  white-space:none;
+                  font-size: 10px;
+                  font-weight: 100;
+                }
                  
           `} >
 				    <thead>

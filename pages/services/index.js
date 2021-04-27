@@ -5,7 +5,6 @@ import { TabContent, TabPane, Nav, CardImg, CardBody, NavItem, NavLink, Card, Bu
 import classnames from 'classnames';
 import { Media } from 'reactstrap';
 import { Jumbotron, Container } from 'reactstrap';
-import Image from 'react-bootstrap/Image'
 import PresentationSection from '../../src/sections/Services/presentation';
 import NetworkingSection from '../../src/sections/Services/networking';
 import PartenairesSection from '../../src/sections/Services/partenaires';
