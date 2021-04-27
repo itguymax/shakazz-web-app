@@ -48,7 +48,6 @@ function Dashboard() {
   return (
       <Container>
       <h1>Dashboard</h1>
-
       <a href="/portal/daily_transactions">daily t</a>
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
@@ -234,7 +233,6 @@ function Dashboard() {
                   <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>KYC</p>  {settings.securite.submitKyc? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
                 </div>
                 <Link label="Mettre à jour votre sécurité" path="/portal/securite" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                
                 </div>
             </LightBoxContainer>
           </Col>
