@@ -89,17 +89,6 @@ function Profile() {
           padding-right:1em !important;
           padding-right:1em !important;
         }
-        button[id="navbarDropdownMenuLink3"]{
-          background-color: #f0f0f0 !important;
-          border:1px solid #f0f0f0 !important;
-          width:10em !important;
-          border-radius: 15px !important;
-          padding-right:1em !important;
-          padding-right:1em !important;
-        }
-        button[id="navbarDropdownMenuLink3"] img{
-          width:3em !important;
-        }
         .profileCol{
           background-color:white;
           padding-top:1em;
@@ -112,11 +101,6 @@ function Profile() {
         #navbarDropdownMenuLink2{
           min-width:3em !important;
           width:auto !important;
-        }
-        #navbarDropdownMenuLink3{
-          width:2em !important;
-          width:auto !important;
-          padding-left:1em;
         }
         /*Responsive*/
         @media only screen and (max-width: 360px) {
@@ -266,20 +250,10 @@ function Profile() {
                   </Col>
                   <Col md={12}>
                      <Row>
-                        <Col sm={6}>
+                        <Col sm={12}>
                           <DropDownPhone idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
                         </Col>
-                        <Col sm={6}>
-                           <Sinput
-                              label=""
-                              name="name"
-                              register={()=>{}}
-                              iStyle={{borderRadius:"15px", overflow:"hidden",marginTop:"5em",marginTop:"2.9em"}}
-                              inputBg="#fff"
-                              type="text"
-                              handleOnchange={()=>{}}
-                              />
-                        </Col>
+
                      </Row>
                   </Col>
                   <Col md={12}>
