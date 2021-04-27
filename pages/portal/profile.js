@@ -89,28 +89,6 @@ function Profile() {
           padding-right:1em !important;
           padding-right:1em !important;
         }
-        button[id="navbarDropdownMenuLink3"]{
-          background-color: #f0f0f0 !important;
-          border:1px solid #f0f0f0 !important;
-          width:10em !important;
-          border-radius: 15px 0px 0px 15px !important;
-          padding-right:1em !important;
-          padding-right:1em !important;
-        }
-        button[id="navbarDropdownMenuLink4"]{
-          background-color: #f0f0f0 !important;
-          border:1px solid #f0f0f0 !important;
-          width:10em !important;
-          border-radius: 15px!important;
-          padding-right:1em !important;
-          padding-right:1em !important;
-        }
-        button[id="navbarDropdownMenuLink3"] img{
-          width:3em !important;
-        }
-        button[id="navbarDropdownMenuLink4"] img{
-          width:3em !important;
-        }
         .profileCol{
           background-color:white;
           padding-top:1em;
@@ -123,16 +101,6 @@ function Profile() {
         #navbarDropdownMenuLink2{
           min-width:3em !important;
           width:auto !important;
-        }
-        #navbarDropdownMenuLink3{
-          width:2em !important;
-          width:auto !important;
-          padding-left:1em;
-        }
-        #navbarDropdownMenuLink4{
-          width:2em !important;
-          width:auto !important;
-          padding-left:1em;
         }
         /*Responsive*/
         @media only screen and (max-width: 360px) {

@@ -29,6 +29,61 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
 
   };
   return (
+      <>
+    <Global
+    styles={css`
+      button[id="navbarDropdownMenuLink3"]{
+        background-color: #f0f0f0 !important;
+        border:1px solid #f0f0f0 !important;
+        width:10em !important;
+        border-radius: 15px 0px 0px 15px !important;
+        padding-right:1em !important;
+        padding-right:1em !important;
+      }
+      button[id="navbarDropdownMenuLink4"]{
+        background-color: #f0f0f0 !important;
+        border:1px solid #f0f0f0 !important;
+        width:10em !important;
+        border-radius: 15px!important;
+        padding-right:1em !important;
+        padding-right:1em !important;
+      }
+      button[id="navbarDropdownMenuLink3"] img{
+        width:3em !important;
+      }
+      button[id="navbarDropdownMenuLink4"] img{
+        width:3em !important;
+      }
+      input{
+        background-color: #f0f0f0 !important;
+        border:1px solid white !important;
+        width:15em !important;
+      }
+      input[type="text"]{
+        background-color: #f0f0f0 !important;
+        border:1px solid white !important;
+      }
+      .dropdown-menu.show{
+        max-height:'2em !important';
+      }
+      .dropdown button{
+        height:3em !important;
+      }
+      .dropdown-menu{
+        max-height:23em !important;
+      }
+      #navbarDropdownMenuLink3{
+        width:2em !important;
+        width:auto !important;
+        padding-left:1em;
+      }
+      #navbarDropdownMenuLink4{
+        width:5em !important;
+        width:auto !important;
+        padding-left:1em;
+      }
+      `}
+      />
     <div style={{display: "flex", flexDirection: "column"}}>
       <label className="ml-3" style={{font: "normal normal 18px/19px Ubuntu"}}>{label}</label>
       <UncontrolledDropdown isOpen={open} toggle={toggle} >
@@ -36,13 +91,13 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
            <Image id={idDdM}
                    src={'/assets/img/flags/cmr.svg'}
                    alt="..."
-                   height={25} width={25}
+                   height={20} width={20}
                    />
           <DropdownItem  id={idDd} tag="div">
             {"+237"}
          </DropdownItem>
         </DropdownToggle>}
-        {phone &&<Input style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"5em !important",marginLeft:"10.5em"}}/>}
+        {phone &&<Input style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"11em !important",marginLeft:"10.5em"}}/>}
         {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
@@ -87,6 +142,7 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
         </DropdownMenu>}
       </UncontrolledDropdown>
     </div>
+    </>
   );
 }
 
