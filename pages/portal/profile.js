@@ -93,11 +93,22 @@ function Profile() {
           background-color: #f0f0f0 !important;
           border:1px solid #f0f0f0 !important;
           width:10em !important;
-          border-radius: 15px !important;
+          border-radius: 15px 0px 0px 15px !important;
+          padding-right:1em !important;
+          padding-right:1em !important;
+        }
+        button[id="navbarDropdownMenuLink4"]{
+          background-color: #f0f0f0 !important;
+          border:1px solid #f0f0f0 !important;
+          width:10em !important;
+          border-radius: 15px!important;
           padding-right:1em !important;
           padding-right:1em !important;
         }
         button[id="navbarDropdownMenuLink3"] img{
+          width:3em !important;
+        }
+        button[id="navbarDropdownMenuLink4"] img{
           width:3em !important;
         }
         .profileCol{
@@ -114,6 +125,11 @@ function Profile() {
           width:auto !important;
         }
         #navbarDropdownMenuLink3{
+          width:2em !important;
+          width:auto !important;
+          padding-left:1em;
+        }
+        #navbarDropdownMenuLink4{
           width:2em !important;
           width:auto !important;
           padding-left:1em;
@@ -266,20 +282,10 @@ function Profile() {
                   </Col>
                   <Col md={12}>
                      <Row>
-                        <Col sm={6}>
+                        <Col sm={12}>
                           <DropDownPhone idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
                         </Col>
-                        <Col sm={6}>
-                           <Sinput
-                              label=""
-                              name="name"
-                              register={()=>{}}
-                              iStyle={{borderRadius:"15px", overflow:"hidden",marginTop:"5em",marginTop:"2.9em"}}
-                              inputBg="#fff"
-                              type="text"
-                              handleOnchange={()=>{}}
-                              />
-                        </Col>
+
                      </Row>
                   </Col>
                   <Col md={12}>

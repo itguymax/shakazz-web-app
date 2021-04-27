@@ -2,6 +2,7 @@ import { Flex } from "@theme-ui/components";
 import React, {useState, useEffect} from "react";
 import {Global,css} from "@emotion/react"
 import dropdown_toggle from '../../helpers/dropdown_toggle.js'
+import Sinput from './Sinput'
 // reactstrap components
 import {
   DropdownToggle,
@@ -10,6 +11,10 @@ import {
   UncontrolledDropdown,
   Row,
   Col,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input,
 } from "reactstrap";
 import Image from 'next/image';
 
@@ -37,7 +42,8 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
             {"+237"}
          </DropdownItem>
         </DropdownToggle>}
-        {phone &&<DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
+        {phone &&<Input style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"5em !important",marginLeft:"10.5em"}}/>}
+        {phone && <DropdownMenu name={name} style={{overflow:'auto'}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
                 <li  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
@@ -53,7 +59,7 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
               )
             })}
         </DropdownMenu>}
-        {country &&<DropdownToggle  innerRef={register()}  caret color="" id="navbarDropdownMenuLink3" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
+        {country &&<DropdownToggle  innerRef={register()}  caret color="" id="navbarDropdownMenuLink4" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
            <Image id={idDdM}
                    src={'/assets/img/flags/cmr.svg'}
                    alt="..."
