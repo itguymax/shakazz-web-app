@@ -6,7 +6,7 @@
 // const webpack = require("webpack");
 // const path = require("path");
 
- 
+
 // module.exports = withImages(
 //    {
 
@@ -23,7 +23,7 @@
 //       config.module.rules.push({
 //         test: /\.(woff(2)?|ttf|eot|svg|jpg|png|ico)(\?v=\d+\.\d+\.\d+)?$/,
 //         use: [
-          
+
 //           {
 //             loader:'file-loader' ,
 //           },
@@ -41,8 +41,8 @@
 // )
 // next.config.js
 
-const  withPWA = require('next-pwa') ;
-const runtimeCaching = require('next-pwa/cache');
+const withPWA  = require('next-pwa');
+const  runtimeCaching = require('next-pwa/cache');
 const prod = process.env.NODE_ENV === 'production'
 
 module.exports =  withPWA(
@@ -69,7 +69,7 @@ module.exports =  withPWA(
             outputPath: '...',
             context: 'src',
             name: '[path][name].[hash:8].[ext]',
-            
+
           },
         },
       ],
@@ -81,7 +81,7 @@ module.exports =  withPWA(
      domains: ['accounts.google.com', '3.64.214.244','https://restcountries.eu/data/'],
      domains: ['accounts.google.com', '3.64.214.244','uploadludovic.s3.eu-central-1.amazonaws.com'],
    },
-  
+
 }
 
 )
