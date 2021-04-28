@@ -12,9 +12,9 @@ password: yup.string()
 email: yup.string().email("Entrez une email valide ").required("l'email est requis")
                     .matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide")
                     .test('checkEmailUnique', 'Email existe deja.', async (value) =>{
-                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueEmail/${value}`); 
+                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueEmail/${value}`);
                      const resp = await res.json();
-                    
+
                      return "ok"
                     }
     ),
@@ -24,11 +24,11 @@ term: yup.boolean().oneOf([true], 'Acceptez les termes et conditions'),
 userName: yup.string().required("Le nom d'utilisateur est requis")
 .min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres")
 .test('checkUsernameUnique', 'user existe deja.', async (value) =>{
-                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueUserName/${value}`); 
+                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueUserName/${value}`);
                      const resp = await res.json();
                      return !resp.data.used
                     }),
-  
+
 });
 
 const loginSchema = yup.object().shape({
@@ -40,16 +40,16 @@ password: yup.string()
     ),
 userName: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres")
 .test('checkUsernameUnique', 'user existe deja.', async (value) =>{
-                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueUserName/${value}`); 
+                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueUserName/${value}`);
                      const resp = await res.json();
                      return resp.data.used
                     }),
-  
+
 });
 const forgotPasswordSchema = yup.object().shape({
   email: yup.string().email("Entrez une email valide ").required("l'email est requis").matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide")
   .test('checkEmailUnique', 'Email existe deja.', async (value) =>{
-                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueEmail/${value}`); 
+                     const res = await  fetch(`http://localhost:5000/api/v1/services/auth/uniqueEmail/${value}`);
                      const resp = await res.json();
                      return resp.data.used
                     }
@@ -65,6 +65,26 @@ const resetPasswordSchema = yup.object().shape({
       `Doit contenir 8 caractères, une majuscule,
        une minuscule, un chiffre et un caractère de cas particulier`
     ),
+})
+
+const profileSchema = yup.object().shape({
+  //account_type: yup.string().required("Type de compte invalide"),
+  name: yup.string().required("Le nom d'utilisateur est requis"),
+  dob: yup.string()
+            .required('La date de naissance est requise')
+            .matches(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/, 'La date de naissance doit respecter le format YYYY-MM-DD'),
+  //country: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
+  adresse: yup.string().required("Adresse incorrecte"),
+  email: yup.string()
+    .required('Email incorrect')
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      `Doit contenir 8 caractères, une majuscule,
+       une minuscule, un chiffre et un caractère de cas particulier`
+    ),
+    //phone_number: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
+    pseudo: yup.string().required("Pseudo incorrect"),
+    //currency: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
 })
 
 const depotSchema = yup.object().shape({
@@ -114,4 +134,4 @@ const subscriptionFormSchema = yup.object().shape({
   email: yup.string().matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "Veuillez insérer une adresse mail valide"),
 })
 
-export {registrationSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+export {profileSchema,registrationSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
