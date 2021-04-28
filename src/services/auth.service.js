@@ -3,9 +3,8 @@ import  apiV1  from './config';
 
   const signupUser = async (data) => {
     const url = '/signup';
-    const token = "";
     try {
-       let responseJson = await  apiV1.postJson(url,token, data);
+       let responseJson = await  apiV1.unAuthPostJson(url, data);
     return responseJson;
   } catch(err) {
      console.log(err.message);
@@ -14,9 +13,8 @@ import  apiV1  from './config';
   
 const loginUser = async (data) => {
     const url = "/login";
-    const token ="";
     try {
-    let responseJson =  apiV1.postJson(url,token, data,);
+    let responseJson =  apiV1.unAuthPostJson(url, data,);
     return responseJson;
   } catch(err) {
     console.log(err);
@@ -26,10 +24,9 @@ const loginUser = async (data) => {
 
   const requestUserPasswordReset = async (data) => {
     const url = "/requestPasswordReset";
-    const token = "";
     try {
   
-    let responseJson =  apiV1.postJson(url, token, data);
+    let responseJson =  apiV1.unAuthPostJson(url, data);
     return responseJson;
   } catch(err) {
     console.log(err)
@@ -39,10 +36,8 @@ const loginUser = async (data) => {
 
   const resetUserPassword = async (data) => {
     const url = "/resetPassword";
-    const token = "token";
     try {
-   
-    let responseJson =  await apiV1.postJson(url, token, data);
+    let responseJson =  await apiV1.unAuthPostJson(url, data);
     return responseJson;
   } catch(err) {
     console.log(err)

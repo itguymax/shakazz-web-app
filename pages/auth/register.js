@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { signup } from '../../src/services/auth.service'
+import { signupUser } from '../../src/services/auth.service'
 // layout for this page
 import Auth from "../../src/layouts/Auth.js";
 import { useRouter } from 'next/router'
@@ -78,7 +78,7 @@ const { register, handleSubmit, watch, errors } = useForm({
     const { password,email,companyName, term, userName, lastName, firstName } = data;
     userdata = {...additionaldata,password, email, companyName, term, userName, lastName, firstName};
    try{
-       let datares = await signup(userdata);
+       let datares = await signupUser(userdata);
        const { data, error, success, message} = datares;
        if(error && !success){
         setSuccessmsg(null);
@@ -104,16 +104,16 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handleOnBlur = () => {
     
   }
-  // useEffect( ()=>{
-  //   const addData= {
-  //     profil: isParticular? "Particulier":"Entreprise",
-  //     parent: selectedOption.key
-  //   }
-  //   setUserAdditionalData(addData);
-  // }, [selectedOption,isParticular])
-// useEffect(()=>{
-//     router.push("pre-inscription");
-//   })
+  useEffect( ()=>{
+    const addData= {
+      profil: isParticular? "Particulier":"Entreprise",
+      parent: selectedOption.key
+    }
+    setUserAdditionalData(addData);
+  }, [selectedOption,isParticular])
+useEffect(()=>{
+    router.push("pre-inscription");
+  })
   return (
     <>
      <Head>
@@ -363,7 +363,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                   <span className="text-success font-weight-700">{successmsg}</span>
                
               </div> }
-                <Button disabled={true} className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
+                <Button className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
                   Créer un compte
                 </Button>
                 <div>

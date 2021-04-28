@@ -99,13 +99,13 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
 
     return response.json();
   },
-  post: async (url, accessToken, body = {}) => {
+  unAuthPostJson: async (url, body = {}) => {
     const response = await  apiV1.call(
       url,
-      apiV1.parameters(accessToken, METHOD.POST, ACCEPT.JSON, body),
+      apiV1.unAuthParameters(METHOD.POST, ACCEPT.JSON, body),
     );
 
-    return response;
+    return response.json();
   },
   put: async (url, accessToken, body = {}) => {
     const response = await  apiV1.call(
