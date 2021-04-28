@@ -7,7 +7,30 @@ import PreInscription from "../../src/components/pre_inscription";
 import PlanTable from "../../src/components/planTable";
 import {css} from "@emotion/react";
 import {device } from "../../src/lib/device";
+import { useQuery} from "react-query"
 function Plan() {
+const requestOptions = {
+  method: 'GET',
+  qs: {
+    'start': '1',
+    'limit': '5000',
+    'convert': 'USD'
+  },
+  headers: {
+    'X-CMC_PRO_API_KEY': '754ceace-aaaa-4f92-ac96-9e5ab6f1a966',
+    'Access-Control-Allow-Origin': '*'
+  },
+  json: true,
+  gzip: true
+};
+  const fetchExchange = async () => {
+    const response = await fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest',requestOptions);
+    const data = await response.json();
+    return data;
+  }
+
+  const {data} = useQuery("crypto", fetchExchange);
+  console.log("dada", data)
   return (
     <>
      <Head>
