@@ -12,13 +12,15 @@ const METHOD = {
   POST: 'POST',
 };
 
-const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+// const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+const apiBaseUrl = "http://localhost:5000/api/v1/services";
 // shakkazz api pattern
   const apiV1 = {
   root: apiBaseUrl,
   call: async (url, parameters) => {
     const finalUrl =
       url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`: `${apiV1.root}/${url}`;
+      console.log("final url", finalUrl, url, parameters);
     const response = await fetch(finalUrl, parameters);
     return response;
   },
@@ -49,21 +51,28 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
     return params;
   },
   unAuthParameters: (method = METHOD.POST, accept = ACCEPT.JSON, body = {}) => {
+    console.log("params", body);
     const withBody = [METHOD.PUT, METHOD.PATCH, METHOD.POST];
     const params = {
       method,
       headers: {
         Accept: accept,
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin':'*',
+        'mode':'cors',
+        'Origin': 'http://localhost:4000',
+        'Access-Control-Request-Method': method,
+        'Access-Control-Request-Headers': ['X-PINGOTHER', 'Content-Type']
       },
+      body: JSON.stringify(body),
     };
-
-    if (withBody.indexOf(method) !== -1) {
-      params.body = JSON.parse(body);
-      if (method === METHOD.PUT) {
-        params.headers['Content-Length'] = 0;
-      }
-    }
+  
+    // if (withBody.indexOf(method) !== -1) {
+    //   params.body = body;
+    //   if (method === METHOD.PUT) {
+    //     params.headers['Content-Length'] = 0;
+    //   }
+    // }
 
     return params;
   },
@@ -104,7 +113,7 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
       url,
       apiV1.unAuthParameters(METHOD.POST, ACCEPT.JSON, body),
     );
-
+    console.log("signup data no json", response);
     return response.json();
   },
   put: async (url, accessToken, body = {}) => {

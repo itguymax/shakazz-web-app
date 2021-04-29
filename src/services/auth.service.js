@@ -5,9 +5,10 @@ import  apiV1  from './config';
     const url = '/signup';
     try {
        let responseJson = await  apiV1.unAuthPostJson(url, data);
+       console.log("signup data",responseJson );
     return responseJson;
   } catch(err) {
-     console.log(err.message);
+     console.log(err);
   }
 }
   
