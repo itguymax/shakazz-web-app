@@ -19,9 +19,11 @@ import Captcha from "../../src/components/Captcha";
 import { loginSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
+import {useMutation, useQueryClient} from 'react-query';
 
 
 function Login() {
+  const { mutateAsync, isLoading} = useMutation(loginUser)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),

@@ -22,6 +22,8 @@ import Sinput from "../../src/components/forms/Sinput";
 import { registrationSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
+import {useMutation, useQueryClient} from 'react-query';
+
 const options = [
   {
     key: 'JennyHess',
@@ -49,7 +51,7 @@ const options = [
   },
 ]
 function Register() {
-  
+const { mutateAsync, isLoading} = useMutation('Inscription', signupUser);
 const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(registrationSchema),
   });
@@ -71,25 +73,25 @@ const { register, handleSubmit, watch, errors } = useForm({
     setSelectedOption(value);
   };
   const handletoggle = () => setProfil(!isParticular);
-  const onSubmit =  async (data) => {
+  const onSubmit =  async (hookFormData) => {
+    console.log("Inscriptions....");
    if(verified){
-    setSubmitting(true);
-    let userdata;
-    const { password,email,companyName, term, userName, lastName, firstName } = data;
-    userdata = {...additionaldata,password, email, companyName, term, userName, lastName, firstName};
+    setSubmitting(true); 
+    const {confirmpassword, ...rest } = hookFormData;
+    console.log("rest data", rest);
+   let  userdata = {...additionaldata, ...rest};
    try{
        let datares = await signupUser(userdata);
-       const { data, error, success, message} = datares;
-       if(error && !success){
-        setSuccessmsg(null);
-        setErrormsg(message);
-       } else {
-         setErrormsg(null);
-         setSuccessmsg(message);
-         router.push('/portal/dashboard');
-       }
-       
-
+       console.log("response", datares);
+      //  const { data, error, success, message} = datares;
+      //  if(error && !success){
+      //   setSuccessmsg(null);
+      //   setErrormsg(message);
+      //  } else { 
+      //    setErrormsg(null);
+      //    setSuccessmsg(message);
+      //    router.push('/portal/dashboard');
+      //  }
    }catch(err){
         console.log("error", err);
    }
@@ -111,9 +113,9 @@ const { register, handleSubmit, watch, errors } = useForm({
     }
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
-useEffect(()=>{
-    router.push("pre-inscription");
-  })
+// useEffect(()=>{
+//     router.push("pre-inscription");
+//   })
   return (
     <>
      <Head>

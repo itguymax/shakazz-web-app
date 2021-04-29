@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useRef, useEffect } from "react";
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import Sinput from '../../src/components/forms/Sinput';
@@ -6,7 +6,9 @@ import CreatePortefeuille from '../../src/components/common/createPortefeuille';
 import DropDownC from '../../src/components/forms/Dropdownc'
 import DropDownPhone from '../../src/components/forms/DropDownPhone'
 import country from '../../src/helpers/countries.js'
-
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { profileSchema } from "../../src/validations";
 // reactstrap components
 import {
   Button,
@@ -28,8 +30,30 @@ import Portal from "../../src/layouts/Portal.js";
 import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
-
+import { useRouter } from 'next/router'
 function Profile() {
+  const router = useRouter();
+  const [verified, setVerified]= useState(false);
+  const [errormsg, setErrormsg]= useState(null);
+  const [successmsg, setSuccessmsg]= useState(null);
+  const [additionaldata, setUserAdditionalData] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const { register, handleSubmit, watch, errors } = useForm({
+      resolver: yupResolver(profileSchema),
+    });
+  const onSubmit =  async (data) => {console.log("hey!");
+   if(verified){
+    setSubmitting(true);
+    let userdata;
+    const {name,dob,adresse,email,pseudo} = data;
+    userdata = {...additionaldata,name,dob,adresse,email,pseudo};
+    console.log(userdata);
+   } else {
+     alert("Vous  n'êtes pas humain")
+   }
+
+  };
+  //
   let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let currency = [{val:'USD'}];
   const Button = styled.button`
@@ -143,19 +167,19 @@ function Profile() {
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
+      <Form role="form" onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Col xs="6" sm="4">
-              <Form>
-                <Row form>
+                <Row>
                   <Col md={12}>
-                        <DropDownC idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
                   <Col md={12} className="profileCol">
                       <Sinput
                       label="Nom complet"
                       placeholder='entrez le nom complet'
                       name="name"
-                      register={()=>{}}
+                      register={register}
                       iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
                       type="text"
@@ -164,10 +188,10 @@ function Profile() {
                   </Col>
                    <Col md={12}>
                        <Sinput
+                       name="dob"
                       label="Date de naissance"
                       placeholder='entrez le nom complet:'
-                      name="name"
-                      register={()=>{}}
+                      register={register}
                       iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
                       type="date"
@@ -176,14 +200,14 @@ function Profile() {
                   </Col>
                   <Col md={12}>
                     <FormGroup>
-                        <DropDownPhone country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
+                        <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
                     </FormGroup>
                   </Col>
                   <Col md={12}>
                         <Sinput
                         label="Adresse"
-                        name="name"
-                        register={()=>{}}
+                        name="adresse"
+                        register={register}
                         iStyle={{borderRadius:"15px", overflow:"hidden"}}
                         inputBg="#fff"
                         type="text"
@@ -191,7 +215,7 @@ function Profile() {
                         />
                   </Col>
                 </Row>
-                <Button>Vérification</Button>
+                <Button type="submit">Vérification</Button>
                    <Col md={12} style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
@@ -231,17 +255,15 @@ function Profile() {
 
                  </Row>
                   </Col>
-              </Form>
           </Col>
           <Col xs="6" sm="4">
-               <Form>
-                <Row form>
+                <Row>
                   <Col md={12}>
                         <Sinput
                         label='E-mail'
-                        name="name"
+                        name="email"
                         placeholder="entrez votre e-mail"
-                        register={()=>{}}
+                        register={register}
                         iStyle={{borderRadius:"15px", overflow:"hidden"}}
                         inputBg="#fff"
                         type="text"
@@ -251,7 +273,7 @@ function Profile() {
                   <Col md={12}>
                      <Row>
                         <Col sm={12}>
-                          <DropDownPhone idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                          <DropDownPhone name="phone_number" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
                         </Col>
 
                      </Row>
@@ -259,9 +281,9 @@ function Profile() {
                   <Col md={12}>
                           <Sinput
                             label='Pseudo'
-                            name="name"
+                            name="pseudo"
                             placeholder=""
-                            register={()=>{}}
+                            register={register}
                             iStyle={{borderRadius:"15px", overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
@@ -269,10 +291,10 @@ function Profile() {
                             />
                    </Col>
                    <Col md={6}>
-                        <DropDownC idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
+                        <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
                    </Col>
+
                 </Row>
-              </Form>
           </Col>
           <Col sm="4">
             <Col md={12} style={{textAlign:"center"}} >
@@ -294,6 +316,7 @@ function Profile() {
                    </Col>
           </Col>
         </Row>
+        </Form>
       </Container>
       <Container>
         <Row className="profileColWrapper" >
