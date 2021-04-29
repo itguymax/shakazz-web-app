@@ -28,6 +28,7 @@ import {
   DropdownToggle,
   Nav,
 } from "reactstrap";
+import { logOutUser } from "../../services/auth.service";
 
 
 function Sidebar(props) {
@@ -200,7 +201,10 @@ function Sidebar(props) {
                 </DropdownItem>
               </Link>
               <DropdownItem divider />
-              <DropdownItem href="#itguymax" onClick={(e) => e.preventDefault()}>
+              <DropdownItem href="#itguymax" onClick={(e) => {
+                e.preventDefault();
+                logOutUser();
+              }}>
                 <i className="ni ni-user-run" />
                 <span>Logout</span>
               </DropdownItem>
@@ -269,7 +273,7 @@ function Sidebar(props) {
           {/* <h6 className="navbar-heading text-muted">Documentation</h6> */}
           {/* Navigation */}
           <Nav className="mb-md-3 bottom" navbar>
-            <NavItem>
+            <NavItem onClick={logOutUser}>
               <NavLink href="https://www.itguymax.com">
                 <img className="mr-2" src="/assets/img/icons/dashboard/disconnexion1.svg" style={{width:"15px", height:"20px" }} />
                <span style={{color: "#fff", fontWeight: "100"}}> Déconnexion</span>

@@ -16,6 +16,7 @@ import GenerationCard from '../../src/components/GenerationCard';
 import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import {  FlatButton} from "../../src/components/common/SButton";
 import PopulationTable from '../../src/components/PopulationTable';
+import withAuth from '../../src/hoc/withAuth';
 const generationCardData = [
   {
     id:1,
@@ -183,4 +184,4 @@ console.log("children", children);
 
 Equipe.layout = Portal;
 
-export default Equipe;
+export default withAuth(Equipe);

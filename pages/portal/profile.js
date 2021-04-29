@@ -9,6 +9,7 @@ import country from '../../src/helpers/countries.js'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../src/validations";
+import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import {
   Button,
@@ -343,4 +344,4 @@ function Profile() {
 
 //Profile.layout = Portal;
 
-export default Profile;
+export default withAuth(Profile);

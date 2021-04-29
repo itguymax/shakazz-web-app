@@ -17,6 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import { retraitSchema } from "../../src/validations";
 import Smodal from '../../src/components/common/Smodal';
+import withAuth from '../../src/hoc/withAuth';
 function Retrait() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(retraitSchema),
@@ -108,4 +109,4 @@ function Retrait() {
 
 
 Retrait.layout = AdminBleu;
-export default Retrait;
+export default  withAuth(Retrait);

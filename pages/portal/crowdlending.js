@@ -30,7 +30,7 @@ import Sinput from "../../src/components/forms/Sinput";
 import SimulationTable from "../../src/components/SimulationTable";
 import Coffre from "../../src/components/coffre";
 import Router from "next/router";
-
+import withAuth from '../../src/hoc/withAuth';
 
 const Crowdlending = () => {
  
@@ -194,4 +194,4 @@ const Crowdlending = () => {
 
 Crowdlending.layout = Portal;
 
-export default Crowdlending;
+export default withAuth(Crowdlending);

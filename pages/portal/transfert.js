@@ -10,7 +10,7 @@ import Sinput from "../../src/components/forms/Sinput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
-
+import withAuth from '../../src/hoc/withAuth'
 
 function Transfert() {
   const { register, handleSubmit, watch, errors } = useForm({
@@ -99,4 +99,4 @@ function Transfert() {
 
 
 Transfert.layout = AdminBleu;
-export default Transfert;
+export default withAuth(Transfert);

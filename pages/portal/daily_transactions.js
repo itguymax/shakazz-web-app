@@ -7,7 +7,8 @@ import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import DropdownSample from '../../src/components/forms/DropdownSample'
 import transactions from '../../src/helpers/transactions.js'
-import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js'
+import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js';
+import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import {
   Button,
@@ -441,4 +442,4 @@ let table_transaction_state = {
 
 Daily_transactions.layout = Bleu;
 
-export default Daily_transactions;
+export default withAuth(Daily_transactions);

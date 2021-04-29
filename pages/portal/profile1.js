@@ -1,5 +1,5 @@
 import React from "react";
-
+import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import {
   Button,
@@ -314,4 +314,4 @@ function Profile() {
 
 Profile.layout = Portal;
 
-export default Profile;
+export default withAuth(Profile);

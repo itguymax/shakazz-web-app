@@ -10,6 +10,7 @@ import LinearProgress from "../../src/components/common/linearProgress"
 import Image from 'next/image'
 import Line from '../../src/components/common/line'
 import country from '../../src/helpers/countries.js'
+import withAuth from '../../src/hoc/withAuth';
 
 function Legacy() {
    const { register, handleSubmit, watch, errors } = useForm({
@@ -237,4 +238,4 @@ useEffect((data)=>{
 
 
 Legacy.layout = Portal;
-export default Legacy;
+export default  withAuth(Legacy);

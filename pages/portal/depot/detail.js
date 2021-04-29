@@ -1,7 +1,7 @@
-import React from 'react'
-import AdminBleu from '../../../src/layouts/AdminBleu'
-import LineItem from '../../../src/components/common/LineItem'
-
+import React from 'react';
+import AdminBleu from '../../../src/layouts/AdminBleu';
+import LineItem from '../../../src/components/common/LineItem';
+import withAuth from '../../src/hoc/withAuth';
 import {
   Card,
   Container,
@@ -43,4 +43,4 @@ function Detail() {
 
 
 
-export default Detail;
+export default withAuth(Detail);

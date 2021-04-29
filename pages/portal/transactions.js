@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-
+import withAuth from '../../src/hoc/withAuth'
 // reactstrap components
 import {
   Container,
@@ -50,4 +50,4 @@ function Transactions() {
 
 Transactions.layout = Portal;
 
-export default Transactions;
+export default  withAuth(Transactions);

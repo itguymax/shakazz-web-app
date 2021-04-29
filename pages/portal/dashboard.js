@@ -31,6 +31,7 @@ import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import ProgressBar from "../../src/components/ProgressBar";
 import { currentUser } from "../../src/__MOCK__/user";
 import { isDirective } from "graphql";
+import withAuth from '../../src/hoc/withAuth';
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
@@ -243,4 +244,4 @@ function Dashboard() {
 
 Dashboard.layout = Portal;
 
-export default Dashboard;
+export default withAuth(Dashboard);
