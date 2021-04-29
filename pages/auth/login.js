@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from "react";
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { login } from '../../src/services/auth.service'
+import { loginUser } from '../../src/services/auth.service'
 // reactstrap components
 import {
   Button,
@@ -19,9 +19,11 @@ import Captcha from "../../src/components/Captcha";
 import { loginSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
+import {useMutation, useQueryClient} from 'react-query';
 
 
 function Login() {
+  const { mutateAsync, isLoading} = useMutation(loginUser)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
@@ -45,7 +47,7 @@ function Login() {
     const { password, userName } = data;
     userdata = {password, userName }
    try{
-       let datares = await login(userdata);
+       let datares = await loginUser(userdata);
       
        const { data, error, success, message } = datares;
        if(error && !success){
@@ -177,7 +179,7 @@ function Login() {
                   <span className="text-success font-weight-700">{successmsg}</span>
                
               </div> }
-                <Button disabled={true} className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
+                <Button className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
                   S'identifier
                 </Button>
                 <div>

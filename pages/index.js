@@ -57,7 +57,7 @@ function Index() {
         <meta name="twitter:title" content="Website" />
         <meta
           name="twitter:description"
-          content="Shakazz vous propose des pools de liquidités adaptés à vos besoins"
+          content="Shakazz vous propose des pools de liquidités adaptés à vos besoins."
         />
       </Head>
       <div>

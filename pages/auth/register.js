@@ -9,7 +9,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { signup } from '../../src/services/auth.service'
+import { signupUser } from '../../src/services/auth.service'
 // layout for this page
 import Auth from "../../src/layouts/Auth.js";
 import { useRouter } from 'next/router'
@@ -22,6 +22,8 @@ import Sinput from "../../src/components/forms/Sinput";
 import { registrationSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
+import {useMutation, useQueryClient} from 'react-query';
+
 const options = [
   {
     key: 'JennyHess',
@@ -49,7 +51,7 @@ const options = [
   },
 ]
 function Register() {
-  
+const { mutateAsync, isLoading} = useMutation('Inscription', signupUser);
 const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(registrationSchema),
   });
@@ -71,25 +73,25 @@ const { register, handleSubmit, watch, errors } = useForm({
     setSelectedOption(value);
   };
   const handletoggle = () => setProfil(!isParticular);
-  const onSubmit =  async (data) => {
+  const onSubmit =  async (hookFormData) => {
+    console.log("Inscriptions....");
    if(verified){
-    setSubmitting(true);
-    let userdata;
-    const { password,email,companyName, term, userName, lastName, firstName } = data;
-    userdata = {...additionaldata,password, email, companyName, term, userName, lastName, firstName};
+    setSubmitting(true); 
+    const {confirmpassword, ...rest } = hookFormData;
+    console.log("rest data", rest);
+   let  userdata = {...additionaldata, ...rest};
    try{
-       let datares = await signup(userdata);
-       const { data, error, success, message} = datares;
-       if(error && !success){
-        setSuccessmsg(null);
-        setErrormsg(message);
-       } else {
-         setErrormsg(null);
-         setSuccessmsg(message);
-         router.push('/portal/dashboard');
-       }
-       
-
+       let datares = await signupUser(userdata);
+       console.log("response", datares);
+      //  const { data, error, success, message} = datares;
+      //  if(error && !success){
+      //   setSuccessmsg(null);
+      //   setErrormsg(message);
+      //  } else { 
+      //    setErrormsg(null);
+      //    setSuccessmsg(message);
+      //    router.push('/portal/dashboard');
+      //  }
    }catch(err){
         console.log("error", err);
    }
@@ -104,13 +106,13 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handleOnBlur = () => {
     
   }
-  // useEffect( ()=>{
-  //   const addData= {
-  //     profil: isParticular? "Particulier":"Entreprise",
-  //     parent: selectedOption.key
-  //   }
-  //   setUserAdditionalData(addData);
-  // }, [selectedOption,isParticular])
+  useEffect( ()=>{
+    const addData= {
+      profil: isParticular? "Particulier":"Entreprise",
+      parent: selectedOption.key
+    }
+    setUserAdditionalData(addData);
+  }, [selectedOption,isParticular])
 // useEffect(()=>{
 //     router.push("pre-inscription");
 //   })
@@ -363,7 +365,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                   <span className="text-success font-weight-700">{successmsg}</span>
                
               </div> }
-                <Button disabled={true} className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
+                <Button className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
                   Créer un compte
                 </Button>
                 <div>

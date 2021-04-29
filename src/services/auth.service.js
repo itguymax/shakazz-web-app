@@ -1,52 +1,33 @@
 
+import  apiV1  from './config';
 
-const apiUrl = "https://shakazz-server.herokuapp.com/api/v1/services/auth"
-
-  const signup = async (data) => {
+  const signupUser = async (data) => {
+    const url = '/signup';
     try {
-    let response = await fetch(`${apiUrl}/signup`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    let responseJson =  await response.json();
+       let responseJson = await  apiV1.unAuthPostJson(url, data);
+       console.log("signup data",responseJson );
     return responseJson;
   } catch(err) {
+     console.log(err);
+  }
+}
   
-  }
-  }
-
-  const login = async (data) => {
+const loginUser = async (data) => {
+    const url = "/login";
     try {
-    let response = await fetch(`${apiUrl}/login`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    let responseJson =  await response.json();
+    let responseJson =  apiV1.unAuthPostJson(url, data,);
     return responseJson;
   } catch(err) {
-    console.log(err)
+    console.log(err);
   }
   }
 
-  const requestPasswordReset = async (data) => {
+
+  const requestUserPasswordReset = async (data) => {
+    const url = "/requestPasswordReset";
     try {
-    let response = await fetch(`${apiUrl}/requestPasswordReset`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    let responseJson =  await response.json();
+  
+    let responseJson =  apiV1.unAuthPostJson(url, data);
     return responseJson;
   } catch(err) {
     console.log(err)
@@ -54,17 +35,10 @@ const apiUrl = "https://shakazz-server.herokuapp.com/api/v1/services/auth"
   }
 
 
-  const resetPassword = async (data) => {
+  const resetUserPassword = async (data) => {
+    const url = "/resetPassword";
     try {
-    let response = await fetch(`${apiUrl}/resetPassword`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-    let responseJson =  await response.json();
+    let responseJson =  await apiV1.unAuthPostJson(url, data);
     return responseJson;
   } catch(err) {
     console.log(err)
@@ -72,8 +46,8 @@ const apiUrl = "https://shakazz-server.herokuapp.com/api/v1/services/auth"
   }
 
 export {
-  signup,
-  login,
-  requestPasswordReset,
-  resetPassword,
+  signupUser,
+  resetUserPassword,
+  loginUser,
+  requestUserPasswordReset,
 };
