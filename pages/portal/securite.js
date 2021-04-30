@@ -33,6 +33,7 @@ const options = [{
   const onSubmitC = (data) => { };
   const onSubmitT = (data) => {};
   return (
+    <Portal>
     <Container fluid>
      <SecForm label="2FA" options={options} onSubmit={onSubmit2fa} faOption={faOption} handleOnSelect={selectionOption}/>
       <Line/>
@@ -54,8 +55,8 @@ const options = [{
         </Col>
       </Row>
     </Container>
+    </Portal>
   )
 }
 
-Securite.layout = Portal
 export default withAuth(Securite);

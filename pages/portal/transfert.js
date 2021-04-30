@@ -20,6 +20,7 @@ function Transfert() {
   const onSubmit = (data) => {};
    const handleToggleshow = () => setShow(!show);
   return (
+    <Portal>
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un transfére</h1>
       <Row className="mt-4 justify-content-between">
@@ -94,9 +95,10 @@ function Transfert() {
         </Col>
       </Row>
     </div>
+    </Portal>
   )
 }
 
 
-Transfert.layout = AdminBleu;
+
 export default withAuth(Transfert);

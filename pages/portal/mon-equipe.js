@@ -89,7 +89,7 @@ const generationCardData = [
 }
 console.log("children", children);
   return (
-    <>
+    <Portal>
       <Container fluid>
         <WalletHeader wallets={user.wallet}/>
               <div css={css`
@@ -178,10 +178,10 @@ console.log("children", children);
         </div>
 
       </Container>
-    </>
+    </Portal>
   )
 }
 
-Equipe.layout = Portal;
+
 
 export default withAuth(Equipe);

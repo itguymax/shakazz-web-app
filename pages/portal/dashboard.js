@@ -47,6 +47,7 @@ function Dashboard() {
     setChartExample1Data("data" + index);
   };
   return (
+    <Portal>
       <Container>
       <h1>Dashboard</h1>
       <a href="/portal/daily_transactions">daily t</a>
@@ -239,9 +240,9 @@ function Dashboard() {
           </Col>
         </Row>
       </Container>
+    </Portal>
   )
 }
 
-Dashboard.layout = Portal;
 
 export default withAuth(Dashboard);

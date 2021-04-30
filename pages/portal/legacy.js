@@ -59,6 +59,7 @@ useEffect((data)=>{
 
 },[legacies])
   return (
+  <Portal>
     <Container className="mb-4" fluid>
       <div className="d-flex justify-content-center text-center" style={{flexDirection:'column'}}>
         <p style={{ font: "normal normal normal 20px/25px Ubuntu", color: "#444", opacity: 1}}>
@@ -233,9 +234,10 @@ useEffect((data)=>{
       }
       </div>
     </Container>
+  </Portal>
   )
 }
 
 
-Legacy.layout = Portal;
+
 export default  withAuth(Legacy);

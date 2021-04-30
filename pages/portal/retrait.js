@@ -33,6 +33,7 @@ function Retrait() {
   };
    const handleToggleshow = () => setShow(!show);
   return (
+    <Portal>
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un retrait</h1>
       <Row className="mt-4 justify-content-between">
@@ -104,9 +105,10 @@ function Retrait() {
         {openModal&& <Smodal data={data} handleClose={openDepotModal} open={openModal}/>}
       </Row>
     </div>
+    </Portal>
   )
 }
 
 
-Retrait.layout = AdminBleu;
+// Retrait.layout = AdminBleu;
 export default  withAuth(Retrait);

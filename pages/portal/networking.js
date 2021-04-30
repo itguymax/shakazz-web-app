@@ -53,7 +53,7 @@ function selectComponent(){
 
 
   return (
-    <>
+    <Portal>
       {/* <Header /> */}
       
       <Container fluid>   
@@ -78,10 +78,9 @@ function selectComponent(){
           </Row>
         </div>
       </Container>
-    </>
+    </Portal>
   );
 }
 
-Networking.layout = Portal;
 
 export default withAuth( Networking );

@@ -73,7 +73,7 @@ function Profile() {
   }
 `
   return (
-    <>
+    <Portal>
       {/* Page content */}
       <Container>
       <Global
@@ -338,7 +338,7 @@ function Profile() {
             </Col>
         </Row>
       </Container>
-    </>
+    </Portal>
   );
 }
 
