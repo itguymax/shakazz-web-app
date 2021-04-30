@@ -2,7 +2,7 @@
 import  apiV1  from './config';
 
   const signupUser = async (data) => {
-    const url = '/signup';
+    const url = '/auth/signup';
     try {
        let responseJson = await  apiV1.unAuthPostJson(url, data);
        console.log("signup data",responseJson );
@@ -13,7 +13,7 @@ import  apiV1  from './config';
 }
   
 const loginUser = async (data) => {
-    const url = "/login";
+    const url = "/auth/login";
     try {
     let responseJson =  apiV1.unAuthPostJson(url, data,);
     return responseJson;

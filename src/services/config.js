@@ -8,12 +8,12 @@ const METHOD = {
   GET: 'GET',
   HEAD: 'HEAD',
   PUT: 'PUT',
-  DELETE: 'DELETE',
+  DELETE:'DELETE',
   POST: 'POST',
 };
 
-// const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
-const apiBaseUrl = "http://localhost:5000/api/v1/services";
+ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+//const apiBaseUrl = "http://localhost:5000/api/v1/services";
 // shakkazz api pattern
   const apiV1 = {
   root: apiBaseUrl,
@@ -58,11 +58,12 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
       headers: {
         Accept: accept,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin':'*',
-        'mode':'cors',
-        'Origin': 'http://localhost:4000',
-        'Access-Control-Request-Method': method,
-        'Access-Control-Request-Headers': ['X-PINGOTHER', 'Content-Type']
+        credentials: 'include',
+        // 'Access-Control-Allow-Origin':'*',
+        // 'mode':'cors',
+        // 'Origin': 'http://localhost:4000',
+        // 'Access-Control-Request-Method': method,
+        // 'Access-Control-Request-Headers': ['X-PINGOTHER', 'Content-Type']
       },
       body: JSON.stringify(body),
     };
