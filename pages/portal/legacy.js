@@ -10,6 +10,7 @@ import LinearProgress from "../../src/components/common/linearProgress"
 import Image from 'next/image'
 import Line from '../../src/components/common/line'
 import country from '../../src/helpers/countries.js'
+import withAuth from '../../src/hoc/withAuth';
 
 function Legacy() {
    const { register, handleSubmit, watch, errors } = useForm({
@@ -58,6 +59,7 @@ useEffect((data)=>{
 
 },[legacies])
   return (
+  <Portal>
     <Container className="mb-4" fluid>
       <div className="d-flex justify-content-center text-center" style={{flexDirection:'column'}}>
         <p style={{ font: "normal normal normal 20px/25px Ubuntu", color: "#444", opacity: 1}}>
@@ -232,9 +234,10 @@ useEffect((data)=>{
       }
       </div>
     </Container>
+  </Portal>
   )
 }
 
 
-Legacy.layout = Portal;
-export default Legacy;
+
+export default  withAuth(Legacy);

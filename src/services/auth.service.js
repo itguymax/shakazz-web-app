@@ -1,5 +1,7 @@
 
+import config from '../config';
 import  apiV1  from './config';
+import { useRouter } from "next/router";
 
   const signupUser = async (data) => {
     const url = '/auth/signup';
@@ -45,9 +47,18 @@ const loginUser = async (data) => {
   }
   }
 
+   const logOutUser =  async () => {
+      const Router = useRouter();
+     if(window !== undefined){
+         localStorage.removeItem(config.localStoreToken);
+          Router.replace("/auth/login");      
+     }
+     return null ;
+   }
 export {
   signupUser,
   resetUserPassword,
   loginUser,
   requestUserPasswordReset,
+  logOutUser,
 };

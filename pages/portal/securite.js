@@ -4,7 +4,8 @@ import Portal from '../../src/layouts/Portal';
 import Line from '../../src/components/common/line';
 import DropDownC from '../../src/components/forms/Dropdownc';
 import SecForm from '../../src/sections/2fa';
-import Modificationpwd from '../../src/sections/modificationpwd'
+import Modificationpwd from '../../src/sections/modificationpwd';
+import withAuth from '../../src/hoc/withAuth';
 const options = [{
   val: "Email"
 }, {
@@ -32,6 +33,7 @@ const options = [{
   const onSubmitC = (data) => { };
   const onSubmitT = (data) => {};
   return (
+    <Portal>
     <Container fluid>
      <SecForm label="2FA" options={options} onSubmit={onSubmit2fa} faOption={faOption} handleOnSelect={selectionOption}/>
       <Line/>
@@ -53,8 +55,8 @@ const options = [{
         </Col>
       </Row>
     </Container>
+    </Portal>
   )
 }
 
-Securite.layout = Portal
-export default Securite;
+export default withAuth(Securite);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-
+import withAuth from '../../src/hoc/withAuth'
 // reactstrap components
 import {
   Container,
@@ -31,6 +31,7 @@ function Transactions() {
   let data = FakeData();
   
   return (
+    <Portal>
       <Container fluid>
         <Row className="justify-content-md-center">
           <Text text = "Faites une transaction:"/>
@@ -45,9 +46,9 @@ function Transactions() {
         </Row>
         <NavPil data = {data} handleSetHTabs =  {handleSetHTabs}  currentHTabsIcons =  {currentHTabsIcons}/>
       </Container>
+      </Portal>
   );
 }
 
-Transactions.layout = Portal;
 
-export default Transactions;
+export default  withAuth(Transactions);

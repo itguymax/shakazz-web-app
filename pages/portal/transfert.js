@@ -10,7 +10,7 @@ import Sinput from "../../src/components/forms/Sinput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
-
+import withAuth from '../../src/hoc/withAuth'
 
 function Transfert() {
   const { register, handleSubmit, watch, errors } = useForm({
@@ -20,6 +20,7 @@ function Transfert() {
   const onSubmit = (data) => {};
    const handleToggleshow = () => setShow(!show);
   return (
+    <Portal>
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un transfére</h1>
       <Row className="mt-4 justify-content-between">
@@ -94,9 +95,10 @@ function Transfert() {
         </Col>
       </Row>
     </div>
+    </Portal>
   )
 }
 
 
-Transfert.layout = AdminBleu;
-export default Transfert;
+
+export default withAuth(Transfert);

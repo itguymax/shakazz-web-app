@@ -59,13 +59,9 @@ const METHOD = {
         Accept: accept,
         'Content-Type': 'application/json',
         credentials: 'include',
-        // 'Access-Control-Allow-Origin':'*',
-        // 'mode':'cors',
-        // 'Origin': 'http://localhost:4000',
-        // 'Access-Control-Request-Method': method,
-        // 'Access-Control-Request-Headers': ['X-PINGOTHER', 'Content-Type']
+        
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body) ,
     };
   
     // if (withBody.indexOf(method) !== -1) {
