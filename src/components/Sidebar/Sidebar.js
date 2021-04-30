@@ -203,7 +203,7 @@ function Sidebar(props) {
               <DropdownItem divider />
               <DropdownItem href="#itguymax" onClick={(e) => {
                 e.preventDefault();
-                logOutUser();
+                logOutUser(router);
               }}>
                 <i className="ni ni-user-run" />
                 <span>Logout</span>
@@ -273,8 +273,11 @@ function Sidebar(props) {
           {/* <h6 className="navbar-heading text-muted">Documentation</h6> */}
           {/* Navigation */}
           <Nav className="mb-md-3 bottom" navbar>
-            <NavItem onClick={logOutUser}>
-              <NavLink href="https://www.itguymax.com">
+            <NavItem>
+              <NavLink href="#itguymax" onClick={(e) => {
+                e.preventDefault();
+                logOutUser(router);
+              }}>
                 <img className="mr-2" src="/assets/img/icons/dashboard/disconnexion1.svg" style={{width:"15px", height:"20px" }} />
                <span style={{color: "#fff", fontWeight: "100"}}> Déconnexion</span>
               </NavLink>
