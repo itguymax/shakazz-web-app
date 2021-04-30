@@ -4,8 +4,9 @@ import styled from '@emotion/styled'
 import { Badge } from 'reactstrap';
 import Sinput from '../../src/components/forms/Sinput';
 import CreatePortefeuille from '../../src/components/common/createPortefeuille';
-import FileUploadBlock from '../../src/components/forms/FileUploadBlock'
-import country from '../../src/helpers/countries.js'
+import FileUploadBlock from '../../src/components/forms/FileUploadBlock';
+import country from '../../src/helpers/countries.js';
+import withAuth from '../../src/hoc/withAuth';
 
 // reactstrap components
 import {
@@ -102,4 +103,4 @@ function Kyc() {
 
 //Kyc.layout = Portal;
 
-export default Kyc;
+export default withAuth(Kyc);

@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminBleu from '../../src/layouts/AdminBleu'
-
+import withAuth from '../../src/hoc/withAuth';
 function paymentSummary() {
   return (
     <div>
@@ -12,4 +12,4 @@ function paymentSummary() {
 
 
 paymentSummary.layout = AdminBleu;
-export default paymentSummary;
+export default withAuth(paymentSummary);

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../src/services/auth.service'
+import connfig from '../../src/config';
 // reactstrap components
 import {
   Button,
@@ -23,7 +24,7 @@ import {useMutation, useQueryClient} from 'react-query';
 
 
 function Login() {
-  const { mutateAsync, isLoading} = useMutation(loginUser)
+  const { mutateAsync, isLoading} = useMutation("Login User",loginUser)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
@@ -39,34 +40,37 @@ function Login() {
   const [successmsg, setSuccessmsg]= useState(null);
   const handleToggleshow = () => setShow(!show);
   const executeCaptcha = () => setVerified(!verified);
-  const onSubmit = async (data)  => {
+  const onSubmit = async (hookData)  => {
     
      let userdata;
     if(verified){
-      setSubmitting(true);
-    const { password, userName } = data;
+      setSubmitting(isLoading);
+    const { password, userName } = hookData;
     userdata = {password, userName }
    try{
-       let datares = await loginUser(userdata);
-      
+       let datares = await mutateAsync(userdata);
+       console.log("login", datares);
        const { data, error, success, message } = datares;
        if(error && !success){
         setSuccessmsg(null);
         setErrormsg(message);
        
        } else {
-         setErrormsg(null);
+         if( typeof window !== "undefined"){
+           console.log("window", data.user_token);
+             localStorage.setItem(config.localStoreToken, data.user_token);
+             setErrormsg(null);
          setSuccessmsg(message);
+         setSubmitting(isLoading)
          router.push('/portal/dashboard');
+         }     
        }
        
-       
-
    }catch(err){
         console.log("error", err);
    }
    } else {
-     alert("Vous  n'êtes pas humain")
+     alert("Vous n'êtes pas humain")
    }
   };
   return (

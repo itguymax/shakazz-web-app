@@ -1,3 +1,4 @@
+
 const apiUrl = "https://shakazz-server.herokuapp.com/api/v1/services/subcriptions";
 
  const submitSubscriptionData = async (data) => {

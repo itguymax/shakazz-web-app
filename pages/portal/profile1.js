@@ -1,5 +1,5 @@
 import React from "react";
-
+import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import {
   Button,
@@ -20,7 +20,7 @@ import UserHeader from "../../src/components/Headers/UserHeader.js";
 
 function Profile() {
   return (
-    <>
+    <Portal>
       <UserHeader />
       {/* Page content */}
       <Container className="mt--7" fluid>
@@ -308,10 +308,10 @@ function Profile() {
           </Col>
         </Row>
       </Container>
-    </>
+    </Portal>
   );
 }
 
-Profile.layout = Portal;
+// Profile.layout = Portal;
 
-export default Profile;
+export default withAuth(Profile);

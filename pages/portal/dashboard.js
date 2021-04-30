@@ -31,6 +31,7 @@ import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import ProgressBar from "../../src/components/ProgressBar";
 import { currentUser } from "../../src/__MOCK__/user";
 import { isDirective } from "graphql";
+import withAuth from '../../src/hoc/withAuth';
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
@@ -46,6 +47,7 @@ function Dashboard() {
     setChartExample1Data("data" + index);
   };
   return (
+    <Portal>
       <Container>
       <h1>Dashboard</h1>
       <a href="/portal/daily_transactions">daily t</a>
@@ -238,9 +240,9 @@ function Dashboard() {
           </Col>
         </Row>
       </Container>
+    </Portal>
   )
 }
 
-Dashboard.layout = Portal;
 
-export default Dashboard;
+export default withAuth(Dashboard);

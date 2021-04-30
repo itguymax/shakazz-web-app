@@ -17,6 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import { retraitSchema } from "../../src/validations";
 import Smodal from '../../src/components/common/Smodal';
+import withAuth from '../../src/hoc/withAuth';
 function Retrait() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(retraitSchema),
@@ -32,6 +33,7 @@ function Retrait() {
   };
    const handleToggleshow = () => setShow(!show);
   return (
+    <Portal>
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un retrait</h1>
       <Row className="mt-4 justify-content-between">
@@ -103,9 +105,10 @@ function Retrait() {
         {openModal&& <Smodal data={data} handleClose={openDepotModal} open={openModal}/>}
       </Row>
     </div>
+    </Portal>
   )
 }
 
 
-Retrait.layout = AdminBleu;
-export default Retrait;
+// Retrait.layout = AdminBleu;
+export default  withAuth(Retrait);

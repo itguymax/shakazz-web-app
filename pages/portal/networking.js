@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import { Container, Row, Col } from "reactstrap";
 // layout for this page
@@ -53,7 +53,7 @@ function selectComponent(){
 
 
   return (
-    <>
+    <Portal>
       {/* <Header /> */}
       
       <Container fluid>   
@@ -78,10 +78,9 @@ function selectComponent(){
           </Row>
         </div>
       </Container>
-    </>
+    </Portal>
   );
 }
 
-Networking.layout = Portal;
 
-export default Networking;
+export default withAuth( Networking );
