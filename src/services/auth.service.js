@@ -47,11 +47,10 @@ const loginUser = async (data) => {
   }
   }
 
-   const logOutUser =  async () => {
-      const Router = useRouter();
+   const logOutUser =  async (router) => {
      if(window !== undefined){
          localStorage.removeItem(config.localStoreToken);
-          Router.replace("/auth/login");      
+          router.replace("/auth/login");      
      }
      return null ;
    }
