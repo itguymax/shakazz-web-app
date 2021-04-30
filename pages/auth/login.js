@@ -56,7 +56,8 @@ function Login() {
         setErrormsg(message);
        
        } else {
-         if(window !== undefined){
+         if( typeof window !== "undefined"){
+           console.log("window", data.user_token);
              localStorage.setItem(config.localStoreToken, data.user_token);
              setErrormsg(null);
          setSuccessmsg(message);

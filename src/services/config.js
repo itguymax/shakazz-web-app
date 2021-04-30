@@ -65,7 +65,7 @@ const METHOD = {
         // 'Access-Control-Request-Method': method,
         // 'Access-Control-Request-Headers': ['X-PINGOTHER', 'Content-Type']
       },
-      body: JSON.stringify(body),
+      body: body,
     };
   
     // if (withBody.indexOf(method) !== -1) {
