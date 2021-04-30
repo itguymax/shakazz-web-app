@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../src/services/auth.service'
+import {Spinner} from "reactstrap"
 import connfig from '../../src/config';
 // reactstrap components
 import {
@@ -183,8 +184,8 @@ function Login() {
                   <span className="text-success font-weight-700">{successmsg}</span>
                
               </div> }
-                <Button className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
-                  S'identifier
+                <Button className="mt-3 mb-1"  disabled={isLoading} type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
+                    {isLoading? <Spinner size="sm" color="#cc993a" />: "S'identifier"}  
                 </Button>
                 <div>
                   <a
