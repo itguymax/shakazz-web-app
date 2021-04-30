@@ -167,7 +167,7 @@ function Profile() {
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <Form role="form" onSubmit={handleSubmit(onSubmit)}>
+      <Form role="form" onSubmit={()=>{handleSubmit(onSubmit)}}>
         <Row>
           <Col xs="6" sm="4">
                 <Row>
