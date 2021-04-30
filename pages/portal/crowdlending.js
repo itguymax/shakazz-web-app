@@ -123,7 +123,7 @@ const Crowdlending = () => {
   }
  console.log("coffre fort2", coffreDatas);
   return (
-    <>
+    <Portal>
       <Container fluid>
       <WalletHeader wallets={user.wallet}/>
       <Button onClick={()=> Router.push("equipe") }> Equipe</Button>
@@ -188,10 +188,9 @@ const Crowdlending = () => {
       </> :null}
        
       </Container>
-    </>
+    </Portal>
   );
 };
 
-Crowdlending.layout = Portal;
 
 export default withAuth(Crowdlending);
