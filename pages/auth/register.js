@@ -114,9 +114,9 @@ const { register, handleSubmit, watch, errors } = useForm({
     }
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
-// useEffect(()=>{
-//     router.push("pre-inscription");
-//   })
+useEffect(()=>{
+    router.push("pre-inscription");
+  })
   return (
     <>
      <Head>

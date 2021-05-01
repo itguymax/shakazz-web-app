@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Sinput from "../../src/components/forms/Sinput";
 import { forgotPasswordSchema } from "../../src/validations";
-import { requestPasswordReset } from '../../src/services/auth.service';
+import { requestUserPasswordReset } from '../../src/services/auth.service';
 
 import {Card,Button, CardBody } from 'reactstrap'
 import Captcha from '../../src/components/Captcha';
@@ -26,7 +26,7 @@ function ForgotPassword() {
     const { email } = data;
     userdata = {email }
    try{
-       let datares = await requestPasswordReset(userdata);
+       let datares = await requestUserPasswordReset(userdata);
        const { data, error, success, message } = datares;
        if(error && !success){
         setSuccessmsg(null);
