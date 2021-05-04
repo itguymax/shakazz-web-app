@@ -9,7 +9,14 @@ import {
   Row,
 } from "reactstrap";
 import Dot from '../common/dot'
-export default function Sinput({mgl,readOnly, rows, inputvalue,handleOnchange, disabled,iStyle, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
+import CustomDropdown from '../common/CustomDropdown';
+const arrowClosed = (
+  <span className="arrow-closed" />
+)
+const arrowOpen = (
+  <span className="arrow-open" />
+)
+export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultOption,inputvalue,handleOnchange, disabled,iStyle, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
   const ibg = inputBg || '#f5f5f5'
   const style = inline? {display: 'flex', flexDirection: 'row'}:null
   return (
@@ -24,7 +31,19 @@ export default function Sinput({mgl,readOnly, rows, inputvalue,handleOnchange, d
                  </div>
                </Col>
                 <Col xl="6" >
-                   <div className=" d-flex justify-content-center">
+                  {dd? (
+                     <CustomDropdown
+                      arrowClosed={arrowClosed}
+                      arrowOpen={arrowOpen}
+                      options={options}
+                      value={defaultOption}
+                      placeholder={placeholder}
+                      name={name}
+                      onChange={onSelect}
+                      innerRef={register()}
+                    />
+                  ): (
+                     <div className=" d-flex justify-content-center">
                      <InputGroup  className="input-group-alternative  mb-1" style={{overflow: 'hidden'}}>
                    {prepend && icon && (
                      <InputGroupAddon addonType="append">
@@ -46,6 +65,7 @@ export default function Sinput({mgl,readOnly, rows, inputvalue,handleOnchange, d
                  {usd&& <span className="ml-2" style={{font: 'normal normal bold 30px/37px Ubuntu', color: "#fff"}}>$</span>}
                   {btc && <span className="ml-2" style={{font: 'normal normal bold 30px/37px Ubuntu', color: "#fff"}}>₿</span>}
                    </div>
+                  )}
                 </Col>
               </Row>
              ):( 

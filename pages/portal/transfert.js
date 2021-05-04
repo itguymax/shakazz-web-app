@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import AdminBleu from '../../src/layouts/AdminBleu'
+import React, {useState} from 'react';
+import AdminBleu from '../../src/layouts/AdminBleu';
 import {
   Row,
   Col,
@@ -10,34 +10,65 @@ import Sinput from "../../src/components/forms/Sinput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
-import withAuth from '../../src/hoc/withAuth'
+import withAuth from '../../src/hoc/withAuth';
+import CustomDropdown from '../../src/components/common/CustomDropdown';
+
+const optionstype = [
+  {type:"Interne"},
+  {type:"Externe"}
+]
+
 
 function Transfert() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver({}),
   });
   const [show, setShow] = useState(false);
-  const onSubmit = (data) => {};
+  const [selectedType, setType] = useState({})
+  const [defaultOption, setDefaultOption] = useState("")
+  const onSubmit = (data) => {
+    console.log("transfer", data);
+  };
    const handleToggleshow = () => setShow(!show);
+   const handleOnSelectTypeTransfer = (type) => {
+      console.log("type transfert", type)
+   }
+    const handleOnSelectWalletRetrait = () =>{
+     
+   }
+    const handleOnSelectWalletReception = () =>{
+     
+   }
   return (
-    <Portal>
+    <AdminBleu>
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un transfére</h1>
       <Row className="mt-4 justify-content-between">
         <Col xl="9">
            <Form role="form" onSubmit={handleSubmit(onSubmit)}>
-            
+
+              <Sinput
+                label="Type de transfert"
+                name="typeTransfert"
+                inline
+                options={optionstype}
+                defaultOption={selectedType}
+                placeholder="Choisir le type de tranfert"
+                dd
+                register={register}
+                onSelect={handleOnSelectTypeTransfer}
+              /> 
               <Sinput
                 label="Choisir le wallet de retrait"
                 name="wallet"
-                placeholder="Wallet principal"
-                type="text"
-                register={register}
-                inputBg="#679966"
                 inline
-                disabled
+                options={optionstype}
+                defaultOption={defaultOption}
+                placeholder="Choix du Wallet"
+                dd
+                register={register}
+                onSelect={handleOnSelectWalletRetrait}
               /> 
-             
                 <Sinput
                 label="Montant"
                 name="montant"
@@ -52,15 +83,14 @@ function Transfert() {
                <Sinput
                 label="Choisir le wallet de reception"
                 name="wallet"
-                placeholder="Wallet principal"
-                type="text"
-                register={register}
-                inputBg="#679966"
                 inline
-                disabled
+                options={optionstype}
+                defaultOption={defaultOption}
+                placeholder="Choix du Wallet"
+                dd
+                register={register}
+                onSelect={handleOnSelectWalletReception}
               /> 
-          
-            
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
@@ -95,7 +125,7 @@ function Transfert() {
         </Col>
       </Row>
     </div>
-    </Portal>
+    </AdminBleu>
   )
 }
 
