@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../../src/components/common/lightBoxContainer';
 import Smodal from '../../../src/components/common/Smodal'
 import { depotSchema } from "../../../src/validations";
-import withAuth from '../../src/hoc/withAuth';
+import withAuth from '../../../src/hoc/withAuth';
 
 
 function Depot() {

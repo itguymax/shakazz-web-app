@@ -31,6 +31,7 @@ import SimulationTable from "../../src/components/SimulationTable";
 import Coffre from "../../src/components/coffre";
 import Router from "next/router";
 import withAuth from '../../src/hoc/withAuth';
+import { QueryCache } from "react-query";
 
 const Crowdlending = () => {
  
@@ -122,6 +123,13 @@ const Crowdlending = () => {
     console.log("coffre fort", coffreDatas);
   }
  console.log("coffre fort2", coffreDatas);
+  const queryCache = new QueryCache({
+   onError: error => {
+     console.log(error)
+   },
+ })
+ const query = queryCache.find('wallets');
+ console.log("query", query);
   return (
     <Portal>
       <Container fluid>

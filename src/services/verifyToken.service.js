@@ -1,10 +1,12 @@
 
 import config from '../config';
 import  apiV1  from './config';
+import { useAppContext } from '../context'
 const verifyTokenS = async (token) => {
+  
   const data = {
    data: {
-      token
+      token,
    }
   }
     const url = "/verifyToken";

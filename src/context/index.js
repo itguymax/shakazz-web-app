@@ -1,12 +1,40 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState, useReducer} from 'react';
+import { constantes } from '../config';
+import { getUTfromLS } from "../helpers/token";
+import { getUserWallets } from "../services/wallet.service";
+import { QueryClient, useQuery } from 'react-query'
 
-const AppContext = createContext();
+export const AppContext = createContext({});
+
+export const initialState = {
+  user: {},
+  userData: {},
+  settings:{},
+  wallets: [],
+  accessToken: getUTfromLS(),
+ 
+};
+export const reducer = (state, action) => {
+
+
+  switch (action.type) {
+    
+     case 'wallets': {
+       console.log("reducer", action.type, action.value);
+      return { ...state, wallets: action.value };
+    }
+    default:
+      return { ...state, [action.type]: action.value };
+    // throw new Error();
+  }
+};
+
 
 export function AppWrapper({ children }) {
-  let sharedState = {/* whatever you want */}
+   const [appState, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <AppContext.Provider value={sharedState}>
+    <AppContext.Provider value={{appState, dispatch}}>
       {children}
     </AppContext.Provider>
   );

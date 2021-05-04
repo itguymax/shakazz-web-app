@@ -2,7 +2,9 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {verifyTokenS} from "../services/verifyToken.service";
 import config from '../config';
-import {useMutation, useQueryClient} from 'react-query';
+import {useMutation, useQueryClient,QueryClient, useQuery } from 'react-query';
+import { dehydrate } from 'react-query/hydration'
+
 
 const withAuth = (WrappedComponent) => {
   console.log("enter auth");

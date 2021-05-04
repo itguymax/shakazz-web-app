@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../src/services/auth.service'
-import {Spinner} from "reactstrap"
 import connfig from '../../src/config';
 // reactstrap components
 import {
@@ -13,6 +12,7 @@ import {
   CardBody,
   Form,
   Row,
+  Spinner,
 } from "reactstrap";
 // layout for this page
 import Auth from "../../src/layouts/Auth.js";
@@ -22,10 +22,11 @@ import { loginSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
 import {useMutation, useQueryClient} from 'react-query';
+import { setUTToLS } from '../../src/helpers/token'
 
 
 function Login() {
-  const { mutateAsync, isLoading} = useMutation("Login User",loginUser)
+  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Login User",loginUser)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
@@ -59,7 +60,7 @@ function Login() {
        } else {
          if( typeof window !== "undefined"){
            console.log("window", data.user_token);
-             localStorage.setItem(config.localStoreToken, data.user_token);
+            setUTToLS(data.user_token);
              setErrormsg(null);
          setSuccessmsg(message);
          setSubmitting(isLoading)

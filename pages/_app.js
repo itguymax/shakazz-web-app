@@ -13,6 +13,7 @@ import "../public/assets/css/shakazz.css";
 import 'react-circular-progressbar/dist/styles.css';
 import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Hydrate} from 'react-query/hydration'
 const queryClient = new QueryClient();
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
@@ -86,7 +87,9 @@ export default class MyApp extends App {
           <QueryClientProvider client={queryClient}>
           <AppWrapper>
               <ReactQueryDevtools initialIsOpen={false}/>
-              <Component {...pageProps} />
+              <Hydrate state={pageProps.dehydratedState}>
+                 <Component {...pageProps} />
+              </Hydrate>
           </AppWrapper>
           </QueryClientProvider>
         </ApolloProvider>

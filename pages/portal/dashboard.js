@@ -6,7 +6,9 @@ import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
 import settings from "../../src/__MOCK__/settings";
-
+import { QueryClient, useQuery } from 'react-query'
+import { dehydrate } from 'react-query/hydration'
+import {useAppContext} from "../../src/context"
 // reactstrap components
 import {
   Card,
@@ -28,15 +30,17 @@ import {
 } from "../../variables/charts.js";
 import  { Link } from "../../src/components/Link";
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
+import DashboardWallets from '../../src/components/DashboardWallets';
 import ProgressBar from "../../src/components/ProgressBar";
 import { currentUser } from "../../src/__MOCK__/user";
 import { isDirective } from "graphql";
 import withAuth from '../../src/hoc/withAuth';
+import { constantes  } from "../../src/config/"
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
-
+  const context = useAppContext();
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
   }
@@ -46,6 +50,7 @@ function Dashboard() {
     setActiveNav(index);
     setChartExample1Data("data" + index);
   };
+  
   return (
     <Portal>
       <Container>
@@ -145,41 +150,7 @@ function Dashboard() {
                    </LightBoxContainer>
                 </Col>
                   <Col xl="4">
-                    <LightBoxContainer>
-                      <div className="container p-4">
-                        <div >
-                          <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet principal</h2>
-                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 30px/35px Ubuntu',color: '#444',  lineHeight: '1.2'}}> {(29000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
-                          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
-                            <Link label="Dépôt" path="/portal/depot" style={{ background: '#007A5E 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                            <Link label="Retrait" path="/portal/retrait" style={{ background: '#CE1126 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                            <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                          </div>
-                        </div>
-                      </div>
-                   </LightBoxContainer>
-                    <LightBoxContainer>
-                      <div className="container p-4">
-                        <div >
-                          <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet vault</h2>
-                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 40px/45px Ubuntu',color: '#444',  lineHeight: '1.2'}}>{(250000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
-                          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
-                            <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                          </div>
-                        </div>
-                      </div>
-                   </LightBoxContainer>
-                    <LightBoxContainer>
-                      <div className="container p-4">
-                        <div >
-                          <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet Networking</h2>
-                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 40px/45px Ubuntu',color: '#444',  lineHeight: '1.2'}}> {(29000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
-                          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
-                            <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                          </div>
-                        </div>
-                      </div>
-                   </LightBoxContainer>
+                    <DashboardWallets/>
                  </Col>
              </Row>
            </Col>
