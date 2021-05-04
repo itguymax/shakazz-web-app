@@ -57,7 +57,7 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
       input{
         background-color: #f0f0f0 !important;
         border:1px solid white !important;
-        width:15em !important;
+        width:12em !important;
       }
       input[type="text"]{
         background-color: #f0f0f0 !important;

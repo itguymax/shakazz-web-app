@@ -101,6 +101,13 @@ function Profile() {
         .dropdown-menu.show{
           max-height:'2em !important';
         }
+        .profile_box_portefeuille_col3{
+          margin-top:-0.7em;
+          margin-left:0.7em;
+        }
+        .profile_box_portefeuille_col2{
+          margin-left:-3em;
+        }
         .dropdown button{
           height:3em !important;
         }
@@ -164,6 +171,13 @@ function Profile() {
         @media only screen and (max-width: 1024px) {
           .createPortefeuille{
             height:17em !important;
+          }
+          .profile_box_portefeuille_col3{
+            margin-top:-0.7em;
+            margin-left:2em;
+          }
+          .profile_box_portefeuille_col2{
+            margin-left:-1.9em;
           }
         }
       `}

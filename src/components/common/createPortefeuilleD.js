@@ -63,7 +63,7 @@ export default function CreatePortefeuilleD({nb}) {
       }
       `}
     />
-    <Row style={{marginTop:"0.5em"}}>
+    <Row style={{marginBottom:"0.5em"}}>
       <Col sm="2">
          <Image
          src="/assets/img/icons/retrait/wallet.svg"
@@ -71,8 +71,8 @@ export default function CreatePortefeuilleD({nb}) {
          height={25} width={25}
          />
       </Col>
-      <Col sm="2"><p style={{marginLeft:"-3em",color:"black",marginTop:"0em",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
-      <Col sm="6" style={{marginLeft:"-2em",marginTop:"-1em"}}><DropDownC portefeuille name={"profile_portefeuille"+nb} label="" register={()=>{}} name="canal" selectedOption={portefeuille[0]} handleOnSelect={()=>{}} options={portefeuille||[]}/></Col>
+      <Col sm="2" className="profile_box_portefeuille_col2"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
+      <Col sm="4" className="profile_box_portefeuille_col3"><DropDownC portefeuille name={"profile_portefeuille"+nb} label="" register={()=>{}} name="canal" selectedOption={portefeuille[0]} handleOnSelect={()=>{}} options={portefeuille||[]}/></Col>
     </Row>
     </>
   )
