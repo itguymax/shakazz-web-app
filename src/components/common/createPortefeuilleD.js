@@ -64,7 +64,7 @@ export default function CreatePortefeuilleD({nb}) {
       `}
     />
     <Row style={{marginBottom:"0.5em"}}>
-      <Col sm="2">
+      <Col sm="2" className="profile_box_portefeuille_col1">
          <Image
          src="/assets/img/icons/retrait/wallet.svg"
          alt="..."

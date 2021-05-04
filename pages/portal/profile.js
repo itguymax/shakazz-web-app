@@ -162,10 +162,20 @@ function Profile() {
         }
         @media only screen and (max-width: 768px) {
           input[type="text"]{
-            width:13em !important;
+            width:6em !important;
           }
           #navbarDropdownMenuLink2{
             width:13em !important;
+          }
+          .profile_box_portefeuille_col1{
+            margin-left:-2em;
+          }
+          .profile_box_portefeuille_col2{
+            margin-left:-2em;
+          }
+          .profile_box_portefeuille_col3{
+            margin-top:-0.7em;
+            margin-left:3.5em !important;
           }
         }
         @media only screen and (max-width: 1024px) {
