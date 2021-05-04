@@ -43,10 +43,10 @@ export default function CreatePortefeuille() {
                       padding:"1em",paddingTop:"2em"}}>
                        <Row style={{display:"flex",
                       justifyContent: "space-around"}}>
-                        <Label>Projet d'études:</Label>
+                        <Label>Name:</Label>
                         <Sinput
                           name="name"
-                          placeholder="projet d'études"
+                          placeholder="Projet d'études"
                           register={()=>{}}
                           iStyle={{width:"10em",
                              backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
@@ -58,10 +58,10 @@ export default function CreatePortefeuille() {
                          </Row>
                         <Row style={{display:"flex",
                         justifyContent: "space-around"}}>
-                          <Label>Projet d'études:</Label>
+                          <Label>Adresse:</Label>
                           <Sinput
                             name="name"
-                            placeholder="projet d'études"
+                            placeholder="FRA2017univ2021"
                             register={()=>{}}
                             iStyle={{width:"10em",
                                backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
@@ -73,7 +73,7 @@ export default function CreatePortefeuille() {
                          </Row>
                        <Row>
                           <Button style={{margin:"auto",marginTop:"1em"}}>Confirmer</Button>
-                       </Row> 
+                       </Row>
                       </Container>
   )
 }

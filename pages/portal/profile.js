@@ -3,6 +3,7 @@ import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import Sinput from '../../src/components/forms/Sinput';
 import CreatePortefeuille from '../../src/components/common/createPortefeuille';
+import CreatePortefeuilleD from '../../src/components/common/createPortefeuilleD';
 import DropDownC from '../../src/components/forms/Dropdownc'
 import DropDownPhone from '../../src/components/forms/DropDownPhone'
 import country from '../../src/helpers/countries.js'
@@ -247,7 +248,7 @@ function Profile() {
 
                    <Col xs="6" sm="2">
                     <Image
-                      src="/assets/img/icons/clic_button_down.svg"
+                      src="/assets/img/icons/add.svg"
                       alt="..."
                       height={20} width={20}
                       style={{backgroundColor:"#000",margin:"auto"}}
@@ -333,7 +334,10 @@ function Profile() {
                       backgroundColor:"white",
                       borderRadius:"16px",
                       padding:"1em"}}>
-
+                        <CreatePortefeuilleD nb={"1"}/>
+                        <CreatePortefeuilleD nb={"2"}/>
+                        <CreatePortefeuilleD nb={"3"}/>
+                        <CreatePortefeuilleD nb={"4"}/>
                       </Container>
             </Col>
         </Row>
