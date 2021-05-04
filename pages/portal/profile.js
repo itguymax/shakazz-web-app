@@ -86,7 +86,7 @@ function Profile() {
           cursor:pointer;
           transition: all .8s ease-in-out;
         }
-        img:hover{
+        img[id="profile_photo"]:hover{
           transform: scale(1.5);
         }
         input{
@@ -301,6 +301,7 @@ function Profile() {
           <Col sm="4">
             <Col md={12} style={{textAlign:"center"}} >
               <Image
+              id="profile_photo"
               src="/assets/img/photoequipe/bisso.png"
               alt="..."
               className="rounded-circle"
