@@ -3,10 +3,11 @@ import { useRouter } from 'next/router';
 import {
   Button,
   Modal,
-  Row
+  Row,
+  Spinner,
 } from "reactstrap";
 import LineItem from './LineItem'
-export default function Smodal({ open,handleClose, data, path }) {
+export default function Smodal({ open,handleClose,isLoading, handleMSubmit, data, path }) {
   const router = useRouter();
   return (
     <div style={{filter: 'blur(20px)'}}>
@@ -14,9 +15,10 @@ export default function Smodal({ open,handleClose, data, path }) {
             <Modal
             isOpen={open}
             onClick={() => {
-              handleClose()
-             if(path)  return router.push(path);
+               handleClose()
+            //  if(path)  return router.push(path);
             }}
+            toggle={handleClose}
             style={{width: '500px', borderRadius:'50px'}}
           >
             <div className=" modal-header pb-0">
@@ -45,8 +47,8 @@ export default function Smodal({ open,handleClose, data, path }) {
               </div>
             </div>
             <div className=" modal-footer justify-content-center pt-0">
-             <Button className="mt-3 mb-1 text-white"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
-                 Confirmer
+             <Button className="mt-3 mb-1 text-white"  onClick={()=> handleMSubmit(data)} style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
+                 {isLoading ? <Spinner size="sm" color="#cc993a" />: "Confirmer"}
               </Button>
             </div>
           </Modal>

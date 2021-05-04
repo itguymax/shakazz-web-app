@@ -12,6 +12,12 @@ export const initialState = {
   settings:{},
   wallets: [],
   accessToken: getUTfromLS(),
+  depositSummary:{
+     btc : "",
+     amount: "",
+     taux : "",
+     method:"",
+  },
  
 };
 export const reducer = (state, action) => {

@@ -12,7 +12,12 @@ const withAuth = (WrappedComponent) => {
     const Router = useRouter();
     const [verified, setVerified] = useState(false);
     console.log("HOC");
-    const { mutateAsync, isLoading} = useMutation("Verify token",verifyTokenS);
+    const { mutateAsync, isLoading, isError} = useMutation("Verify token",verifyTokenS);
+    console.log("test error", isError);
+    if(isError){
+      alert("Une erreur s'est produite")
+       Router.replace("/auth/login");
+    }
     useEffect(async () => {
     if(typeof window !== "undefined"){
            const accessToken = localStorage.getItem(config.localStoreToken);
@@ -32,7 +37,7 @@ const withAuth = (WrappedComponent) => {
            if (t.data.verifyToken) {
            console.log("HOC 3");
            setVerified(t.data.verifyToken);
-         } else {
+         } else{
            console.log("HOC 4");
           // If the token was fraud we first remove it from localStorage and then redirect to "/"
            localStorage.removeItem(config.localStoreToken);

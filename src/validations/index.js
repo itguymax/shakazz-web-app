@@ -91,9 +91,9 @@ const profileSchema = yup.object().shape({
 const depotSchema = yup.object().shape({
   wallet: yup.string().default('Wallet pricinpal'),
   method: yup.string().default('Bitcoin'),
-  montant: yup.string(),
-  quantitebtc: yup.string(),
-  transactionPassword: yup.string(),
+  montant: yup.number().min(100, "Le Montant Minimum de depot est de 100 usd").required("Entrez le montant en USD"),
+  quantitebtc: yup.number(),
+  transactionPassword: yup.string().required("Entrez votre mot de pass de transaction").min(9, "Format Incorrect"),
 })
 
 const retraitSchema = yup.object().shape({

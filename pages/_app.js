@@ -18,6 +18,7 @@ const queryClient = new QueryClient();
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
 import { AppWrapper } from '../src/context'
+import config from "../src/config/index.js";
 
 Router.events.on("routeChangeStart", (url) => {
 
@@ -40,6 +41,11 @@ export default class MyApp extends App {
   componentDidMount() {
     let comment = document.createComment(`build by itguymax@gmail.com`);
     document.insertBefore(comment, document.documentElement);
+    if(localStorage.getItem(config.localStoreToken && Router.asPath.indexOf("portal") !== 1)){
+      Router.push('/portal/dashboard')
+    } else {
+      return;
+    }
   }
  
   render() {

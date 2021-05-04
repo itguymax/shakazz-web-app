@@ -164,11 +164,11 @@ au lieu-dit Quartier Fouda,
 Rue 113
               </p>
               <p>
-                <center><Button className="px-5 py-2" onClick={()=> {
+                <Button className="px-5 py-2 text-center" onClick={()=> {
                   if(window){
                     window.open(config.preInscriptionLink);
                   }
-                }} >Commencez</Button></center>
+                }} >Commencez</Button>
               </p>
                 </Jumbotron>
           </Col>

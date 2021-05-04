@@ -19,7 +19,7 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
   root: apiBaseUrl,
   call: async (url, parameters) => {
     const finalUrl =
-      url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`: `${apiV1.root}/${url}`;
+      url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`:( url.startsWith('http') || url.startsWith('https'))? url:  `${apiV1.root}/${url}`;
       console.log("final url", finalUrl, url, parameters);
     const response = await fetch(finalUrl, parameters);
     return response;
