@@ -30,7 +30,6 @@ const requestOptions = {
   }
 
   const {data} = useQuery("crypto", fetchExchange);
-  console.log("dada", data)
   return (
     <>
      <Head>

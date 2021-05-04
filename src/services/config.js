@@ -20,7 +20,6 @@ const METHOD = {
   call: async (url, parameters) => {
     const finalUrl =
       url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`: `${apiV1.root}/${url}`;
-      console.log("final url", finalUrl, url, parameters);
     const response = await fetch(finalUrl, parameters);
     return response;
   },
@@ -51,7 +50,6 @@ const METHOD = {
     return params;
   },
   unAuthParameters: (method = METHOD.POST, accept = ACCEPT.JSON, body = {}) => {
-    console.log("params", body);
     const withBody = [METHOD.PUT, METHOD.PATCH, METHOD.POST];
     const params = {
       method,
@@ -110,7 +108,6 @@ const METHOD = {
       url,
       apiV1.unAuthParameters(METHOD.POST, ACCEPT.JSON, body),
     );
-    console.log("signup data no json", response);
     return response.json();
   },
   put: async (url, accessToken, body = {}) => {

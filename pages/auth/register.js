@@ -74,15 +74,15 @@ const { register, handleSubmit, watch, errors } = useForm({
   };
   const handletoggle = () => setProfil(!isParticular);
   const onSubmit =  async (hookFormData) => {
-    console.log("Inscriptions....");
+   
    if(verified){
     setSubmitting(true); 
     const {confirmpassword, ...rest } = hookFormData;
-    console.log("rest data", rest);
+   
    let  userdata = {...additionaldata, ...rest};
    try{
        let datares = await signupUser(userdata);
-       console.log("response", datares);
+      
       //  const { data, error, success, message} = datares;
       //  if(error && !success){
       //   setSuccessmsg(null);

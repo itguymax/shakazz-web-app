@@ -10,17 +10,17 @@ import BlogPostFooter from "../../src/components/blog/BlogPostFooter"
 // reactstrap components
 import {Container} from "reactstrap";
 
-function BlogPage(){
+function BlogPage({post}){
   const router = useRouter();
 
-  // let featuredImageUrl="";
-  // let authorInfo=""
-  // if(post.featuredImage){
-  //  featuredImageUrl =  post.featuredImage.node.sourceUrl
-  // }
-  // if(post.author){
-  //    authorInfo = post.author.node;
-  // }
+  let featuredImageUrl="";
+  let authorInfo=""
+  if(post.featuredImage){
+   featuredImageUrl =  post.featuredImage.node.sourceUrl
+  }
+  if(post.author){
+     authorInfo = post.author.node;
+  }
 
   return (
     <>
@@ -65,7 +65,7 @@ function BlogPage(){
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
       
     </div> */}
-     {/* <article
+     <article
         css={css`
           width: 100%;
           display: flex;
@@ -113,8 +113,8 @@ function BlogPage(){
            <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </Container>
        
-      </article> */}
-      <div
+      </article>
+      {/* <div
       css={css`
         width: 100%;
         height: 100vh;
@@ -126,7 +126,7 @@ function BlogPage(){
     >
       <h1>POST PAGE NOT FOUND</h1>
       <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
-    </div>
+    </div> */}
        {/* <Container css={css`
             padding-top: 20px;
             width: 70%;
@@ -139,63 +139,63 @@ function BlogPage(){
 
 
 
-// export async function getStaticPaths(){
-//   const result = await client.query({
-//     query: gql`
-//         query GetWordPressPosts {
-//           posts {
-//             nodes {
-//               slug
-//             }
-//           }
-//         }
-//     `
-//   });
-//   return {
-//     paths: result.data.posts.nodes.map(({slug})=>{
-//       return  {
-//         params: { slug }
-//       }
-//     }
-//     ),
-//     fallback: false,
-//   }
+export async function getStaticPaths(){
+  const result = await client.query({
+    query: gql`
+        query GetWordPressPosts {
+          posts {
+            nodes {
+              slug
+            }
+          }
+        }
+    `
+  });
+  return {
+    paths: result.data.posts.nodes.map(({slug})=>{
+      return  {
+        params: { slug }
+      }
+    }
+    ),
+    fallback: false,
+  }
 
-// }
+}
 
-// export async function getStaticProps({ params }) {
-//   const { slug } = params;
-//   const result = await client.query({
-//     query: gql`
-//       query GetWordPressPostBySlug($slug: ID!) {
-//          post(idType: SLUG, id: $slug) {
-//              content(format: RENDERED)
-//               title
-//               author {
-//                 node {
-//                   avatar {
-//                     url
-//                   }
-//                   # username
-//                   # description
-//                 }
-//               }
-//             featuredImage {
-//               node {
-//                 sourceUrl
-//               }
-//             }
-//           }
-//       }
-//     `,
-//     variables: { slug },
-//   });
-//   return {
-//     props: {
-//       post: result.data.post,
-//     },
-//   };
-// }
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  const result = await client.query({
+    query: gql`
+      query GetWordPressPostBySlug($slug: ID!) {
+         post(idType: SLUG, id: $slug) {
+             content(format: RENDERED)
+              title
+              author {
+                node {
+                  avatar {
+                    url
+                  }
+                  # username
+                  # description
+                }
+              }
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+      }
+    `,
+    variables: { slug },
+  });
+  return {
+    props: {
+      post: result.data.post,
+    },
+  };
+}
 
 BlogPage.layout = Public;
 export default BlogPage;
