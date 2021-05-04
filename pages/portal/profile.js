@@ -156,8 +156,16 @@ function Profile() {
           .createPortefeuille{
             width:22em !important;
           }
-          .profileCol{
-            width:7em;
+          .profile_box_portefeuille_col2{
+            margin-left:1em !important;
+            margin-top:-2em;
+          }
+          input[type="text"]{
+            width:8em !important;
+          }
+          .row_section4{
+            width:20em;
+            height:10em;
           }
         }
         @media only screen and (max-width: 768px) {
@@ -242,7 +250,7 @@ function Profile() {
                   </Col>
                 </Row>
                 <Button type="submit">Vérification</Button>
-                   <Col md={12} style={{marginTop:"3em"}}>
+                   <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
                           <Image
