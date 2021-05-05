@@ -5,7 +5,7 @@ import { Badge } from 'reactstrap';
 import Sinput from '../../src/components/forms/Sinput';
 import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import DropdownSample from '../../src/components/forms/DropdownSample'
+import DropdownSample from '../../src/components/forms/dropdownSample'
 import transactions from '../../src/helpers/transactions.js'
 import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js';
 import withAuth from '../../src/hoc/withAuth';
