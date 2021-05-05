@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Row , Col, Container, Form, Button} from 'reactstrap';
+import {Global,css} from "@emotion/react"
 import Portal from "../../src/layouts/Portal.js";
 import Sinput from "../../src/components/forms/Sinput"
 import DropDownPhone from '../../src/components/forms/DropDownPhone'
@@ -59,6 +60,26 @@ useEffect((data)=>{
 
 },[legacies])
   return (
+    <>
+    <Global
+    styles={css`
+      img{
+        cursor:pointer;
+        transition: all .8s ease-in-out;
+      }
+      img[id="profile_photo"]:hover{
+        transform: scale(1.5);
+      }
+      @media only screen and (max-width: 360px) {
+        }
+      @media only screen and (max-width: 414px) {
+      }
+      @media only screen and (max-width: 768px) {
+      }
+      @media only screen and (max-width: 1024px) {
+      }
+    `}
+    />
   <Portal>
     <Container className="mb-4" fluid>
       <div className="d-flex justify-content-center text-center" style={{flexDirection:'column'}}>
@@ -93,28 +114,20 @@ useEffect((data)=>{
               </div> }
               <Sinput
                 name="dateDeNaissance"
-                placeholder="Entrer la date de naissance"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Date de naissance"
-                required
-
-              />
+               label="Date de naissance"
+               placeholder='Entrer la date de naissance'
+               register={register}
+               iStyle={{borderRadius:"15px", overflow:"hidden"}}
+               inputBg="#fff"
+               type="date"
+               handleOnchange={()=>{}}
+               />
               {errors.dateDeNaissance && <div className="text-muted font-italic">
 
                   <span className="text-danger font-weight-700">{errors.dateDeNaissance.message}</span>
 
               </div> }
-               <Sinput
-                name="nationnalite"
-                placeholder="Entrer la nationnalité"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Pays"
-                required
-              />
+              <DropDownPhone name="legacy_country_img_1" country idDdM={"legacy_country_img_1"} idDd={"legacy_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
               {errors.nationnalite && <div className="text-muted font-italic">
 
                   <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
@@ -147,6 +160,7 @@ useEffect((data)=>{
                 inputBg="#F0F0F0"
                 label="Adresse"
               />
+              <DropDownPhone name="legacy_adresse_img_1" country idDdM={"legacy_adresse_img_1"} idDd={"legacy_adresse_flag"} label="Adresse:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
               {errors.adresse && <div className="text-muted font-italic">
                   <span className="text-danger font-weight-700">{errors.adresse.message}</span>
               </div>}
@@ -179,17 +193,20 @@ useEffect((data)=>{
            </Col>
            <Col xl="7" style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
 
-                  <div className="rounded-circle " style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center", height:'200px', width:'200px', backgroundColor:'#b7b7b7'}}>
+                  <div className="rounded-circle "style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center", height:'200px', width:'200px'}}>
                   <a href="#itguymax">
-                    <img
-                      alt="..."
-
-                      src="https://accounts.google.com/SignOutOptions?hl=en&continue=https://www.google.com/search%3Fq%3Dadd%2Bcountry%2Bflag%2Bin%2Bnext%2Bjs%26oq%3Dadd%2Bcontry%2Bflag%2Bin%2Bnext%26aqs%3Dchrome.1.69i57j33i10i160l3.12407j0j4%26sourceid%3Dchrome%26ie%3DUTF-8"
-                    ></img>
+                  <Image
+                  id="profile_photo"
+                  src="/assets/img/IMG_20181121_094329_174@2x.png"
+                  alt="..."
+                  className="rounded-circle"
+                  height={200} width={200}
+                  style={{backgroundColor:"#000",margin:"auto"}}
+                  />
                   </a>
                 </div>
                 <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
-                  Ajouter une image
+                  Modifier
                 </Button>
 
            </Col>
@@ -235,6 +252,7 @@ useEffect((data)=>{
       </div>
     </Container>
   </Portal>
+  </>
   )
 }
 
