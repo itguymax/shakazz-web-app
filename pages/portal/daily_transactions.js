@@ -11,18 +11,11 @@ import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily
 import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
+ 
   Container,
   Row,
   Col,
-  Media,
-  Label,
+
 } from "reactstrap";
 // layout for this page
 import Bleu from "../../src/layouts/Bleu.js";
