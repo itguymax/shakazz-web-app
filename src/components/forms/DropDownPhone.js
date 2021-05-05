@@ -57,7 +57,7 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
       input{
         background-color: #f0f0f0 !important;
         border:1px solid white !important;
-        width:15em !important;
+        width:12em !important;
       }
       input[type="text"]{
         background-color: #f0f0f0 !important;
@@ -93,11 +93,11 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
                    alt="..."
                    height={20} width={20}
                    />
-          <DropdownItem  id={idDd} tag="div" style={{paddingLeft:"0.1em",paddingRight:"0.1em"}}>
+          <DropdownItem  id={idDd} tag="div" style={{paddingLeft:"0.4em",paddingRight:"0.6em"}}>
             {"+237"}
          </DropdownItem>
         </DropdownToggle>}
-        {phone &&<Input style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"7.5em"}}/>}
+        {phone &&<Input style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"8em",zIndex:"900 !important"}}/>}
         {phone && <DropdownMenu name={name} style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (

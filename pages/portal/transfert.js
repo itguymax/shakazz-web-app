@@ -77,8 +77,7 @@ function Transfert() {
                 register={register}
                 inputBg="#679966"
                 inline
-                usd
-                
+                usd 
               /> 
                <Sinput
                 label="Choisir le wallet de reception"
@@ -101,7 +100,7 @@ function Transfert() {
               </Row>
            </Form>
         </Col>
-        <Col className=" d-flex  align-items-center  " xl="3" style={{flexDirection: 'column'}}>
+        <Col className="d-flex  align-items-center" xl="3" style={{flexDirection: 'column'}}>
          <h4 className="pb-3 "  style={{font: 'normal normal italic 18px/19px Ubuntu', color: "#fff"}}>Montant disponible</h4>
          <LightBoxContainer borderR="20px" width="180px">
           <div className="d-flex justify-content-center align-items-center pt-2 pb-2" style={{flexDirection: 'column'}}>

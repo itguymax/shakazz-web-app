@@ -3,6 +3,7 @@ import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import Sinput from '../../src/components/forms/Sinput';
 import CreatePortefeuille from '../../src/components/common/createPortefeuille';
+import CreatePortefeuilleD from '../../src/components/common/createPortefeuilleD';
 import DropDownC from '../../src/components/forms/Dropdownc'
 import DropDownPhone from '../../src/components/forms/DropDownPhone'
 import country from '../../src/helpers/countries.js'
@@ -85,7 +86,7 @@ function Profile() {
           cursor:pointer;
           transition: all .8s ease-in-out;
         }
-        img:hover{
+        img[id="profile_photo"]:hover{
           transform: scale(1.5);
         }
         input{
@@ -99,6 +100,13 @@ function Profile() {
         }
         .dropdown-menu.show{
           max-height:'2em !important';
+        }
+        .profile_box_portefeuille_col3{
+          margin-top:-0.7em;
+          margin-left:0.7em;
+        }
+        .profile_box_portefeuille_col2{
+          margin-left:-3em;
         }
         .dropdown button{
           height:3em !important;
@@ -148,27 +156,52 @@ function Profile() {
           .createPortefeuille{
             width:22em !important;
           }
-          .profileCol{
-            width:7em;
+          .profile_box_portefeuille_col2{
+            margin-left:1em !important;
+            margin-top:-2em;
+          }
+          input[type="text"]{
+            width:8em !important;
+          }
+          .row_section4{
+            width:20em;
+            height:10em;
           }
         }
         @media only screen and (max-width: 768px) {
           input[type="text"]{
-            width:13em !important;
+            width:6em !important;
           }
           #navbarDropdownMenuLink2{
             width:13em !important;
+          }
+          .profile_box_portefeuille_col1{
+            margin-left:-2em;
+          }
+          .profile_box_portefeuille_col2{
+            margin-left:-2em;
+          }
+          .profile_box_portefeuille_col3{
+            margin-top:-0.7em;
+            margin-left:3.5em !important;
           }
         }
         @media only screen and (max-width: 1024px) {
           .createPortefeuille{
             height:17em !important;
           }
+          .profile_box_portefeuille_col3{
+            margin-top:-0.7em;
+            margin-left:2em;
+          }
+          .profile_box_portefeuille_col2{
+            margin-left:-1.9em;
+          }
         }
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <Form role="form" onSubmit={handleSubmit(onSubmit)}>
+      <Form role="form" onSubmit={()=>{handleSubmit(onSubmit)}}>
         <Row>
           <Col xs="6" sm="4">
                 <Row>
@@ -217,7 +250,7 @@ function Profile() {
                   </Col>
                 </Row>
                 <Button type="submit">Vérification</Button>
-                   <Col md={12} style={{marginTop:"3em"}}>
+                   <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
                           <Image
@@ -247,7 +280,7 @@ function Profile() {
 
                    <Col xs="6" sm="2">
                     <Image
-                      src="/assets/img/icons/clic_button_down.svg"
+                      src="/assets/img/icons/add.svg"
                       alt="..."
                       height={20} width={20}
                       style={{backgroundColor:"#000",margin:"auto"}}
@@ -300,6 +333,7 @@ function Profile() {
           <Col sm="4">
             <Col md={12} style={{textAlign:"center"}} >
               <Image
+              id="profile_photo"
               src="/assets/img/photoequipe/bisso.png"
               alt="..."
               className="rounded-circle"
@@ -333,7 +367,10 @@ function Profile() {
                       backgroundColor:"white",
                       borderRadius:"16px",
                       padding:"1em"}}>
-
+                        <CreatePortefeuilleD nb={"1"}/>
+                        <CreatePortefeuilleD nb={"2"}/>
+                        <CreatePortefeuilleD nb={"3"}/>
+                        <CreatePortefeuilleD nb={"4"}/>
                       </Container>
             </Col>
         </Row>
