@@ -76,11 +76,11 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handletoggle = () => setProfil(!isParticular);
   const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
   const onSubmit =  async (hookFormData) => {
-    console.log("Inscriptions....");
+   
    if(verified){
     setSubmitting(true); 
     const {confirmpassword, ...rest } = hookFormData;
-    console.log("rest data", rest);
+   
    let  userdata = {...additionaldata, ...rest};
   //  try{
     let datares = await mutateAsync( userdata);
@@ -102,6 +102,7 @@ const { register, handleSubmit, watch, errors } = useForm({
   //  }catch(err){
   //       console.log("error", err);
   //  }
+
    } else {
      alert("Vous  n'êtes pas humain")
    }
@@ -121,10 +122,10 @@ const { register, handleSubmit, watch, errors } = useForm({
     }
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
+
 // useEffect(()=>{
 //     router.push("pre-inscription");
 //   })
-
 
 
   return (

@@ -40,7 +40,7 @@ function Sidebar(props) {
   const activeRoute = (routeName) => {
     return router.route.indexOf(routeName) > -1;
   };
-  console.log("fffff", router);
+ 
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
     setCollapseOpen(!collapseOpen);
@@ -51,9 +51,9 @@ function Sidebar(props) {
     openSubmenu(!isOpen);
   };
   const createSubLink = (subLinks) => {
-        console.log("sub link", subLinks);
+       
         return subLinks.map((level, i)=> {
-            console.log("level", level);
+            
             return <div className="my-2">
               <Link href={level.layout + level.path}>
               <span style={{cursor:"pointer", color:"#fff", fontWeight:"100", opacity: activeRoute(level.layout + level.path)? 0.5:1, fontSize:"0.7rem"}}>{level.displayName}</span>
@@ -70,9 +70,9 @@ function Sidebar(props) {
   );
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
-    console.log("routes ", routes);
+   
     return routes.map((prop, key) => {
-      console.log("children routes ",prop.children );
+      
       
       return (
         <React.Fragment key={key}>

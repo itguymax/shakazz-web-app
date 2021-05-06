@@ -52,7 +52,6 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
     return params;
   },
   unAuthParameters: (method = METHOD.POST, accept = ACCEPT.JSON, body = {}) => {
-    console.log("params", body);
     const withBody = [METHOD.PUT, METHOD.PATCH, METHOD.POST];
     const params = {
       method,
@@ -112,7 +111,6 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
       url,
       apiV1.unAuthParameters(METHOD.POST, ACCEPT.JSON, body),
     );
-    console.log("signup data no json", response);
     return response.json();
   },
   put: async (url, accessToken, body = {}) => {

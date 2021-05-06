@@ -31,9 +31,9 @@ function Login() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  // useEffect(()=>{
-  //   router.push("pre-inscription");
-  // })
+  useEffect(()=>{
+    router.push("pre-inscription");
+  })
   const recaptchaRef = useRef();
   const [show, setShow] = useState(false);
   const [verified, setVerified]= useState(false);
@@ -51,7 +51,6 @@ function Login() {
     userdata = {password, userName }
    try{
        let datares = await mutateAsync(userdata);
-       console.log("login", datares);
        const { data, error, success, message } = datares;
        if(error && !success){
         setSuccessmsg(null);
@@ -61,6 +60,7 @@ function Login() {
          if( typeof window !== "undefined"){
            console.log("window", data.user_token);
             setUTToLS(data.user_token);
+
              setErrormsg(null);
          setSuccessmsg(message);
          setSubmitting(isLoading)
