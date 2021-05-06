@@ -5,24 +5,17 @@ import { Badge } from 'reactstrap';
 import Sinput from '../../src/components/forms/Sinput';
 import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import DropdownSample from '../../src/components/forms/DropdownSample'
+import DropdownSample from '../../src/components/forms/dropdownSample'
 import transactions from '../../src/helpers/transactions.js'
 import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js';
 import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
+ 
   Container,
   Row,
   Col,
-  Media,
-  Label,
+
 } from "reactstrap";
 // layout for this page
 import Bleu from "../../src/layouts/Bleu.js";

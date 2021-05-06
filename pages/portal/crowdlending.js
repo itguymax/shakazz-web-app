@@ -60,7 +60,6 @@ const Crowdlending = () => {
 
 
   const periode360 = () => {
-    console.log("360");
     set360(true);
     set720(false);
     set1080(false);
@@ -87,17 +86,14 @@ const Crowdlending = () => {
   const onArrowClick = (pool) => {
     periode360();
     setSelectedPool(pool);
-    console.log("arrow clicked", pool);
   };
   const onInputChange = (event)=> {
-    console.log(parseInt(event.target.value));
     setCapital(parseInt(event.target.value));
   };
   const periode = is360?360:is720?720:is1080?1080:1800;
    let t = 7.5;
   if(periode===360){
     t = selectedPool.taux360;
-    console.log("taux", selectedPool.taux360)
   } else if (periode===720){
     t = selectedPool.taux720;
   } else if (periode===1080){
@@ -119,14 +115,13 @@ const Crowdlending = () => {
     alert("creation coffre fort");
     
     setCoffreDatas([...coffreDatas, coffredata]);
-    console.log("coffre fort", coffreDatas);
+   
   }
- console.log("coffre fort2", coffreDatas);
+ 
   return (
     <Portal>
       <Container fluid>
       <WalletHeader wallets={user.wallet}/>
-      <Button onClick={()=> Router.push("equipe") }> Equipe</Button>
      <Row className="mt-xl-3 mb-5">
        <Col xl={4}>
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>

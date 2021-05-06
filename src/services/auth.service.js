@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
     const url = '/auth/signup';
     try {
        let responseJson = await  apiV1.unAuthPostJson(url, data);
-       console.log("signup data",responseJson );
+       
     return responseJson;
   } catch(err) {
      console.log(err);

@@ -43,13 +43,13 @@ function Profile() {
   const { register, handleSubmit, watch, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
-  const onSubmit =  async (data) => {console.log("hey!");
+   const onSubmit =  async (data) => {console.log("hey!");
    if(verified){
     setSubmitting(true);
     let userdata;
     const {name,dob,adresse,email,pseudo} = data;
     userdata = {...additionaldata,name,dob,adresse,email,pseudo};
-    console.log(userdata);
+  
    } else {
      alert("Vous  n'êtes pas humain")
    }
