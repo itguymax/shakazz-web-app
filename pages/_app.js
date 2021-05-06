@@ -13,10 +13,12 @@ import "../public/assets/css/shakazz.css";
 import 'react-circular-progressbar/dist/styles.css';
 import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Hydrate} from 'react-query/hydration'
 const queryClient = new QueryClient();
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
 import { AppWrapper } from '../src/context'
+import config from "../src/config/index.js";
 
 Router.events.on("routeChangeStart", (url) => {
 
@@ -39,6 +41,11 @@ export default class MyApp extends App {
   componentDidMount() {
     let comment = document.createComment(`build by itguymax@gmail.com`);
     document.insertBefore(comment, document.documentElement);
+    if(localStorage.getItem(config.localStoreToken) && Router.asPath.indexOf("portal") !== 1){
+      Router.push('/portal/dashboard')
+    } else {
+      return;
+    }
   }
  
   render() {
@@ -86,7 +93,9 @@ export default class MyApp extends App {
           <QueryClientProvider client={queryClient}>
           <AppWrapper>
               <ReactQueryDevtools initialIsOpen={false}/>
-              <Component {...pageProps} />
+              <Hydrate state={pageProps.dehydratedState}>
+                 <Component {...pageProps} />
+              </Hydrate>
           </AppWrapper>
           </QueryClientProvider>
         </ApolloProvider>

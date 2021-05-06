@@ -12,14 +12,15 @@ const METHOD = {
   POST: 'POST',
 };
 
- const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
-//const apiBaseUrl = "http://localhost:5000/api/v1/services";
+ //const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+const apiBaseUrl = "http://localhost:5000/api/v1/services";
 // shakkazz api pattern
   const apiV1 = {
   root: apiBaseUrl,
   call: async (url, parameters) => {
     const finalUrl =
-      url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`: `${apiV1.root}/${url}`;
+      url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`:( url.startsWith('http') || url.startsWith('https'))? url:  `${apiV1.root}/${url}`;
+      console.log("final url", finalUrl, url, parameters);
     const response = await fetch(finalUrl, parameters);
     return response;
   },
@@ -29,6 +30,7 @@ const METHOD = {
     accept = ACCEPT.JSON,
     body = {},
   ) => {
+    console.log("AT GET", accessToken);
     const withBody = [METHOD.PUT, METHOD.PATCH, METHOD.POST];
     const params = {
       method,
@@ -41,7 +43,7 @@ const METHOD = {
     };
 
     if (withBody.indexOf(method) !== -1) {
-      params.body = JSON.parse(body);
+      params.body = JSON.stringify(body);
       if (method === METHOD.PUT) {
         params.headers['Content-Length'] = 0;
       }
@@ -88,6 +90,7 @@ const METHOD = {
     return response;
   },
   getJson: async (url, accessToken) => {
+    
     const response = await  apiV1.call(
       url,
        apiV1.parameters(accessToken),

@@ -19,27 +19,78 @@ import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import { retraitSchema } from "../../src/validations";
 import Smodal from '../../src/components/common/Smodal';
 import withAuth from '../../src/hoc/withAuth';
+import { useConverter, useRetrait, usePortefeuille, useWallets} from '../../src/hooks'
+import { useAppContext } from '../../src/context';
+import { filterwallet } from '../../src/helpers/filterWallet'
+import {constantes} from '../../src/config';
 function Retrait() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(retraitSchema),
   });
+  const context = useAppContext();
+  const {data:dtc} = useConverter("BTC","USD"); 
+  const [usdVal, setUSDVal] = useState(100);
   const [show, setShow] = useState(false);
   const [data, setData] = useState({});
+  const [token,setToken] = useState(context.appState.accessToken)
+  const [psw, setPsw] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [portefeuilleOptions, setPortefeuille] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
   const openDepotModal = () => setOpenModal(!openModal);
+  const {data:dt, isLoading} = usePortefeuille(token);
+  const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
+  
+  // if(dt?.success && !dt?.error){
+  //   const {data} = dt;
+  //   if(data.porte_feuille.length < 1){
+  //       alert("Vous n'avez par de porte feuille, cree s'en ");
+  //   }
+  //   setPortefeuille(data.porte_feuille);
+  // } else {
+  //   alert("Une erreur est survenue")
+  // }
+  console.log("porte feuille", dt);
   const onSubmit = (data) => {
-    setData(data);
+    const body = {
+      data : {
+        user: {
+            transaction:psw,
+        },
+        whitdrawal: {
+            wId:""
+        },
+        principal: {
+            amount: parseInt(usdVal),
+        }
+    }
+    }
+    setData({montant:parseInt(usdVal),quantitebtc: (usdVal/ dtc?.USD).toFixed(5), method:"Bitcoin",wallet:""});
     openDepotModal();
 
   };
+  const changeUSDtoBTC = (data) => {
+      console.log("usdTo btc", data.target.value);
+      setUSDVal(data.target.value);
+      
+   }
+   const handleOnSelectOption = (option) => {
+        setSelectedOption(option.value);
+   }
    const handleToggleshow = () => setShow(!show);
+   const changePassword = (event) => {
+     setPsw(event.target.value)
+   };
+   const defautOption = selectedOption;
+   const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
+   console.log("hhhhhhhhh", wp);
   return (
-    <Portal>
+    <AdminBleu>
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un retrait</h1>
       <Row className="mt-4 justify-content-between">
         <Col xl="9">
-           <Form role="form" onSubmit={handleSubmit(onSubmit)}>
+           <Form role="form">
                 <Sinput
                 label="Montant à retirer"
                 name="montant"
@@ -47,10 +98,13 @@ function Retrait() {
                 type="text"
                 // rgba(68, 68, 68, 1)
                 register={register}
+                inputvalue={usdVal}
                 inputBg="#679966"
                 inline
-                usd
-              />
+                handleOnchange={changeUSDtoBTC}
+                usd 
+              /> 
+               
               <Sinput
                 label="Equivalence"
                 name="quantitebtc"
@@ -59,34 +113,41 @@ function Retrait() {
                 register={register}
                 inputBg="#679966"
                 inline
+                inputvalue={(usdVal/ dtc?.USD).toFixed(5)}
+                readOnly={true}
                 btc
               />
                 <Sinput
                 label="Adresse à créditer"
                 name="portefeuille"
-                placeholder="Portefeuille 3"
-                type="text"
-                register={register}
-                inputBg="#679966"
                 inline
-                btc
-                disabled
-              />
+                options={portefeuilleOptions || dt}
+                defaultOption={defautOption}
+                placeholder="Choisir un portefeulle"
+                dd
+                register={register}
+                onSelect={handleOnSelectOption}
+              /> 
+               
               <Sinput
                 label="Mot de passe de la transaction"
                 name="transactionPassword"
                 placeholder="Mot de passe de transaction"
-                type="password"
+                 type={show?"text":"password"}
                 register={register}
+                inputvalue={psw}
                 inputBg="#679966"
-                inline
-                icon={show ? "fa fa-eye":"fa fa-eye-slash"}
-                handleToggleshow={handleToggleshow }
-              />
+                inline 
+                append
+                iStyle={{ borderRadius:"15px",backgroundColor: "#679966"}}
+                icon={show ? "fa fa-eye":"fa fa-eye-slash"}  
+                handleToggleshow={handleToggleshow } 
+                handleOnchange={changePassword}          
+              /> 
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
-                   <Button className="mt-3 mb-1"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
+                   <Button className="mt-3 mb-1"  onClick={onSubmit} style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
                  Confirmer
                 </Button>
                  </Col>
@@ -98,7 +159,9 @@ function Retrait() {
          <LightBoxContainer borderR="20px" width="180px">
           <div className="d-flex justify-content-center align-items-center pt-2 pb-2" style={{flexDirection: 'column'}}>
              <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet principal</h2>
-              <h1 className="" style={{font: 'normal normal normal 20px/25px Ubuntu',display: 'block',color: '#679966',  lineHeight: '1.2'}}> {(29000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
+              {idw?"...":(
+                <h1 className="" style={{font: 'normal normal normal 20px/25px Ubuntu',display: 'block',color: '#679966',  lineHeight: '1.2'}}> {(wp[0]?.montantUSD||0).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
+              )}
           </div>
          </LightBoxContainer>
 
@@ -106,10 +169,10 @@ function Retrait() {
         {openModal&& <Smodal data={data} handleClose={openDepotModal} open={openModal}/>}
       </Row>
     </div>
-    </Portal>
+    </AdminBleu>
   )
 }
 
 
-// Retrait.layout = AdminBleu;
+//  Retrait.layout = AdminBleu;
 export default  withAuth(Retrait);

@@ -17,6 +17,8 @@ import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import {  FlatButton} from "../../src/components/common/SButton";
 import PopulationTable from '../../src/components/PopulationTable';
 import withAuth from '../../src/hoc/withAuth';
+import { useAppContext } from '../../src/context';
+import {useWallets} from '../../src/hooks';
 const generationCardData = [
   {
     id:1,
@@ -46,6 +48,8 @@ const generationCardData = [
 ]
 
  function Equipe() {
+    const context = useAppContext();
+  const {data, isLoading} = useWallets(context.appState.accessToken);
 
    const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
     const [showPopulation, setShowPopulation] = useState(false);
@@ -91,7 +95,7 @@ const generationCardData = [
   return (
     <Portal>
       <Container fluid>
-        <WalletHeader wallets={user.wallet}/>
+         {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
               <div css={css`
         
         .nav-pills .nav-link{

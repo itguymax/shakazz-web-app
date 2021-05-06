@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { passwordSchema } from "../validations";
 import Sinput from "../components/forms/Sinput"
-import { Form, Button} from 'reactstrap'; 
+import { Form, Button, Spinner} from 'reactstrap'; 
 
-export default function Modificationpwd({onSubmit,Schema, label, sublabel}) {
+export default function Modificationpwd({successmsg,errormsg,onSubmit,schema,loading, label, sublabel}) {
   const { register, handleSubmit, watch, errors } = useForm({
-    resolver: yupResolver(passwordSchema),
+    resolver: yupResolver(schema),
   });
   const [show, setShow] = useState(false);
   const [shownp, setShownp] = useState(false);
@@ -76,8 +76,18 @@ export default function Modificationpwd({onSubmit,Schema, label, sublabel}) {
                   <span className="text-danger font-weight-700">{errors.repeatNewPassword.message}</span>
                
               </div> }
+              { successmsg && ( <div className="text-muted font-italic">
+                
+                  <span className="text-success font-weight-700">{successmsg}</span>
+               
+              </div>)} 
+              { errormsg && ( <div className="text-muted font-italic">
+                
+                  <span className="text-danger font-weight-700">{errormsg}</span>
+               
+              </div>) }
           <Button className="py-0 mb--4" type="submit"  style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', height:"40px"}} >
-            Confirmer
+            {loading ? <Spinner size="sm" color="#cc993a" />: "Confirmer"}
           </Button>
         </div>
     </Form>

@@ -17,8 +17,11 @@ import {
   Container,
   Media,
 } from "reactstrap";
+import { logOutUser } from "../../services/auth.service";
+import { useRouter } from "next/router";
 
 function AdminNavbar({ brandText, l }) {
+  const router = useRouter();
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -91,7 +94,10 @@ function AdminNavbar({ brandText, l }) {
                   </DropdownItem>
                 </Link>
                 <DropdownItem divider />
-                <DropdownItem href="#itguymax" onClick={(e) => e.preventDefault()}>
+                <DropdownItem href="#itguymax" onClick={(e) => {
+                  e.preventDefault();
+                  logOutUser(router)
+                }}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>

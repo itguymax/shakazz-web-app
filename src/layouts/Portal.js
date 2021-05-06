@@ -31,7 +31,7 @@ function Portal(props) {
          }
       }
     }
-    return "Brand";
+    return "SHAKAZZ";
   };
   
   return (

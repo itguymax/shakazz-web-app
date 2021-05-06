@@ -2,13 +2,34 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {verifyTokenS} from "../services/verifyToken.service";
 import config from '../config';
-import {useMutation, useQueryClient} from 'react-query';
+import {useMutation, useQueryClient,QueryClient, useQuery } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
+import {fetchPortefeuille,fetchWallets} from "../services"
 
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(['Portefeuille'], () => fetchPortefeuille())
+  await queryClient.prefetchQuery(['wallets'], () => fetchWallets())
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
+}
 const withAuth = (WrappedComponent) => {
   return (props) => {
     const Router = useRouter();
     const [verified, setVerified] = useState(false);
-    const { mutateAsync, isLoading} = useMutation("Verify token",verifyTokenS);
+    console.log("HOC");
+    const { mutateAsync, isLoading, isError} = useMutation("Verify token",verifyTokenS);
+    console.log("test error", isError);
+    if(isError){
+      alert("Une erreur s'est produite")
+       Router.replace("/auth/login");
+    }
     useEffect(async () => {
     if(typeof window !== "undefined"){
            const accessToken = localStorage.getItem(config.localStoreToken);
@@ -23,7 +44,8 @@ const withAuth = (WrappedComponent) => {
        if(t){
            if (t.data.verifyToken) {
            setVerified(t.data.verifyToken);
-         } else {
+         } else{
+           console.log("HOC 4");
           // If the token was fraud we first remove it from localStorage and then redirect to "/"
            localStorage.removeItem(config.localStoreToken);
            Router.replace("/auth/login");

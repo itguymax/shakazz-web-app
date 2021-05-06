@@ -28,7 +28,7 @@ import {
   Label,
 } from "reactstrap";
 // layout for this page
-import Portal from "../../src/layouts/Portal.js";
+import Portal from "../../src/layouts/Portal";
 import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";

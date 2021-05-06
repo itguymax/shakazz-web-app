@@ -14,10 +14,13 @@ import  Carte from '../../src/components/networking/carte';
 import  Link from '../../src/components/networking/lien';
 import  Pdf from '../../src/components/networking/pdf';
 import WalletHeader from "../../src/layouts/WalletHeader";
-import userdata from "../../src/__MOCK__/user";
+import { useAppContext } from '../../src/context';
+import {useWallets} from '../../src/hooks';
 
 
 function Networking() {
+  const context = useAppContext();
+  const {data, isLoading} = useWallets(context.appState.accessToken);
 const onChange = (index) => {
   setLink(index)
 }
@@ -57,7 +60,7 @@ function selectComponent(){
       {/* <Header /> */}
       
       <Container fluid>   
-        <WalletHeader wallets={userdata.wallet}/>
+        {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
         <div className="align-items-center mt-5"> 
           <Row className="" style =  {{  }}>
             <Col className="" xl="4" lg="5" md="12" xs="12" style =  {{ }}>

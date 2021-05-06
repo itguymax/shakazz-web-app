@@ -4,3 +4,17 @@ export default {
   preInscriptionLink: process.env.PRE_INS || "https://bit.ly/3wQ6bv1",
   localStoreToken: process.env.LOCALSTORE || 'j7875v$43edfb'
 };
+
+
+const constantes = {
+  wallets:{
+    p:"principal",
+    v:"vault",
+    t:"transfert",
+    n:"networking"
+  }
+}
+
+export {
+  constantes
+}

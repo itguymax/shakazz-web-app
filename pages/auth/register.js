@@ -8,6 +8,7 @@ import {
   Form,
   Row,
   Col,
+  Spinner,
 } from "reactstrap";
 import { signupUser } from '../../src/services/auth.service'
 // layout for this page
@@ -23,7 +24,7 @@ import { registrationSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
 import {useMutation, useQueryClient} from 'react-query';
-
+import {useAppContext} from "../../src/context";
 const options = [
   {
     key: 'JennyHess',
@@ -51,7 +52,6 @@ const options = [
   },
 ]
 function Register() {
-const { mutateAsync, isLoading} = useMutation('Inscription', signupUser);
 const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(registrationSchema),
   });
@@ -66,6 +66,7 @@ const { register, handleSubmit, watch, errors } = useForm({
   const [additionaldata, setUserAdditionalData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
+  // const { setUserDataContext } = useAppContext();
   const togglebg = {
     backgroundColor: isParticular ? '#CC9933':'#fff'
   }
@@ -73,6 +74,7 @@ const { register, handleSubmit, watch, errors } = useForm({
     setSelectedOption(value);
   };
   const handletoggle = () => setProfil(!isParticular);
+  const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
   const onSubmit =  async (hookFormData) => {
    
    if(verified){
@@ -80,21 +82,27 @@ const { register, handleSubmit, watch, errors } = useForm({
     const {confirmpassword, ...rest } = hookFormData;
    
    let  userdata = {...additionaldata, ...rest};
-   try{
-       let datares = await signupUser(userdata);
-      
-      //  const { data, error, success, message} = datares;
-      //  if(error && !success){
-      //   setSuccessmsg(null);
-      //   setErrormsg(message);
-      //  } else { 
-      //    setErrormsg(null);
-      //    setSuccessmsg(message);
-      //    router.push('/portal/dashboard');
-      //  }
-   }catch(err){
-        console.log("error", err);
-   }
+  //  try{
+    let datares = await mutateAsync( userdata);
+    console.log("response", datares);
+       const { data, error, success, message} = datares;
+       if(error && !success){
+        setSuccessmsg(null);
+        setErrormsg(message);
+         setSubmitting(false);
+        alert("une erreur s'est produite")
+       } else { 
+         setSubmitting(true);
+         setErrormsg(null);
+         setSuccessmsg(message);
+        //  setUserDataContext(data.user);
+         router.push('/confirmation-inscription');
+       }
+
+  //  }catch(err){
+  //       console.log("error", err);
+  //  }
+
    } else {
      alert("Vous  n'êtes pas humain")
    }
@@ -114,9 +122,12 @@ const { register, handleSubmit, watch, errors } = useForm({
     }
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
-useEffect(()=>{
-    router.push("pre-inscription");
-  })
+
+// useEffect(()=>{
+//     router.push("pre-inscription");
+//   })
+
+
   return (
     <>
      <Head>
@@ -366,8 +377,8 @@ useEffect(()=>{
                   <span className="text-success font-weight-700">{successmsg}</span>
                
               </div> }
-                <Button className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
-                  Créer un compte
+                <Button disabled={isLoading || submitting} className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
+                   {isLoading || submitting ? <Spinner size="sm" color="#cc993a" />: "Créer un compte"}
                 </Button>
                 <div>
                   <a
