@@ -11,7 +11,7 @@ import {
 // Core Components
 import TabExplain from "./tabContent";
 import NavHeader from "./navHeader";
- 
+
 export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
     const items = [
         {
@@ -27,7 +27,7 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
           altText: 'Wallet networking',
         }
       ];
-     
+
 
     return (
         <>
@@ -37,27 +37,27 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
         .nav-link{
               color:#fff;
               font-size:bold;
-             
+              cursor:pointer;
               height : 35px;
               text-align : left;
               padding : 8px;
               box-shadow: none;
               background: #707070;
               &:hover {
-                color:#fff; 
+                color:#fff;
               }
         }
-        
+
     `}>
-            <Nav style={{ margin: '0px', padding: '0px' }} className="nav-fill flex-column flex-xl-row flex-lg-row flex-md-row" pills css={css`    
+            <Nav style={{ margin: '0px', padding: '0px' }} className="nav-fill flex-column flex-xl-row flex-lg-row flex-md-row" pills css={css`
             .nav-link.active{
                     background-color: #679966;
                     &:hover {
-                    color:#fff; 
+                    color:#fff;
                     }
             }
-                
-            `}>  
+
+            `}>
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-1"  text={items[0].altText}/>
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-2" text={items[1].altText}/>
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-3" text={items[2].altText}/>
@@ -88,4 +88,3 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
         </>
     );
 }
-

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import AdminBleu from '../../src/layouts/AdminBleu'
+import Portal from "../../src/layouts/Portal.js";
 import {
   Card,
   Container,
@@ -66,7 +67,7 @@ function Retrait() {
     }
     setData({montant:parseInt(usdVal),quantitebtc: (usdVal/ dtc?.USD).toFixed(5), method:"Bitcoin",wallet:""});
     openDepotModal();
-   
+
   };
   const changeUSDtoBTC = (data) => {
       console.log("usdTo btc", data.target.value);
@@ -162,8 +163,8 @@ function Retrait() {
                 <h1 className="" style={{font: 'normal normal normal 20px/25px Ubuntu',display: 'block',color: '#679966',  lineHeight: '1.2'}}> {(wp[0]?.montantUSD||0).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
               )}
           </div>
-         </LightBoxContainer>   
-         
+         </LightBoxContainer>
+
         </Col>
         {openModal&& <Smodal data={data} handleClose={openDepotModal} open={openModal}/>}
       </Row>

@@ -4,7 +4,7 @@ import withAuth from '../../src/hoc/withAuth'
 import {
   Container,
   Row,
-  
+
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal.js";
@@ -19,17 +19,17 @@ function Transactions() {
   const [currentHTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
   const [activeButton, setActiveButton] = useState("");
   function indexPrimaty(tabIndex){
-    
+
       setHTabsIcons("hTabsIcons-1");
-    
+
   }
 
-  const handleSetHTabs = (indic) => { 
+  const handleSetHTabs = (indic) => {
     setHTabsIcons(indic);
   }
 
   let data = FakeData();
-  
+
   return (
     <Portal>
       <Container fluid>
