@@ -23,8 +23,11 @@ import Sinput from "../../src/components/forms/Sinput";
 import { registrationSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
-import {useMutation, useQueryClient} from 'react-query';
+import { fetchNetworkers } from "../../src/services";
+import {useMutation,QueryClient, useQueryClient} from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 import {useAppContext} from "../../src/context";
+
 const options = [
   {
     key: 'JennyHess',
@@ -193,7 +196,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                 <Col className="col-auto">
                   <FormGroup>
                     <label>Votre parain</label>
-                    {router.query.ref  ?(
+                    {router.query.ref ? (
                       <div className="d-flex justify-content-between align-items-center mr-0" style={{width:'250px', padding:'5px', backgroundColor:'#f5f5f5', borderRadius: '5px'}}>
                        <div  className="d-flex align-items-center">
                           <img className="avatar avatar-sm mr-2" alt={options[0].userName} src={options[0].image.src}></img>   
@@ -402,8 +405,19 @@ const { register, handleSubmit, watch, errors } = useForm({
   );
 }
 
+export async function getStaticProps() {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(['Networkers'], () => fetchNetworkers())
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
+}
+
+
 Register.layout = Auth;
-
-
 export default Register;
 

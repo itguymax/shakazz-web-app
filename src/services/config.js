@@ -99,6 +99,15 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
 
     return response.json();
   },
+   unAuthgetJson: async (url) => {
+    
+    const response = await  apiV1.call(
+      url,
+       apiV1.unAuthParameters(METHOD.GET, ACCEPT.JSON),
+    );
+
+    return response.json();
+  },
   postJson: async (url, accessToken, body = {}) => {
     const response = await  apiV1.call(
       url,
