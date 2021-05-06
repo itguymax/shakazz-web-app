@@ -32,8 +32,12 @@ import Coffre from "../../src/components/coffre";
 import Router from "next/router";
 import withAuth from '../../src/hoc/withAuth';
 import { QueryCache } from "react-query";
+import { useAppContext } from '../../src/context';
+import {useWallets} from '../../src/hooks';
 
 const Crowdlending = () => {
+
+  const context = useAppContext();
  
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
@@ -56,6 +60,7 @@ const Crowdlending = () => {
      frequence: 30
   }
   );
+  const {data, isLoading} = useWallets(context.appState.accessToken);
  
 
 
@@ -133,7 +138,7 @@ const Crowdlending = () => {
   return (
     <Portal>
       <Container fluid>
-      <WalletHeader wallets={user.wallet}/>
+      {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
      <Row className="mt-xl-3 mb-5">
        <Col xl={4}>
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>

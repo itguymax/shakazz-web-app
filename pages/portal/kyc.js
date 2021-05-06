@@ -25,7 +25,7 @@ import {
   Label,
 } from "reactstrap";
 // layout for this page
-import Portal from "../../src/layouts/Portal.js";
+import Portal from "../../src/layouts/Portal";
 import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
@@ -48,7 +48,7 @@ function Kyc() {
   }
 `
   return (
-    <>
+    <Portal>
       {/* Page content */}
      
       <Global
@@ -89,7 +89,7 @@ function Kyc() {
         }
       `}
     />
-     <Container>
+     <Container fluid>
         <h2 style={{color:"black"}}>IMPORTER LES DOCUMENTS</h2>
         <FileUploadBlock text="Votre passport ou CNI"/>
         <FileUploadBlock text="Votre plan de localisation"/>   
@@ -97,7 +97,7 @@ function Kyc() {
         <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2></Col> 
         <Button>Envoyez!</Button>
       </Container>
-    </>
+    </Portal>
   );
 }
 

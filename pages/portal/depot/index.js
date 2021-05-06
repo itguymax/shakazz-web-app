@@ -18,10 +18,12 @@ import  LightBoxContainer from '../../../src/components/common/lightBoxContainer
 import Smodal from '../../../src/components/common/Smodal'
 import { depotSchema } from "../../../src/validations";
 import withAuth from '../../../src/hoc/withAuth';
-import { useDeposit } from '../../../src/hooks'
+import { useDeposit,useWallets } from '../../../src/hooks';
 import { useConverter } from '../../../src/hooks'
 import { useAppContext } from '../../../src/context';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import {constantes} from '../../../src/config';
+
 function Depot() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(depotSchema),
@@ -38,6 +40,8 @@ function Depot() {
    const [errormsg, setErrormsg]= useState(null);
   const [successmsg, setSuccessmsg]= useState(null);
   // const [body, setBody] = useState({});
+  const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
+  
   const {mutateAsync, isLoading} = useDeposit()
   const onSubmit = (hookdata) =>{
    
@@ -87,6 +91,7 @@ function Depot() {
        }
    }
    console.log("c val", dtc,);
+    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
   return (
     <AdminBleu menu>
     <div>
@@ -114,6 +119,7 @@ function Depot() {
                 inline
                 icon="fab fa-bitcoin"
                 prepend
+                iStyle={{ borderRadius:"15px",backgroundColor: "#679966"}}
                 disabled
               /> 
                 <Sinput
@@ -190,7 +196,7 @@ function Depot() {
          <LightBoxContainer borderR="20px" width="180px">
           <div className="d-flex justify-content-center align-items-center pt-2 pb-2" style={{flexDirection: 'column'}}>
              <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet principal</h2>
-              <h1 className="" style={{font: 'normal normal normal 20px/25px Ubuntu',display: 'block',color: '#679966',  lineHeight: '1.2'}}> {(29000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
+              {idw?"...": (<h1 className="" style={{font: 'normal normal normal 20px/25px Ubuntu',display: 'block',color: '#679966',  lineHeight: '1.2'}}> {(wp[0]?.montantUSD).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>)}
           </div>
          </LightBoxContainer>   
          

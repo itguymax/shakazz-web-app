@@ -5,6 +5,7 @@ import LightBoxContainer from "../components/common/lightBoxContainer";
 import user from "../__MOCK__/user";
 
 export default function WalletHeader({wallets}) {
+
   const badge ="starter";
   return (
     <>
@@ -16,10 +17,10 @@ export default function WalletHeader({wallets}) {
            {
              wallets.map((wallet, key)=>{
 
-               return  <LightBoxContainer width="250px" height="50px" key={key}>
+               return  <LightBoxContainer width="220px" height="50px" key={key}>
                 <div  style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-                  <small>{wallet.name}</small>
-                  <p>{wallet.amount} $</p>
+                  <small>{`Wallet ${wallet.type} `}</small>
+                  <p>{(wallet.montantUSD || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</p>
                 </div>
           </LightBoxContainer>
              })

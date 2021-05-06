@@ -66,7 +66,7 @@ const { register, handleSubmit, watch, errors } = useForm({
   const [additionaldata, setUserAdditionalData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
-  const { setUserDataContext } = useAppContext();
+  // const { setUserDataContext } = useAppContext();
   const togglebg = {
     backgroundColor: isParticular ? '#CC9933':'#fff'
   }
@@ -95,7 +95,7 @@ const { register, handleSubmit, watch, errors } = useForm({
          setSubmitting(true);
          setErrormsg(null);
          setSuccessmsg(message);
-         setUserDataContext(data.user);
+        //  setUserDataContext(data.user);
          router.push('/confirmation-inscription');
        }
 

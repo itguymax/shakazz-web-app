@@ -18,7 +18,7 @@ console.log("test data", data);
                       <div className="container p-4">
                         <div >
                           <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} > Wallet { `${wallet.type}`}</h2>
-                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 30px/35px Ubuntu',color: '#444',  lineHeight: '1.2'}}> {(`${wallet.montantUSD}`).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
+                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 30px/35px Ubuntu',color: '#444',  lineHeight: '1.2'}}> {(wallet.montantUSD || 0 ).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
                           <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
                             {wallet.type === constantes.wallets.p && <Link label="Dépôt" path="/portal/depot" style={{ background: '#007A5E 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>}
                             {wallet.type === constantes.wallets.p && <Link label="Retrait" path="/portal/retrait" style={{ background: '#CE1126 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>}

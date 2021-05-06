@@ -54,10 +54,31 @@ const loginUser = async (data) => {
      }
      return null ;
    }
+
+   const changeConnexionPassword = async ({accessToken, data}) => {
+      const url = "/users/reset/password";
+    try {
+    let responseJson =  await apiV1.putJson(url,accessToken, data);
+    return responseJson;
+  } catch(err) {
+    console.log(err)
+  }
+   }
+   const changeTransactionPassword = async ({accessToken, data}) => {
+      const url = "/users/reset/transaction";
+    try {
+    let responseJson =  await apiV1.putJson(url,accessToken, data);
+    return responseJson;
+  } catch(err) {
+    console.log(err)
+  }
+   }
 export {
   signupUser,
   resetUserPassword,
   loginUser,
   requestUserPasswordReset,
   logOutUser,
+  changeConnexionPassword,
+  changeTransactionPassword
 };

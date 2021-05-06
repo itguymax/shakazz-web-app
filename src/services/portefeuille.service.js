@@ -3,8 +3,8 @@ import config from '../config';
 import  apiV1  from './config';
 
   
-const fetchWallets = async (accessToken) => {
-    const url = "/wallets/all";
+const fetchPortefeuille = async (accessToken) => {
+    const url = "/whitdrawals/all";
     try {
     let responseJson =  apiV1.getJson(url, accessToken);
     return responseJson;
@@ -15,5 +15,5 @@ const fetchWallets = async (accessToken) => {
 
 
 export {
-  fetchWallets,
+  fetchPortefeuille,
 };

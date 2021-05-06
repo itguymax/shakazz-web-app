@@ -6,6 +6,9 @@ import DropDownC from '../../src/components/forms/Dropdownc';
 import SecForm from '../../src/sections/2fa';
 import Modificationpwd from '../../src/sections/modificationpwd';
 import withAuth from '../../src/hoc/withAuth';
+import { useAppContext } from '../../src/context';
+import { passwordSchema,transactionPasswordSchema} from "../../src/validations";
+import {usechangeTransactionPassword,usechangeConnexionPassword} from '../../src/hooks';
 const options = [{
   val: "Email"
 }, {
@@ -15,6 +18,15 @@ const options = [{
    const [faOption, setfaOption] = useState(options[Math.floor(Math.random() * options.length )])
    const [pwdcOption, setpwdcOption] = useState(options[Math.floor(Math.random() * options.length )])
    const [pwdtOption, setpwdtOption] = useState(options[Math.floor(Math.random() * options.length )])
+   const [loadingc, setLoadingC] = useState(false);
+    const [loadingt, setLoadingT] = useState(false);
+   const [errorMsgC, seterrorMsgC] = useState('');
+   const [successMsgC, setsuccessMsgC] = useState('');
+   const [errorMsgT, seterrorMsgT] = useState('');
+   const [successMsgT, setsuccessMsgT] = useState('');
+    const context = useAppContext();
+    const { mutateAsync:cpc, isLoading:icpc}  = usechangeConnexionPassword()
+    const { mutateAsync:cpt, isLoading:icpt}  = usechangeTransactionPassword()
    const selectionOption = ( value ) => {
     setfaOption(value);
   };
@@ -26,12 +38,63 @@ const options = [{
   };
   const onSubmit2fa =()=>{
   }
-   const onSubmitpwdc =()=>{
+   const onSubmitpwdc =(data)=>{
+     console.log(data);
   }
    const onSubmitpwdt =()=>{
   }
-  const onSubmitC = (data) => { };
-  const onSubmitT = (data) => {};
+  const onSubmitC = async (data) => { 
+    setLoadingC(true);
+    const body = {
+    data: {
+        user:{
+            password: data.oldPassword,
+            newPassword: data.repeatNewPassword
+        }
+    }
+    
+ }
+  const res = await cpc({accessToken: context.appState.accessToken ,data:body});
+   if(res.error && !res.success){
+        setLoadingC(false);
+        seterrorMsgC(res.message)
+        setsuccessMsgC('')
+        return;
+      } else {
+      setLoadingC(false)
+      seterrorMsgC('')
+      setsuccessMsgC(res.message)
+        return;
+     
+    }
+    console.log(" chahhhhhhcccc",data, res);
+  };
+  const onSubmitT = async (data) => {
+     setLoadingT(true);
+     const body = {
+    data: {
+        user : {
+            transaction : data.oldPassword,
+            newTransaction : data.repeatNewPassword
+        }
+    }
+    
+};
+ const res = await cpt({accessToken: context.appState.accessToken ,data:body});
+   if(res.error && !res.success){
+      setLoadingT(false);
+        seterrorMsgT(res.message)
+        setsuccessMsgT('')
+        return;
+      } else {
+     setLoadingT(false);
+      seterrorMsgT('')
+      setsuccessMsgT(res.message)
+        return;
+     
+    }
+    console.log(data);
+  };
   return (
     <Portal>
     <Container fluid>
@@ -48,10 +111,10 @@ const options = [{
       <Line/>
       <Row className="mb-5">
         <Col>
-           <Modificationpwd label="Changer votre mot de passe" sublabel="Connexion" onSubmit={onSubmitC}/>
+           <Modificationpwd schema={passwordSchema} successmsg={successMsgC} errormsg={errorMsgC} loading={loadingc} label="Changer votre mot de passe" sublabel="Connexion" onSubmit={onSubmitC}/>
         </Col>
         <Col>
-          <Modificationpwd label="Changer votre mot de passe" sublabel="Transaction" onSubmit={onSubmitT}/>
+          <Modificationpwd schema={transactionPasswordSchema} successmsg ={successMsgT} errormsg={errorMsgT} loading={loadingt} label="Changer votre mot de passe" sublabel="Transaction" onSubmit={onSubmitT}/>
         </Col>
       </Row>
     </Container>

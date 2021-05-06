@@ -3,9 +3,22 @@ import { useEffect, useState } from "react";
 import {verifyTokenS} from "../services/verifyToken.service";
 import config from '../config';
 import {useMutation, useQueryClient,QueryClient, useQuery } from 'react-query';
-import { dehydrate } from 'react-query/hydration'
+import { dehydrate } from 'react-query/hydration';
+import {fetchPortefeuille,fetchWallets} from "../services"
 
 
+export async function getStaticProps() {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(['Portefeuille'], () => fetchPortefeuille())
+  await queryClient.prefetchQuery(['wallets'], () => fetchWallets())
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
+}
 const withAuth = (WrappedComponent) => {
   console.log("enter auth");
   return (props) => {

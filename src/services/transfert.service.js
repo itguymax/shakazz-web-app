@@ -4,7 +4,7 @@ import  apiV1  from './config';
   
 const makeInternalTransfert = async ({accessToken, data}) => {
   console.log("Transfert Externe", accessToken, data);
-    const url = "/transactions/externe/transfert";
+    const url = "/transactions/interne/transfert";
     try {
     let responseJson =  apiV1.postJson(url, accessToken,data);
     return responseJson;
@@ -15,7 +15,7 @@ const makeInternalTransfert = async ({accessToken, data}) => {
 
 const makeExternalTransfert = async ({accessToken, data}) => {
   console.log("Transfert Interne", accessToken, data);
-    const url = "/transactions/interne/transfert";
+    const url = "/transactions/externe/transfert";
     try {
     let responseJson =  apiV1.postJson(url, accessToken,data);
     return responseJson;

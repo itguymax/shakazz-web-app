@@ -18,6 +18,7 @@ export const initialState = {
      taux : "",
      method:"",
   },
+  portefeuille:[]
  
 };
 export const reducer = (state, action) => {

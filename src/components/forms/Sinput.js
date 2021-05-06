@@ -44,7 +44,7 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
                     />
                   ): (
                      <div className=" d-flex justify-content-center">
-                     <InputGroup  className="input-group-alternative  mb-1" style={{overflow: 'hidden'}}>
+                     <InputGroup  className="input-group-alternative  mb-1" style={{overflow: 'hidden', ...iStyle}}>
                    {prepend && icon && (
                      <InputGroupAddon addonType="append">
                     <InputGroupText onClick={handleToggleshow } style={{backgroundColor: ibg }}>

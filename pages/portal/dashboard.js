@@ -41,6 +41,8 @@ function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
   const context = useAppContext();
+
+  const [token, setToken]= useState(context.appState.accessToken);
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
   }
@@ -215,5 +217,16 @@ function Dashboard() {
   )
 }
 
+// export async function getStaticProps() {
+//   const queryClient = new QueryClient()
+
+//   await queryClient.prefetchQuery(['posts', 10], () => fetchPosts(10))
+
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   }
+// }
 
 export default withAuth(Dashboard);

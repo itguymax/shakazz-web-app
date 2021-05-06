@@ -41,7 +41,7 @@ export default class MyApp extends App {
   componentDidMount() {
     let comment = document.createComment(`build by itguymax@gmail.com`);
     document.insertBefore(comment, document.documentElement);
-    if(localStorage.getItem(config.localStoreToken && Router.asPath.indexOf("portal") !== 1)){
+    if(localStorage.getItem(config.localStoreToken) && Router.asPath.indexOf("portal") !== 1){
       Router.push('/portal/dashboard')
     } else {
       return;
