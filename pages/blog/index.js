@@ -81,19 +81,6 @@ export async function getStaticProps() {
           }
         }
 
-      # query GetWordPressHomePageAndPosts {
-      #   pageBy(uri: "/") {
-      #     title
-      #     content
-      #   }
-      #   posts {
-      #     nodes {
-      #       title
-      #       slug
-      #       date
-      #     }
-      #   }
-      # }
     `,
   });
 

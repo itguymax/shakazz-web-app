@@ -8,7 +8,7 @@ import {Card,Button, CardBody, FormGroup, InputGroup, Input} from 'reactstrap'
 import Captcha from '../../../src/components/Captcha';
 import Sinput from '../../../src/components/forms/Sinput';
 import { resetPasswordSchema } from '../../../src/validations'
-import { resetPassword } from '../../../src/services/auth.service';
+import { resetUserPassword } from '../../../src/services/auth.service';
 
 function ForgotPassword() {
 const  recaptchaRef = useRef();
@@ -39,7 +39,7 @@ const [show, setShow] = useState(false);
     const { password } = data;
     userdata = { password, userId, token }
    try{
-       let datares = await resetPassword(userdata);
+       let datares = await resetUserPassword(userdata);
        const { data, error, success, message } = datares;
        if(error && !success){
         setSuccessmsg(null);

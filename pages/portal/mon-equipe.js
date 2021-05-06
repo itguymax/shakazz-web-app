@@ -91,7 +91,7 @@ const generationCardData = [
       setShowPopulation(true);
   
 }
-console.log("children", children);
+
   return (
     <Portal>
       <Container fluid>
