@@ -134,16 +134,17 @@ useEffect((data)=>{
 
               </div> }
               <Sinput
-                name="pourcentageHeritage"
-                placeholder="pourcentage d'heritage"
-                type="number"
+                name="documentsOfficiels"
+                placeholder="Documents officiels"
+                type="text"
                 register={register}
                 inputBg="#F0F0F0"
                 // disabled={legacies.length <= 1?true:false}
-                label="Pourcentage d'heritage"
+                label="Documents officiels"
                 required
                 handleOnchange={onPercentageInputChange}
-                inputvalue={percentage}
+                icon={"fa fa-eye-slash"}
+                disabled
               />
               {errors.pourcentageHeritage && <div className="text-muted font-italic">
 
@@ -151,25 +152,19 @@ useEffect((data)=>{
 
               </div> }
             </Col>
-            <Col>
-              <Sinput
-                name="adresse"
-                placeholder="Entrer l'adresse"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Adresse"
-              />
+            <Col><br/>
               <DropDownPhone name="legacy_adresse_img_1" country idDdM={"legacy_adresse_img_1"} idDd={"legacy_adresse_flag"} label="Adresse:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
               {errors.adresse && <div className="text-muted font-italic">
                   <span className="text-danger font-weight-700">{errors.adresse.message}</span>
               </div>}
+              <br/>
                 <DropDownPhone idDdM={"lg_phone_img_1"} idDd={"lg_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
               {errors.nationnalite && <div className="text-muted font-italic">
 
                   <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
 
               </div> }
+              <br/>
               <Sinput
                 name="parente"
                 placeholder="Quel est votre lien de parentee ?"

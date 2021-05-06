@@ -4,7 +4,7 @@ import React from "react";
 import {
     Table,
 } from "reactstrap";
-
+import Image from 'next/image'
 export default function TabContent(props) {
     return (
         <>
@@ -19,20 +19,20 @@ export default function TabContent(props) {
         tr:last-child { border-top-right-radius: 10px; }
         tr:first-child { border-bottom-left-radius: 10px; }
         tr:last-child { border-bottom-right-radius: 10px; }
-          
+
         th:nth-child(1){
             /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-            -webkit-border-radius: 10px 0px 0px 10px; 
+            -webkit-border-radius: 10px 0px 0px 10px;
             /* Firefox 1-3.6 */
-            -moz-border-radius: 10px 0px 0px 10px; 
+            -moz-border-radius: 10px 0px 0px 10px;
             /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-            border-radius: 10px 0px 0px 10px; 
+            border-radius: 10px 0px 0px 10px;
         }
         th:nth-last-child(1){
             /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-            -webkit-border-radius: 0px 10px 10px 0px;   
+            -webkit-border-radius: 0px 10px 10px 0px;
             /* Firefox 1-3.6 */
-            -moz-border-radius: 0px 10px 10px 0px; 
+            -moz-border-radius: 0px 10px 10px 0px;
             /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
             border-radius: 0px 10px 10px 0px;
         }
@@ -59,10 +59,11 @@ export default function TabContent(props) {
                         <th><div>Type</div></th>
                         <th><div >Statut</div></th>
                         <th><div >Montant</div></th>
+                        <th><div >Détails</div></th>
                     </tr>
                 </thead>
                 <tbody className="" css={css`
-            td{ 
+            td{
                 padding: 0px;
                 margin : 3px;
                 // vertical-align: middle;
@@ -84,11 +85,16 @@ export default function TabContent(props) {
                 {props.data.map( (item, key)=> {
                     return <>
                     <tr style={{ }}>
-                        <td ><div >{item.date}</div></td>
+                        <td ><div >{item.id}</div></td>
                         <td><div >{item.date}</div></td>
                         <td><div >{item.type}</div></td>
                         <td><div >{item.statut}</div></td>
                         <td><div >{item.montant}</div></td>
+                        <td><div style={{padding:"0px",paddingTop:"5px",cursor:"pointer"}}><Image
+                          src="/assets/img/icons/add.svg"
+                          alt="..."
+                          height={2} width={2}
+                          /></div></td>
                     </tr>
                     <div></div>
               </>

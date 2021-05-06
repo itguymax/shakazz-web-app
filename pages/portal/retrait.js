@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import AdminBleu from '../../src/layouts/AdminBleu'
+import Portal from "../../src/layouts/Portal.js";
 import {
   Card,
   Container,
@@ -29,7 +30,7 @@ function Retrait() {
   const onSubmit = (data) => {
     setData(data);
     openDepotModal();
-   
+
   };
    const handleToggleshow = () => setShow(!show);
   return (
@@ -48,8 +49,8 @@ function Retrait() {
                 register={register}
                 inputBg="#679966"
                 inline
-                usd 
-              /> 
+                usd
+              />
               <Sinput
                 label="Equivalence"
                 name="quantitebtc"
@@ -70,7 +71,7 @@ function Retrait() {
                 inline
                 btc
                 disabled
-              /> 
+              />
               <Sinput
                 label="Mot de passe de la transaction"
                 name="transactionPassword"
@@ -78,10 +79,10 @@ function Retrait() {
                 type="password"
                 register={register}
                 inputBg="#679966"
-                inline 
-                icon={show ? "fa fa-eye":"fa fa-eye-slash"}  
-                handleToggleshow={handleToggleshow }           
-              /> 
+                inline
+                icon={show ? "fa fa-eye":"fa fa-eye-slash"}
+                handleToggleshow={handleToggleshow }
+              />
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
@@ -99,8 +100,8 @@ function Retrait() {
              <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet principal</h2>
               <h1 className="" style={{font: 'normal normal normal 20px/25px Ubuntu',display: 'block',color: '#679966',  lineHeight: '1.2'}}> {(29000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
           </div>
-         </LightBoxContainer>   
-         
+         </LightBoxContainer>
+
         </Col>
         {openModal&& <Smodal data={data} handleClose={openDepotModal} open={openModal}/>}
       </Row>
