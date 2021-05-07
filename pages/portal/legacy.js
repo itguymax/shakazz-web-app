@@ -142,15 +142,15 @@ useEffect((data)=>{
                 // disabled={legacies.length <= 1?true:false}
                 label="Documents officiels"
                 required
-                handleOnchange={onPercentageInputChange}
+                handleOnchange={()=>{}}
                 icon={"fa fa-eye-slash"}
                 disabled
               />
-              {errors.pourcentageHeritage && <div className="text-muted font-italic">
+              {/*errors.pourcentageHeritage && <div className="text-muted font-italic">
 
                   <span className="text-danger font-weight-700">{errors.pourcentageHeritage.message}</span>
 
-              </div> }
+              </div> */}
             </Col>
             <Col><br/>
               <DropDownPhone name="legacy_adresse_img_1" country idDdM={"legacy_adresse_img_1"} idDd={"legacy_adresse_flag"} label="Adresse:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
@@ -245,6 +245,15 @@ useEffect((data)=>{
         </>: null
       }
       </div>
+      <Container>
+        <Row>
+          <Col>.col</Col>
+          <Col>.col</Col>
+          <Col>.col</Col>
+          <Col>.col</Col>
+          <Col>.col</Col>
+        </Row>
+      </Container>
     </Container>
   </Portal>
   </>

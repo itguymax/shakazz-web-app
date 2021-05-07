@@ -21,7 +21,7 @@ function Auth(props) {
       document.body.classList.remove("bg-default");
     };
   }, []);
-  return (  
+  return (
       <Container fluid >
         {/* <div className="header bg-gradient-info py-7 py-lg-8">
           <Container>
@@ -55,30 +55,30 @@ function Auth(props) {
         </div> */}
         {/* Page content */}
          <div className="main-content row" style={{minHeight:'100vh'}}>
-          <Col lg="6" style={{backgroundColor: '#f5f5f5', justifyContent: 'center', alignItems: 'center'}} css={css`
+          <Col className="auth_block_illustration" lg="6" style={{backgroundColor: '#f5f5f5', justifyContent: 'center', alignItems: 'center'}} css={css`
                   @media(max-width: 600px){
                     display: none;
                   }
-              `}> 
+              `}>
              <h3 style={{textAlign: "left", marginTop:'1.25rem'}}>
                 <a href="/">SHAKAZZ</a>
               </h3>
               <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}}>
-                <Image  
+                <Image
                   src={ router.pathname === "/auth/login" ? "/assets/img/login.png" : "/assets/img/inscription.png"}
                   // layout="responsive"
                   width={500}
                   height={500}
                   className="object-center object-cover pointer-events-none"
                   alt= {router.pathname === "/auth/login" ? "Login page ilustration": "register page ilustration"}
-                /> 
+                />
               </div>
-              <AuthFooter />  
+              <AuthFooter />
           </Col>
           <Col lg="6" className="bg-white" >
               <>{props.children}</>
           </Col>
-        </div>  
+        </div>
        </Container>
   );
 }

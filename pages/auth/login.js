@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../src/services/auth.service'
 import connfig from '../../src/config';
+import {Global,css} from "@emotion/react"
 // reactstrap components
 import {
   Button,
@@ -31,7 +32,7 @@ function Login() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  
+
   const recaptchaRef = useRef();
   const [show, setShow] = useState(false);
   const [verified, setVerified]= useState(false);
@@ -41,7 +42,7 @@ function Login() {
   const handleToggleshow = () => setShow(!show);
   const executeCaptcha = () => setVerified(!verified);
   const onSubmit = async (hookData)  => {
-    
+
      let userdata;
     if(verified){
       setSubmitting(isLoading);
@@ -53,7 +54,7 @@ function Login() {
        if(error && !success){
         setSuccessmsg(null);
         setErrormsg(message);
-       
+
        } else {
          if( typeof window !== "undefined"){
            console.log("window", data.user_token);
@@ -63,9 +64,9 @@ function Login() {
          setSuccessmsg(message);
          setSubmitting(isLoading)
          router.push('/portal/dashboard');
-         }     
+         }
        }
-       
+
    }catch(err){
         console.log("error", err);
    }
@@ -75,6 +76,27 @@ function Login() {
   };
   return (
     <>
+    <Global
+    styles={css`
+      @media only screen and (max-width: 360px) {
+        .auth_block_illustration{
+          display:none;
+        }
+        }
+      @media only screen and (max-width: 414px) {
+        .auth_block_illustration{
+          display:none;
+        }
+      }
+      @media only screen and (max-width: 768px) {
+        .auth_block_illustration{
+          display:none;
+        }
+      }
+      @media only screen and (max-width: 1024px) {
+      }
+    `}
+    />
       <Head>
         {/* META tags */}
         <title>Connexion | Shakazz</title>
@@ -114,10 +136,10 @@ function Login() {
       <Row>
         <Card className="bg-white container border-0" style={{minWidth:'100%'}}>
           <CardHeader className="bg-transparent px-lg-5 ">
-        
+
             <div className="text-muted mt-2 mb-1">
               <h2 style={{marginBottom:'0px'}} className="text-md-right mb-md-4">Inscription</h2>
-              
+
               <a style={{font: 'normal normal bold 42px/48px Ubuntu', color: '#121212'}} onClick={(e) => e.preventDefault()}>
                   Hi, welcome back
                 </a>
@@ -139,9 +161,9 @@ function Login() {
               iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
             />
              {errors.userName && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.userName.message}</span>
-               
+
               </div> }
             <Sinput
               label="Mot de passe"
@@ -156,9 +178,9 @@ function Login() {
               iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
             />
                {errors.password && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.password.message}</span>
-               
+
               </div> }
               <div className="text-right ">
                <a
@@ -169,22 +191,22 @@ function Login() {
                   <span className="text-muted">Mot de passe oublié?</span>
                 </a>
               </div>
-              
+
              <Captcha recaptchaRef={recaptchaRef} onChange={executeCaptcha}/>
-             
+
               <div className="text-center" >
                   {errormsg && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errormsg}</span>
-               
+
               </div> }
               {successmsg && <div className="text-muted font-italic">
-                
+
                   <span className="text-success font-weight-700">{successmsg}</span>
-               
+
               </div> }
                 <Button className="mt-3 mb-1"  disabled={isLoading} type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
-                    {isLoading? <Spinner size="sm" color="#cc993a" />: "S'identifier"}  
+                    {isLoading? <Spinner size="sm" color="#cc993a" />: "S'identifier"}
                 </Button>
                 <div>
                   <a
@@ -194,18 +216,18 @@ function Login() {
                     <small>Vous n'avez pas encore de compte?</small>
                   </a>{" "}
                   <a
-                    href="/auth/register" 
+                    href="/auth/register"
                   >
                     <small className="text-bold font-weight-bold ml-1" >S'inscrire</small>
                   </a>
-                
+
              </div>
               </div>
-              
+
             </Form>
           </CardBody>
         </Card>
-        
+
       </Row>
     </>
   );
