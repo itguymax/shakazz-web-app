@@ -23,12 +23,14 @@ import { useConverter, useRetrait, usePortefeuille, useWallets} from '../../src/
 import { useAppContext } from '../../src/context';
 import { filterwallet } from '../../src/helpers/filterWallet'
 import {constantes} from '../../src/config';
+import {Global,css} from "@emotion/react"
+import { device } from '../../src/lib/device.js';
 function Retrait() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(retraitSchema),
   });
   const context = useAppContext();
-  const {data:dtc} = useConverter("BTC","USD"); 
+  const {data:dtc} = useConverter("BTC","USD");
   const [usdVal, setUSDVal] = useState(100);
   const [show, setShow] = useState(false);
   const [data, setData] = useState({});
@@ -40,7 +42,7 @@ function Retrait() {
   const openDepotModal = () => setOpenModal(!openModal);
   const {data:dt, isLoading} = usePortefeuille(token);
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
-  
+
   // if(dt?.success && !dt?.error){
   //   const {data} = dt;
   //   if(data.porte_feuille.length < 1){
@@ -72,7 +74,7 @@ function Retrait() {
   const changeUSDtoBTC = (data) => {
       console.log("usdTo btc", data.target.value);
       setUSDVal(data.target.value);
-      
+
    }
    const handleOnSelectOption = (option) => {
         setSelectedOption(option.value);
@@ -83,10 +85,34 @@ function Retrait() {
    };
    const defautOption = selectedOption;
    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
-   console.log("hhhhhhhhh", wp);
+   //console.log("hhhhhhhhh", wp);
   return (
     <AdminBleu>
     <div>
+    <Global
+    styles={css`
+      @media ${device.sPhone} {
+        .modal-content {
+          width:21.5em !important;
+        }
+        }
+      @media ${device.mPhone} {
+        .modal-content {
+          width:19em !important;
+        }
+        }
+      @media ${device.iphoneX} {
+          .modal-content {
+            width:22.5em;
+          }
+        }
+      @media ${device.bPhone} {
+        .modal-content {
+          width:25em;
+        }
+      }
+    `}
+    />
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un retrait</h1>
       <Row className="mt-4 justify-content-between">
         <Col xl="9">
@@ -102,9 +128,9 @@ function Retrait() {
                 inputBg="#679966"
                 inline
                 handleOnchange={changeUSDtoBTC}
-                usd 
-              /> 
-               
+                usd
+              />
+
               <Sinput
                 label="Equivalence"
                 name="quantitebtc"
@@ -127,8 +153,8 @@ function Retrait() {
                 dd
                 register={register}
                 onSelect={handleOnSelectOption}
-              /> 
-               
+              />
+
               <Sinput
                 label="Mot de passe de la transaction"
                 name="transactionPassword"
@@ -137,13 +163,13 @@ function Retrait() {
                 register={register}
                 inputvalue={psw}
                 inputBg="#679966"
-                inline 
+                inline
                 append
                 iStyle={{ borderRadius:"15px",backgroundColor: "#679966"}}
-                icon={show ? "fa fa-eye":"fa fa-eye-slash"}  
-                handleToggleshow={handleToggleshow } 
-                handleOnchange={changePassword}          
-              /> 
+                icon={show ? "fa fa-eye":"fa fa-eye-slash"}
+                handleToggleshow={handleToggleshow }
+                handleOnchange={changePassword}
+              />
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">

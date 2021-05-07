@@ -1,6 +1,7 @@
 export const size = {
   smMobile: '540px',
   iphoneX: '375px',
+  sPhone: '320px',
   mPhone: '360px',
   bPhone: '414px',
   tablet: '768px',
@@ -15,7 +16,8 @@ export const device = {
   tablet: `(min-width: ${size.tablet})`,
   laptop: `(min-width: ${size.laptop})`,
   iphoneX: `(max-width: ${size.iphoneX})`,
-  mPhone: `(max-width: ${size.mPhone})`,
+  sPhone: `(max-width: ${size.mPhone})`,
+  mPhone: `(max-width: ${size.sPhone})`,
   bPhone: `(max-width: ${size.bPhone})`,
   sTablet: `(max-width: ${size.tablet})`,
   bTablet: `(max-width: ${size.laptop})`,
