@@ -27,6 +27,7 @@ import { fetchNetworkers } from "../../src/services";
 import {useMutation,QueryClient, useQueryClient} from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import {useAppContext} from "../../src/context";
+import {Global,css} from "@emotion/react"
 
 const options = [
   {
@@ -79,11 +80,11 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handletoggle = () => setProfil(!isParticular);
   const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
   const onSubmit =  async (hookFormData) => {
-   
+
    if(verified){
-    setSubmitting(true); 
+    setSubmitting(true);
     const {confirmpassword, ...rest } = hookFormData;
-   
+
    let  userdata = {...additionaldata, ...rest};
   //  try{
     let datares = await mutateAsync( userdata);
@@ -94,7 +95,7 @@ const { register, handleSubmit, watch, errors } = useForm({
         setErrormsg(message);
          setSubmitting(false);
         alert("une erreur s'est produite")
-       } else { 
+       } else {
          setSubmitting(true);
          setErrormsg(null);
          setSuccessmsg(message);
@@ -109,13 +110,13 @@ const { register, handleSubmit, watch, errors } = useForm({
    } else {
      alert("Vous  n'êtes pas humain")
    }
-    
+
   };
   const handleToggleshow = () => setShow(!show);
   const handleToggleshowc = () => setShowc(!showc);
   const executeCaptcha = () => setVerified(!verified)
   const handleOnBlur = () => {
-    
+
   }
   useEffect( ()=>{
     const addData= {
@@ -128,6 +129,27 @@ const { register, handleSubmit, watch, errors } = useForm({
 
   return (
     <>
+    <Global
+    styles={css`
+      @media only screen and (max-width: 360px) {
+        .auth_block_illustration{
+          display:none;
+        }
+        }
+      @media only screen and (max-width: 414px) {
+        .auth_block_illustration{
+          display:none;
+        }
+      }
+      @media only screen and (max-width: 768px) {
+        .auth_block_illustration{
+          display:none;
+        }
+      }
+      @media only screen and (max-width: 1024px) {
+      }
+    `}
+    />
      <Head>
         {/* META tags */}
         <title>Inscription | Shakazz</title>
@@ -168,22 +190,22 @@ const { register, handleSubmit, watch, errors } = useForm({
         <Card className="bg-white container border-0" style={{minWidth:'100%'}}>
           <CardBody className="px-lg-5 py-lg-2">
             <Form role="form" onSubmit={handleSubmit(onSubmit)}>
-           
+
               <Row className="justify-content-between">
                 <Col className="col-auto ml-2">
                   <FormGroup>
                     <label>Votre profil</label>
-                  
+
                     <div className=" row ">
-                        <Sbutton 
+                        <Sbutton
                       label="Particulier" style={{
                       backgroundColor: isParticular? '#FFCC00':'#fff',
                       fontWeight: isParticular? 'bold':'normal',
-                      
+
                       }} onClick={handletoggle}/>
-                      <Sbutton 
-                      style={{backgroundColor: !isParticular? '#FFCC00':'#fff', fontWeight: !isParticular? 'bold':'normal'  }} 
-                      onClick={handletoggle} 
+                      <Sbutton
+                      style={{backgroundColor: !isParticular? '#FFCC00':'#fff', fontWeight: !isParticular? 'bold':'normal'  }}
+                      onClick={handletoggle}
                       label="Entreprise"
                       />
                     </div>
@@ -195,7 +217,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                     {router.query.ref ? (
                       <div className="d-flex justify-content-between align-items-center mr-0" style={{width:'250px', padding:'5px', backgroundColor:'#f5f5f5', borderRadius: '5px'}}>
                        <div  className="d-flex align-items-center">
-                          <img className="avatar avatar-sm mr-2" alt={options[0].userName} src={options[0].image.src}></img>   
+                          <img className="avatar avatar-sm mr-2" alt={options[0].userName} src={options[0].image.src}></img>
                           <div className="d-flex" style={{flexDirection:'column'}}>
                             <small className="mb-0">
                               {options[0].userName}
@@ -210,11 +232,11 @@ const { register, handleSubmit, watch, errors } = useForm({
                     ):(
                        <Sdropdown  register={register} options={options} selectedOption={selectedOption} name="parain" onSelectParain={handleParainOption}/>
                     ) }
-                   
+
                  </FormGroup>
                 </Col>
             </Row>
-          {isParticular?(   <Row> 
+          {isParticular?(   <Row>
               <Col>
               <Sinput
                 label="Prénom"
@@ -223,14 +245,14 @@ const { register, handleSubmit, watch, errors } = useForm({
                 type="text"
                 register={register}
                 iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
-                
+
               />
               {errors.firstName && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.firstName.message}</span>
-               
+
               </div> }
-              
+
               </Col>
               <Col>
                <Sinput
@@ -240,12 +262,12 @@ const { register, handleSubmit, watch, errors } = useForm({
                 type="text"
                 register={register}
                 iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
-                
+
               />
               {errors.lastName && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.lastName.message}</span>
-               
+
               </div> }
               </Col>
              </Row>):(<>
@@ -258,9 +280,9 @@ const { register, handleSubmit, watch, errors } = useForm({
                 iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
               />
               {errors.companyName && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.companyName.message}</span>
-               
+
               </div> }
               </>
              )}
@@ -271,13 +293,13 @@ const { register, handleSubmit, watch, errors } = useForm({
                 type="text"
                 register={register}
                 iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
-              
+
               />
 
                {errors.userName && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.userName.message}</span>
-               
+
               </div> }
               <Sinput
                 label="Email"
@@ -288,9 +310,9 @@ const { register, handleSubmit, watch, errors } = useForm({
                 iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
               />
                {errors.email && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.email.message}</span>
-               
+
               </div> }
               <Sinput
                 label="Mot de passe"
@@ -305,9 +327,9 @@ const { register, handleSubmit, watch, errors } = useForm({
                 iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
               />
               {errors.password && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.password.message}</span>
-               
+
               </div> }
               <Sinput
                 label="Confirmer le mot de passe"
@@ -323,9 +345,9 @@ const { register, handleSubmit, watch, errors } = useForm({
                 autocomplete="new-password"
               />
               {errors.confirmpassword && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.confirmpassword.message}</span>
-               
+
               </div> }
               {/* <div className="text-muted font-italic">
                 <small>
@@ -342,7 +364,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                       type="checkbox"
                       name="term"
                       ref={register}
-                      
+
                     />
                     <label
                       className="custom-control-label"
@@ -357,23 +379,23 @@ const { register, handleSubmit, watch, errors } = useForm({
                     </label>
                   </div>
                    {errors.term && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.term.message}</span>
-               
+
               </div> }
                 </Col>
               </Row>
               <Captcha recaptchaRef={recaptchaRef} onChange={executeCaptcha}/>
                <div className="text-center" >
                  {errormsg && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errormsg}</span>
-               
+
               </div> }
               {successmsg && <div className="text-muted font-italic">
-                
+
                   <span className="text-success font-weight-700">{successmsg}</span>
-               
+
               </div> }
                 <Button disabled={isLoading || submitting} className="mt-3 mb-1"  type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
                    {isLoading || submitting ? <Spinner size="sm" color="#cc993a" />: "Créer un compte"}
@@ -385,7 +407,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                   >
                     <small>Vous avez déjà un compte?</small>
                   </a>{" "}
-                  <a  
+                  <a
                     href="/auth/login"
                   >
                     <small className="text-bold font-weight-bold ml-1">Se connecter</small>
@@ -416,4 +438,3 @@ export async function getStaticProps() {
 
 Register.layout = Auth;
 export default Register;
-
