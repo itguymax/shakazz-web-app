@@ -28,7 +28,7 @@ import {useMutation,QueryClient, useQueryClient} from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import {useAppContext} from "../../src/context";
 import {Global,css} from "@emotion/react"
-
+import { device } from '../../src/lib/device.js';
 const options = [
   {
     key: 'JennyHess',
@@ -131,22 +131,20 @@ const { register, handleSubmit, watch, errors } = useForm({
     <>
     <Global
     styles={css`
-      @media only screen and (max-width: 360px) {
+      @media only screen and ${device.mPhone} {
         .auth_block_illustration{
           display:none;
         }
         }
-      @media only screen and (max-width: 414px) {
-        .auth_block_illustration{
-          display:none;
-        }
-      }
-      @media only screen and (max-width: 768px) {
+      @media only screen and ${device.bPhone} {
         .auth_block_illustration{
           display:none;
         }
       }
-      @media only screen and (max-width: 1024px) {
+      @media only screen and ${device.sTablet} {
+        .auth_block_illustration{
+          display:none;
+        }
       }
     `}
     />

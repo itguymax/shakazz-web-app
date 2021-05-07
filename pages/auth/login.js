@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../src/services/auth.service'
 import connfig from '../../src/config';
+import { device } from '../../src/lib/device.js';
 import {Global,css} from "@emotion/react"
 // reactstrap components
 import {
@@ -57,7 +58,7 @@ function Login() {
 
        } else {
          if( typeof window !== "undefined"){
-           console.log("window", data.user_token);
+           //console.log("window", data.user_token);
             setUTToLS(data.user_token);
 
              setErrormsg(null);
@@ -73,27 +74,25 @@ function Login() {
    } else {
      alert("Vous n'êtes pas humain")
    }
-  };
+ };
   return (
     <>
     <Global
     styles={css`
-      @media only screen and (max-width: 360px) {
+      @media only screen and ${device.mPhone} {
         .auth_block_illustration{
           display:none;
         }
         }
-      @media only screen and (max-width: 414px) {
-        .auth_block_illustration{
-          display:none;
-        }
-      }
-      @media only screen and (max-width: 768px) {
+      @media only screen and ${device.bPhone} {
         .auth_block_illustration{
           display:none;
         }
       }
-      @media only screen and (max-width: 1024px) {
+      @media only screen and ${device.sTablet} {
+        .auth_block_illustration{
+          display:none;
+        }
       }
     `}
     />

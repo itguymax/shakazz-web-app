@@ -7,7 +7,7 @@ import Sinput from "../../src/components/forms/Sinput";
 import { forgotPasswordSchema } from "../../src/validations";
 import { requestUserPasswordReset } from '../../src/services/auth.service';
 import {Global,css} from "@emotion/react"
-
+import { device } from '../../src/lib/device.js';
 import {Card,Button, CardBody } from 'reactstrap'
 import Captcha from '../../src/components/Captcha';
 function ForgotPassword() {
@@ -56,24 +56,20 @@ function ForgotPassword() {
       .forgotPasswordForm {
         width:32em;
       }
-      @media only screen and (max-width: 360px) {
+      @media only screen and ${device.mPhone} {
         .forgotPasswordForm {
           width:20em !important;
         }
         }
-      @media only screen and (max-width: 375px) {
+      @media only screen and ${device.iphoneX} {
           .forgotPasswordForm {
             width:21em !important;
           }
         }
-      @media only screen and (max-width: 414px) {
+      @media only screen and ${device.bPhone} {
         .forgotPasswordForm {
           width:23em;
         }
-      }
-      @media only screen and (max-width: 768px) {
-      }
-      @media only screen and (max-width: 1024px) {
       }
     `}
     />

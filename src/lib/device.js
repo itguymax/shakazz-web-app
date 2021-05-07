@@ -1,5 +1,8 @@
 export const size = {
   smMobile: '540px',
+  iphoneX: '375px',
+  mPhone: '360px',
+  bPhone: '414px',
   tablet: '768px',
   laptop: '1024px',
 };
@@ -11,4 +14,9 @@ export const device = {
   smMobileMax: `(max-width: ${size.smMobile})`,
   tablet: `(min-width: ${size.tablet})`,
   laptop: `(min-width: ${size.laptop})`,
+  iphoneX: `(max-width: ${size.iphoneX})`,
+  mPhone: `(max-width: ${size.mPhone})`,
+  bPhone: `(max-width: ${size.bPhone})`,
+  sTablet: `(max-width: ${size.tablet})`,
+  bTablet: `(max-width: ${size.laptop})`,
 };
