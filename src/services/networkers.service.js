@@ -13,7 +13,16 @@ const fetchNetworkers = async () => {
   }
   }
 
-
+  const fetchUserByInvitation = async (invitation) => {
+    const url = `/users/${invitation} `
+     try {
+    let responseJson =  await apiV1.unAuthgetJson(url);
+    return responseJson;
+  } catch(err) {
+    console.log(err)
+  }
+  } 
 export {
   fetchNetworkers,
+  fetchUserByInvitation,
 };

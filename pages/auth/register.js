@@ -75,6 +75,7 @@ const { register, handleSubmit, watch, errors } = useForm({
     backgroundColor: isParticular ? '#CC9933':'#fff'
   }
   const handleParainOption = ( value ) => {
+    console.log("parainnnnn", value);
     setSelectedOption(value);
   };
   const handletoggle = () => setProfil(!isParticular);
@@ -122,8 +123,9 @@ const { register, handleSubmit, watch, errors } = useForm({
     const addData= {
       profil: isParticular? "Particulier":"Entreprise",
       // parent: selectedOption.key
-      parent:'tFJwJiWqK'
+      parent: selectedOption.invitation
     }
+    console.log("invidation", addData);
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
 
