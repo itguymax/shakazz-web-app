@@ -99,10 +99,17 @@ const METHOD = {
     return response.json();
   },
    unAuthgetJson: async (url) => {
-    
-    const response = await  apiV1.call(
+     const params = {
+      method: METHOD.GET,
+      headers: {
+        Accept: ACCEPT.JSON,
+        'Content-Type': 'application/json',
+        credentials: 'include',  
+      }, 
+     }
+    const response = await apiV1.call(
       url,
-       apiV1.unAuthParameters(METHOD.GET, ACCEPT.JSON),
+      params 
     );
 
     return response.json();
