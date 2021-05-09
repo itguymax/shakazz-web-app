@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from "react";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import {Global,css} from "@emotion/react"
+import { device } from '../../src/lib/device.js';
 // reactstrap components
 
 import {
@@ -13,7 +15,6 @@ import {
   UncontrolledTooltip,
   Form,
   Button,
-  
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
@@ -38,7 +39,7 @@ import {useWallets} from '../../src/hooks';
 const Crowdlending = () => {
 
   const context = useAppContext();
- 
+
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
   const [is360, set360] = useState(true);
@@ -48,7 +49,7 @@ const Crowdlending = () => {
   const [capital, setCapital] = useState(100);
   // const [taux, setTaux] = useState(7.5);
   const [coffreDatas, setCoffreDatas] = useState([]);
-  const [selectedPool, setSelectedPool] = useState( 
+  const [selectedPool, setSelectedPool] = useState(
       {
      id: 1,
      name: "Pool mensuelle",
@@ -61,7 +62,7 @@ const Crowdlending = () => {
   }
   );
   const {data, isLoading} = useWallets(context.appState.accessToken);
- 
+
 
 
 
@@ -119,22 +120,60 @@ const Crowdlending = () => {
 
     }
     alert("creation coffre fort");
-    
-    setCoffreDatas([...coffreDatas, coffredata]);
-   
-  }
 
- console.log("coffre fort2", coffreDatas);
+    setCoffreDatas([...coffreDatas, coffredata]);
+
+  }
   const queryCache = new QueryCache({
    onError: error => {
      console.log(error)
    },
  })
  const query = queryCache.find('wallets');
- console.log("query", query);
   return (
     <Portal>
       <Container fluid>
+      <Global
+      styles={css`
+        .lightBoxContainerHeaderDiv{
+          width:12em;
+          height:4em;
+          padding-top:1.5em;
+          cursor:pointer !important;
+        }
+        @media ${device.sPhone} {
+          }
+        @media ${device.mPhone} {
+          }
+        @media ${device.iphoneX} {
+          }
+        @media ${device.bPhone} {
+          .lightBoxContainerHeaderFluid{
+            flex-direction: column !important;
+            width:20em !important;
+            margin:auto !important;
+          }
+          .lightBoxContainerHeaderDiv{
+            width:17em !important;
+          }
+        }
+        @media ${device.sTablet} {
+          .lightBoxContainerHeaderFluid{
+            width:38em;
+            margin-left:-3em;
+          }
+          .lightBoxContainerHeaderDiv{
+            width:10em;
+            margin-left:-1.8em;
+          }
+        }
+        @media ${device.bTablet} {
+          .lightBoxContainerHeaderDiv{
+            margin-left:-1em;
+          }
+        }
+      `}
+      />
       {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
 
      <Row className="mt-xl-3 mb-5">
@@ -167,7 +206,7 @@ const Crowdlending = () => {
                       inputBg="#fff"
                       type="number"
                       handleOnchange={onInputChange}
-                      inputvalue={capital}    
+                      inputvalue={capital}
                   />
                   <small>minimum d'investissement est de 100 $</small>
                   <div className="mb-4 mt-5">
@@ -176,15 +215,15 @@ const Crowdlending = () => {
                     {selectedPool.taux1080 &&  <FlatButton disabled={is1080} label="1080" width="90px"  bgc={is1080?"#cc9933":"#444"} handleClick={ periode1080}/>}
                      {selectedPool.taux1800 &&  <FlatButton disabled={is1800} label="1800" width="90px"  bgc={is1800?"#cc9933":"#444"} handleClick={ periode1800}/>}
                   </div>
-                 
+
               </div>
               <Row className="d-flex justify-content-center align-items-center mb-4">
                 <Container fluid className="py-3">
-                   <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>               
+                   <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>
                 </Container>
                  <SimulationTable periode={periode} taux={t} pool={{name:selectedPool.name, frequence: selectedPool.frequence}} capital={capital}/>
                  <FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>
-              </Row>            
+              </Row>
             </Form>
          </LightBoxContainer>
        </Col>
@@ -196,7 +235,7 @@ const Crowdlending = () => {
           coffreDatas.map((item, key)=> <Coffre key={key} index={key} taux={t} interet={item.interet} periode={item.periode} pool={{name:item.poolName}} capital={item.capital} date={item.createdAt} />)
         }
       </> :null}
-       
+
       </Container>
     </Portal>
   );
