@@ -4,6 +4,8 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import {Global,css} from "@emotion/react"
 import { device } from '../../src/lib/device.js';
 // reactstrap components
+import { QueryClient, useQuery } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 
 import {
   Card,
@@ -34,7 +36,8 @@ import Router from "next/router";
 import withAuth from '../../src/hoc/withAuth';
 import { QueryCache } from "react-query";
 import { useAppContext } from '../../src/context';
-import {useWallets} from '../../src/hooks';
+import {useWallets, useFetchOptions } from '../../src/hooks';
+import {fetchOptions} from '../../src/services';
 
 const Crowdlending = () => {
 
@@ -62,7 +65,7 @@ const Crowdlending = () => {
   }
   );
   const {data, isLoading} = useWallets(context.appState.accessToken);
-
+  const {data:optionsData, isLoading:isLoadingOptions} = useFetchOptions();
 
 
 
@@ -130,6 +133,7 @@ const Crowdlending = () => {
    },
  })
  const query = queryCache.find('wallets');
+ console.log("options", optionsData.data.options);
   return (
     <Portal>
       <Container fluid>
@@ -180,11 +184,12 @@ const Crowdlending = () => {
        <Col xl={4}>
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>
          {
-           pools.map((pool, key)=>{
+           optionsData.data.options.map((pool, key)=>{
+             const tm = pool.stakePeriode.filter((item) => item.duree === 360)
              return <LightBoxContainer width="100%" key={key}>
                   <div className="py-0 px-3"  style={{display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
-                  <small  className="text-center" style={{color: "#707070",font: "normal normal bold 16px/24px Ubuntu", width:"100px"}}>{pool.name}</small>
-                  <span className="text-center" style={{font: "normal normal bold 33px/60px Ubuntu",color: "#707070"}}>{pool.percentage}</span>
+                  <small  className="text-center" style={{color: "#707070",font: "normal normal bold 16px/24px Ubuntu", width:"100px"}}>{pool.nom}</small>
+                  <span className="text-center" style={{font: "normal normal bold 33px/60px Ubuntu",color: "#707070"}}>{`${tm[0].taux }%`}</span>
                   <ArrowButton labelColor="#cc9933" label="Ouvrir" arrowImage="/assets/img/arrow-gold.svg" handleClick={() => onArrowClick(pool)}/>
                 </div>
              </LightBoxContainer>
@@ -242,4 +247,15 @@ const Crowdlending = () => {
 };
 
 
+export async function getStaticProps() {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(['Fetch options'], () => fetchOptions())
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
+}
 export default withAuth(Crowdlending);

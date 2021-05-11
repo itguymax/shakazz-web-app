@@ -6,3 +6,4 @@ export * from './useTransfert';
 export * from './usePortefeuille';
 export * from './useAuth';
 export * from './useNetworkers';
+export * from './useOptions';

@@ -29,31 +29,33 @@ import { dehydrate } from 'react-query/hydration';
 import {useAppContext} from "../../src/context";
 import {Global,css} from "@emotion/react"
 import { device } from '../../src/lib/device.js';
+import {  UseNetworkerByInvitation } from '../../src/hooks'
+
 const options = [
-  {
-    key: 'JennyHess',
-    text: 'JennyHess',
-    value: 'JennyHess',
-    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
+ {
+   key: 'JennyHess',
+   text: 'JennyHess',
+   value: 'JennyHess',
+   image: { avatar: true, src: "/assets/img/theme/react.jpg" },
+ },
+ {
+   key: 'ElliotFu',
+   text: 'ElliotFu',
+   value: 'ElliotFu',
+   image: { avatar: true, src: "/assets/img/theme/react.jpg" },
   },
-  {
-    key: 'ElliotFu',
-    text: 'ElliotFu',
-    value: 'ElliotFu',
-    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
-  },
-  {
-    key: 'StevieFel',
+ {
+   key: 'StevieFel',
     text: 'StevieFel',
-    value: 'StevieFel',
-    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
+   value: 'StevieFel',
+   image: { avatar: true, src: "/assets/img/theme/react.jpg" },
   },
-  {
-    key: 'Christian',
-    text: 'Christian',
-    value: 'Christian',
-    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
-  },
+ {
+   key: 'Christian',
+   text: 'Christian',
+   value: 'Christian',
+   image: { avatar: true, src: "/assets/img/theme/react.jpg" },
+ },
 ]
 function Register() {
 const { register, handleSubmit, watch, errors } = useForm({
@@ -80,6 +82,8 @@ const { register, handleSubmit, watch, errors } = useForm({
   };
   const handletoggle = () => setProfil(!isParticular);
   const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
+  const {data:iLRefData, isLoading:iLRef} =  UseNetworkerByInvitation(router.query.ref) ;
+  console.log("gggggggggg ref",iLRefData );
   const onSubmit =  async (hookFormData) => {
 
    if(verified){
@@ -87,7 +91,7 @@ const { register, handleSubmit, watch, errors } = useForm({
     const {confirmpassword, ...rest } = hookFormData;
 
    let  userdata = {...additionaldata, ...rest};
-  //  try{
+   try{
     let datares = await mutateAsync( userdata);
     console.log("response", datares);
        const { data, error, success, message} = datares;
@@ -104,9 +108,9 @@ const { register, handleSubmit, watch, errors } = useForm({
          router.push('/confirmation-inscription');
        }
 
-  //  }catch(err){
-  //       console.log("error", err);
-  //  }
+   }catch(err){
+       console.log("error", err);
+  }
 
    } else {
      alert("Vous  n'êtes pas humain")
@@ -215,20 +219,8 @@ const { register, handleSubmit, watch, errors } = useForm({
                   <FormGroup>
                     <label>Votre parain</label>
                     {router.query.ref ? (
-                      <div className="d-flex justify-content-between align-items-center mr-0" style={{width:'250px', padding:'5px', backgroundColor:'#f5f5f5', borderRadius: '5px'}}>
-                       <div  className="d-flex align-items-center">
-                          <img className="avatar avatar-sm mr-2" alt={options[0].userName} src={options[0].image.src}></img>
-                          <div className="d-flex" style={{flexDirection:'column'}}>
-                            <small className="mb-0">
-                              {options[0].userName}
-                            </small>
-                            <div className="d-flex align-items-center">
-                              <small>Flag</small>
-                              <small>Online</small>
-                            </div>
-                          </div>
-                       </div>
-                      </div>
+                      <div>tttttt</div>
+                     
                     ):(
                        <Sdropdown  register={register} options={options} selectedOption={selectedOption} name="parain" onSelectParain={handleParainOption}/>
                     ) }

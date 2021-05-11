@@ -1,4 +1,4 @@
-import { useMutation} from 'react-query'
+import { useMutation} from 'react-query';
 import { changeConnexionPassword, changeTransactionPassword } from "../../services";
 
 

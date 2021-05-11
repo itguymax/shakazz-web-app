@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../src/validations";
 import withAuth from '../../src/hoc/withAuth';
+import { device } from '../../src/lib/device.js';
 // reactstrap components
 import {
   Button,
@@ -49,7 +50,7 @@ function Profile() {
     let userdata;
     const {name,dob,adresse,email,pseudo} = data;
     userdata = {...additionaldata,name,dob,adresse,email,pseudo};
-  
+
    } else {
      alert("Vous  n'êtes pas humain")
    }
@@ -136,7 +137,7 @@ function Profile() {
           width:auto !important;
         }
         /*Responsive*/
-        @media only screen and (max-width: 360px) {
+        @media ${device.mPhone}{
              .profileColWrapper{
                display:flex;
                flex-direction: column;
@@ -148,13 +149,16 @@ function Profile() {
                 width:17em !important;
               }
           }
-        @media only screen and (max-width: 414px) {
+        @media ${device.bPhone} {
              .profileColWrapper{
                display:flex;
                flex-direction: column;
              }
           .createPortefeuille{
-            width:22em !important;
+            width:20em !important;
+          }
+          .text-muted.font-italic.form-control{
+            width:14em !important;
           }
           .profile_box_portefeuille_col2{
             margin-left:1em !important;
@@ -164,11 +168,11 @@ function Profile() {
             width:8em !important;
           }
           .row_section4{
-            width:20em;
+            width:40em;
             height:10em;
           }
         }
-        @media only screen and (max-width: 768px) {
+        @media ${device.sTablet} {
           input[type="text"]{
             width:6em !important;
           }
@@ -186,7 +190,7 @@ function Profile() {
             margin-left:3.5em !important;
           }
         }
-        @media only screen and (max-width: 1024px) {
+        @media ${device.bTablet} {
           .createPortefeuille{
             height:17em !important;
           }
@@ -360,7 +364,7 @@ function Profile() {
                       <CreatePortefeuille/>
             </Col>
             <Col xs="6" sm="6" style={{marginBottom:"3em"}}>
-                <Container style={{
+                <Container className="" style={{
                       width:"100%",
                       height:"14em",
                       marginLeft:"2em",

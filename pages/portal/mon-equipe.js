@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'reactstrap';
 import WalletHeader from "../../src/layouts/WalletHeader";
 import user from "../../src/__MOCK__/user";
 import Portal from "../../src/layouts/Portal";
-import {css} from "@emotion/react";
 import {device } from "../../src/lib/device";
 import TabH from "../../src/components/TabH";
 import downlines from "../../src/__MOCK__/downlines"
@@ -19,6 +18,7 @@ import PopulationTable from '../../src/components/PopulationTable';
 import withAuth from '../../src/hoc/withAuth';
 import { useAppContext } from '../../src/context';
 import {useWallets} from '../../src/hooks';
+import {Global,css} from "@emotion/react"
 const generationCardData = [
   {
     id:1,
@@ -59,8 +59,8 @@ const generationCardData = [
     setHTabsIcons(indic);
   }
   const findChildren = (childrenGen) => {
-    
-     
+
+
    return  childrenGen.map((id, key)=> {
      return  downlines.filter(item => item.id === id)
     }).flat();
@@ -87,17 +87,64 @@ const generationCardData = [
         default:
           setChildren([]);
           break;
-       } 
+       }
       setShowPopulation(true);
-  
+
 }
 
   return (
     <Portal>
       <Container fluid>
+      <Global
+      styles={css`
+        .lightBoxContainerHeaderDiv{
+          width:12em;
+          height:4em;
+          padding-top:1.5em;
+          cursor:pointer !important;
+        }
+        @media ${device.sPhone} {
+          }
+        @media ${device.mPhone} {
+          }
+        @media ${device.iphoneX} {
+          }
+        @media ${device.bPhone} {
+          .lightBoxContainerHeaderFluid{
+            flex-direction: column !important;
+            width:20em !important;
+            margin:auto !important;
+          }
+          .lightBoxContainerHeaderDiv{
+            width:17em !important;
+          }
+        }
+        @media ${device.sTablet} {
+          .lightBoxContainerHeaderFluid{
+            width:38em;
+            margin-left:-3em;
+          }
+          .lightBoxContainerHeaderDiv{
+            width:10em;
+            margin-left:-1.8em;
+          }
+          .equipe_list_generation_block{
+            flex-direction: column;
+          }
+          .equipe_list_generation_block button{
+            margin-top:1em;
+          }
+        }
+        @media ${device.bTablet} {
+          .lightBoxContainerHeaderDiv{
+            margin-left:-1em;
+          }
+        }
+      `}
+      />
          {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
               <div css={css`
-        
+
         .nav-pills .nav-link{
           box-shadow: none;
           margin-bottom:0px;
@@ -107,7 +154,7 @@ const generationCardData = [
         }
         .nav-pills .nav-link.active, .nav-pills .nav-link, h1 {
               color:#333;
-  
+
               background-color:#fff;
               padding:0px;
         }
@@ -131,7 +178,7 @@ const generationCardData = [
        }
     `}>
 
-        <Nav className="nav-fill flex-column flex-lg-row flex-md-row" pills role="tablist" 
+        <Nav className="nav-fill flex-column flex-lg-row flex-md-row" pills role="tablist"
           style={{ position: "relative"}}
          css={css`
             border-bottom:2px solid #B7B7B7;
@@ -162,22 +209,22 @@ const generationCardData = [
         <div>
           <TabContent id="myTabContent" activeTab={hTabsIcons}>
             <TabPane  className="py-4"  tabId={`hTabsIcons-1`} role="tabpanel">
-              {!showPopulation ? <div  style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
+              {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
                 { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto="2000" gp="10" handleClick={() => getGenerationPopulation(item)}/>)}
-                
+
               </div> :
                 <div >
-                    <div style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+                    <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
                        {
                          generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(item)}/>)
-                       } 
+                       }
                     </div>
                     <PopulationTable popData={children}/>
                 </div>
-              
+
                }
-             
-            </TabPane>  
+
+            </TabPane>
           </TabContent>
         </div>
 

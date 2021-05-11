@@ -6,7 +6,8 @@ const useNetworkers = (accessToken) => {
 }
 
 const UseNetworkerByInvitation = (invitation) => {
-  return useQuery(["Referal link"], () => fetchUserByInvitation(invidation))
+  
+  return useQuery(["Referal link"], () => fetchUserByInvitation(invitation))
 }
 export {
   useNetworkers,

@@ -16,6 +16,9 @@ import  Pdf from '../../src/components/networking/pdf';
 import WalletHeader from "../../src/layouts/WalletHeader";
 import { useAppContext } from '../../src/context';
 import {useWallets} from '../../src/hooks';
+import {Global,css} from "@emotion/react"
+import { device } from '../../src/lib/device.js';
+
 
 
 function Networking() {
@@ -41,41 +44,80 @@ const user = {
 function selectComponent(){
   if(link == 0)
    return <Carte/>
-  if(link == 1) 
+  if(link == 1)
     return <Flyer/>
-  if(link == 2) 
+  if(link == 2)
     return <Licence/>
-  if(link == 3) 
+  if(link == 3)
     return <Link/>
-  if(link == 4) 
+  if(link == 4)
     return <Pdf/>
-  if(link == 5) 
-    return <Youtube/>  
+  if(link == 5)
+    return <Youtube/>
   }
-
-
 
   return (
     <Portal>
       {/* <Header /> */}
-      
-      <Container fluid>   
+
+      <Container fluid>
+      <Global
+      styles={css`
+        .lightBoxContainerHeaderDiv{
+          width:12em;
+          height:4em;
+          padding-top:1.5em;
+          cursor:pointer !important;
+        }
+        @media ${device.sPhone} {
+          }
+        @media ${device.mPhone} {
+          }
+        @media ${device.iphoneX} {
+          }
+        @media ${device.bPhone} {
+          .lightBoxContainerHeaderFluid{
+            flex-direction: column !important;
+            width:20em !important;
+            margin:auto !important;
+          }
+          .lightBoxContainerHeaderDiv{
+            width:17em !important;
+          }
+        }
+        @media ${device.sTablet} {
+          .lightBoxContainerHeaderFluid{
+            width:38em;
+            margin-left:-3em;
+          }
+          .lightBoxContainerHeaderDiv{
+            width:10em;
+            margin-left:-1.8em;
+          }
+        }
+        @media ${device.bTablet} {
+          .lightBoxContainerHeaderDiv{
+            margin-left:-1em;
+          }
+        }
+      `}
+      />
         {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
-        <div className="align-items-center mt-5"> 
+        <div className="align-items-center mt-5">
           <Row className="" style =  {{  }}>
             <Col className="" xl="4" lg="5" md="12" xs="12" style =  {{ }}>
               <div style =  {{ }}>
-                  <RowUnderline user={user} item = "0" selectElement = {onChange} titre = "Carte Visite" image = '/assets/img/download.png' /> 
-                  <RowUnderline item = "1" selectElement = {onChange}  titre = "Flyers" image = '/assets/img/download.png' /> 
-                  <RowUnderline item = "2" selectElement = {onChange} titre = "Licence" image = '/assets/img/download.png' /> 
-                  <RowUnderline item = "3" selectElement = {onChange} titre = "Lien d'affiliation" image = '/assets/img/link.png' /> 
-                  <RowUnderline item = "4" selectElement = {onChange} titre = "PDF networker" image = '/assets/img/download.png' /> 
-                  <RowUnderline item = "5" selectElement = {onChange} titre = "Vidéeo de présentation" image = '/assets/img/download.png' /> 
+                  <RowUnderline user={user} item = "0" selectElement = {onChange} titre = "Carte Visite" image = '/assets/img/download.png' />
+                  <RowUnderline item = "1" selectElement = {onChange}  titre = "Flyers" image = '/assets/img/download.png' />
+                  <RowUnderline item = "2" selectElement = {onChange} titre = "Licence" image = '/assets/img/download.png' />
+                  <RowUnderline item = "3" selectElement = {onChange} titre = "Lien d'affiliation" image = '/assets/img/link.png' />
+                  <RowUnderline item = "4" selectElement = {onChange} titre = "PDF networker" image = '/assets/img/download.png' />
+                  <RowUnderline item = "5" selectElement = {onChange} titre = "Vidéeo de présentation" image = '/assets/img/download.png' />
               </div>
-            
+
             </Col>
             <Col className="d-flex  flex-wrap align-items-center " xl="8" lg="7" md="12" xs="12" style={{width: '50%'}}  >
-            
+
             {selectComponent()}
           </Col>
           </Row>
