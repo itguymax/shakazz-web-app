@@ -4,6 +4,7 @@ import {Global,css} from "@emotion/react"
 import Portal from "../../src/layouts/Portal.js";
 import Sinput from "../../src/components/forms/Sinput"
 import DropDownPhone from '../../src/components/forms/DropDownPhone'
+import LegacyBlock from '../../src/components/common/legacyBlock'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { legacySchema } from "../../src/validations";
@@ -69,6 +70,9 @@ useEffect((data)=>{
       }
       img[id="profile_photo"]:hover{
         transform: scale(1.5);
+      }
+      img[alt="profile_photo_legacy"]:hover{
+        transform: rotate(360deg);
       }
       @media only screen and (max-width: 360px) {
         }
@@ -201,7 +205,7 @@ useEffect((data)=>{
                   </a>
                 </div>
                 <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
-                  Modifier
+                  Ajouter une image
                 </Button>
 
            </Col>
@@ -245,15 +249,7 @@ useEffect((data)=>{
         </>: null
       }
       </div>
-      <Container>
-        <Row>
-          <Col>.col</Col>
-          <Col>.col</Col>
-          <Col>.col</Col>
-          <Col>.col</Col>
-          <Col>.col</Col>
-        </Row>
-      </Container>
+      <LegacyBlock />
     </Container>
   </Portal>
   </>

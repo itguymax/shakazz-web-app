@@ -168,8 +168,14 @@ function Profile() {
             width:8em !important;
           }
           .row_section4{
-            width:40em;
+
+            width:10em;
             height:10em;
+          }
+          .row_section4 .row{
+            width:20em;
+            display: flex;
+            flex-wrap: nowrap;
           }
         }
         @media ${device.sTablet} {
