@@ -1,6 +1,7 @@
 import React from 'react'
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
+import { device } from '../../lib/device.js';
 import {
   Button,
   Card,
@@ -35,13 +36,6 @@ export default function LegacyBlock({}) {
     <>
     <Global
     styles={css`
-      .legacy_block_container{
-        margin-top:1em;
-        border-top:3px solid #e5e5e5;
-        padding-top:1em;
-        padding-left:3em;
-        padding-right:3em;
-      }
       .legacy_block_container_row1{
         background: #F0F0F0 0% 0% no-repeat padding-box;
         padding-top:0.5em;
@@ -63,9 +57,52 @@ export default function LegacyBlock({}) {
         color:white;
         cursor:pointer;
       }
+      .legacy_block_container_row1_col1{
+        margin-left:-1em;
+      }
+      @media ${device.mPhone} {
+        }
+      @media ${device.bPhone} {
+
+        .legacy_block_container_row1_col1{
+          margin-top:0.8em;
+          margin-left:1em;
+          display:flex;
+          flex-direction:column;
+          height:5em;
+        }
+        .legacy_block_container_row1_col2{
+          margin-left:3em;
+          margin-bottom:1em;
+          width:10em;
+        }
+      }
+      @media ${device.sTablet} {
+        .roundBlock{
+          margin-top:-12em !important;
+        }
+        .legacy_block_container_row1_col1{
+          margin-top:0.8em;
+          margin-left:1em;
+          display:flex;
+          flex-direction:column;
+          height:7em;
+        }
+        .legacy_block_container_row1_col2{
+          margin-bottom:1em;
+        }
+      }
+      @media ${device.bTablet} {
+        .legacy_block_container_row1_col1{
+          marginTop:"0.8em";
+          marginLeft:"-4em";
+        }
+        .roundBlock{
+          margin-top:-3em;
+        }
+      }
       `}
     />
-    <Container className="legacy_block_container">
       <Row className="legacy_block_container_row1">
         <Col sm="2"><Image
         alt="profile_photo_legacy"
@@ -74,15 +111,15 @@ export default function LegacyBlock({}) {
         height={70} width={70}
         style={{backgroundColor:"#000",margin:"auto"}}
         /></Col>
-        <Col sm="3" style={{marginTop:"0.8em",marginLeft:"-4em"}}><strong>Bissohong Ebenezer Raphaël-presnel</strong></Col>
-        <Col>
+        <Col className="legacy_block_container_row1_col1" sm="3"><strong>Bissohong Ebenezer Raphaël-presnel</strong></Col>
+        <Col className="legacy_block_container_row1_col2">
           <Row style={{marginTop:"1em",width:"30em"}}>
             <Col sm="4"><Image
             src="/assets/img/flags/cmr.svg"
             height={30} width={30}
             style={{backgroundColor:"#000",margin:"auto"}}
             /></Col>
-            <Col style={{marginLeft:"-5em",width:"10em"}}>
+            <Col style={{}}>
               <span style={{marginLeft:"-2em"}}><strong>Yaoundé,Cameroun</strong></span>
               <span style={{marginLeft:"2em"}}><strong>+33 123456789</strong></span>
             </Col>
@@ -102,7 +139,6 @@ export default function LegacyBlock({}) {
        </Button>
       </Col>
       </Row>
-    </Container>
     </>
   )
 }

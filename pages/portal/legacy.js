@@ -13,6 +13,7 @@ import Image from 'next/image'
 import Line from '../../src/components/common/line'
 import country from '../../src/helpers/countries.js'
 import withAuth from '../../src/hoc/withAuth';
+import { device } from '../../src/lib/device.js';
 
 function Legacy() {
    const { register, handleSubmit, watch, errors } = useForm({
@@ -74,13 +75,24 @@ useEffect((data)=>{
       img[alt="profile_photo_legacy"]:hover{
         transform: rotate(360deg);
       }
-      @media only screen and (max-width: 360px) {
+      .legacy_block_container{
+        margin-top:1em;
+        border-top:3px solid #e5e5e5;
+        padding-top:1em;
+        padding-left:3em;
+        padding-right:3em;
+      }
+      @media ${device.mPhone} {
         }
-      @media only screen and (max-width: 414px) {
+      @media ${device.bPhone} {
       }
-      @media only screen and (max-width: 768px) {
+      @media ${device.sTablet} {
       }
-      @media only screen and (max-width: 1024px) {
+      @media ${device.bTablet} {
+        .legacy_block_container{
+          padding-left:1em;
+          padding-right:1em;
+        }
       }
     `}
     />
@@ -249,7 +261,9 @@ useEffect((data)=>{
         </>: null
       }
       </div>
-      <LegacyBlock />
+      <Container className="legacy_block_container">
+        <LegacyBlock />
+      </Container>
     </Container>
   </Portal>
   </>
