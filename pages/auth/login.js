@@ -60,11 +60,11 @@ function Login() {
          if( typeof window !== "undefined"){
            //console.log("window", data.user_token);
             setUTToLS(data.user_token);
-
              setErrormsg(null);
          setSuccessmsg(message);
          setSubmitting(isLoading)
          router.push('/portal/dashboard');
+         console.log("login", datares);
          }
        }
 

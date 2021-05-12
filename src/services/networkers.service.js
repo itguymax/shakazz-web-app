@@ -15,8 +15,7 @@ const fetchNetworkers = async () => {
 
   const fetchUserByInvitation = async (invitation) => {
     console.log("fetch inv", invitation);
-  
-    const url = `/users/${invitation} `
+    const url = `/users/${invitation}`
       console.log("decode", decodeURI(url));
      try {
     let responseJson =  await apiV1.unAuthgetJson(url);

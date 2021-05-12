@@ -4,7 +4,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import {Global,css} from "@emotion/react"
 import { device } from '../../src/lib/device.js';
 // reactstrap components
-import { QueryClient, useQuery } from 'react-query';
+import { useQuery, useQueryClient,QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 
 import {
@@ -36,103 +36,96 @@ import Router from "next/router";
 import withAuth from '../../src/hoc/withAuth';
 import { QueryCache } from "react-query";
 import { useAppContext } from '../../src/context';
-import {useWallets, useFetchOptions } from '../../src/hooks';
+import {useWallets, useFetchOptions,useFetchUserChest, useAddChest} from '../../src/hooks';
 import {fetchOptions} from '../../src/services';
+
+const queryClient = new QueryClient();
 
 const Crowdlending = () => {
 
   const context = useAppContext();
+const {data, isLoading} = useWallets(context.appState.accessToken);
+const {data:optionsData, isLoading:isLoadingOptions} = useFetchOptions();
+const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
+const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChest()
 
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
-  const [is360, set360] = useState(true);
-  const [is720, set720] = useState(false);
-  const [is1080, set1080] = useState(false);
-  const [is1800, set1800] = useState(false);
   const [capital, setCapital] = useState(100);
   // const [taux, setTaux] = useState(7.5);
-  const [coffreDatas, setCoffreDatas] = useState([]);
-  const [selectedPool, setSelectedPool] = useState(
-      {
-     id: 1,
-     name: "Pool mensuelle",
-     percentage: "7.5%",
-     taux360:7.5,
-     taux720: 8.5,
-     taux1080: null,
-     taux1800: null,
-     frequence: 30
-  }
-  );
-  const {data, isLoading} = useWallets(context.appState.accessToken);
-  const {data:optionsData, isLoading:isLoadingOptions} = useFetchOptions();
+  const [selectedPool, setSelectedPool] = useState(optionsData.data.options[0]);
+  const [selectedPeriode, setSelectedPeriode] = useState(optionsData.data.options[0].stakePeriode[0]);
+  const [stakeIndex, setStakeIndex] = useState(0);
+   const [errormsg, setErrormsg]= useState(null);
+  const [successmsg, setSuccessmsg]= useState(null);
+  
 
+ const handlePeriodeSelection = (data) => {
+   console.log("selected periode ", data);
+    setSelectedPeriode(data);
+ }
 
-
-  const periode360 = () => {
-    set360(true);
-    set720(false);
-    set1080(false);
-    set1800(false);
-  };
-  const periode720 = () => {
-     set720(true);
-     set360(false);
-     set1080(false);
-    set1800(false);
-  };
-  const periode1080 = () => {
-     set720(false);
-     set360(false);
-     set1080(true);
-    set1800(false);
-  };
-  const periode1800 = () => {
-     set720(false);
-     set360(false);
-     set1080(false);
-    set1800(true);
-  };
-  const onArrowClick = (pool) => {
-    periode360();
-    setSelectedPool(pool);
+ 
+  const onArrowClick = (data, index) => {
+    console.log("selected pool", data, index);
+    setStakeIndex(index)
+    setSelectedPeriode(data.stakePeriode);
+    setSelectedPool(data);
   };
   const onInputChange = (event)=> {
     setCapital(parseInt(event.target.value));
   };
-  const periode = is360?360:is720?720:is1080?1080:1800;
-   let t = 7.5;
-  if(periode===360){
-    t = selectedPool.taux360;
-  } else if (periode===720){
-    t = selectedPool.taux720;
-  } else if (periode===1080){
-    t = selectedPool.taux1080;
-  } else{
-    t = selectedPool.taux1800;
-  }
+ 
   const mesCoffres = [];
 
   const ouvrirCoffre = () => {
-    let coffredata = {
-      poolName: selectedPool.name,
-      capital: capital,
-      interet: (parseInt(capital) * (parseFloat(t)/100)) * (periode / selectedPool.frequence),
-      periode: periode,
-      createdAt: new Date(),
+    // let coffredata = {
+    //   poolName: selectedPool.nom,
+    //   capital: capital,
+    //   interet: (parseInt(capital) * (parseFloat(t)/100)) * (setSelectedPeriode.duree / selectedPool.frequence),
+    //   periode: setSelectedPeriode.duree,
+    //   createdAt: new Date(),
 
+    // }
+    const body = {
+    data : {
+        chest : {
+            denomination : "chest",
+            montant : capital
+        },
+        wallet : {
+            type : "principal"
+        },
+        option : {
+            id : selectedPool._id,
+            index : stakeIndex,
+            delayBonus: 7
+        }
     }
-    alert("creation coffre fort");
+}
 
-    setCoffreDatas([...coffreDatas, coffredata]);
+try {
+  const res = addChestMutation({accessToken: context.appState.accessToken,data:body});
+   const {error, message,success, data} = res;
+        if(error && !success){
+        setSuccessmsg(null);
+        setErrormsg(message);
+         
+        alert("une erreur s'est produite")
+       } else { 
+          queryClient.invalidateQueries('Fetch user chest');
+         setErrormsg(null);
+         setSuccessmsg(message);
+          alert("creation coffre fort");
+          
+       }
+     
+  console.log("bbbbbbbbbbbbb", res);
+} catch (err){
+  console.log(err);
+}
+}
 
-  }
-  const queryCache = new QueryCache({
-   onError: error => {
-     console.log(error)
-   },
- })
- const query = queryCache.find('wallets');
  console.log("options", optionsData.data.options);
   return (
     <Portal>
@@ -185,12 +178,13 @@ const Crowdlending = () => {
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>
          {
            optionsData.data.options.map((pool, key)=>{
+             console.log("map pool", pool);
              const tm = pool.stakePeriode.filter((item) => item.duree === 360)
              return <LightBoxContainer width="100%" key={key}>
                   <div className="py-0 px-3"  style={{display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
                   <small  className="text-center" style={{color: "#707070",font: "normal normal bold 16px/24px Ubuntu", width:"100px"}}>{pool.nom}</small>
                   <span className="text-center" style={{font: "normal normal bold 33px/60px Ubuntu",color: "#707070"}}>{`${tm[0].taux }%`}</span>
-                  <ArrowButton labelColor="#cc9933" label="Ouvrir" arrowImage="/assets/img/arrow-gold.svg" handleClick={() => onArrowClick(pool)}/>
+                  <ArrowButton labelColor="#cc9933" label="Ouvrir" arrowImage="/assets/img/arrow-gold.svg" handleClick={() => onArrowClick(pool, key)}/>
                 </div>
              </LightBoxContainer>
            })
@@ -201,7 +195,7 @@ const Crowdlending = () => {
               <Form >
                 <div style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center", borderBottom: "2px solid #b7b7b7" }}>
                 <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Montant à bloquer</h2>
-                <small>{selectedPool.name}</small>
+                <small>{selectedPool.nom}</small>
                   <Sinput
                       name="montant"
                       placeholder=""
@@ -215,10 +209,7 @@ const Crowdlending = () => {
                   />
                   <small>minimum d'investissement est de 100 $</small>
                   <div className="mb-4 mt-5">
-                    {selectedPool.taux360 && <FlatButton disabled={is360} label="360" width="90px" bgc={is360?"#cc9933":"#444"} handleClick={ periode360}/>}
-                    {selectedPool.taux720 && <FlatButton disabled={is720} label="720" width="90px"  bgc={is720?"#cc9933":"#444"} handleClick={ periode720}/>}
-                    {selectedPool.taux1080 &&  <FlatButton disabled={is1080} label="1080" width="90px"  bgc={is1080?"#cc9933":"#444"} handleClick={ periode1080}/>}
-                     {selectedPool.taux1800 &&  <FlatButton disabled={is1800} label="1800" width="90px"  bgc={is1800?"#cc9933":"#444"} handleClick={ periode1800}/>}
+                    {selectedPool.stakePeriode.map(( stakep, key ) => <FlatButton key={key} disabled= {stakep.duree === selectedPeriode.duree}  label={stakep.duree} width="90px" bgc={stakep.duree === selectedPeriode.duree?"#cc9933":"#444"} handleClick={ () => handlePeriodeSelection(stakep)}/>)}
                   </div>
 
               </div>
@@ -226,20 +217,21 @@ const Crowdlending = () => {
                 <Container fluid className="py-3">
                    <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>
                 </Container>
-                 <SimulationTable periode={periode} taux={t} pool={{name:selectedPool.name, frequence: selectedPool.frequence}} capital={capital}/>
+                 <SimulationTable periode={selectedPeriode.duree} taux={selectedPeriode.taux} pool={{name:selectedPool.nom, frequence: selectedPool.frequence}} capital={capital}/>
                  <FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>
               </Row>
             </Form>
          </LightBoxContainer>
        </Col>
      </Row>
-      {coffreDatas.length  > 0 && <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Mes coffres</h2> }
+      {/* {chestData.data.chests.length  > 0 && <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Mes coffres</h2> } */}
       {/* <Coffre taux={t} periode={periode} pool={{name:selectedPool.name}} capital={capital} /> */}
-      {coffreDatas.length  > 0 ? <>
+      {chestData?.data.chests.length > 0 ? <>
+        <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Mes coffres</h2>
         {
-          coffreDatas.map((item, key)=> <Coffre key={key} index={key} taux={t} interet={item.interet} periode={item.periode} pool={{name:item.poolName}} capital={item.capital} date={item.createdAt} />)
+          chestData?.data.chests.map((item, key)=> <Coffre key={key} index={key} taux={item.taux} interet={item.interet} periode={item.stakePeriode} pool={{name: selectedPool.nom}} capital={item.montantUSD} date={item.createdAt} />)
         }
-      </> :null}
+      </> : <div> <h1 className="text-center"> Vous n'avez aucun coffre ouvert</h1> </div>}
 
       </Container>
     </Portal>

@@ -73,13 +73,13 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
 
     return params;
   },
-  delete: async (url, accessToken) => {
+  deleteJson: async (url, accessToken) => {
     const response = await  apiV1.call(
       url,
        apiV1.parameters(accessToken, METHOD.DELETE),
     );
 
-    return response;
+    return response.json();
   },
   get: async (url, accessToken) => {
     const response = await  apiV1.call(
