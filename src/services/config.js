@@ -12,15 +12,15 @@ const METHOD = {
   POST: 'POST',
 };
 
- const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
-//const apiBaseUrl = "http://localhost:5000/api/v1/services";
+ // const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+const apiBaseUrl = "http://localhost:5000/api/v1/services";
 // shakkazz api pattern
   const apiV1 = {
   root: apiBaseUrl,
   call: async (url, parameters) => {
     const finalUrl =
       url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`:( url.startsWith('http') || url.startsWith('https'))? url:  `${apiV1.root}/${url}`;
-      console.log("final url", finalUrl, url, parameters);
+      console.log("final url", finalUrl, url, parameters,decodeURI(finalUrl));
     const response = await fetch(finalUrl, parameters);
     return response;
   },
@@ -73,13 +73,13 @@ const METHOD = {
 
     return params;
   },
-  delete: async (url, accessToken) => {
+  deleteJson: async (url, accessToken) => {
     const response = await  apiV1.call(
       url,
        apiV1.parameters(accessToken, METHOD.DELETE),
     );
 
-    return response;
+    return response.json();
   },
   get: async (url, accessToken) => {
     const response = await  apiV1.call(
@@ -99,6 +99,7 @@ const METHOD = {
     return response.json();
   },
    unAuthgetJson: async (url) => {
+     console.log("decod uri",  decodeURI(url));
      const params = {
       method: METHOD.GET,
       headers: {
@@ -108,7 +109,7 @@ const METHOD = {
       }, 
      }
     const response = await apiV1.call(
-      url,
+     url,
       params 
     );
 

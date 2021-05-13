@@ -87,7 +87,7 @@ function Depot() {
          setErrormsg(null);
          setSuccessmsg(message);
          
-        //  router.push('/portal/depot/detail');
+         router.push('/portal/depot/detail');
        }
    }
    console.log("c val", dtc,);

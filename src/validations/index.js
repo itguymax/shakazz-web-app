@@ -40,11 +40,11 @@ password: yup.string()
       "Le mot de passe doit contenir 8 caractères, une majuscule, une minuscule, un chiffre et un caractère de cas particulier"
     ),
 userName: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres")
-.test('checkUsernameUnique', 'user existe deja.', async (value) =>{
-                     const res = await  fetch(`${config.root}/auth/uniqueUserName/${value}`); 
-                     const resp = await res.json();
-                     return resp.data.used
-                    }),
+// .test('checkUsernameUnique', 'user existe deja.', async (value) =>{
+//                      const res = await  fetch(`${config.root}/auth/uniqueUserName/${value}`); 
+//                      const resp = await res.json();
+//                      return resp.data.used
+//                     }),
 
 });
 const forgotPasswordSchema = yup.object().shape({

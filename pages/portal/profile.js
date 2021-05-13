@@ -10,23 +10,18 @@ import country from '../../src/helpers/countries.js'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../src/validations";
+import { useUpdateUser } from '../../src/hooks';
 import withAuth from '../../src/hoc/withAuth';
 import { device } from '../../src/lib/device.js';
+import {useAppContext} from "../../src/context";
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
   FormGroup,
   Form,
-  Input,
   Container,
   Row,
   Col,
-  Media,
-  DropdownItem,
-  Label,
+ 
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
@@ -36,15 +31,43 @@ import UserHeader from "../../src/components/Headers/UserHeader.js";
 import { useRouter } from 'next/router'
 function Profile() {
   const router = useRouter();
+   const context = useAppContext();
   const [verified, setVerified]= useState(false);
   const [errormsg, setErrormsg]= useState(null);
   const [successmsg, setSuccessmsg]= useState(null);
   const [additionaldata, setUserAdditionalData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const { mutateAsync, isLoading } = useUpdateUser();
   const { register, handleSubmit, watch, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
-   const onSubmit =  async (data) => {console.log("hey!");
+   const onSubmit =  async (data) => {
+     const body = {
+    data : {
+        address : {
+            country:{
+            name : "manathan",
+            indicatif : "+237",
+            flag : "src/img/cameroun.jpg"
+            },
+        state : "centre",
+        city : "yaounde",
+        street : "ekie"
+        },
+        profil : "Personnel",
+        companyName:"umdeny",
+        name: "ludovic",
+        firstName:"nziko",
+        lastName:"feutse",
+        userName: "le nid1",
+        birthday : "2021-05-03",
+        email : "feutseludovic@gmail.com"
+        }
+}
+
+
+    // const res = mutatesAsync({accessToken: context.appState.accessToken,data: body})
+     console.log("hey!");
    if(verified){
     setSubmitting(true);
     let userdata;
@@ -168,6 +191,7 @@ function Profile() {
             width:8em !important;
           }
           .row_section4{
+
             width:10em;
             height:10em;
           }
@@ -350,7 +374,7 @@ function Profile() {
               style={{backgroundColor:"#000",margin:"auto"}}
               />
                       <FormGroup>
-                        <Button>Vérification</Button>
+                        <Button>Vérificationffs</Button>
                       </FormGroup>
                <Image
                 src="/assets/img/free-badge-icon-1361-thumb@2x.png"
