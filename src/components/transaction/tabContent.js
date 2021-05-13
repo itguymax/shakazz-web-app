@@ -2,7 +2,7 @@ import React from "react";
 
 // reactstrap components
 import {
-    Table,
+    Table,Collapse, Button, CardBody, Card
 } from "reactstrap";
 import Image from 'next/image'
 export default function TabContent(props) {

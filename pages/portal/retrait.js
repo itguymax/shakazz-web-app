@@ -42,7 +42,6 @@ function Retrait() {
   const openDepotModal = () => setOpenModal(!openModal);
   const {data:dt, isLoading} = usePortefeuille(token);
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
-
   // if(dt?.success && !dt?.error){
   //   const {data} = dt;
   //   if(data.porte_feuille.length < 1){

@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import Sinput from '../../src/components/forms/Sinput';
 import CreatePortefeuille from '../../src/components/common/createPortefeuille';
 import CreatePortefeuilleD from '../../src/components/common/createPortefeuilleD';
+import CustomDropdown from '../../src/components/common/CustomDropdown';
 import DropDownC from '../../src/components/forms/Dropdownc'
 import DropDownPhone from '../../src/components/forms/DropDownPhone'
 import country from '../../src/helpers/countries.js'
@@ -21,7 +22,7 @@ import {
   Container,
   Row,
   Col,
- 
+
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
@@ -81,6 +82,7 @@ function Profile() {
   };
   //
   let account_type = [{val:'Personnel'},{val:'Particulier'}];
+  let sexe = [{val:'Homme'},{val:'Femme'}];
   let currency = [{val:'USD'}];
   const Button = styled.button`
     background-color: #679966;
@@ -345,6 +347,10 @@ function Profile() {
 
                      </Row>
                   </Col>
+                  <Col md={6}>
+                  <br/>
+                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
+                  </Col>
                   <Col md={12}>
                           <Sinput
                             label='Pseudo'
@@ -354,6 +360,7 @@ function Profile() {
                             iStyle={{borderRadius:"15px", overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
+                            disabled
                             handleOnchange={()=>{}}
                             />
                    </Col>

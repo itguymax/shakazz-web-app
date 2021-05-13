@@ -59,11 +59,11 @@ const optionstype = [INTERNE,EXTERNE];
       const body = {
       data: {
         wr : {
-            
+
             amount: parseInt(montant),
             type: selectedSource,
         }
-      } 
+      }
     };
      const res = await im({accessToken: token ,data:body});
       if(res.error && !res.success){
@@ -88,7 +88,7 @@ const optionstype = [INTERNE,EXTERNE];
         wr: {
           amount: parseInt(montant),
         }
-      } 
+      }
     };
     const res = await em({accessToken: token ,data:body});
     if(res.error && !res.success){
@@ -100,7 +100,7 @@ const optionstype = [INTERNE,EXTERNE];
       setSubmitting(false)
       alert(`${res.message}`);
         return;
-     
+
     }
     console.log("transfer", data);
   };
@@ -127,9 +127,9 @@ const optionstype = [INTERNE,EXTERNE];
      setS(option.value)
    }
     const handleOnSelectWalletReception = (option) =>{
-   
+
       setD(option.value)
-      
+
    }
    const changeMontant = (event) => {
      console.log("montant", event.target.value);
@@ -146,7 +146,7 @@ const optionstype = [INTERNE,EXTERNE];
      } else {
        setUserID('');
      }
-       
+
    }
    const defaultOption = selectedType;
    const defautOptionS = sOP;
@@ -171,10 +171,10 @@ const optionstype = [INTERNE,EXTERNE];
                 dd
                 register={register}
                 onSelect={handleOnSelectTypeTransfer}
-              /> 
+              />
             { (selectedType === INTERNE || selectedType === "") ? (
                 <>
-               
+
               <Sinput
                 label="Choisir le wallet de retrait"
                 name="wallet"
@@ -196,8 +196,8 @@ const optionstype = [INTERNE,EXTERNE];
                 inline
                 handleOnchange={changeMontant}
                 inputvalue={montant}
-                usd 
-              /> 
+                usd
+              />
                <Sinput
                 label="Choisir le wallet de reception"
                 name="wallet"
@@ -208,7 +208,7 @@ const optionstype = [INTERNE,EXTERNE];
                 dd
                 register={register}
                 onSelect={handleOnSelectWalletReception}
-              /> 
+              />
                 </>
             ): (
               <>
@@ -222,18 +222,18 @@ const optionstype = [INTERNE,EXTERNE];
                 inputvalue={username}
                 handleOnchange={pseudoChange}
                 inline
-                
-              /> 
+
+              />
                { userId ? ( <div className="text-muted font-italic">
-                
+
                   <span className="text-success font-weight-700">L'utilisateur Existe</span>
-               
+
               </div>) : ( <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">Utilisateur Inconnu</span>
-               
+
               </div>) }
-             
+
                 <Sinput
                 label="Montant"
                 name="montant"
@@ -244,11 +244,11 @@ const optionstype = [INTERNE,EXTERNE];
                 inline
                 handleOnchange={changeMontant}
                 inputvalue={montant}
-                usd 
-              /> 
+                usd
+              />
               </>
             )}
-              
+
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
