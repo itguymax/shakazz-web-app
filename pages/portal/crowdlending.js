@@ -32,6 +32,7 @@ import { ArrowButton , FlatButton} from "../../src/components/common/SButton";
 import Sinput from "../../src/components/forms/Sinput";
 import SimulationTable from "../../src/components/SimulationTable";
 import Coffre from "../../src/components/coffre";
+import {scrollToBottom} from "../../src/helpers/scrollToBottom.js"
 import Router from "next/router";
 import withAuth from '../../src/hoc/withAuth';
 import { QueryCache } from "react-query";
@@ -58,14 +59,13 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
   const [stakeIndex, setStakeIndex] = useState(0);
    const [errormsg, setErrormsg]= useState(null);
   const [successmsg, setSuccessmsg]= useState(null);
-  
+
 
  const handlePeriodeSelection = (data) => {
    console.log("selected periode ", data);
     setSelectedPeriode(data);
  }
 
- 
   const onArrowClick = (data, index) => {
     console.log("selected pool", data, index);
     setStakeIndex(index)
@@ -75,10 +75,11 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
   const onInputChange = (event)=> {
     setCapital(parseInt(event.target.value));
   };
- 
+
   const mesCoffres = [];
 
   const ouvrirCoffre = () => {
+    scrollToBottom();
     // let coffredata = {
     //   poolName: selectedPool.nom,
     //   capital: capital,
@@ -111,16 +112,16 @@ try {
         if(error && !success){
         setSuccessmsg(null);
         setErrormsg(message);
-         
+
         alert("une erreur s'est produite")
-       } else { 
-         
+       } else {
+
          setErrormsg(null);
          setSuccessmsg(message);
           alert("creation coffre fort");
-          
+
        }
-     
+
   console.log("bbbbbbbbbbbbb", res);
 } catch (err){
   console.log(err);
@@ -130,6 +131,14 @@ try {
  console.log("options", optionsData.data.options);
   return (
     <Portal>
+    <Global
+    styles={css`
+      /*Responsive*/
+        html {
+          scroll-behavior: smooth;
+        }
+    `}
+  />
       <Container fluid>
       <Global
       styles={css`
