@@ -35,7 +35,7 @@ const deleteChest = async ({accessToken, data}) => {
 }
 
 const claimChest =  async ({ accessToken, chestID }) => {
-  const url = `/services/chests/${chestID}`;
+  const url = `/chests/${chestID}`;
     try {
     let responseJson =  apiV1.postJson(url, accessToken);
     return responseJson;

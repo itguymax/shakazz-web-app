@@ -8,3 +8,4 @@ export * from './useAuth';
 export * from './useNetworkers';
 export * from './useOptions';
 export * from './useChest';
+export * from './useUser';

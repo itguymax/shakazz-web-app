@@ -106,6 +106,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
 
 try {
   const res = addChestMutation({accessToken: context.appState.accessToken,data:body});
+   queryClient.invalidateQueries('Fetch user chest');
    const {error, message,success, data} = res;
         if(error && !success){
         setSuccessmsg(null);
@@ -113,7 +114,7 @@ try {
          
         alert("une erreur s'est produite")
        } else { 
-          queryClient.invalidateQueries('Fetch user chest');
+         
          setErrormsg(null);
          setSuccessmsg(message);
           alert("creation coffre fort");
