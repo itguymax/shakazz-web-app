@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from 'react';
 
 // reactstrap components
 import {
-    Table,Collapse, Button, CardBody, Card
+    Table,Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from "reactstrap";
 import Image from 'next/image'
 export default function TabContent(props) {
+  const {
+    buttonLabel,
+    className
+  } = props;
+
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
     return (
         <>
             <Table responsive className="" css={css`
@@ -91,6 +99,7 @@ export default function TabContent(props) {
                         <td><div >{item.statut}</div></td>
                         <td><div >{item.montant}</div></td>
                         <td><div style={{padding:"0px",paddingTop:"5px",cursor:"pointer"}}><Image
+                           onClick={toggle}
                           src="/assets/img/icons/add.svg"
                           alt="..."
                           height={2} width={2}
@@ -101,6 +110,15 @@ export default function TabContent(props) {
                 })}
                 </tbody>
             </Table>
+            <Modal isOpen={modal} toggle={toggle} className={className}>
+             <ModalHeader toggle={toggle}>Détails sur la transaction</ModalHeader>
+             <ModalBody>
+                Des détails que des détails et encore plus de détails.
+             </ModalBody>
+             <ModalFooter>
+               <Button style={{backgroundColor:"#cc9932",border:"none"}} onClick={toggle}>Cancel</Button>
+             </ModalFooter>
+           </Modal>
         </>
     );
 }
