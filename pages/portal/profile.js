@@ -64,21 +64,25 @@ function Profile() {
         birthday : "2021-05-03",
         email : "feutseludovic@gmail.com"
         }
-}
-
-
-    // const res = mutatesAsync({accessToken: context.appState.accessToken,data: body})
-     console.log("hey!");
-   if(verified){
+      }
     setSubmitting(true);
     let userdata;
     const {name,dob,adresse,email,pseudo} = data;
     userdata = {...additionaldata,name,dob,adresse,email,pseudo};
+    const res = mutatesAsync({accessToken: context.appState.accessToken,data: userdata})
+     if(res.error && !res.success){
+          setLoadingC(false);
+          seterrorMsgC(res.message)
+          setsuccessMsgC('')
+          return;
+        } else {
+        setLoadingC(false)
+        seterrorMsgC('')
+        setsuccessMsgC(res.message)
+          return;
 
-   } else {
-     alert("Vous  n'êtes pas humain")
-   }
-
+      }
+      console.log(" chahhhhhhcccc",data, res);
   };
   //
   let account_type = [{val:'Personnel'},{val:'Particulier'}];
@@ -236,55 +240,94 @@ function Profile() {
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <Form role="form" onSubmit={()=>{handleSubmit(onSubmit)}}>
+      <Row>
+        <Col xs="9">
+        <Form role="form" onSubmit={()=>{onSubmit()}}><Row>
+          <Col xs="5">
+              <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+              <Sinput
+              label="Nom complet"
+              placeholder='entrez le nom complet'
+              name="name"
+              register={register}
+              iStyle={{borderRadius:"15px", overflow:"hidden"}}
+              inputBg="#fff"
+              type="text"
+              handleOnchange={()=>{}}
+              />
+              <Sinput
+              name="dob"
+             label="Date de naissance"
+             placeholder='entrez le nom complet:'
+             register={register}
+             iStyle={{borderRadius:"15px", overflow:"hidden"}}
+             inputBg="#fff"
+             type="date"
+             handleOnchange={()=>{}}
+             />
+             <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
+             <Sinput
+             label="Adresse"
+             name="adresse"
+             register={register}
+             iStyle={{borderRadius:"15px", overflow:"hidden"}}
+             inputBg="#fff"
+             type="text"
+             handleOnchange={()=>{}}
+             />
+             <Button>Vérification</Button>
+          </Col>
+          <Col xs="5">
+            <Sinput
+            label='E-mail'
+            name="email"
+            placeholder="entrez votre e-mail"
+            register={register}
+            iStyle={{borderRadius:"15px", overflow:"hidden"}}
+            inputBg="#fff"
+            type="text"
+            handleOnchange={()=>{}}
+            />
+            <DropDownPhone name="phone_number" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+            <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
+            <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
+            <Sinput
+              label='Pseudo'
+              name="pseudo"
+              placeholder=""
+              register={register}
+              iStyle={{borderRadius:"15px", overflow:"hidden"}}
+              inputBg="#fff"
+              type="text"
+              disabled
+              handleOnchange={()=>{}}
+              />
+          </Col>
+          </Row></Form>
+        </Col>
+        <Col xs="3">
+        <Form role="form" onSubmit={()=>{}}>
+          <Row>
+            <Image
+            id="profile_photo"
+            src="/assets/img/photoequipe/bisso.png"
+            alt="..."
+            className="rounded-circle"
+            height={200} width={200}
+            style={{backgroundColor:"#000",margin:"auto"}}
+            />
+             <Image
+              src="/assets/img/free-badge-icon-1361-thumb@2x.png"
+              alt="..."                 height={150} width={150}
+              style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
+              />
+              <Button>Vérification</Button>
+          </Row>
+        </Form>
+        </Col>
+      </Row>
         <Row>
           <Col xs="6" sm="4">
-                <Row>
-                  <Col md={12}>
-                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
-                  </Col>
-                  <Col md={12} className="profileCol">
-                      <Sinput
-                      label="Nom complet"
-                      placeholder='entrez le nom complet'
-                      name="name"
-                      register={register}
-                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                      inputBg="#fff"
-                      type="text"
-                      handleOnchange={()=>{}}
-                      />
-                  </Col>
-                   <Col md={12}>
-                       <Sinput
-                       name="dob"
-                      label="Date de naissance"
-                      placeholder='entrez le nom complet:'
-                      register={register}
-                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                      inputBg="#fff"
-                      type="date"
-                      handleOnchange={()=>{}}
-                      />
-                  </Col>
-                  <Col md={12}>
-                    <FormGroup>
-                        <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
-                    </FormGroup>
-                  </Col>
-                  <Col md={12}>
-                        <Sinput
-                        label="Adresse"
-                        name="adresse"
-                        register={register}
-                        iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                        inputBg="#fff"
-                        type="text"
-                        handleOnchange={()=>{}}
-                        />
-                  </Col>
-                </Row>
-                <Button type="submit">Vérification</Button>
                    <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
@@ -308,9 +351,6 @@ function Profile() {
 
                      </Row>
                   <Row>
-                   <Col xs="6" sm="2">
-
-                   </Col>
                    <Col xs="6" sm="6"><p>Portefeuille</p></Col>
 
                    <Col xs="6" sm="2">
@@ -321,77 +361,10 @@ function Profile() {
                       style={{backgroundColor:"#000",margin:"auto"}}
                       />
                    </Col>
-
                  </Row>
                   </Col>
           </Col>
-          <Col xs="6" sm="4">
-                <Row>
-                  <Col md={12}>
-                        <Sinput
-                        label='E-mail'
-                        name="email"
-                        placeholder="entrez votre e-mail"
-                        register={register}
-                        iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                        inputBg="#fff"
-                        type="text"
-                        handleOnchange={()=>{}}
-                        />
-                  </Col>
-                  <Col md={12}>
-                     <Row>
-                        <Col sm={12}>
-                          <DropDownPhone name="phone_number" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
-                        </Col>
-
-                     </Row>
-                  </Col>
-                  <Col md={6}>
-                  <br/>
-                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
-                  </Col>
-                  <Col md={12}>
-                          <Sinput
-                            label='Pseudo'
-                            name="pseudo"
-                            placeholder=""
-                            register={register}
-                            iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                            inputBg="#fff"
-                            type="text"
-                            disabled
-                            handleOnchange={()=>{}}
-                            />
-                   </Col>
-                   <Col md={6}>
-                        <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
-                   </Col>
-
-                </Row>
-          </Col>
-          <Col sm="4">
-            <Col md={12} style={{textAlign:"center"}} >
-              <Image
-              id="profile_photo"
-              src="/assets/img/photoequipe/bisso.png"
-              alt="..."
-              className="rounded-circle"
-              height={200} width={200}
-              style={{backgroundColor:"#000",margin:"auto"}}
-              />
-                      <FormGroup>
-                        <Button>Vérificationffs</Button>
-                      </FormGroup>
-               <Image
-                src="/assets/img/free-badge-icon-1361-thumb@2x.png"
-                alt="..."                 height={150} width={150}
-                style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
-                />
-                   </Col>
-          </Col>
         </Row>
-        </Form>
       </Container>
       <Container>
         <Row className="profileColWrapper" >

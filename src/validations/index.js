@@ -13,7 +13,7 @@ password: yup.string()
 email: yup.string().email("Entrez une email valide ").required("l'email est requis")
                     .matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide")
                     .test('checkEmailUnique', 'Email existe deja.', async (value) =>{
-                     const res = await  fetch(`${config.root}/auth/uniqueEmail/${value}`); 
+                     const res = await  fetch(`${config.root}/auth/uniqueEmail/${value}`);
                      const resp = await res.json();
 
                      return "ok"
@@ -25,7 +25,7 @@ term: yup.boolean().oneOf([true], 'Acceptez les termes et conditions'),
 userName: yup.string().required("Le nom d'utilisateur est requis")
 .min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres")
 .test('checkUsernameUnique', 'user existe deja.', async (value) =>{
-                     const res = await  fetch(`${config.root}/auth/uniqueUserName/${value}`); 
+                     const res = await  fetch(`${config.root}/auth/uniqueUserName/${value}`);
                      const resp = await res.json();
                      return !resp.data.used
                     }),
@@ -41,7 +41,7 @@ password: yup.string()
     ),
 userName: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres")
 // .test('checkUsernameUnique', 'user existe deja.', async (value) =>{
-//                      const res = await  fetch(`${config.root}/auth/uniqueUserName/${value}`); 
+//                      const res = await  fetch(`${config.root}/auth/uniqueUserName/${value}`);
 //                      const resp = await res.json();
 //                      return resp.data.used
 //                     }),
@@ -50,7 +50,7 @@ userName: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le no
 const forgotPasswordSchema = yup.object().shape({
   email: yup.string().email("Entrez une email valide ").required("l'email est requis").matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide")
   .test('checkEmailUnique', 'Email existe deja.', async (value) =>{
-                     const res = await  fetch(`${config.root}/auth/uniqueEmail/${value}`); 
+                     const res = await  fetch(`${config.root}/auth/uniqueEmail/${value}`);
                      const resp = await res.json();
                      return resp.data.used
                     }
