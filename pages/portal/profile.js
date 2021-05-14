@@ -66,23 +66,25 @@ function Profile() {
         }
       }
     setSubmitting(true);
+    alert("before send request")
     let userdata;
     const {name,dob,adresse,email,pseudo} = data;
     userdata = {...additionaldata,name,dob,adresse,email,pseudo};
-    const res = mutatesAsync({accessToken: context.appState.accessToken,data: userdata})
-     if(res.error && !res.success){
-          setLoadingC(false);
-          seterrorMsgC(res.message)
-          setsuccessMsgC('')
+    //const res = mutatesAsync({accessToken: context.appState.accessToken,data: body});
+    alert("before send request")
+     if(res.error && !res.success){alert("if")
+          //setLoadingC(false);
+          //seterrorMsgC(res.message)
+          //setsuccessMsgC('')
           return;
-        } else {
-        setLoadingC(false)
-        seterrorMsgC('')
-        setsuccessMsgC(res.message)
+        } else {alert("else")
+        //setLoadingC(false)
+        //seterrorMsgC('')
+        //setsuccessMsgC(res.message)
           return;
 
       }
-      console.log(" chahhhhhhcccc",data, res);
+      //console.log(" chahhhhhhcccc",data, res);
   };
   //
   let account_type = [{val:'Personnel'},{val:'Particulier'}];
@@ -242,7 +244,7 @@ function Profile() {
       <h2>INFORMATIONS PERSONNELLES</h2>
       <Row>
         <Col xs="9">
-        <Form role="form" onSubmit={()=>{onSubmit()}}><Row>
+        <Form role="form" className="my-3" onSubmit={handleSubmit(onSubmit)}><Row>
           <Col xs="5">
               <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
               <Sinput
@@ -275,7 +277,7 @@ function Profile() {
              type="text"
              handleOnchange={()=>{}}
              />
-             <Button>Vérification</Button>
+             <Button type="submit">Vérification</Button>
           </Col>
           <Col xs="5">
             <Sinput
@@ -299,7 +301,6 @@ function Profile() {
               iStyle={{borderRadius:"15px", overflow:"hidden"}}
               inputBg="#fff"
               type="text"
-              disabled
               handleOnchange={()=>{}}
               />
           </Col>
@@ -321,7 +322,7 @@ function Profile() {
               alt="..."                 height={150} width={150}
               style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
               />
-              <Button>Vérification</Button>
+              <Button type="submit">Vérification</Button>
           </Row>
         </Form>
         </Col>
