@@ -35,7 +35,8 @@ import ProgressBar from "../../src/components/ProgressBar";
 import { currentUser } from "../../src/__MOCK__/user";
 import { isDirective } from "graphql";
 import withAuth from '../../src/hoc/withAuth';
-import { constantes  } from "../../src/config/"
+import { constantes  } from "../../src/config/";
+import {  useFetchUserInfos } from "../../src/hooks";
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
@@ -43,6 +44,7 @@ function Dashboard() {
   const context = useAppContext();
 
   const [token, setToken]= useState(context.appState.accessToken);
+  const [isUserInfoCompleted , setUserInfoCompleted] = useState(false);
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
   }
@@ -52,7 +54,9 @@ function Dashboard() {
     setActiveNav(index);
     setChartExample1Data("data" + index);
   };
-  
+   const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
+  console.log("user data loading", userData);
+  console.log("context user", context );
   return (
     <Portal>
       <Container>
@@ -63,7 +67,7 @@ function Dashboard() {
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
                 <Col xl="8" className="p-4 col-xl-8" >
                   <div>
-                      <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >Bon retour Yvan,</h2>
+                      <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >{`Bon retour ${userData?.data.user.psedo},`}</h2>
                       <p style={{fontSize: '14px', lineHeight: '1.5'}}>La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
                       <Link label="Consulter" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                   </div>
@@ -174,29 +178,40 @@ function Dashboard() {
                       
                           <img
                           className=" avatar rounded-circle mr-3"
-                            alt={currentUser.name + "avatar"}
-                            src={currentUser.avatarUrl}
+                            alt={userData?.data.user.LastName + "avatar"}
+                            src={userData?.data.user.avatarUrl}
                           ></img>
                         
                       <div style={{flexDirection:"column", display:"flex"}}>
                         <span className=" name  ">
-                          {currentUser.name}
+                          {userData?.data.user.lastName}
                         </span>
                         <span className="  mb-0 text-sm">
-                          {currentUser.gender}
+                          {userData?.data.user.gender}
                         </span>
                         <span className=" mb-0 text-sm">
-                         {currentUser.age}
+                         {userData?.data.user.age}
                         </span>
                       </div>
                     </Media>
                     <div>
-                      <img src={currentUser.address.country.flag} /> <span>{currentUser.address.country.name}</span>
-                      <p>{currentUser.phone}</p>
+                      <img src={userData?.data.user.address?.country?.flag} /> <span>{userData?.data.user.address?.country?.name}</span>
+                      <p>{ userData?.data.user.phone}</p>
                     </div>
                   </div>
                     <Link label="Mettre à jour le profil" path="/portal/profile" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                    
+                       <span
+                          style={{
+                            display: 'inline-block',
+                            marginLeft: '.5rem',
+                            width: 10,
+                            height: 10,
+                            background:  !userData?.data.user.phone || !userData?.data.user.address?.country?.name ? 'green' : 'transparent',
+                            transition: !userData?.data.user.phone || !userData?.data.user.address?.country?.name  ? 'all .3s ease' : 'none',
+                            borderRadius: '100%',
+                            transform: 'scale(2)',
+                          }}
+                       />
                   </div>
               </LightBoxContainer>
              <LightBoxContainer height="300px">

@@ -14,6 +14,29 @@ const updateUser =  async ({ accessToken, data}) => {
   }
 }
 
+const fetchUserInfos = async (accessToken) => {
+  console.log("fetch user infos")
+  const url = '/users/infos';
+  try{
+    let responseJson =  apiV1.getJson(url, accessToken);
+    return responseJson;
+  } catch(err){
+    console.log(err);
+  }
+}
+
+const fetchUserTree = async (accessToken) => {
+  const url =  '/users/tree';
+   try{
+    let responseJson =  apiV1.getJson(url, accessToken);
+    return responseJson;
+  } catch(err){
+    console.log(err);
+  }
+}
+
 export {
   updateUser,
+  fetchUserInfos,
+  fetchUserTree,
 };

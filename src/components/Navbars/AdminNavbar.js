@@ -19,9 +19,14 @@ import {
 } from "reactstrap";
 import { logOutUser } from "../../services/auth.service";
 import { useRouter } from "next/router";
+import {useAppContext} from "../../context";
+import {  useFetchUserInfos } from "../../hooks";
+
 
 function AdminNavbar({ brandText, l }) {
   const router = useRouter();
+  const context = useAppContext();
+   const { data, isLoading } = useFetchUserInfos(context.appState.accessToken);
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -60,7 +65,7 @@ function AdminNavbar({ brandText, l }) {
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      Yvan Fotso
+                      {data?.data.user.lastName}
                     </span>
                   </Media>
                 </Media>
@@ -72,25 +77,7 @@ function AdminNavbar({ brandText, l }) {
                 <Link href="/portal/profile">
                   <DropdownItem>
                     <i className="ni ni-single-02" />
-                    <span>My profile</span>
-                  </DropdownItem>
-                </Link>
-                <Link href="/portal/profile">
-                  <DropdownItem>
-                    <i className="ni ni-settings-gear-65" />
-                    <span>Settings</span>
-                  </DropdownItem>
-                </Link>
-                <Link href="/portal/profile">
-                  <DropdownItem>
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>Activity</span>
-                  </DropdownItem>
-                </Link>
-                <Link href="/portal/profile">
-                  <DropdownItem>
-                    <i className="ni ni-support-16" />
-                    <span>Support</span>
+                    <span>Mon profile</span>
                   </DropdownItem>
                 </Link>
                 <DropdownItem divider />
