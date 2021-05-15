@@ -50,18 +50,18 @@ function Kyc() {
   return (
     <Portal>
       {/* Page content */}
-     
+
       <Global
       styles={css`
         /*Responsive*/
-        @media only screen and (max-width: 360px) {       
-             
+        @media only screen and (max-width: 360px) {
+
           }
-        @media only screen and (max-width: 414px) {       
+        @media only screen and (max-width: 414px) {
            .wrapper{
               padding-left:1em !important;
               display: flex;
-   
+
             }
             .colLeft{
               width:30em !important;
@@ -77,7 +77,7 @@ function Kyc() {
             .wrapper{
               padding-left:1em !important;
               display: flex;
-   
+
             }
             .colLeft{
               width:30em !important;
@@ -85,22 +85,24 @@ function Kyc() {
             }
         }
         @media only screen and (max-width: 1024px) {
-         
+
         }
       `}
     />
      <Container fluid>
         <h2 style={{color:"black"}}>IMPORTER LES DOCUMENTS</h2>
-        <FileUploadBlock text="Votre passport ou CNI"/>
-        <FileUploadBlock text="Votre plan de localisation"/>   
-        <FileUploadBlock text="Documents facultatifs"/>      
-        <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2></Col> 
+        <FileUploadBlock id="kyc_cni" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
+        <FileUploadBlock id="kyc_localisation" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
+        <FileUploadBlock id="kyc_file" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
+        <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>
+              Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2>
+              <img id="kyc_display" src="" style={{visibility:" hidden",margin:"auto",width:"15em",height:"15em"}}/>
+        </Col>
         <Button>Envoyez!</Button>
       </Container>
     </Portal>
   );
 }
-
 //Kyc.layout = Portal;
 
 export default withAuth(Kyc);

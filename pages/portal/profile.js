@@ -244,7 +244,7 @@ function Profile() {
       <h2>INFORMATIONS PERSONNELLES</h2>
       <Row>
         <Col xs="9">
-        <Form role="form" className="my-3" onSubmit={handleSubmit(onSubmit)}><Row>
+        <Form role="form" className="my-3" onSubmit={()=>{handleSubmit(onSubmit)}}><Row>
           <Col xs="5">
               <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
               <Sinput
