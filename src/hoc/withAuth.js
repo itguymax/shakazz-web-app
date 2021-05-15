@@ -10,8 +10,12 @@ import {fetchPortefeuille,fetchWallets} from "../services"
 export async function getStaticProps() {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(['Portefeuille'], () => fetchPortefeuille())
-  await queryClient.prefetchQuery(['wallets'], () => fetchWallets())
+  await queryClient.prefetchQuery(['Portefeuille'], () => fetchPortefeuille(), {
+    refetchInterval:100
+  })
+  await queryClient.prefetchQuery(['wallets'], () => fetchWallets(),{
+    refetchInterval:100
+  })
 
   return {
     props: {

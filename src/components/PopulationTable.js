@@ -3,6 +3,7 @@ import { Button, Container, Row, Col,Table, Jumbotron } from "reactstrap";
 import { FlatButton } from './common/SButton';
 import Image from "next/image";
 export default function PopulationTable({popData}) {
+   console.log("Pop data", popData);
   return (
      <div>
        <FlatButton />
@@ -18,17 +19,22 @@ export default function PopulationTable({popData}) {
 				      </tr>
 				    </thead>
 				    <tbody>
-              {
+             { popData.length < 1 ?
+               <div> No children</div> : <>
+                  {
                 popData.map( (item, key)=> {
                     return <tr>
-				        	<td> <Image height={40} width={40} src={item.avatarUrl} priority={true}/> </td>		
-                  <td> <Image height={25} width={40} src={item.address.country.flag} priority={true}/> </td>	 
-                  <td> <h3 style={{fontWeight:"100", color:"#444"}}>{item.address.country.indicatif + " " + item.phone}</h3> </td> 
+				        	<td> <Image height={40} width={40} src={item.avatarUrl || "/assets/img/users/user3.png"} priority={true}/> </td>		
+                  <td> <Image height={25} width={40} src={item.address.country.flag || "/assets/img/country-flags/cameroun.png"} priority={true}/> </td>	 
+                  <td> <h3 style={{fontWeight:"100", color:"#444"}}>{item.address.country.indicatif + " " + item.phone || "+237..."}</h3> </td> 
                   <td> <h1 style={{fontWeight:"100", color:"#444"}}>{item.grade}</h1> </td>  
-                   <td> <h1>{item.weeklyTurnOver}</h1></td>    
+                   <td> <h1>{item.turnover}</h1></td>    
 				      </tr>
                 })
               }
+               </>
+             }
+              
 				    </tbody>
 				  </Table>
      </div>

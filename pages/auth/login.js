@@ -24,10 +24,12 @@ import { loginSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
 import {useMutation, useQueryClient} from 'react-query';
-import { setUTToLS } from '../../src/helpers/token'
+import { setUTToLS } from '../../src/helpers/token';
+import { useAppContext } from '../../src/context';
 
 
 function Login() {
+  const context = useAppContext();
   const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Login User",loginUser)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
@@ -63,6 +65,7 @@ function Login() {
              setErrormsg(null);
          setSuccessmsg(message);
          setSubmitting(isLoading)
+        //  context.dispatch({type:"userInfo", value: datares.data.user});
          router.push('/portal/dashboard');
          console.log("login", datares);
          }

@@ -17,8 +17,13 @@ import {  FlatButton} from "../../src/components/common/SButton";
 import PopulationTable from '../../src/components/PopulationTable';
 import withAuth from '../../src/hoc/withAuth';
 import { useAppContext } from '../../src/context';
-import {useWallets} from '../../src/hooks';
-import {Global,css} from "@emotion/react"
+import {useWallets, useFetchUserTree} from '../../src/hooks';
+import {Global,css} from "@emotion/react";
+import {
+  useQuery,
+  useQueryClient,
+  QueryClient,
+} from 'react-query'
 const generationCardData = [
   {
     id:1,
@@ -67,31 +72,35 @@ const generationCardData = [
 
   }
   const getGenerationPopulation = (item) => {
+    console.log("get gene pop", item);
       setselectedGen(item);
-       switch(item.id){
-         case 1:
-           setChildren( findChildren(user.children.child1));
-           break;
-        case 2:
-           setChildren(findChildren(user.children.child2));
-           break;
-        case 3:
-           setChildren(findChildren(user.children.child3));
-           break;
-        case 4:
-           setChildren(findChildren(user.children.child4));
-           break;
-        case 5:
-           setChildren(findChildren(user.children.child5));
-           break;
-        default:
-          setChildren([]);
-          break;
-       }
+      setChildren(item);
+      //  switch(item.id){
+      //    case 1:
+      //      setChildren( findChildren(user.children.child1));
+      //      break;
+      //   case 2:
+      //      setChildren(findChildren(user.children.child2));
+      //      break;
+      //   case 3:
+      //      setChildren(findChildren(user.children.child3));
+      //      break;
+      //   case 4:
+      //      setChildren(findChildren(user.children.child4));
+      //      break;
+      //   case 5:
+      //      setChildren(findChildren(user.children.child5));
+      //      break;
+      //   default:
+      //     setChildren([]);
+      //     break;
+      //  }
       setShowPopulation(true);
 
 }
 
+const { data: treeData, isLoading: treeLoading} = useFetchUserTree(context.appState.accessToken);
+console.log("user tree", treeData);
   return (
     <Portal>
       <Container fluid>
@@ -210,13 +219,13 @@ const generationCardData = [
           <TabContent id="myTabContent" activeTab={hTabsIcons}>
             <TabPane  className="py-4"  tabId={`hTabsIcons-1`} role="tabpanel">
               {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
-                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto="2000" gp="10" handleClick={() => getGenerationPopulation(item)}/>)}
+                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`])}/>)}
 
               </div> :
                 <div >
                     <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
                        {
-                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(item)}/>)
+                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`])}/>)
                        }
                     </div>
                     <PopulationTable popData={children}/>

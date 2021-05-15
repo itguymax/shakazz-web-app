@@ -7,7 +7,25 @@ import { QueryClient, useQuery } from 'react-query'
 export const AppContext = createContext({});
 
 export const initialState = {
-  user: {},
+  user: {
+    address:{},
+    children: {
+    child1 : [],
+    child2 : [],
+    child3 : [],
+    child4 : [],
+    child5 : []
+    },
+    generalTurnover:{},
+    profil:'',
+    companyName:"",
+    parent: "",
+    name: "",
+    lastName: "",
+    userName: "",
+    invitation: "",
+    invitationLink: "",
+  },
   userData: {},
   settings:{},
   wallets: [],
@@ -30,6 +48,14 @@ export const reducer = (state, action) => {
        console.log("reducer", action.type, action.value);
       return { ...state, wallets: action.value };
     }
+    case 'userInfo': {
+      console.log("user reducer",action.type, action.value )
+      return {...state, user : { ...state.user,
+        address: {
+          ...action.value.address
+        }
+      } }
+    }
     default:
       return { ...state, [action.type]: action.value };
     // throw new Error();
@@ -39,6 +65,7 @@ export const reducer = (state, action) => {
 
 export function AppWrapper({ children }) {
    const [appState, dispatch] = useReducer(reducer, initialState);
+   
 
   return (
     <AppContext.Provider value={{appState, dispatch}}>
