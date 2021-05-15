@@ -22,7 +22,7 @@ function FileUploadBlock({text,id,idResponse}) {
 		let reader = new FileReader();
     	reader.addEventListener("load", function(){
         requestAnimationFrame(()=>{
-          //idResponse.innerHTML = this.result;
+          idResponse.innerHTML = "Un fichier a été selectionné";
           kyc_display.src = this.result;
           kyc_display.style.visibility = "visible";
         });
