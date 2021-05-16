@@ -12,7 +12,9 @@ const METHOD = {
   POST: 'POST',
 };
 
+
 const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+
 //const apiBaseUrl = "http://localhost:5000/api/v1/services";
 // shakkazz api pattern
   const apiV1 = {
@@ -59,11 +61,11 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
         Accept: accept,
         'Content-Type': 'application/json',
         credentials: 'include',
-        
+
       },
       body: JSON.stringify(body) ,
     };
-  
+
     // if (withBody.indexOf(method) !== -1) {
     //   params.body = body;
     //   if (method === METHOD.PUT) {
@@ -90,7 +92,7 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
     return response;
   },
   getJson: async (url, accessToken) => {
-    
+
     const response = await  apiV1.call(
       url,
        apiV1.parameters(accessToken),
@@ -105,12 +107,12 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
       headers: {
         Accept: ACCEPT.JSON,
         'Content-Type': 'application/json',
-        credentials: 'include',  
-      }, 
+        credentials: 'include',
+      },
      }
     const response = await apiV1.call(
      url,
-      params 
+      params
     );
 
     return response.json();
