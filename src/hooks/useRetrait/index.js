@@ -6,5 +6,5 @@ const useTransfertInterne = () => {
 }
 
 export {
-  makeWithdrawal
+ useTransfertInterne
 }

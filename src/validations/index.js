@@ -152,5 +152,9 @@ const contactFormSchema = yup.object().shape({
 const subscriptionFormSchema = yup.object().shape({
   email: yup.string().matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "Veuillez insérer une adresse mail valide"),
 })
+const portefeuilleSchema = yup.object().shape({
+  nom: yup.string().required("Entrez le nom du portefeuille"),
+  address: yup.string().required("Entrez l'address du portefeuille")
+})
 
-export {profileSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+export {profileSchema,portefeuilleSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;

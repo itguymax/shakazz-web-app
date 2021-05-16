@@ -26,19 +26,20 @@ export default function ProfileUpload() {
   return (
     <Col md={12} style={{textAlign:"center"}} >
               <Image
-              id="profile_photo"
-              src="/assets/img/photoequipe/bisso.png"
-              alt="..."
-              className="rounded-circle"
-              height={200} width={200}
-              style={{backgroundColor:"#000",margin:"auto"}}
+                  id="profile_photo"
+                  src="/assets/img/photoequipe/bisso.png"
+                  alt="..."
+                  className="rounded-circle"
+                  height={200} width={200}
+                  style={{backgroundColor:"#000",margin:"auto"}}
               />
                       <FormGroup>
                         <Button>Vérificationffs</Button>
                       </FormGroup>
                <Image
                 src="/assets/img/free-badge-icon-1361-thumb@2x.png"
-                alt="..."                 height={150} width={150}
+                alt="..."                 
+                height={150} width={150}
                 style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
                 />
             </Col>
