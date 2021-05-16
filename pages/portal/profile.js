@@ -1,13 +1,6 @@
 import React, {useState, useRef, useEffect } from "react";
-import {Global,css} from "@emotion/react"
-import styled from '@emotion/styled'
-import Sinput from '../../src/components/forms/Sinput';
-import CreatePortefeuille from '../../src/components/common/createPortefeuille';
-import CreatePortefeuilleD from '../../src/components/common/createPortefeuilleD';
-import CustomDropdown from '../../src/components/common/CustomDropdown';
-import DropDownC from '../../src/components/forms/Dropdownc'
-import DropDownPhone from '../../src/components/forms/DropDownPhone'
-import country from '../../src/helpers/countries.js'
+import {Global,css} from "@emotion/react";
+import styled from '@emotion/styled';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../src/validations";
@@ -26,9 +19,10 @@ import {
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
-import Image from 'next/image'
+
 // core components
-import UserHeader from "../../src/components/Headers/UserHeader.js";
+import Possa from "../../src/components/possa";
+import ProfileForm from '../../src/components/forms/Profileform';
 import { useRouter } from 'next/router'
 function Profile() {
   const router = useRouter();
@@ -39,9 +33,7 @@ function Profile() {
   const [additionaldata, setUserAdditionalData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const { mutateAsync, isLoading } = useUpdateUser();
-  const { register, handleSubmit, watch, errors } = useForm({
-      resolver: yupResolver(profileSchema),
-    });
+
    const onSubmit =  async (data) => {
      const body = {
     data : {
@@ -87,24 +79,8 @@ function Profile() {
       //console.log(" chahhhhhhcccc",data, res);
   };
   //
-  let account_type = [{val:'Personnel'},{val:'Particulier'}];
-  let sexe = [{val:'Homme'},{val:'Femme'}];
-  let currency = [{val:'USD'}];
-  const Button = styled.button`
-    background-color: #679966;
-    border-radius: 20px;
-    margin-top:1.8em;
-    color: white;
-    padding:0.6em;
-    width:10em;
-    border:1px solid #679966;
-    font-weight:100;
-    transition: all .8s ease-in-out;
-    &:hover {
-      color: #679966;
-      background-color:white;
-  }
-`
+  
+
   return (
     <Portal>
       {/* Page content */}
@@ -242,6 +218,7 @@ function Profile() {
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
+      <ProfileForm/>
       <Row>
         <Col xs="9">
         <Form role="form" className="my-3" onSubmit={()=>{handleSubmit(onSubmit)}}><Row>
@@ -389,6 +366,7 @@ function Profile() {
             </Col>
         </Row>
       </Container>
+      <Possa/>
     </Portal>
   );
 }
