@@ -16,9 +16,10 @@ const arrowClosed = (
 const arrowOpen = (
   <span className="arrow-open" />
 )
-export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultOption,inputvalue,handleOnchange, disabled,iStyle, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
+export default function Sinput({mgl,dd,readOnly,onSelect, labelColor, rows, options,defaultOption,inputvalue,handleOnchange, disabled,iStyle, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
   const ibg = inputBg || '#f5f5f5'
-  const style = inline? {display: 'flex', flexDirection: 'row'}:null
+  const style = inline? {display: 'flex', flexDirection: 'row'}:null;
+  const labelC = labelColor || "#fff";
   return (
     <>
         <FormGroup  >
@@ -26,7 +27,7 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
             <Row className="mt-3">
                <Col xl="3">
                  <div>
-                   {label?  <label style={{font: 'normal normal italic 20px/25px Ubuntu', color:"#fff"}}>{label}{":"}</label>:null}
+                   {label?  <label style={{font: 'normal normal italic 20px/25px Ubuntu', color: labelC}}>{label}{":"}</label>:null}
                   {required && <Dot info={ info?true:false}/>}
                  </div>
                </Col>

@@ -13,20 +13,11 @@ import { profileSchema } from "../../src/validations";
 import withAuth from '../../src/hoc/withAuth';
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  Container,
-  Row,
-  Col,
-  Media,
-  DropdownItem,
-  Label,
+   Container,Row,Label,Form, Spinner
 } from "reactstrap";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { portefeuilleSchema} from "../../validations";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
 import Image from 'next/image'

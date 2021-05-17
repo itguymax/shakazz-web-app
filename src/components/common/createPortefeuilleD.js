@@ -20,7 +20,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image'
 import Sinput from '../../../src/components/forms/Sinput';
-export default function CreatePortefeuilleD({nb}) {
+export default function CreatePortefeuilleD({nb,item}) {
 	  const Button = styled.button`
 		    background-color: #679966;
 		    border-radius: 20px;
@@ -72,7 +72,8 @@ export default function CreatePortefeuilleD({nb}) {
          />
       </Col>
       <Col sm="2" className="profile_box_portefeuille_col2"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
-      <Col sm="4" className="profile_box_portefeuille_col3"><DropDownC portefeuille name={"profile_portefeuille"+nb} label="" register={()=>{}} name="canal" selectedOption={portefeuille[0]} handleOnSelect={()=>{}} options={portefeuille||[]}/></Col>
+      {/* <Col sm="4" className="profile_box_portefeuille_col3"><DropDownC portefeuille name={"profile_portefeuille"+nb} label="" register={()=>{}} name="canal" selectedOption={portefeuille[0]} handleOnSelect={()=>{}} options={portefeuille||[]}/></Col> */}
+      <Col sm="4" className="profile_box_portefeuille_col3"><DropDownC portefeuille name={item.nom} label="" register={()=>{}} name="canal" selectedOption={{val: item.nom, adresse: item.address}} handleOnSelect={()=>{}} options={[{val: item.nom, adresse: item.address}]||[]}/></Col>
     </Row>
     </>
   )
