@@ -16,9 +16,11 @@ const arrowClosed = (
 const arrowOpen = (
   <span className="arrow-open" />
 )
+
 export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultOption,inputvalue, labelColor,handleOnchange, disabled,iStyle, info, required, label,btc, usd, inline, inputBg, autoComplete, prepend,append,name, placeholder,type, register, registerOptions,icon,handleToggleshow }) {
   const ibg = inputBg || '#f5f5f5'
   const style = inline? {display: 'flex', flexDirection: 'row'}:null
+
   const labelC = labelColor || "#fff";
   return (
     <>
