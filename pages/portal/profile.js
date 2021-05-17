@@ -66,30 +66,24 @@ function Profile() {
         birthday : "2021-05-03",
         email : "feutseludovic@gmail.com"
         }
-      }
+}
+
+
+    // const res = mutatesAsync({accessToken: context.appState.accessToken,data: body})
+     console.log("hey!");
+   if(verified){
     setSubmitting(true);
-    alert("before send request")
     let userdata;
     const {name,dob,adresse,email,pseudo} = data;
     userdata = {...additionaldata,name,dob,adresse,email,pseudo};
-    //const res = mutatesAsync({accessToken: context.appState.accessToken,data: body});
-    alert("before send request")
-     if(res.error && !res.success){alert("if")
-          //setLoadingC(false);
-          //seterrorMsgC(res.message)
-          //setsuccessMsgC('')
-          return;
-        } else {alert("else")
-        //setLoadingC(false)
-        //seterrorMsgC('')
-        //setsuccessMsgC(res.message)
-          return;
 
-      }
-      //console.log(" chahhhhhhcccc",data, res);
+   } else {
+     alert("Vous  n'êtes pas humain")
+   }
+
   };
   //
-
+  
 
   return (
     <Portal>
@@ -185,7 +179,6 @@ function Profile() {
             width:8em !important;
           }
           .row_section4{
-
             width:10em;
             height:10em;
           }
@@ -229,158 +222,10 @@ function Profile() {
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
       <ProfileForm/>
-      <Row>
-        <Col xs="9">
-        <Form role="form" className="my-3" onSubmit={()=>{handleSubmit(onSubmit)}}><Row>
-          <Col xs="5">
-              <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
-              <Sinput
-              label="Nom complet"
-              placeholder='entrez le nom complet'
-              name="name"
-              register={register}
-              iStyle={{borderRadius:"15px", overflow:"hidden"}}
-              inputBg="#fff"
-              type="text"
-              handleOnchange={()=>{}}
-              />
-              <Sinput
-              name="dob"
-             label="Date de naissance"
-             placeholder='entrez le nom complet:'
-             register={register}
-             iStyle={{borderRadius:"15px", overflow:"hidden"}}
-             inputBg="#fff"
-             type="date"
-             handleOnchange={()=>{}}
-             />
-             <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
-             <Sinput
-             label="Adresse"
-             name="adresse"
-             register={register}
-             iStyle={{borderRadius:"15px", overflow:"hidden"}}
-             inputBg="#fff"
-             type="text"
-             handleOnchange={()=>{}}
-             />
-             <Button type="submit">Vérification</Button>
-          </Col>
-          <Col xs="5">
-            <Sinput
-            label='E-mail'
-            name="email"
-            placeholder="entrez votre e-mail"
-            register={register}
-            iStyle={{borderRadius:"15px", overflow:"hidden"}}
-            inputBg="#fff"
-            type="text"
-            handleOnchange={()=>{}}
-            />
-            <DropDownPhone name="phone_number" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
-            <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
-            <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
-            <Sinput
-              label='Pseudo'
-              name="pseudo"
-              placeholder=""
-              register={register}
-              iStyle={{borderRadius:"15px", overflow:"hidden"}}
-              inputBg="#fff"
-              type="text"
-              handleOnchange={()=>{}}
-              />
-          </Col>
-          </Row></Form>
-        </Col>
-        <Col xs="3">
-        <Form role="form" onSubmit={()=>{}}>
-          <Row>
-            <Image
-            id="profile_photo"
-            src="/assets/img/photoequipe/bisso.png"
-            alt="..."
-            className="rounded-circle"
-            height={200} width={200}
-            style={{backgroundColor:"#000",margin:"auto"}}
-            />
-             <Image
-              src="/assets/img/free-badge-icon-1361-thumb@2x.png"
-              alt="..."                 height={150} width={150}
-              style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
-              />
-              <Button type="submit">Vérification</Button>
-          </Row>
-        </Form>
-        </Col>
-      </Row>
-        <Row>
-          <Col xs="6" sm="4">
-                   <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
-                     <Row>
-                       <Col xs="6" sm="2">
-                          <Image
-                          src="/assets/img/icons/retrait/wallet.svg"
-                          alt="..."
-                          height={40} width={40}
-                          style={{backgroundColor:"#000",margin:"auto"}}
-                          />
-                       </Col>
-                       <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.5em",fontSize:"1.8em",fontWeight:300}}>Portefeuille</p></Col>
-
-                       <Col xs="6" sm="3">
-                        <Image
-                          src="/assets/img/icons/clic_button_down.svg"
-                          alt="..."
-                          height={20} width={20}
-                          style={{backgroundColor:"#000",margin:"auto"}}
-                          />
-                       </Col>
-
-                     </Row>
-                  <Row>
-                   <Col xs="6" sm="6"><p>Portefeuille</p></Col>
-
-                   <Col xs="6" sm="2">
-                    <Image
-                      src="/assets/img/icons/add.svg"
-                      alt="..."
-                      height={20} width={20}
-                      style={{backgroundColor:"#000",margin:"auto"}}
-                      />
-                   </Col>
-                 </Row>
-                  </Col>
-          </Col>
-        </Row>
-      </Container>
-      <Container>
-        <Row className="profileColWrapper" >
-            <Col xs="6" sm="5" style={{marginBottom:"3em"}}>
-
-                      <CreatePortefeuille/>
-            </Col>
-            <Col xs="6" sm="6" style={{marginBottom:"3em"}}>
-                <Container className="" style={{
-                      width:"100%",
-                      height:"14em",
-                      marginLeft:"2em",
-                      backgroundColor:"white",
-                      borderRadius:"16px",
-                      padding:"1em"}}>
-                        <CreatePortefeuilleD nb={"1"}/>
-                        <CreatePortefeuilleD nb={"2"}/>
-                        <CreatePortefeuilleD nb={"3"}/>
-                        <CreatePortefeuilleD nb={"4"}/>
-                      </Container>
-            </Col>
-        </Row>
       </Container>
       <Possa/>
     </Portal>
   );
 }
-
-//Profile.layout = Portal;
 
 export default withAuth(Profile);
