@@ -20,7 +20,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image'
 import Sinput from '../../../src/components/forms/Sinput';
-import CustomDropdown from './CustomDropdown';
+
 export default function CreatePortefeuilleD({nb,item}) {
 	  const Button = styled.button`
 		    background-color: #679966;
