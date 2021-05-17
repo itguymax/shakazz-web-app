@@ -4,6 +4,7 @@ export * from './transfert.service';
 export * from './checkUser.service';
 export * from './retrait.service';
 export * from './portefeuille.service';
+export * from './kyc.service';
 export * from './wallet.service';
 export * from './auth.service';
 export * from './networkers.service';

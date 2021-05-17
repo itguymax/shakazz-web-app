@@ -43,7 +43,7 @@ const options = [{
   }
    const onSubmitpwdt =()=>{
   }
-  const onSubmitC = async (data) => { 
+  const onSubmitC = async (data) => {
     setLoadingC(true);
     const body = {
     data: {
@@ -52,7 +52,7 @@ const options = [{
             newPassword: data.repeatNewPassword
         }
     }
-    
+
  }
   const res = await cpc({accessToken: context.appState.accessToken ,data:body});
    if(res.error && !res.success){
@@ -65,7 +65,7 @@ const options = [{
       seterrorMsgC('')
       setsuccessMsgC(res.message)
         return;
-     
+
     }
     console.log(" chahhhhhhcccc",data, res);
   };
@@ -78,7 +78,7 @@ const options = [{
             newTransaction : data.repeatNewPassword
         }
     }
-    
+
 };
  const res = await cpt({accessToken: context.appState.accessToken ,data:body});
    if(res.error && !res.success){
@@ -91,7 +91,7 @@ const options = [{
       seterrorMsgT('')
       setsuccessMsgT(res.message)
         return;
-     
+
     }
     console.log(data);
   };

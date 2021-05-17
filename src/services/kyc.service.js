@@ -3,17 +3,16 @@ import config from '../config';
 import  apiV1  from './config';
 
 
-const  serviceKyc = async (accessToken, data) => {
-    const url = `/services/kyc${data}`;
+const  serviceKyc = async ({accessToken, data}) => {
+    const url = `/uploads/document`;
     try {
-    let responseJson =  apiV1.getJson(url, accessToken);
+    let responseJson =  apiV1.postJson(url,accessToken,data);
     return responseJson;
   } catch(err) {
-    console.log(err);
   }
   }
 
 
 export {
-   serviceKyc,
+   serviceKyc
 };
