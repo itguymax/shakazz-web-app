@@ -6,10 +6,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../src/validations";
 import { useUpdateUser } from '../../src/hooks';
 import withAuth from '../../src/hoc/withAuth';
+import Sinput from '../../src/components/forms/Sinput';
 import { device } from '../../src/lib/device.js';
 import {useAppContext} from "../../src/context";
+import DropDownC from '../../src/components/forms/Dropdownc'
+import DropDownPhone from '../../src/components/forms/DropDownPhone'
+import country from '../../src/helpers/countries.js'
 // reactstrap components
 import {
+  Button,
   FormGroup,
   Form,
   Container,
@@ -33,7 +38,12 @@ function Profile() {
   const [additionaldata, setUserAdditionalData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const { mutateAsync, isLoading } = useUpdateUser();
-
+  let account_type = [{val:'Personnel'},{val:'Particulier'}];
+  let sexe = [{val:'Homme'},{val:'Femme'}];
+  let currency = [{val:'USD'}];
+  const { register, handleSubmit, watch, errors } = useForm({
+      resolver: yupResolver(profileSchema),
+    });
    const onSubmit =  async (data) => {
      const body = {
     data : {

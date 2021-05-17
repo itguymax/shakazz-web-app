@@ -137,7 +137,7 @@ const onSubmit = async (hookData)  => {
      <Container fluid>
         <h2 style={{color:"black"}}>IMPORTER LES DOCUMENTS</h2>
         <FileUploadBlock setBucket={setBucket} id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
-        <FileUploadBlock setBucket={setBucket} id="localisation" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
+        <FileUploadBlock setBucket={setBucket} id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
         <FileUploadBlock setBucket={setBucket} id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
         <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>
