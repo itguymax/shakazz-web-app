@@ -37,6 +37,7 @@ import UserHeader from "../../src/components/Headers/UserHeader.js";
 
 function Kyc() {
   const [visible, setVisible] = useState(false);
+  const [colorAlert, setColorAlert] = useState("primary");
   const [responseAlert, setResponseAlert] = useState("");
   const onDismiss = () => setVisible(false);
 //
@@ -99,9 +100,9 @@ function Kyc() {
     />
      <Container fluid>
         <h2 style={{color:"black"}}>IMPORTER LES DOCUMENTS</h2>
-        <FileUploadBlock setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_passport" id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
-        <FileUploadBlock setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_plan" id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
-        <FileUploadBlock setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_facultatif" id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
+        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_passport" id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
+        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_plan" id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
+        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_facultatif" id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
         <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>
               Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2>
                <img
@@ -112,12 +113,12 @@ function Kyc() {
                 style={{visibility:"hidden",margin:"auto",width:"15em",height:"15em"}}
                />
         </Col>
-        <div>
-          <Alert color="primary" isOpen={visible} toggle={onDismiss} fade={false}>
-            {responseAlert}
-          </Alert>
-        </div>
       </Container>
+      <div>
+        <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visible} toggle={onDismiss} fade={false}>
+          {responseAlert}
+        </Alert>
+      </div>
     </Portal>
   );
 }

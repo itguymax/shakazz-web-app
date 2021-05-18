@@ -20,10 +20,11 @@ import {
   UncontrolledDropdown,
   Row,
   Col,
+  Spinner
 } from "reactstrap";
 import Image from 'next/image';
 
-function FileUploadBlock({setResponseAlert,setVisibleAlert,text,id,idSend,idResponse}) {
+function FileUploadBlock({setColorAlert,setResponseAlert,setVisibleAlert,text,id,idSend,idResponse}) {
 const {mutateAsync:cpc, isLoading:icpc}  = useServiceKyc();
 const context = useAppContext();
 const router = useRouter();
@@ -47,11 +48,12 @@ const onSubmit = async ()  => {
       //setDatasending(hookData.kyc_display_input)
       const res = await cpc({accessToken: context.appState.accessToken ,data:body});
       if(res.error && !res.success){
-        console.log(res.message)
+        setColorAlert("primary");
         setResponseAlert(res.message);
         setVisibleAlert(true);
          } else {
            setShowToast(true);
+           setColorAlert("danger");
            setResponseAlert(res.message);
            setVisibleAlert(true);
        }
@@ -76,10 +78,14 @@ const onSubmit = async ()  => {
     const send = document.getElementById(idSend);
     const source_file = document.createElement("input");
     source_file.type = "file";
+    source_file.accept = "image/png, image/jpeg";
     source_file.multiple = "false";
     source_file.click();
     source_file.addEventListener("change",()=>{
         setSubmitting(true);
+        requestAnimationFrame(()=>{
+          send.style.display = "block";
+        })
   		uploadFiles(source_file.files[0],response);
   	});
     return source_file;
@@ -111,7 +117,9 @@ const onSubmit = async ()  => {
                        }} style={{backgroundColor:"#669965",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}}>Ajouter</span><span id={idResponse}> Aucun fichier choisit</span></Col>
                     </Row><br/>
                     <Row>
-                       <Col xs="12"><span style={{display:"visible",backgroundColor:"#c89631",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}} onClick={() =>{onSubmit()}} id={idSend}>Envoyer</span></Col>
+                       <Col xs="12"><span style={{display:"none",backgroundColor:"#c89631",width:"4.5em",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}} onClick={() =>{onSubmit()}} id={idSend}>
+                       {icpc? <Spinner size="sm" color="#cc993a" />: "Envoyer"}
+                       </span></Col>
                     </Row>
            </Col>
         </Row>
