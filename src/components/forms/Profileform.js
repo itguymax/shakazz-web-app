@@ -19,6 +19,8 @@ import styled from '@emotion/styled';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../validations";
+import { useAppContext } from '../../context';
+import {useMutation, useQueryClient} from 'react-query';
 
 let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let sexe = [{val:'Homme'},{val:'Femme'}];
@@ -40,6 +42,8 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
   }
 `
 export default function Profileform({updateProfile}) {
+  const context = useAppContext();
+  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Profile User",{})
       const { register, handleSubmit, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
@@ -108,7 +112,9 @@ export default function Profileform({updateProfile}) {
                          </div> }
                   </Col>
                 </Row>
-                <SButton type="submit"  style={{margin:"auto",marginTop:"1em"}}> Vérification</SButton>
+                <SButton type="submit"  style={{margin:"auto",marginTop:"1em"}}>
+                    {isLoading? <Spinner size="sm" color="#cc993a" />: "Modifier"}
+                </SButton>
                    <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
@@ -189,7 +195,6 @@ export default function Profileform({updateProfile}) {
                             iStyle={{borderRadius:"15px", overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
-                            disabled
                             handleOnchange={()=>{}}
                             />
                             {errors.pseudo && <div className="text-muted font-italic">

@@ -73,15 +73,15 @@ const profileSchema = yup.object().shape({
   dob: yup.date().required(),
   adresse: yup.string().required(),
   phone_number: yup.string().required(),
-  pseudo: yup.date().required(),
+  pseudo: yup.string().required(),
   email: yup.string()
     .required('Email incorrect')
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       `Doit contenir 8 caractères, une majuscule,
        une minuscule, un chiffre et un caractère de cas particulier`
     ).test('checkEmailUnique', 'Email existe deja.', async (value) =>{
-     return "ok"
+     return true;
    }),
 })
 
