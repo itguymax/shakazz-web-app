@@ -6,6 +6,7 @@ import styled from '@emotion/styled'
 import {useMutation, useQueryClient} from 'react-query';
 import {useAppContext} from "../../context";
 import {serviceKyc} from '../../services/kyc.service'
+import {profileUserInfos} from '../../services/profileUserInfos.service'
 import {useServiceKyc} from '../../hooks';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -35,12 +36,13 @@ const [datasending, setDatasending] = useState("");
 const [bucket, setBucket] = useState("");
 const [responseToast, setResponseToast] = useState("");
 const [submitting, setSubmitting] = useState(false);
+const FormData = require('form-data');
+const form = new FormData();
 const onSubmit = async ()  => {
+  form['bucket'] = bucket;
+  form['file'] = datasending;
   const body = {
-    data: {
-      file: datasending,
-      bucket: bucket
-      }
+    form
     }
       //setSubmitting(isLoading);
       /*const { kyc_display_input} = hookData;

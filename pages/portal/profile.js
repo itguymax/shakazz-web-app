@@ -44,46 +44,36 @@ function Profile() {
   const { register, handleSubmit, watch, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
-   const onSubmit =  async (data) => {
-     const body = {
-    data : {
-        address : {
-            country:{
-            name : "manathan",
-            indicatif : "+237",
-            flag : "src/img/cameroun.jpg"
-            },
-        state : "centre",
-        city : "yaounde",
-        street : "ekie"
-        },
-        profil : "Personnel",
-        companyName:"umdeny",
-        name: "ludovic",
-        firstName:"nziko",
-        lastName:"feutse",
-        userName: "le nid1",
-        birthday : "2021-05-03",
-        email : "feutseludovic@gmail.com"
-        }
-}
-
-
-    // const res = mutatesAsync({accessToken: context.appState.accessToken,data: body})
-     console.log("hey!");
-   if(verified){
-    setSubmitting(true);
-    let userdata;
-    const {name,dob,adresse,email,pseudo} = data;
-    userdata = {...additionaldata,name,dob,adresse,email,pseudo};
-
-   } else {
-     alert("Vous  n'êtes pas humain")
-   }
-
-  };
   //
-  
+  const updateProfile =  async (data) => {alert('hey');
+    const body = {
+   data : {
+       address : {
+           country:{
+           name : "manathan",
+           indicatif : "+237",
+           flag : "src/img/cameroun.jpg"
+           },
+       state : "centre",
+       city : "yaounde",
+       street : "ekie"
+       },
+       profil : "Personnel",
+       companyName:"umdeny",
+       name: "ludovic",
+       firstName:"nziko",
+       lastName:"feutse",
+       userName: "le nid1",
+       birthday : "2021-05-03",
+       email : "feutseludovic@gmail.com"
+       }
+  }
+
+
+   // const res = mutatesAsync({accessToken: context.appState.accessToken,data: body})
+    console.log(data);
+
+  }
 
   return (
     <Portal>
@@ -221,7 +211,7 @@ function Profile() {
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <ProfileForm/>
+      <ProfileForm updateProfile={updateProfile}/>
       </Container>
       <Possa/>
     </Portal>

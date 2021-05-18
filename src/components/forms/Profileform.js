@@ -24,7 +24,7 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let sexe = [{val:'Homme'},{val:'Femme'}];
   let currency = [{val:'USD'}];
 
-    const Button = styled.button`
+    const SButton = styled.button`
     background-color: #679966;
     border-radius: 20px;
     margin-top:1.8em;
@@ -39,13 +39,13 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
       background-color:white;
   }
 `
-export default function Profileform() {
-    const { register, handleSubmit, watch, errors } = useForm({
+export default function Profileform({updateProfile}) {
+      const { register, handleSubmit, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
 
   return (
-   <Form role="form" onSubmit={()=>{handleSubmit(onSubmit)}}>
+    <Form onSubmit={handleSubmit(updateProfile)}>
         <Row>
           <Col xs="6" sm="4">
                 <Row>
@@ -63,6 +63,11 @@ export default function Profileform() {
                       type="text"
                       handleOnchange={()=>{}}
                       />
+                      {errors.name && <div className="text-muted font-italic">
+
+                           <span className="text-danger font-weight-700">{errors.name.message}</span>
+
+                       </div> }
                   </Col>
                    <Col md={12}>
                        <Sinput
@@ -75,6 +80,11 @@ export default function Profileform() {
                       type="date"
                       handleOnchange={()=>{}}
                       />
+                      {errors.dob && <div className="text-muted font-italic">
+
+                           <span className="text-danger font-weight-700">{errors.dob.message}</span>
+
+                       </div> }
                   </Col>
                   <Col md={12}>
                     <FormGroup>
@@ -91,9 +101,14 @@ export default function Profileform() {
                         type="text"
                         handleOnchange={()=>{}}
                         />
+                        {errors.adresse && <div className="text-muted font-italic">
+
+                             <span className="text-danger font-weight-700">{errors.adresse.message}</span>
+
+                         </div> }
                   </Col>
                 </Row>
-                <Button type="submit">Vérification</Button>
+                <SButton type="submit"  style={{margin:"auto",marginTop:"1em"}}> Vérification</SButton>
                    <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
@@ -147,6 +162,11 @@ export default function Profileform() {
                         type="text"
                         handleOnchange={()=>{}}
                         />
+                        {errors.email && <div className="text-muted font-italic">
+
+                             <span className="text-danger font-weight-700">{errors.email.message}</span>
+
+                         </div> }
                   </Col>
                   <Col md={12}>
                      <Row>
@@ -172,6 +192,11 @@ export default function Profileform() {
                             disabled
                             handleOnchange={()=>{}}
                             />
+                            {errors.pseudo && <div className="text-muted font-italic">
+
+                                 <span className="text-danger font-weight-700">{errors.pseudo.message}</span>
+
+                             </div> }
                    </Col>
                    <Col md={6}>
                         <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>

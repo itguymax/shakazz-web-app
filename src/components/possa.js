@@ -26,23 +26,23 @@ export default function possa() {
   try{
     const res = await mutateAsync({accessToken: context.appState.accessToken, data: body});
        if(res.error && !res.success){
-     
+
         seterrorMsg(res.message)
         setsuccessMsg('')
-       
+
       } else {
-     
+
       seterrorMsg('')
       setsuccessMsg(res.message)
-      
-     
+
+
     }
     console.log("datatat", data, res);
   } catch(err){
     console.log(err);
   }
-  
-    
+
+
   }
 
   console.log("porte feullll", data);
@@ -66,9 +66,9 @@ export default function possa() {
                              data?.data.porte_feuilles.map((item ,key) => <CreatePortefeuilleD key={key} nb={key +1} item={item}/>)
                            }
                          </>
-                        
+
                       }
-                        
+
                   </Container>
             </Col>
         </Row>

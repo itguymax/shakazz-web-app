@@ -69,23 +69,20 @@ const resetPasswordSchema = yup.object().shape({
 })
 
 const profileSchema = yup.object().shape({
-  //account_type: yup.string().required("Type de compte invalide"),
-  name: yup.string().required("Le nom d'utilisateur est requis"),
-  dob: yup.string()
-            .required('La date de naissance est requise')
-            .matches(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/, 'La date de naissance doit respecter le format YYYY-MM-DD'),
-  //country: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
-  adresse: yup.string().required("Adresse incorrecte"),
+  name: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres"),
+  dob: yup.date().required(),
+  adresse: yup.string().required(),
+  phone_number: yup.string().required(),
+  pseudo: yup.date().required(),
   email: yup.string()
     .required('Email incorrect')
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       `Doit contenir 8 caractères, une majuscule,
        une minuscule, un chiffre et un caractère de cas particulier`
-    ),
-    //phone_number: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
-    pseudo: yup.string().required("Pseudo incorrect"),
-    //currency: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
+    ).test('checkEmailUnique', 'Email existe deja.', async (value) =>{
+     return "ok"
+   }),
 })
 
 const depotSchema = yup.object().shape({
