@@ -70,10 +70,10 @@ const resetPasswordSchema = yup.object().shape({
 
 const profileSchema = yup.object().shape({
   name: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres"),
-  dob: yup.date().required(),
-  adresse: yup.string().required(),
-  phone_number: yup.string().required(),
-  pseudo: yup.string().required(),
+  dob: yup.date().required("La date de naissance est requise"),
+  adresse: yup.string().required("L'adresse est requise"),
+  phone: yup.number().required("Le numéro de téléphone est requis").min(6, "Le numéro de téléphone doit avoir minimum 9 characteres"),
+  pseudo: yup.string().required("Le pseudo est requis"),
   email: yup.string()
     .required('Email incorrect')
     .matches(

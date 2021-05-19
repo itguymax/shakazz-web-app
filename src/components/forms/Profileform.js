@@ -1,16 +1,18 @@
-import React from 'react'
+import React, {useState, useRef, useEffect } from "react";
 import {
   FormGroup,
   Form,
   Container,
   Row,
   Col,
+  Spinner
 } from "reactstrap";
 import Sinput from './Sinput';
 import CreatePortefeuille from '../common/createPortefeuille';
 import CreatePortefeuilleD from '../common/createPortefeuilleD';
 import CustomDropdown from '../common/CustomDropdown';
 import DropDownC from './Dropdownc';
+import Sdropdown from './Sdropdown';
 import DropDownPhone from './DropDownPhone';
 import country from '../../helpers/countries.js';
 import ProfileUpload from './ProfileUpload';
@@ -41,20 +43,46 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
       background-color:white;
   }
 `
-export default function Profileform({updateProfile}) {
+export default function Profileform() {
   const context = useAppContext();
+  const [isAccount,setAccount]= useState(account_type[0].val);
   const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Profile User",{})
-      const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
-
+    const updateProfile =  async (data) => {
+      const { name, dob, adresse, phone, pseudo, email } = data;
+      const body = {
+     data : {
+         address : {
+             country:{
+             name : adresse,
+             indicatif : phone,
+             flag : "src/img/cameroun.jpg"
+             },
+         state : "centre",
+         city : "yaounde",
+         street : "ekie"
+         },
+         profil : isAccount,
+         companyName:"umdeny",
+         name: name,
+         firstName:name,
+         lastName:name,
+         userName: pseudo,
+         birthday : dob,
+         email : email
+         }
+    }
+    console.log(body);
+  }
   return (
     <Form onSubmit={handleSubmit(updateProfile)}>
         <Row>
           <Col xs="6" sm="4">
                 <Row>
                   <Col md={12}>
-                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC setAccount={setAccount} name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
                   <Col md={12} className="profileCol">
                       <Sinput
@@ -177,7 +205,12 @@ export default function Profileform({updateProfile}) {
                   <Col md={12}>
                      <Row>
                         <Col sm={12}>
-                          <DropDownPhone name="phone_number" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                          <DropDownPhone name="phone" nameIndicatif="phone_number_indicatif" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                          {errors.phone && <div className="text-muted font-italic">
+
+                               <span className="text-danger font-weight-700">{errors.phone.message}</span>
+
+                           </div> }
                         </Col>
 
                      </Row>

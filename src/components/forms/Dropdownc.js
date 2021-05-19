@@ -13,13 +13,14 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-function Sdropdown({portefeuille,flag, idDd, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
+function Sdropdown({setAccount,portefeuille,flag, idDd, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
 
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
    const toggle = () => setIsOpen(prevState => !prevState);
+   //setAccount("ugh");
    const onOptionClicked = value => () => {
-    handleOnSelect(value)
+    handleOnSelect(value);
     toggle();
 
   };

@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
+function Sdropdown({nameIndicatif,flag,country, idDd,idDdM, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
 
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
@@ -57,7 +57,7 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
       input{
         background-color: #f0f0f0 !important;
         border:1px solid white !important;
-        width:12em !important;
+        width:8em !important;
       }
       input[type="text"]{
         background-color: #f0f0f0 !important;
@@ -93,12 +93,21 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
                    alt="..."
                    height={20} width={20}
                    />
-          <DropdownItem  id={idDd} tag="div" style={{paddingLeft:"0.4em",paddingRight:"0.6em"}}>
+          <DropdownItem name={nameIndicatif} register={register} id={idDd} tag="div" style={{paddingLeft:"0.4em",paddingRight:"0.6em"}}>
             {"+237"}
          </DropdownItem>
         </DropdownToggle>}
-        {phone &&<Input style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"8em",zIndex:"900 !important"}}/>}
-        {phone && <DropdownMenu name={name} style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
+        {phone &&<Sinput
+          label=''
+          register={register}
+          name={name}
+          placeholder=""
+          iStyle={{marginTop:"-3.7em",borderRadius:"0px 15px 15px 0px !important",width:"5em !important",marginLeft:"7em",zIndex:"900 !important"}}
+          inputBg="#fff"
+          type="text"
+          handleOnchange={()=>{}}
+          />}
+        {phone && <DropdownMenu style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
                 <li  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>

@@ -14,13 +14,14 @@ import DropDownPhone from '../../src/components/forms/DropDownPhone'
 import country from '../../src/helpers/countries.js'
 // reactstrap components
 import {
+  Alert,
   Button,
   FormGroup,
   Form,
   Container,
   Row,
   Col,
-
+  Spinner
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
@@ -32,6 +33,10 @@ import { useRouter } from 'next/router'
 function Profile() {
   const router = useRouter();
    const context = useAppContext();
+   const [visible, setVisible] = useState(false);
+   const [colorAlert, setColorAlert] = useState("primary");
+   const [responseAlert, setResponseAlert] = useState("");
+   const onDismiss = () => setVisible(false);
   const [verified, setVerified]= useState(false);
   const [errormsg, setErrormsg]= useState(null);
   const [successmsg, setSuccessmsg]= useState(null);
@@ -45,35 +50,6 @@ function Profile() {
       resolver: yupResolver(profileSchema),
     });
   //
-  const updateProfile =  async (data) => {alert('hey');
-    const body = {
-   data : {
-       address : {
-           country:{
-           name : "manathan",
-           indicatif : "+237",
-           flag : "src/img/cameroun.jpg"
-           },
-       state : "centre",
-       city : "yaounde",
-       street : "ekie"
-       },
-       profil : "Personnel",
-       companyName:"umdeny",
-       name: "ludovic",
-       firstName:"nziko",
-       lastName:"feutse",
-       userName: "le nid1",
-       birthday : "2021-05-03",
-       email : "feutseludovic@gmail.com"
-       }
-  }
-
-
-   // const res = mutatesAsync({accessToken: context.appState.accessToken,data: body})
-    console.log(data);
-
-  }
 
   return (
     <Portal>
@@ -211,9 +187,14 @@ function Profile() {
       `}
     />
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <ProfileForm updateProfile={updateProfile}/>
+      <ProfileForm/>
       </Container>
       <Possa/>
+      <div>
+        <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visible} toggle={onDismiss} fade={false}>
+          {responseAlert}
+        </Alert>
+      </div>
     </Portal>
   );
 }
