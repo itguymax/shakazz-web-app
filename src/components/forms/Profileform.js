@@ -23,6 +23,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../validations";
 import { useAppContext } from '../../context';
 import {useMutation, useQueryClient} from 'react-query';
+import {useProfileUserInfos} from '../../hooks';
 
 let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let sexe = [{val:'Homme'},{val:'Femme'}];
@@ -43,10 +44,11 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
       background-color:white;
   }
 `
-export default function Profileform() {
+export default function Profileform({setColorAlert,setResponseAlert,setVisible}) {
   const context = useAppContext();
   const [isAccount,setAccount]= useState(account_type[0].val);
-  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Profile User",{})
+  const {mutateAsync, isLoading, isError, isSuccess}  = useProfileUserInfos();
+
   const { register, handleSubmit, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
@@ -75,6 +77,15 @@ export default function Profileform() {
          }
     }
     console.log(body);
+    const res = await mutateAsync({accessToken: context.appState.accessToken ,data:body});
+    setVisible(true);
+    if(res.error && !res.success){
+      setResponseAlert(res.message);
+      setColorAlert("danger");
+       } else {
+        setResponseAlert(res.message);
+        setColorAlert("primary");
+     }
   }
   return (
     <Form onSubmit={handleSubmit(updateProfile)}>

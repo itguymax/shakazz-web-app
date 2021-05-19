@@ -185,16 +185,15 @@ function Profile() {
           }
         }
       `}
-    />
+    /><div style={{position:"fixed",bottom:"20px",right:"20px",zIndex:"900"}}>
+      <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visible} toggle={onDismiss} fade={false}>
+        {responseAlert}
+      </Alert>
+    </div>
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <ProfileForm/>
+      <ProfileForm setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisible={setVisible}/>
       </Container>
       <Possa/>
-      <div>
-        <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visible} toggle={onDismiss} fade={false}>
-          {responseAlert}
-        </Alert>
-      </div>
     </Portal>
   );
 }
