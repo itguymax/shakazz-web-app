@@ -43,6 +43,7 @@ function Profile() {
   const [additionaldata, setUserAdditionalData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const { mutateAsync, isLoading } = useUpdateUser();
+  const [isAccount,setAccountType]= useState("");
   let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let sexe = [{val:'Homme'},{val:'Femme'}];
   let currency = [{val:'USD'}];
@@ -191,7 +192,7 @@ function Profile() {
       </Alert>
     </div>
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <ProfileForm setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisible={setVisible}/>
+      <ProfileForm isAccount={isAccount} setAccountType={setAccountType} setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisible={setVisible}/>
       </Container>
       <Possa/>
     </Portal>

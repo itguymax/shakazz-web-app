@@ -83,6 +83,7 @@ const profileSchema = yup.object().shape({
     ).test('checkEmailUnique', 'Email existe deja.', async (value) =>{
      return true;
    }),
+  account_type: yup.string(),
 })
 
 const depotSchema = yup.object().shape({

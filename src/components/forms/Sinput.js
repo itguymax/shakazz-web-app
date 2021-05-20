@@ -25,7 +25,7 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
   return (
     <>
         <FormGroup  >
-             {inline? ( 
+             {inline? (
             <Row className="mt-3">
                <Col xl="3">
                  <div>
@@ -56,7 +56,7 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
                   </InputGroupAddon>
                    )}
                   <Input readOnly={readOnly} rows={rows} onChange={handleOnchange}  value={inputvalue} disabled={disabled?true:false} autoComplete={autoComplete} className=" font-italic" innerRef={register()} name={name} placeholder={placeholder} type={type}  style={{backgroundColor: ibg, color: '#FFF', borderRadius:'15px'}}/>
-                  
+
                    {append && icon && (
                      <InputGroupAddon addonType="append">
                     <InputGroupText onClick={handleToggleshow } style={{backgroundColor: ibg}}>
@@ -64,14 +64,14 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
                     </InputGroupText>
                   </InputGroupAddon>
                    )}
-                </InputGroup>  
+                </InputGroup>
                  {usd&& <span className="ml-2" style={{font: 'normal normal bold 30px/37px Ubuntu', color: "#fff"}}>$</span>}
                   {btc && <span className="ml-2" style={{font: 'normal normal bold 30px/37px Ubuntu', color: "#fff"}}>₿</span>}
                    </div>
                   )}
                 </Col>
               </Row>
-             ):( 
+             ):(
                <>
                <div className="mt-3">
                {mgl && label ? <label  className="ml-3" style={{font: "normal normal bold 18px/19px Ubuntu", fontWeight:mgl?"":"300"}}>{label+":"}</label>:null}
@@ -89,7 +89,7 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
                   </InputGroupAddon>
                    )}
                   <Input readOnly={readOnly} rows={rows} onChange={handleOnchange} disabled={disabled?true:false} value={inputvalue} autoComplete={autoComplete} className="text-muted font-italic" innerRef={register()} name={name} placeholder={placeholder} type={type}  style={{backgroundColor: ibg, borderRadius:"15px"}}/>
-                  
+
                    {append && icon && (
                      <InputGroupAddon addonType="append">
                     <InputGroupText onClick={handleToggleshow } style={{backgroundColor: ibg}}>
@@ -97,10 +97,10 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
                     </InputGroupText>
                   </InputGroupAddon>
                    )}
-                </InputGroup>  
+                </InputGroup>
                </>
              )}
-                  
+
         </FormGroup>
     </>
   )

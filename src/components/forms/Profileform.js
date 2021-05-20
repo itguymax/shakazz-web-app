@@ -44,16 +44,15 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
       background-color:white;
   }
 `
-export default function Profileform({setColorAlert,setResponseAlert,setVisible}) {
+export default function Profileform({isAccount,setColorAlert,setResponseAlert,setVisible,setAccountType}) {
   const context = useAppContext();
-  const [isAccount,setAccount]= useState(account_type[0].val);
   const {mutateAsync, isLoading, isError, isSuccess}  = useProfileUserInfos();
-
+  setAccountType(account_type[0].val);
   const { register, handleSubmit, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
-    const updateProfile =  async (data) => {
-      const { name, dob, adresse, phone, pseudo, email } = data;
+    const updateProfile =  async (data) => {console.log(data);
+      const { name, dob, adresse, phone, pseudo, email, account_type } = data;
       const body = {
      data : {
          address : {
@@ -66,7 +65,7 @@ export default function Profileform({setColorAlert,setResponseAlert,setVisible})
          city : "yaounde",
          street : "ekie"
          },
-         profil : isAccount,
+         profil: account_type,
          companyName:"umdeny",
          name: name,
          firstName:name,
@@ -76,7 +75,7 @@ export default function Profileform({setColorAlert,setResponseAlert,setVisible})
          email : email
          }
     }
-    console.log(body);
+    console.log(body.data);
     const res = await mutateAsync({accessToken: context.appState.accessToken ,data:body});
     setVisible(true);
     if(res.error && !res.success){
@@ -93,7 +92,7 @@ export default function Profileform({setColorAlert,setResponseAlert,setVisible})
           <Col xs="6" sm="4">
                 <Row>
                   <Col md={12}>
-                        <DropDownC setAccount={setAccount} name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
                   <Col md={12} className="profileCol">
                       <Sinput
