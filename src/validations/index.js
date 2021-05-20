@@ -69,23 +69,21 @@ const resetPasswordSchema = yup.object().shape({
 })
 
 const profileSchema = yup.object().shape({
-  //account_type: yup.string().required("Type de compte invalide"),
-  name: yup.string().required("Le nom d'utilisateur est requis"),
-  dob: yup.string()
-            .required('La date de naissance est requise')
-            .matches(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/, 'La date de naissance doit respecter le format YYYY-MM-DD'),
-  //country: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
-  adresse: yup.string().required("Adresse incorrecte"),
+  name: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres"),
+  dob: yup.date().required("La date de naissance est requise"),
+  adresse: yup.string().required("L'adresse est requise"),
+  phone: yup.number().required("Le numéro de téléphone est requis").min(6, "Le numéro de téléphone doit avoir minimum 9 characteres"),
+  pseudo: yup.string().required("Le pseudo est requis"),
   email: yup.string()
     .required('Email incorrect')
     .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       `Doit contenir 8 caractères, une majuscule,
        une minuscule, un chiffre et un caractère de cas particulier`
-    ),
-    //phone_number: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
-    pseudo: yup.string().required("Pseudo incorrect"),
-    //currency: yup.string().required("Confirmez le mot de passse").oneOf([yup.ref('password'), null], 'Le mot de passe de conf'),
+    ).test('checkEmailUnique', 'Email existe deja.', async (value) =>{
+     return true;
+   }),
+  account_type: yup.string(),
 })
 
 const depotSchema = yup.object().shape({

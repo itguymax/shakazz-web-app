@@ -23,6 +23,26 @@ const Button = styled.button`
 `
 
 export default function ProfileUpload() {
+  function uploadFiles(files,idResponse){
+    let reader = new FileReader();
+      reader.addEventListener("load", function(){
+        requestAnimationFrame(()=>{
+          idResponse.src = this.result;
+        });
+      },false);
+      reader.readAsDataURL(files);
+    }
+  const launchUpload = (idResponse) => {
+    const response = document.getElementById(idResponse);
+    const source_file = document.createElement("input");
+    source_file.type = "file";
+    source_file.multiple = "false";
+    source_file.click();
+    source_file.addEventListener("change",()=>{console.log(source_file.files[0])
+  		uploadFiles(source_file.files[0],response);
+  	});
+    return source_file;
+    };
   return (
     <Col md={12} style={{textAlign:"center"}} >
               <Image
@@ -32,13 +52,16 @@ export default function ProfileUpload() {
                   className="rounded-circle"
                   height={200} width={200}
                   style={{backgroundColor:"#000",margin:"auto"}}
+                  onClick={() =>{
+                    launchUpload("profile_photo");
+                  }}
               />
                       <FormGroup>
-                        <Button>Vérificationffs</Button>
+                        <Button>Envoyer</Button>
                       </FormGroup>
                <Image
                 src="/assets/img/free-badge-icon-1361-thumb@2x.png"
-                alt="..."                 
+                alt="..."
                 height={150} width={150}
                 style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
                 />

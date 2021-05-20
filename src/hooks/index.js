@@ -4,6 +4,7 @@ export * from './useDeposit';
 export * from './useConverter';
 export * from './useTransfert';
 export * from './usePortefeuille';
+export * from './useProfileUserInfos';
 export * from './useKyc'
 export * from './useAuth';
 export * from './useNetworkers';

@@ -1,16 +1,18 @@
-import React from 'react'
+import React, {useState, useRef, useEffect } from "react";
 import {
   FormGroup,
   Form,
   Container,
   Row,
   Col,
+  Spinner
 } from "reactstrap";
 import Sinput from './Sinput';
 import CreatePortefeuille from '../common/createPortefeuille';
 import CreatePortefeuilleD from '../common/createPortefeuilleD';
 import CustomDropdown from '../common/CustomDropdown';
 import DropDownC from './Dropdownc';
+import Sdropdown from './Sdropdown';
 import DropDownPhone from './DropDownPhone';
 import country from '../../helpers/countries.js';
 import ProfileUpload from './ProfileUpload';
@@ -19,12 +21,15 @@ import styled from '@emotion/styled';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { profileSchema } from "../../validations";
+import { useAppContext } from '../../context';
+import {useMutation, useQueryClient} from 'react-query';
+import {useProfileUserInfos} from '../../hooks';
 
 let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let sexe = [{val:'Homme'},{val:'Femme'}];
   let currency = [{val:'USD'}];
 
-    const Button = styled.button`
+    const SButton = styled.button`
     background-color: #679966;
     border-radius: 20px;
     margin-top:1.8em;
@@ -39,18 +44,55 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
       background-color:white;
   }
 `
-export default function Profileform() {
-    const { register, handleSubmit, watch, errors } = useForm({
+export default function Profileform({isAccount,setColorAlert,setResponseAlert,setVisible,setAccountType}) {
+  const context = useAppContext();
+  const {mutateAsync, isLoading, isError, isSuccess}  = useProfileUserInfos();
+  setAccountType(account_type[0].val);
+  const { register, handleSubmit, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
-
+    const updateProfile =  async (data) => {console.log(data);
+      const { name, dob, adresse, phone, pseudo, email, account_type } = data;
+      const body = {
+     data : {
+         address : {
+             country:{
+             name : adresse,
+             indicatif : phone,
+             flag : "src/img/cameroun.jpg"
+             },
+         state : "centre",
+         city : "yaounde",
+         street : "ekie"
+         },
+         profil: account_type,
+         companyName:"umdeny",
+         name: name,
+         firstName:name,
+         lastName:name,
+         userName: pseudo,
+         birthday : dob,
+         email : email
+         }
+    }
+    console.log(body.data);
+    const res = await mutateAsync({accessToken: context.appState.accessToken ,data:body});
+    setVisible(true);
+    if(res.error && !res.success){
+      setResponseAlert(res.message);
+      setColorAlert("danger");
+       } else {
+        setResponseAlert(res.message);
+        setColorAlert("primary");
+     }
+  }
   return (
-   <Form role="form" onSubmit={()=>{handleSubmit(onSubmit)}}>
+    <Form onSubmit={handleSubmit(updateProfile)}>
         <Row>
           <Col xs="6" sm="4">
                 <Row>
                   <Col md={12}>
-                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={()=>{}} name="canal" selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
                   <Col md={12} className="profileCol">
                       <Sinput
@@ -63,6 +105,11 @@ export default function Profileform() {
                       type="text"
                       handleOnchange={()=>{}}
                       />
+                      {errors.name && <div className="text-muted font-italic">
+
+                           <span className="text-danger font-weight-700">{errors.name.message}</span>
+
+                       </div> }
                   </Col>
                    <Col md={12}>
                        <Sinput
@@ -75,6 +122,11 @@ export default function Profileform() {
                       type="date"
                       handleOnchange={()=>{}}
                       />
+                      {errors.dob && <div className="text-muted font-italic">
+
+                           <span className="text-danger font-weight-700">{errors.dob.message}</span>
+
+                       </div> }
                   </Col>
                   <Col md={12}>
                     <FormGroup>
@@ -91,9 +143,16 @@ export default function Profileform() {
                         type="text"
                         handleOnchange={()=>{}}
                         />
+                        {errors.adresse && <div className="text-muted font-italic">
+
+                             <span className="text-danger font-weight-700">{errors.adresse.message}</span>
+
+                         </div> }
                   </Col>
                 </Row>
-                <Button type="submit">Vérification</Button>
+                <SButton type="submit"  style={{margin:"auto",marginTop:"1em"}}>
+                    {isLoading? <Spinner size="sm" color="#cc993a" />: "Modifier"}
+                </SButton>
                    <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
                      <Row>
                        <Col xs="6" sm="2">
@@ -147,11 +206,21 @@ export default function Profileform() {
                         type="text"
                         handleOnchange={()=>{}}
                         />
+                        {errors.email && <div className="text-muted font-italic">
+
+                             <span className="text-danger font-weight-700">{errors.email.message}</span>
+
+                         </div> }
                   </Col>
                   <Col md={12}>
                      <Row>
                         <Col sm={12}>
-                          <DropDownPhone name="phone_number" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                          <DropDownPhone name="phone" nameIndicatif="phone_number_indicatif" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                          {errors.phone && <div className="text-muted font-italic">
+
+                               <span className="text-danger font-weight-700">{errors.phone.message}</span>
+
+                           </div> }
                         </Col>
 
                      </Row>
@@ -169,9 +238,13 @@ export default function Profileform() {
                             iStyle={{borderRadius:"15px", overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
-                            disabled
                             handleOnchange={()=>{}}
                             />
+                            {errors.pseudo && <div className="text-muted font-italic">
+
+                                 <span className="text-danger font-weight-700">{errors.pseudo.message}</span>
+
+                             </div> }
                    </Col>
                    <Col md={6}>
                         <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>

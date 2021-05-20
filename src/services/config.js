@@ -80,7 +80,6 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
       url,
        apiV1.parameters(accessToken, METHOD.DELETE),
     );
-
     return response.json();
   },
     deleteJsonBody: async (url, accessToken,body={}) => {
@@ -126,6 +125,14 @@ const apiBaseUrl = "http://localhost:5000/api/v1/services";
     return response.json();
   },
   postJson: async (url, accessToken, body = {}) => {
+    const response = await  apiV1.call(
+      url,
+       apiV1.parameters(accessToken, METHOD.POST, ACCEPT.JSON, body),
+    );
+
+    return response.json();
+  },
+  postFormData: async (url, accessToken, body = {}) => {
     const response = await  apiV1.call(
       url,
        apiV1.parameters(accessToken, METHOD.POST, ACCEPT.JSON, body),

@@ -7,16 +7,10 @@ import CreatePortefeuille from '../../src/components/common/createPortefeuille';
 import FileUploadBlock from '../../src/components/forms/FileUploadBlock';
 import country from '../../src/helpers/countries.js';
 import withAuth from '../../src/hoc/withAuth';
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import { kycSchema } from "../../src/validations";
-import { useRouter } from 'next/router';
-import {useMutation, useQueryClient} from 'react-query';
-import {useAppContext} from "../../src/context";
-import {serviceKyc} from '../../src/services/kyc.service'
-import {useServiceKyc} from '../../src/hooks';
+
 // reactstrap components
 import {
+  Alert,
   Button,
   Card,
   CardHeader,
@@ -42,6 +36,7 @@ import Image from 'next/image'
 import UserHeader from "../../src/components/Headers/UserHeader.js";
 
 function Kyc() {
+
   const {mutateAsync:cpc, isLoading:icpc}  = useServiceKyc();
 const context = useAppContext();
 const router = useRouter();
@@ -77,6 +72,12 @@ const onSubmit = async (hookData)  => {
            setResponseToast(res.message)
        }
 };
+
+  const [visible, setVisible] = useState(false);
+  const [colorAlert, setColorAlert] = useState("primary");
+  const [responseAlert, setResponseAlert] = useState("");
+  const onDismiss = () => setVisible(false);
+
 //
   const Button = styled.button`
     background-color: #679966;
@@ -137,23 +138,18 @@ const onSubmit = async (hookData)  => {
     />
      <Container fluid>
         <h2 style={{color:"black"}}>IMPORTER LES DOCUMENTS</h2>
+{/* <<<<<<< HEAD
         <FileUploadBlock setBucket={setBucket} id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
         <FileUploadBlock setBucket={setBucket} id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
         <FileUploadBlock setBucket={setBucket} id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+======= */}
+        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_passport" id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
+        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_plan" id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
+        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_facultatif" id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
+
         <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>
               Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2>
-              <Sinput
-                label=""
-                name="kyc_display_input"
-                id="kyc_display_input"
-                placeholder=""
-                register={register}
-                iStyle={{visibility:"hidden",borderRadius:"15px", overflow:"hidden"}}
-                inputBg="#fff"
-                type="text"
-                handleOnchange={()=>{}}
-                />
                <img
                 name="kyc_display"
                 id="kyc_display"
@@ -162,17 +158,12 @@ const onSubmit = async (hookData)  => {
                 style={{visibility:"hidden",margin:"auto",width:"15em",height:"15em"}}
                />
         </Col>
-        <Button type="submit">Envoyez!</Button>
-        </form>
-        <div className="p-3 my-2 rounded bg-docs-transparent-grid">
-          <Toast isOpen={showToast}>
-           <ToastHeader toggle={toggle} icon="secondary">Message</ToastHeader>
-           <ToastBody>
-              {responseToast}
-           </ToastBody>
-         </Toast>
-        </div>
       </Container>
+      <div>
+        <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visible} toggle={onDismiss} fade={false}>
+          {responseAlert}
+        </Alert>
+      </div>
     </Portal>
   );
 }

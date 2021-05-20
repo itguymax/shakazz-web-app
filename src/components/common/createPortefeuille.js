@@ -24,15 +24,14 @@ const SButton = styled.button`
 		      background-color:white;
 		  }
 		`
-
 export default function CreatePortefeuille({ addPossa, successmsg, errormsg,loading }) {
     const { register, handleSubmit, watch, errors } = useForm({
       resolver: yupResolver(portefeuilleSchema),
     });
-  
+
   return (
-      <Form className="createPortefeuille" 
-      onSubmit={handleSubmit( addPossa)} 
+      <Form className="createPortefeuille"
+      onSubmit={handleSubmit( addPossa)}
       style={{
                       width:"100%",
                       height:"14em",
@@ -40,7 +39,7 @@ export default function CreatePortefeuille({ addPossa, successmsg, errormsg,load
                       backgroundColor:"#f0f0f0",
                       borderRadius:"16px",
                       padding:"1em",paddingTop:"2em"}}>
-                    
+
                         <Sinput
                           label="Nom"
                           inline
@@ -53,8 +52,8 @@ export default function CreatePortefeuille({ addPossa, successmsg, errormsg,load
                           inputBg="#fff"
                           type="text"
                         />
-                         
-                       
+
+
                           <Sinput
                             label="Adresse"
                             inline
@@ -66,19 +65,19 @@ export default function CreatePortefeuille({ addPossa, successmsg, errormsg,load
                                borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
-                            
+
                           />
-                        
+
                        <Row>
                        { successmsg && ( <div className="text-muted font-italic">
-                
+
                   <span className="text-success font-weight-700">{successmsg}</span>
-               
-              </div>)} 
+
+              </div>)}
               { errormsg && ( <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errormsg}</span>
-               
+
               </div>) }
                           <SButton type="submit" disabled={loading} style={{margin:"auto",marginTop:"1em"}}> {loading ? <Spinner size="sm" color="#cc993a" />: "Confirmer"}</SButton>
                        </Row>
