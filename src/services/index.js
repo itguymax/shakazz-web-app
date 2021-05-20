@@ -11,3 +11,4 @@ export * from './networkers.service';
 export * from './options.service';
 export * from './chest.service';
 export * from './user.service';
+export * from './legacy.service.js';

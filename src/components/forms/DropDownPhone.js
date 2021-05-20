@@ -3,6 +3,8 @@ import React, {useState, useEffect} from "react";
 import {Global,css} from "@emotion/react"
 import dropdown_toggle from '../../helpers/dropdown_toggle.js'
 import Sinput from './Sinput'
+
+import CountryFlag from '../CountryFlag';
 // reactstrap components
 import {
   DropdownToggle,
@@ -18,14 +20,15 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
+function Sdropdown({flag,country, idDd,idDdM,phoneName,phoneValue,pickPhone, sample, phone, label,selectedOptionP, register, name, handleOnSelect,selectedOption,options}) {
 
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
    const toggle = () => setIsOpen(prevState => !prevState);
-   const onOptionClicked = value => () => {
+   const onOptionClicked = value => ()  => {
+     console.log("hhhhhhhhhhh", value);
     handleOnSelect(value)
-    toggle();
+    // toggle();
 
   };
   return (
@@ -89,16 +92,16 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
       <UncontrolledDropdown isOpen={open} toggle={toggle} >
         {phone &&<DropdownToggle  innerRef={register()}  caret color="" id="navbarDropdownMenuLink3" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
            <Image id={idDdM}
-                   src={'/assets/img/flags/cmr.svg'}
-                   alt="..."
+                   src={selectedOptionP.flag}
+                   alt={selectedOptionP.code}
                    height={20} width={20}
                    />
           <DropdownItem  id={idDd} tag="div" style={{paddingLeft:"0.4em",paddingRight:"0.6em"}}>
-            {"+237"}
+            {"+" + selectedOptionP.code}
          </DropdownItem>
         </DropdownToggle>}
-        {phone &&<Input style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"8em",zIndex:"900 !important"}}/>}
-        {phone && <DropdownMenu name={name} style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
+        {phone &&<Input innerRef={register()}  name={phoneName} onChange={pickPhone} value={phoneValue} style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"8em",zIndex:"900 !important"}}/>}
+        {/* {phone && <DropdownMenu name={name} style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
             {options.map( (option, i) => {
               return (
                 <li  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
@@ -113,27 +116,28 @@ function Sdropdown({flag,country, idDd,idDdM, sample, phone, label, register, na
                 </li>
               )
             })}
-        </DropdownMenu>}
+        </DropdownMenu>} */}
         {country &&<DropdownToggle  innerRef={register()}  caret color="" id="navbarDropdownMenuLink4" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
            <Image id={idDdM}
-                   src={'/assets/img/flags/cmr.svg'}
-                   alt="..."
+                    src={'/assets/img/flags/'+selectedOption?.alpha3Code.toLowerCase()+'.svg'}
+                   alt={selectedOption.name}
                    height={25} width={50}
                    />
           <DropdownItem  id={idDd} tag="div">
-            {"Cameroon"}
+            {selectedOption.name}
          </DropdownItem>
         </DropdownToggle>}
-        {country &&<DropdownMenu name={name} style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
+        {country &&<DropdownMenu name={name} style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3" >
             {options.map( (option, i) => {
               return (
-                <li  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
+                <li key={i}  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
                   <Image
                           src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
                           alt="..."
-                          height={20} width={50}
-                          />
-                  <DropdownItem key={i} id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle(option.name,idDd,idDdM,option.alpha3Code.toLowerCase()+'.svg')}>
+                          height={25} width={50}
+                          /> 
+                          {/* handleOnSelect(option.name,idDd,idDdM,option.alpha3Code.toLowerCase()+'.svg') */}
+                  <DropdownItem  id={idDd} tag="button" onClick={onOptionClicked(option)}>
                     {option.name}
                   </DropdownItem>
                 </li>

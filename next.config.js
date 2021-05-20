@@ -78,8 +78,8 @@ module.exports =  withPWA(
     return config;
   },
   images: {
-     domains: ['accounts.google.com', '3.64.214.244','https://restcountries.eu/data/'],
-     domains: ['accounts.google.com', '3.64.214.244','uploadludovic.s3.eu-central-1.amazonaws.com'],
+     domains: ['accounts.google.com','legacys-shakazz.s3.eu-central-1.amazonaws.com', '3.64.214.244','restcountries.eu','uploadludovic.s3.eu-central-1.amazonaws.com'],
+     
    },
 
 }

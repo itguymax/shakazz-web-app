@@ -19,7 +19,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image'
 import Sinput from '../../../src/components/forms/Sinput';
-export default function LegacyBlock({}) {
+export default function LegacyBlock({item, del, edit}) {
 	  const Button = styled.button`
 		    background-color: #679966;
 		    border-radius: 20px;
@@ -94,8 +94,8 @@ export default function LegacyBlock({}) {
       }
       @media ${device.bTablet} {
         .legacy_block_container_row1_col1{
-          marginTop:"0.8em";
-          marginLeft:"-4em";
+          margin-top:0.8em;
+          margin-left:-4em;
         }
         .roundBlock{
           margin-top:-3em;
@@ -104,41 +104,51 @@ export default function LegacyBlock({}) {
       `}
     />
       <Row className="legacy_block_container_row1">
-        <Col sm="2"><Image
+        <Col sm="2"><img
         alt="profile_photo_legacy"
-        src="/assets/img/IMG_20181121_094329_174@2x.png"
+        // item.profil
+        src= {item.image.location ||  " /assets/img/IMG_20181121_094329_174@2x.png"}
         className="rounded-circle"
-        height={70} width={70}
-        style={{backgroundColor:"#000",margin:"auto"}}
+        // height={70} width={70}
+        style={{backgroundColor:"#000",margin:"auto", height: "70px", width:"70px"}}
         /></Col>
-        <Col className="legacy_block_container_row1_col1" sm="3"><strong>Bissohong Ebenezer Raphaël-presnel</strong></Col>
+        <Col className="legacy_block_container_row1_col1" sm="3"><strong>{item.name}</strong></Col>
         <Col className="legacy_block_container_row1_col2">
           <Row style={{marginTop:"1em",width:"30em"}}>
             <Col sm="4"><Image
+            // item.country.flat
             src="/assets/img/flags/cmr.svg"
             height={30} width={30}
             style={{backgroundColor:"#000",margin:"auto"}}
             /></Col>
             <Col style={{}}>
-              <span style={{marginLeft:"-2em"}}><strong>Yaoundé,Cameroun</strong></span>
-              <span style={{marginLeft:"2em"}}><strong>+33 123456789</strong></span>
+              <span style={{marginLeft:"-2em"}}><strong>{` ${item.address}, ${item.country.name} `}</strong></span>
+              <span style={{marginLeft:"2em"}}><strong>{item?.tel|| "+23763638870"}</strong></span>
             </Col>
           </Row>
         </Col>
-        <Col><span alt="profile_photo_legacy" className="roundBlock">100%</span></Col>
+        <Col><span alt="profile_photo_legacy" className="roundBlock">{`${item.percentage}`+"%"}</span></Col>
       </Row>
-      <Row className="legacy_block_container_row2">
+      {/* <Row className="legacy_block_container_row2">
       <Col>
-      <Button className="mt-3 mb-1"  onClick={ () => {}}  type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966'}} >
+      <Button className="mt-3 mb-1"  onClick={edit}  type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966'}} >
          Modifier
        </Button>
       </Col>
       <Col>
-      <Button className="mt-3 mb-1"  onClick={ () => {}}  type="submit" style={{ backgroundColor:'#D20000', borderColor:'#D20000'}} >
+      <Button className="mt-3 mb-1"  onClick={ del}  type="submit" style={{ backgroundColor:'#D20000', borderColor:'#D20000'}} >
          Supprimer
        </Button>
       </Col>
-      </Row>
+      </Row> */}
+       <div className="text-right mb-3">
+           <Button className="mt-3 mb-1"  onClick={ edit }  type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
+              Modifier
+            </Button>
+            <Button className="mt-3 mb-1" onClick={del}   type="submit" style={{ backgroundColor:'#D20000', borderColor:'#D20000', borderRadius:'40px', }} >
+              Supprimer
+            </Button>
+         </div>
     </>
   )
 }

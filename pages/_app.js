@@ -11,6 +11,7 @@ import "../public/assets/scss/nextjs-argon-dashboard.scss";
 import "../public/assets/css/responsive.css";
 import "../public/assets/css/shakazz.css";
 import 'react-circular-progressbar/dist/styles.css';
+import 'react-phone-number-input/style.css'
 import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Hydrate} from 'react-query/hydration'

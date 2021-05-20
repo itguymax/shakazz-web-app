@@ -16,15 +16,15 @@ import {
 import Image from 'next/image';
 
 function FileUploadBlock({setBucket,text,id,idResponse}) {
-  setBucket(id);
   function uploadFiles(files,idResponse){
+  
     const kyc_display = document.getElementById("kyc_display");
     const kyc_display_input = document.getElementsByName("kyc_display_input")[0];
 	 	let elt = "";
 		let reader = new FileReader();
     	reader.addEventListener("load", function(){
         requestAnimationFrame(()=>{
-          idResponse.innerHTML = "Un fichier a été selectionné";
+          idResponse.innerHTML = files.name;
           kyc_display.src = this.result;
           kyc_display_input.value = this.result;
           kyc_display.style.visibility = "visible";
@@ -39,6 +39,7 @@ function FileUploadBlock({setBucket,text,id,idResponse}) {
     source_file.multiple = "false";
     source_file.click();
     source_file.addEventListener("change",()=>{
+      console.log("fillllllle",source_file.files[0],response);
   		uploadFiles(source_file.files[0],response);
   	});
     return source_file;
@@ -65,7 +66,10 @@ function FileUploadBlock({setBucket,text,id,idResponse}) {
                 <h4 style={{color:"black"}}>{text}<Badge style={{padding:"0.3em",backgroundColor:"#FF0000"}}color="success"> </Badge>
                 <Badge style={{float:"right",padding:"0.4em",backgroundColor:"#32DC00"}}color="success"> </Badge></h4>
                     <Row>
-                       <Col xs="12"><span onClick={() => launchUpload(id,idResponse)} style={{backgroundColor:"#669965",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}}>Ajouter</span><span id={idResponse}> Aucun fichier choisit</span></Col>
+                       <Col xs="12"><span onClick={() => {
+                         setBucket(id) ;
+                         launchUpload(id,idResponse);
+                       } } style={{backgroundColor:"#669965",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}}>Ajouter</span><span id={idResponse}> Aucun fichier choisit</span></Col>
                     </Row>
            </Col>
         </Row>
