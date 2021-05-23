@@ -6,7 +6,6 @@ import styled from '@emotion/styled'
 import {useMutation, useQueryClient} from 'react-query';
 import {useAppContext} from "../../context";
 import {serviceKyc} from '../../services/kyc.service'
-import {profileUserInfos} from '../../services/profileUserInfos.service'
 import {useServiceKyc} from '../../hooks';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -25,45 +24,44 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-
-function FileUploadBlock({setColorAlert,setResponseAlert,setVisibleAlert,text,id,idSend,idResponse}) {
+function FileUploadBlock({setColorAlert,submitKycDoc,setResponseAlert,setVisibleAlert,text,id,idSend,idResponse}) {
 const {mutateAsync:cpc, isLoading:icpc}  = useServiceKyc();
 const context = useAppContext();
 const router = useRouter();
 const { register, handleSubmit , errors} = useForm({
   resolver: yupResolver(kycSchema),
 });
-const [datasending, setDatasending] = useState("");
+const [datasending, setDatasending] = useState(null);
 const [bucket, setBucket] = useState("");
 const [responseToast, setResponseToast] = useState("");
 const [submitting, setSubmitting] = useState(false);
-const FormData = require('form-data');
-const form = new FormData();
 const onSubmit = async ()  => {
-  form['bucket'] = bucket;
-  form['file'] = datasending;
-  const body = {
-    form
-    }
+  const res = await submitKycDoc(datasending,bucket);
+  // const body = {
+  //   data: {
+  //     file: datasending,
+  //     bucket: bucket
+  //     }
+  //   }
+
+    console.log("file kyc", res);
       //setSubmitting(isLoading);
       /*const { kyc_display_input} = hookData;
       userdata = {kyc_display_input};*/
       //setDatasending(hookData.kyc_display_input)
-      const res = await cpc({accessToken: context.appState.accessToken ,data:body});
-      if(res.error && !res.success){
-        setColorAlert("primary");
-        setResponseAlert(res.message);
-        setVisibleAlert(true);
-         } else {
-           setShowToast(true);
-           setColorAlert("danger");
-           setResponseAlert(res.message);
-           setVisibleAlert(true);
-       }
+      // const res = await cpc({accessToken: context.appState.accessToken ,data:body});
+      // if(res.error && !res.success){
+      //   setColorAlert("primary");
+      //   setResponseAlert(res.message);
+      //   setVisibleAlert(true);
+      //    } else {
+      //      setShowToast(true);
+      //      setColorAlert("danger");
+      //      setResponseAlert(res.message);
+      //      setVisibleAlert(true);
+      //  }
 };
-
   function uploadFiles(files,idResponse){
-  
     const kyc_display = document.getElementById("kyc_display");
 	 	let elt = "";
 		let reader = new FileReader();
@@ -87,9 +85,6 @@ const onSubmit = async ()  => {
     source_file.multiple = "false";
     source_file.click();
     source_file.addEventListener("change",()=>{
-
-      console.log("fillllllle",source_file.files[0],response);
-
         setSubmitting(true);
         requestAnimationFrame(()=>{
           send.style.display = "block";
@@ -120,16 +115,14 @@ const onSubmit = async ()  => {
                 <h4 style={{color:"black"}}>{text}<Badge style={{padding:"0.3em",backgroundColor:"#FF0000"}}color="success"> </Badge>
                 <Badge style={{float:"right",padding:"0.4em",backgroundColor:"#32DC00"}}color="success"> </Badge></h4>
                     <Row>
-
                        <Col xs="12"><span onClick={() =>{
                          launchUpload(id,idResponse);
                        }} style={{backgroundColor:"#669965",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}}>Ajouter</span><span id={idResponse}> Aucun fichier choisit</span></Col>
                     </Row><br/>
                     <Row>
-                       <Col xs="12"><span style={{display:"none",backgroundColor:"#c89631",width:"4.5em",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}} onClick={() =>{onSubmit()}} id={idSend}>
+                       <Col xs="12"><span style={{display:"none",backgroundColor:"#c89631",width:"4.5em",color:"white",cursor:"pointer",padding:"0.4em",borderRadius:"10px",marginRight:"0.8em"}} onClick={onSubmit} id={idSend}>
                        {icpc? <Spinner size="sm" color="#cc993a" />: "Envoyer"}
                        </span></Col>
-
                     </Row>
            </Col>
         </Row>

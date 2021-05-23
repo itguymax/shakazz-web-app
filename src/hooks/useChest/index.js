@@ -2,7 +2,8 @@ import { useMutation, useQuery } from 'react-query';
 import {  addChest,
   fetchChest,
   deleteChest,
-  claimChest
+  claimChest,
+  dailyTransaction,
   } from "../../services";
 
 
@@ -21,9 +22,14 @@ const useFetchUserChest = (accessToken) => {
       refetchInterval: 1000,
     });
 }
+const useChestTransactions = () => {
+  return useMutation('dailyTransaction', dailyTransaction);
+}
+
+
 export {
  useAddChest,
  useDeleteChest,
  useClaimChest,
- useFetchUserChest
+ useFetchUserChest,
 }

@@ -3,64 +3,33 @@ import { Row , Col, Container, Form, Button} from 'reactstrap';
 import {Global,css} from "@emotion/react";
 import Portal from "../../src/layouts/Portal.js";
 import Sinput from "../../src/components/forms/Sinput";
-import DropDownPhone from '../../src/components/forms/DropDownPhone';
 import LegacyBlock from '../../src/components/common/legacyBlock';
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import { legacySchema } from "../../src/validations";
 import LinearProgress from "../../src/components/common/linearProgress";
-import country from '../../src/helpers/countries';
 import withAuth from '../../src/hoc/withAuth';
 import { device } from '../../src/lib/device';
 import { useFetchAllLegacy, useAddLegacy, useDeleteLegacy,useUpdateLegacy,} from '../../src/hooks';
 import {useAppContext} from "../../src/context";
 import LegacyImage from "../../src/components/LegacyImage";
+import LegacyForm from "../../src/components/LegacyForm";
 import LegacyBox from "../../src/components/LegacyBox";
 import Line from '../../src/components/common/line';
 import FileUPloader from '../../src/components/FileUpload';
-import PhoneInput from 'react-phone-number-input'
+
 
 
 function Legacy() {
-   const { register, handleSubmit, watch, errors } = useForm({
-    resolver: yupResolver(legacySchema),
-  });
+  
   const context =  useAppContext();
   const { data: legacyData, isLoading: loadLegacydata } = useFetchAllLegacy(context.appState.accessToken);
   const { mutateAsync:addMutatioData, isLoading:loadMutatioData } = useAddLegacy();
   const { mutateAsync: delMutation, isLoading: loadDelMutation } = useDeleteLegacy();
   const [legacies, setLegacies] = useState([]);
-  const [percentage, setPercentage] = useState(0);
-  const [selectedCountry, setSelectedCountry] = useState(country[41])
-  const [countryIndic, setCountryIndic ] = useState({flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] })
-  const [value, setValue] = useState();
-  const [phone, setPhone] = useState();
-  const [address, setFullAddress] = useState();
-  const [ dateOfb, setDateOfb] = useState();
-  const [lien, setParente] = useState();
-  const [fullName, setFullName] = useState();
   const [selectedOfficialFile, setSelectedOfficialFile] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-   const onSubmit = async (data) =>{
+  const [percentage, setPercentage] = useState(0);
+   const onSubmit = async (body) =>{
      
-     const body= {
-    data : {
-        legacy: {
-            name: fullName,
-            address : address,
-            lien : lien,
-            naissance : dateOfb,
-            percentage : percentage,
-            phone: phone,
-            country : {
-                name: selectedCountry.name,
-                code: "+" + countryIndic.code ,
-                flat: countryIndic.flag,
-            }
-        }
-    }
-}
+
 
 try{
   const res = await addMutatioData({accessToken: context.appState.accessToken, data: body});
@@ -85,16 +54,7 @@ console.log("legacy data", body);
     //   setLegacies(ldata);
 
   };
-  const onPercentageInputChange = (event)=> {
 
-     let x = parseInt(event.target.value);
-
-     if(x==="NaN"){
-       setPercentage(0);
-     } else {
-       setPercentage(x);
-     }
-}
 const handleEdition = (item) => {
  console.log("edit legacy", item);
 }
@@ -128,19 +88,7 @@ console.log("del ayant droit ", res);
   // setLegacies(newList);
 
 }
-const handlePickPhone = (e) => {
-  console.log("valllllll phone", e.target.value);
-  setPhone(e.target.value);
-}
-const handleCountryOption = (value) => {
-  setSelectedCountry(value);
-  setCountryIndic({flag: value.flag, code: value.callingCodes[0]});
-  console.log("country option", value);
-}
-const handlephonechange = (data)=> {
-  console.log("phone", data);
-  setValue()
-}
+
 useEffect((data)=>{
   if(legacies.length <= 1){
     setPercentage(100);
@@ -251,109 +199,7 @@ const submitLegacyPhoto =  (file) => {
       <div>
       <Row> <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#444"}}> Ajouter</h1></Row>
       <Row className="mt-4 justify-content-between">
-        <Form   className="col-xl-7" role="form" >
-          <Row>
-            <Col>
-              <Sinput
-                name="name"
-                placeholder="Entrer le nom complet"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Nom complet"
-                required
-                handleOnchange={(e)=>{ setFullName(e.target.value) }}
-
-              />
-              {errors.name && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.name.message}</span>
-
-              </div> }
-              <Sinput
-                name="dateDeNaissance"
-               label="Date de naissance"
-               placeholder='Entrer la date de naissance'
-               register={register}
-               iStyle={{borderRadius:"15px", overflow:"hidden"}}
-               inputBg="#fff"
-               type="date"
-               handleOnchange={(e) => { setDateOfb(e.target.value) }}
-               />
-              {errors.dateDeNaissance && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.dateDeNaissance.message}</span>
-
-              </div> }
-              <DropDownPhone name="nationnalite" country idDdM={"legacy_country_img_1"} idDd={"legacy_country_flag"} label="Pays:" flag register={register} name="canal" selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
-              {errors.nationnalite && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
-
-              </div> }
-
-              <FileUPloader placeholder="Documents officiels"  label="Documents officiels" register={register} name="documentsOfficiels" onFileSelect = {(file)=> onFileSelect(file)} />
-              {/*errors.pourcentageHeritage && <div className="text-muted font-italic">
-                  <span className="text-danger font-weight-700">{errors.pourcentageHeritage.message}</span>
-              </div> */}
-            </Col>
-            <Col><br/>
-              {/* <DropDownPhone name="legacy_adresse_img_1" country idDdM={"legacy_adresse_img_1"} idDd={"legacy_adresse_flag"} label="Adresse:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
-               <Sinput
-                name="adresse"
-                placeholder="TiTi garage "
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Adresse"
-                info={true}
-                required
-                handleOnchange={(e) => { setFullAddress(e.target.value) }}
-              />
-              {errors.adresse && <div className="text-muted font-italic">
-                  <span className="text-danger font-weight-700">{errors.adresse.message}</span>
-              </div>}
-              <br/>
-                {/* <PhoneInput
-                 placeholder="numero de telephone"
-                 value={value}
-                 onChange={handlephonechange}
-                 /> */}
-                <DropDownPhone phoneName="telephone" phoneValue={phone} pickPhone={handlePickPhone} idDdM={"lg_phone_img_1"} idDd={"lg_phone_number"} label="Numéro de téléphone" phone register={register} name="canal" selectedOptionP={countryIndic} handleOnSelect={()=>{}} options={country||[]}/>
-              {errors.canal && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.canal.message}</span>
-
-              </div> }
-              <br/>
-              <Sinput
-                name="parente"
-                placeholder="Quel est votre lien de parentee ?"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Lien de parenté"
-                info={true}
-                required
-                handleOnchange={(e)=> { setParente(e.target.value) }}
-              />
-               <Sinput
-                name="pourcentageHeritage"
-                placeholder="pourcentage des droits"
-                type="number"
-                register={register}
-                inputBg="#F0F0F0"
-                label="pourcentage des droits"
-                info={true}
-                required
-                handleOnchange={onPercentageInputChange}
-              />
-            </Col>
-          </Row>
-       <Button className="mt-3 mb-1"   onClick={submitOfficialDoc} style={{ backgroundColor:'#CC9933', borderColor:'#CC9933', borderRadius:'40px', width:'200px'}} >
-           Valider
-        </Button>
-        </Form>
+        <LegacyForm onSubmit={onSubmit} setPercentage={setPercentage} handleOnFileSelect={onFileSelect}/>
         <Col xl="5">
           <Row>
            <Col xl="5">

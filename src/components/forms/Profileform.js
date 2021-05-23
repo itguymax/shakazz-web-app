@@ -47,11 +47,14 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
 export default function Profileform({isAccount,setColorAlert,setResponseAlert,setVisible,setAccountType}) {
   const context = useAppContext();
   const {mutateAsync, isLoading, isError, isSuccess}  = useProfileUserInfos();
-  setAccountType(account_type[0].val);
+  const [phone, setPhone] = useState();
+  const [selectedCountry, setSelectedCountry] = useState(country[41]);
+  const [countryIndic, setCountryIndic ] = useState({flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
   const { register, handleSubmit, errors } = useForm({
       resolver: yupResolver(profileSchema),
     });
-    const updateProfile =  async (data) => {console.log(data);
+    const updateProfile =  async (data) => {
+      console.log(data);
       const { name, dob, adresse, phone, pseudo, email, account_type } = data;
       const body = {
      data : {
@@ -86,6 +89,19 @@ export default function Profileform({isAccount,setColorAlert,setResponseAlert,se
         setColorAlert("primary");
      }
   }
+
+  useEffect(()=> {
+    setAccountType(account_type[0].val);
+  },[])
+  const handleCountryOption = (value) => {
+  setSelectedCountry(value);
+  setCountryIndic({flag: value.flag, code: value.callingCodes[0]});
+  console.log("country option", value);
+}
+const handlePickPhone = (e) => {
+  console.log("valllllll phone", e.target.value);
+  setPhone(e.target.value);
+}
   return (
     <Form onSubmit={handleSubmit(updateProfile)}>
         <Row>
@@ -130,7 +146,11 @@ export default function Profileform({isAccount,setColorAlert,setResponseAlert,se
                   </Col>
                   <Col md={12}>
                     <FormGroup>
-                        <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
+                        {/* <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
+                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={register} name="canal" selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
+                              {errors.nationnalite && <div className="text-muted font-italic">
+                                  <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
+                              </div> }
                     </FormGroup>
                   </Col>
                   <Col md={12}>
@@ -215,12 +235,17 @@ export default function Profileform({isAccount,setColorAlert,setResponseAlert,se
                   <Col md={12}>
                      <Row>
                         <Col sm={12}>
-                          <DropDownPhone name="phone" nameIndicatif="phone_number_indicatif" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
+                          {/* <DropDownPhone name="phone" nameIndicatif="phone_number_indicatif" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
                           {errors.phone && <div className="text-muted font-italic">
 
                                <span className="text-danger font-weight-700">{errors.phone.message}</span>
 
-                           </div> }
+                           </div> } */}
+                             <DropDownPhone phoneName="telephone" phoneValue={phone} pickPhone={handlePickPhone} idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} name="canal" selectedOptionP={countryIndic} handleOnSelect={()=>{}} options={country||[]}/>
+                                {errors.canal && <div className="text-muted font-italic">
+
+                                    <span className="text-danger font-weight-700">{errors.canal.message}</span>
+                          </div> }
                         </Col>
 
                      </Row>
@@ -252,9 +277,7 @@ export default function Profileform({isAccount,setColorAlert,setResponseAlert,se
 
                 </Row>
           </Col>
-          <Col sm="4">
-           <ProfileUpload/>
-          </Col>
+         
         </Row>
         </Form>
   )

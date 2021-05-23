@@ -49,7 +49,7 @@ const {data, isLoading} = useWallets(context.appState.accessToken);
 const {data:optionsData, isLoading:isLoadingOptions} = useFetchOptions();
 const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
 const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChest()
-
+console.log("chesttttt", chestData);
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
   const [capital, setCapital] = useState(100);
@@ -62,13 +62,14 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
 
 
  const handlePeriodeSelection = (data) => {
-   console.log("selected periode ", data);
+   const index = selectedPool.stakePeriode.findIndex((op) => op._id === data._id);
     setSelectedPeriode(data);
+    setStakeIndex(index);
  }
 
   const onArrowClick = (data, index) => {
     console.log("selected pool", data, index);
-    setStakeIndex(index)
+    // setStakeIndex(index)
     setSelectedPeriode(data.stakePeriode);
     setSelectedPool(data);
   };
@@ -100,7 +101,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
         option : {
             id : selectedPool._id,
             index : stakeIndex,
-            delayBonus: 7
+            delayBonus: 1
         }
     }
 }
@@ -239,7 +240,7 @@ try {
       {chestData?.data.chests.length > 0 ? <>
         <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Mes coffres</h2>
         {
-          chestData?.data.chests.map((item, key)=> <Coffre key={key} index={key} taux={item.taux} interet={item.interet} periode={item.stakePeriode} pool={{name: selectedPool.nom}} capital={item.montantUSD} date={item.createdAt} />)
+          chestData?.data.chests.map((item, key)=> <Coffre key={key} index={key} item={item} taux={item.taux} interet={item.interet} periode={item.stakePeriode} pool={{name: selectedPool.nom}} capital={item.montantUSD} date={item.createdAt} />)
         }
       </> : <div> <h1 className="text-center"> Vous n'avez aucun coffre ouvert</h1> </div>}
 

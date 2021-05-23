@@ -44,9 +44,20 @@ const claimChest =  async ({ accessToken, chestID }) => {
   }
 }
 
+const dailyTransaction = async({accessToken, data}) => {
+  const url = '/transaction/daily';
+  try {
+      let responseJson = apiV1.postJson(url, accessToken, data);
+      return responseJson;
+  } catch(error){
+    console.log(err);
+  }
+};
+
 export {
   addChest,
   fetchChest,
   deleteChest,
   claimChest,
+  dailyTransaction,
 };
