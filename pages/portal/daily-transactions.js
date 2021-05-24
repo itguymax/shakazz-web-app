@@ -9,6 +9,7 @@ import DropdownSample from '../../src/components/forms/dropdownSample'
 import transactions from '../../src/helpers/transactions.js'
 import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js';
 import withAuth from '../../src/hoc/withAuth';
+import AdminBleu from '../../src/layouts/AdminBleu'
 // reactstrap components
 import {
  
@@ -50,7 +51,7 @@ let table_transaction_state = {
   pourcentage_quotidien:'decroissant'
 };
   return (
-    <>
+    <AdminBleu menu>
       {/* Page content */}
 
       <Global
@@ -429,10 +430,10 @@ let table_transaction_state = {
          </Col>
       </Row>
     </Container>
-    </>
+    </AdminBleu>
   );
 }
 
-Daily_transactions.layout = Bleu;
+// Daily_transactions.layout = Bleu;
 
 export default withAuth(Daily_transactions);

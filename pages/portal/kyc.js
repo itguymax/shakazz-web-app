@@ -34,13 +34,40 @@ import Portal from "../../src/layouts/Portal";
 import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
+import {useAppContext} from "../../src/context";
 
 function Kyc() {
   const [visible, setVisible] = useState(false);
   const [colorAlert, setColorAlert] = useState("primary");
   const [responseAlert, setResponseAlert] = useState("");
+    const context =  useAppContext();
   const onDismiss = () => setVisible(false);
 //
+const submitKycDoc =  async (file,doc) => {
+  // console.log("file to submit", selectedOfficialFile);
+  const formData = new FormData();
+  formData.append('doc', doc);
+  formData.append('file', file);
+  formData.append('bucket', 'users-shakazz');
+     const params = {
+      method: 'POST',
+      headers: {
+        //  Accept: 'application/json',
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Content-Type': 'multipart/form-data',
+        auth_token: context.appState.accessToken,
+      },
+      body: formData
+    }
+    try{
+       const res = await fetch('http://localhost:5000/api/v1/services/uploads/user/document', params);
+       console.log("res fillll", res)
+      alert("File Upload success");
+    } catch(err){
+      alert("File Upload Error");
+    }
+
+};
   const Button = styled.button`
     background-color: #679966;
     border-radius: 20px;
@@ -64,13 +91,11 @@ function Kyc() {
       styles={css`
         /*Responsive*/
         @media only screen and (max-width: 360px) {
-
           }
         @media only screen and (max-width: 414px) {
            .wrapper{
               padding-left:1em !important;
               display: flex;
-
             }
             .colLeft{
               width:30em !important;
@@ -86,7 +111,6 @@ function Kyc() {
             .wrapper{
               padding-left:1em !important;
               display: flex;
-
             }
             .colLeft{
               width:30em !important;
@@ -94,22 +118,20 @@ function Kyc() {
             }
         }
         @media only screen and (max-width: 1024px) {
-
         }
       `}
     />
      <Container fluid>
         <h2 style={{color:"black"}}>IMPORTER LES DOCUMENTS</h2>
-        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_passport" id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
-        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_plan" id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
-        <FileUploadBlock setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_facultatif" id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
+        <FileUploadBlock setColorAlert={setColorAlert} submitKycDoc={submitKycDoc}  setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_passport" id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
+        <FileUploadBlock setColorAlert={setColorAlert} submitKycDoc={submitKycDoc} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_plan" id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
+        <FileUploadBlock setColorAlert={setColorAlert} submitKycDoc={submitKycDoc} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_facultatif" id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
         <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>
               Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2>
                <img
                 name="kyc_display"
                 id="kyc_display"
                 src=""
-                handleOnchange={()=>{}}
                 style={{visibility:"hidden",margin:"auto",width:"15em",height:"15em"}}
                />
         </Col>

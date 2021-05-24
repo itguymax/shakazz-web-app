@@ -71,30 +71,24 @@ const generationCardData = [
     }).flat();
 
   }
-  const getGenerationPopulation = (item) => {
+  const getGenerationPopulation = (item, text) => {
     console.log("get gene pop", item);
       setselectedGen(item);
-      setChildren(item);
-      //  switch(item.id){
-      //    case 1:
-      //      setChildren( findChildren(user.children.child1));
-      //      break;
-      //   case 2:
-      //      setChildren(findChildren(user.children.child2));
-      //      break;
-      //   case 3:
-      //      setChildren(findChildren(user.children.child3));
-      //      break;
-      //   case 4:
-      //      setChildren(findChildren(user.children.child4));
-      //      break;
-      //   case 5:
-      //      setChildren(findChildren(user.children.child5));
-      //      break;
-      //   default:
-      //     setChildren([]);
-      //     break;
-      //  }
+     
+       switch(text){
+         case "all":
+           setChildren(item);
+           break;
+        case "actif":
+            setChildren(item.filter(l => l.licence));
+         break;
+         case "non-actif":
+           setChildren(item.filter(l => !l.licence));
+           break;
+        default:
+           setChildren([]);
+           break;
+        }
       setShowPopulation(true);
 
 }
@@ -219,13 +213,47 @@ console.log("user tree", treeData);
           <TabContent id="myTabContent" activeTab={hTabsIcons}>
             <TabPane  className="py-4"  tabId={`hTabsIcons-1`} role="tabpanel">
               {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
-                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`])}/>)}
+                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].filter(item => item.license).length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "actif")}/>)}
 
               </div> :
                 <div >
                     <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
                        {
-                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`])}/>)
+                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "actif")}/>)
+                       }
+                    </div>
+                    <PopulationTable popData={children}/>
+                </div>
+
+               }
+
+            </TabPane>
+               <TabPane  className="py-4"  tabId={`hTabsIcons-2`} role="tabpanel">
+              {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
+                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].filter(item => !item.license).length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`],"non-actif")}/>)}
+
+              </div> :
+                <div >
+                    <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+                       {
+                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "non-actif")}/>)
+                       }
+                    </div>
+                    <PopulationTable popData={children}/>
+                </div>
+
+               }
+
+            </TabPane>
+               <TabPane  className="py-4"  tabId={`hTabsIcons-3`} role="tabpanel">
+              {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
+                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "all")}/>)}
+
+              </div> :
+                <div >
+                    <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+                       {
+                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "all")}/>)
                        }
                     </div>
                     <PopulationTable popData={children}/>

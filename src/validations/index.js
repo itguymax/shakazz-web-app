@@ -103,11 +103,11 @@ const retraitSchema = yup.object().shape({
 const legacySchema = yup.object().shape({
   name: yup.string().required(),
   dateDeNaissance: yup.date().required(),
-  nationnalite: yup.string().required(),
+  nationnalite: yup.string(),
   adresse: yup.string(),
   telephone: yup.string(),
   parente: yup.string(),
-  officialDoc: yup.string(),
+  canal: yup.string(),
   pourcentageHeritage: yup.number().max(100, "should be less or equal to 100")
 
 })

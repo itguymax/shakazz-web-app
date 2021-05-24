@@ -10,8 +10,16 @@ import BlogHero from '../../src/sections/BlogHero';
 import Subscription from '../../src/sections/Subscription';
 import LastArticles from '../../src/sections/LastArticles';
 import {css} from "@emotion/react";
-import {device} from "../../src/lib/device" 
+import {device} from "../../src/lib/device" ;
+import { useRouter } from 'next/router';
+
+
 function Blog({ posts }) {
+  console.log("les node    ");
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
   return (
     <>
     <Head>
@@ -57,8 +65,7 @@ function Blog({ posts }) {
   )
 }
 
-Blog.layout = Public;
-export default Blog;
+
 
 
 export async function getStaticProps() {
@@ -67,7 +74,6 @@ export async function getStaticProps() {
     query BlogPagePosts {
           posts {
             nodes {
-              date
               title
               excerpt
               content
@@ -82,11 +88,14 @@ export async function getStaticProps() {
         }
 
     `,
-  });
-
+  })
+// console.log("les node    ", result.data.posts.nodes);
   return {
     props: {
       posts: result.data.posts.nodes,
     },
-  };
+  }
 }
+
+Blog.layout = Public;
+export default Blog;
