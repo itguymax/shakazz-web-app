@@ -55,10 +55,8 @@ export default function ProfileUpload() {
                   onClick={() =>{
                     launchUpload("profile_photo");
                   }}
-              />
-                      <FormGroup>
+              />                
                         <Button>Envoyer</Button>
-                      </FormGroup>
                <Image
                 src="/assets/img/free-badge-icon-1361-thumb@2x.png"
                 alt="..."
