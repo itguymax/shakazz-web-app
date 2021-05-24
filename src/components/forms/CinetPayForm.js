@@ -1,4 +1,5 @@
 import React from 'react'
+import {cp_init} from "../../../src/helpers/cp";
 import {
   FormGroup,
   Input,
@@ -9,35 +10,27 @@ import {
   Row, Form, Label,FormText
 } from "reactstrap";
 import Dot from '../common/dot'
+import {useMutation, useQueryClient} from 'react-query';
 
 export default function CinetPayForm({}) {
   return (
-    <>
-    <Form>
+    <div>
         <FormGroup>
           <Label>Montant</Label>
-          <Input type="email" name="email" id="amount" placeholder="Amount" />
-          </FormGroup>
-        <FormGroup>
-          <Label>Monnaie</Label>
-          <Input type="email" name="email" id="currency" placeholder="Currency" />
+          <Input type="integer" id="cinetpay_amount" placeholder="100" />
         </FormGroup>
         <FormGroup>
-          <Label>Transaction</Label>
-          <Input type="email" name="email" id="trans_id" placeholder="" />
-        </FormGroup>
-        <FormGroup>
-          <Label>User</Label>
-          <Input type="email" name="email" id="cpm_custom" placeholder="" />
-        </FormGroup>
-        <FormGroup>
-          <Label>Désignation</Label>
-          <Input type="email" name="email" id="designation" placeholder="" />
-        </FormGroup>
-        <Button className="mt-3 mb-1"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
+          <Label>Veuillez Choisir une monnaie</Label>
+          <Input type="select" id="cinetpay_currency">
+            <option>XAF</option>
+            <option>XOF</option>
+            <option>CDF</option>
+          </Input>
+      </FormGroup>
+        <Button onClick={cp_init} className="mt-3 mb-1" id="cp_bt_get_signature" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
         SOUMETTRE
        </Button>
-      </Form>
-    </>
+       <div id="cinetpay_payment_result" style={{color:"red",fontSize:"1.1em"}}></div>
+    </div>
   )
 }
