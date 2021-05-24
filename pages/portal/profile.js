@@ -1,3 +1,4 @@
+
 import React, {useState, useRef, useEffect } from "react";
 import {Global,css} from "@emotion/react";
 import styled from '@emotion/styled';
@@ -29,6 +30,7 @@ import Portal from "../../src/layouts/Portal";
 // core components
 import Possa from "../../src/components/possa";
 import ProfileForm from '../../src/components/forms/Profileform';
+import ProfileUpload from '../../src/components/forms/ProfileUpload';
 import { useRouter } from 'next/router'
 function Profile() {
   const router = useRouter();
@@ -193,6 +195,9 @@ function Profile() {
     </div>
       <h2>INFORMATIONS PERSONNELLES</h2>
       <ProfileForm isAccount={isAccount} setAccountType={setAccountType} setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisible={setVisible}/>
+       {/* <Col sm="4"> */}
+           <ProfileUpload/>
+          {/* </Col> */}
       </Container>
       <Possa/>
     </Portal>

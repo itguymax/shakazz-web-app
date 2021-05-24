@@ -13,9 +13,9 @@ const METHOD = {
 };
 
 
-const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
 
-//const apiBaseUrl = "http://localhost:5000/api/v1/services";
+// const apiBaseUrl = "http://localhost:5000/api/v1/services";
 // shakkazz api pattern
   const apiV1 = {
   root: apiBaseUrl,
@@ -33,7 +33,7 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
     body = {},
   ) => {
     console.log("AT GET", accessToken);
-    const withBody = [METHOD.PUT, METHOD.PATCH, METHOD.POST];
+    const withBody = [METHOD.PUT, METHOD.PATCH, METHOD.POST,METHOD.DELETE];
     const params = {
       method,
       headers: {
@@ -80,6 +80,14 @@ const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
       url,
        apiV1.parameters(accessToken, METHOD.DELETE),
     );
+    return response.json();
+  },
+    deleteJsonBody: async (url, accessToken,body={}) => {
+    const response = await  apiV1.call(
+      url,
+       apiV1.parameters(accessToken, METHOD.DELETE,  ACCEPT.JSON,  body),
+    );
+
     return response.json();
   },
   get: async (url, accessToken) => {

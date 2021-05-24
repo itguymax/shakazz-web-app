@@ -1,66 +1,156 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import { Row , Col, Container, Form, Button} from 'reactstrap';
-import {Global,css} from "@emotion/react"
+import {Global,css} from "@emotion/react";
 import Portal from "../../src/layouts/Portal.js";
-import Sinput from "../../src/components/forms/Sinput"
-import DropDownPhone from '../../src/components/forms/DropDownPhone'
-import LegacyBlock from '../../src/components/common/legacyBlock'
-import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
-import { legacySchema } from "../../src/validations";
-import LinearProgress from "../../src/components/common/linearProgress"
-import Image from 'next/image'
-import Line from '../../src/components/common/line'
-import country from '../../src/helpers/countries.js'
+import Sinput from "../../src/components/forms/Sinput";
+import LegacyBlock from '../../src/components/common/legacyBlock';
+import LinearProgress from "../../src/components/common/linearProgress";
 import withAuth from '../../src/hoc/withAuth';
-import { device } from '../../src/lib/device.js';
+import { device } from '../../src/lib/device';
+import { useFetchAllLegacy, useAddLegacy, useDeleteLegacy,useUpdateLegacy,} from '../../src/hooks';
+import {useAppContext} from "../../src/context";
+import LegacyImage from "../../src/components/LegacyImage";
+import LegacyForm from "../../src/components/LegacyForm";
+import LegacyBox from "../../src/components/LegacyBox";
+import Line from '../../src/components/common/line';
+import FileUPloader from '../../src/components/FileUpload';
+
+
 
 function Legacy() {
-   const { register, handleSubmit, watch, errors } = useForm({
-    resolver: yupResolver(legacySchema),
-  });
+  
+  const context =  useAppContext();
+  const { data: legacyData, isLoading: loadLegacydata } = useFetchAllLegacy(context.appState.accessToken);
+  const { mutateAsync:addMutatioData, isLoading:loadMutatioData } = useAddLegacy();
+  const { mutateAsync: delMutation, isLoading: loadDelMutation } = useDeleteLegacy();
   const [legacies, setLegacies] = useState([]);
-  const [percentage, setPercentage] = useState();
+  const [selectedOfficialFile, setSelectedOfficialFile] = useState(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [percentage, setPercentage] = useState(0);
+   const onSubmit = async (body) =>{
+     
 
-   const onSubmit = (data) =>{
-     if(legacies.length >= 1){
-        let sumper = legacies.reduce( function(a, b){
-        return a + b['pourcentageHeritage'];
-    }, 0);
-        if(sumper === 100){
-          alert("la somme doit etre egal a cent ")
-        }
 
-        return;
-     }
-     let ldata = [...legacies,data]
-      setLegacies(ldata);
+try{
+  const res = await addMutatioData({accessToken: context.appState.accessToken, data: body});
+  console.log("Legacy req", res);
+} catch(err){
+  console.log(err);
+}
+
+
+console.log("legacy data", body);
+    //  if(legacies.length >= 1){
+    //     let sumper = legacies.reduce( function(a, b){
+    //     return a + b['pourcentageHeritage'];
+    // }, 0);
+    //     if(sumper === 100){
+    //       alert("la somme doit etre egal a cent ")
+    //     }
+
+    //     return;
+    //  }
+    //  let ldata = [...legacies,data]
+    //   setLegacies(ldata);
 
   };
-  const onPercentageInputChange = (event)=> {
 
-     let x = parseInt(event.target.value);
-
-     if(x==="NaN"){
-       setPercentage(0);
-     } else {
-       setPercentage(x);
-     }
+const handleEdition = (item) => {
+ console.log("edit legacy", item);
 }
-const handleEdition = (event) => {
+const handleDelete = async (name) => {
+  console.log("delete legacy", name);
+   alert(`Supprimer ${name}`)
+  const body = {
+    data : {
+        legacy : {
+            id: name
+        }
+       
+    }
+};
+
+try {
+  const res = await delMutation({ accessToken: context.appState.accessToken, data: body});
+console.log("del ayant droit ", res);
+  if(res.success && !res.error){
+    console.log("deleted successfully")
+  } else {
+    console.log("deleted error");
+  }
+
+} catch(err){
+  console.log(err);
+}
+  
+  
+  // const newList = legacies.filter((item) => item.name !== name);
+  // setLegacies(newList);
 
 }
-const handleDelete = (name) => {
-  const newList = legacies.filter((item) => item.name !== name);
-  setLegacies(newList);
 
-}
 useEffect((data)=>{
   if(legacies.length <= 1){
     setPercentage(100);
   }
 
 },[legacies])
+console.log("ayants droit", legacyData);
+const onFileSelect = (file) => {
+  setSelectedOfficialFile(file);
+  console.log("file", file);
+}
+const submitOfficialDoc =  (file) => {
+  console.log("file to submit", selectedOfficialFile);
+  const formData = new FormData();
+  formData.append('doc', 'facultafif');
+  formData.append('file', selectedOfficialFile);
+  formData.append('bucket', 'legacys-shakazz');
+  formData.append('id', '60a5fd07b5f28807b43082ed');
+     console.log("form data", formData);
+     const params = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        auth_token: context.appState.accessToken,
+        
+      },
+      body: formData
+    }
+  
+    fetch('http://localhost:5000/api/v1/services/uploads/legacy/document', params)
+    .then((res) => {
+      console.log("res fillll", res)
+      alert("File Upload success");
+    })
+    .catch((err) => alert("File Upload Error"));
+};
+const submitLegacyPhoto =  (file) => {
+  console.log("file to submit", selectedOfficialFile);
+  const formData = new FormData();
+  formData.append('doc', 'profil');
+  formData.append('file', selectedOfficialFile);
+  formData.append('bucket', 'legacys-shakazz');
+  formData.append('id', '60a5fd07b5f28807b43082ed');
+     console.log("form data", formData);
+     const params = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        auth_token: context.appState.accessToken,
+        
+      },
+      body: formData
+    }
+  
+    fetch('http://localhost:5000/api/v1/services/uploads/legacy/profil', params)
+    .then((res) => {
+      console.log("res fillll", res)
+      alert("File Upload success");
+    })
+    .catch((err) => alert("File Upload Error"));
+};
+
   return (
     <>
     <Global
@@ -109,160 +199,36 @@ useEffect((data)=>{
       <div>
       <Row> <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#444"}}> Ajouter</h1></Row>
       <Row className="mt-4 justify-content-between">
-        <Form   className="col-xl-7" role="form" onSubmit={handleSubmit(onSubmit)}>
-          <Row>
-            <Col>
-              <Sinput
-                name="name"
-                placeholder="Entrer le nom complet"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Nom complet"
-                required
-
-
-              />
-              {errors.name && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.name.message}</span>
-
-              </div> }
-              <Sinput
-                name="dateDeNaissance"
-               label="Date de naissance"
-               placeholder='Entrer la date de naissance'
-               register={register}
-               iStyle={{borderRadius:"15px", overflow:"hidden"}}
-               inputBg="#fff"
-               type="date"
-               handleOnchange={()=>{}}
-               />
-              {errors.dateDeNaissance && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.dateDeNaissance.message}</span>
-
-              </div> }
-              <DropDownPhone name="legacy_country_img_1" country idDdM={"legacy_country_img_1"} idDd={"legacy_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
-              {errors.nationnalite && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
-
-              </div> }
-              <Sinput
-                name="documentsOfficiels"
-                placeholder="Documents officiels"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                // disabled={legacies.length <= 1?true:false}
-                label="Documents officiels"
-                required
-                handleOnchange={()=>{}}
-                icon={"fa fa-eye-slash"}
-                disabled
-              />
-              {/*errors.pourcentageHeritage && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.pourcentageHeritage.message}</span>
-
-              </div> */}
-            </Col>
-            <Col><br/>
-              <DropDownPhone name="legacy_adresse_img_1" country idDdM={"legacy_adresse_img_1"} idDd={"legacy_adresse_flag"} label="Adresse:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/>
-              {errors.adresse && <div className="text-muted font-italic">
-                  <span className="text-danger font-weight-700">{errors.adresse.message}</span>
-              </div>}
-              <br/>
-                <DropDownPhone idDdM={"lg_phone_img_1"} idDd={"lg_phone_number"} label="Numéro de téléphone" phone register={()=>{}} name="canal" selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
-              {errors.nationnalite && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
-
-              </div> }
-              <br/>
-              <Sinput
-                name="parente"
-                placeholder="Quel est votre lien de parentee ?"
-                type="text"
-                register={register}
-                inputBg="#F0F0F0"
-                label="Lien de parenté"
-                info={true}
-                required
-              />
-            </Col>
-          </Row>
-       <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933', borderRadius:'40px', width:'200px'}} >
-           Valider
-        </Button>
-        </Form>
+        <LegacyForm onSubmit={onSubmit} setPercentage={setPercentage} handleOnFileSelect={onFileSelect}/>
         <Col xl="5">
           <Row>
            <Col xl="5">
               <LinearProgress label="Pourcentage héritage" val={percentage} pColor="#CC9933"/>
            </Col>
            <Col xl="7" style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-
-                  <div className="rounded-circle "style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center", height:'200px', width:'200px'}}>
-                  <a href="#itguymax">
-                  <Image
-                  id="profile_photo"
-                  src="/assets/img/IMG_20181121_094329_174@2x.png"
-                  alt="..."
-                  className="rounded-circle"
-                  height={200} width={200}
-                  style={{backgroundColor:"#000",margin:"auto"}}
-                  />
-                  </a>
-                </div>
-                <Button className="mt-3 mb-1"   type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
-                  Ajouter une image
-                </Button>
-
+               <LegacyImage/>
            </Col>
          </Row>
         </Col>
       </Row>
-      {
-        legacies.length >0 ? <>
-        <Line bgc='#b7b7b7' height="1px"/>
-         { legacies.map((item, key)=> <> <Container style={{ width:"70%"}} className="mb-3">
-         <Row key={key} style={{backgroundColor:"#F0F0F0",height: '50px', borderRadius:"40px",overflow:'hidden'}} >
-        <div style={{display:'flex', flexDirection:'row', justifyContent:"space-between", width:"100%", paddingTop:"10px" }}>
-           <Image
-            src="https://accounts.google.com/SignOutOptions?hl=en&continue=https://www.google.com/search%3Fq%3Dadd%2Bcountry%2Bflag%2Bin%2Bnext%2Bjs%26oq%3Dadd%2Bcontry%2Bflag%2Bin%2Bnext%26aqs%3Dchrome.1.69i57j33i10i160l3.12407j0j4%26sourceid%3Dchrome%26ie%3DUTF-8"
-            alt="..."
-            className="rounded-circle"
-            height={45} width={45}
-            style={{backgroundColor:"#000"}}
-            />
-            <p>{item.name}</p>
-            <p>{item.telephone}</p>
-            <p>{item.adresse}</p>
-            <div className="rounded-circle" style={{backgroundColor: "#CC9933", marginTop:"-8px",marginRight:"2px", height: "45px",display:"flex", justifyContent:'center', alignItems:'center', width:"45px", fontSize:"12px", color:'#fff'}}>
-              <span>{`${item.pourcentageHeritage}`+"%"}</span>
-            </div>
-        </div>
-
-         </Row>
-         <div className="text-right">
-           <Button className="mt-3 mb-1"  onClick={ () => handleEdition(item.name) }  type="submit" style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
-              Modifier
-            </Button>
-            <Button className="mt-3 mb-1" onClick={ () => handleDelete(item.name)}   type="submit" style={{ backgroundColor:'#D20000', borderColor:'#D20000', borderRadius:'40px', }} >
-              Supprimer
-            </Button>
-         </div>
-         </Container>
-
-
-         </> )}
-        </>: null
-      }
+       {/* <Line bgc='#b7b7b7' height="1px"/> */}
+        
+        
       </div>
       <Container className="legacy_block_container">
-        <LegacyBlock />
+      
+        {
+          legacyData?.data.legacys.length >= 1 ? <>
+          {
+              legacyData?.data.legacys.map((item ,key)=>  <LegacyBlock key={key} del={()=> handleDelete(item._id)} edit={ ()=> handleEdition(item) } item={item} />)
+          }
+        </>: <div> Aucun ayant droit</div>
+        
+        }
+        
+
+      
+        
       </Container>
     </Container>
   </Portal>
