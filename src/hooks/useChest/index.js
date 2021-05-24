@@ -22,7 +22,7 @@ const useFetchUserChest = (accessToken) => {
       refetchInterval: 1000,
     });
 }
-const useChestTransactions = () => {
+const useChestDailyTransactions = () => {
   return useMutation('dailyTransaction', dailyTransaction);
 }
 
@@ -32,4 +32,5 @@ export {
  useDeleteChest,
  useClaimChest,
  useFetchUserChest,
+ useChestDailyTransactions,
 }

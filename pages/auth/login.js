@@ -78,6 +78,10 @@ function Login() {
      alert("Vous n'êtes pas humain")
    }
  };
+ useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch('/portal/dashboard');
+  }, [])
   return (
     <>
     <Global

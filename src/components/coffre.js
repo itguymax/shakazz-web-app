@@ -4,12 +4,15 @@ import LightBoxContainer from "../components/common/lightBoxContainer";
 import { Container, Row,Col } from "reactstrap";
 import {  FlatButton} from "./common/SButton";
 import ProgressBar from "../components/ProgressBar";
-import {useClaimChest}  from "../hooks";
+import {useClaimChest, useChestDailyTransactions}  from "../hooks";
 import { useAppContext } from '../context';
+import { useRouter } from 'next/router';
 
 export default function coffre( {pool, item, index}) {
   const context = useAppContext();
-  const { mutateAsync, isLoading } = useClaimChest()
+  const router = useRouter();
+  const { mutateAsync, isLoading } = useClaimChest();
+  const {mutationAsync: dailyTMutation, isLoading: dailyTLoad } = useChestDailyTransactions();
      const calculateTimeLeft = () => {
       const createdTime = new Date(item.createdAt);
     const difference =  createdTime.setDate(createdTime.getDate() + 1)  - +new Date()  ;
@@ -52,15 +55,22 @@ export default function coffre( {pool, item, index}) {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
   });
+  useEffect(()=>{
+    router.prefetch("/portal/daily-transactions");
+  }, []);
   const percentage = Math.round((item.chestReciveROI/item.interet) * 100);
  const claimgain = async () => {
    try{
      const res = await mutateAsync({accessToken: context.appState.accessToken, chestID:item._id});
      console.log("claim response ", res);
+     alert(`${res.message}`);
    } catch(err){
      console.log(err);
    }
    console.log("claim chest", item);
+ }
+ const handleChestDailyTransactions = () => {
+       router.push('/portal/daily-transactions');
  }
   // le = (parseIn) * (parseFloat(taux)/100)) * / pool.frequence);
   return (
@@ -70,7 +80,7 @@ export default function coffre( {pool, item, index}) {
             <Row className="py-3">
                <Col xl="4">
                  <h4 style={{color:"#444", fontWeight:"600", marginBottom:"15px"}}>{`Coffre fort ${index+1}`} </h4>
-                 <h4 style={{color:"#cc9933", fontWeight:"bold"}}>{pool.name}</h4>
+                 <h4 style={{color:"#cc9933", fontWeight:"bold"}}>{item.denominationPool || ""}</h4>
                  <h4 style={{color:"#444", fontWeight:"100"}}>Montant d:{" "} <span style={{color:"#444", fontWeight:"bold"}}>{item.montantUSD}</span></h4> 
                  <h4 style={{color:"#444", fontWeight:"100"}}>Total récompenses:{" "}<span style={{color:"#444", fontWeight:"bold"}}>{item.interet}</span> </h4> 
                  <h4 style={{color:"#444"}}>{item.stakePeriode}{" "}jours</h4>
@@ -84,14 +94,14 @@ export default function coffre( {pool, item, index}) {
                  
                </> :
                  
-                    (<ProgressBar percentage={percentage}/>)
+                    (<ProgressBar percentage={percentage}  handleClick={handleChestDailyTransactions}/>)
               
                 }
                </Col>
              <Col xl="4" style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}} >
                 <div style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
                     <h1 style={{color:"#444"}}> {`${item.gain}` + " "}$</h1>
-                    <FlatButton  handleClick={claimgain}label="Reclamer" bgc="#cc9933" width="150px"/>
+                    <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/>
                 </div>
              </Col>
             </Row>
