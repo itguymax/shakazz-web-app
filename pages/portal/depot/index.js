@@ -48,7 +48,9 @@ function Depot() {
   const [sOP, setS] = useState("");
   const [destinationOption, setDestinationOption] = useState(["BITCOIN","CINETPAY"]);
   const [modal, setModal] = useState(false);
-  const toggleModal = () => setModal(!modal);
+  const toggleModal = () => {
+    if(selectedType !== "") setModal(!modal);
+  };
   // const [body, setBody] = useState({});
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
 
@@ -60,7 +62,9 @@ function Depot() {
     openDepotModal();
 
   };
-  const openDepotModal = () => setOpenModal(!openModal);
+  const openDepotModal = () => {
+    setOpenModal(!openModal);
+  };
    const handleToggleshow = () => setShow(!show);
    const changeUSDtoBTC = (data) => {
       setUSDVal(data.target.value);
@@ -99,11 +103,11 @@ function Depot() {
    const handleOnSelectTypeDepot = (type) => {
       if(type.value === optionstype[0]){
            setModalTitle("FORMULAIRE DE PAIEMENT BTC");
-           setType("BICOIN");
+           setType(optionstype[0]);
       } else if(type.value === optionstype[1]){
              //setSourceOption(s);
              //setDestinationOption(d);
-             setType("CINTETPAY");
+             setType(optionstype[1]);
              setModalTitle("FORMULAIRE DE PAIEMENT CINETPAY");
 
 
