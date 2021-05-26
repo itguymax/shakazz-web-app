@@ -56,7 +56,6 @@ function Dashboard() {
   };
    const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
   console.log("user data loading", userData);
-  console.log("context user", context );
   return (
     <Portal>
       <Container>

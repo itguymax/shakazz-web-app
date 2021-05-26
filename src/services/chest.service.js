@@ -44,10 +44,10 @@ const claimChest =  async ({ accessToken, chestID }) => {
   }
 }
 
-const dailyTransaction = async({accessToken, data}) => {
-  const url = '/transaction/daily';
+const dailyTransaction = async(accessToken,id, page=1, element = 10) => {
+  const url = '/transaction/daily?id=' + id +'&page=' + page +'&element=' + element;
   try {
-      let responseJson = apiV1.postJson(url, accessToken, data);
+      let responseJson = apiV1.getJson(url, accessToken);
       return responseJson;
   } catch(error){
     console.log(err);
