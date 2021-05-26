@@ -13,3 +13,4 @@ export * from './useChest';
 export * from './useUser';
 export * from './useLegacy';
 export * from './useKyc';
+export * from './useTransactions';

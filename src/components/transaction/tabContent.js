@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import moment from "moment";
 // reactstrap components
 import {
     Table,Button, Modal, ModalHeader, ModalBody, ModalFooter
@@ -90,25 +90,28 @@ export default function TabContent(props) {
                 opacity: 1!important;
             }
             `}>
-                {props.data.map( (item, key)=> {
-                    return <>
-                    <tr style={{ }}>
-                        <td ><div >{item.id}</div></td>
-                        <td><div >{item.date}</div></td>
-                        <td><div >{item.type}</div></td>
-                        <td><div >{item.statut}</div></td>
-                        <td><div >{item.montant}</div></td>
-                        <td><div style={{padding:"0px",paddingTop:"5px",cursor:"pointer"}}><Image
-                           onClick={toggle}
-                          src="/assets/img/icons/add.svg"
-                          alt="..."
-                          height={2} width={2}
-                          /></div></td>
-                    </tr>
-                    <div></div>
-              </>
-                })}
-                </tbody>
+                { 
+                    props.data.length < 1 ? <div> no data </div> : <>
+                    { props.data.map( (item, key)=> <> <tr style={{ }}>
+                            <td ><div >{item._id}</div></td>
+                            <td><div >{ moment(item.createdAt).format('YYYY/MM/DD')}</div></td>
+                            <td><div >{item.type}</div></td>
+                            <td><div >{item.statut}</div></td>
+                            <td><div >{(item.montantUSD ).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</div></td>
+                            <td><div style={{padding:"0px",paddingTop:"5px",cursor:"pointer"}}><Image
+                            onClick={toggle}
+                            src="/assets/img/icons/add.svg"
+                            alt="..."
+                            height={2} width={2}
+                            /></div></td>
+                        </tr>
+                        <div></div>
+                        </>
+                    )
+                    }
+                    </>
+                }
+            </tbody>
             </Table>
             <Modal isOpen={modal} toggle={toggle} className={className}>
              <ModalHeader toggle={toggle}>Détails sur la transaction</ModalHeader>

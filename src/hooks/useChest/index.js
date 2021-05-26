@@ -22,8 +22,8 @@ const useFetchUserChest = (accessToken) => {
       refetchInterval: 1000,
     });
 }
-const useChestDailyTransactions = () => {
-  return useMutation('dailyTransaction', dailyTransaction);
+const useChestDailyTransactions = (accessToken, id, page, element) => {
+  return useQuery(['dailyTransaction'], () => dailyTransaction(accessToken, id, page, element) );
 }
 
 
