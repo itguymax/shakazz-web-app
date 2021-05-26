@@ -13,19 +13,93 @@ import Button from "../../src/components/transaction/button";
 import NavPil from "../../src/components/transaction/navPil";
 import FakeData from "../../src/__MOCK__/transaction"
 import  { Link } from "../../src/components/Link";
+import { useAppContext } from '../../src/context';
+import {useFetchAlltransactions,useFetchWallettransactions} from '../../src/hooks';
+import { useWallets} from "../../src/hooks";
 
 function Transactions() {
+
+  const context = useAppContext();
+  const {data:allWallet, isLoading, isFetching, isSuccess} = useWallets(context.appState.accessToken);
   const [currentHTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
   const [activeButton, setActiveButton] = useState("");
+  const [page, setPage] = useState(1);
+  const [element, setElement] = useState(10);
+  const {mutateAsync} = useFetchWallettransactions();
+  const {mutateAsync: allMutation } = useFetchAlltransactions();
+  const [transData, setTransData] = useState([])
+  
   function indexPrimaty(tabIndex){
       setHTabsIcons("hTabsIcons-1");
   }
-
-  const handleSetHTabs = (indic) => {
-    setHTabsIcons(indic);
+  const fetchInitData = async () => {
+    const body = {
+     page, element
+   }
+    const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
+    console.log("init data", initData);
+    setTransData(initData.transactions);
+  }
+ const fetchwData = async (id) => {
+   const body = {
+     id, page, element
+   }
+   try {
+  const {data:wd, isSuccess: isSuccessw} = await mutateAsync({accessToken:context.appState.accessToken, data:body});
+   console.log("hhhhhhhhh", wd);
+   setTransData(wd?.transactions)
+   return wd;
+   } catch(err) {
+     console.log(err);
+   }
+ }
+  const handleSetHTabs = async (indic) => {
+    console.log("transaction data", indic);
+     setHTabsIcons(indic);
+     
+    switch (indic) {
+      case "hTabsIcons-1" :
+      // all
+        fetchInitData();
+        break;
+      case "hTabsIcons-2" :
+      // principal
+         let wal1 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "principal")];
+          let re = await  fetchwData(wal1._id);
+       
+         console.log("wal indexed", wal1, re);
+        break;
+      case "hTabsIcons-3" :
+      // vault
+         let wal2 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "vault")];
+           let re2 = await  fetchwData(wal2._id);
+         console.log("wal indexed", wal2, re2);
+        break;
+      case "hTabsIcons-4" :
+      // networking
+         let wal3 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "networking")];
+           let re3 = await  fetchwData(wal3._id);
+         console.log("wal indexed", wal3, re3);
+        break;
+      case "hTabsIcons-5" :
+      // networking
+         let wal4 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "transfert")];
+           let re4 = await  fetchwData(wal4._id);
+         console.log("wal indexed", wal4, re4);
+        break;
+      default:
+        break;
+    }
+   
   }
 
+  useEffect(()=> {
+    fetchInitData();
+  },[])
+
   let data = FakeData();
+  console.log("walletssss", allWallet?.data.wallets);
+  console.log("data......", transData);
   return (
     <Portal>
       <Container fluid>
@@ -40,7 +114,7 @@ function Transactions() {
         <Row clbt-3assName="">
           <Text text = "Historique"/>
         </Row>
-        <NavPil data = {data} handleSetHTabs =  {handleSetHTabs}  currentHTabsIcons =  {currentHTabsIcons}/>
+        <NavPil data = {transData} handleSetHTabs =  {handleSetHTabs}  currentHTabsIcons =  {currentHTabsIcons}/>
       </Container>
       </Portal>
   );

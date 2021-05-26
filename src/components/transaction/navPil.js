@@ -25,6 +25,9 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
         },
         {
           altText: 'Wallet networking',
+        },
+        {
+          altText: 'Wallet transfert',
         }
       ];
 
@@ -62,6 +65,7 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-2" text={items[1].altText}/>
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-3" text={items[2].altText}/>
                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-4" text={items[3].altText}/>
+                 <NavHeader handleSetHTabs={handleSetHTabs} hTabsIcons={currentHTabsIcons} indicator="hTabsIcons-5" text={items[4].altText}/>
             </Nav>
             </div>
             <Row style={{ borderBottom: '2px solid #888 ', marginBottom: '15px', marginTop: '0px', marginLeft : '4px', marginRight :'4px' }}>
@@ -80,6 +84,9 @@ export default function navPil({currentHTabsIcons, handleSetHTabs, data}) {
                             <TabExplain data = {data} />
                         </TabPane>
                         <TabPane tabId="hTabsIcons-4" role="tabpanel">
+                            <TabExplain data = {data} />
+                        </TabPane>
+                        <TabPane tabId="hTabsIcons-5" role="tabpanel">
                             <TabExplain data = {data} />
                         </TabPane>
                     </TabContent>

@@ -1,8 +1,11 @@
-const useFetchAlltransactions = (accessToken, page, element) => {
-  return useQuery(['fetchAlltransactions'], () => dailyTransaction(accessToken, page, element) );
+import { useQuery, useMutation } from 'react-query';
+import { fetchAlltransactions,fetchWallettransactions } from "../../services";
+
+const useFetchAlltransactions = () => {
+  return useMutation('fetchAlltransactions', fetchAlltransactions );
 }
-const useFetchWallettransactions = (accessToken, id, page, element) => {
-  return useQuery(['fetchWallettransactions'], () => dailyTransaction(accessToken, id, page, element));
+const useFetchWallettransactions = () => {
+  return useMutation('fetchWallettransactions', fetchWallettransactions);
 }
 
 export {
