@@ -10,22 +10,22 @@ import BlogPostFooter from "../../src/components/blog/BlogPostFooter"
 // reactstrap components
 import {Container} from "reactstrap";
 
-function BlogPage(){
+function BlogPage({post}){
   const router = useRouter();
 
-  // let featuredImageUrl="";
-  // let authorInfo="";
-  // if(post.featuredImage){
-  //  featuredImageUrl =  post.featuredImage.node.sourceUrl;
-  // }
-  // if(post.author){
-  //    authorInfo = post.author.node;
-  // }
+  let featuredImageUrl="";
+  let authorInfo="";
+  if(post.featuredImage){
+   featuredImageUrl =  post.featuredImage.node.sourceUrl;
+  }
+  if(post.author){
+     authorInfo = post.author.node;
+  }
 
    if (router.isFallback) {
     return <div>Loading...</div>
   }
-//  console.log("blog post", post);
+ console.log("blog post article", post);
   return (
     <>
     <Head>
