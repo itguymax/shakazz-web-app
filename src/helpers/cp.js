@@ -5,7 +5,6 @@ const cp_init = ()=>{
     const currency = document.getElementById("cinetpay_currency");
     const result_div = document.getElementById('cinetpay_payment_result');
     let custom = "id_xyz";
-    alert(currency.value);
 
     //-------------Configuration
     CinetPay.setConfig({
