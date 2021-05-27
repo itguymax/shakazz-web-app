@@ -10,7 +10,7 @@ import { device } from '../../lib/device';
 // reactstrap components
 import {
   DropdownMenu,
-  DropdownItem,
+  DropdownItem,NavbarToggler,
   NavbarBrand,
   NavItem,
   NavLink,
@@ -131,7 +131,7 @@ function Sidebar(props) {
   };
 
   return (
-    <Navbar
+    <Navbar color="faded" light
       className="navbar-vertical fixed-left"
       expand="sm"
       id="sidenav-main"
@@ -139,11 +139,11 @@ function Sidebar(props) {
       <Container fluid>
         {/* Toggler */}
         <button
-          className="navbar-toggler"
+          className="mr-2 navbar-toggler"
           type="button"
           onClick={toggleCollapse}
         >
-          <span style={{zIndex:"900"}} className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon"></span>
         </button>
         {/* Brand */}
         {logo && logo.innerLink ? (
