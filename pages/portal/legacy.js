@@ -18,7 +18,7 @@ import FileUPloader from '../../src/components/FileUpload';
 
 
 function Legacy() {
-  
+
   const context =  useAppContext();
   const { data: legacyData, isLoading: loadLegacydata } = useFetchAllLegacy(context.appState.accessToken);
   const { mutateAsync:addMutatioData, isLoading:loadMutatioData } = useAddLegacy();
@@ -28,7 +28,7 @@ function Legacy() {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [percentage, setPercentage] = useState(0);
    const onSubmit = async (body) =>{
-     
+
 
 
 try{
@@ -66,7 +66,7 @@ const handleDelete = async (name) => {
         legacy : {
             id: name
         }
-       
+
     }
 };
 
@@ -82,8 +82,8 @@ console.log("del ayant droit ", res);
 } catch(err){
   console.log(err);
 }
-  
-  
+
+
   // const newList = legacies.filter((item) => item.name !== name);
   // setLegacies(newList);
 
@@ -113,11 +113,11 @@ const submitOfficialDoc =  (file) => {
       headers: {
         'Content-Type': 'multipart/form-data',
         auth_token: context.appState.accessToken,
-        
+
       },
       body: formData
     }
-  
+
     fetch('http://localhost:5000/api/v1/services/uploads/legacy/document', params)
     .then((res) => {
       console.log("res fillll", res)
@@ -138,11 +138,11 @@ const submitLegacyPhoto =  (file) => {
       headers: {
         'Content-Type': 'multipart/form-data',
         auth_token: context.appState.accessToken,
-        
+
       },
       body: formData
     }
-  
+
     fetch('http://localhost:5000/api/v1/services/uploads/legacy/profil', params)
     .then((res) => {
       console.log("res fillll", res)
@@ -212,23 +212,23 @@ const submitLegacyPhoto =  (file) => {
         </Col>
       </Row>
        {/* <Line bgc='#b7b7b7' height="1px"/> */}
-        
-        
+
+
       </div>
       <Container className="legacy_block_container">
-      
+
         {
           legacyData?.data.legacys.length >= 1 ? <>
           {
               legacyData?.data.legacys.map((item ,key)=>  <LegacyBlock key={key} del={()=> handleDelete(item._id)} edit={ ()=> handleEdition(item) } item={item} />)
           }
         </>: <div> Aucun ayant droit</div>
-        
-        }
-        
 
-      
-        
+        }
+
+
+
+
       </Container>
     </Container>
   </Portal>
