@@ -69,7 +69,7 @@ function BlogPage(){
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
       
     </div> */}
-      {/* <article
+     <article
         css={css`
           width: 100%;
           display: flex;
@@ -116,9 +116,9 @@ function BlogPage(){
          
            <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </Container>
-       
-      </article>  */}
-        <div
+    
+      </article>  
+        {/* <div
       css={css`
         width: 100%;
         height: 100vh;
@@ -130,7 +130,7 @@ function BlogPage(){
     >
       <h1>POST PAGE NOT FOUND</h1>
       <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
-    </div>  
+    </div>   */}
        {/* <Container css={css`
             padding-top: 20px;
             width: 70%;
@@ -143,66 +143,66 @@ function BlogPage(){
 
 
 
-// export async function getStaticPaths(){
-//   const result = await client.query({
-//     query: gql`
-//         query GetWordPressPosts {
-//           posts {
-//             nodes {
-//               slug
-//             }
-//           }
-//         }
-//     `
-//   });
-//    const paths = result.data.posts.nodes.map(({slug})=>{
-//       console.log("path path path", slug);
-//       return  {
-//         params: { slug }
-//       }
-//     }
-//     )
-//   return {
-//     paths,
-//     fallback: true,
-//   }
+export async function getStaticPaths(){
+  const result = await client.query({
+    query: gql`
+        query GetWordPressPosts {
+          posts {
+            nodes {
+              slug
+            }
+          }
+        }
+    `
+  });
+   const paths = result.data.posts.nodes.map(({slug})=>{
+      console.log("path path path", slug);
+      return  {
+        params: { slug }
+      }
+    }
+    )
+  return {
+    paths,
+    fallback: true,
+  }
 
-// }
+}
 
-// export async function getStaticProps({ params }) {
-//   const { slug } = params;
-//   const result = await client.query({
-//     query: gql`
-//       query GetWordPressPostBySlug($slug: ID!) {
-//          post(idType: SLUG, id: $slug) {
-//              content
-//               title
-//               # author {
-//               #   node {
-//               #     avatar {
-//               #       url
-//               #     }
-//               #     # username
-//               #     # description
-//               #   }
-//               # }
-//             featuredImage {
-//               node {
-//                 sourceUrl
-//               }
-//             }
-//           }
-//       }
-//     `,
-//     variables: { slug },
-//   });
-//   return {
-//     props: {
-//       post: result.data.post,
-//     },
-//     revalidate: 1,
-//   }
-// }
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  const result = await client.query({
+    query: gql`
+      query GetWordPressPostBySlug($slug: ID!) {
+         post(idType: SLUG, id: $slug) {
+             content
+              title
+              # author {
+              #   node {
+              #     avatar {
+              #       url
+              #     }
+              #     # username
+              #     # description
+              #   }
+              # }
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+      }
+    `,
+    variables: { slug },
+  });
+  return {
+    props: {
+      post: result.data.post,
+    },
+    revalidate: 1,
+  }
+}
 
 BlogPage.layout = Public;
 export default BlogPage;
