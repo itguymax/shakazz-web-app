@@ -13,19 +13,19 @@ import {Container} from "reactstrap";
 function BlogPage({post}){
   const router = useRouter();
 
-  let featuredImageUrl="";
-  let authorInfo="";
-  if(post.featuredImage){
-   featuredImageUrl =  post?.featuredImage?.node.sourceUrl;
-  }
-  if(post.author){
-     authorInfo = post.author.node;
-  }
+  // let featuredImageUrl="";
+  // let authorInfo="";
+  // if(post.featuredImage){
+  //  featuredImageUrl =  post?.featuredImage?.node.sourceUrl;
+  // }
+  // if(post.author){
+  //    authorInfo = post.author.node;
+  // }
 
    if (router.isFallback) {
     return <div>Loading...</div>
   }
- console.log("blog post article", post);
+//  console.log("blog post article", post);
   return (
     <>
     <Head>
@@ -69,7 +69,7 @@ function BlogPage({post}){
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
       
     </div> */}
-     <article
+     {/* <article
         css={css`
           width: 100%;
           display: flex;
@@ -117,8 +117,8 @@ function BlogPage({post}){
            <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </Container>
     
-      </article>  
-        {/* <div
+      </article>   */}
+         <div
       css={css`
         width: 100%;
         height: 100vh;
@@ -130,7 +130,7 @@ function BlogPage({post}){
     >
       <h1>POST PAGE NOT FOUND</h1>
       <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
-    </div>   */}
+    </div> 
        {/* <Container css={css`
             padding-top: 20px;
             width: 70%;
