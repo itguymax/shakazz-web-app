@@ -59,8 +59,8 @@ function Dashboard() {
   return (
     <Portal>
       <Container>
-      <h1>Dashboard</h1>
-      <a href="/portal/daily-transactions">daily t</a>
+      {/* <h1>Dashboard</h1>
+      <a href="/portal/daily-transactions">daily t</a> */}
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
