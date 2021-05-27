@@ -10,7 +10,7 @@ import BlogPostFooter from "../../src/components/blog/BlogPostFooter"
 // reactstrap components
 import {Container} from "reactstrap";
 
-function BlogPage({post}){
+function BlogPage(){
   const router = useRouter();
 
   // let featuredImageUrl="";
@@ -143,66 +143,66 @@ function BlogPage({post}){
 
 
 
-export async function getStaticPaths(){
-  const result = await client.query({
-    query: gql`
-        query GetWordPressPosts {
-          posts {
-            nodes {
-              slug
-            }
-          }
-        }
-    `
-  });
-   const paths = result.data.posts.nodes.map(({slug})=>{
-      console.log("path path path", slug);
-      return  {
-        params: { slug }
-      }
-    }
-    )
-  return {
-    paths,
-    fallback: true,
-  }
+// export async function getStaticPaths(){
+//   const result = await client.query({
+//     query: gql`
+//         query GetWordPressPosts {
+//           posts {
+//             nodes {
+//               slug
+//             }
+//           }
+//         }
+//     `
+//   });
+//    const paths = result.data.posts.nodes.map(({slug})=>{
+//       console.log("path path path", slug);
+//       return  {
+//         params: { slug }
+//       }
+//     }
+//     )
+//   return {
+//     paths,
+//     fallback: true,
+//   }
 
-}
+// }
 
-export async function getStaticProps({ params }) {
-  const { slug } = params;
-  const result = await client.query({
-    query: gql`
-      query GetWordPressPostBySlug($slug: ID!) {
-         post(idType: SLUG, id: $slug) {
-             content
-              title
-              # author {
-              #   node {
-              #     avatar {
-              #       url
-              #     }
-              #     # username
-              #     # description
-              #   }
-              # }
-            featuredImage {
-              node {
-                sourceUrl
-              }
-            }
-          }
-      }
-    `,
-    variables: { slug },
-  });
-  return {
-    props: {
-      post: result.data.post,
-    },
-    revalidate: 1,
-  }
-}
+// export async function getStaticProps({ params }) {
+//   const { slug } = params;
+//   const result = await client.query({
+//     query: gql`
+//       query GetWordPressPostBySlug($slug: ID!) {
+//          post(idType: SLUG, id: $slug) {
+//              content
+//               title
+//               # author {
+//               #   node {
+//               #     avatar {
+//               #       url
+//               #     }
+//               #     # username
+//               #     # description
+//               #   }
+//               # }
+//             featuredImage {
+//               node {
+//                 sourceUrl
+//               }
+//             }
+//           }
+//       }
+//     `,
+//     variables: { slug },
+//   });
+//   return {
+//     props: {
+//       post: result.data.post,
+//     },
+//     revalidate: 1,
+//   }
+// }
 
 BlogPage.layout = Public;
 export default BlogPage;
