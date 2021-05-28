@@ -60,16 +60,16 @@ export default function Profileform({isAccount,setColorAlert,setResponseAlert,se
      data : {
          address : {
              country:{
-             name : adresse,
-             indicatif : phone,
-             flag : "src/img/cameroun.jpg"
+             name : selectedCountry,
+             indicatif : countryIndic.code,
+             flag : countryIndic.flag
              },
          state : "centre",
          city : "yaounde",
          street : "ekie"
          },
          profil: account_type,
-         companyName:"umdeny",
+         companyName:"",
          name: name,
          firstName:name,
          lastName:name,
