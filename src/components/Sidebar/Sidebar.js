@@ -5,11 +5,12 @@ import { useRouter } from "next/router";
 // nodejs library to set properties for components
 import { PropTypes } from "prop-types";
 import Image from "next/image";
-import {css} from "@emotion/react";
+import {Global,css} from "@emotion/react";
+import { device } from '../../lib/device';
 // reactstrap components
 import {
   DropdownMenu,
-  DropdownItem,
+  DropdownItem,NavbarToggler,
   NavbarBrand,
   NavItem,
   NavLink,
@@ -40,7 +41,7 @@ function Sidebar(props) {
   const activeRoute = (routeName) => {
     return router.route.indexOf(routeName) > -1;
   };
- 
+
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
     setCollapseOpen(!collapseOpen);
@@ -51,12 +52,12 @@ function Sidebar(props) {
     openSubmenu(!isOpen);
   };
   const createSubLink = (subLinks) => {
-       
+
         return subLinks.map((level, i)=> {
-            
+
             return <div className="my-2">
               <Link href={level.layout + level.path}>
-              <span style={{cursor:"pointer", color:"#fff", fontWeight:"100", opacity: activeRoute(level.layout + level.path)? 0.5:1, fontSize:"0.7rem"}}>{level.displayName}</span>
+              <span className="sb_sidebar_item" style={{cursor:"pointer", color:"#fff", fontWeight:"100", opacity: activeRoute(level.layout + level.path)? 0.5:1, fontSize:"0.7rem"}}>{level.displayName}</span>
               </Link>
             </div>
           });
@@ -70,14 +71,25 @@ function Sidebar(props) {
   );
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
-   
+
     return routes.map((prop, key) => {
-      
-      
+
+
       return (
         <React.Fragment key={key}>
         {prop.children.length > 0 ? (
           <>
+          <Global
+          styles={css`
+            @media ${device.mPhone} {
+              }
+            @media ${device.bPhone} {
+              .sb_sidebar_item{
+                color:black !important;
+              }
+            }
+          `}
+          />
           <NavItem  active={activeRoute(prop.layout + prop.path)} className="mb-3">
             <Link href={prop.layout + prop.path}>
               <NavLink
@@ -87,8 +99,8 @@ function Sidebar(props) {
               >
               <img className="mr-2"  src={activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1? prop.icon1: prop.icon2} style={{width:"15px", height:"20px" }}/>
                 {/* <i className={prop.icon} /> */}
-                <span style={{color:(activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1)? "#143427":"#fff" }}>{prop.name}</span>
-                 
+                <span className="sb_sidebar_item" style={{color:(activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1)? "#143427":"#fff" }}>{prop.name}</span>
+
                  {(activeRoute(prop.layout + prop.path) || prop.childrenRoutes.indexOf(router.pathname) > -1)?<span  className="arrow up  ml-3 mb--1"/>:<span  className="arrow down ml-3 mb--1"/>}
               </NavLink>
             </Link>
@@ -107,10 +119,10 @@ function Sidebar(props) {
             >
              <img className="mr-2"  src={activeRoute(prop.layout + prop.path)? prop.icon1: prop.icon2} style={{width:"15px", height:"20px" }}/>
               {/* <i className={prop.icon} /> */}
-              <span style={{color:activeRoute(prop.layout + prop.path)? "#143427":"#fff" }}>{prop.name}</span>
+              <span className="sb_sidebar_item" style={{color:activeRoute(prop.layout + prop.path)? "#143427":"#fff" }}>{prop.name}</span>
             </NavLink>
           </Link>
-          
+
         </NavItem>
         )}
       </React.Fragment>
@@ -119,7 +131,7 @@ function Sidebar(props) {
   };
 
   return (
-    <Navbar
+    <Navbar color="faded" light
       className="navbar-vertical fixed-left"
       expand="sm"
       id="sidenav-main"
@@ -127,11 +139,11 @@ function Sidebar(props) {
       <Container fluid>
         {/* Toggler */}
         <button
-          className="navbar-toggler"
+          className="mr-2 navbar-toggler"
           type="button"
           onClick={toggleCollapse}
         >
-          <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon"></span>
         </button>
         {/* Brand */}
         {logo && logo.innerLink ? (
@@ -180,24 +192,6 @@ function Sidebar(props) {
                 <DropdownItem>
                   <i className="ni ni-single-02" />
                   <span>My profile</span>
-                </DropdownItem>
-              </Link>
-              <Link href="/portal/profile">
-                <DropdownItem>
-                  <i className="ni ni-settings-gear-65" />
-                  <span>Settings</span>
-                </DropdownItem>
-              </Link>
-              <Link href="/portal/profile">
-                <DropdownItem>
-                  <i className="ni ni-calendar-grid-58" />
-                  <span>Activity</span>
-                </DropdownItem>
-              </Link>
-              <Link href="/portal/profile">
-                <DropdownItem>
-                  <i className="ni ni-support-16" />
-                  <span>Support</span>
                 </DropdownItem>
               </Link>
               <DropdownItem divider />
@@ -259,10 +253,10 @@ function Sidebar(props) {
           </Form>
           {/* Navigation */}
           <Nav navbar
-          
+
           css={css`
             .nav-link {
-              
+
               font-weight: 100;
             }
           `}

@@ -21,7 +21,6 @@ import Smodal from '../../../src/components/common/Smodal'
 import { depotSchema } from "../../../src/validations";
 import withAuth from '../../../src/hoc/withAuth';
 import { useDeposit,useWallets } from '../../../src/hooks';
-import { useConverter } from '../../../src/hooks'
 import { useAppContext } from '../../../src/context';
 import { useRouter } from 'next/router';
 import {constantes} from '../../../src/config';
@@ -38,8 +37,6 @@ function Depot() {
   const [show, setShow] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [data, setData] = useState({});
-  const [usdVal, setUSDVal] = useState(100);
-  const {data:dtc} = useConverter("BTC","USD");
   const [openModal, setOpenModal] = useState(false);
    const [errormsg, setErrormsg]= useState(null);
   const [successmsg, setSuccessmsg]= useState(null);
@@ -54,52 +51,11 @@ function Depot() {
   // const [body, setBody] = useState({});
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
 
-  const {mutateAsync, isLoading} = useDeposit()
-  const onSubmit = (hookdata) =>{
-
-    console.log("deposit data", data);
-    setData(hookdata);
-    openDepotModal();
-
-  };
+  const {mutateAsync, isLoading} = useDeposit();
   const openDepotModal = () => {
     setOpenModal(!openModal);
   };
    const handleToggleshow = () => setShow(!show);
-   const changeUSDtoBTC = (data) => {
-      setUSDVal(data.target.value);
-
-   }
-   const  handleMSubmit = async (t) => {
-      const body = {
-      data: {
-        principal : {
-            type : "principal",
-            btc : t?.quantitebtc,
-            amount: t?.montant,
-            taux : dtc?.USD
-        },
-        user: {
-            transaction: t?.transactionPassword,
-        },
-      }
-    };
-    // setBody(body);
-    const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
-     const {error, message,success, data} = res;
-        if(error && !success){
-        setSuccessmsg(null);
-        setErrormsg(message);
-
-        alert("une erreur s'est produite")
-       } else {
-
-         setErrormsg(null);
-         setSuccessmsg(message);
-
-         router.push('/portal/depot/detail');
-       }
-   }
    const handleOnSelectTypeDepot = (type) => {
       if(type.value === optionstype[0]){
            setModalTitle("FORMULAIRE DE PAIEMENT BTC");
@@ -110,10 +66,8 @@ function Depot() {
              setType(optionstype[1]);
              setModalTitle("FORMULAIRE DE PAIEMENT CINETPAY");
 
-
       }
    }
-   console.log("c val", dtc,);
    const defaultOption = selectedType;
    const defautOptionS = sOP;
    const defautOptionD = dOp;
@@ -145,55 +99,6 @@ function Depot() {
                  register={register}
                  onSelect={handleOnSelectTypeDepot}
                />
-                <Sinput
-                label="Montant"
-                name="montant"
-                placeholder="6,000"
-                type="text"
-                inputvalue={usdVal}
-                register={register}
-                inputBg="#679966"
-                inline
-                usd
-                handleOnchange={changeUSDtoBTC}
-
-              />
-               {errors.montant && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.montant.message}</span>
-
-              </div> }
-
-
-                <Sinput
-                label="Equivalence"
-                name="quantitebtc"
-                placeholder="0.001"
-                type="text"
-                register={register}
-                inputBg="#679966"
-                inline
-                btc
-                inputvalue={(usdVal/ dtc?.USD).toFixed(5)}
-                readOnly={true}
-
-              />
-              <Sinput
-                label="Mot de passe de la transaction"
-                name="transactionPassword"
-                placeholder="Mot de passe de transaction"
-                type="password"
-                register={register}
-                inputBg="#679966"
-                inline
-                icon={show ? "fa fa-eye":"fa fa-eye-slash"}
-                handleToggleshow={handleToggleshow }
-              />
-               {errors.transactionPassword && <div className="text-muted font-italic">
-
-                  <span className="text-danger font-weight-700">{errors.transactionPassword.message}</span>
-
-              </div> }
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6" >
