@@ -16,7 +16,7 @@ function BlogPage(){
   // let featuredImageUrl="";
   // let authorInfo="";
   // if(post.featuredImage){
-  //  featuredImageUrl =  post.featuredImage.node.sourceUrl;
+  //  featuredImageUrl =  post?.featuredImage?.node.sourceUrl;
   // }
   // if(post.author){
   //    authorInfo = post.author.node;
@@ -25,7 +25,7 @@ function BlogPage(){
    if (router.isFallback) {
     return <div>Loading...</div>
   }
-//  console.log("blog post", post);
+//  console.log("blog post article", post);
   return (
     <>
     <Head>
@@ -69,7 +69,7 @@ function BlogPage(){
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
       
     </div> */}
-      {/* <article
+     {/* <article
         css={css`
           width: 100%;
           display: flex;
@@ -116,9 +116,9 @@ function BlogPage(){
          
            <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </Container>
-       
-      </article>  */}
-        <div
+    
+      </article>   */}
+         <div
       css={css`
         width: 100%;
         height: 100vh;
@@ -130,7 +130,7 @@ function BlogPage(){
     >
       <h1>POST PAGE NOT FOUND</h1>
       <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
-    </div>  
+    </div> 
        {/* <Container css={css`
             padding-top: 20px;
             width: 70%;

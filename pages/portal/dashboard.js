@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
@@ -9,6 +9,7 @@ import settings from "../../src/__MOCK__/settings";
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import {useAppContext} from "../../src/context";
+import moment from "moment";
 // reactstrap components
 import {
   Card,
@@ -36,13 +37,17 @@ import { currentUser } from "../../src/__MOCK__/user";
 import { isDirective } from "graphql";
 import withAuth from '../../src/hoc/withAuth';
 import { constantes  } from "../../src/config/";
-import {  useFetchUserInfos } from "../../src/hooks";
+import {  useFetchAlltransactions,useFetchUserInfos } from "../../src/hooks";
+
 
 function Dashboard() {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
+  const [page, setPage] = useState(1);
+  const [transData, setTransData] = useState([])
+  const [element, setElement] = useState(10);
   const context = useAppContext();
-
+const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
   const [token, setToken]= useState(context.appState.accessToken);
   const [isUserInfoCompleted , setUserInfoCompleted] = useState(false);
   if (window.Chart) {
@@ -54,13 +59,25 @@ function Dashboard() {
     setActiveNav(index);
     setChartExample1Data("data" + index);
   };
+    const fetchInitData = async () => {
+    const body = {
+     page, element
+   }
+    const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
+    console.log("init data", initData);
+    setTransData(initData.transactions);
+  }
+   useEffect(()=> {
+    fetchInitData();
+  },[])
    const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
   console.log("user data loading", userData);
+  console.log("slice 10", transData.slice(0,10))
   return (
     <Portal>
       <Container>
-      <h1>Dashboard</h1>
-      <a href="/portal/daily-transactions">daily t</a>
+      {/* <h1>Dashboard</h1>
+      <a href="/portal/daily-transactions">daily t</a> */}
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
@@ -96,61 +113,27 @@ function Dashboard() {
                             <th scope="col">Type</th>
                             <th scope="col">Status</th>
                             <th scope="col">Montant</th>
-                            <th scope="col">Détails</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>4,569</td>
-                            <td>340</td>
-                            <td>4,569</td>
-                            <td>340</td>
-                            <td>
-                              46,53%
-                            </td>
+                       
+                        { isLoading? <span> Loading...</span>:
+                           <tbody>
+                           {
+                          transData.slice(0,10).map((item, key)=> 
+                            <tr key={key}>
+                            <th scope="row"> {item._id}</th>
+                            <td>{ moment(item.createdAt).format('YYYY/MM/DD')}</td>
+                            <td>{item.type}</td>
+                            <td>{item.statut}</td>
+                            <td>{(item.montantUSD ).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                           </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>3,985</td>
-                            <td>319</td>
-                            <td>3,985</td>
-                            <td>319</td>
-                            <td>
-                              46,53%
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>3,513</td>
-                            <td>294</td>
-                            <td>3,513</td>
-                            <td>294</td>
-                            <td>
-                              36,49%
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>2,050</td>
-                            <td>147</td>
-                            <td>2,050</td>
-                            <td>147</td>
-                            <td>
-                            50,87%
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>1,795</td>
-                            <td>190</td>
-                            <td>1,795</td>
-                            <td>190</td>
-                            <td>
-                              46,53%
-                            </td>
-                          </tr>
-                        </tbody>
+                          )
+                        
+                         }
+                         </tbody>
+                        }
+                          
+                       
                       </Table>
                    </LightBoxContainer>
                 </Col>
@@ -217,9 +200,9 @@ function Dashboard() {
                 <div className="container p-4" >
                 <div className="mb-5" >
                   <h2 className="mb-3" style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Sécurité </h2>
-                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Double vérification</p> {settings.securite.twofaActivated? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
-                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Mot de passe de transaction</p>  {settings.securite.transactionPasswordChanged? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
-                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>KYC</p>  {settings.securite.submitKyc? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Verification Email </p> {userData?.data.user.emailIsVerified? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Double vérification</p>  {userData?.data.user.twofaIsVerified? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>KYC</p>  {userData?.data.user.kycIsVerified? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
                 </div>
                 <Link label="Mettre à jour votre sécurité" path="/portal/securite" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                 </div>

@@ -67,7 +67,7 @@ export default function TabContent(props) {
                         <th><div>Type</div></th>
                         <th><div >Statut</div></th>
                         <th><div >Montant</div></th>
-                        <th><div >Détails</div></th>
+                        {/* <th><div >Détails</div></th> */}
                     </tr>
                 </thead>
                 <tbody className="" css={css`
@@ -98,12 +98,12 @@ export default function TabContent(props) {
                             <td><div >{item.type}</div></td>
                             <td><div >{item.statut}</div></td>
                             <td><div >{(item.montantUSD ).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</div></td>
-                            <td><div style={{padding:"0px",paddingTop:"5px",cursor:"pointer"}}><Image
+                            {/* <td><div style={{padding:"0px",paddingTop:"5px",cursor:"pointer"}}><Image
                             onClick={toggle}
                             src="/assets/img/icons/add.svg"
                             alt="..."
                             height={2} width={2}
-                            /></div></td>
+                            /></div></td> */}
                         </tr>
                         <div></div>
                         </>
