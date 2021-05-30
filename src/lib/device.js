@@ -4,7 +4,7 @@ export const size = {
   sPhone: '320px',
   mPhone: '360px',
   bPhone: '414px',
-  surfaceDuo: '540',
+  surfaceDuo: '540px',
   tablet: '768px',
   laptop: '1024px',
 };

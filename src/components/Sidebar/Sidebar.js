@@ -83,6 +83,11 @@ function Sidebar(props) {
           styles={css`
             @media ${device.mPhone} {
               }
+              @media ${device.surfaceDuo} {
+                .sb_sidebar_item{
+                  color:black !important;
+                }
+                }
             @media ${device.bPhone} {
               .sb_sidebar_item{
                 color:black !important;
