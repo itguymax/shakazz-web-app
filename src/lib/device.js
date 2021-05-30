@@ -4,6 +4,7 @@ export const size = {
   sPhone: '320px',
   mPhone: '360px',
   bPhone: '414px',
+  surfaceDuo: '540',
   tablet: '768px',
   laptop: '1024px',
 };
@@ -19,6 +20,7 @@ export const device = {
   sPhone: `(max-width: ${size.mPhone})`,
   mPhone: `(max-width: ${size.sPhone})`,
   bPhone: `(max-width: ${size.bPhone})`,
+  surfaceDuo: `(max-width: ${size.surfaceDuo})`,
   sTablet: `(max-width: ${size.tablet})`,
   bTablet: `(max-width: ${size.laptop})`,
 };

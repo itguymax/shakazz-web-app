@@ -86,12 +86,8 @@ const profileSchema = yup.object().shape({
   account_type: yup.string(),
 })
 
-const depotSchema = yup.object().shape({
-  wallet: yup.string().default('Wallet pricinpal'),
-  method: yup.string().default('Bitcoin'),
-  montant: yup.number().min(100, "Le Montant Minimum de depot est de 100 usd").required("Entrez le montant en USD"),
-  quantitebtc: yup.number(),
-  transactionPassword: yup.string().required("Entrez votre mot de pass de transaction").min(9, "Format Incorrect"),
+const depotBTCSchema = yup.object().shape({
+  depot_btc_montant: yup.number("Veuillez entrez un nombre").min(100, "Le Montant Minimum de depot est de 100 usd").required("Entrez le montant en USD"),
 })
 
 const retraitSchema = yup.object().shape({
@@ -160,4 +156,4 @@ const portefeuilleSchema = yup.object().shape({
 })
 
 
-export { kycSchema,profileSchema,portefeuilleSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+export { kycSchema,profileSchema,portefeuilleSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotBTCSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;

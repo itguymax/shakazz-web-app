@@ -1,10 +1,9 @@
 
 import config from '../config';
 import  apiV1  from './config';
-  
+
 const makeDeposit = async ({accessToken, data}) => {
-  console.log("make depo", accessToken, data);
-    const url = "/transactions/deposit";
+    const url = "/payement/btc";
     try {
     let responseJson =  apiV1.postJson(url, accessToken,data);
     return responseJson;

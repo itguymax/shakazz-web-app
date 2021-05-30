@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../../src/components/common/lightBoxContainer';
 import Smodal from '../../../src/components/common/Smodal'
-import { depotSchema } from "../../../src/validations";
+import { depotBTCSchema } from "../../../src/validations";
 import withAuth from '../../../src/hoc/withAuth';
 import { useDeposit,useWallets } from '../../../src/hooks';
 import { useAppContext } from '../../../src/context';
@@ -28,7 +28,7 @@ import {constantes} from '../../../src/config';
 function Depot() {
   const optionstype = ["BITCOIN","CINETPAY"];
   const { register, handleSubmit, watch, errors } = useForm({
-    resolver: yupResolver(depotSchema),
+    resolver: yupResolver(depotBTCSchema),
   });
 
   const context = useAppContext();
