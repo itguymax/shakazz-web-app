@@ -5,7 +5,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   InputGroup,
-  Col,Button,
+  Col,Button,Spinner,
   Row, Form, Label,FormText
 } from "reactstrap";
 import Sinput from "./Sinput";
@@ -13,71 +13,126 @@ import Dot from '../common/dot'
 import { useConverter } from '../../../src/hooks'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { depotSchema } from "../../../src/validations";
+// <<<<<<< HEAD
+// import { depotSchema } from "../../../src/validations";
+
+// export default function BtcForm({}) {
+//   const [usdVal, setUSDVal] = useState(100);
+//   const {data:dtc} = useConverter("BTC","USD");
+//   const { register, handleSubmit, watch, errors } = useForm({
+//     resolver: yupResolver(depotSchema),
+//   });
+//   const  handleMSubmit = async (t) => {
+//      const body = {
+//      data: {
+//        principal : {
+//            type : "principal",
+//            btc : t?.quantitebtc,
+//            amount: t?.montant,
+//            taux : dtc?.USD
+//        },
+//        user: {
+//            transaction: t?.transactionPassword,
+//        },
+//      }
+//    };
+//    // setBody(body);
+//    const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
+//     const {error, message,success, data} = res;
+//        if(error && !success){
+//        setSuccessmsg(null);
+//        setErrormsg(message);
+
+//        alert("une erreur s'est produite")
+//       } else {
+
+//         setErrormsg(null);
+//         setSuccessmsg(message);
+
+//         router.push('/portal/depot/detail');
+//       }
+//   }
+//   const changeUSDtoBTC = (data) => {
+//      setUSDVal(data.target.value);
+//   }
+//   const onSubmit = (hookdata) =>{
+//     console.log("deposit data", data);
+//     setData(hookdata);
+//     openDepotModal();
+
+//   };
+//   return (
+//     <>
+//     <Form>
+//         <FormGroup>
+//           <Label>Montant</Label>
+//           <Input onChange={changeUSDtoBTC} type="integer" placeholder="100" />
+//         </FormGroup>
+//         <FormGroup>
+//           <Label>Equivalence en Bitcoin</Label>
+//           <Input disabled value={(usdVal/ dtc?.USD).toFixed(5)} type="integer" placeholder="100" />
+//         </FormGroup>
+//        {errors.montant && <div className="text-muted font-italic">
+
+//           <span className="text-danger font-weight-700">{errors.montant.message}</span>
+// =======
+import { depotBTCSchema } from "../../../src/validations";
+import { useDeposit} from '../../../src/hooks';
+import { useAppContext } from '../../../src/context';
 
 export default function BtcForm({}) {
+  const context = useAppContext();
+  const {mutateAsync, isLoading, isError, isSuccess}  = useDeposit();
   const [usdVal, setUSDVal] = useState(100);
   const {data:dtc} = useConverter("BTC","USD");
   const { register, handleSubmit, watch, errors } = useForm({
-    resolver: yupResolver(depotSchema),
+    resolver: yupResolver(depotBTCSchema),
   });
-  const  handleMSubmit = async (t) => {
-     const body = {
-     data: {
-       principal : {
-           type : "principal",
-           btc : t?.quantitebtc,
-           amount: t?.montant,
-           taux : dtc?.USD
-       },
-       user: {
-           transaction: t?.transactionPassword,
-       },
-     }
-   };
-   // setBody(body);
-   const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
-    const {error, message,success, data} = res;
-       if(error && !success){
-       setSuccessmsg(null);
-       setErrormsg(message);
-
-       alert("une erreur s'est produite")
-      } else {
-
-        setErrormsg(null);
-        setSuccessmsg(message);
-
-        router.push('/portal/depot/detail');
-      }
-  }
   const changeUSDtoBTC = (data) => {
      setUSDVal(data.target.value);
   }
-  const onSubmit = (hookdata) =>{
-    console.log("deposit data", data);
-    setData(hookdata);
-    openDepotModal();
-
+  const onSubmit = async (hookdata) =>{
+    const body = {
+      data: {
+            type : "principal",
+            //btc : t?.quantitebtc,
+            amount: hookdata.depot_btc_montant_usd,
+            taux : dtc?.USD,
+            user: {
+                //transaction: t?.transactionPassword,
+            },
+      }
+    };
+    const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
+    const {error, message,success, data} = res;
+        if(error && !success){
+          alert(message);
+        } else {
+           if (typeof window != 'undefined'){
+             window.open(data.url);
+           }else{
+             alert("DOM non actif!");
+           }
+       }
   };
   return (
     <>
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
-          <Label>Montant</Label>
-          <Input onChange={changeUSDtoBTC} type="integer" placeholder="100" />
+          <Label>Montant USD</Label>
+          <Input onChange={changeUSDtoBTC} innerRef={register()} name="depot_btc_montant_usd" type="integer" placeholder="100" />
         </FormGroup>
         <FormGroup>
           <Label>Equivalence en Bitcoin</Label>
-          <Input disabled value={(usdVal/ dtc?.USD).toFixed(5)} type="integer" placeholder="100" />
+          <Input disabled value={(usdVal/ dtc?.USD).toFixed(5)} type="number" placeholder="100" />
         </FormGroup>
-       {errors.montant && <div className="text-muted font-italic">
+       {errors.depot_btc_montant_usd && <div className="text-muted font-italic">
 
-          <span className="text-danger font-weight-700">{errors.montant.message}</span>
+          <span className="text-danger font-weight-700">{errors.depot_btc_montant_usd.message}</span>
 
       </div> }
       <Button className="mt-3 mb-1"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
-      SOUMETTRE
+      {isLoading? <Spinner size="sm" color="#cc993a" />: "SOUMETTRE"}
      </Button>
     </Form>
     </>

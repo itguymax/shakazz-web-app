@@ -27,7 +27,9 @@ function Legacy() {
   const [selectedOfficialFile, setSelectedOfficialFile] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [percentage, setPercentage] = useState(0);
-  const onSubmit = async (body) =>{
+
+   const onSubmit = async (body) =>{
+
 try{
   const res = await addMutatioData({accessToken: context.appState.accessToken, data: body});
   console.log("Legacy req", res);
