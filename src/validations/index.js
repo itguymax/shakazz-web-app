@@ -87,7 +87,7 @@ const profileSchema = yup.object().shape({
 })
 
 const depotBTCSchema = yup.object().shape({
-  depot_btc_montant: yup.number("Veuillez entrez un nombre").min(100, "Le Montant Minimum de depot est de 100 usd").required("Entrez le montant en USD"),
+  depot_btc_montant_usd: yup.number("Veuillez entrez un nombre").min(100, "Le Montant Minimum de depot est de 100 usd").required("Entrez le montant en USD"),
 })
 
 const retraitSchema = yup.object().shape({

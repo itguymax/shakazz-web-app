@@ -13,7 +13,7 @@ const METHOD = {
 };
 
 
- // const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+ //const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
 
  const apiBaseUrl = "http://localhost:5000/api/v1/services";
 // shakkazz api pattern
@@ -22,7 +22,7 @@ const METHOD = {
   call: async (url, parameters) => {
     const finalUrl =
       url.indexOf(apiV1.root) === 0 ? url : url.startsWith('/')?`${apiV1.root}${url}`:( url.startsWith('http') || url.startsWith('https'))? url:  `${apiV1.root}/${url}`;
-      console.log("final url", finalUrl, url, parameters,decodeURI(finalUrl));
+      //console.log("final url", finalUrl, url, parameters,decodeURI(finalUrl));
     const response = await fetch(finalUrl, parameters);
     return response;
   },
