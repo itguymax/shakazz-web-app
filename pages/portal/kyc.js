@@ -35,7 +35,7 @@ import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
 import {useAppContext} from "../../src/context";
-import  apiV1  from '../../services/config';
+import  apiV1  from '../../src/services/config';
 
 function Kyc() {
   const [visible, setVisible] = useState(false);
