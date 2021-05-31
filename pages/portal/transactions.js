@@ -40,9 +40,9 @@ function Transactions() {
     console.log("init data", initData);
     setTransData(initData.transactions);
   }
- const fetchwData = async (id) => {
+ const fetchwData = async (type) => {
    const body = {
-     id, page, element
+     type, page, element
    }
    try {
   const {data:wd, isSuccess: isSuccessw} = await mutateAsync({accessToken:context.appState.accessToken, data:body});
@@ -65,26 +65,26 @@ function Transactions() {
       case "hTabsIcons-2" :
       // principal
          let wal1 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "principal")];
-          let re = await  fetchwData(wal1._id);
+          let re = await  fetchwData(wal1.type);
        
          console.log("wal indexed", wal1, re);
         break;
       case "hTabsIcons-3" :
       // vault
          let wal2 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "vault")];
-           let re2 = await  fetchwData(wal2._id);
+           let re2 = await  fetchwData(wal2.type);
          console.log("wal indexed", wal2, re2);
         break;
       case "hTabsIcons-4" :
       // networking
          let wal3 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "networking")];
-           let re3 = await  fetchwData(wal3._id);
+           let re3 = await  fetchwData(wal3.type);
          console.log("wal indexed", wal3, re3);
         break;
       case "hTabsIcons-5" :
       // networking
          let wal4 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "transfert")];
-           let re4 = await  fetchwData(wal4._id);
+           let re4 = await  fetchwData(wal4.type);
          console.log("wal indexed", wal4, re4);
         break;
       default:

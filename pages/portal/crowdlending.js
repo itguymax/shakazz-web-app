@@ -54,10 +54,10 @@ console.log("chesttttt", chestData);
   const [toggle, setToggle] = useState(false);
   const [capital, setCapital] = useState(100);
   // const [taux, setTaux] = useState(7.5);
-  const [selectedPool, setSelectedPool] = useState(optionsData?.data.options[0]);
-  const [selectedPeriode, setSelectedPeriode] = useState(optionsData?.data.options[0].stakePeriode[0]);
+  const [selectedPool, setSelectedPool] = useState(optionsData?.data?.options[0]);
+  const [selectedPeriode, setSelectedPeriode] = useState(optionsData?.data?.options[0].stakePeriode[0]);
   const [stakeIndex, setStakeIndex] = useState(0);
-   const [errormsg, setErrormsg]= useState(null);
+  const [errormsg, setErrormsg]= useState(null);
   const [successmsg, setSuccessmsg]= useState(null);
 
 
@@ -129,7 +129,7 @@ try {
 }
 }
 
- console.log("options", optionsData.data.options);
+ console.log("options", optionsData?.data?.options);
   return (
     <Portal>
     <Global
@@ -188,7 +188,7 @@ try {
        <Col xl={4}>
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>
          {
-           optionsData.data.options.map((pool, key)=>{
+           optionsData?.data?.options.map((pool, key)=>{
              console.log("map pool", pool);
              const tm = pool.stakePeriode.filter((item) => item.duree === 360)
              return <LightBoxContainer width="100%" key={key}>
@@ -206,7 +206,7 @@ try {
               <Form >
                 <div style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center", borderBottom: "2px solid #b7b7b7" }}>
                 <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Montant à bloquer</h2>
-                <small>{selectedPool.nom}</small>
+                <small>{selectedPool?.nom}</small>
                   <Sinput
                       name="montant"
                       placeholder=""
@@ -220,7 +220,7 @@ try {
                   />
                   <small>minimum d'investissement est de 100 $</small>
                   <div className="mb-4 mt-5">
-                    {selectedPool.stakePeriode.map(( stakep, key ) => <FlatButton key={key} disabled= {stakep.duree === selectedPeriode.duree}  label={stakep.duree} width="90px" bgc={stakep.duree === selectedPeriode.duree?"#cc9933":"#444"} handleClick={ () => handlePeriodeSelection(stakep)}/>)}
+                    {selectedPool?.stakePeriode?.map(( stakep, key ) => <FlatButton key={key} disabled= {stakep.duree === selectedPeriode.duree}  label={stakep.duree} width="90px" bgc={stakep.duree === selectedPeriode.duree?"#cc9933":"#444"} handleClick={ () => handlePeriodeSelection(stakep)}/>)}
                   </div>
 
               </div>
@@ -228,7 +228,7 @@ try {
                 <Container fluid className="py-3">
                    <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>
                 </Container>
-                 <SimulationTable periode={selectedPeriode.duree} taux={selectedPeriode.taux} pool={{name:selectedPool.nom, frequence: selectedPool.frequence}} capital={capital}/>
+                 <SimulationTable periode={selectedPeriode?.duree} taux={selectedPeriode?.taux} pool={{name:selectedPool?.nom, frequence: selectedPool?.frequence}} capital={capital}/>
                  <FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>
               </Row>
             </Form>
@@ -240,7 +240,7 @@ try {
       {chestData?.data.chests.length > 0 ? <>
         <h2 className="mb-5" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Mes coffres</h2>
         {
-          chestData?.data.chests.map((item, key)=> <Coffre key={key} index={key} item={item} taux={item.taux} interet={item.interet} periode={item.stakePeriode} pool={{name: selectedPool.nom}} capital={item.montantUSD} date={item.createdAt} />)
+          chestData?.data.chests.map((item, key)=> <Coffre key={key} index={key} item={item} taux={item.taux} interet={item.interet} periode={item.stakePeriode} pool={{name: selectedPool?.nom}} capital={item.montantUSD} date={item.createdAt} />)
         }
       </> : <div> <h1 className="text-center"> Vous n'avez aucun coffre ouvert</h1> </div>}
 

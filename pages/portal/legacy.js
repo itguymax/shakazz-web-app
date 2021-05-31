@@ -27,10 +27,7 @@ function Legacy() {
   const [selectedOfficialFile, setSelectedOfficialFile] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [percentage, setPercentage] = useState(0);
-   const onSubmit = async (body) =>{
-
-
-
+  const onSubmit = async (body) =>{
 try{
   const res = await addMutatioData({accessToken: context.appState.accessToken, data: body});
   console.log("Legacy req", res);
@@ -199,7 +196,7 @@ const submitLegacyPhoto =  (file) => {
       <div>
       <Row> <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#444"}}> Ajouter</h1></Row>
       <Row className="mt-4 justify-content-between">
-        <LegacyForm onSubmit={onSubmit} setPercentage={setPercentage} handleOnFileSelect={onFileSelect}/>
+        <LegacyForm onSubmit={onSubmit} setPercentage={setPercentage} percentage={percentage} handleOnFileSelect={onFileSelect}/>
         <Col xl="5">
           <Row>
            <Col xl="5">
