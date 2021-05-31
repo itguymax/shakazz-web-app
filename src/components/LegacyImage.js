@@ -3,6 +3,7 @@ import Image from 'next/image';
 // import { Button} from 'reactstrap';
 import styled from '@emotion/styled';
 import {useAppContext} from "../context";
+import apiV1 from "../services/config"
 
 
 const Button = styled.button`
@@ -61,7 +62,7 @@ export default function LegacyImage() {
       body: formData
     }
     try{
-       const res = await fetch('http://localhost:5000/api/v1/services/uploads/user/profil', params);
+       const res = await fetch(`${apiV1.root}/uploads/user/profil`, params);
        console.log("res fillll", res)
       alert("File Upload success");
     } catch(err){
@@ -79,7 +80,7 @@ const upload = async () => {
                  
                       <Image
                   id="profile_photo"
-                  src= {fileUrl|| "/assets/img/photoequipe/bisso.png"}
+                  src= {fileUrl|| "/assets/img/def-user-profile.png"}
                   alt="..."
                   className="rounded-circle"
                   height={200} width={200}
