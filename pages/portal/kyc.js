@@ -35,6 +35,7 @@ import Image from 'next/image'
 // core components
 import UserHeader from "../../src/components/Headers/UserHeader.js";
 import {useAppContext} from "../../src/context";
+import  apiV1  from '../../services/config';
 
 function Kyc() {
   const [visible, setVisible] = useState(false);
@@ -60,8 +61,8 @@ const submitKycDoc =  async (file,doc) => {
       body: formData
     }
     try{
-       const res = await fetch('http://localhost:5000/api/v1/services/uploads/user/document', params);
-       console.log("res fillll", res)
+       const res = await fetch(`${apiV1.root}/uploads/user/document`, params);
+      //  console.log("res fillll", res)
       alert("File Upload success");
     } catch(err){
       alert("File Upload Error");

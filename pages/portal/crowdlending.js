@@ -49,7 +49,7 @@ const {data, isLoading} = useWallets(context.appState.accessToken);
 const {data:optionsData, isLoading:isLoadingOptions} = useFetchOptions();
 const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
 const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChest()
-console.log("chesttttt", chestData);
+// console.log("chesttttt", chestData);
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
   const [capital, setCapital] = useState(100);
@@ -68,7 +68,7 @@ console.log("chesttttt", chestData);
  }
 
   const onArrowClick = (data, index) => {
-    console.log("selected pool", data, index);
+    // console.log("selected pool", data, index);
     // setStakeIndex(index)
     setSelectedPeriode(data.stakePeriode);
     setSelectedPool(data);
@@ -123,13 +123,13 @@ try {
 
        }
 
-  console.log("bbbbbbbbbbbbb", res);
+  // console.log("bbbbbbbbbbbbb", res);
 } catch (err){
   console.log(err);
 }
 }
 
- console.log("options", optionsData?.data?.options);
+//  console.log("options", optionsData?.data?.options);
   return (
     <Portal>
     <Global
@@ -189,7 +189,7 @@ try {
         <h2 className="mb-xl-5" style={{font: "normal normal bold 30px/36px Ubuntu", color: "#444"}}>Ouvrir un coffre fort</h2>
          {
            optionsData?.data?.options.map((pool, key)=>{
-             console.log("map pool", pool);
+             {/* console.log("map pool", pool); */}
              const tm = pool.stakePeriode.filter((item) => item.duree === 360)
              return <LightBoxContainer width="100%" key={key}>
                   <div className="py-0 px-3"  style={{display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>

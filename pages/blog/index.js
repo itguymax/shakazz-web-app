@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 
 
 function Blog({ posts }) {
-  console.log("les node    ");
+  // console.log("les node    ");
   const router = useRouter();
   if (router.isFallback) {
     return <div>Loading...</div>

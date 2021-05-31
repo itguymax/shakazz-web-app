@@ -6,7 +6,7 @@ import {
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import {useAppContext} from "../../context";
-
+import  apiV1  from '../../services/config';
 const Button = styled.button`
     background-color: #679966;
     border-radius: 20px;
@@ -64,7 +64,7 @@ export default function ProfileUpload() {
       body: formData
     }
     try{
-       const res = await fetch('http://localhost:5000/api/v1/services/uploads/user/profil', params);
+       const res = await fetch(`${apiV1.root}/uploads/user/profil`, params);
        console.log("res fillll", res)
       alert("File Upload success");
     } catch(err){
@@ -80,7 +80,7 @@ const upload = async () => {
     <Col md={12} style={{textAlign:"center"}} >
               <Image
                   id="profile_photo"
-                  src= {fileUrl|| "/assets/img/photoequipe/bisso.png"}
+                  src= {fileUrl|| "/assets/img/def-user-profile.png"}
                   alt="..."
                   className="rounded-circle"
                   height={200} width={200}
@@ -92,12 +92,12 @@ const upload = async () => {
                       <FormGroup>
                         <Button onClick={upload}>Envoyer</Button>
                       </FormGroup>
-               <Image
+               {/* <Image
                 src="/assets/img/free-badge-icon-1361-thumb@2x.png"
                 alt="..."
                 height={150} width={150}
                 style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
-                />
+                /> */}
   </Col>
   )
 }
