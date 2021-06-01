@@ -64,15 +64,15 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
      page, element
    }
     const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
-    console.log("init data", initData);
+    // console.log("init data", initData);
     setTransData(initData.transactions);
   }
    useEffect(()=> {
     fetchInitData();
   },[])
    const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
-  console.log("user data loading", userData);
-  console.log("slice 10", transData.slice(0,10))
+  // console.log("user data loading", userData);
+  // console.log("slice 10", transData.slice(0,10))
   return (
     <Portal>
       <Container>
@@ -161,7 +161,7 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                           <img
                           className=" avatar rounded-circle mr-3"
                             alt={userData?.data.user.LastName + "avatar"}
-                            src={userData?.data.user.avatarUrl}
+                            src={userData?.data.user.image?.location || "/assets/img/def-user-profile.png"}
                           ></img>
                         
                       <div style={{flexDirection:"column", display:"flex"}}>

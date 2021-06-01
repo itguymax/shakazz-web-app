@@ -14,7 +14,7 @@ import LegacyForm from "../../src/components/LegacyForm";
 import LegacyBox from "../../src/components/LegacyBox";
 import Line from '../../src/components/common/line';
 import FileUPloader from '../../src/components/FileUpload';
-
+import  apiV1  from '../../src/services/config';
 
 
 function Legacy() {
@@ -27,19 +27,18 @@ function Legacy() {
   const [selectedOfficialFile, setSelectedOfficialFile] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [percentage, setPercentage] = useState(0);
+
    const onSubmit = async (body) =>{
-
-
 
 try{
   const res = await addMutatioData({accessToken: context.appState.accessToken, data: body});
-  console.log("Legacy req", res);
+  // console.log("Legacy req", res);
 } catch(err){
   console.log(err);
 }
 
 
-console.log("legacy data", body);
+// console.log("legacy data", body);
     //  if(legacies.length >= 1){
     //     let sumper = legacies.reduce( function(a, b){
     //     return a + b['pourcentageHeritage'];
@@ -59,7 +58,7 @@ const handleEdition = (item) => {
  console.log("edit legacy", item);
 }
 const handleDelete = async (name) => {
-  console.log("delete legacy", name);
+  // console.log("delete legacy", name);
    alert(`Supprimer ${name}`)
   const body = {
     data : {
@@ -74,7 +73,7 @@ try {
   const res = await delMutation({ accessToken: context.appState.accessToken, data: body});
 console.log("del ayant droit ", res);
   if(res.success && !res.error){
-    console.log("deleted successfully")
+    // console.log("deleted successfully")
   } else {
     console.log("deleted error");
   }
@@ -95,10 +94,10 @@ useEffect((data)=>{
   }
 
 },[legacies])
-console.log("ayants droit", legacyData);
+// console.log("ayants droit", legacyData);
 const onFileSelect = (file) => {
   setSelectedOfficialFile(file);
-  console.log("file", file);
+  // console.log("file", file);
 }
 const submitOfficialDoc =  (file) => {
   console.log("file to submit", selectedOfficialFile);
@@ -118,7 +117,7 @@ const submitOfficialDoc =  (file) => {
       body: formData
     }
 
-    fetch('http://localhost:5000/api/v1/services/uploads/legacy/document', params)
+    fetch(`${apiV1.root}/uploads/legacy/document`, params)
     .then((res) => {
       console.log("res fillll", res)
       alert("File Upload success");
@@ -143,7 +142,7 @@ const submitLegacyPhoto =  (file) => {
       body: formData
     }
 
-    fetch('http://localhost:5000/api/v1/services/uploads/legacy/profil', params)
+    fetch(`${apiV1.root}/uploads/legacy/profil`, params)
     .then((res) => {
       console.log("res fillll", res)
       alert("File Upload success");
@@ -199,7 +198,7 @@ const submitLegacyPhoto =  (file) => {
       <div>
       <Row> <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#444"}}> Ajouter</h1></Row>
       <Row className="mt-4 justify-content-between">
-        <LegacyForm onSubmit={onSubmit} setPercentage={setPercentage} handleOnFileSelect={onFileSelect}/>
+        <LegacyForm onSubmit={onSubmit} setPercentage={setPercentage} percentage={percentage} handleOnFileSelect={onFileSelect}/>
         <Col xl="5">
           <Row>
            <Col xl="5">

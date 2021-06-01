@@ -55,7 +55,7 @@ function Sidebar(props) {
 
         return subLinks.map((level, i)=> {
 
-            return <div className="my-2">
+            return <div className="my-2" key={i}>
               <Link href={level.layout + level.path}>
               <span className="sb_sidebar_item" style={{cursor:"pointer", color:"#fff", fontWeight:"100", opacity: activeRoute(level.layout + level.path)? 0.5:1, fontSize:"0.7rem"}}>{level.displayName}</span>
               </Link>

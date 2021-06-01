@@ -27,6 +27,7 @@ function AdminNavbar({ brandText, l }) {
   const router = useRouter();
   const context = useAppContext();
    const { data, isLoading } = useFetchUserInfos(context.appState.accessToken);
+   console.log("user dataaaaaaaaaa", data);
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -60,7 +61,7 @@ function AdminNavbar({ brandText, l }) {
                   <span className="avatar avatar-sm rounded-circle">
                     <img
                       alt="..."
-                      src="/assets/img/theme/team-4-800x800.jpg"
+                      src={ data?.data.user.image?.location || "/assets/img/def-user-profile.png"}
                     />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">

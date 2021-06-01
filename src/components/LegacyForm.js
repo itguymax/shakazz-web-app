@@ -8,7 +8,7 @@ import FileUPloader from './FileUpload';
 import DropDownPhone from './forms/DropDownPhone';
 import country from '../../src/helpers/countries';
 
-export default function LegacyForm({onSubmit,setPercentage,handleOnFileSelect}) {
+export default function LegacyForm({onSubmit, percentage, setPercentage,handleOnFileSelect}) {
    const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(legacySchema),
   });
