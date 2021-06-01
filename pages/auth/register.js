@@ -77,13 +77,12 @@ const { register, handleSubmit, watch, errors } = useForm({
     backgroundColor: isParticular ? '#CC9933':'#fff'
   }
   const handleParainOption = ( value ) => {
-    console.log("parainnnnn", value);
+    // console.log("parainnnnn", value);
     setSelectedOption(value);
   };
   const handletoggle = () => setProfil(!isParticular);
   const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
   const {data:iLRefData, isLoading:iLRef} =  UseNetworkerByInvitation(router.query.ref) ;
-  console.log("gggggggggg ref",iLRefData );
   const onSubmit =  async (hookFormData) => {
 
    if(verified){
@@ -93,7 +92,7 @@ const { register, handleSubmit, watch, errors } = useForm({
    let  userdata = {...additionaldata, ...rest};
    try{
     let datares = await mutateAsync( userdata);
-    console.log("response", datares);
+    // console.log("response", datares);
        const { data, error, success, message} = datares;
        if(error && !success){
         setSuccessmsg(null);
@@ -129,7 +128,7 @@ const { register, handleSubmit, watch, errors } = useForm({
       // parent: selectedOption.key
       parent: selectedOption.invitation
     }
-    console.log("invidation", addData);
+    // console.log("invidation", addData);
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
 

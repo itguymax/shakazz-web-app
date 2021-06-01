@@ -91,8 +91,9 @@ export default function TabContent(props) {
             }
             `}>
                 { 
-                    props.data.length < 1 ? <div> no data </div> : <>
-                    { props.data.map( (item, key)=> <> <tr style={{ }}>
+                    props.data?.length < 1 ? <div> no data </div> : <>
+                    { props.data?.map( (item, key)=> <React.Fragment key={key}> 
+                    <tr style={{ }}>
                             <td ><div >{item._id}</div></td>
                             <td><div >{ moment(item.createdAt).format('YYYY/MM/DD')}</div></td>
                             <td><div >{item.type}</div></td>
@@ -106,7 +107,7 @@ export default function TabContent(props) {
                             /></div></td> */}
                         </tr>
                         <div></div>
-                        </>
+                        </React.Fragment>
                     )
                     }
                     </>

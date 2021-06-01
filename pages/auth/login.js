@@ -67,7 +67,6 @@ function Login() {
          setSubmitting(isLoading)
         //  context.dispatch({type:"userInfo", value: datares.data.user});
          router.push('/portal/dashboard');
-         console.log("login", datares);
          }
        }
 
