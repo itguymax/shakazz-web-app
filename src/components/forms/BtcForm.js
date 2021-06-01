@@ -30,13 +30,15 @@ export default function BtcForm({}) {
   const onSubmit = async (hookdata) =>{
     const body = {
       data: {
-            type : "principal",
-            //btc : t?.quantitebtc,
-            amount: hookdata.depot_btc_montant_usd,
-            taux : dtc?.USD,
-            user: {
-                //transaction: t?.transactionPassword,
-            },
+        principal:{
+          type : "principal",
+          //btc : t?.quantitebtc,
+          amount: hookdata.depot_btc_montant_usd,
+          taux : dtc?.USD,
+          user: {
+              //transaction: t?.transactionPassword,
+          }
+        }
       }
     };
     const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
@@ -45,7 +47,7 @@ export default function BtcForm({}) {
           alert(message);
         } else {
            if (typeof window != 'undefined'){
-             window.open(data.url);
+             window.open(data.invoice.url);console.log(data)
            }else{
              alert("DOM non actif!");
            }

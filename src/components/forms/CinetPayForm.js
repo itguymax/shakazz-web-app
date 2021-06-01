@@ -1,5 +1,7 @@
 import React from 'react'
 import {cp_init} from "../../../src/helpers/cp";
+import {useDepotTransaction} from '../../hooks';
+import { useAppContext } from '../../context';
 import {
   FormGroup,
   Input,
@@ -12,7 +14,9 @@ import {
 import Dot from '../common/dot'
 import {useMutation, useQueryClient} from 'react-query';
 
-export default function CinetPayForm({}) {
+export default function CinetPayForm() {
+  const context = useAppContext();
+  const {mutateAsync, isLoading, isError, isSuccess}  = useDepotTransaction();
   return (
     <div>
         <FormGroup>
@@ -27,7 +31,16 @@ export default function CinetPayForm({}) {
             <option>CDF</option>
           </Input>
       </FormGroup>
-        <Button onClick={cp_init} className="mt-3 mb-1" id="cp_bt_get_signature" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
+        <Button onClick={async ()=>{
+          //Here we ask token
+          const body = {};
+          const res = await mutateAsync({accessToken: context.appState.accessToken ,data:body});
+          if(res.error && !res.success){
+              alert("Probleme de connexion avec le server shakazz!");
+             } else {
+               cp_init(res.data.transactionId);
+           }
+        }} className="mt-3 mb-1" id="cp_bt_get_signature" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
         SOUMETTRE
        </Button>
        <div id="cinetpay_payment_result" style={{color:"red",fontSize:"1.1em"}}></div>

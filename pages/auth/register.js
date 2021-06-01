@@ -4,7 +4,7 @@ import {
   Button,
   Card,
   CardBody,
-  FormGroup,
+  FormGroup,Input,
   Form,
   Row,
   Col,
@@ -137,6 +137,19 @@ const { register, handleSubmit, watch, errors } = useForm({
     <>
     <Global
     styles={css`
+      .custom-control-label input {
+        position: absolute;
+        opacity: 1;
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+        left:0em;
+        background-color: #143427;
+      }
+      .custom-control-label input:checked{
+          background-color: #143427;
+          color: #143427;
+        }
       @media only screen and ${device.mPhone} {
         .auth_block_illustration{
           display:none;
@@ -220,7 +233,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                     <label>Votre parain</label>
                     {router.query.ref ? (
                       <div>tttttt</div>
-                     
+
                     ):(
                        <Sdropdown  register={register} options={options} selectedOption={selectedOption} name="parain" onSelectParain={handleParainOption}/>
                     ) }
@@ -349,21 +362,19 @@ const { register, handleSubmit, watch, errors } = useForm({
               </div> */}
               <Row className="my-0">
                 <Col xs="12">
-                  <div className="custom-control custom-control-alternative custom-checkbox">
+                  <div className="custom-control custom-control-alternative">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheckRegister" check
+                    >
                     <input
-                      className="custom-control-input"
                       id="customCheckRegister"
                       type="checkbox"
                       name="term"
                       ref={register}
-
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheckRegister"
-                    >
+                    /> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <span className="text-muted">
-                       J'ai lu et j'accepte les{" "}
+                       J'ai lu et j'accepte les{' '}
                         <a href="#itguymax" onClick={(e) => e.preventDefault()}>
                           Conditions d'utilisation
                         </a>
