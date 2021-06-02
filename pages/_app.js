@@ -83,12 +83,8 @@ export default class MyApp extends App {
        
         <meta name="theme-color" content="#317EFB" />
           <title>Shakazz web App</title>
-          
-          {/* <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> */}
         </Head>
-        
         <Layout>
-       
           <ApolloProvider client={client}>
           <QueryClientProvider client={queryClient}>
           <AppWrapper>
@@ -99,9 +95,7 @@ export default class MyApp extends App {
           </AppWrapper>
           </QueryClientProvider>
         </ApolloProvider>
-      
-        </Layout>
-        
+        </Layout> 
       </React.Fragment>
     );
   }

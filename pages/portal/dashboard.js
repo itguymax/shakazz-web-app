@@ -79,14 +79,13 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
   return (
     <Portal>
       <Container>
-      {/* <h1>Dashboard</h1>
-      <a href="/portal/daily-transactions">daily t</a> */}
-        <div>
+        <div style={{cursor: "pointer"}}>
+          <h2>Votre lien d'affiliation </h2>
           <CopyToClipboard className="mr-2" text={userData?.data.user.affiliationLink}
           onCopy={() => 
             setCopied(true)
           }>
-          <span>{userData?.data.user.affiliationLink}</span>
+          <span>{userData?.data?.user?.affiliationLink}</span>
         </CopyToClipboard>
           {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
         </div>
@@ -174,8 +173,8 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                       
                           <img
                           className=" avatar rounded-circle mr-3"
-                            alt={userData?.data.user.lastName + "avatar"}
-                            src={userData?.data.user.avatarUrl || "/assets/img/def-user-profile.png"}
+                            alt={userData?.data.user?.lastName + "avatar"}
+                            src={userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
                           ></img>
                         
                       <div style={{flexDirection:"column", display:"flex"}}>

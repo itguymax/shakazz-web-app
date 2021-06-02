@@ -174,8 +174,8 @@ function Sidebar(props) {
               <Media className="align-items-center">
                 <span className="avatar avatar-sm rounded-circle">
                   <img
-                    alt={`${userData?.data.user.lastName} Profile's picture`}
-                    src={ userData?.data.user.image.location || "/assets/img/def-user-profile.png"}
+                    alt={`${userData?.data.user?.lastName} Profile's picture`}
+                    src={ userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
                   />
                 </span>
               </Media>
