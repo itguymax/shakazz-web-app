@@ -98,11 +98,12 @@ function BlogPage({post, ...rest}){
                
               `}
             >
-              <Image
+              <img
                 src={featuredImageUrl}
                 alt={post?.title}
-                width={700}
-                height={400}
+                // width={700}
+                // height={400}
+                style={{width: "700px", height: "700px"}}
               />
              
             </div>
