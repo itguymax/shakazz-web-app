@@ -8,6 +8,8 @@ import { Line, Bar } from "react-chartjs-2";
 import settings from "../../src/__MOCK__/settings";
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 import {useAppContext} from "../../src/context";
 import moment from "moment";
 // reactstrap components
@@ -46,6 +48,7 @@ function Dashboard() {
   const [page, setPage] = useState(1);
   const [transData, setTransData] = useState([])
   const [element, setElement] = useState(10);
+  const [copied, setCopied] = useState(false);
   const context = useAppContext();
 const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
   const [token, setToken]= useState(context.appState.accessToken);
@@ -71,13 +74,21 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
     fetchInitData();
   },[])
    const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
-  // console.log("user data loading", userData);
+   console.log("user data loading", userData);
   // console.log("slice 10", transData.slice(0,10))
   return (
     <Portal>
       <Container>
       {/* <h1>Dashboard</h1>
       <a href="/portal/daily-transactions">daily t</a> */}
+        <div>
+          <CopyToClipboard className="mr-2" text={userData?.data.user.affiliationLink}
+          onCopy={() => setCopied(true)}>
+          <span>{userData?.data.user.affiliationLink}</span>
+        </CopyToClipboard>
+          {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
+        </div>
+        
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
@@ -136,6 +147,7 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                        
                       </Table>
                    </LightBoxContainer>
+                  
                 </Col>
                   <Col xl="4">
                     <DashboardWallets/>
@@ -160,8 +172,8 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                       
                           <img
                           className=" avatar rounded-circle mr-3"
-                            alt={userData?.data.user.LastName + "avatar"}
-                            src={userData?.data.user.image?.location || "/assets/img/def-user-profile.png"}
+                            alt={userData?.data.user.lastName + "avatar"}
+                            src={userData?.data.user.avatarUrl || "/assets/img/def-user-profile.png"}
                           ></img>
                         
                       <div style={{flexDirection:"column", display:"flex"}}>
