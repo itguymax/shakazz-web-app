@@ -15,11 +15,11 @@ function BlogPage({post, ...rest}){
 
   let featuredImageUrl="";
   let authorInfo="";
-  if(post.featuredImage){
-   featuredImageUrl =  post.featuredImage.node.sourceUrl;
+  if(post?.featuredImage){
+   featuredImageUrl =  post?.featuredImage?.node.sourceUrl;
   }
   if(post.author){
-     authorInfo = post.author.node;
+     authorInfo = post?.author.node;
   }
   return (
     <>
