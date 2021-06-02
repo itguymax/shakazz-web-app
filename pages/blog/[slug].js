@@ -64,7 +64,7 @@ function BlogPage({post, ...rest}){
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
       
     </div> */}
-     <article
+     {/* <article
         css={css`
           width: 100%;
           display: flex;
@@ -112,8 +112,8 @@ function BlogPage({post, ...rest}){
            <div dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Container>
        
-      </article>
-      {/* <div
+      </article> */}
+      <div
       css={css`
         width: 100%;
         height: 100vh;
@@ -125,7 +125,7 @@ function BlogPage({post, ...rest}){
     >
       <h1>POST PAGE NOT FOUND</h1>
       <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
-    </div> */}
+    </div> 
        {/* <Container css={css`
             padding-top: 20px;
             width: 70%;
