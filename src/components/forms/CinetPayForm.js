@@ -38,10 +38,10 @@ export default function CinetPayForm() {
           if(res.error && !res.success){
               alert("Probleme de connexion avec le server shakazz!");
              } else {
-               cp_init(res.data.transactionId);
+               cp_init(res.data.transactionId,isLoading);
            }
         }} className="mt-3 mb-1" id="cp_bt_get_signature" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
-        SOUMETTRE
+        {isLoading? <Spinner size="sm" color="#cc993a" />: "SOUMETTRE"}
        </Button>
        <div id="cinetpay_payment_result" style={{color:"red",fontSize:"1.1em"}}></div>
     </div>

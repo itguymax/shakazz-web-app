@@ -1,5 +1,5 @@
 //import { useAppContext } from '../context';
-const cp_init = (token)=>{
+const cp_init = (token,loading)=>{
     //const context = useAppContext();
     let trans_id = token;
     const amount = document.getElementById("cinetpay_amount");
