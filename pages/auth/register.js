@@ -136,17 +136,19 @@ const { register, handleSubmit, watch, errors } = useForm({
     <>
     <Global
     styles={css`
-      @media only screen and ${device.mPhone} {
+   
+    
+      @media ${device.mPhone} {
         .auth_block_illustration{
           display:none;
         }
         }
-      @media only screen and ${device.bPhone} {
+      @media ${device.bPhone} {
         .auth_block_illustration{
           display:none;
         }
       }
-      @media only screen and ${device.sTablet} {
+      @media ${device.sTablet} {
         .auth_block_illustration{
           display:none;
         }
@@ -355,6 +357,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                       type="checkbox"
                       name="term"
                       ref={register}
+                      //  style={{borderColor: "red"}}
 
                     />
                     <label

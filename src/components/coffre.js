@@ -9,6 +9,7 @@ import { useAppContext } from '../context';
 import { useRouter } from 'next/router';
 
 export default function coffre( {pool, item, index}) {
+  console.log("chestttttttt", item);
   const context = useAppContext();
   const router = useRouter();
   const { mutateAsync, isLoading } = useClaimChest();
@@ -58,7 +59,8 @@ export default function coffre( {pool, item, index}) {
   useEffect(()=>{
     router.prefetch("/portal/daily-transactions");
   }, []);
-  const percentage = Math.round((item.chestReciveROI/item.interet) * 100);
+  const percentage =((item.chestReciveROI/item.interet) * 100).toFixed(2);
+  console.log("pourcentageeeee", percentage,item.chestReciveROI,item.interet )
  const claimgain = async () => {
    try{
      const res = await mutateAsync({accessToken: context.appState.accessToken, chestID:item._id});
@@ -70,7 +72,7 @@ export default function coffre( {pool, item, index}) {
    console.log("claim chest", item);
  }
  const handleChestDailyTransactions = () => {
-       router.push('/portal/daily-transactions');
+       router.push({pathname:'/portal/daily-transactions', query: { id: item._id },});
  }
   // le = (parseIn) * (parseFloat(taux)/100)) * / pool.frequence);
   return (
