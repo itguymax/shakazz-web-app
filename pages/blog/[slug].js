@@ -18,7 +18,7 @@ function BlogPage({post, ...rest}){
   if(post?.featuredImage){
    featuredImageUrl =  post?.featuredImage?.node.sourceUrl;
   }
-  if(post.author){
+  if(post?.author){
      authorInfo = post?.author.node;
   }
   return (
