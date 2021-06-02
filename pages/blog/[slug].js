@@ -21,7 +21,6 @@ function BlogPage({post, ...rest}){
   if(post.author){
      authorInfo = post.author.node;
   }
-console.log("blog post",rest );
   return (
     <>
     <Head>
@@ -158,7 +157,7 @@ export async function getStaticPaths(){
       }
     }
     ),
-    fallback: false,
+    fallback: true,
   }
 
 }
