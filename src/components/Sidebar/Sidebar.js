@@ -32,12 +32,15 @@ import {
 import { logOutUser } from "../../services/auth.service";
 import { useFetchUserInfos } from "../../hooks";
 
+import {useAppContext} from "../../context";
+
 
 function Sidebar(props) {
   // used for checking current route
   const router = useRouter();
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [isOpen, openSubmenu] = React.useState(false);
+  const context = useAppContext();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return router.route.indexOf(routeName) > -1;
