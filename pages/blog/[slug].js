@@ -85,7 +85,7 @@ function BlogPage({post, ...rest}){
               
             `}
           >
-            {post.title}
+            {post?.title}
           </h1>
           {featuredImageUrl && (
             <div
@@ -100,7 +100,7 @@ function BlogPage({post, ...rest}){
             >
               <Image
                 src={featuredImageUrl}
-                alt={post.title}
+                alt={post?.title}
                 width={700}
                 height={400}
               />
@@ -109,7 +109,7 @@ function BlogPage({post, ...rest}){
           )}
           <br />
          
-           <div dangerouslySetInnerHTML={{ __html: post.content }} />
+           <div dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Container>
        
       </article>
