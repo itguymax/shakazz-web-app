@@ -59,33 +59,33 @@ const PlanTable = ()=>{
 				        	<h5 className="l">Max <span>illimité</span></h5>
                   <p>RECOMPENSE <br/> 1 MOIS</p>
 				        	<span>La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et <br/> création du vault.</span>
-                  <h4>7,5%</h4>
+                  <h4>6%</h4>
                 </td>
 				        <td>
                   <h5 className="l">Min <span>100$</span></h5>
 				        	<h5 className="l">Max <span>illimité</span></h5>
                   <p>RECOMPENSE <br/> 6 MOIS</p>
 				        	<span>La liquidité est débloquée au terme <br/> des 720* jours après l'ouverture et <br/> création du vault</span>
-                  <h4>51%</h4>
+                  <h4>45%</h4>
 				        </td>
 				        <td>
 				        	<h5 className="l">Min <span>100$</span></h5>
 				        	<h5 className="l">Max <span>illimité</span></h5>
                   <p>RECOMPENSE <br/> 12 MOIS</p>
 				        	<span>La liquidité est débloquée au terme <br/>des 1800* jours après l'ouverture et <br/> création du vault</span>
-                  <h4>114%</h4>
+                  <h4>120%</h4>
 				        </td>
 				      </tr>
 				      <tr>
 				        <td>Après 720 Jrs</td>
-				        <td><h4>8,5%</h4></td>
-				        <td><h4>57%</h4></td>
+				        <td><h4>7%</h4></td>
+				        <td><h4>51%</h4></td>
 				        <td><h4>X</h4></td>				  
               </tr>
 				      <tr>
 				        <td>Après 1080 Jrs</td>
 				        <td><h4>X</h4></td>
-				        <td><h4>63%</h4></td>
+				        <td><h4>57%</h4></td>
 				        <td><h4>132%</h4></td>
 				      </tr>
 				      <tr>
