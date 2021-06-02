@@ -83,7 +83,9 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
       <a href="/portal/daily-transactions">daily t</a> */}
         <div>
           <CopyToClipboard className="mr-2" text={userData?.data.user.affiliationLink}
-          onCopy={() => setCopied(true)}>
+          onCopy={() => 
+            setCopied(true)
+          }>
           <span>{userData?.data.user.affiliationLink}</span>
         </CopyToClipboard>
           {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}

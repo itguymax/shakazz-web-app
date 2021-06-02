@@ -19,10 +19,10 @@ import {
 
 } from "reactstrap";
 // layout for this page
-import Bleu from "../../../src/layouts/Bleu.js";
+// import Bleu from "../../../src/layouts/Bleu.js";
 import Image from 'next/image'
 // core components
-import UserHeader from "../../../src/components/Headers/UserHeader.js";
+// import UserHeader from "../../../src/components/Headers/UserHeader.js";
 
 function Daily_transactions(props) {
   const Button = styled.button`
