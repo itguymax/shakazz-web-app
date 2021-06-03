@@ -17,10 +17,7 @@ const useClaimChest= () => {
   return useMutation('Claim Chest', claimChest);
 }
 const useFetchUserChest = (accessToken) => {
-  return useQuery(['Fetch user chest'], () => fetchChest(accessToken),{
-      // Refetch the data every second
-      refetchInterval: 1000,
-    });
+  return useQuery(['Fetch user chest'], () => fetchChest(accessToken));
 }
 const useChestDailyTransactions = (accessToken, id, page, element) => {
   return useQuery(['dailyTransaction'], () => dailyTransaction(accessToken, id, page, element) );

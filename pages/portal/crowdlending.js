@@ -228,7 +228,7 @@ try {
                 <Container fluid className="py-3">
                    <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>
                 </Container>
-                 <SimulationTable periode={selectedPeriode?.duree} taux={selectedPeriode?.taux} pool={{name:selectedPool?.nom, frequence: selectedPool?.frequence}} capital={capital}/>
+                 <SimulationTable periode={selectedPeriode?.duree || 0} taux={selectedPeriode?.taux || 0} pool={{name:selectedPool?.nom, frequence: selectedPool?.frequence|| 0}} capital={capital || 0}/>
                  <FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>
               </Row>
             </Form>

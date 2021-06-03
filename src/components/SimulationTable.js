@@ -15,7 +15,7 @@ export default function SimulationTable({periode,pool,capital,taux}) {
   // } else{
   //   taux = pool.taux1800;
   // }
-  let recompense = parseInt(capital) * (parseFloat(taux)/100);
+  let recompense = (parseInt(capital) * (parseFloat(taux)/100)).toFixed(2);
   let interet = (parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence);
   let resume =  parseInt(capital) + interet;
   console.log("polllll", pool);

@@ -60,9 +60,9 @@ function AdminNavbar({ brandText, l }) {
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
                     <img
-                      alt="..."
-                      src={ data?.data.user.image?.location || "/assets/img/def-user-profile.png"}
-                    />
+                      alt={data?.data.user?.lastName + "avatar"}
+                      src={ data?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
+                    /> 
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">

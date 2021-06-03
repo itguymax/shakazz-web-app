@@ -75,6 +75,7 @@ export default function coffre( {pool, item, index}) {
        router.push({pathname:'/portal/daily-transactions', query: { id: item._id },});
  }
   // le = (parseIn) * (parseFloat(taux)/100)) * / pool.frequence);
+  console.log("gg item item", item);
   return (
     <>
       <LightBoxContainer>
