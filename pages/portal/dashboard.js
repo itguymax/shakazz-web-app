@@ -89,7 +89,6 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
         </CopyToClipboard>
           {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
         </div>
-        
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
