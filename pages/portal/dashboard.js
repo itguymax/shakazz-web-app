@@ -81,7 +81,7 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
       <Container>
         <div style={{cursor: "pointer"}}>
           <h2>Votre lien d'affiliation </h2>
-          <CopyToClipboard className="mr-2" text={userData?.data.user.affiliationLink}
+          <CopyToClipboard className="mr-2" text={userData?.data?.user?.affiliationLink}
           onCopy={() => 
             setCopied(true)
           }>
