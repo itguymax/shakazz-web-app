@@ -103,7 +103,7 @@ export default function coffre( {pool, item, index}) {
              <Col xl="4" style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}} >
                 <div style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
                     <h1 style={{color:"#444"}}> {`${item.gain}` + " "}$</h1>
-                    {isLoading? <Spinner size="sm" color="#cc993a" /> : <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/> } 
+                    {isLoading? <Spinner size="sm" color="#cc9933" /> : <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/> } 
                 </div>
              </Col>
             </Row>
