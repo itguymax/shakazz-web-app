@@ -13,9 +13,7 @@ import Dot from '../common/dot'
 import { useConverter } from '../../../src/hooks'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-// <<<<<<< HEAD
 // import { depotSchema } from "../../../src/validations";
-
 // export default function BtcForm({}) {
 //   const [usdVal, setUSDVal] = useState(100);
 //   const {data:dtc} = useConverter("BTC","USD");
