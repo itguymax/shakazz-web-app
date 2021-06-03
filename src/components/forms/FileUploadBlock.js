@@ -111,7 +111,7 @@ const onSubmit = async ()  => {
 
   return (
          <Row className="wrapper"  style={{marginBottom:"1em"}}>
-           <Col className="colLeft" xs="5" style={{border:"1px solid #e5e5e5",borderRadius:"10px",paddingLeft:"8em",paddingTop:"0.5em",paddingBottom:"0.5em"}}>
+           <Col className="colLeft" xl="5" lg="5" sm="6" style={{border:"1px solid #e5e5e5",borderRadius:"10px",paddingLeft:"8em",paddingTop:"0.5em",paddingBottom:"0.5em"}}>
                 <h4 style={{color:"black"}}>{text}<Badge style={{padding:"0.3em",backgroundColor:"#FF0000"}}color="success"> </Badge>
                 <Badge style={{float:"right",padding:"0.4em",backgroundColor:"#32DC00"}}color="success"> </Badge></h4>
                     <Row>

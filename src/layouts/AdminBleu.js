@@ -24,10 +24,10 @@ function AdminBleu(props) {
             {props.menu && <Link path="/portal/dashboard">{`<--- Menu`}</Link>}
             <hr style={{backgroundColor: '#679966', height:'2px', width: '100%'}}/>
             </Row>
+              <AuthFooter white/>
           </Container>
-           
-          <AuthFooter white/>  
         </div>
+        
        </Container>
   );
 }
