@@ -32,7 +32,6 @@ function Depot() {
   });
 
   const context = useAppContext();
-
   const router = useRouter();
   const [show, setShow] = useState(false);
   const [modalTitle, setModalTitle] = useState("");

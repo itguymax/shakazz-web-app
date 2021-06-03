@@ -174,13 +174,11 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                     <div >
                     <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Profil</h2>
                      <Media className="">
-                      
                           <img
                           className=" avatar rounded-circle mr-3"
                             alt={userData?.data.user?.lastName + "avatar"}
                             src={userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
                           ></img>
-                        
                       <div style={{flexDirection:"column", display:"flex"}}>
                         <span className=" name  ">
                           {userData?.data.user?.lastName}

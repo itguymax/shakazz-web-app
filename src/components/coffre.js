@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import LightBoxContainer from "../components/common/lightBoxContainer";
-import { Container, Row,Col } from "reactstrap";
+import { Container, Row,Col, Spinner } from "reactstrap";
 import {  FlatButton} from "./common/SButton";
 import ProgressBar from "../components/ProgressBar";
 import {useClaimChest, useChestDailyTransactions}  from "../hooks";
@@ -20,7 +20,6 @@ export default function coffre( {pool, item, index}) {
   //  console.log("created time", createdTime);
   //  console.log("7 days later", createdTime.setDate(createdTime.getDate() + 7) )
     let timeLeft = {};
-
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)) || "00",
@@ -104,7 +103,7 @@ export default function coffre( {pool, item, index}) {
              <Col xl="4" style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}} >
                 <div style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
                     <h1 style={{color:"#444"}}> {`${item.gain}` + " "}$</h1>
-                    <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/>
+                    {isLoading? <Spinner size="sm" color="#cc993a" /> : <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/> } 
                 </div>
              </Col>
             </Row>
