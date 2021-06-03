@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import LightBoxContainer from "../components/common/lightBoxContainer";
-import { Container, Row,Col } from "reactstrap";
+import { Container, Row,Col, Spinner } from "reactstrap";
 import {  FlatButton} from "./common/SButton";
 import ProgressBar from "../components/ProgressBar";
 import {useClaimChest, useChestDailyTransactions}  from "../hooks";
@@ -9,6 +9,7 @@ import { useAppContext } from '../context';
 import { useRouter } from 'next/router';
 
 export default function coffre( {pool, item, index}) {
+  console.log("chestttttttt", item);
   const context = useAppContext();
   const router = useRouter();
   const { mutateAsync, isLoading } = useClaimChest();
@@ -19,7 +20,6 @@ export default function coffre( {pool, item, index}) {
   //  console.log("created time", createdTime);
   //  console.log("7 days later", createdTime.setDate(createdTime.getDate() + 7) )
     let timeLeft = {};
-
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)) || "00",
@@ -58,7 +58,8 @@ export default function coffre( {pool, item, index}) {
   useEffect(()=>{
     router.prefetch("/portal/daily-transactions");
   }, []);
-  const percentage = Math.round((item.chestReciveROI/item.interet) * 100);
+  const percentage =((item.chestReciveROI/item.interet) * 100).toFixed(2);
+  console.log("pourcentageeeee", percentage,item.chestReciveROI,item.interet )
  const claimgain = async () => {
    try{
      const res = await mutateAsync({accessToken: context.appState.accessToken, chestID:item._id});
@@ -70,9 +71,10 @@ export default function coffre( {pool, item, index}) {
    console.log("claim chest", item);
  }
  const handleChestDailyTransactions = () => {
-       router.push('/portal/daily-transactions');
+       router.push({pathname:'/portal/daily-transactions', query: { id: item._id },});
  }
   // le = (parseIn) * (parseFloat(taux)/100)) * / pool.frequence);
+  console.log("gg item item", item);
   return (
     <>
       <LightBoxContainer>
@@ -94,14 +96,14 @@ export default function coffre( {pool, item, index}) {
                  
                </> :
                  
-                    (<ProgressBar percentage={percentage}  handleClick={handleChestDailyTransactions}/>)
+                    (<ProgressBar percentage={percentage|| 0}  handleClick={handleChestDailyTransactions}/>)
               
                 }
                </Col>
              <Col xl="4" style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}} >
                 <div style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
                     <h1 style={{color:"#444"}}> {`${item.gain}` + " "}$</h1>
-                    <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/>
+                    {isLoading? <Spinner size="sm" color="#cc9933" /> : <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/> } 
                 </div>
              </Col>
             </Row>

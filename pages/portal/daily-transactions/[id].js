@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import { Badge } from 'reactstrap';
-import Sinput from '../../src/components/forms/Sinput';
+import Sinput from '../../../src/components/forms/Sinput';
 import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import DropdownSample from '../../src/components/forms/dropdownSample'
-import transactions from '../../src/helpers/transactions.js'
-import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js';
-import withAuth from '../../src/hoc/withAuth';
-import AdminBleu from '../../src/layouts/AdminBleu'
+import DropdownSample from '../../../src/components/forms/dropdownSample'
+import transactions from '../../../src/helpers/transactions.js'
+import {page_data,stakePeriode,portefeuille_data} from '../../../src/__MOCK__/daily_transactions.js';
+import withAuth from '../../../src/hoc/withAuth';
+import AdminBleu from '../../../src/layouts/AdminBleu'
 // reactstrap components
 import {
  
@@ -19,12 +19,11 @@ import {
 
 } from "reactstrap";
 // layout for this page
-import Bleu from "../../src/layouts/Bleu.js";
 import Image from 'next/image'
 // core components
-import UserHeader from "../../src/components/Headers/UserHeader.js";
 
-function Daily_transactions() {
+
+function Daily_transactions(props) {
   const Button = styled.button`
     background-color: #679966;
     border-radius: 20px;
@@ -50,13 +49,14 @@ let table_transaction_state = {
   sortie_composee:'decroissant',
   pourcentage_quotidien:'decroissant'
 };
+console.log("daily props", props);
   return (
     <AdminBleu menu>
       {/* Page content */}
 
       <Global
       styles={css`
-        .bigContainer{
+        .bigContainer {
           width:90em !important;
           margin-top:5em;
         }

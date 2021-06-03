@@ -107,7 +107,7 @@ export default function LegacyBlock({item, del, edit}) {
         <Col sm="2"><img
         alt="profile_photo_legacy"
         // item.profil
-        src= {item?.image?.location ||  "/assets/img/IMG_20181121_094329_174@2x.png"}
+        src= {item?.image?.location ||  "/assets/img/def-user-profile.png"}
         className="rounded-circle"
         // height={70} width={70}
         style={{backgroundColor:"#000",margin:"auto", height: "70px", width:"70px"}}

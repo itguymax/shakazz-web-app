@@ -150,6 +150,7 @@ const submitLegacyPhoto =  (file) => {
     .catch((err) => alert("File Upload Error"));
 };
 
+console.log("legacyyyyyyy", legacyData?.data.legacys);
   return (
     <>
     <Global

@@ -131,11 +131,12 @@ const { register, handleSubmit, watch, errors } = useForm({
     // console.log("invidation", addData);
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
-
+console.log("ref",iLRefData);
   return (
     <>
     <Global
     styles={css`
+ 
       .custom-control-label input {
         position: absolute;
         opacity: 1;
@@ -149,17 +150,17 @@ const { register, handleSubmit, watch, errors } = useForm({
           background-color: #143427;
           color: #143427;
         }
-      @media only screen and ${device.mPhone} {
+      @media ${device.mPhone} {
         .auth_block_illustration{
           display:none;
         }
         }
-      @media only screen and ${device.bPhone} {
+      @media ${device.bPhone} {
         .auth_block_illustration{
           display:none;
         }
       }
-      @media only screen and ${device.sTablet} {
+      @media ${device.sTablet} {
         .auth_block_illustration{
           display:none;
         }
@@ -231,8 +232,17 @@ const { register, handleSubmit, watch, errors } = useForm({
                   <FormGroup>
                     <label>Votre parain</label>
                     {router.query.ref ? (
-                      <div>tttttt</div>
 
+              <div  className="d-flex align-items-center">
+                <img className="avatar avatar-sm mr-2" alt="user profile image" src={ "/assets/img/def-user-profile.png"}></img>   
+                <div className="d-flex" style={{flexDirection:'column'}}>
+                  <small className="mb-0">
+                    {iLRefData.data.userName}
+                  </small>
+                  <div className="d-flex align-items-center">
+                  </div>
+                </div>
+            </div>
                     ):(
                        <Sdropdown  register={register} options={options} selectedOption={selectedOption} name="parain" onSelectParain={handleParainOption}/>
                     ) }

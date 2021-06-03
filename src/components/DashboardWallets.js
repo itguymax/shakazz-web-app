@@ -22,7 +22,8 @@ console.log("test data", data);
                           <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
                             {wallet.type === constantes.wallets.p && <Link label="Dépôt" path="/portal/depot" style={{ background: '#007A5E 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>}
                             {wallet.type === constantes.wallets.p && <Link label="Retrait" path="/portal/retrait" style={{ background: '#CE1126 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>}
-                            { (wallet.type === constantes.wallets.p || wallet.type === constantes.wallets.v || wallet.type === constantes.wallets.n || wallet.type === constantes.wallets.t) && <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>}
+                            { (wallet.type === constantes.wallets.p || wallet.type === constantes.wallets.v || wallet.type === constantes.wallets.n) && <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>}
+                             { ( wallet.type === constantes.wallets.t) && <Link label="Ouvrire Un Coffre" path="/portal/crowdlending" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>}
                           </div>
                         </div>
                       </div>

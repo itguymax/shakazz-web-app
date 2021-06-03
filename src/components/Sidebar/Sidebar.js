@@ -30,6 +30,9 @@ import {
   Nav,
 } from "reactstrap";
 import { logOutUser } from "../../services/auth.service";
+import { useFetchUserInfos } from "../../hooks";
+
+import {useAppContext} from "../../context";
 
 
 function Sidebar(props) {
@@ -37,6 +40,7 @@ function Sidebar(props) {
   const router = useRouter();
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [isOpen, openSubmenu] = React.useState(false);
+  const context = useAppContext();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return router.route.indexOf(routeName) > -1;
@@ -69,6 +73,7 @@ function Sidebar(props) {
       <img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc} />
     </NavbarBrand>
   );
+  const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
   // creates the links that appear in the left menu / Sidebar
   const createLinks = (routes) => {
 
@@ -163,28 +168,14 @@ function Sidebar(props) {
         ) : null}
         {/* User */}
         <Nav className="align-items-center d-md-none">
-          <UncontrolledDropdown nav>
-            <DropdownToggle nav className="nav-link-icon">
-              <i className="ni ni-bell-55" />
-            </DropdownToggle>
-            <DropdownMenu
-              aria-labelledby="navbar-default_dropdown_1"
-              className="dropdown-menu-arrow"
-              right
-            >
-              <DropdownItem>Action</DropdownItem>
-              <DropdownItem>Another action</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Something else here</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
+        
           <UncontrolledDropdown nav>
             <DropdownToggle nav>
               <Media className="align-items-center">
                 <span className="avatar avatar-sm rounded-circle">
                   <img
-                    alt="..."
-                    src="/assets/img/theme/team-1-800x800.jpg"
+                    alt={`${userData?.data.user?.lastName} Profile's picture`}
+                    src={ userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
                   />
                 </span>
               </Media>
@@ -282,14 +273,6 @@ function Sidebar(props) {
               </NavLink>
             </NavItem>
           </Nav>
-          {/* <Nav className="mb-md-3" navbar>
-            <NavItem className="active-pro active">
-              <NavLink href="https://www.creative-tim.com/product/argon-dashboard-pro-react?ref=njsad-portal-sidebar">
-                <i className="ni ni-spaceship" />
-                Upgrade to PRO
-              </NavLink>
-            </NavItem>
-          </Nav> */}
         </Collapse>
       </Container>
     </Navbar>
