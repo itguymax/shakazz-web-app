@@ -10,12 +10,8 @@ import {fetchPortefeuille,fetchWallets} from "../services"
 export async function getStaticProps() {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(['Portefeuille'], () => fetchPortefeuille(), {
-    refetchInterval:100
-  })
-  await queryClient.prefetchQuery(['wallets'], () => fetchWallets(),{
-    refetchInterval:100
-  })
+  await queryClient.prefetchQuery(['Portefeuille'], () => fetchPortefeuille())
+  await queryClient.prefetchQuery(['wallets'], () => fetchWallets())
 
   return {
     props: {
@@ -28,7 +24,7 @@ const withAuth = (WrappedComponent) => {
     const Router = useRouter();
     const [verified, setVerified] = useState(false);
     console.log("HOC");
-    const { mutateAsync, isLoading, isError} = useMutation("Verify token",verifyTokenS);
+    const { mutateAsync, isLoading, isError} = useMutation(verifyTokenS, {mutationKey:"Verify token", retry:1});
     console.log("test error", isError);
     if(isError){
       alert("Une erreur s'est produite")

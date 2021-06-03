@@ -41,8 +41,8 @@ import withAuth from '../../src/hoc/withAuth';
 import { constantes  } from "../../src/config/";
 import {  useFetchAlltransactions,useFetchUserInfos } from "../../src/hooks";
 
-
-function Dashboard() {
+let c;
+function Dashboard( props ) {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
   const [page, setPage] = useState(1);
@@ -50,6 +50,7 @@ function Dashboard() {
   const [element, setElement] = useState(10);
   const [copied, setCopied] = useState(false);
   const context = useAppContext();
+  c = context;
 const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
   const [token, setToken]= useState(context.appState.accessToken);
   const [isUserInfoCompleted , setUserInfoCompleted] = useState(false);
@@ -67,28 +68,32 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
      page, element
    }
     const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
+  
     // console.log("init data", initData);
     setTransData(initData.transactions);
   }
    useEffect(()=> {
     fetchInitData();
   },[])
-   const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
+   const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(c.appState.accessToken);
+
    console.log("user data loading", userData);
   // console.log("slice 10", transData.slice(0,10))
   return (
     <Portal>
       <Container>
-        <div style={{cursor: "pointer"}}>
+       {userDataLoading? null : (
+          <div style={{cursor: "pointer"}}>
           <h2>Votre lien d'affiliation </h2>
-          <CopyToClipboard className="mr-2" text={userData?.data?.user?.affiliationLink}
+          <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
           onCopy={() => 
             setCopied(true)
           }>
-          <span>{userData?.data?.user?.affiliationLink}</span>
+          <span>{userData? userData?.data?.user?.affiliationLink: ""}</span>
         </CopyToClipboard>
           {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
         </div>
+       ) }
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
@@ -100,7 +105,7 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                   </div>
                 </Col>
                 <Col xl="4" >
-                    <ProgressBar percentage={75}  bgc="#f6f6f6"/>
+                    <ProgressBar percentage={userData?.data.user?.generalPercentage || 0}  bgc="#f6f6f6"/>
                 </Col>
              </LightBoxContainer>
              <Row className="mt-5">
@@ -178,13 +183,13 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                         
                       <div style={{flexDirection:"column", display:"flex"}}>
                         <span className=" name  ">
-                          {userData?.data.user.lastName}
+                          {userData?.data.user?.lastName}
                         </span>
                         <span className="  mb-0 text-sm">
-                          {userData?.data.user.gender}
+                          {userData?.data?.user?.gender}
                         </span>
                         <span className=" mb-0 text-sm">
-                         {userData?.data.user.age}
+                         {userData?.data?.user?.dateOfbirth}
                         </span>
                       </div>
                     </Media>
@@ -235,6 +240,13 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
 //     props: {
 //       dehydratedState: dehydrate(queryClient),
 //     },
+//   }
+// }
+
+// export async function getStaticProps(context) {
+  
+//   return {
+//     props: { userData }, // will be passed to the page component as props
 //   }
 // }
 

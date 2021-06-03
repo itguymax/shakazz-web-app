@@ -96,7 +96,7 @@ export default function coffre( {pool, item, index}) {
                  
                </> :
                  
-                    (<ProgressBar percentage={percentage}  handleClick={handleChestDailyTransactions}/>)
+                    (<ProgressBar percentage={percentage|| 0}  handleClick={handleChestDailyTransactions}/>)
               
                 }
                </Col>
