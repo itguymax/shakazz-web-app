@@ -232,7 +232,7 @@ console.log("ref",iLRefData);
                   <FormGroup>
                     <label>Votre parain</label>
                     {router.query.ref ? (
-<<<<<<< HEAD
+
               <div  className="d-flex align-items-center">
                 <img className="avatar avatar-sm mr-2" alt="user profile image" src={ "/assets/img/def-user-profile.png"}></img>   
                 <div className="d-flex" style={{flexDirection:'column'}}>
@@ -243,11 +243,6 @@ console.log("ref",iLRefData);
                   </div>
                 </div>
             </div>
-                     
-=======
-                      <div>tttttt</div>
-
->>>>>>> 780beaaf5f924ec1715247d7c8bb6ca22dc0933b
                     ):(
                        <Sdropdown  register={register} options={options} selectedOption={selectedOption} name="parain" onSelectParain={handleParainOption}/>
                     ) }
@@ -386,17 +381,7 @@ console.log("ref",iLRefData);
                       type="checkbox"
                       name="term"
                       ref={register}
-<<<<<<< HEAD
-                      //  style={{borderColor: "red"}}
-
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheckRegister"
-                    >
-=======
                     /> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
->>>>>>> 780beaaf5f924ec1715247d7c8bb6ca22dc0933b
                       <span className="text-muted">
                        J'ai lu et j'accepte les{' '}
                         <a href="#itguymax" onClick={(e) => e.preventDefault()}>
