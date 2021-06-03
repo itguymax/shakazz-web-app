@@ -6,6 +6,7 @@ export * from './useTransfert';
 export * from './usePortefeuille';
 export * from './useProfileUserInfos';
 export * from './useKyc'
+export * from './useDepotTransaction'
 export * from './useAuth';
 export * from './useNetworkers';
 export * from './useOptions';

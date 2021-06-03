@@ -1,18 +1,18 @@
-const cp_init = ()=>{
-
-    let trans_id = Math.floor((Math.random() * 10000000) + 10000);
+//import { useAppContext } from '../context';
+const cp_init = (token,loading)=>{
+    //const context = useAppContext();
+    let trans_id = token;
     const amount = document.getElementById("cinetpay_amount");
     const currency = document.getElementById("cinetpay_currency");
     const result_div = document.getElementById('cinetpay_payment_result');
-    let custom = "id_xyz";
-
+    let custom = "";
     //-------------Configuration
     CinetPay.setConfig({
         apikey: '4758178085f46b2e7dc69e3.86025892',
         site_id: 980771,
-        notify_url: 'http://shakazz.com/notify/cinetpay'
+        notify_url: 'https://shakazz-server.herokuapp.com/api/v1/services/payement/webhook/cinetpay'
     });
-    CinetPay.on('paymentPending', function (e) {
+    CinetPay.on('paymentPending', function (e){
             result_div.innerHTML = '';
              result_div.innerHTML = 'Paiement en cours ';
              result_div.innerHTML += 'code:' + e.code + 'Message::' + e.message;

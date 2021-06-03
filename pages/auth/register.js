@@ -4,7 +4,7 @@ import {
   Button,
   Card,
   CardBody,
-  FormGroup,
+  FormGroup,Input,
   Form,
   Row,
   Col,
@@ -136,8 +136,20 @@ console.log("ref",iLRefData);
     <>
     <Global
     styles={css`
-   
-    
+ 
+      .custom-control-label input {
+        position: absolute;
+        opacity: 1;
+        cursor: pointer;
+        height: 25px;
+        width: 25px;
+        left:0em;
+        background-color: #143427;
+      }
+      .custom-control-label input:checked{
+          background-color: #143427;
+          color: #143427;
+        }
       @media ${device.mPhone} {
         .auth_block_illustration{
           display:none;
@@ -220,6 +232,7 @@ console.log("ref",iLRefData);
                   <FormGroup>
                     <label>Votre parain</label>
                     {router.query.ref ? (
+<<<<<<< HEAD
               <div  className="d-flex align-items-center">
                 <img className="avatar avatar-sm mr-2" alt="user profile image" src={ "/assets/img/def-user-profile.png"}></img>   
                 <div className="d-flex" style={{flexDirection:'column'}}>
@@ -231,6 +244,10 @@ console.log("ref",iLRefData);
                 </div>
             </div>
                      
+=======
+                      <div>tttttt</div>
+
+>>>>>>> 780beaaf5f924ec1715247d7c8bb6ca22dc0933b
                     ):(
                        <Sdropdown  register={register} options={options} selectedOption={selectedOption} name="parain" onSelectParain={handleParainOption}/>
                     ) }
@@ -359,13 +376,17 @@ console.log("ref",iLRefData);
               </div> */}
               <Row className="my-0">
                 <Col xs="12">
-                  <div className="custom-control custom-control-alternative custom-checkbox">
+                  <div className="custom-control custom-control-alternative">
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheckRegister" check
+                    >
                     <input
-                      className="custom-control-input"
                       id="customCheckRegister"
                       type="checkbox"
                       name="term"
                       ref={register}
+<<<<<<< HEAD
                       //  style={{borderColor: "red"}}
 
                     />
@@ -373,8 +394,11 @@ console.log("ref",iLRefData);
                       className="custom-control-label"
                       htmlFor="customCheckRegister"
                     >
+=======
+                    /> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+>>>>>>> 780beaaf5f924ec1715247d7c8bb6ca22dc0933b
                       <span className="text-muted">
-                       J'ai lu et j'accepte les{" "}
+                       J'ai lu et j'accepte les{' '}
                         <a href="#itguymax" onClick={(e) => e.preventDefault()}>
                           Conditions d'utilisation
                         </a>
