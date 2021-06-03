@@ -2,7 +2,6 @@
 import config from '../config';
 import  apiV1  from './config';
 
-
 const converter = async (from, to) => {
     const url = `https://min-api.cryptocompare.com/data/price?fsym=${from}&tsyms=${to}`;
     try {
