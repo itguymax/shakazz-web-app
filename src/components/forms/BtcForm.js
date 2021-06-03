@@ -6,7 +6,7 @@ import {
   InputGroupText,
   InputGroup,
   Col,Button,Spinner,
-  Row, Form, Label,FormText
+  Row, Form, Label,FormText,Alert
 } from "reactstrap";
 import Sinput from "./Sinput";
 import Dot from '../common/dot'
@@ -83,6 +83,10 @@ export default function BtcForm({}) {
   const {mutateAsync, isLoading, isError, isSuccess}  = useDeposit();
   const [usdVal, setUSDVal] = useState(0);
   const {data:dtc} = useConverter("BTC","USD");
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [colorAlert, setColorAlert] = useState("primary");
+  const [responseAlert, setResponseAlert] = useState("");
+  const onDismiss = () => setAlertVisible(false);
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(depotBTCSchema),
   });
@@ -106,12 +110,23 @@ export default function BtcForm({}) {
     const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
     const {error, message,success, data} = res;
         if(error && !success){
-          alert(message);
+          setResponseAlert("Impossible de joindre le serveur , veuillez re-éssayer plus tard.");
+          setAlertVisible(true);
+          setColorAlert("danger");
         } else {
            if (typeof window != 'undefined'){
-             window.open(data.invoice.url);
+             setResponseAlert("Vous serez rediriger vers la page de confirmation dans 5 secondes...");
+             setAlertVisible(true);
+             setColorAlert("primary");
+             setTimeout(function(){
+               setAlertVisible(false);
+               window.open(data.invoice.url);
+              },
+                7000);
            }else{
-             alert("DOM non actif!");
+             setResponseAlert("DOM non actif!");
+             setAlertVisible(true);
+             setColorAlert("danger");
            }
        }
   };
@@ -135,6 +150,11 @@ export default function BtcForm({}) {
       {isLoading? <Spinner size="sm" color="#cc993a" />: "SOUMETTRE"}
      </Button>
     </Form>
+    <div style={{position:"fixed",bottom:"20px",right:"20px",zIndex:"900"}}>
+      <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visibleAlert} toggle={onDismiss} fade={false}>
+        {responseAlert}
+      </Alert>
+    </div>
     </>
   )
 }
