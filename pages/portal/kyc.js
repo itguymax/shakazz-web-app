@@ -91,9 +91,9 @@ const submitKycDoc =  async (file,doc) => {
       <Global
       styles={css`
         /*Responsive*/
-        @media only screen and (max-width: 360px) {
+        @media (max-width: 360px) {
           }
-        @media only screen and (max-width: 414px) {
+        @media (max-width: 414px) {
            .wrapper{
               padding-left:1em !important;
               display: flex;
@@ -108,7 +108,7 @@ const submitKycDoc =  async (file,doc) => {
               width:5em;
             }
         }
-        @media only screen and (max-width: 768px) {
+        @media (max-width: 768px) {
             .wrapper{
               padding-left:1em !important;
               display: flex;
@@ -116,6 +116,9 @@ const submitKycDoc =  async (file,doc) => {
             .colLeft{
               width:30em !important;
               padding-left:2em !important;
+            }
+            .hide-small-screen {
+              display:none !important;
             }
         }
         @media only screen and (max-width: 1024px) {
@@ -127,7 +130,7 @@ const submitKycDoc =  async (file,doc) => {
         <FileUploadBlock setColorAlert={setColorAlert} submitKycDoc={submitKycDoc}  setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_passport" id="passport" idResponse="kyc_infos_fichier1" text="Votre passport ou CNI"/>
         <FileUploadBlock setColorAlert={setColorAlert} submitKycDoc={submitKycDoc} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_plan" id="plan" idResponse="kyc_infos_fichier2" text="Votre plan de localisation"/>
         <FileUploadBlock setColorAlert={setColorAlert} submitKycDoc={submitKycDoc} setResponseAlert={setResponseAlert} setVisibleAlert={setVisible} idSend="send_facultatif" id="facultatif" idResponse="kyc_infos_fichier3" text="Documents facultatifs"/>
-        <Col style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>
+        <Col className="hide-small-screen" style={{float:"right",marginTop:"-15em",textAlign:"center"}} xs="6"><h2 style={{color:"black",fontWeight:"100"}}>
               Le KYC nous permet de vérifier votre identité et mieux sécuriser votre compte.</h2>
                <img
                 name="kyc_display"

@@ -101,10 +101,10 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
                   <div>
                       <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >{`Bon retour ${userData?.data.user.psedo},`}</h2>
                       <p style={{fontSize: '14px', lineHeight: '1.5'}}>La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
-                      <Link label="Consulter" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                      <Link label="Consulter" path="/portal/crowdlending" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                   </div>
                 </Col>
-                <Col xl="4" >
+                <Col xl="4" style={{ display: 'flex', alignItems:'center', justifyContent: 'center'}} >
                     <ProgressBar percentage={userData?.data.user?.generalPercentage || 0}  bgc="#f6f6f6"/>
                 </Col>
              </LightBoxContainer>
