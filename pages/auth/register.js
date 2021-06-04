@@ -131,6 +131,8 @@ const { register, handleSubmit, watch, errors } = useForm({
     // console.log("invidation", addData);
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
+
+  if(router.query.ref && iLRef) return <Spinner size="lg" color="#aa9933" />
 console.log("ref",iLRefData);
   return (
     <>
@@ -237,7 +239,7 @@ console.log("ref",iLRefData);
                 <img className="avatar avatar-sm mr-2" alt="user profile image" src={ "/assets/img/def-user-profile.png"}></img>   
                 <div className="d-flex" style={{flexDirection:'column'}}>
                   <small className="mb-0">
-                    {iLRefData.data.userName}
+                    {iLRefData?.data?.userName}
                   </small>
                   <div className="d-flex align-items-center">
                   </div>
