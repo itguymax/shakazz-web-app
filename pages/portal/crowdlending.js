@@ -40,7 +40,7 @@ import { useAppContext } from '../../src/context';
 import {useWallets, useFetchOptions,useFetchUserChest, useAddChest} from '../../src/hooks';
 import {fetchOptions} from '../../src/services';
 import { CustomDropdown } from '../../src/components/common/CustomDropdown';
-
+import DataLoader from "../../src/components/common/DataLoader";
 const queryClient = new QueryClient();
 
 const Crowdlending = () => {
@@ -129,6 +129,9 @@ try {
 }
 }
 
+if(isLoadingOptions){
+  return <DataLoader/>
+}
 //  console.log("options", optionsData?.data?.options);
   return (
     <Portal>

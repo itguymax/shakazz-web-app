@@ -16,6 +16,7 @@ import  { Link } from "../../src/components/Link";
 import { useAppContext } from '../../src/context';
 import {useFetchAlltransactions,useFetchWallettransactions} from '../../src/hooks';
 import { useWallets} from "../../src/hooks";
+import DataLoader from "../../src/components/common/DataLoader";
 
 function Transactions() {
 
@@ -98,6 +99,7 @@ function Transactions() {
   },[])
 
   let data = FakeData();
+  if(isLoading) return <DataLoader/>;
   console.log("walletssss", allWallet?.data.wallets);
   console.log("data......", transData);
   return (
