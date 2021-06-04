@@ -12,12 +12,16 @@ const cp_init = (token,loading)=>{
         site_id: 980771,
         notify_url: 'https://shakazz-server.herokuapp.com/api/v1/services/payement/webhook/cinetpay'
     });
-    CinetPay.on('paymentPending', function (e){
+    CinetPay.on('error', function (e) {console.log(e);
+             result_div.innerHTML = '';
+             result_div.innerHTML += 'Error code:' + e.code + 'Message::' + e.message;
+        });
+    CinetPay.on('paymentPending', function (e){console.log(e);
             result_div.innerHTML = '';
              result_div.innerHTML = 'Paiement en cours ';
              result_div.innerHTML += 'code:' + e.code + 'Message::' + e.message;
         });
-    CinetPay.on('paymentSuccessfull', function (paymentInfo) {
+    CinetPay.on('paymentSuccessfull', function (paymentInfo) {console.log(paymentInfo);
                if(typeof paymentInfo.lastTime != 'undefined'){
                    result_div.innerHTML = '';
                    if(paymentInfo.cpm_result == '00'){

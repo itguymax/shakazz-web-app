@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {cp_init} from "../../../src/helpers/cp";
 import {useDepotTransaction} from '../../hooks';
 import { useAppContext } from '../../context';
+import { useConverterAfrica } from '../../../src/hooks'
 import {
   FormGroup,
   Input,
@@ -16,21 +17,35 @@ import {useMutation, useQueryClient} from 'react-query';
 
 export default function CinetPayForm() {
   const context = useAppContext();
+  const [xafVal, setXAFVal] = useState(0);
+  const [currencyVal, setCurrencyVal] = useState("XAF");
+  const {data:dtc} = useConverterAfrica("USD",currencyVal);
+  const changeXAFtoUSD = (data) => {
+     setXAFVal(data.target.value);
+  }
+  const changeCurrency = (data) => {
+     setCurrencyVal(data.target.value);
+  }
   const {mutateAsync, isLoading, isError, isSuccess}  = useDepotTransaction();
   return (
     <div>
-        <FormGroup>
-          <Label>Montant</Label>
-          <Input type="integer" id="cinetpay_amount" placeholder="100" />
+          <FormGroup>
+            <Label>Veuillez Choisir une monnaie</Label>
+            <Input onChange={changeCurrency} type="select" id="cinetpay_currency">
+              <option>XAF</option>
+              <option>XOF</option>
+              <option>CDF</option>
+            </Input>
         </FormGroup>
         <FormGroup>
-          <Label>Veuillez Choisir une monnaie</Label>
-          <Input type="select" id="cinetpay_currency">
-            <option>XAF</option>
-            <option>XOF</option>
-            <option>CDF</option>
-          </Input>
-      </FormGroup>
+          <Label>Montant {currencyVal}</Label>
+          <Input type="integer" onChange={changeXAFtoUSD} id="cinetpay_amount" placeholder="100" />
+        </FormGroup>
+        <FormGroup>
+          <Label>Correspondance USD</Label>
+          <Input type="number" value={(xafVal/ dtc?.info.rate).toFixed(5)} id="cinetpay_amount_usd" placeholder="0" disabled />
+        </FormGroup>
+
         <Button onClick={async ()=>{
           //Here we ask token
           const body = {};
