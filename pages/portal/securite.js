@@ -11,8 +11,6 @@ import { passwordSchema,transactionPasswordSchema} from "../../src/validations";
 import {usechangeTransactionPassword,usechangeConnexionPassword} from '../../src/hooks';
 const options = [{
   val: "Email"
-}, {
-  val: "Sms"
 }]
  function Securite() {
    const [faOption, setfaOption] = useState(options[Math.floor(Math.random() * options.length )])
@@ -110,10 +108,10 @@ const options = [{
       </Row>
       <Line/>
       <Row className="mb-5">
-        <Col>
+        <Col xl="6" lg="6">
            <Modificationpwd schema={passwordSchema} successmsg={successMsgC} errormsg={errorMsgC} loading={loadingc} label="Changer votre mot de passe" sublabel="Connexion" onSubmit={onSubmitC}/>
         </Col>
-        <Col>
+        <Col xl="6" lg="6">
           <Modificationpwd schema={transactionPasswordSchema} successmsg ={successMsgT} errormsg={errorMsgT} loading={loadingt} label="Changer votre mot de passe" sublabel="Transaction" onSubmit={onSubmitT}/>
         </Col>
       </Row>

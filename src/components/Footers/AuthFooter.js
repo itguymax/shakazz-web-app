@@ -3,18 +3,22 @@ import React from "react";
 
 // reactstrap components
 import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
-
+import {css} from "@emotion/react";
+import {device} from "../../lib/device";
 function AuthFooter(props) {
   return (
     <>
-      <footer className="px-3" style={{position:'absolute', bottom:'20px'}}>
+      <footer className="pl-0" style={{position:'absolute', bottom:'0px'}} 
+      css={css`
+
+      `}>
         <Container>
           <Row>
               <div className="copyright text-left text-muted">
                 © {new Date().getFullYear()}{" "}
                 <a
                   className="font-weight-bold ml-1"
-                  href="https://itguymax.com"
+                  href="https://shakazz.com"
                   target="_blank"
                   style={{color: props.white?"#fff":null}}
                 >

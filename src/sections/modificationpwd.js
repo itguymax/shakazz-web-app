@@ -4,7 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { passwordSchema } from "../validations";
 import Sinput from "../components/forms/Sinput"
 import { Form, Button, Spinner} from 'reactstrap'; 
-
+import {css} from "@emotion/react";
+import {device } from "../lib/device";
 export default function Modificationpwd({successmsg,errormsg,onSubmit,schema,loading, label, sublabel}) {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
@@ -16,10 +17,15 @@ export default function Modificationpwd({successmsg,errormsg,onSubmit,schema,loa
   const handleToggleshow = () => setShow(!show);
   const handleToggleshowrnp = () => setShowrnp(!showrnp);
   return (
-    <Form role="form" className="my-3" onSubmit={handleSubmit(onSubmit)}>
+    <Form role="form" className="mt-3 mb-5" onSubmit={handleSubmit(onSubmit)}>
         <div><h3 style={{font: "normal normal bold 20px/24px Ubuntu", color:"#679966"}}>{label}</h3></div>
          {sublabel &&<h5 style={{color: "#707070", fontSize:"16px"}}>{sublabel}</h5>}
-        <div style={{marginRight:"200px"}}>
+        <div css={css`
+              
+              @media ${device.laptop} {
+                margin-right:100px;
+          }
+        `}>
            <Sinput
               name="oldPassword"
               placeholder="********************"

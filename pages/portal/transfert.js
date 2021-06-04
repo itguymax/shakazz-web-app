@@ -16,6 +16,8 @@ import { useAppContext } from '../../src/context';
 import { useTransfertExterne, useTransfertInterne ,useWallets} from '../../src/hooks';
 import { CheckUser } from '../../src/services';
 import {constantes} from '../../src/config';
+import {css} from "@emotion/react";
+import {device } from "../../src/lib/device";
 
 
 
@@ -35,7 +37,7 @@ const optionstype = [INTERNE,EXTERNE];
   const context = useAppContext();
   const [show, setShow] = useState(false);
   const [token,setToken] = useState(context.appState.accessToken)
-  const [selectedType, setType] = useState("")
+  const [selectedType, setType] = useState(optionstype[0]);
   const [destinationOption, setDestinationOption] = useState([PRINCIPAL]);
   const [montant, setMontant]= useState("");
   const [username, setUsername] = useState("");
@@ -45,6 +47,7 @@ const optionstype = [INTERNE,EXTERNE];
   const [selectedSource, setSelectedSource]= useState("")
   const [dOp, setD] = useState("");
   const [sOP, setS] = useState("");
+  const [psw, setPsw] = useState("");
   const [submitting , setSubmitting ] = useState(false);
   const { mutateAsync:em, isLoading:eml } = useTransfertExterne();
   const {mutateAsync:im, isLoading:iml } = useTransfertInterne();
@@ -84,6 +87,7 @@ const optionstype = [INTERNE,EXTERNE];
       data: {
         user : {
             id : userId,
+            transaction: psw,
         },
         wr: {
           amount: parseInt(montant),
@@ -148,6 +152,9 @@ const optionstype = [INTERNE,EXTERNE];
      }
 
    }
+    const changePassword = (event) => {
+     setPsw(event.target.value)
+   };
    const defaultOption = selectedType;
    const defautOptionS = sOP;
    const defautOptionD = dOp;
@@ -159,8 +166,8 @@ const optionstype = [INTERNE,EXTERNE];
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un transfére</h1>
       <Row className="mt-4 justify-content-between">
-        <Col xl="9">
-           <Form role="form" >
+        <Col xl="9" className="mb-sm-3">
+           <Form role="form">
               <Sinput
                 label="Type de transfert"
                 name="typeTransfert"
@@ -172,7 +179,7 @@ const optionstype = [INTERNE,EXTERNE];
                 register={register}
                 onSelect={handleOnSelectTypeTransfer}
               />
-            { (selectedType === INTERNE || selectedType === "") ? (
+            { (selectedType === INTERNE ) ? (
                 <>
 
               <Sinput
@@ -246,9 +253,24 @@ const optionstype = [INTERNE,EXTERNE];
                 inputvalue={montant}
                 usd
               />
+                <Sinput
+                label="Mot de passe de la transaction"
+                name="transactionPassword"
+                placeholder="Mot de passe de transaction"
+                 type={show?"text":"password"}
+                register={register}
+                inputvalue={psw}
+                inputBg="#679966"
+                inline
+                append
+                iStyle={{ borderRadius:"15px",backgroundColor: "#679966"}}
+                icon={show ? "fa fa-eye":"fa fa-eye-slash"}
+                handleToggleshow={handleToggleshow }
+                handleOnchange={changePassword}
+              />
               </>
             )}
-
+             
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
