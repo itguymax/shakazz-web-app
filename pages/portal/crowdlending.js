@@ -90,7 +90,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
 
   const mesCoffres = [];
 
-  const ouvrirCoffre = () => {
+  const ouvrirCoffre = async () => {
    
     // let coffredata = {
     //   poolName: selectedPool.nom,
@@ -118,7 +118,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
 }
 
 try {
-  const res = addChestMutation({accessToken: context.appState.accessToken,data:body});
+  const res = await addChestMutation({accessToken: context.appState.accessToken,data:body});
    queryClient.invalidateQueries('Fetch user chest');
    console.log("dddddddddddd", res);
    const {error, message,success, data} = res;
@@ -129,11 +129,12 @@ try {
         return ;
        } 
        if(success) {
-          scrollToBottom();
+          alert("creation coffre fort");
+         scrollToBottom();
          setErrormsg(null);
          setSuccessmsg(message);
-         alert("creation coffre fort");
-        return ;
+        
+        return;
        }
 
   // console.log("bbbbbbbbbbbbb", res);
@@ -234,11 +235,16 @@ const defaultOption = selectedType;
             onChange={onSelect}
             
         />
-        {errormsg? <div className="text-muted font-italic py-4 mt-1">
+        {errormsg && <div className="text-muted font-italic py-4 mt-1">
 
                   <span className="text-danger font-weight-700">{errormsg}</span>
 
-              </div>:null}
+              </div>}
+              { successmsg && <div className="text-muted font-italic py-4 mt-1">
+
+                  <span className="text-success font-weight-700">{successmsg}</span>
+
+              </div>}
          </div>
           
        </Col>

@@ -13,7 +13,7 @@ export default function coffre( {pool, item, index}) {
   const context = useAppContext();
   const router = useRouter();
   const { mutateAsync, isLoading } = useClaimChest();
-  const {mutationAsync: dailyTMutation, isLoading: dailyTLoad } = useChestDailyTransactions();
+  // const {mutateAsync: dailyTMutation, isLoading: dailyTLoad } = useChestDailyTransactions();
      const calculateTimeLeft = () => {
       const createdTime = new Date(item.createdAt);
     const difference =  createdTime.setDate(createdTime.getDate() + 1)  - +new Date()  ;
