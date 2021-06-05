@@ -17,6 +17,7 @@ import {
   UncontrolledTooltip,
   Form,
   Button,
+  Spinner,
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
@@ -39,13 +40,21 @@ import { QueryCache } from "react-query";
 import { useAppContext } from '../../src/context';
 import {useWallets, useFetchOptions,useFetchUserChest, useAddChest} from '../../src/hooks';
 import {fetchOptions} from '../../src/services';
-import { CustomDropdown } from '../../src/components/common/CustomDropdown';
+import  CustomDropdown  from '../../src/components/common/CustomDropdown';
 import DataLoader from "../../src/components/common/DataLoader";
 const queryClient = new QueryClient();
+const arrowClosed = (
+  <span className="arrow-closed" />
+)
+const arrowOpen = (
+  <span className="arrow-open" />
+)
 
 const Crowdlending = () => {
-
-  const context = useAppContext();
+const PRINCIPAL = "principal";
+const TRANSFERT = "transfert";
+const optionstype = [PRINCIPAL,TRANSFERT];
+const context = useAppContext();
 const {data, isLoading} = useWallets(context.appState.accessToken);
 const {data:optionsData, isLoading:isLoadingOptions} = useFetchOptions();
 const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
@@ -54,6 +63,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
   const [copiedText, setCopiedText] = useState();
   const [toggle, setToggle] = useState(false);
   const [capital, setCapital] = useState(100);
+  const [selectedType, setType] = useState(optionstype[0]);
   // const [taux, setTaux] = useState(7.5);
   const [selectedPool, setSelectedPool] = useState(optionsData?.data?.options[0]);
   const [selectedPeriode, setSelectedPeriode] = useState(optionsData?.data?.options[0].stakePeriode[0]);
@@ -81,7 +91,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
   const mesCoffres = [];
 
   const ouvrirCoffre = () => {
-    scrollToBottom();
+   
     // let coffredata = {
     //   poolName: selectedPool.nom,
     //   capital: capital,
@@ -97,7 +107,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
             montant : capital
         },
         wallet : {
-            type : "principal"
+            type : selectedType,
         },
         option : {
             id : selectedPool._id,
@@ -110,13 +120,15 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
 try {
   const res = addChestMutation({accessToken: context.appState.accessToken,data:body});
    queryClient.invalidateQueries('Fetch user chest');
+   console.log("dddddddddddd", res);
    const {error, message,success, data} = res;
         if(error && !success){
+         alert(`${res.message}`);
         setSuccessmsg(null);
-        setErrormsg(message);
-        alert("une erreur s'est produite")
-       } else {
-
+        setErrormsg(res.message);
+       
+       } else if(success) {
+          scrollToBottom();
          setErrormsg(null);
          setSuccessmsg(message);
           alert("creation coffre fort");
@@ -129,10 +141,16 @@ try {
 }
 }
 
+ const onSelect = (type) => {
+      console.log("####################", type);
+    setType(type.value);
+   }
 if(isLoadingOptions){
   return <DataLoader/>
 }
-//  console.log("options", optionsData?.data?.options);
+
+const defaultOption = selectedType;
+ console.log("$$$$$$$$$$", defaultOption);
   return (
     <Portal>
     <Global
@@ -203,6 +221,24 @@ if(isLoadingOptions){
              </LightBoxContainer>
            })
          }
+         <div>
+            <h4>Choisir le wallet d'ouverture du coffre</h4>
+           <CustomDropdown
+            arrowClosed={arrowClosed}
+            arrowOpen={arrowOpen}
+            options={optionstype}
+            value={defaultOption}
+            placeholder="Choisir le wallet d'ouverture du coffre"
+            name="wallets"
+            onChange={onSelect}
+            
+        />
+         </div>
+          {errormsg? <div className="text-muted font-italic py-4">
+
+                  <span className="text-danger font-weight-700">{errormsg}</span>
+
+              </div>:null}
        </Col>
        <Col xl={8}>
           <LightBoxContainer borderR="20px" width="100%">
@@ -232,7 +268,9 @@ if(isLoadingOptions){
                    <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>
                 </Container>
                  <SimulationTable periode={selectedPeriode?.duree || 0} taux={selectedPeriode?.taux || 0} pool={{name:selectedPool?.nom, frequence: selectedPool?.frequence|| 0}} capital={capital || 0}/>
-                 <FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>
+             
+             {addChestLoading?  <Spinner style={{ width: '2rem', height: '2rem' , color:"#cc9933"}}/> :<FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>}
+            
               </Row>
             </Form>
          </LightBoxContainer>
