@@ -68,7 +68,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
   const [selectedPool, setSelectedPool] = useState(optionsData?.data?.options[0]);
   const [selectedPeriode, setSelectedPeriode] = useState(optionsData?.data?.options[0].stakePeriode[0]);
   const [stakeIndex, setStakeIndex] = useState(0);
-  const [errormsg, setErrormsg]= useState(null);
+  const [errormsg, setErrormsg]= useState('');
   const [successmsg, setSuccessmsg]= useState(null);
 
 
@@ -122,17 +122,18 @@ try {
    queryClient.invalidateQueries('Fetch user chest');
    console.log("dddddddddddd", res);
    const {error, message,success, data} = res;
-        if(error && !success){
-         alert(`${res.message}`);
+        if(error){
         setSuccessmsg(null);
         setErrormsg(res.message);
-       
-       } else if(success) {
+        alert(`${res.message}`);
+        return ;
+       } 
+       if(success) {
           scrollToBottom();
          setErrormsg(null);
          setSuccessmsg(message);
-          alert("creation coffre fort");
-
+         alert("creation coffre fort");
+        return ;
        }
 
   // console.log("bbbbbbbbbbbbb", res);
@@ -233,12 +234,13 @@ const defaultOption = selectedType;
             onChange={onSelect}
             
         />
-         </div>
-          {errormsg? <div className="text-muted font-italic py-4">
+        {errormsg? <div className="text-muted font-italic py-4 mt-1">
 
                   <span className="text-danger font-weight-700">{errormsg}</span>
 
               </div>:null}
+         </div>
+          
        </Col>
        <Col xl={8}>
           <LightBoxContainer borderR="20px" width="100%">
