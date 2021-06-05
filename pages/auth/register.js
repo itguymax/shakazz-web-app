@@ -94,12 +94,13 @@ const { register, handleSubmit, watch, errors } = useForm({
     let datares = await mutateAsync( userdata);
     // console.log("response", datares);
        const { data, error, success, message} = datares;
-       if(error && !success){
+       if(error){
         setSuccessmsg(null);
         setErrormsg(message);
          setSubmitting(false);
         alert("une erreur s'est produite")
-       } else {
+       } 
+       if(success) {
          setSubmitting(true);
          setErrormsg(null);
          setSuccessmsg(message);
@@ -126,14 +127,14 @@ const { register, handleSubmit, watch, errors } = useForm({
     const addData= {
       profil: isParticular? "Particulier":"Entreprise",
       // parent: selectedOption.key
-      parent: selectedOption.invitation
+      parent: selectedOption.invitation || router.query.ref,
     }
     // console.log("invidation", addData);
     setUserAdditionalData(addData);
   }, [selectedOption,isParticular])
 
   if(router.query.ref && iLRef) return <Spinner size="lg" color="#aa9933" />
-console.log("ref",iLRefData);
+console.log("ref",iLRefData,additionaldata );
   return (
     <>
     <Global
@@ -376,7 +377,8 @@ console.log("ref",iLRefData);
                   <div className="custom-control custom-control-alternative">
                     <label
                       className="custom-control-label"
-                      htmlFor="customCheckRegister" check
+                      htmlFor="customCheckRegister" 
+                      // check
                     >
                     <input
                       id="customCheckRegister"
