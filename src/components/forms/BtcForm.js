@@ -9,6 +9,7 @@ import {
   Row, Form, Label,FormText,Alert
 } from "reactstrap";
 import Sinput from "./Sinput";
+import Toast from "./Toast";
 import Dot from '../common/dot'
 import { useConverter } from '../../../src/hooks'
 import { useForm } from "react-hook-form";
@@ -150,11 +151,7 @@ export default function BtcForm({}) {
       {isLoading? <Spinner size="sm" color="#cc993a" />: "SOUMETTRE"}
      </Button>
     </Form>
-    <div style={{position:"fixed",bottom:"20px",right:"20px",zIndex:"900"}}>
-      <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visibleAlert} toggle={onDismiss} fade={false}>
-        {responseAlert}
-      </Alert>
-    </div>
+    <Toast colorAlert={colorAlert} visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   )
 }

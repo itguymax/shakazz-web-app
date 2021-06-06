@@ -1,6 +1,8 @@
-//import { useAppContext } from '../context';
-const cp_init = (token,loading)=>{
-    //const context = useAppContext();
+const cp_init = async (token)=>{
+    const body = {
+      data: {
+      }
+    };
     let trans_id = token;
     const amount = document.getElementById("cinetpay_amount");
     const currency = document.getElementById("cinetpay_currency");
@@ -21,7 +23,8 @@ const cp_init = (token,loading)=>{
              result_div.innerHTML = 'Paiement en cours ';
              result_div.innerHTML += 'code:' + e.code + 'Message::' + e.message;
         });
-    CinetPay.on('paymentSuccessfull', function (paymentInfo) {console.log(paymentInfo);
+    CinetPay.on('paymentSuccessfull', async function (paymentInfo) {
+      //const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
                if(typeof paymentInfo.lastTime != 'undefined'){
                    result_div.innerHTML = '';
                    if(paymentInfo.cpm_result == '00'){
