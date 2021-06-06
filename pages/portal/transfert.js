@@ -63,9 +63,8 @@ const optionstype = [INTERNE,EXTERNE];
     if(selectedType === INTERNE){
       if(!selectedSource && !sOP && !dOp){
         setSubmitting(false);
-        setResponseAlert("Champs invalides!");
+        setResponseAlert({error:true,message:"Champs invalides!"});
         setAlertVisible(true);
-        setColorAlert("danger");
       }
       const body = {
       data: {
@@ -79,23 +78,20 @@ const optionstype = [INTERNE,EXTERNE];
      const res = await im({accessToken: token ,data:body});
       if(res.error && !res.success){
         setSubmitting(false)
-        setResponseAlert(res.message);
+        setResponseAlert(res);
         setAlertVisible(true);
-        setColorAlert("danger");
         return;
       }
         //console.log("im res",res, body);
       setSubmitting(false)
-      setResponseAlert(res.message);
+      setResponseAlert(res);
       setAlertVisible(true);
-      setColorAlert("danger");
       return;
     } else if(selectedType === EXTERNE){
        if(!userId && !montant){
          setSubmitting(false);
-        setResponseAlert("Champs invalides");
+        setResponseAlert(res);
         setAlertVisible(true);
-        setColorAlert("danger");
       }
       const body = {
       data: {
@@ -111,14 +107,14 @@ const optionstype = [INTERNE,EXTERNE];
     const res = await em({accessToken: token ,data:body});
     if(res.error && !res.success){
         setSubmitting(false)
-        setResponseAlert(res.message);
+        setResponseAlert(res);
         setAlertVisible(true);
-        setColorAlert("danger");
         return;
       }
      //console.log("em res",res, body);
       setSubmitting(false)
-      alert(`${res.message}`);
+      setResponseAlert(res);
+      setAlertVisible(true);
         return;
 
     }
