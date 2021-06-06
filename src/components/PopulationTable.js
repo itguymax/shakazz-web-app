@@ -23,10 +23,11 @@ export default function PopulationTable({popData}) {
                <div> No children</div> : <>
                   {
                 popData.map( (item, key)=> {
+                  console.log("hgghghhgghhg",item);
                     return <tr>
-				        	<td> <Image height={40} width={40} src={item.avatarUrl || "/assets/img/de-user-profile.png"} priority={true}/> </td>		
+				        	<td> <Image height={40} width={40} src={item.avatarUrl || "/assets/img/def-user-profile.png"} priority={true}/> </td>		
                   <td> <Image height={25} width={40} src={item.address.country.flag || "/assets/img/country-flags/cameroun.png"} priority={true}/> </td>	 
-                  <td> <h3 style={{fontWeight:"100", color:"#444"}}>{item.address.country.indicatif + " " + item.phone || "+237..."}</h3> </td> 
+                  <td> <h3 style={{fontWeight:"100", color:"#444"}}>{`${item?.address?.country.indicatif}` || "pas de numero"}</h3> </td> 
                   <td> <h1 style={{fontWeight:"100", color:"#444"}}>{item.grade || "starter"}</h1> </td>  
                    <td> <h1>{item.turnover || "0"}</h1></td>    
 				      </tr>
