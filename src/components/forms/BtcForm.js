@@ -85,8 +85,7 @@ export default function BtcForm({}) {
   const [usdVal, setUSDVal] = useState(0);
   const {data:dtc} = useConverter("BTC","USD");
   const [visibleAlert, setAlertVisible] = useState(false);
-  const [colorAlert, setColorAlert] = useState("primary");
-  const [responseAlert, setResponseAlert] = useState("");
+  const [responseAlert, setResponseAlert] = useState({});
   const onDismiss = () => setAlertVisible(false);
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(depotBTCSchema),
@@ -111,23 +110,23 @@ export default function BtcForm({}) {
     const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
     const {error, message,success, data} = res;
         if(error && !success){
-          setResponseAlert("Impossible de joindre le serveur , veuillez re-éssayer plus tard.");
+          //message = "Impossible de joindre le serveur , veuillez re-éssayer plus tard.";
+          setResponseAlert(res);
           setAlertVisible(true);
-          setColorAlert("danger");
         } else {
            if (typeof window != 'undefined'){
-             setResponseAlert("Vous serez rediriger vers la page de confirmation dans 5 secondes...");
+             //message = "Vous serez rediriger vers la page de confirmation dans 5 secondes..."
+             setResponseAlert(res);
              setAlertVisible(true);
-             setColorAlert("primary");
              setTimeout(function(){
                setAlertVisible(false);
                window.open(data.invoice.url);
               },
                 7000);
            }else{
-             setResponseAlert("DOM non actif!");
+             /*setResponseAlert("DOM non actif!");
              setAlertVisible(true);
-             setColorAlert("danger");
+             setColorAlert("danger");*/
            }
        }
   };
@@ -151,7 +150,7 @@ export default function BtcForm({}) {
       {isLoading? <Spinner size="sm" color="#cc993a" />: "SOUMETTRE"}
      </Button>
     </Form>
-    <Toast colorAlert={colorAlert} visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
+    <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   )
 }

@@ -18,7 +18,7 @@ import { CheckUser } from '../../src/services';
 import {constantes} from '../../src/config';
 import {css} from "@emotion/react";
 import {device } from "../../src/lib/device";
-
+import Toast from "../../src/components/forms/Toast";
 
 
 
@@ -54,12 +54,18 @@ const optionstype = [INTERNE,EXTERNE];
   const { mutateAsync:em, isLoading:eml } = useTransfertExterne();
   const {mutateAsync:im, isLoading:iml } = useTransfertInterne();
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [colorAlert, setColorAlert] = useState("primary");
+  const [responseAlert, setResponseAlert] = useState("");
+  const onDismiss = () => setAlertVisible(false);
   const onSubmit = async (data) => {
      setSubmitting(true)
     if(selectedType === INTERNE){
       if(!selectedSource && !sOP && !dOp){
         setSubmitting(false);
-        alert("Champs invalides");
+        setResponseAlert("Champs invalides!");
+        setAlertVisible(true);
+        setColorAlert("danger");
       }
       const body = {
       data: {
@@ -73,17 +79,23 @@ const optionstype = [INTERNE,EXTERNE];
      const res = await im({accessToken: token ,data:body});
       if(res.error && !res.success){
         setSubmitting(false)
-        alert(`${res.message}`);
+        setResponseAlert(res.message);
+        setAlertVisible(true);
+        setColorAlert("danger");
         return;
       }
-        console.log("im res",res, body);
+        //console.log("im res",res, body);
       setSubmitting(false)
-      alert(`${res.message}`);
+      setResponseAlert(res.message);
+      setAlertVisible(true);
+      setColorAlert("danger");
       return;
     } else if(selectedType === EXTERNE){
        if(!userId && !montant){
          setSubmitting(false);
-        alert("Champs invalides");
+        setResponseAlert("Champs invalides");
+        setAlertVisible(true);
+        setColorAlert("danger");
       }
       const body = {
       data: {
@@ -99,16 +111,18 @@ const optionstype = [INTERNE,EXTERNE];
     const res = await em({accessToken: token ,data:body});
     if(res.error && !res.success){
         setSubmitting(false)
-        alert(`${res.message}`);
+        setResponseAlert(res.message);
+        setAlertVisible(true);
+        setColorAlert("danger");
         return;
       }
-     console.log("em res",res, body);
+     //console.log("em res",res, body);
       setSubmitting(false)
       alert(`${res.message}`);
         return;
 
     }
-    console.log("transfer", data);
+    //console.log("transfer", data);
   };
    const handleToggleshow = () => setShow(!show);
    const handleOnSelectTypeTransfer = (type) => {
@@ -241,7 +255,7 @@ const optionstype = [INTERNE,EXTERNE];
 
                   <span className="text-success font-weight-700">{yes}</span>
 
-              </div>} 
+              </div>}
               {(no && !yes ) && <div className="text-muted font-italic">
 
                   <span className="text-danger font-weight-700">{no}</span>
@@ -277,7 +291,7 @@ const optionstype = [INTERNE,EXTERNE];
               />
               </>
             )}
-             
+
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
@@ -312,6 +326,7 @@ const optionstype = [INTERNE,EXTERNE];
         </Col>
       </Row>
     </div>
+    <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </AdminBleu>
   )
 }

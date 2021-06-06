@@ -7,7 +7,6 @@ import CreatePortefeuille from '../../src/components/common/createPortefeuille';
 import FileUploadBlock from '../../src/components/forms/FileUploadBlock';
 import country from '../../src/helpers/countries.js';
 import withAuth from '../../src/hoc/withAuth';
-import Toast from "../../src/components/forms/Toast";
 
 // reactstrap components
 import {
@@ -26,6 +25,7 @@ import {
   DropdownItem,
   Label,
   Spinner,
+  Toast,
   ToastBody,
   ToastHeader
 } from "reactstrap";
@@ -39,11 +39,10 @@ import  apiV1  from '../../src/services/config';
 
 function Kyc() {
   const [visible, setVisible] = useState(false);
+  const [colorAlert, setColorAlert] = useState("primary");
+  const [responseAlert, setResponseAlert] = useState("");
     const context =  useAppContext();
-    const [visibleAlert, setAlertVisible] = useState(false);
-    const [colorAlert, setColorAlert] = useState("primary");
-    const [responseAlert, setResponseAlert] = useState("");
-    const onDismiss = () => setAlertVisible(false);
+  const onDismiss = () => setVisible(false);
 //
 const submitKycDoc =  async (file,doc) => {
   // console.log("file to submit", selectedOfficialFile);
@@ -64,13 +63,9 @@ const submitKycDoc =  async (file,doc) => {
     try{
        const res = await fetch(`${apiV1.root}/uploads/user/document`, params);
       //  console.log("res fillll", res)
-      setResponseAlert("Fichier envoyé avec succès");
-      setAlertVisible(true);
-      setColorAlert("success");
+      alert("File Upload success");
     } catch(err){
-      setResponseAlert("Fichier non envoyé, veuillez re-éssayer");
-      setAlertVisible(true);
-      setColorAlert("danger");
+      alert("File Upload Error");
     }
 
 };
@@ -150,7 +145,6 @@ const submitKycDoc =  async (file,doc) => {
           {responseAlert}
         </Alert>
       </div>
-      <Toast colorAlert={colorAlert} visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </Portal>
   );
 }

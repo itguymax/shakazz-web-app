@@ -3,6 +3,7 @@ import React, { useState, useEffect} from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import {Global,css} from "@emotion/react"
 import { device } from '../../src/lib/device.js';
+import Toast from "../../src/components/forms/Toast";
 // reactstrap components
 import { useQuery, useQueryClient,QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
@@ -70,7 +71,9 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
   const [stakeIndex, setStakeIndex] = useState(0);
   const [errormsg, setErrormsg]= useState('');
   const [successmsg, setSuccessmsg]= useState(null);
-
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
 
  const handlePeriodeSelection = (data) => {
    const index = selectedPool.stakePeriode.findIndex((op) => op._id === data._id);
@@ -91,7 +94,7 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
   const mesCoffres = [];
 
   const ouvrirCoffre = async () => {
-   
+
     // let coffredata = {
     //   poolName: selectedPool.nom,
     //   capital: capital,
@@ -120,20 +123,23 @@ const { mutateAsync: addChestMutation, isLoading:addChestLoading } =  useAddChes
 try {
   const res = await addChestMutation({accessToken: context.appState.accessToken,data:body});
    queryClient.invalidateQueries('Fetch user chest');
-   console.log("dddddddddddd", res);
+   //console.log("dddddddddddd", res);
    const {error, message,success, data} = res;
         if(error){
         setSuccessmsg(null);
         setErrormsg(res.message);
-        alert(`${res.message}`);
+        setResponseAlert(res);
+        setAlertVisible(true);
+
         return ;
-       } 
+       }
        if(success) {
-          alert("creation coffre fort");
+          setResponseAlert(res);
+          setAlertVisible(true);
          scrollToBottom();
          setErrormsg(null);
          setSuccessmsg(message);
-        
+
         return;
        }
 
@@ -233,7 +239,7 @@ const defaultOption = selectedType;
             placeholder="Choisir le wallet d'ouverture du coffre"
             name="wallets"
             onChange={onSelect}
-            
+
         />
         {errormsg && <div className="text-muted font-italic py-4 mt-1">
 
@@ -246,7 +252,7 @@ const defaultOption = selectedType;
 
               </div>}
          </div>
-          
+
        </Col>
        <Col xl={8}>
           <LightBoxContainer borderR="20px" width="100%">
@@ -276,9 +282,9 @@ const defaultOption = selectedType;
                    <h2 className="" style={{font: "normal normal bold 20px/36px Ubuntu", color: "#444"}}>Simulation</h2>
                 </Container>
                  <SimulationTable periode={selectedPeriode?.duree || 0} taux={selectedPeriode?.taux || 0} pool={{name:selectedPool?.nom, frequence: selectedPool?.frequence|| 0}} capital={capital || 0}/>
-             
+
              {addChestLoading?  <Spinner style={{ width: '2rem', height: '2rem' , color:"#cc9933"}}/> :<FlatButton  handleClick={ouvrirCoffre} label="Ouvrir mon coffre"  bgc="#cc9933" width="250px"/>}
-            
+
               </Row>
             </Form>
          </LightBoxContainer>
@@ -292,7 +298,7 @@ const defaultOption = selectedType;
           chestData?.data.chests.map((item, key)=> <Coffre key={key} index={key} item={item} taux={item.taux} interet={item.interet} periode={item.stakePeriode} pool={{name: selectedPool?.nom}} capital={item.montantUSD} date={item.createdAt} />)
         }
       </> : <div> <h1 className="text-center"> Vous n'avez aucun coffre ouvert</h1> </div>}
-
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
       </Container>
     </Portal>
   );
