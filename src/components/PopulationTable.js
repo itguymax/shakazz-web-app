@@ -24,11 +24,11 @@ export default function PopulationTable({popData}) {
                   {
                 popData.map( (item, key)=> {
                     return <tr>
-				        	<td> <Image height={40} width={40} src={item.avatarUrl || "/assets/img/users/user3.png"} priority={true}/> </td>		
+				        	<td> <Image height={40} width={40} src={item.avatarUrl || "/assets/img/de-user-profile.png"} priority={true}/> </td>		
                   <td> <Image height={25} width={40} src={item.address.country.flag || "/assets/img/country-flags/cameroun.png"} priority={true}/> </td>	 
                   <td> <h3 style={{fontWeight:"100", color:"#444"}}>{item.address.country.indicatif + " " + item.phone || "+237..."}</h3> </td> 
-                  <td> <h1 style={{fontWeight:"100", color:"#444"}}>{item.grade}</h1> </td>  
-                   <td> <h1>{item.turnover}</h1></td>    
+                  <td> <h1 style={{fontWeight:"100", color:"#444"}}>{item.grade || "starter"}</h1> </td>  
+                   <td> <h1>{item.turnover || "0"}</h1></td>    
 				      </tr>
                 })
               }
