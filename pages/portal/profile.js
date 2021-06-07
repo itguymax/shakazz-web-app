@@ -193,7 +193,7 @@ function Profile() {
       </Alert>
     </div>
       <h2>INFORMATIONS PERSONNELLES</h2>
-      <ProfileForm isAccount={isAccount} setAccountType={setAccountType} setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisible={setVisible}/>
+      <ProfileForm isAccount={isAccount} setAccountType={setAccountType}/>
        {/* <Col sm="4"> */}
            <ProfileUpload/>
           {/* </Col> */}
