@@ -10,6 +10,8 @@ import {Global,css} from "@emotion/react"
 import { device } from '../../src/lib/device.js';
 import {Card,Button, CardBody } from 'reactstrap'
 import Captcha from '../../src/components/Captcha';
+import Toast from "../../src/components/forms/Toast";
+
 function ForgotPassword() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(forgotPasswordSchema),
@@ -20,6 +22,9 @@ function ForgotPassword() {
   const [successmsg, setSuccessmsg]= useState(null);
   const [emailSend, setEmail] = useState(false);
   const executeCaptcha = () => setVerified(!verified);
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState("");
+  const onDismiss = () => setAlertVisible(false);
   const onSubmit = async (data) => {
       let userdata;
   if(verified){
@@ -39,13 +44,12 @@ function ForgotPassword() {
          setEmail(!emailSend);
        }
 
-
-
    }catch(err){
         console.log("error", err);
    }
    } else {
-     alert("Vous  n'êtes pas humain")
+     setResponseAlert({error:true,message:"Vous  n'êtes pas humain!"});
+     setAlertVisible(true);
    }
   };
   const  recaptchaRef = useRef();
@@ -124,6 +128,7 @@ function ForgotPassword() {
       </Card>
       </form>)}
     </div>
+    <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   )
 }

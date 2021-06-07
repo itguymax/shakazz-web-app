@@ -6,6 +6,7 @@ import { loginUser } from '../../src/services/auth.service'
 import connfig from '../../src/config';
 import { device } from '../../src/lib/device.js';
 import {Global,css} from "@emotion/react"
+import Toast from "../../src/components/forms/Toast";
 // reactstrap components
 import {
   Button,
@@ -35,7 +36,9 @@ function Login() {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
-
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState("");
+  const onDismiss = () => setAlertVisible(false);
   const recaptchaRef = useRef();
   const [show, setShow] = useState(false);
   const [verified, setVerified]= useState(false);
@@ -74,7 +77,8 @@ function Login() {
         console.log("error", err);
    }
    } else {
-     alert("Vous n'êtes pas humain")
+     setResponseAlert({error:true,message:"Vous n'êtes pas humain!"});
+     setAlertVisible(true);
    }
  };
  useEffect(() => {
@@ -232,8 +236,8 @@ function Login() {
             </Form>
           </CardBody>
         </Card>
-
       </Row>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   );
 }

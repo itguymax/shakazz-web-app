@@ -55,7 +55,6 @@ const optionstype = [INTERNE,EXTERNE];
   const {mutateAsync:im, isLoading:iml } = useTransfertInterne();
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
   const [visibleAlert, setAlertVisible] = useState(false);
-  const [colorAlert, setColorAlert] = useState("primary");
   const [responseAlert, setResponseAlert] = useState("");
   const onDismiss = () => setAlertVisible(false);
   const onSubmit = async (data) => {
