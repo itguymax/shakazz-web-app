@@ -7,7 +7,7 @@ import CreatePortefeuille from '../../src/components/common/createPortefeuille';
 import FileUploadBlock from '../../src/components/forms/FileUploadBlock';
 import country from '../../src/helpers/countries.js';
 import withAuth from '../../src/hoc/withAuth';
-
+import Toast from "../../src/components/forms/Toast";
 // reactstrap components
 import {
   Alert,
@@ -24,10 +24,7 @@ import {
   Media,
   DropdownItem,
   Label,
-  Spinner,
-  Toast,
-  ToastBody,
-  ToastHeader
+  Spinner
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal";
@@ -40,9 +37,10 @@ import  apiV1  from '../../src/services/config';
 function Kyc() {
   const [visible, setVisible] = useState(false);
   const [colorAlert, setColorAlert] = useState("primary");
-  const [responseAlert, setResponseAlert] = useState("");
     const context =  useAppContext();
   const onDismiss = () => setVisible(false);
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
 //
 const submitKycDoc =  async (file,doc) => {
   // console.log("file to submit", selectedOfficialFile);
@@ -62,10 +60,12 @@ const submitKycDoc =  async (file,doc) => {
     }
     try{
        const res = await fetch(`${apiV1.root}/uploads/user/document`, params);
-      //  console.log("res fillll", res)
-      alert("File Upload success");
+      //console.log("res fillll", res)
+      setResponseAlert({error:false,message:"Fichier envoyé avec succès!"});
+      setAlertVisible(true);
     } catch(err){
-      alert("File Upload Error");
+      setResponseAlert({error:true,message:"File Upload Error!"});
+      setAlertVisible(true);
     }
 
 };
@@ -140,11 +140,7 @@ const submitKycDoc =  async (file,doc) => {
                />
         </Col>
       </Container>
-      <div>
-        <Alert style={{marginLeft:"1em",width:"20em"}} color={colorAlert} isOpen={visible} toggle={onDismiss} fade={false}>
-          {responseAlert}
-        </Alert>
-      </div>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </Portal>
   );
 }

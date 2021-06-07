@@ -30,6 +30,7 @@ import {useAppContext} from "../../src/context";
 import {Global,css} from "@emotion/react"
 import { device } from '../../src/lib/device.js';
 import {  UseNetworkerByInvitation } from '../../src/hooks'
+import Toast from "../../src/components/forms/Toast";
 
 const options = [
  {
@@ -77,19 +78,22 @@ const { register, handleSubmit, watch, errors } = useForm({
   const togglebg = {
     backgroundColor: isParticular ? '#CC9933':'#fff'
   }
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState("");
+  const onDismiss = () => setAlertVisible(false);
   const handleParainOption = ( value ) => {
     // console.log("parainnnnn", value);
     setSelectedOption(value);
   };
-  
+
   const handletoggle = () => setProfil(!isParticular);
   const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
-  
+
   const {data:iLRefData, isLoading:iLRef, isSuccess:sRef} =  UseNetworkerByInvitation(iref);
-  
+
 
   const onSubmit =  async (hookFormData) => {
-   
+
 
    if(verified){
     setSubmitting(true);
@@ -104,8 +108,9 @@ const { register, handleSubmit, watch, errors } = useForm({
         setSuccessmsg(null);
         setErrormsg(message);
          setSubmitting(false);
-        alert("une erreur s'est produite")
-       } 
+        setResponseAlert({error:true,message:"Une erreur s'est produite"});
+        setAlertVisible(true);
+       }
        if(success) {
          setSubmitting(true);
          setErrormsg(null);
@@ -119,7 +124,8 @@ const { register, handleSubmit, watch, errors } = useForm({
   }
 
    } else {
-     alert("Vous  n'êtes pas humain")
+     setResponseAlert({error:true,message:"Vous n'ête pas humain!"});
+     setAlertVisible(true);
    }
 
   };
@@ -136,7 +142,7 @@ const { register, handleSubmit, watch, errors } = useForm({
          setiref(router.query.ref);
          addData['profil'] = isParticular? "Particulier":"Entreprise";
          addData['parent'] = router.query.ref;
-        
+
     } else {
        addData['profil']= isParticular? "Particulier":"Entreprise";
        addData['parent'] = selectedOption.invitation;
@@ -144,16 +150,16 @@ const { register, handleSubmit, watch, errors } = useForm({
 
         setUserAdditionalData(addData);
     // console.log("invidation", addData);
-   
+
   }, [selectedOption,isParticular])
 
   // if(router.query.ref && iLRef) return <Spinner size="lg" color="#aa9933" />
-  
+
   return (
     <>
     <Global
     styles={css`
- 
+
       .custom-control-label input {
         position: absolute;
         opacity: 1;
@@ -251,10 +257,10 @@ const { register, handleSubmit, watch, errors } = useForm({
                     {iLRef ? <Spinner size="lg"  style={{ width: '2rem', height: '2rem',color:"#aa9933"}} /> :(router.query.ref && sRef)?(
 
               <div  className="d-flex align-items-center">
-                <img className="avatar avatar-sm mr-2" alt="user profile image" src={ "/assets/img/def-user-profile.png"}></img>   
+                <img className="avatar avatar-sm mr-2" alt="user profile image" src={ "/assets/img/def-user-profile.png"}></img>
                 <div className="d-flex" style={{flexDirection:'column'}}>
                   <small className="mb-0">
-                
+
                     {iLRefData?.data?.userName}
                   </small>
                   <div className="d-flex align-items-center">
@@ -392,7 +398,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                   <div className="custom-control custom-control-alternative">
                     <label
                       className="custom-control-label"
-                      htmlFor="customCheckRegister" 
+                      htmlFor="customCheckRegister"
                       // check
                     >
                     <input
@@ -450,19 +456,20 @@ const { register, handleSubmit, watch, errors } = useForm({
           </CardBody>
         </Card>
       </Row>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   );
 }
 
 // export async function getStaticProps(contex) {
-  
+
 //   const queryClient = new QueryClient()
 
 //   await queryClient.prefetchQuery(['Networkers'], () => fetchNetworkers())
 
 //   return {
 //     props: {
-     
+
 //       dehydratedState: dehydrate(queryClient),
 //     },
 //   }

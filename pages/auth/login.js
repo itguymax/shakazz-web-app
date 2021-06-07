@@ -37,7 +37,7 @@ function Login() {
     resolver: yupResolver(loginSchema),
   });
   const [visibleAlert, setAlertVisible] = useState(false);
-  const [responseAlert, setResponseAlert] = useState("");
+  const [responseAlert, setResponseAlert] = useState({});
   const onDismiss = () => setAlertVisible(false);
   const recaptchaRef = useRef();
   const [show, setShow] = useState(false);
