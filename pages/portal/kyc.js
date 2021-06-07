@@ -38,7 +38,7 @@ function Kyc() {
   const [visible, setVisible] = useState(false);
   const [colorAlert, setColorAlert] = useState("primary");
     const context =  useAppContext();
-  const onDismiss = () => setVisible(false);
+  const onDismiss = () => setAlertVisible(false);
   const [visibleAlert, setAlertVisible] = useState(false);
   const [responseAlert, setResponseAlert] = useState({});
 //
