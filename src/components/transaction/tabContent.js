@@ -4,7 +4,8 @@ import moment from "moment";
 import {
     Table,Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from "reactstrap";
-import Image from 'next/image'
+import Image from 'next/image';
+import {css} from "@emotion/react";
 export default function TabContent(props) {
   const {
     buttonLabel,
@@ -91,7 +92,13 @@ export default function TabContent(props) {
             }
             `}>
                 { 
-                    props.data?.length < 1 ? <div> no data </div> : <>
+                    props.data?.length < 1 ? <div css={css`
+             
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: center;
+            `}> {` Vous n'avez aucune transactions`} </div> : <>
                     { props.data?.map( (item, key)=> <React.Fragment key={key}> 
                     <tr style={{ }}>
                             <td ><div >{item._id}</div></td>

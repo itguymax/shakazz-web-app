@@ -57,7 +57,7 @@ const options = [
    image: { avatar: true, src: "/assets/img/theme/react.jpg" },
  },
 ]
-function Register() {
+function Register(props) {
 const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(registrationSchema),
   });
@@ -71,6 +71,7 @@ const { register, handleSubmit, watch, errors } = useForm({
   const [successmsg, setSuccessmsg]= useState(null);
   const [additionaldata, setUserAdditionalData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [iref,setiref ] = useState(router.query.ref);
   const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
   // const { setUserDataContext } = useAppContext();
   const togglebg = {
@@ -80,10 +81,15 @@ const { register, handleSubmit, watch, errors } = useForm({
     // console.log("parainnnnn", value);
     setSelectedOption(value);
   };
+  
   const handletoggle = () => setProfil(!isParticular);
   const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
-  const {data:iLRefData, isLoading:iLRef} =  UseNetworkerByInvitation(router.query.ref) ;
+  
+  const {data:iLRefData, isLoading:iLRef, isSuccess:sRef} =  UseNetworkerByInvitation(iref);
+  
+
   const onSubmit =  async (hookFormData) => {
+   
 
    if(verified){
     setSubmitting(true);
@@ -94,12 +100,13 @@ const { register, handleSubmit, watch, errors } = useForm({
     let datares = await mutateAsync( userdata);
     // console.log("response", datares);
        const { data, error, success, message} = datares;
-       if(error && !success){
+       if(error){
         setSuccessmsg(null);
         setErrormsg(message);
          setSubmitting(false);
         alert("une erreur s'est produite")
-       } else {
+       } 
+       if(success) {
          setSubmitting(true);
          setErrormsg(null);
          setSuccessmsg(message);
@@ -122,16 +129,26 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handleOnBlur = () => {
 
   }
-  useEffect( ()=>{
-    const addData= {
-      profil: isParticular? "Particulier":"Entreprise",
-      // parent: selectedOption.key
-      parent: selectedOption.invitation
+  useEffect( async () =>{
+    let addData={}
+    if(router.query.ref){
+      console.log("%%%%%%%%",router.query.ref);
+         setiref(router.query.ref);
+         addData['profil'] = isParticular? "Particulier":"Entreprise";
+         addData['parent'] = router.query.ref;
+        
+    } else {
+       addData['profil']= isParticular? "Particulier":"Entreprise";
+       addData['parent'] = selectedOption.invitation;
     }
+
+        setUserAdditionalData(addData);
     // console.log("invidation", addData);
-    setUserAdditionalData(addData);
+   
   }, [selectedOption,isParticular])
-console.log("ref",iLRefData);
+
+  // if(router.query.ref && iLRef) return <Spinner size="lg" color="#aa9933" />
+  
   return (
     <>
     <Global
@@ -231,13 +248,14 @@ console.log("ref",iLRefData);
                 <Col className="col-auto">
                   <FormGroup>
                     <label>Votre parain</label>
-                    {router.query.ref ? (
+                    {iLRef ? <Spinner size="lg"  style={{ width: '2rem', height: '2rem',color:"#aa9933"}} /> :(router.query.ref && sRef)?(
 
               <div  className="d-flex align-items-center">
                 <img className="avatar avatar-sm mr-2" alt="user profile image" src={ "/assets/img/def-user-profile.png"}></img>   
                 <div className="d-flex" style={{flexDirection:'column'}}>
                   <small className="mb-0">
-                    {iLRefData.data.userName}
+                
+                    {iLRefData?.data?.userName}
                   </small>
                   <div className="d-flex align-items-center">
                   </div>
@@ -374,7 +392,8 @@ console.log("ref",iLRefData);
                   <div className="custom-control custom-control-alternative">
                     <label
                       className="custom-control-label"
-                      htmlFor="customCheckRegister" check
+                      htmlFor="customCheckRegister" 
+                      // check
                     >
                     <input
                       id="customCheckRegister"
@@ -435,15 +454,23 @@ console.log("ref",iLRefData);
   );
 }
 
-export async function getStaticProps() {
-  const queryClient = new QueryClient()
+// export async function getStaticProps(contex) {
+  
+//   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(['Networkers'], () => fetchNetworkers())
+//   await queryClient.prefetchQuery(['Networkers'], () => fetchNetworkers())
 
+//   return {
+//     props: {
+     
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   }
+// }
+export async function getServerSideProps(context) {
+  console.log("ssp", context.query);
   return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
+    props: {}, // will be passed to the page component as props
   }
 }
 

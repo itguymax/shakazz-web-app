@@ -18,19 +18,19 @@ import { useAppContext } from '../../src/context';
 import {useWallets} from '../../src/hooks';
 import {Global,css} from "@emotion/react"
 import { device } from '../../src/lib/device.js';
-
+import { useFetchUserInfos } from "../../src/hooks";
+import DataLoader from "../../src/components/common/DataLoader.js";
 
 
 function Networking() {
   const context = useAppContext();
   const {data, isLoading} = useWallets(context.appState.accessToken);
-const onChange = (index) => {
-  setLink(index)
-}
+  const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
+  const onChange = (index) => {
+    setLink(index)
+  }
 
-const [link, setLink] = useState(
- 0
-)
+  const [link, setLink] = useState(0)
 
 const user = {
   nom : "Ludovic Feutse",
@@ -56,10 +56,16 @@ function selectComponent(){
     return <Youtube/>
   }
 
+    if(userDataLoading) {
+      return (
+       <DataLoader/>
+      )
+    }
+
   return (
     <Portal>
       {/* <Header /> */}
-
+      {userData?.data?.user.licence ?(
       <Container fluid>
       <Global
       styles={css`
@@ -122,7 +128,23 @@ function selectComponent(){
           </Col>
           </Row>
         </div>
-      </Container>
+      </Container>):(
+      <Portal>
+          <div
+            css={css`
+              width: 100%;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: center;
+            `}
+          >
+          <h1>{`Vous n'avez pas encore de licence active`}</h1>
+          <p>{`Bien vouloir ouvrir un premier coffre et active votre licence `}</p>
+        </div>
+    </Portal>
+      )}
     </Portal>
   );
 }

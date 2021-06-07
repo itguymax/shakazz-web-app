@@ -42,6 +42,8 @@ const optionstype = [INTERNE,EXTERNE];
   const [montant, setMontant]= useState("");
   const [username, setUsername] = useState("");
   const [userId, setUserID] = useState("");
+  const [yes, setyes] = useState("");
+  const [no, setno] = useState("");
   const [isAuser, setIsAUser] = useState(false);
   const [sourceOption, setSourceOption] = useState([NETWORKING, VAULT]);
   const [selectedSource, setSelectedSource]= useState("")
@@ -145,10 +147,14 @@ const optionstype = [INTERNE,EXTERNE];
      const res = await CheckUser(token, event.target.value);
      console.log("check user", res, event.target.value);
      const { data } = res;
-     if(data.used && data.userId){
+     if(data.userId ){
         setUserID(data.userId);
+        setyes("L'utilisateur existe");
+        setno('');
      } else {
        setUserID('');
+       setno("L'utilisateur n'existe pas");
+       setyes('');
      }
 
    }
@@ -231,15 +237,16 @@ const optionstype = [INTERNE,EXTERNE];
                 inline
 
               />
-               { userId ? ( <div className="text-muted font-italic">
+               { (yes &&  !no) && <div className="text-muted font-italic">
 
-                  <span className="text-success font-weight-700">L'utilisateur Existe</span>
+                  <span className="text-success font-weight-700">{yes}</span>
 
-              </div>) : ( <div className="text-muted font-italic">
+              </div>} 
+              {(no && !yes ) && <div className="text-muted font-italic">
 
-                  <span className="text-danger font-weight-700">Utilisateur Inconnu</span>
+                  <span className="text-danger font-weight-700">{no}</span>
 
-              </div>) }
+              </div> }
 
                 <Sinput
                 label="Montant"

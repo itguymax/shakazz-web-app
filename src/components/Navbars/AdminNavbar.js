@@ -35,7 +35,7 @@ function AdminNavbar({ brandText, l }) {
           <Link href="/">
             <>
               {l&& <h3 style={{textAlign: "left", marginTop:'1.25rem'}} className='px-3 mt-4'> 
-                <a style={{font:'normal normal bold 25px/29px Ubuntu', color:'#fff' }} href="/">SHAKAZZ</a>
+                <a style={{font:'normal normal bold 25px/29px Ubuntu', color:'#fff' }} href="/portal/dashboard">SHAKAZZ</a>
           </h3>}
             <a className="h4 mb-0  font-weight-bold text-uppercase d-none d-lg-inline-block">
               {brandText}

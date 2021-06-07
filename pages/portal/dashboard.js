@@ -40,7 +40,7 @@ import { isDirective } from "graphql";
 import withAuth from '../../src/hoc/withAuth';
 import { constantes  } from "../../src/config/";
 import {  useFetchAlltransactions,useFetchUserInfos } from "../../src/hooks";
-
+import DataLoader from "../../src/components/common/DataLoader";
 let c;
 function Dashboard( props ) {
   const [activeNav, setActiveNav] = useState(1);
@@ -50,8 +50,8 @@ function Dashboard( props ) {
   const [element, setElement] = useState(10);
   const [copied, setCopied] = useState(false);
   const context = useAppContext();
-  c = context;
-const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
+  const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
+  const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
   const [token, setToken]= useState(context.appState.accessToken);
   const [isUserInfoCompleted , setUserInfoCompleted] = useState(false);
   if (window.Chart) {
@@ -75,8 +75,10 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
    useEffect(()=> {
     fetchInitData();
   },[])
-   const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(c.appState.accessToken);
-
+  
+  if(userDataLoading){
+    return <DataLoader/>
+  }
    console.log("user data loading", userData);
   // console.log("slice 10", transData.slice(0,10))
   return (
@@ -99,7 +101,7 @@ const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
                 <Col xl="8" className="p-4 col-xl-8" >
                   <div>
-                      <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >{`Bon retour ${userData?.data.user.psedo},`}</h2>
+                      <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >{`Bon retour ${userData?.data.user.psedo || ""},`}</h2>
                       <p style={{fontSize: '14px', lineHeight: '1.5'}}>La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
                       <Link label="Consulter" path="/portal/crowdlending" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                   </div>

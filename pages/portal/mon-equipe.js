@@ -24,6 +24,7 @@ import {
   useQueryClient,
   QueryClient,
 } from 'react-query'
+import DataLoader from "../../src/components/common/DataLoader.js";
 const generationCardData = [
   {
     id:1,
@@ -55,11 +56,11 @@ const generationCardData = [
  function Equipe() {
     const context = useAppContext();
   const {data, isLoading} = useWallets(context.appState.accessToken);
-
-   const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
-    const [showPopulation, setShowPopulation] = useState(false);
-     const [selectedGen, setselectedGen] = useState(false);
-     const [children, setChildren] = useState([]);
+  const { data: treeData, isLoading: treeLoading} = useFetchUserTree(context.appState.accessToken);
+  const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
+  const [showPopulation, setShowPopulation] = useState(false);
+  const [selectedGen, setselectedGen] = useState(false);
+  const [children, setChildren] = useState([]);
   const handleSetHTabs = ( indic) => {
     setHTabsIcons(indic);
   }
@@ -92,8 +93,9 @@ const generationCardData = [
       setShowPopulation(true);
 
 }
-
-const { data: treeData, isLoading: treeLoading} = useFetchUserTree(context.appState.accessToken);
+if(treeLoading){
+  return <DataLoader/>
+}
 console.log("user tree", treeData);
   return (
     <Portal>
