@@ -4,6 +4,7 @@ import {useDepotTransaction,useDepositWebhookCp} from '../../hooks';
 import {useDeposit} from '../../hooks';
 import { useAppContext } from '../../context';
 import { useConverterAfrica } from '../../../src/hooks'
+import { tauxChange } from "../../helpers/tauxChange";
 import {
   FormGroup,
   Input,
@@ -45,7 +46,7 @@ export default function CinetPayForm() {
         </FormGroup>
         <FormGroup>
           <Label>Correspondance USD</Label>
-          <Input type="number" value={(xafVal/615)} id="cinetpay_amount_usd" placeholder="0" disabled />
+          <Input type="number" value={(xafVal/tauxChange(currencyVal))} id="cinetpay_amount_usd" placeholder="0" disabled />
         </FormGroup>
 
         <Button onClick={async ()=>{
