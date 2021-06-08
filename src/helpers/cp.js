@@ -1,10 +1,10 @@
-const cp_init = async (token)=>{
+const cp_init = async (token,amountVal)=>{
     const body = {
       data: {
       }
     };
     let trans_id = token;
-    const amount = document.getElementById("cinetpay_amount");
+    const amount = amountVal;
     const currency = document.getElementById("cinetpay_currency");
     const result_div = document.getElementById('cinetpay_payment_result');
     let custom = "";
@@ -45,7 +45,7 @@ const cp_init = async (token)=>{
 
     //Application des méthodes
         CinetPay.setSignatureData({
-            amount: parseInt(amount.value),
+            amount: parseFloat(amount),
             trans_id: trans_id,
             currency: currency.value,
             designation: "DEPOT SHAKAZZ",
