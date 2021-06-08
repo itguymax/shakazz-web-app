@@ -72,7 +72,7 @@ export default function CinetPayForm() {
           }} id="cinetpay_amount" placeholder="100" />
         </FormGroup>
         <FormGroup>
-        <Button color="primary">Les trasactions via VISA/Mastercard sont soumises à 3.5% de frais.</Button>{' '}
+        <Button color="primary">Les transactions via VISA/Mastercard sont soumises à 3.5% de frais.</Button>{' '}
           <Table>
             <thead>
               <tr>
