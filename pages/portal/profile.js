@@ -8,11 +8,12 @@ import { profileSchema } from "../../src/validations";
 import { useUpdateUser } from '../../src/hooks';
 import withAuth from '../../src/hoc/withAuth';
 import Sinput from '../../src/components/forms/Sinput';
-import { device } from '../../src/lib/device.js';
+import { device } from '../../src/lib/device';
 import {useAppContext} from "../../src/context";
-import DropDownC from '../../src/components/forms/Dropdownc'
-import DropDownPhone from '../../src/components/forms/DropDownPhone'
-import country from '../../src/helpers/countries.js'
+import DropDownC from '../../src/components/forms/Dropdownc';
+import DropDownPhone from '../../src/components/forms/DropDownPhone';
+import country from '../../src/helpers/countries';
+import config from '../../src/config';
 // reactstrap components
 import {
   Alert,
@@ -53,7 +54,12 @@ function Profile() {
       resolver: yupResolver(profileSchema),
     });
   //
-
+const [grade, setgrade]= useState('');
+ useEffect(()=>{
+   if(typeof window !== "undefined" && localStorage.getItem(config.grade)){
+     setgrade(localStorage.getItem(config.grade));
+   }
+ })
   return (
     <Portal>
       {/* Page content */}

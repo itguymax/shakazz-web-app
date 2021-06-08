@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import AdminBleu from '../../src/layouts/AdminBleu'
 import Portal from "../../src/layouts/Portal.js";
 import {
@@ -39,6 +39,8 @@ function Retrait() {
   const [openModal, setOpenModal] = useState(false);
   const [portefeuilleOptions, setPortefeuille] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
+  const [walletID, setwalletID] = useState("");
+  const [walletData, setWalletData] = useState([]);
   const openDepotModal = () => setOpenModal(!openModal);
   const {data:dt, isLoading} = usePortefeuille(token);
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
@@ -59,7 +61,7 @@ function Retrait() {
             transaction:psw,
         },
         whitdrawal: {
-            wId:""
+            wId:walletID,
         },
         principal: {
             amount: parseInt(usdVal),
@@ -76,7 +78,9 @@ function Retrait() {
 
    }
    const handleOnSelectOption = (option) => {
+     console.log("handleOnSelectOption",option.value, walletData );
         setSelectedOption(option.value);
+        setwalletID(walletData?.filter(item => item.nom === option.value)[0].address);
    }
    const handleToggleshow = () => setShow(!show);
    const changePassword = (event) => {
@@ -85,6 +89,14 @@ function Retrait() {
    const defautOption = selectedOption;
    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
    //console.log("hhhhhhhhh", wp);
+   useEffect(()=> {
+     if( typeof window !== "undefined" && dt){
+        setPortefeuille(dt.data.porte_feuilles.map(item => item.nom));
+        setWalletData(dt.data.porte_feuilles.filter(item => item.nom))
+     }
+   })
+
+   console.log("wallet ID", walletID, walletData);
   return (
     <AdminBleu>
     <div>
@@ -146,7 +158,7 @@ function Retrait() {
                 label="Adresse à créditer"
                 name="portefeuille"
                 inline
-                options={portefeuilleOptions || dt}
+                options={portefeuilleOptions}
                 defaultOption={defautOption}
                 placeholder="Choisir un portefeulle"
                 dd
