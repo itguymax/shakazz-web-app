@@ -24,6 +24,7 @@ import { profileSchema } from "../../validations";
 import { useAppContext } from '../../context';
 import {useMutation, useQueryClient} from 'react-query';
 import {useProfileUserInfos} from '../../hooks';
+import Toast from "./Toast";
 
 let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let sexe = [{val:'Homme'},{val:'Femme'}];
@@ -44,8 +45,11 @@ let account_type = [{val:'Personnel'},{val:'Particulier'}];
       background-color:white;
   }
 `
-export default function Profileform({isAccount,setColorAlert,setResponseAlert,setVisible,setAccountType}) {
+export default function Profileform({isAccount,setAccountType}) {
   const context = useAppContext();
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
   const {mutateAsync, isLoading, isError, isSuccess}  = useProfileUserInfos();
   const [phone, setPhone] = useState();
   const [selectedCountry, setSelectedCountry] = useState(country[41]);
@@ -82,11 +86,11 @@ export default function Profileform({isAccount,setColorAlert,setResponseAlert,se
     const res = await mutateAsync({accessToken: context.appState.accessToken ,data:body});
     setVisible(true);
     if(res.error && !res.success){
-      setResponseAlert(res.message);
-      setColorAlert("danger");
+      setResponseAlert(res);
+      setAlertVisible(true);
        } else {
-        setResponseAlert(res.message);
-        setColorAlert("primary");
+         setResponseAlert(res);
+         setAlertVisible(true);
      }
   }
 

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import CreatePortefeuille from './common/createPortefeuille';
 import CreatePortefeuilleD from './common/createPortefeuilleD';
+import Toast from "./forms/Toast";
 import {
   FormGroup,
   Form,
@@ -13,6 +14,9 @@ import {useAddPortefeuille, usePortefeuille} from "../hooks";
 import {useAppContext} from "../context";
 export default function possa() {
   const context = useAppContext();
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
    const [successMsg, setsuccessMsg] = useState('');
    const [errorMsg, seterrorMsg] = useState('');
   const { mutateAsync, isLoading } = useAddPortefeuille();
@@ -26,26 +30,20 @@ export default function possa() {
   try{
     const res = await mutateAsync({accessToken: context.appState.accessToken, data: body});
        if(res.error && !res.success){
-
-        seterrorMsg(res.message)
-        setsuccessMsg('')
-
+         setResponseAlert(res);
+         setAlertVisible(true);
       } else {
-
-      seterrorMsg('')
-      setsuccessMsg(res.message)
-
-
+        setResponseAlert(res);
+        setAlertVisible(true);
     }
-    console.log("datatat", data, res);
+    //console.log("datatat", data, res);
   } catch(err){
-    console.log(err);
+    setResponseAlert(err);
+    setAlertVisible(true);
   }
 
 
   }
-
-  console.log("porte feullll", data);
   return (
          <Container>
         <Row className="profileColWrapper" >
@@ -72,6 +70,7 @@ export default function possa() {
                   </Container>
             </Col>
         </Row>
+        <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
       </Container>
   )
 }

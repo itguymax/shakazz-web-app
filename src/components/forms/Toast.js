@@ -1,13 +1,6 @@
 import React , {useState} from 'react'
 import {
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Col,
-  Row,Alert,
-  Button, Modal, ModalHeader, ModalBody, ModalFooter
+Alert,
 } from "reactstrap";
 import Dot from '../common/dot'
 import {Global,css} from "@emotion/react"

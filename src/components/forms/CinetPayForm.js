@@ -28,7 +28,7 @@ export default function CinetPayForm() {
      setCurrencyVal(data.target.value);
   }
   const {mutateAsync, isLoading, isError, isSuccess}  = useDepotTransaction();
-  const {mutateAsync:mutateAsyncCp, isLoading:isLoadingCp, isError:isErrorCp, isSuccessCp:isSuccessCp}  = useDepositWebhookCp();
+  //const {mutateAsync:mutateAsyncCp, isLoading:isLoadingCp, isError:isErrorCp, isSuccessCp:isSuccessCp}  = useDepositWebhookCp();
   return (
     <div>
           <FormGroup>
@@ -45,7 +45,7 @@ export default function CinetPayForm() {
         </FormGroup>
         <FormGroup>
           <Label>Correspondance USD</Label>
-          <Input type="number" value={(xafVal/dtc?.info.rate).toFixed(5)} id="cinetpay_amount_usd" placeholder="0" disabled />
+          <Input type="number" value={(xafVal/615)} id="cinetpay_amount_usd" placeholder="0" disabled />
         </FormGroup>
 
         <Button onClick={async ()=>{
