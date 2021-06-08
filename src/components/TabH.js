@@ -11,26 +11,31 @@ const TabH = ({indicator, text,hTabsIcons,handleSetHTabs, image, textStyle}) => 
       @media ${device.sPhone} {
         a.active.nav-link div{
           background-color:#dcb504 !important;
+          border-radius:8px;
         }
         }
       @media ${device.mPhone} {
         a.active.nav-link div{
           background-color:#dcb504 !important;
+          border-radius:8px;
         }
         }
       @media ${device.iphoneX} {
         a.active.nav-link div{
           background-color:#dcb504 !important;
+          border-radius:8px;
         }
         }
       @media ${device.bPhone} {
         a.active.nav-link div{
           background-color:#dcb504 !important;
+          border-radius:8px;
         }
         }
       @media ${device.sTablet} {
         a.active.nav-link div{
           background-color:#dcb504 !important;
+          border-radius:8px;
         }
         }
     `}
