@@ -1,12 +1,42 @@
 import React from "react";
-import {css} from "@emotion/react";
+import {Global,css} from "@emotion/react";
 import Image from "next/image";
 import {device} from "../lib/device";
 import { TabPane, Nav, Row, NavItem, NavLink, Container} from 'reactstrap';
 const TabH = ({indicator, text,hTabsIcons,handleSetHTabs, image, textStyle}) => {
   return (
+    <>
+    <Global
+    styles={css`
+      @media ${device.sPhone} {
+        a.active.nav-link div{
+          background-color:#dcb504 !important;
+        }
+        }
+      @media ${device.mPhone} {
+        a.active.nav-link div{
+          background-color:#dcb504 !important;
+        }
+        }
+      @media ${device.iphoneX} {
+        a.active.nav-link div{
+          background-color:#dcb504 !important;
+        }
+        }
+      @media ${device.bPhone} {
+        a.active.nav-link div{
+          background-color:#dcb504 !important;
+        }
+        }
+      @media ${device.sTablet} {
+        a.active.nav-link div{
+          background-color:#dcb504 !important;
+        }
+        }
+    `}
+    />
      <NavItem css={css`
-     
+
      `}>
             <NavLink
               className={
@@ -19,7 +49,8 @@ const TabH = ({indicator, text,hTabsIcons,handleSetHTabs, image, textStyle}) => 
                 handleSetHTabs(indicator);
               }}
             >
-             <Container fluid css={css` 
+             <Container fluid css={css`
+
                  display: flex;
                  flex-direction: row;
                  justify-content: center;
@@ -29,9 +60,9 @@ const TabH = ({indicator, text,hTabsIcons,handleSetHTabs, image, textStyle}) => 
                    margin-right: 5px;
                  }
                  h3{
-                  
+
                    padding-left: 5px;
-                   
+
                  }
                  @media (max-width: 600px){
                   display: flex;
@@ -44,18 +75,19 @@ const TabH = ({indicator, text,hTabsIcons,handleSetHTabs, image, textStyle}) => 
 
 
                    padding-left: 0px;
-                   
+
                  }
                  }
              `}>
-                 
+
                  {image &&  <Image priority={true}  quality={100} width="35px" height="35px" src={hTabsIcons === indicator ? "/assets/img/icons/icon_activated.svg" : "/assets/img/icons/icon_non-activated.svg"} />}
                 <h3 style={textStyle}> {text} { hTabsIcons === indicator && <span/>}</h3>
-              
+
              </Container>
-            
+
             </NavLink>
           </NavItem>
+          </>
   )
 }
 
