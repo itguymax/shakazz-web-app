@@ -52,10 +52,10 @@ export default function CinetPayForm() {
           //Here we ask token
           const body = {};
           const res = await mutateAsync({accessToken: context.appState.accessToken ,data:body});
-          const res2 = await mutateAsyncCp({accessToken: context.appState.accessToken ,data:{
-            //trans_id:paymentInfo.cpm_trans_id
-            trans_id:""
-          }});
+          // const res2 = await mutateAsyncCp({accessToken: context.appState.accessToken ,data:{
+          //   //trans_id:paymentInfo.cpm_trans_id
+          //   trans_id:""
+          // }});
           if(res.error && !res.success){
               alert("Probleme de connexion avec le server shakazz!");
              } else {

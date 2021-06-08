@@ -199,14 +199,18 @@ const [grade, setgrade]= useState('');
         {responseAlert}
       </Alert>
     </div>
-      <h2>INFORMATIONS PERSONNELLES</h2>
-      <ProfileForm isAccount={isAccount} setAccountType={setAccountType} setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisible={setVisible}/>
-       {/* <Col sm="4"> */}
-           <ProfileUpload/>
-          {/* </Col> */}
-      </Container>
+    <Row>
+      <Col lg="8">
+        <h2>INFORMATIONS PERSONNELLES</h2>
+        <ProfileForm isAccount={isAccount} setAccountType={setAccountType} setColorAlert={setColorAlert} setResponseAlert={setResponseAlert} setVisible={setVisible}/>
+      </Col>
+      <Col lg="4">
+        <ProfileUpload grade={grade}/>
+      </Col>
+    </Row>
+  </Container>
       <Possa/>
-    </Portal>
+  </Portal>
   );
 }
 

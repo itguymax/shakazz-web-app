@@ -107,7 +107,7 @@ const handlePickPhone = (e) => {
         <Row>
           <Col xs="6" sm="4">
                 <Row>
-                  <Col md={12}>
+                  <Col md={12} lg="6">
                         <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
                   <Col md={12} className="profileCol">
@@ -127,6 +127,8 @@ const handlePickPhone = (e) => {
 
                        </div> }
                   </Col>
+                  </Row>
+                  <Row>
                    <Col md={12}>
                        <Sinput
                        name="dob"
@@ -277,8 +279,7 @@ const handlePickPhone = (e) => {
 
                 </Row>
           </Col>
-         
         </Row>
-        </Form>
+      </Form>
   )
 }
