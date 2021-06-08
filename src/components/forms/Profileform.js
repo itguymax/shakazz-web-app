@@ -105,7 +105,7 @@ const handlePickPhone = (e) => {
   return (
     <Form onSubmit={handleSubmit(updateProfile)}>
         <Row>
-          <Col xs="6" sm="4">
+          <Col xs="6"  sm="4" lg="6">
                 <Row>
                   <Col md={12} lg="6">
                         <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
@@ -215,7 +215,7 @@ const handlePickPhone = (e) => {
                  </Row>
                   </Col>
           </Col>
-          <Col xs="6" sm="4">
+          <Col xs="6" lg="6" sm="4">
                 <Row>
                   <Col md={12}>
                         <Sinput
