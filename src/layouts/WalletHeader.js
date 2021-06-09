@@ -1,18 +1,23 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { Container } from 'reactstrap';
 import Image from "next/image";
 import LightBoxContainer from "../components/common/lightBoxContainer";
 import user from "../__MOCK__/user";
-
+import config from '../config'
 export default function WalletHeader({wallets}) {
-
+ const [grade, setgrade]= useState('');
+ useEffect(()=>{
+   if(typeof window !== "undefined" && localStorage.getItem(config.grade)){
+     setgrade(localStorage.getItem(config.grade));
+   }
+ })
   const badge ="starter";
   return (
     <>
      <Container fluid className="lightBoxContainerHeaderFluid" style={{display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
           <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
             <Image src={`/assets/img/badges/${badge}.png`} width={50} height={50} priority={true}/>
-            <small>starter</small>
+            <small>{grade}</small>
           </div>
            {
              wallets.map((wallet, key)=>{

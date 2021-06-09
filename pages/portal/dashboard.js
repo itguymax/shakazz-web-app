@@ -12,6 +12,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import {useAppContext} from "../../src/context";
 import moment from "moment";
+import Image from "next/image";
 // reactstrap components
 import {
   Card,
@@ -72,19 +73,22 @@ function Dashboard( props ) {
     // console.log("init data", initData);
     setTransData(initData.transactions);
   }
-   useEffect(()=> {
+   useEffect( async()=> {
     fetchInitData();
+
   },[])
-  
+
   if(userDataLoading){
     return <DataLoader/>
   }
    console.log("user data loading", userData);
   // console.log("slice 10", transData.slice(0,10))
+   const badge ="starter";
   return (
     <Portal>
       <Container>
        {userDataLoading? null : (
+         <div style={{display: "flex", flexDirextion:"row"}}>
           <div style={{cursor: "pointer"}}>
           <h2>Votre lien d'affiliation </h2>
           <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
@@ -94,6 +98,11 @@ function Dashboard( props ) {
           <span>{userData? userData?.data?.user?.affiliationLink: ""}</span>
         </CopyToClipboard>
           {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
+        </div>
+        <div className="ml-4">
+          <h2>{`chiffre d'affaire`}</h2>
+           <p>{(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
+        </div>
         </div>
        ) }
          <Row className="mt-5">
@@ -198,8 +207,13 @@ function Dashboard( props ) {
                       <p>{ userData?.data.user.phone}</p>
                     </div>
                   </div>
-                    <Link label="Mettre à jour le profil" path="/portal/profile" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                       <span
+                    <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+                       <Link label="Mettre à jour le profil" path="/portal/profile" style={{ background: '#cc993a 0% 0% no-repeat padding-box', flex:"5", cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                       <div style={{display:"flex", flex:"1", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                         <Image src={`/assets/img/badges/${badge}.png`} width={50} height={50} priority={true}/>
+                         <small>{userData?.data?.user?.grade}</small>
+                       </div>
+                       {/* <span
                           style={{
                             display: 'inline-block',
                             marginLeft: '.5rem',
@@ -210,7 +224,8 @@ function Dashboard( props ) {
                             borderRadius: '100%',
                             transform: 'scale(2)',
                           }}
-                       />
+                       /> */}
+                    </div>
                   </div>
               </LightBoxContainer>
              <LightBoxContainer height="300px">

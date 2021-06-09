@@ -24,7 +24,7 @@ const withAuth = (WrappedComponent) => {
     const Router = useRouter();
     const [verified, setVerified] = useState(false);
     console.log("HOC");
-    const { mutateAsync, isLoading, isError} = useMutation(verifyTokenS, {mutationKey:"Verify token", retry:1});
+    const { mutateAsync, isLoading, isError} = useMutation(verifyTokenS, {mutationKey:"Verify token", retry:true});
     console.log("test error", isError);
     if(isError){
       alert("Une erreur s'est produite")

@@ -23,7 +23,7 @@ const Button = styled.button`
   }
 `
 
-export default function ProfileUpload() {
+export default function ProfileUpload({grade}) {
   const context = useAppContext();
   const [fileUrl, setFile] = useState(null);
   function uploadFiles(files,idResponse){
@@ -92,12 +92,16 @@ const upload = async () => {
                       <FormGroup>
                         <Button onClick={upload}>Envoyer</Button>
                       </FormGroup>
-               {/* <Image
+              <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                  <Image
                 src="/assets/img/free-badge-icon-1361-thumb@2x.png"
-                alt="..."
+                alt={grade}
                 height={150} width={150}
                 style={{backgroundColor:"#000",margin:"auto",marginTop:"1em"}}
-                /> */}
+                />
+                <small>{grade}</small>
+              </div>
+               
   </Col>
   )
 }
