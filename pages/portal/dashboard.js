@@ -88,6 +88,7 @@ function Dashboard( props ) {
     <Portal>
       <Container>
        {userDataLoading? null : (
+         <div style={{display: "flex", flexDirextion:"row"}}>
           <div style={{cursor: "pointer"}}>
           <h2>Votre lien d'affiliation </h2>
           <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
@@ -97,6 +98,11 @@ function Dashboard( props ) {
           <span>{userData? userData?.data?.user?.affiliationLink: ""}</span>
         </CopyToClipboard>
           {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
+        </div>
+        <div className="ml-4">
+          <h2>{`chiffre d'affaire`}</h2>
+           <p>{(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
+        </div>
         </div>
        ) }
          <Row className="mt-5">
