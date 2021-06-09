@@ -176,6 +176,8 @@ const optionstype = [INTERNE,EXTERNE];
    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
    const wv = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.v) ;
    const wn = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.n) ;
+   console.log('selectedSource',selectedSource);
+   console.log("dOp",dOp);
   return (
     <AdminBleu>
     <div>

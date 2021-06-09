@@ -7,8 +7,9 @@ import config from '../config'
 export default function WalletHeader({wallets}) {
  const [grade, setgrade]= useState('');
  useEffect(()=>{
-   if(typeof window !== "undefined" && localStorage.getItem(config.grade)){
-     setgrade(localStorage.getItem(config.grade));
+   if(typeof window !== "undefined" && localStorage.getItem(config.info)){
+     const lgrade = JSON.parse(localStorage.getItem(config.info));
+     setgrade(lgrade.grade);
    }
  })
   const badge ="starter";
