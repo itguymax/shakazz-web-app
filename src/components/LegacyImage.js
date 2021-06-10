@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import {useAppContext} from "../context";
 import apiV1 from "../services/config"
-
+import Toast from "./forms/Toast";
 
 const Button = styled.button`
     background-color: #679966;
@@ -20,9 +20,12 @@ const Button = styled.button`
       color: #679966;
       background-color:white;
   }
-` 
+`
 export default function LegacyImage() {
   const context = useAppContext();
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
   const [fileUrl, setFile] = useState(null);
   function uploadFiles(files,idResponse){
     let reader = new FileReader();
@@ -63,10 +66,11 @@ export default function LegacyImage() {
     }
     try{
        const res = await fetch(`${apiV1.root}/uploads/user/profil`, params);
-       console.log("res fillll", res)
-      alert("File Upload success");
+       setResponseAlert({error:false,message:"Fichier uploadé avec succès"});
+       setAlertVisible(true);
     } catch(err){
-      alert("File Upload Error");
+      setResponseAlert({error:true,message:"Fichier non uploadé"});
+      setAlertVisible(true);
     }
 
 };
@@ -77,7 +81,7 @@ const upload = async () => {
   return (
     <>
          <div className="rounded-circle" style={{display: "flex", flexDirection:"column", justifyContent:"center", alignItems:"center", height:'200px', width:'200px'}}>
-                 
+
                       <Image
                   id="profile_photo"
                   src= {fileUrl|| "/assets/img/def-user-profile.png"}
@@ -89,11 +93,12 @@ const upload = async () => {
                     launchUpload("profile_photo");
                   }}
               />
-                
+
           </div>
                 <Button className="mt-3 mb-1"  onClick={upload} style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', }} >
                   Ajouter une image
                 </Button>
+                <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   )
 }

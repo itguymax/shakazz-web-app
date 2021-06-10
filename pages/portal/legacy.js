@@ -14,12 +14,15 @@ import LegacyForm from "../../src/components/LegacyForm";
 import LegacyBox from "../../src/components/LegacyBox";
 import Line from '../../src/components/common/line';
 import FileUPloader from '../../src/components/FileUpload';
+import Toast from "../../src/components/forms/Toast";
 import  apiV1  from '../../src/services/config';
 
 
 function Legacy() {
-
   const context =  useAppContext();
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
   const { data: legacyData, isLoading: loadLegacydata } = useFetchAllLegacy(context.appState.accessToken);
   const { mutateAsync:addMutatioData, isLoading:loadMutatioData } = useAddLegacy();
   const { mutateAsync: delMutation, isLoading: loadDelMutation } = useDeleteLegacy();
@@ -59,7 +62,8 @@ const handleEdition = (item) => {
 }
 const handleDelete = async (name) => {
   // console.log("delete legacy", name);
-   alert(`Supprimer ${name}`)
+  setResponseAlert({error:false,message:"Suppression du user identifié à : "+name});
+  setAlertVisible(true);
   const body = {
     data : {
         legacy : {
@@ -119,10 +123,13 @@ const submitOfficialDoc =  (file) => {
 
     fetch(`${apiV1.root}/uploads/legacy/document`, params)
     .then((res) => {
-      console.log("res fillll", res)
-      alert("File Upload success");
+      setResponseAlert(res);
+      setAlertVisible(true);
     })
-    .catch((err) => alert("File Upload Error"));
+    .catch((err) => {
+      setResponseAlert(err);
+      setAlertVisible(true);
+    });
 };
 const submitLegacyPhoto =  (file) => {
   console.log("file to submit", selectedOfficialFile);
@@ -144,10 +151,13 @@ const submitLegacyPhoto =  (file) => {
 
     fetch(`${apiV1.root}/uploads/legacy/profil`, params)
     .then((res) => {
-      console.log("res fillll", res)
-      alert("File Upload success");
+      setResponseAlert(res);
+      setAlertVisible(true);
     })
-    .catch((err) => alert("File Upload Error"));
+    .catch((err) => {
+      setResponseAlert(err);
+      setAlertVisible(true);
+    });
 };
 
 console.log("legacyyyyyyy", legacyData?.data.legacys);
@@ -225,13 +235,10 @@ console.log("legacyyyyyyy", legacyData?.data.legacys);
         </>: <div> Aucun ayant droit</div>
 
         }
-
-
-
-
       </Container>
     </Container>
   </Portal>
+  <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
   </>
   )
 }

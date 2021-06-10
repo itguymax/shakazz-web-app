@@ -75,7 +75,7 @@ const generationCardData = [
   const getGenerationPopulation = (item, text) => {
     console.log("get gene pop", item);
       setselectedGen(item);
-     
+
        switch(text){
          case "all":
            setChildren(item);
