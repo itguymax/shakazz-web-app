@@ -55,6 +55,8 @@ export default function Profileform({isAccount,setAccountType}) {
   const {mutateAsync, isLoading, isError, isSuccess}  = useProfileUserInfos();
   const [phone, setPhone] = useState();
   const [selectedCountry, setSelectedCountry] = useState(country[41]);
+  const [profile, setProfile] = useState({});
+  const [gender, setGender] = useState({});
   const [countryIndic, setCountryIndic ] = useState({flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
   const { register, handleSubmit, errors ,setValue} = useForm({
       resolver: yupResolver(profileSchema),
@@ -71,9 +73,9 @@ export default function Profileform({isAccount,setAccountType}) {
              indicatif : countryIndic.code,
              flag : countryIndic.flag
              },
-         state : "centre",
-         city : "yaounde",
-         street : "ekie"
+         state : selectedCountry,
+         city : adresse.split(",")[0],
+         street : adresse.split(",")[2]
          },
          profil: account_type,
          companyName:"",
@@ -82,7 +84,9 @@ export default function Profileform({isAccount,setAccountType}) {
          lastName:name,
          userName: pseudo,
          birthday : dob,
-         email : email
+         gender: gender.val || "Homme",
+         email : email,
+         phone: phone,
          }
     }
     console.log(body.data);
@@ -100,7 +104,13 @@ export default function Profileform({isAccount,setAccountType}) {
    if(typeof window !== "undefined" && localStorage.getItem(config.info)){
      const lgrade = JSON.parse(localStorage.getItem(config.info));
      setValue( "pseudo", lgrade.psedo);
-     setValue( "canal", lgrade.phone);
+     setValue( "email", lgrade.email);
+     setValue("name",lgrade.lastName +" "+ lgrade.firstName);
+     setValue("account_type", lgrade.typeprofile);
+     setValue("dob", lgrade?.dateOfbirth);
+     setValue("telephone",lgrade?.phone);
+     setProfile({val: lgrade.typeprofile});
+     setGender({val: lgrade.gender});
     //  setUserInfos(lgrade);
    }
  })
@@ -118,13 +128,14 @@ const handlePickPhone = (e) => {
 }
 
 console.log("countryIndic",countryIndic);
-  return (
+console.log("selectedCountry",selectedCountry);
 
+  return (
     <Form onSubmit={handleSubmit(updateProfile)} className="col-lg-6col-md-12">
     {/* 1 */}
               <Row>
                   <Col md={12} lg="6">
-                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={profile || account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
                    <Col md={12} lg="6">
                         <Sinput
@@ -167,7 +178,7 @@ console.log("countryIndic",countryIndic);
                 <Row>
                     <Col md={12} lg={6}>
                         <br/>
-                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
+                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={gender || sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
                     </Col>
                    <Col md={12} lg={6}>
                        <Sinput
@@ -198,6 +209,7 @@ console.log("countryIndic",countryIndic);
                             iStyle={{borderRadius:"15px", overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
+                            disabled
                             handleOnchange={()=>{}}
                             />
                             {errors.pseudo && <div className="text-muted font-italic">
@@ -230,6 +242,7 @@ console.log("countryIndic",countryIndic);
                         <Sinput
                         label="Adresse"
                         name="adresse"
+                        placeholder="ville, pays, quartier"
                         register={register}
                         iStyle={{borderRadius:"15px", overflow:"hidden"}}
                         inputBg="#fff"
