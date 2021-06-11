@@ -25,6 +25,7 @@ import { useAppContext } from '../../context';
 import {useMutation, useQueryClient} from 'react-query';
 import {useProfileUserInfos} from '../../hooks';
 import Toast from "./Toast";
+import config from '../../config';
 
 let account_type = [{val:'Personnel'},{val:'Particulier'}];
   let sexe = [{val:'Homme'},{val:'Femme'}];
@@ -49,13 +50,17 @@ export default function Profileform({isAccount,setAccountType}) {
   const context = useAppContext();
   const [visibleAlert, setAlertVisible] = useState(false);
   const [responseAlert, setResponseAlert] = useState({});
+  const [userinfo, setUserInfos]= useState({});
   const onDismiss = () => setAlertVisible(false);
   const {mutateAsync, isLoading, isError, isSuccess}  = useProfileUserInfos();
   const [phone, setPhone] = useState();
   const [selectedCountry, setSelectedCountry] = useState(country[41]);
+  const [profile, setProfile] = useState({});
+  const [gender, setGender] = useState({});
   const [countryIndic, setCountryIndic ] = useState({flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors ,setValue} = useForm({
       resolver: yupResolver(profileSchema),
+      mode: 'onBlur',
     });
     const updateProfile =  async (data) => {
       console.log(data);
@@ -68,9 +73,9 @@ export default function Profileform({isAccount,setAccountType}) {
              indicatif : countryIndic.code,
              flag : countryIndic.flag
              },
-         state : "centre",
-         city : "yaounde",
-         street : "ekie"
+         state : selectedCountry,
+         city : adresse.split(",")[0],
+         street : adresse.split(",")[2]
          },
          profil: account_type,
          companyName:"",
@@ -79,7 +84,9 @@ export default function Profileform({isAccount,setAccountType}) {
          lastName:name,
          userName: pseudo,
          birthday : dob,
-         email : email
+         gender: gender.val || "Homme",
+         email : email,
+         phone: phone,
          }
     }
     console.log(body.data);
@@ -93,7 +100,20 @@ export default function Profileform({isAccount,setAccountType}) {
          setAlertVisible(true);
      }
   }
-
+  useEffect(()=>{
+   if(typeof window !== "undefined" && localStorage.getItem(config.info)){
+     const lgrade = JSON.parse(localStorage.getItem(config.info));
+     setValue( "pseudo", lgrade.psedo);
+     setValue( "email", lgrade.email);
+     setValue("name",lgrade.lastName +" "+ lgrade.firstName);
+     setValue("account_type", lgrade.typeprofile);
+     setValue("dob", lgrade?.dateOfbirth);
+     setValue("telephone",lgrade?.phone);
+     setProfile({val: lgrade.typeprofile});
+     setGender({val: lgrade.gender});
+    //  setUserInfos(lgrade);
+   }
+ })
   useEffect(()=> {
     setAccountType(account_type[0].val);
   },[])
@@ -106,122 +126,18 @@ const handlePickPhone = (e) => {
   console.log("valllllll phone", e.target.value);
   setPhone(e.target.value);
 }
+
+console.log("countryIndic",countryIndic);
+console.log("selectedCountry",selectedCountry);
+
   return (
-    <Form onSubmit={handleSubmit(updateProfile)}>
-        <Row>
-          <Col xs="6"  sm="4" lg="6">
-                <Row>
+    <Form onSubmit={handleSubmit(updateProfile)} className="col-lg-6col-md-12">
+    {/* 1 */}
+              <Row>
                   <Col md={12} lg="6">
-                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={profile || account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
                   </Col>
-                  <Col md={12} className="profileCol">
-                      <Sinput
-                      label="Nom complet"
-                      placeholder='entrez le nom complet'
-                      name="name"
-                      register={register}
-                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                      inputBg="#fff"
-                      type="text"
-                      handleOnchange={()=>{}}
-                      />
-                      {errors.name && <div className="text-muted font-italic">
-
-                           <span className="text-danger font-weight-700">{errors.name.message}</span>
-
-                       </div> }
-                  </Col>
-                  </Row>
-                  <Row>
-                   <Col md={12}>
-                       <Sinput
-                       name="dob"
-                      label="Date de naissance"
-                      placeholder='entrez le nom complet:'
-                      register={register}
-                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                      inputBg="#fff"
-                      type="date"
-                      handleOnchange={()=>{}}
-                      />
-                      {errors.dob && <div className="text-muted font-italic">
-
-                           <span className="text-danger font-weight-700">{errors.dob.message}</span>
-
-                       </div> }
-                  </Col>
-                  <Col md={12}>
-                    <FormGroup>
-                        {/* <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
-                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={register} name="canal" selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
-                              {errors.nationnalite && <div className="text-muted font-italic">
-                                  <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
-                              </div> }
-                    </FormGroup>
-                  </Col>
-                  <Col md={12}>
-                        <Sinput
-                        label="Adresse"
-                        name="adresse"
-                        register={register}
-                        iStyle={{borderRadius:"15px", overflow:"hidden"}}
-                        inputBg="#fff"
-                        type="text"
-                        handleOnchange={()=>{}}
-                        />
-                        {errors.adresse && <div className="text-muted font-italic">
-
-                             <span className="text-danger font-weight-700">{errors.adresse.message}</span>
-
-                         </div> }
-                  </Col>
-                </Row>
-                <SButton type="submit"  style={{margin:"auto",marginTop:"1em"}}>
-                    {isLoading? <Spinner size="sm" color="#cc993a" />: "Modifier"}
-                </SButton>
-                   <Col md={12} className="row_section4" style={{marginTop:"3em"}}>
-                     <Row>
-                       <Col xs="6" sm="2">
-                          <Image
-                          src="/assets/img/icons/retrait/wallet.svg"
-                          alt="..."
-                          height={40} width={40}
-                          style={{backgroundColor:"#000",margin:"auto"}}
-                          />
-                       </Col>
-                       <Col xs="6" sm="6"><p style={{color:"black",marginTop:"-0.5em",fontSize:"1.8em",fontWeight:300}}>Portefeuille</p></Col>
-
-                       <Col xs="6" sm="3">
-                        <Image
-                          src="/assets/img/icons/clic_button_down.svg"
-                          alt="..."
-                          height={20} width={20}
-                          style={{backgroundColor:"#000",margin:"auto"}}
-                          />
-                       </Col>
-
-                     </Row>
-                  <Row>
-                   <Col xs="6" sm="2">
-
-                   </Col>
-                   <Col xs="6" sm="6"><p>Portefeuille</p></Col>
-
-                   <Col xs="6" sm="2">
-                    <Image
-                      src="/assets/img/icons/add.svg"
-                      alt="..."
-                      height={20} width={20}
-                      style={{backgroundColor:"#000",margin:"auto"}}
-                      />
-                   </Col>
-
-                 </Row>
-                  </Col>
-          </Col>
-          <Col xs="6" lg="6" sm="4">
-                <Row>
-                  <Col md={12}>
+                   <Col md={12} lg="6">
                         <Sinput
                         label='E-mail'
                         name="email"
@@ -238,29 +154,53 @@ const handlePickPhone = (e) => {
 
                          </div> }
                   </Col>
-                  <Col md={12}>
-                     <Row>
-                        <Col sm={12}>
-                          {/* <DropDownPhone name="phone" nameIndicatif="phone_number_indicatif" idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} selectedOption={country[41]} handleOnSelect={()=>{}} options={country||[]}/>
-                          {errors.phone && <div className="text-muted font-italic">
-
-                               <span className="text-danger font-weight-700">{errors.phone.message}</span>
-
-                           </div> } */}
-                             <DropDownPhone phoneName="telephone" phoneValue={phone} pickPhone={handlePickPhone} idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} name="canal" selectedOptionP={countryIndic} handleOnSelect={()=>{}} options={country||[]}/>
-                                {errors.canal && <div className="text-muted font-italic">
-
+                </Row>
+                {/* 2 */}
+                <Row> 
+                  
+                   <Col md={12} lg={6}>
+                    <FormGroup>
+                        {/* <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
+                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={register} selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
+                              {errors.nationnalite && <div className="text-muted font-italic">
+                                  <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
+                              </div> }
+                    </FormGroup>
+                  </Col>
+                   <Col md={12} lg={6}>
+                      <DropDownPhone phoneName="telephone" phoneValue={phone} pickPhone={handlePickPhone} idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} name="canal" selectedOptionP={countryIndic} handleOnSelect={()=>{}} options={country||[]}/>
+                        {errors.canal && <div className="text-muted font-italic">
                                     <span className="text-danger font-weight-700">{errors.canal.message}</span>
                           </div> }
-                        </Col>
+                  </Col>
+                </Row>
+                {/* 3 */}
+                <Row>
+                    <Col md={12} lg={6}>
+                        <br/>
+                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={gender || sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
+                    </Col>
+                   <Col md={12} lg={6}>
+                       <Sinput
+                       name="dob"
+                      label="Date de naissance"
+                      placeholder='entrez le nom complet:'
+                      register={register}
+                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
+                      inputBg="#fff"
+                      type="date"
+                      handleOnchange={()=>{}}
+                      />
+                      {errors.dob && <div className="text-muted font-italic">
 
-                     </Row>
-                  </Col>
-                  <Col md={6}>
-                  <br/>
-                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
-                  </Col>
-                  <Col md={12}>
+                           <span className="text-danger font-weight-700">{errors.dob.message}</span>
+
+                       </div> }
+                   </Col>
+                </Row>
+                {/* 4 */}
+                <Row>
+                   <Col md={12} lg={6}>
                           <Sinput
                             label='Pseudo'
                             name="pseudo"
@@ -269,6 +209,7 @@ const handlePickPhone = (e) => {
                             iStyle={{borderRadius:"15px", overflow:"hidden"}}
                             inputBg="#fff"
                             type="text"
+                            disabled
                             handleOnchange={()=>{}}
                             />
                             {errors.pseudo && <div className="text-muted font-italic">
@@ -277,13 +218,56 @@ const handlePickPhone = (e) => {
 
                              </div> }
                    </Col>
-                   <Col md={6}>
+                    <Col md={12} lg={6} className="profileCol">
+                      <Sinput
+                      label="Nom complet"
+                      placeholder='entrez le nom complet'
+                      name="name"
+                      register={register}
+                      iStyle={{borderRadius:"15px", overflow:"hidden"}}
+                      inputBg="#fff"
+                      type="text"
+                      handleOnchange={()=>{}}
+                      />
+                      {errors.name && <div className="text-muted font-italic">
+
+                           <span className="text-danger font-weight-700">{errors.name.message}</span>
+
+                       </div> }
+                  </Col>
+                </Row>
+                {/* 5 */}
+                <Row>
+                  <Col md={12} lg={6}>
+                        <Sinput
+                        label="Adresse"
+                        name="adresse"
+                        placeholder="ville, pays, quartier"
+                        register={register}
+                        iStyle={{borderRadius:"15px", overflow:"hidden"}}
+                        inputBg="#fff"
+                        type="text"
+                        handleOnchange={()=>{}}
+                        />
+                        {errors.adresse && <div className="text-muted font-italic">
+
+                             <span className="text-danger font-weight-700">{errors.adresse.message}</span>
+
+                         </div> }
+                  </Col>
+                   <Col md={12} lg={6}>
                         <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
                    </Col>
-
                 </Row>
-          </Col>
-        </Row>
+
+                {/* end of rows */}
+                <SButton type="submit"  style={{margin:"auto",marginTop:"1em"}}>
+                    {isLoading? <Spinner size="sm" color="#cc993a" />: "Modifier"}
+                </SButton>
+          
+          {/* second column */}
+        
       </Form>
+      
   )
 }
