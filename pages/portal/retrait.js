@@ -31,30 +31,24 @@ function Retrait() {
   });
   const context = useAppContext();
   const {data:dtc} = useConverter("BTC","USD");
-  const [usdVal, setUSDVal] = useState(100);
+  const [usdVal, setUSDVal] = useState(0);
   const [show, setShow] = useState(false);
-  const [data, setData] = useState({});
+  const [dataModal, setDataModal] = useState({});
   const [token,setToken] = useState(context.appState.accessToken)
   const [psw, setPsw] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [portefeuilleOptions, setPortefeuille] = useState([]);
+  const [modeVersementOptions, setModeVersement] = useState(["VISA","MasterCard","Orange Money","MTN Money","Bitcoin"]);
   const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOptionMode, setSelectedOptionMode] = useState("");
   const [walletID, setwalletID] = useState("");
   const [walletData, setWalletData] = useState([]);
   const openDepotModal = () => setOpenModal(!openModal);
   const {data:dt, isLoading} = usePortefeuille(token);
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
-  // if(dt?.success && !dt?.error){
-  //   const {data} = dt;
-  //   if(data.porte_feuille.length < 1){
-  //       alert("Vous n'avez par de porte feuille, cree s'en ");
-  //   }
-  //   setPortefeuille(data.porte_feuille);
-  // } else {
-  //   alert("Une erreur est survenue")
-  // }
-  console.log("porte feuille", dt);
-  const onSubmit = (data) => {
+  const defautOption = selectedOption;
+  const defautOptionMode = selectedOptionMode;
+  const onSubmit = (data) => {console.log(data)
     const body = {
       data : {
         user: {
@@ -64,29 +58,28 @@ function Retrait() {
             wId:walletID,
         },
         principal: {
-            amount: parseInt(usdVal),
+            amount: parseFloat(usdVal),
         }
     }
     }
-    setData({montant:parseInt(usdVal),quantitebtc: (usdVal/ dtc?.USD).toFixed(5), method:"Bitcoin",wallet:""});
+    setDataModal({amount:usdVal,mode_versement:selectedOptionMode,numero:selectedOption});
     openDepotModal();
 
   };
-  const changeUSDtoBTC = (data) => {
-      console.log("usdTo btc", data.target.value);
-      setUSDVal(data.target.value);
-
-   }
    const handleOnSelectOption = (option) => {
-     console.log("handleOnSelectOption",option.value, walletData );
         setSelectedOption(option.value);
         setwalletID(walletData?.filter(item => item.nom === option.value)[0].address);
+   }
+   const handleOnSelectOptionMode = (option) => {
+        setSelectedOptionMode(option.value);
    }
    const handleToggleshow = () => setShow(!show);
    const changePassword = (event) => {
      setPsw(event.target.value)
    };
-   const defautOption = selectedOption;
+   const changeAmount = (event) => {
+     setUSDVal(event.target.value)
+   };
    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
    //console.log("hhhhhhhhh", wp);
    useEffect(()=> {
@@ -96,7 +89,6 @@ function Retrait() {
      }
    })
 
-   console.log("wallet ID", walletID, walletData);
   return (
     <AdminBleu>
     <div>
@@ -124,56 +116,51 @@ function Retrait() {
       }
     `}
     />
-      <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un retrait</h1>
+      <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Soumettre une demande de retrait</h1>
       <Row className="mt-4 justify-content-between">
         <Col xl="9">
            <Form role="form">
                 <Sinput
-                label="Montant à retirer"
-                name="montant"
-                placeholder="6,000"
-                type="text"
+                label="Montant à retirer (USD)"
+                name="amount"
+                placeholder="0"
+                type="number"
                 // rgba(68, 68, 68, 1)
                 register={register}
-                inputvalue={usdVal}
+                handleOnchange={changeAmount}
                 inputBg="#679966"
                 inline
-                handleOnchange={changeUSDtoBTC}
                 usd
               />
-
-              <Sinput
-                label="Equivalence"
-                name="quantitebtc"
-                placeholder="0.001"
-                type="text"
-                register={register}
-                inputBg="#679966"
-                inline
-                inputvalue={(usdVal/ dtc?.USD).toFixed(5)}
-                readOnly={true}
-                btc
-              />
                 <Sinput
-                label="Adresse à créditer"
+                label="Adresse du portefeuille à débiter"
                 name="portefeuille"
                 inline
                 options={portefeuilleOptions}
+                register={register}
                 defaultOption={defautOption}
                 placeholder="Choisir un portefeulle"
                 dd
-                register={register}
                 onSelect={handleOnSelectOption}
               />
-
+              <Sinput
+              label="Mode de versement"
+              name="mode_versement"
+              inline
+              options={modeVersementOptions}
+              register={register}
+              defaultOption={defautOptionMode}
+              placeholder="Choisir un mode de versement"
+              dd
+              onSelect={handleOnSelectOptionMode}
+            />
               <Sinput
                 label="Mot de passe de la transaction"
                 name="transactionPassword"
                 placeholder="Mot de passe de transaction"
-                 type={show?"text":"password"}
-                register={register}
-                inputvalue={psw}
+                type={show?"text":"password"}
                 inputBg="#679966"
+                register={register}
                 inline
                 append
                 iStyle={{ borderRadius:"15px",backgroundColor: "#679966"}}
@@ -181,11 +168,21 @@ function Retrait() {
                 handleToggleshow={handleToggleshow }
                 handleOnchange={changePassword}
               />
+              <Sinput
+              label="Veuillez entrer le numéro à créditer"
+              name="numero"
+              placeholder="RIB,Numéro de téléphone,adresse Bitcoin...etc"
+              type="text"
+              register={register}
+              // rgba(68, 68, 68, 1)
+              inputBg="#679966"
+              inline
+            />
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
                    <Button className="mt-3 mb-1"  onClick={onSubmit} style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
-                 Confirmer
+                 Poursuivre
                 </Button>
                  </Col>
               </Row>
@@ -203,7 +200,7 @@ function Retrait() {
          </LightBoxContainer>
 
         </Col>
-        {openModal&& <Smodal data={data} handleClose={openDepotModal} open={openModal}/>}
+        {openModal&& <Smodal data={dataModal} handleClose={openDepotModal} open={openModal}/>}
       </Row>
     </div>
     </AdminBleu>

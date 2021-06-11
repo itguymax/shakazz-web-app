@@ -91,10 +91,9 @@ const depotBTCSchema = yup.object().shape({
 })
 
 const retraitSchema = yup.object().shape({
-  montant: yup.string(),
+  amount: yup.string(),
   portefeuille: yup.string(),
-  transactionPassword: yup.string(),
-  quantitebtc: yup.string(),
+  mode_versement: yup.string()
 })
 const legacySchema = yup.object().shape({
   name: yup.string().required(),
