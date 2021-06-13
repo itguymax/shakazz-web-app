@@ -23,6 +23,7 @@ export default function CommonRetraitForm({labelRib,moyen}) {
   const [portefeuilleOptions, setPortefeuille] = useState([]);
   const {mutateAsync, isLoading, isError, isSuccess}  = useRetrait();
   const [usdVal, setUSDVal] = useState(0);
+  const [portefeuilleA, setPortefeuilleA] = useState("");
   const {data:dtc} = useConverter("BTC","USD");
   const [show, setShow] = useState(false);
   const [visibleAlert, setAlertVisible] = useState(false);
@@ -33,11 +34,9 @@ export default function CommonRetraitForm({labelRib,moyen}) {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(retraitSchema),
   });
-  const changeUSDtoBTC = (data) => {
-     setUSDVal(data.target.value);
-  }
-  const changePassword = (event) => {
-    setPsw(event.target.value)
+  const portefeuilleChange = (event) => {
+    let elt = event.target.selectedIndex;
+    setPortefeuilleA(event.target.options[elt].dataset.adresse);
   };
   const onSubmit = async (hookdata) =>{
     const body = {
@@ -46,7 +45,7 @@ export default function CommonRetraitForm({labelRib,moyen}) {
             transaction:hookdata.transactionPassword,
         },
         whitdrawal: {
-            wId:hookdata.transactionPassword,
+            wId:portefeuilleA,
         },
         principal: {
             amount: parseFloat(hookdata.amount)
@@ -75,7 +74,7 @@ export default function CommonRetraitForm({labelRib,moyen}) {
     <><Form onSubmit={handleSubmit(onSubmit)}>
     <FormGroup>
       <Label>Montant USD</Label>
-      <Input onChange={changeUSDtoBTC} innerRef={register} name="amount" type="number" placeholder="100" />
+      <Input innerRef={register} name="amount" type="number" placeholder="100" />
       {errors.amount && <div className="text-muted font-italic">
 
          <span className="text-danger font-weight-700">{errors.amount.message}</span>
@@ -93,9 +92,9 @@ export default function CommonRetraitForm({labelRib,moyen}) {
         </FormGroup>
         <FormGroup>
           <Label>Nom du portefeuille à créditer</Label>
-          <Input type="select">
+          <Input onChange={portefeuilleChange} type="select" name="portefeuille">
               {portefeuilleOptions.map( (option, i) => (
-                  <option key={i}>
+                  <option data-adresse={option.address} key={i}>
                       {option.nom}
                   </option>
 
