@@ -57,41 +57,41 @@ export default function Profileform({isAccount,setAccountType}) {
   const [selectedCountry, setSelectedCountry] = useState(country[41]);
   const [profile, setProfile] = useState({});
   const [gender, setGender] = useState({});
-  const [countryIndic, setCountryIndic ] = useState({flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
+  const [username, setusername] = useState();
+  const [countryIndic, setCountryIndic ] = useState({name: selectedCountry.name, flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
   const { register, handleSubmit, errors ,setValue} = useForm({
-      resolver: yupResolver(profileSchema),
-      mode: 'onBlur',
+      resolver: yupResolver(profileSchema)
     });
     const updateProfile =  async (data) => {
-      console.log(data);
-      const { name, dob, adresse, phone, pseudo, email, account_type } = data;
+      console.log("updateProfile",data);
+      const { name, dob, adresse, telephone,  email, account_type } = data;
       const body = {
      data : {
          address : {
              country:{
-             name : selectedCountry,
+             name : countryIndic.name,
              indicatif : countryIndic.code,
              flag : countryIndic.flag
              },
-         state : selectedCountry,
+         state : countryIndic.name,
          city : adresse.split(",")[0],
          street : adresse.split(",")[2]
          },
-         profil: account_type,
+         profil: profile.val,
          companyName:"",
          name: name,
          firstName:name,
          lastName:name,
-         userName: pseudo,
+         userName: username,
          birthday : dob,
          gender: gender.val || "Homme",
          email : email,
-         phone: phone,
+         phone: telephone,
          }
     }
     console.log(body.data);
     const res = await mutateAsync({accessToken: context.appState.accessToken ,data:body});
-    setVisible(true);
+    // setVisible(true);
     if(res.error && !res.success){
       setResponseAlert(res);
       setAlertVisible(true);
@@ -100,10 +100,10 @@ export default function Profileform({isAccount,setAccountType}) {
          setAlertVisible(true);
      }
   }
-  useEffect(()=>{
-   if(typeof window !== "undefined" && localStorage.getItem(config.info)){
+  
+  useEffect(()=> {
      const lgrade = JSON.parse(localStorage.getItem(config.info));
-     setValue( "pseudo", lgrade.psedo);
+     setValue("username", lgrade.psedo);
      setValue( "email", lgrade.email);
      setValue("name",lgrade.lastName +" "+ lgrade.firstName);
      setValue("account_type", lgrade.typeprofile);
@@ -111,10 +111,7 @@ export default function Profileform({isAccount,setAccountType}) {
      setValue("telephone",lgrade?.phone);
      setProfile({val: lgrade.typeprofile});
      setGender({val: lgrade.gender});
-    //  setUserInfos(lgrade);
-   }
- })
-  useEffect(()=> {
+     setusername(lgrade.psedo);
     setAccountType(account_type[0].val);
   },[])
   const handleCountryOption = (value) => {
@@ -122,9 +119,9 @@ export default function Profileform({isAccount,setAccountType}) {
   setCountryIndic({flag: value.flag, code: value.callingCodes[0]});
   console.log("country option", value);
 }
-const handlePickPhone = (e) => {
-  console.log("valllllll phone", e.target.value);
-  setPhone(e.target.value);
+const handleprofile = (e) => {
+  console.log("valllllll profile",e,  e.target.value);
+  
 }
 
 console.log("countryIndic",countryIndic);
@@ -135,7 +132,7 @@ console.log("selectedCountry",selectedCountry);
     {/* 1 */}
               <Row>
                   <Col md={12} lg="6">
-                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte:" register={register} selectedOption={profile || account_type[0]} handleOnSelect={()=>{}} options={account_type||[]}/>
+                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte" register={register} selectedOption={profile || account_type[0]} handleOnSelect={handleprofile} options={account_type||[]}/>
                   </Col>
                    <Col md={12} lg="6">
                         <Sinput
@@ -161,14 +158,14 @@ console.log("selectedCountry",selectedCountry);
                    <Col md={12} lg={6}>
                     <FormGroup>
                         {/* <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
-                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={register} selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
+                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays" flag register={register} selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
                               {errors.nationnalite && <div className="text-muted font-italic">
                                   <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
                               </div> }
                     </FormGroup>
                   </Col>
                    <Col md={12} lg={6}>
-                      <DropDownPhone phoneName="telephone" phoneValue={phone} pickPhone={handlePickPhone} idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} name="canal" selectedOptionP={countryIndic} handleOnSelect={()=>{}} options={country||[]}/>
+                      <DropDownPhone phoneName="telephone" pickPhone={()=>{}} idDdM={"dt_phone_img_1"} idDd={"dt_phone_number"} label="Numéro de téléphone" phone register={register} name="canal" selectedOptionP={countryIndic} handleOnSelect={()=>{}} options={country||[]}/>
                         {errors.canal && <div className="text-muted font-italic">
                                     <span className="text-danger font-weight-700">{errors.canal.message}</span>
                           </div> }
@@ -178,13 +175,13 @@ console.log("selectedCountry",selectedCountry);
                 <Row>
                     <Col md={12} lg={6}>
                         <br/>
-                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={()=>{}} name="canal" selectedOption={gender || sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
+                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={register}  selectedOption={gender || sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
                     </Col>
                    <Col md={12} lg={6}>
                        <Sinput
                        name="dob"
                       label="Date de naissance"
-                      placeholder='entrez le nom complet:'
+                      placeholder='YYYY-MM-DD'
                       register={register}
                       iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
@@ -203,7 +200,7 @@ console.log("selectedCountry",selectedCountry);
                    <Col md={12} lg={6}>
                           <Sinput
                             label='Pseudo'
-                            name="pseudo"
+                            name="username"
                             placeholder=""
                             register={register}
                             iStyle={{borderRadius:"15px", overflow:"hidden"}}
@@ -212,9 +209,9 @@ console.log("selectedCountry",selectedCountry);
                             disabled
                             handleOnchange={()=>{}}
                             />
-                            {errors.pseudo && <div className="text-muted font-italic">
+                            {errors.username && <div className="text-muted font-italic">
 
-                                 <span className="text-danger font-weight-700">{errors.pseudo.message}</span>
+                                 <span className="text-danger font-weight-700">{errors.username.message}</span>
 
                              </div> }
                    </Col>
@@ -256,7 +253,7 @@ console.log("selectedCountry",selectedCountry);
                          </div> }
                   </Col>
                    <Col md={12} lg={6}>
-                        <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/>
+                        {/* <DropDownC name="currency" idDd={"profile_monaie"} label="Monnaie:" register={()=>{}} name="canal" selectedOption={currency[0]} handleOnSelect={()=>{}} options={currency||[]}/> */}
                    </Col>
                 </Row>
 

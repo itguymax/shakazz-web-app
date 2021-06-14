@@ -69,11 +69,11 @@ const resetPasswordSchema = yup.object().shape({
 })
 
 const profileSchema = yup.object().shape({
-  name: yup.string().required("Le nom d'utilisateur est requis").min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres"),
+  name: yup.string().required("Le nom d'utilisateur est requis"),
   dob: yup.date().required("La date de naissance est requise"),
   adresse: yup.string().required("L'adresse est requise"),
-  phone: yup.number().required("Le numéro de téléphone est requis").min(6, "Le numéro de téléphone doit avoir minimum 9 characteres"),
-  pseudo: yup.string().required("Le pseudo est requis"),
+  telephone: yup.number().required("Le numéro de téléphone est requis"),
+  username: yup.string(),
   email: yup.string()
     .required('Email incorrect')
     .matches(
@@ -84,6 +84,8 @@ const profileSchema = yup.object().shape({
      return true;
    }),
   account_type: yup.string(),
+  sexe: yup.string(),
+  nationnalite: yup.string(),
 })
 
 const depotBTCSchema = yup.object().shape({

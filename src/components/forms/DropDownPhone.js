@@ -21,11 +21,7 @@ import {
 import Image from 'next/image';
 
 function Sdropdown({flag,country, idDd,idDdM,phoneName,phoneValue,pickPhone, sample, phone, label,selectedOptionP, register, name, handleOnSelect,selectedOption,options}) {
-// =======
-// function Sdropdown({nameIndicatif,flag,country, idDd,idDdM, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
-// >>>>>>> 5daaef80850743f877840392d0119fe9c7d5df89
 
-  // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
    const [open, setIsOpen] = useState(false);
    const toggle = () => setIsOpen(prevState => !prevState);
    const onOptionClicked = value => ()  => {
@@ -99,48 +95,15 @@ function Sdropdown({flag,country, idDd,idDdM,phoneName,phoneValue,pickPhone, sam
                    alt={selectedOptionP.code}
                    height={20} width={20}
                    />
-{/* <<<<<<< HEAD */}
           <DropdownItem  id={idDd} tag="div" style={{paddingLeft:"0.4em",paddingRight:"0.6em"}}>
             {"+" + selectedOptionP.code}
          </DropdownItem>
         </DropdownToggle>}
         {phone &&<Input innerRef={register()}  name={phoneName} onChange={pickPhone} value={phoneValue} style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"8em",zIndex:"900 !important"}}/>}
-        {/* {phone && <DropdownMenu name={name} style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
-=======
-          <DropdownItem name={nameIndicatif} register={register} id={idDd} tag="div" style={{paddingLeft:"0.4em",paddingRight:"0.6em"}}>
-            {"+237"}
-         </DropdownItem>
-        </DropdownToggle>}
-        {phone &&<Sinput
-          label=''
-          register={register}
-          name={name}
-          placeholder=""
-          iStyle={{marginTop:"-3.7em",borderRadius:"0px 15px 15px 0px !important",width:"5em !important",marginLeft:"7em",zIndex:"900 !important"}}
-          inputBg="#fff"
-          type="text"
-          handleOnchange={()=>{}}
-          />}
-        {phone && <DropdownMenu style={{overflow:'auto',border:"1px solid #e5e5e5",boxShadow:"none"}} aria-labelledby="navbarDropdownMenuLink3">
->>>>>>> 5daaef80850743f877840392d0119fe9c7d5df89
-            {options.map( (option, i) => {
-              return (
-                <li  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
-                  <Image
-                          src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
-                          alt="..."
-                          height={20} width={50}
-                          />
-                  <DropdownItem key={i} id={idDd} tag="button" onClick={()=>dropdown_toggle.dropdown_toggle('+'+option.callingCodes,idDd,idDdM,option.alpha3Code.toLowerCase()+'.svg')}>
-                    {'+'+option.callingCodes}
-                  </DropdownItem>
-                </li>
-              )
-            })}
-        </DropdownMenu>} */}
+        
         {country &&<DropdownToggle  innerRef={register()}  caret color="" id="navbarDropdownMenuLink4" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
            <Image id={idDdM}
-                    src={'/assets/img/flags/'+selectedOption?.alpha3Code.toLowerCase()+'.svg'}
+                    src={selectedOption.flag}
                    alt={selectedOption.name}
                    height={25} width={50}
                    />
@@ -153,10 +116,10 @@ function Sdropdown({flag,country, idDd,idDdM,phoneName,phoneValue,pickPhone, sam
               return (
                 <li key={i}  style={{width:"2.6em !important",height:"2.6em",paddingLeft:'1em',marginTop:'0.5em',display:'flex'}}>
                   <Image
-                          src={'/assets/img/flags/'+option.alpha3Code.toLowerCase()+'.svg'}
-                          alt="..."
-                          height={25} width={50}
-                          /> 
+                      src={option.flag}
+                      alt={option.name}
+                      height={25} width={50}
+                  /> 
                           {/* handleOnSelect(option.name,idDd,idDdM,option.alpha3Code.toLowerCase()+'.svg') */}
                   <DropdownItem  id={idDd} tag="button" onClick={onOptionClicked(option)}>
                     {option.name}
