@@ -12,7 +12,7 @@ import {
   Col,
 } from "reactstrap";
 import Image from 'next/image';
-
+// f
 function Sdropdown({portefeuille,flag, idDd, sample, phone, label, register, name, handleOnSelect,selectedOption,options}) {
 
   // const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);

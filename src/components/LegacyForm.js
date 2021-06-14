@@ -14,7 +14,7 @@ export default function LegacyForm({onSubmit, percentage, setPercentage,handleOn
   });
   
   const [selectedCountry, setSelectedCountry] = useState(country[41]);
-  const [countryIndic, setCountryIndic ] = useState({flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
+  const [countryIndic, setCountryIndic ] = useState({flag: selectedCountry.flag, name: selectedCountry.name, code: selectedCountry.callingCodes[0] });
   const [value, setValue] = useState();
   const [phone, setPhone] = useState();
   const [address, setFullAddress] = useState();
@@ -28,7 +28,7 @@ const handlePickPhone = (e) => {
 }
 const handleCountryOption = (value) => {
   setSelectedCountry(value);
-  setCountryIndic({flag: value.flag, code: value.callingCodes[0]});
+  setCountryIndic({flag: value.flag,name:value.name,code: value.callingCodes[0]});
   console.log("country option", value);
 }
 const handlephonechange = (data)=> {
@@ -57,7 +57,7 @@ const handleOnsub = () => {
             percentage : percentage,
             phone: phone,
             country : {
-                name: selectedCountry.name,
+                name: countryIndic.name,
                 code: "+" + countryIndic.code ,
                 flat: countryIndic.flag,
             }
@@ -103,7 +103,7 @@ onSubmit(body);
                   <span className="text-danger font-weight-700">{errors.dateDeNaissance.message}</span>
 
               </div> }
-              <DropDownPhone name="nationnalite" country idDdM={"legacy_country_img_1"} idDd={"legacy_country_flag"} label="Pays:" flag register={register} name="canal" selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
+              <DropDownPhone name="nationnalite" country idDdM={"legacy_country_img_1"} idDd={"legacy_country_flag"} label="Pays:" flag register={register}  selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
               {errors.nationnalite && <div className="text-muted font-italic">
 
                   <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>

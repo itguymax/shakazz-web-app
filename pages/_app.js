@@ -63,13 +63,13 @@ export default class MyApp extends App {
         />
         <link rel="manifest" href="/manifest.json" />
         <link
-          href="assets/img/brand/apple-icon.png"
+          href="/assets/img/brand/apple-icon.png"
           rel="icon"
           type="image/png"
           sizes="16x16"
         />
         <link
-          href="assets/img/brand/apple-icon.png"
+          href="/assets/img/brand/apple-icon.png"
           rel="icon"
           type="image/png"
           sizes="32x32"
@@ -78,7 +78,7 @@ export default class MyApp extends App {
           <link
             rel="apple-touch-icon"
             sizes="76x76"
-            href="assets/img/brand/apple-icon.png"
+            href="/assets/img/brand/apple-icon.png"
           />
        
         <meta name="theme-color" content="#317EFB" />

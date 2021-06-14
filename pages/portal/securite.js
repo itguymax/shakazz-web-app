@@ -17,7 +17,7 @@ const options = [{
    const [pwdcOption, setpwdcOption] = useState(options[Math.floor(Math.random() * options.length )])
    const [pwdtOption, setpwdtOption] = useState(options[Math.floor(Math.random() * options.length )])
    const [loadingc, setLoadingC] = useState(false);
-    const [loadingt, setLoadingT] = useState(false);
+   const [loadingt, setLoadingT] = useState(false);
    const [errorMsgC, seterrorMsgC] = useState('');
    const [successMsgC, setsuccessMsgC] = useState('');
    const [errorMsgT, seterrorMsgT] = useState('');
@@ -34,7 +34,8 @@ const options = [{
   const selectionOptionpwdt = ( value ) => {
     setpwdtOption(value);
   };
-  const onSubmit2fa =()=>{
+  const onSubmit2fa =(d)=>{
+    console.log("2fa", d);
   }
    const onSubmitpwdc =(data)=>{
      console.log(data);
