@@ -153,7 +153,8 @@ const subscriptionFormSchema = yup.object().shape({
 })
 const portefeuilleSchema = yup.object().shape({
   nom: yup.string().required("Entrez le nom du portefeuille"),
-  address: yup.string().required("Entrez l'address du portefeuille")
+  address: yup.string().required("Entrez l'address du portefeuille"),
+  type: yup.string(),
 })
 
 
