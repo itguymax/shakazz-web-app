@@ -19,6 +19,7 @@ export default function possa() {
   const [responseAlert, setResponseAlert] = useState({});
   const onDismiss = () => setAlertVisible(false);
    const [successMsg, setsuccessMsg] = useState('');
+   const [typePossa, setPossaType] = useState('btc')
    const [errorMsg, seterrorMsg] = useState('');
   const { mutateAsync, isLoading } = useAddPortefeuille();
   const { data, isLoading:dataLoading } = usePortefeuille(context.appState.accessToken);
@@ -26,7 +27,8 @@ export default function possa() {
     const body = {
     nom: data.nom,
     address: data.address,
-    montantUSD : 0
+    montantUSD : 0,
+    type: typePossa,
   }
   try{
     const res = await mutateAsync({accessToken: context.appState.accessToken, data: body});
@@ -42,9 +44,11 @@ export default function possa() {
     setResponseAlert(err);
     setAlertVisible(true);
   }
-
-
-  }
+}
+const selectpossatype = (l) => {
+  
+  setPossaType(l.value);
+}
   return (
          <Container>
          <Row>
@@ -90,7 +94,7 @@ export default function possa() {
          </Row>
         <Row className="profileColWrapper" >
             <Col xs="6" sm="5" style={{marginBottom:"3em"}}>
-                <CreatePortefeuille successmsg={successMsg} loading={isLoading} errormsg={errorMsg} addPossa={addPossa}/>
+                <CreatePortefeuille selectpossatype={selectpossatype} successmsg={successMsg} loading={isLoading} errormsg={errorMsg} addPossa={addPossa}/>
             </Col>
             <Col xs="6" sm="6" style={{marginBottom:"3em"}}>
                 <Container className="" style={{

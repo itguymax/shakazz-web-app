@@ -77,7 +77,7 @@ const upload = async () => {
       console.log("upload profil", fileUrl);
     }
   return (
-    <form  className="col-md-12" enctype="multipart/form-data" style={{textAlign:"center"}} >
+    <form  className="col-md-12" encType="multipart/form-data" style={{textAlign:"center"}} >
               <Image
                   id="profile_photo"
                   src= {fileUrl|| "/assets/img/def-user-profile.png"}

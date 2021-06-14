@@ -27,14 +27,14 @@ function AdminNavbar({ brandText, l }) {
   const router = useRouter();
   const context = useAppContext();
    const { data, isLoading } = useFetchUserInfos(context.appState.accessToken);
-   console.log("user dataaaaaaaaaa", data);
+   //console.log("user dataaaaaaaaaa", data);
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container fluid>
           <Link href="/">
             <>
-              {l&& <h3 style={{textAlign: "left", marginTop:'1.25rem'}} className='px-3 mt-4'> 
+              {l&& <h3 style={{textAlign: "left", marginTop:'1.25rem'}} className='px-3 mt-4'>
                 <a style={{font:'normal normal bold 25px/29px Ubuntu', color:'#fff' }} href="/portal/dashboard">SHAKAZZ</a>
           </h3>}
             <a className="h4 mb-0  font-weight-bold text-uppercase d-none d-lg-inline-block">
@@ -62,7 +62,7 @@ function AdminNavbar({ brandText, l }) {
                     <img
                       alt={data?.data.user?.lastName + "avatar"}
                       src={ data?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
-                    /> 
+                    />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">

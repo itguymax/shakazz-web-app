@@ -2,7 +2,7 @@ import React from 'react'
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import {
-  Container,Row,Label,Form, Spinner,
+  Container,Row,Label,Form, Spinner,Input,
 } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -24,7 +24,7 @@ const SButton = styled.button`
 		      background-color:white;
 		  }
 		`
-export default function CreatePortefeuille({ addPossa, successmsg, errormsg,loading }) {
+export default function CreatePortefeuille({ addPossa, selectpossatype, successmsg, errormsg,loading }) {
     const { register, handleSubmit, watch, errors } = useForm({
       resolver: yupResolver(portefeuilleSchema),
     });
@@ -39,7 +39,30 @@ export default function CreatePortefeuille({ addPossa, successmsg, errormsg,load
                       backgroundColor:"#f0f0f0",
                       borderRadius:"16px",
                       padding:"1em",paddingTop:"2em"}}>
+                         {/* <Input onChange={(d)=>{console.log("ooooo",d.target.value)}} type="select" name="portefeuille">
+                              {[{nom:"btc"},{nom:"orange"}, {nom:"mtn"}, {nom:"carte"}].map( (option, i) => (
+                                  <option data-adresse={option.nom} key={i}>
+                                      {option.nom}
+                                  </option>
 
+                                ))}
+                          </Input> */}
+                        <Sinput
+                          label="Type de porte feuille"
+                          inline
+                          name="type"
+                          options={["btc","orange","mtn","carte"]}
+                          defaultOption="btc"
+                          onSelect={selectpossatype}
+                          placeholder="type de portefeuille"
+                          register={register}
+                          iStyle={{width:"10em",
+                             backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
+                             borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
+                          inputBg="#fff"
+                          type="text"
+                          dd
+                        />
                         <Sinput
                           label="Nom"
                           inline
@@ -53,7 +76,7 @@ export default function CreatePortefeuille({ addPossa, successmsg, errormsg,load
                           type="text"
                         />
 
-
+                 
                           <Sinput
                             label="Adresse"
                             inline

@@ -10,15 +10,20 @@ import {
   Button,
   Table,
   Progress,
-  Form,
+  Form,Modal, ModalHeader, ModalBody, ModalFooter
 } from "reactstrap"
 import Sinput from "../../src/components/forms/Sinput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import { retraitSchema } from "../../src/validations";
-import Smodal from '../../src/components/common/Smodal';
 import withAuth from '../../src/hoc/withAuth';
+import Toast from "../../src/components/forms/Toast";
+import OrangeMoneyForm from "../../src/components/forms/OrangeMoneyForm";
+import MtnMoneyForm from "../../src/components/forms/MtnMoneyForm";
+import VisaForm from "../../src/components/forms/VisaForm";
+import MasterCardForm from "../../src/components/forms/MastercardForm";
+import BitcoinForm from "../../src/components/forms/BitcoinForm";
 import { useConverter, useRetrait, usePortefeuille, useWallets} from '../../src/hooks'
 import { useAppContext } from '../../src/context';
 import { filterwallet } from '../../src/helpers/filterWallet'
@@ -30,31 +35,53 @@ function Retrait() {
     resolver: yupResolver(retraitSchema),
   });
   const context = useAppContext();
+  const [actualModalPage, setActualModalPage] = useState({});
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
   const {data:dtc} = useConverter("BTC","USD");
-  const [usdVal, setUSDVal] = useState(100);
   const [show, setShow] = useState(false);
-  const [data, setData] = useState({});
   const [token,setToken] = useState(context.appState.accessToken)
-  const [psw, setPsw] = useState("");
-  const [openModal, setOpenModal] = useState(false);
   const [portefeuilleOptions, setPortefeuille] = useState([]);
+  const [typePorteFeuilleOptions, setTypePorteFeuille] = useState(["VISA","MasterCard","Orange Money","MTN Money","Bitcoin"]);
   const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOptionMode, setSelectedOptionMode] = useState("");
   const [walletID, setwalletID] = useState("");
   const [walletData, setWalletData] = useState([]);
-  const openDepotModal = () => setOpenModal(!openModal);
   const {data:dt, isLoading} = usePortefeuille(token);
   const {data:dw, isLoading:idw} = useWallets(context.appState.accessToken);
-  // if(dt?.success && !dt?.error){
-  //   const {data} = dt;
-  //   if(data.porte_feuille.length < 1){
-  //       alert("Vous n'avez par de porte feuille, cree s'en ");
-  //   }
-  //   setPortefeuille(data.porte_feuille);
-  // } else {
-  //   alert("Une erreur est survenue")
-  // }
-  console.log("porte feuille", dt);
-  const onSubmit = (data) => {
+  const defautOption = selectedOption;
+  const defautOptionMode = selectedOptionMode;
+  const [modalTitle, setModalTitle] = useState("");
+  const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    if(selectedOptionMode !== "") {
+      toggleActualModalPage(selectedOptionMode);
+      setModal(!modal);
+    }else{
+      setResponseAlert({error:true,message:"Veuillez sélectionner un type de portefeuille"});
+      setAlertVisible(true);
+    }
+  };
+  const toggleActualModalPage = (selectedOptionMode)=>{
+    if(selectedOptionMode === 'Orange Money'){
+      setModalTitle('Orange Money');
+      return setActualModalPage(<OrangeMoneyForm/>);
+    }else if(selectedOptionMode === 'MTN Money'){
+      setModalTitle('MTN Money');
+        return setActualModalPage(<MtnMoneyForm/>);
+    }else if(selectedOptionMode === 'VISA'){
+      setModalTitle('VISA');
+        return setActualModalPage(<VisaForm/>);
+    }else if(selectedOptionMode === 'MasterCard'){
+      setModalTitle('MasterCard');
+        return setActualModalPage(<MasterCardForm/>);
+    }else if(selectedOptionMode === 'Bitcoin'){
+      setModalTitle('Bitcoin');
+        return setActualModalPage(<BitcoinForm/>);
+    }
+  };
+  /*const onSubmit = (data) => {console.log(data)
     const body = {
       data : {
         user: {
@@ -64,39 +91,31 @@ function Retrait() {
             wId:walletID,
         },
         principal: {
-            amount: parseInt(usdVal),
+            amount: parseFloat(usdVal),
         }
     }
     }
-    setData({montant:parseInt(usdVal),quantitebtc: (usdVal/ dtc?.USD).toFixed(5), method:"Bitcoin",wallet:""});
+    setDataModal({amount:usdVal,mode_versement:selectedOptionMode,numero:selectedOption});
     openDepotModal();
 
-  };
-  const changeUSDtoBTC = (data) => {
-      console.log("usdTo btc", data.target.value);
-      setUSDVal(data.target.value);
-
-   }
+  };*/
    const handleOnSelectOption = (option) => {
-     console.log("handleOnSelectOption",option.value, walletData );
         setSelectedOption(option.value);
         setwalletID(walletData?.filter(item => item.nom === option.value)[0].address);
    }
+   const handleOnSelectOptionMode = (option) => {
+        setSelectedOptionMode(option.value);
+   }
    const handleToggleshow = () => setShow(!show);
-   const changePassword = (event) => {
-     setPsw(event.target.value)
-   };
-   const defautOption = selectedOption;
    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
    //console.log("hhhhhhhhh", wp);
-   useEffect(()=> {
+   /*useEffect(()=> {
      if( typeof window !== "undefined" && dt){
         setPortefeuille(dt.data.porte_feuilles.map(item => item.nom));
         setWalletData(dt.data.porte_feuilles.filter(item => item.nom))
      }
-   })
+   })*/
 
-   console.log("wallet ID", walletID, walletData);
   return (
     <AdminBleu>
     <div>
@@ -124,68 +143,26 @@ function Retrait() {
       }
     `}
     />
-      <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un retrait</h1>
+      <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Soumettre une demande de retrait</h1>
       <Row className="mt-4 justify-content-between">
         <Col xl="9">
            <Form role="form">
-                <Sinput
-                label="Montant à retirer"
-                name="montant"
-                placeholder="6,000"
-                type="text"
-                // rgba(68, 68, 68, 1)
-                register={register}
-                inputvalue={usdVal}
-                inputBg="#679966"
-                inline
-                handleOnchange={changeUSDtoBTC}
-                usd
-              />
-
               <Sinput
-                label="Equivalence"
-                name="quantitebtc"
-                placeholder="0.001"
-                type="text"
-                register={register}
-                inputBg="#679966"
-                inline
-                inputvalue={(usdVal/ dtc?.USD).toFixed(5)}
-                readOnly={true}
-                btc
-              />
-                <Sinput
-                label="Adresse à créditer"
-                name="portefeuille"
-                inline
-                options={portefeuilleOptions}
-                defaultOption={defautOption}
-                placeholder="Choisir un portefeulle"
-                dd
-                register={register}
-                onSelect={handleOnSelectOption}
-              />
-
-              <Sinput
-                label="Mot de passe de la transaction"
-                name="transactionPassword"
-                placeholder="Mot de passe de transaction"
-                 type={show?"text":"password"}
-                register={register}
-                inputvalue={psw}
-                inputBg="#679966"
-                inline
-                append
-                iStyle={{ borderRadius:"15px",backgroundColor: "#679966"}}
-                icon={show ? "fa fa-eye":"fa fa-eye-slash"}
-                handleToggleshow={handleToggleshow }
-                handleOnchange={changePassword}
-              />
+              label="Type de porte feuille"
+              name="mode_versement"
+              inline
+              options={typePorteFeuilleOptions}
+              register={register}
+              defaultOption={defautOptionMode}
+              placeholder="Choisir un type de porte feuille"
+              dd
+              onSelect={handleOnSelectOptionMode}
+            />
               <Row>
                  <Col xl="3"></Col>
                  <Col xl="6">
-                   <Button className="mt-3 mb-1"  onClick={onSubmit} style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
-                 Confirmer
+                   <Button className="mt-3 mb-1"  onClick={toggleModal} style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
+                 Poursuivre
                 </Button>
                  </Col>
               </Row>
@@ -203,9 +180,19 @@ function Retrait() {
          </LightBoxContainer>
 
         </Col>
-        {openModal&& <Smodal data={data} handleClose={openDepotModal} open={openModal}/>}
       </Row>
     </div>
+    <div style={{position:"fixed",opacity:"0.8"}}>
+     <Modal isOpen={modal} toggle={toggleModal} className="">
+       <ModalHeader toggle={toggleModal}>{modalTitle}</ModalHeader>
+       <ModalBody>
+        {actualModalPage}
+       </ModalBody>
+       <ModalFooter>
+       </ModalFooter>
+     </Modal>
+   </div>
+   <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </AdminBleu>
   )
 }

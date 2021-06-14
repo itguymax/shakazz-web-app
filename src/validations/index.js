@@ -93,10 +93,9 @@ const depotBTCSchema = yup.object().shape({
 })
 
 const retraitSchema = yup.object().shape({
-  montant: yup.string(),
-  portefeuille: yup.string(),
-  transactionPassword: yup.string(),
-  quantitebtc: yup.string(),
+  amount: yup.number("Veuillez entrez un nombre").min(10, "Le Montant Minimum de retrait est de 10 usd").required("Entrez le montant en USD"),
+  rib: yup.string("Veuillez entrez un nombre").required("Entrez le RIB/Numero de dépôt/Adresse Bitcoin"),
+  transactionPassword: yup.string().required("Entrez le mot de passe de transaction")
 })
 const legacySchema = yup.object().shape({
   name: yup.string().required(),
@@ -154,7 +153,8 @@ const subscriptionFormSchema = yup.object().shape({
 })
 const portefeuilleSchema = yup.object().shape({
   nom: yup.string().required("Entrez le nom du portefeuille"),
-  address: yup.string().required("Entrez l'address du portefeuille")
+  address: yup.string().required("Entrez l'address du portefeuille"),
+  type: yup.string(),
 })
 
 

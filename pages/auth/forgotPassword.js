@@ -75,6 +75,17 @@ function ForgotPassword() {
           width:23em;
         }
       }
+      @media only screen and ${device.sPhone} {
+        .forgotPasswordForm {
+          width:18em !important;
+        }
+        }
+      @media only screen and ${device.vsPhone} {
+        .forgotPasswordForm {
+          width:16em !important;
+        }
+        }
+
     `}
     />
     <div>
