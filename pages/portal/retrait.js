@@ -22,7 +22,7 @@ import Toast from "../../src/components/forms/Toast";
 import OrangeMoneyForm from "../../src/components/forms/OrangeMoneyForm";
 import MtnMoneyForm from "../../src/components/forms/MtnMoneyForm";
 import VisaForm from "../../src/components/forms/VisaForm";
-import MasterCardForm from "../../src/components/forms/MastercardForm";
+import MasterCardForm from "../../src/components/forms/MasterCardForm";
 import BitcoinForm from "../../src/components/forms/BitcoinForm";
 import { useConverter, useRetrait, usePortefeuille, useWallets} from '../../src/hooks'
 import { useAppContext } from '../../src/context';
