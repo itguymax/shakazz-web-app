@@ -198,13 +198,13 @@ function Dashboard( props ) {
                           {userData?.data?.user?.gender}
                         </span>
                         <span className=" mb-0 text-sm">
-                         {userData?.data?.user?.dateOfbirth}
+                         {new Date().getFullYear() - new Date(userData?.data?.user?.dateOfbirth).getFullYear()}
                         </span>
                       </div>
                     </Media>
                     <div>
-                      <img src={userData?.data.user.address?.country?.flag} /> <span>{userData?.data.user.address?.country?.name}</span>
-                      <p>{ userData?.data.user.phone}</p>
+                      <img src={userData?.data.user.address?.country?.flag}  style={{width:"50px", height:"50px"}}/> <span>{userData?.data.user.address?.country?.name}</span>
+                      <p>{"+"+userData?.data.user.address?.country?.indicatif + userData?.data.user.phone}</p>
                     </div>
                   </div>
                     <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>

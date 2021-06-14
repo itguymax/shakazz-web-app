@@ -80,11 +80,9 @@ export default function Profileform({isAccount,setAccountType}) {
          profil: profile.val,
          companyName:"",
          name: name,
-         firstName:name,
-         lastName:name,
          userName: username,
          birthday : dob,
-         gender: gender.val || "Homme",
+         gender: gender.val,
          email : email,
          phone: telephone,
          }
@@ -109,10 +107,12 @@ export default function Profileform({isAccount,setAccountType}) {
      setValue("account_type", lgrade.typeprofile);
      setValue("dob", lgrade?.dateOfbirth);
      setValue("telephone",lgrade?.phone);
-     setProfile({val: lgrade.typeprofile});
-     setGender({val: lgrade.gender});
-     setusername(lgrade.psedo);
-    setAccountType(account_type[0].val);
+     setValue("sexe",lgrade?.gender);
+     setValue("adresse", lgrade?.address.city + ", "+lgrade?.address.country.name +", "+ lgrade?.address.street );
+     setProfile({val: lgrade?.typeprofile});
+     setGender({val: lgrade?.gender});
+     setusername(lgrade?.psedo);
+    setAccountType(lgrade.typeprofile);
   },[])
   const handleCountryOption = (value) => {
   setSelectedCountry(value);
@@ -120,8 +120,13 @@ export default function Profileform({isAccount,setAccountType}) {
   console.log("country option", value);
 }
 const handleprofile = (e) => {
+   setProfile({val: e.target.value})
   console.log("valllllll profile",e,  e.target.value);
   
+}
+const handlesex = (e) => {
+  console.log("e.target.value",e.target.value);
+  setGender({val:  e.target.value});
 }
 
 console.log("countryIndic",countryIndic);
@@ -175,7 +180,7 @@ console.log("selectedCountry",selectedCountry);
                 <Row>
                     <Col md={12} lg={6}>
                         <br/>
-                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe:" register={register}  selectedOption={gender || sexe[0]} handleOnSelect={()=>{}} options={sexe||[]}/>
+                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe" register={register}  selectedOption={gender || sexe[0]} handleOnSelect={handlesex} options={sexe||[]}/>
                     </Col>
                    <Col md={12} lg={6}>
                        <Sinput
@@ -224,6 +229,7 @@ console.log("selectedCountry",selectedCountry);
                       iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
                       type="text"
+                      disabled
                       handleOnchange={()=>{}}
                       />
                       {errors.name && <div className="text-muted font-italic">
