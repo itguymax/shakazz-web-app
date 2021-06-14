@@ -31,7 +31,7 @@ export default function VisaForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="Numéro de carte VISA" labelRib="Identifiant de Carte VISA pour le retrait"/>
+        <CommonRetraitForm moyen="VISA" labelRib="Numéro de Carte VISA pour le retrait"/>
     </>
   )
 }

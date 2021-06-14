@@ -31,7 +31,7 @@ export default function MasterCardForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="Adresse Bitcoin" labelRib="Adresse Bitcoin pour le retrait"/>
+        <CommonRetraitForm moyen="Bitcoin" labelRib="Adresse Bitcoin pour le retrait"/>
     </>
   )
 }

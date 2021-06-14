@@ -31,7 +31,7 @@ export default function OrangeMoneyForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="Numéro de téléphone Orange Money" labelRib="Numéro de téléphone Orange Money pour le retrait"/>
+        <CommonRetraitForm moyen="OrangeMoney" labelRib="Numéro de téléphone Orange Money pour le retrait"/>
     </>
   )
 }

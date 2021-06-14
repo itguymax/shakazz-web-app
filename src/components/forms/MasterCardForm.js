@@ -31,7 +31,7 @@ export default function MasterCardForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="Numéro de carte MasterCard" labelRib="Identifiant de Carte MasterCard pour le retrait"/>
+        <CommonRetraitForm moyen="MasterCard" labelRib="Identifiant de Carte MasterCard pour le retrait"/>
     </>
   )
 }
