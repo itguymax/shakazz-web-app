@@ -84,8 +84,15 @@ export default function CommonRetraitForm({labelRib,moyen}) {
   return (
     <><Form onSubmit={handleSubmit(onSubmit)}>
     <FormGroup>
-      <Label>Montant USD</Label>
-      <Input innerRef={register} name="amount" type="number" placeholder="100" />
+      <Sinput
+        label="Montant USD"
+        placeholder="100"
+        type="number"
+        register={register}
+        name="amount"
+        append
+        iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
+      />
       {errors.amount && <div className="text-muted font-italic">
 
          <span className="text-danger font-weight-700">{errors.amount.message}</span>
@@ -93,8 +100,15 @@ export default function CommonRetraitForm({labelRib,moyen}) {
      </div> }
     </FormGroup>
         <FormGroup>
-          <Label>{labelRib}</Label>
-          <Input innerRef={register} name="rib" type="text" placeholder={moyen} />
+          <Sinput
+            label={labelRib}
+            placeholder={moyen}
+            type="text"
+            register={register}
+            name="rib"
+            append
+            iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
+          />
           {errors.rib && <div className="text-muted font-italic">
 
              <span className="text-danger font-weight-700">{errors.rib.message}</span>
@@ -111,11 +125,17 @@ export default function CommonRetraitForm({labelRib,moyen}) {
 
                 ))}
           </Input>
-
         </FormGroup>
         <FormGroup>
-          <Label>Mot de passe de la transaction</Label>
-          <Input type="password" innerRef={register} name="transactionPassword" placeholder="Mot de passe de transaction" />
+          <Sinput
+            label="Mot de passe de la transaction"
+            placeholder="Mot de passe de transaction"
+            type="password"
+            register={register}
+            name="transactionPassword"
+            append
+            iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
+          />
           {errors.transactionPassword && <div className="text-muted font-italic">
 
              <span className="text-danger font-weight-700">{errors.transactionPassword.message}</span>
