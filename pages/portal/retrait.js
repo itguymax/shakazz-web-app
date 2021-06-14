@@ -66,19 +66,19 @@ function Retrait() {
   const toggleActualModalPage = (selectedOptionMode)=>{
     if(selectedOptionMode === 'Orange Money'){
       setModalTitle('Orange Money');
-      return <OrangeMoneyForm/>;
+      return setActualModalPage(<OrangeMoneyForm/>);
     }else if(selectedOptionMode === 'MTN Money'){
       setModalTitle('MTN Money');
-        return <MtnMoneyForm/>;
+        return setActualModalPage(<MtnMoneyForm/>);
     }else if(selectedOptionMode === 'VISA'){
       setModalTitle('VISA');
-        return <VisaForm/>;
+        return setActualModalPage(<VisaForm/>);
     }else if(selectedOptionMode === 'MasterCard'){
       setModalTitle('MasterCard');
-        return <MasterCardForm/>;
+        return setActualModalPage(<MasterCardForm/>);
     }else if(selectedOptionMode === 'Bitcoin'){
       setModalTitle('Bitcoin');
-        return <BitcoinForm/>;
+        return setActualModalPage(<BitcoinForm/>);
     }
   };
   /*const onSubmit = (data) => {console.log(data)
@@ -186,7 +186,7 @@ function Retrait() {
      <Modal isOpen={modal} toggle={toggleModal} className="">
        <ModalHeader toggle={toggleModal}>{modalTitle}</ModalHeader>
        <ModalBody>
-        {toggleActualModalPage()}
+        {actualModalPage}
        </ModalBody>
        <ModalFooter>
        </ModalFooter>
