@@ -46,7 +46,6 @@ export default function possa() {
   }
 }
 const selectpossatype = (l) => {
-  
   setPossaType(l.value);
 }
   return (
