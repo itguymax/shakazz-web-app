@@ -43,8 +43,8 @@ export default function CommonRetraitForm({labelRib,moyen}) {
     typeDePortefeuille = "btc";
   }
   const [portefeuilleOptions, setPortefeuille] = useState(dt.data.porte_feuilles.filter(item => item.type === typeDePortefeuille));
-  console.log(portefeuilleOptions)
-  const [portefeuilleA, setPortefeuilleA] = useState(portefeuilleOptions[0]["_id"]);
+  let defaultPortefeuilleA = portefeuilleOptions[0]?portefeuilleOptions[0]["_id"]:0;
+  const [portefeuilleA, setPortefeuilleA] = useState(defaultPortefeuilleA);
   const portefeuilleChange = (event) => {
     let elt = event.target.selectedIndex;
     setPortefeuilleA(event.target.options[elt].dataset.idportefeuille);
