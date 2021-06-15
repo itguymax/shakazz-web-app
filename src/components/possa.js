@@ -109,7 +109,6 @@ const selectpossatype = (l) => {
                              data?.data.porte_feuilles.map((item ,key) => <CreatePortefeuilleD key={key} nb={key +1} item={item}/>)
                            }
                          </>
-
                       }
 
                   </Container>

@@ -64,7 +64,7 @@ export default function Profileform({isAccount,setAccountType}) {
       resolver: yupResolver(profileSchema)
     });
     const updateProfile =  async (data) => {
-      console.log("updateProfile",data);
+      //console.log("updateProfile",data);
       const { name, dob, adresse, telephone,  email, account_type } = data;
       const body = {
      data : {
@@ -99,7 +99,7 @@ export default function Profileform({isAccount,setAccountType}) {
          setAlertVisible(true);
      }
   }
-  
+
   useEffect(()=> {
      const lgrade = JSON.parse(localStorage.getItem(config.info));
      setValue("username", lgrade.psedo);
@@ -110,11 +110,13 @@ export default function Profileform({isAccount,setAccountType}) {
      setValue("telephone",lgrade?.phone);
      setValue("sexe",lgrade?.gender);
      setValue("adresse", lgrade?.address.city + ", "+lgrade?.address.country.name +", "+ lgrade?.address.street );
+
     //  setProfile({val: lgrade?.typeprofile || profile.val});
     //   setGender({val: lgrade?.gender || gender.val});
     //  setusername(lgrade?.psedo);
     //  setname(lgrade.lastName +" "+ lgrade.firstName);
   },[])
+
   const handleCountryOption = (value) => {
   setSelectedCountry(value);
   setCountryIndic({flag: value.flag, code: value.callingCodes[0]});
@@ -123,7 +125,7 @@ export default function Profileform({isAccount,setAccountType}) {
 const handleprofile = (e) => {
    setProfile({val: e})
   console.log("valllllll profile",e,  e);
-  
+
 }
 const handlesex = (e) => {
   console.log("e.target.value",e);
@@ -160,8 +162,8 @@ console.log("selectedCountry",selectedCountry);
                   </Col>
                 </Row>
                 {/* 2 */}
-                <Row> 
-                  
+                <Row>
+
                    <Col md={12} lg={6}>
                     <FormGroup>
                         {/* <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
@@ -269,10 +271,10 @@ console.log("selectedCountry",selectedCountry);
                 <SButton type="submit"  style={{margin:"auto",marginTop:"1em"}}>
                     {isLoading? <Spinner size="sm" color="#cc993a" />: "Modifier"}
                 </SButton>
-          
+
           {/* second column */}
-        
+
       </Form>
-      
+
   )
 }

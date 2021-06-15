@@ -22,6 +22,7 @@ export default function CommonRetraitForm({labelRib,moyen}) {
   const context = useAppContext();
   const {mutateAsync, isLoading, isError, isSuccess}  = useRetrait();
   const [usdVal, setUSDVal] = useState(0);
+  const [actualCurrency, setCurrency] = useState("XAF");
   const {data:dtc} = useConverter("BTC","USD");
   const [show, setShow] = useState(false);
   const [visibleAlert, setAlertVisible] = useState(false);
@@ -49,6 +50,10 @@ export default function CommonRetraitForm({labelRib,moyen}) {
     let elt = event.target.selectedIndex;
     setPortefeuilleA(event.target.options[elt].dataset.idportefeuille);
   };
+  const currencyChange = (event) => {
+    let elt = event.target.selectedIndex;
+    setCurrency(event.target.options[elt].text);
+  };
   const onSubmit = async (hookdata) =>{
     const body = {
       data : {
@@ -60,7 +65,8 @@ export default function CommonRetraitForm({labelRib,moyen}) {
         },
         principal: {
             amount: parseFloat(hookdata.amount)
-        }
+        },
+        currency:actualCurrency
     }
   };console.log(body.data)
     const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
@@ -126,6 +132,20 @@ export default function CommonRetraitForm({labelRib,moyen}) {
                 ))}
           </Input>
         </FormGroup>
+        {moyen!=="Bitcoin" && <FormGroup><Input onChange={currencyChange} type="select" name="currency" placeholder="Choisissez une monaie de retrait">
+            {["XAF","XOF","CDF"].map( (option, i) => (
+                <option key={i}>
+                    {option}
+                </option>
+
+              ))}
+        </Input>
+        {errors.currency && <div className="text-muted font-italic">
+
+           <span className="text-danger font-weight-700">{errors.currency.message}</span>
+
+       </div> }
+        </FormGroup>}
         <FormGroup>
           <Sinput
             label="Mot de passe de la transaction"
