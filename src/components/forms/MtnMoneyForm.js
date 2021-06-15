@@ -31,7 +31,7 @@ export default function MtnMoneyForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="Numéro de téléphone MTN Money" labelRib="Numéro de téléphone MTN Money pour le retrait"/>
+        <CommonRetraitForm moyen="MtnMoney" labelRib="Numéro de téléphone MTN Money pour le retrait"/>
     </>
   )
 }

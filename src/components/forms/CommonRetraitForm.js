@@ -20,23 +20,34 @@ import { retraitSchema } from "../../../src/validations";
 
 export default function CommonRetraitForm({labelRib,moyen}) {
   const context = useAppContext();
-  const [portefeuilleOptions, setPortefeuille] = useState([]);
   const {mutateAsync, isLoading, isError, isSuccess}  = useRetrait();
   const [usdVal, setUSDVal] = useState(0);
-  const [portefeuilleA, setPortefeuilleA] = useState("");
   const {data:dtc} = useConverter("BTC","USD");
   const [show, setShow] = useState(false);
   const [visibleAlert, setAlertVisible] = useState(false);
   const [responseAlert, setResponseAlert] = useState({});
   const onDismiss = () => setAlertVisible(false);
-  const [token,setToken] = useState(context.appState.accessToken)
-  const {data:dt} = usePortefeuille(token);
+  const [token,setToken] = useState(context.appState.accessToken);
+  const {data:dt,isLoading:dtIsloading} = usePortefeuille(token);
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(retraitSchema),
   });
+  let typeDePortefeuille = "";
+  if(moyen === "VISA" || moyen === "MasterCard"){
+    typeDePortefeuille = "carte";
+  }else if(moyen === "OrangeMoney"){
+    typeDePortefeuille = "orange";
+  }else if(moyen === "MtnMoney"){
+    typeDePortefeuille = "mtn";
+  }else if(moyen === "Bitcoin"){
+    typeDePortefeuille = "btc";
+  }
+  const [portefeuilleOptions, setPortefeuille] = useState(dt.data.porte_feuilles.filter(item => item.type === typeDePortefeuille));
+  let defaultPortefeuilleA = portefeuilleOptions[0]?portefeuilleOptions[0]["_id"]:0;
+  const [portefeuilleA, setPortefeuilleA] = useState(defaultPortefeuilleA);
   const portefeuilleChange = (event) => {
     let elt = event.target.selectedIndex;
-    setPortefeuilleA(event.target.options[elt].dataset.adresse);
+    setPortefeuilleA(event.target.options[elt].dataset.idportefeuille);
   };
   const onSubmit = async (hookdata) =>{
     const body = {
@@ -51,7 +62,7 @@ export default function CommonRetraitForm({labelRib,moyen}) {
             amount: parseFloat(hookdata.amount)
         }
     }
-  };
+  };console.log(body.data)
     const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
     const {error, message,success, data} = res;
         if(error && !success){
@@ -65,16 +76,23 @@ export default function CommonRetraitForm({labelRib,moyen}) {
   /*
 
   */
-  useEffect(()=> {
-    if( typeof window !== "undefined" && dt){
+  /*useEffect(()=> {
+    if( typeof window !== "undefined" && dt){console.log(dt.data.porte_feuilles)
        setPortefeuille(dt.data.porte_feuilles.map(item => item));
     }
-  })
+  })*/
   return (
     <><Form onSubmit={handleSubmit(onSubmit)}>
     <FormGroup>
-      <Label>Montant USD</Label>
-      <Input innerRef={register} name="amount" type="number" placeholder="100" />
+      <Sinput
+        label="Montant USD"
+        placeholder="100"
+        type="number"
+        register={register}
+        name="amount"
+        append
+        iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
+      />
       {errors.amount && <div className="text-muted font-italic">
 
          <span className="text-danger font-weight-700">{errors.amount.message}</span>
@@ -82,8 +100,15 @@ export default function CommonRetraitForm({labelRib,moyen}) {
      </div> }
     </FormGroup>
         <FormGroup>
-          <Label>{labelRib}</Label>
-          <Input innerRef={register} name="rib" type="text" placeholder={moyen} />
+          <Sinput
+            label={labelRib}
+            placeholder={moyen}
+            type="text"
+            register={register}
+            name="rib"
+            append
+            iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
+          />
           {errors.rib && <div className="text-muted font-italic">
 
              <span className="text-danger font-weight-700">{errors.rib.message}</span>
@@ -92,9 +117,9 @@ export default function CommonRetraitForm({labelRib,moyen}) {
         </FormGroup>
         <FormGroup>
           <Label>Nom du portefeuille à créditer</Label>
-          <Input onChange={portefeuilleChange} type="select" name="portefeuille">
+          <Input onChange={portefeuilleChange} type="select" name="portefeuille" placeholder="Choisisez un portefeuille">
               {portefeuilleOptions.map( (option, i) => (
-                  <option data-adresse={option.address} key={i}>
+                  <option data-idPortefeuille={option["_id"]} key={i}>
                       {option.nom}
                   </option>
 
@@ -102,8 +127,15 @@ export default function CommonRetraitForm({labelRib,moyen}) {
           </Input>
         </FormGroup>
         <FormGroup>
-          <Label>Mot de passe de la transaction</Label>
-          <Input type="password" innerRef={register} name="transactionPassword" placeholder="Mot de passe de transaction" />
+          <Sinput
+            label="Mot de passe de la transaction"
+            placeholder="Mot de passe de transaction"
+            type="password"
+            register={register}
+            name="transactionPassword"
+            append
+            iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
+          />
           {errors.transactionPassword && <div className="text-muted font-italic">
 
              <span className="text-danger font-weight-700">{errors.transactionPassword.message}</span>
