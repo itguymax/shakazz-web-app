@@ -27,7 +27,7 @@ export default function Sinput({mgl,dd,readOnly,onSelect, rows, options,defaultO
         <FormGroup  >
              {inline? (
             <Row className="mt-3">
-               <Col xl="3">
+               <Col xl="4">
                  <div>
                    {label?  <label style={{font: 'normal normal italic 20px/25px Ubuntu', color: labelC}}>{label}{":"}</label>:null}
                   {required && <Dot info={ info?true:false}/>}

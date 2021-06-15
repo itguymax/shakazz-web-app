@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {
   FormGroup,
-  Col,
+  Col,Form
 } from "reactstrap";
 import Image from 'next/image';
+import Toast from "./Toast";
 import styled from '@emotion/styled';
 import {useAppContext} from "../../context";
 import  apiV1  from '../../services/config';
@@ -25,6 +26,9 @@ const Button = styled.button`
 
 export default function ProfileUpload({grade}) {
   const context = useAppContext();
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
   const [fileUrl, setFile] = useState(null);
   function uploadFiles(files,idResponse){
     let reader = new FileReader();
@@ -65,10 +69,12 @@ export default function ProfileUpload({grade}) {
     }
     try{
        const res = await fetch(`${apiV1.root}/uploads/user/profil`, params);
-       console.log("res fillll", res)
-      alert("File Upload success");
-    } catch(err){
-      alert("File Upload Error");
+       console.log(res)
+       //setResponseAlert({error:false,message:res});
+       //setAlertVisible(true);
+    } catch(err){console.log(res)
+      //setResponseAlert({error:true,message:res});
+      //setAlertVisible(true);
     }
 
 };
@@ -77,7 +83,8 @@ const upload = async () => {
       console.log("upload profil", fileUrl);
     }
   return (
-    <form  className="col-md-12" encType="multipart/form-data" style={{textAlign:"center"}} >
+    <>
+    <div  className="col-md-12" encType="multipart/form-data" style={{textAlign:"center"}} >
               <Image
                   id="profile_photo"
                   src= {fileUrl|| "/assets/img/def-user-profile.png"}
@@ -101,7 +108,9 @@ const upload = async () => {
                 />
                 <small>{grade}</small>
               </div>
-               
-  </form>
+
+  </div>
+  <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
+  </>
   )
 }

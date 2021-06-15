@@ -15,6 +15,7 @@ import {useAppContext} from "../context";
 import Image from 'next/image';
 export default function possa() {
   const context = useAppContext();
+  const [operateurChoix, setOperateurChoix] = useState({nom:"Adresse Bitcoin",placeholder:"FRA2017univ2021"});
   const [visibleAlert, setAlertVisible] = useState(false);
   const [responseAlert, setResponseAlert] = useState({});
   const onDismiss = () => setAlertVisible(false);
@@ -47,6 +48,13 @@ export default function possa() {
 }
 const selectpossatype = (l) => {
   setPossaType(l.value);
+  if(l.value === "carte"){
+    setOperateurChoix({nom:"Numéro de carte",placeholder:"xxxx xxxx xxxx xxx"});
+  }else if(l.value === "orange" || l.value === "mtn"){
+    setOperateurChoix({nom:"Numéro "+l.value,placeholder:"(code pays) xxx xxx xxx"});
+  }else{
+    setOperateurChoix({nom:"Adresse Bitcoin",placeholder:"FRA2017univ2021"});
+  }
 }
   return (
          <Container>
@@ -93,7 +101,7 @@ const selectpossatype = (l) => {
          </Row>
         <Row className="profileColWrapper" >
             <Col xs="6" sm="5" style={{marginBottom:"3em"}}>
-                <CreatePortefeuille selectpossatype={selectpossatype} successmsg={successMsg} loading={isLoading} errormsg={errorMsg} addPossa={addPossa}/>
+                <CreatePortefeuille operateurChoix={operateurChoix} selectpossatype={selectpossatype} successmsg={successMsg} loading={isLoading} errormsg={errorMsg} addPossa={addPossa}/>
             </Col>
             <Col xs="6" sm="6" style={{marginBottom:"3em"}}>
                 <Container className="" style={{

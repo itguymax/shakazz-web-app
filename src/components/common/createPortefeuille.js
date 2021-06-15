@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import {
@@ -24,11 +24,10 @@ const SButton = styled.button`
 		      background-color:white;
 		  }
 		`
-export default function CreatePortefeuille({ addPossa, selectpossatype, successmsg, errormsg,loading }) {
+export default function CreatePortefeuille({ operateurChoix,addPossa, selectpossatype, successmsg, errormsg,loading }) {
     const { register, handleSubmit, watch, errors } = useForm({
       resolver: yupResolver(portefeuilleSchema),
     });
-
   return (<>
     <Global
     styles={css`
@@ -37,10 +36,17 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
         padding:1em;
         border-radius: 26px;
       }
+      .createPortefeuille input{
+        color:#444444 !important;
+        background: #D9D2D2 !important;
+        border:none !important;
+      }
+      .createPortefeuille .form-group{
+      }
     `}
     />
       <Form className="createPortefeuille"
-      onSubmit={handleSubmit( addPossa)}>
+      onSubmit={handleSubmit(addPossa)}>
                          {/* <Input onChange={(d)=>{console.log("ooooo",d.target.value)}} type="select" name="portefeuille">
                               {[{nom:"btc"},{nom:"orange"}, {nom:"mtn"}, {nom:"carte"}].map( (option, i) => (
                                   <option data-adresse={option.nom} key={i}>
@@ -53,14 +59,13 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
                           label="Type de porte feuille"
                           inline
                           name="type"
+                          labelColor="#444444"
                           options={["btc","orange","mtn","carte"]}
                           defaultOption="btc"
                           onSelect={selectpossatype}
                           placeholder="type de portefeuille"
                           register={register}
-                          iStyle={{width:"10em",
-                             backgroundColor:"#D9D2D2 !important",width:"10em !important",
-                             borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
+
                           inputBg="#fff"
                           type="text"
                           dd
@@ -69,30 +74,36 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
                           label="Nom"
                           inline
                           name="nom"
+                          labelColor="#444444"
                           placeholder="Projet d'études"
                           register={register}
-                          iStyle={{width:"10em",
-                             backgroundColor:"#d9d2d2 !important",width:"30em !important",border:"1px solid #d9d2d2",
-                             borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
-                          inputBg="#fff"
+                          iStyle={{width:"10em",border:"1px solid #d9d2d2",
+                             borderRadius:"15px",overflow:"hidden",marginTop:"-1em"}}
                           type="text"
                         />
+                        {errors.nom && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
 
+                           <span className="text-danger font-weight-700">{errors.nom.message}</span>
 
+                       </div>}
                           <Sinput
-                            label="Adresse"
+                            label={operateurChoix.nom}
                             inline
+                            labelColor="#444444"
                             name="address"
-                            placeholder="FRA2017univ2021"
+                            placeholder={operateurChoix.placeholder}
                             register={register}
-                            iStyle={{width:"10em",
-                               backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
-                               borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
-                            inputBg="#fff"
+                            inputBg="#D9D2D2"
                             type="text"
+                            iStyle={{width:"10em",border:"1px solid #d9d2d2",
+                               borderRadius:"15px", marginTop:"0em",overflow:"hidden"}}
 
                           />
+                          {errors.address && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
 
+                             <span className="text-danger font-weight-700">{errors.address.message}</span>
+
+                         </div>}
                        <Row>
                        { successmsg && ( <div className="text-muted font-italic">
 
@@ -106,6 +117,7 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
               </div>) }
                           <SButton type="submit" disabled={loading} style={{margin:"auto",marginTop:"1em"}}> {loading ? <Spinner size="sm" color="#cc993a" />: "Confirmer"}</SButton>
                        </Row>
-    </Form></>
+    </Form>
+    </>
   )
 }
