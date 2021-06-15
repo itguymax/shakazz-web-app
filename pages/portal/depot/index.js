@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import AdminBleu from '../../../src/layouts/AdminBleu'
 import {
   Card,
@@ -71,7 +71,11 @@ function Depot() {
    const defaultOption = selectedType;
    const defautOptionS = sOP;
    const defautOptionD = dOp;
-    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
+    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p);
+    useEffect(() => {
+       // Prefetch the dashboard page
+       router.prefetch('/portal/dashboard');
+     }, [])
   return (
     <AdminBleu>
     <div>
@@ -131,7 +135,7 @@ function Depot() {
       </Row>
       <Row style={{marginBottom:"-2.5em"}}>
         <Col xs="10"></Col>
-        <Col xs="2" style={{float:"right"}}><Arrowback url={"/dashboard"}/></Col>
+        <Col xs="2" style={{float:"right"}}><Arrowback url={"/portal/dashboard"}/></Col>
       </Row>
     </div>
     <div style={{position:"fixed",opacity:"0.8"}}>

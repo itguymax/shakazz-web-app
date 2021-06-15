@@ -30,6 +30,7 @@ import { useAppContext } from '../../src/context';
 import { filterwallet } from '../../src/helpers/filterWallet'
 import {constantes} from '../../src/config';
 import {Global,css} from "@emotion/react"
+import { useRouter } from 'next/router';
 import { device } from '../../src/lib/device.js';
 function Retrait() {
   const { register, handleSubmit, watch, errors } = useForm({
@@ -55,6 +56,7 @@ function Retrait() {
   const defautOptionMode = selectedOptionMode;
   const [modalTitle, setModalTitle] = useState("");
   const [modal, setModal] = useState(false);
+  const router = useRouter();
   const toggleModal = () => {
     if(selectedOptionMode !== "") {
       toggleActualModalPage(selectedOptionMode);
@@ -116,7 +118,10 @@ function Retrait() {
         setWalletData(dt.data.porte_feuilles.filter(item => item.nom))
      }
    })*/
-
+   useEffect(() => {
+      // Prefetch the dashboard page
+      router.prefetch('/portal/dashboard');
+    }, [])
   return (
     <AdminBleu>
     <div>
@@ -195,7 +200,7 @@ function Retrait() {
    </div>
    <Row style={{marginBottom:"-2.5em"}}>
      <Col xs="10"></Col>
-     <Col xs="2" style={{float:"right"}}><Arrowback url={"/dashboard"}/></Col>
+     <Col xs="2" style={{float:"right"}}><Arrowback url={"/portal/dashboard"}/></Col>
    </Row>
    <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </AdminBleu>
