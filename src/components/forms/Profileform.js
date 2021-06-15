@@ -57,6 +57,7 @@ export default function Profileform({isAccount,setAccountType}) {
   const [selectedCountry, setSelectedCountry] = useState(country[41]);
   const [profile, setProfile] = useState({});
   const [gender, setGender] = useState({});
+  const [uname,setname]=useState();
   const [username, setusername] = useState();
   const [countryIndic, setCountryIndic ] = useState({name: selectedCountry.name, flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
   const { register, handleSubmit, errors ,setValue} = useForm({
@@ -79,7 +80,7 @@ export default function Profileform({isAccount,setAccountType}) {
          },
          profil: profile.val,
          companyName:"",
-         name: name,
+         name: uname || name,
          userName: username,
          birthday : dob,
          gender: gender.val,
@@ -109,26 +110,28 @@ export default function Profileform({isAccount,setAccountType}) {
      setValue("telephone",lgrade?.phone);
      setValue("sexe",lgrade?.gender);
      setValue("adresse", lgrade?.address.city + ", "+lgrade?.address.country.name +", "+ lgrade?.address.street );
-     setProfile({val: lgrade?.typeprofile});
-     setGender({val: lgrade?.gender});
+     setProfile({val: lgrade?.typeprofile || profile.val});
+      setGender({val: lgrade?.gender || gender.val});
      setusername(lgrade?.psedo);
-    setAccountType(lgrade.typeprofile);
-  },[])
+     setname(lgrade.lastName +" "+ lgrade.firstName);
+     setAccountType(lgrade.typeprofile);
+  })
   const handleCountryOption = (value) => {
   setSelectedCountry(value);
   setCountryIndic({flag: value.flag, code: value.callingCodes[0]});
   console.log("country option", value);
 }
 const handleprofile = (e) => {
-   setProfile({val: e.target.value})
-  console.log("valllllll profile",e,  e.target.value);
+   setProfile({val: e})
+  console.log("valllllll profile",e,  e);
   
 }
 const handlesex = (e) => {
-  console.log("e.target.value",e.target.value);
-  setGender({val:  e.target.value});
+  console.log("e.target.value",e);
+  setGender({val:  e});
 }
 
+console.log("gender",gender);
 console.log("countryIndic",countryIndic);
 console.log("selectedCountry",selectedCountry);
 
@@ -137,7 +140,7 @@ console.log("selectedCountry",selectedCountry);
     {/* 1 */}
               <Row>
                   <Col md={12} lg="6">
-                        <DropDownC name="account_type" idDd={"profile_type_de_compte"} label="Type de compte" register={register} selectedOption={profile || account_type[0]} handleOnSelect={handleprofile} options={account_type||[]}/>
+                        <DropDownC sample name="account_type" idDd={"profile_type_de_compte"} label="Type de compte" register={register} selectedOption={profile || account_type[0]} handleOnSelect={handleprofile} options={account_type||[]}/>
                   </Col>
                    <Col md={12} lg="6">
                         <Sinput
@@ -180,7 +183,7 @@ console.log("selectedCountry",selectedCountry);
                 <Row>
                     <Col md={12} lg={6}>
                         <br/>
-                       <DropDownC name="sexe" idDd={"profile_sexe"} label="Sexe" register={register}  selectedOption={gender || sexe[0]} handleOnSelect={handlesex} options={sexe||[]}/>
+                       <DropDownC sample name="sexe" idDd={"profile_sexe"} label="Sexe" register={register}  selectedOption={gender || sexe[0]} handleOnSelect={handlesex} options={sexe||[]}/>
                     </Col>
                    <Col md={12} lg={6}>
                        <Sinput

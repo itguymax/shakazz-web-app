@@ -20,6 +20,7 @@ function Sdropdown({portefeuille,flag, idDd, sample, phone, label, register, nam
    const toggle = () => setIsOpen(prevState => !prevState);
    //setAccount("ugh");
    const onOptionClicked = value => () => {
+     console.log("heeeeee", value);
     handleOnSelect(value);
     toggle();
 
@@ -82,7 +83,8 @@ function Sdropdown({portefeuille,flag, idDd, sample, phone, label, register, nam
          {sample && <DropdownMenu  name={name}  aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => (
                 <li key={i}>
-                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
+                  <DropdownItem  tag="button" onClick={ () => {onOptionClicked(option)
+                  dropdown_toggle.dropdown_toggle(option.val,idDd)}}>
                     {option.val}
                   </DropdownItem>
                 </li>
