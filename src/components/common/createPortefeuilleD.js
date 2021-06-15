@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import DropDownC from '../forms/Dropdownc'
@@ -14,14 +14,16 @@ import {
   Container,
   Row,
   Col,
-  Media,
+  Media,Table,
   DropdownItem,
-  Label,
+  Label,Collapse
 } from "reactstrap";
 import Image from 'next/image'
 import Sinput from '../../../src/components/forms/Sinput';
 
-export default function CreatePortefeuilleD({nb,item}) {
+export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
+  const [isOpenCollapse, setIsOpenCollapse] = useState(false);
+  const toggleCollapse = () => setIsOpenCollapse(!isOpenCollapse);
 	  const Button = styled.button`
 		    background-color: #679966;
 		    border-radius: 20px;
@@ -73,7 +75,27 @@ export default function CreatePortefeuilleD({nb,item}) {
          />
       </Col>
       <Col sm="2" className="profile_box_portefeuille_col2"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
-      <Col sm="4" className="profile_box_portefeuille_col3"><DropDownC portefeuille name={item.nom} label="" register={()=>{}} name="canal" selectedOption={{val: item.nom, adresse: item.address}} handleOnSelect={()=>{}} options={[{val: item.nom, adresse: item.address}]||[]}/></Col>
+      <Col sm="4">
+          <p style={{cursor:"pointer",marginLeft:"1em",fontSize:"1.1em",color:"black",fontWeight:"bold"}} onClick={toggleCollapse}> Ouvrir</p>
+          <Collapse isOpen={isOpenCollapse}>
+            <Card>
+              <CardBody>
+                <Table borderless>
+                      <thead>
+                        <tr>
+                          <th>Adresse</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{item.address}</td>
+                        </tr>
+                      </tbody>
+                  </Table>
+              </CardBody>
+            </Card>
+          </Collapse>
+      </Col>
     </Row>
     </>
   )

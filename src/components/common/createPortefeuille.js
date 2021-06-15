@@ -35,6 +35,7 @@ export default function CreatePortefeuille({ operateurChoix,addPossa, selectposs
         background-color:#F0F0F0;
         padding:1em;
         border-radius: 26px;
+        height:auto !important;
       }
       .createPortefeuille input{
         color:#444444 !important;
