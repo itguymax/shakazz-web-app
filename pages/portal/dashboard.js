@@ -70,11 +70,13 @@ function Dashboard( props ) {
    }
     const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
   
-    // console.log("init data", initData);
+     console.log("init data", initData);
     setTransData(initData.transactions);
   }
-   useEffect( async()=> {
-    fetchInitData();
+
+
+  useEffect( async()=> {
+   await fetchInitData();
 
   },[])
 
@@ -152,7 +154,7 @@ function Dashboard( props ) {
                             <td>{ moment(item.createdAt).format('YYYY/MM/DD')}</td>
                             <td>{item.type}</td>
                             <td>{item.statut}</td>
-                            <td>{(item.montantUSD ).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
+                            <td>{(item?.montantUSD || 0 ).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                           </tr>
                           )
                         
