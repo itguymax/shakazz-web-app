@@ -17,6 +17,7 @@ import BtcForm from "../../../src/components/forms/BtcForm";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../../src/components/common/lightBoxContainer';
+import  Arrowback from '../../../src/components/common/arrowBack';
 import Smodal from '../../../src/components/common/Smodal'
 import { depotBTCSchema } from "../../../src/validations";
 import withAuth from '../../../src/hoc/withAuth';
@@ -24,7 +25,7 @@ import { useDeposit,useWallets } from '../../../src/hooks';
 import { useAppContext } from '../../../src/context';
 import { useRouter } from 'next/router';
 import {constantes} from '../../../src/config';
-
+import Image from 'next/image'
 function Depot() {
   const optionstype = ["BITCOIN","CINETPAY"];
   const { register, handleSubmit, watch, errors } = useForm({
@@ -72,7 +73,7 @@ function Depot() {
    const defautOptionD = dOp;
     const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
   return (
-    <AdminBleu menu>
+    <AdminBleu>
     <div>
       <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}> Effectuer un dépôt</h1>
       <Row className="mt-4 justify-content-between">
@@ -129,6 +130,7 @@ function Depot() {
         </Col>
         {openModal&& <Smodal isLoading={isLoading} data={data} handleClose={openDepotModal}  handleMSubmit={ handleMSubmit} open={openModal} path="/portal/depot/detail" />}
       </Row>
+      <Arrowback url={"/dashboard"}/>
     </div>
     <div style={{position:"fixed",opacity:"0.8"}}>
      <Modal isOpen={modal} toggle={toggleModal} className="">
