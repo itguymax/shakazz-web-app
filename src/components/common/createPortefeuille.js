@@ -29,16 +29,18 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
       resolver: yupResolver(portefeuilleSchema),
     });
 
-  return (
+  return (<>
+    <Global
+    styles={css`
+      .createPortefeuille{
+        background-color:#F0F0F0;
+        padding:1em;
+        border-radius: 26px;
+      }
+    `}
+    />
       <Form className="createPortefeuille"
-      onSubmit={handleSubmit( addPossa)}
-      style={{
-                      width:"100%",
-                      height:"14em",
-                      marginLeft:"2em",
-                      backgroundColor:"#f0f0f0",
-                      borderRadius:"16px",
-                      padding:"1em",paddingTop:"2em"}}>
+      onSubmit={handleSubmit( addPossa)}>
                          {/* <Input onChange={(d)=>{console.log("ooooo",d.target.value)}} type="select" name="portefeuille">
                               {[{nom:"btc"},{nom:"orange"}, {nom:"mtn"}, {nom:"carte"}].map( (option, i) => (
                                   <option data-adresse={option.nom} key={i}>
@@ -57,7 +59,7 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
                           placeholder="type de portefeuille"
                           register={register}
                           iStyle={{width:"10em",
-                             backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
+                             backgroundColor:"#D9D2D2 !important",width:"10em !important",
                              borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
                           inputBg="#fff"
                           type="text"
@@ -70,13 +72,13 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
                           placeholder="Projet d'études"
                           register={register}
                           iStyle={{width:"10em",
-                             backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
+                             backgroundColor:"#d9d2d2 !important",width:"30em !important",border:"1px solid #d9d2d2",
                              borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
                           inputBg="#fff"
                           type="text"
                         />
 
-                 
+
                           <Sinput
                             label="Adresse"
                             inline
@@ -104,6 +106,6 @@ export default function CreatePortefeuille({ addPossa, selectpossatype, successm
               </div>) }
                           <SButton type="submit" disabled={loading} style={{margin:"auto",marginTop:"1em"}}> {loading ? <Spinner size="sm" color="#cc993a" />: "Confirmer"}</SButton>
                        </Row>
-    </Form>
+    </Form></>
   )
 }

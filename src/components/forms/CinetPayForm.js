@@ -28,7 +28,7 @@ export default function CinetPayForm() {
   const {data:dtc} = useConverterAfrica("USD",currencyVal);
   const changeXAFtoUSD = (data) => {
      setXAFVal(data);
-     let amountReal = parseFloat(data)+((data*fraisOperateurs(countryVal))/100);
+     let amountReal = parseFloat(data);
      setAmountVal(amountReal);
   }
   const changeCurrency = (data) => {
@@ -44,17 +44,6 @@ export default function CinetPayForm() {
   //const {mutateAsync:mutateAsyncCp, isLoading:isLoadingCp, isError:isErrorCp, isSuccessCp:isSuccessCp}  = useDepositWebhookCp();
   return (
     <div>
-        <FormGroup>
-            <Label>Veuillez selectionner le pays où vous éffectuez le transfert</Label>
-            <Input onChange={changeCountry} type="select" id="cinetpay_country">
-              <option>Cameroun</option>
-              <option>Sénégal</option>
-              <option>Togo</option>
-              <option>Mali</option>
-              <option>Côte d'ivoire</option>
-              <option>Burkina Faso</option>
-            </Input>
-        </FormGroup>
         <FormGroup>
             <Label>Veuillez Choisir une monnaie</Label>
             <Input onChange={changeCurrency} type="select" id="cinetpay_currency">
@@ -72,19 +61,17 @@ export default function CinetPayForm() {
           }} id="cinetpay_amount" placeholder="100" />
         </FormGroup>
         <FormGroup>
-        <Button color="primary">Les transactions via VISA/Mastercard sont soumises à 3.5% de frais.</Button>{' '}
+        <Button color="primary">Le taux de change utilisé est de {tauxChange(currencyVal)} pour supporter les frais transactions.</Button>{' '}
           <Table>
             <thead>
               <tr>
                 <th>Montant en USD</th>
-                <th>Frais</th>
                 <th>Total en {currencyVal}</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{(xafVal/tauxChange(currencyVal)).toFixed(3)}</td>
-                <td>{fraisOperateurs(countryVal)}</td>
                 <td>{amountVal}</td>
               </tr>
             </tbody>
