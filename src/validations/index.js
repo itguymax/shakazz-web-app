@@ -69,8 +69,8 @@ const resetPasswordSchema = yup.object().shape({
 })
 
 const profileSchema = yup.object().shape({
-  name: yup.string().required("Le nom d'utilisateur est requis"),
-  dob: yup.date().required("La date de naissance est requise"),
+  name: yup.string(),
+  dob: yup.string().required("La date de naissance est requise"),
   adresse: yup.string().required("L'adresse est requise"),
   telephone: yup.number().required("Le numéro de téléphone est requis"),
   username: yup.string(),
