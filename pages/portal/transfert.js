@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react'
 import AdminBleu from '../../src/layouts/AdminBleu';
 import {
   Row,
@@ -18,8 +18,9 @@ import { CheckUser } from '../../src/services';
 import {constantes} from '../../src/config';
 import {css} from "@emotion/react";
 import {device } from "../../src/lib/device";
+import  Arrowback from '../../src/components/common/arrowBack';
 import Toast from "../../src/components/forms/Toast";
-
+import { useRouter } from 'next/router';
 
 
 function Transfert() {
@@ -35,6 +36,7 @@ const optionstype = [INTERNE,EXTERNE];
     resolver: yupResolver({}),
   });
   const context = useAppContext();
+  const router = useRouter();
   const [show, setShow] = useState(false);
   const [token,setToken] = useState(context.appState.accessToken)
   const [selectedType, setType] = useState(optionstype[0]);
@@ -176,7 +178,11 @@ const optionstype = [INTERNE,EXTERNE];
    const wp = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.p) ;
    const wv = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.v) ;
    const wn = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.n) ;
-  
+   useEffect(() => {
+      // Prefetch the dashboard page
+      
+      router.prefetch('/portal/dashboard');
+    }, [])
   return (
     <AdminBleu>
     <div>
@@ -322,6 +328,10 @@ const optionstype = [INTERNE,EXTERNE];
         </Col>
       </Row>
     </div>
+    <Row style={{marginBottom:"-2.5em"}}>
+      <Col xs="10"></Col>
+      <Col xs="2" style={{float:"right"}}><Arrowback url={"/portal/dashboard"}/></Col>
+    </Row>
     <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </AdminBleu>
   )
