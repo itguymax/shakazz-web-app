@@ -114,8 +114,7 @@ export default function Profileform({isAccount,setAccountType}) {
       setGender({val: lgrade?.gender || gender.val});
      setusername(lgrade?.psedo);
      setname(lgrade.lastName +" "+ lgrade.firstName);
-     setAccountType(lgrade.typeprofile);
-  })
+  },[gender])
   const handleCountryOption = (value) => {
   setSelectedCountry(value);
   setCountryIndic({flag: value.flag, code: value.callingCodes[0]});

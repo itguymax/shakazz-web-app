@@ -219,7 +219,7 @@ const defaultOption = selectedType;
          {
            optionsData?.data?.options.map((pool, key)=>{
              {/* console.log("map pool", pool); */}
-             const tm = pool.stakePeriode.filter((item) => item.duree === 360)
+             const tm = pool.stakePeriode[0];
              return <LightBoxContainer width="100%" key={key}>
                   <div className="py-0 px-3"  style={{display:"flex", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
                   <small  className="text-center" style={{color: "#707070",font: "normal normal bold 16px/24px Ubuntu", width:"100px"}}>{pool.nom}</small>
