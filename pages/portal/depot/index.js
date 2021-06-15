@@ -126,11 +126,13 @@ function Depot() {
               {idw?"...": (<h1 className="" style={{font: 'normal normal normal 20px/25px Ubuntu',display: 'block',color: '#679966',  lineHeight: '1.2'}}> {(wp[0]?.montantUSD).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>)}
           </div>
          </LightBoxContainer>
-
         </Col>
         {openModal&& <Smodal isLoading={isLoading} data={data} handleClose={openDepotModal}  handleMSubmit={ handleMSubmit} open={openModal} path="/portal/depot/detail" />}
       </Row>
-      <Arrowback url={"/dashboard"}/>
+      <Row style={{marginBottom:"-2.5em"}}>
+        <Col xs="10"></Col>
+        <Col xs="2" style={{float:"right"}}><Arrowback url={"/dashboard"}/></Col>
+      </Row>
     </div>
     <div style={{position:"fixed",opacity:"0.8"}}>
      <Modal isOpen={modal} toggle={toggleModal} className="">
