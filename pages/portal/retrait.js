@@ -13,6 +13,7 @@ import {
   Form,Modal, ModalHeader, ModalBody, ModalFooter
 } from "reactstrap"
 import Sinput from "../../src/components/forms/Sinput";
+import  Arrowback from '../../src/components/common/arrowBack';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
@@ -192,6 +193,10 @@ function Retrait() {
        </ModalFooter>
      </Modal>
    </div>
+   <Row style={{marginBottom:"-2.5em"}}>
+     <Col xs="10"></Col>
+     <Col xs="2" style={{float:"right"}}><Arrowback url={"/dashboard"}/></Col>
+   </Row>
    <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </AdminBleu>
   )
