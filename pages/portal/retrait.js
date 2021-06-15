@@ -195,7 +195,7 @@ function Retrait() {
    </div>
    <Row style={{marginBottom:"-2.5em"}}>
      <Col xs="10"></Col>
-     <Col xs="2" style={{float:"right"}}><Arrowback url={"/dashboard"}/></Col>
+     <Col xs="2" style={{float:"right"}}><Arrowback url={"/portal/dashboard"}/></Col>
    </Row>
    <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </AdminBleu>

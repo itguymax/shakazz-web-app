@@ -131,7 +131,7 @@ function Depot() {
       </Row>
       <Row style={{marginBottom:"-2.5em"}}>
         <Col xs="10"></Col>
-        <Col xs="2" style={{float:"right"}}><Arrowback url={"/dashboard"}/></Col>
+        <Col xs="2" style={{float:"right"}}><Arrowback url={"/portal/dashboard"}/></Col>
       </Row>
     </div>
     <div style={{position:"fixed",opacity:"0.8"}}>
