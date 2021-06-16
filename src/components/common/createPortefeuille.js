@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
+import { device } from '../../../src/lib/device';
 import {
   Container,Row,Label,Form, Spinner,Input,
 } from "reactstrap";
@@ -42,8 +43,12 @@ export default function CreatePortefeuille({ operateurChoix,addPossa, selectposs
         background: #D9D2D2 !important;
         border:none !important;
       }
-      .createPortefeuille .form-group{
-      }
+
+      @media ${device.vsPhone}{
+        .createPortefeuille{
+          width:16em !important;
+        }
+        }
     `}
     />
       <Form className="createPortefeuille"

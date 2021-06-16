@@ -88,13 +88,6 @@ const [grade, setgrade]= useState('');
         .dropdown-menu.show{
           max-height:'2em !important';
         }
-        .profile_box_portefeuille_col3{
-          margin-top:-0.7em;
-          margin-left:0.7em;
-        }
-        .profile_box_portefeuille_col2{
-          margin-left:-3em;
-        }
         .dropdown button{
           height:3em !important;
         }
@@ -146,10 +139,6 @@ const [grade, setgrade]= useState('');
           .text-muted.font-italic.form-control{
             width:14em !important;
           }
-          .profile_box_portefeuille_col2{
-            margin-left:1em !important;
-            margin-top:-2em;
-          }
           input[type="text"]{
             width:8em !important;
           }
@@ -170,27 +159,10 @@ const [grade, setgrade]= useState('');
           #navbarDropdownMenuLink2{
             width:13em !important;
           }
-          .profile_box_portefeuille_col1{
-            margin-left:-2em;
-          }
-          .profile_box_portefeuille_col2{
-            margin-left:-2em;
-          }
-          .profile_box_portefeuille_col3{
-            margin-top:-0.7em;
-            margin-left:3.5em !important;
-          }
         }
         @media ${device.bTablet} {
           .createPortefeuille{
             height:17em !important;
-          }
-          .profile_box_portefeuille_col3{
-            margin-top:-0.7em;
-            margin-left:2em;
-          }
-          .profile_box_portefeuille_col2{
-            margin-left:-1.9em;
           }
         }
       `}

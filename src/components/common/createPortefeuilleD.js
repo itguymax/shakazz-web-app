@@ -43,51 +43,35 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
     <>
     <Global
     styles={css`
-      .customDropdown .dropdown{
-         background-color:transparent;
-         width:15em;
-      }
-      .customDropdown .btn{
-        background-color:#F0F0F0;
-        border-radius:16px;
-        width:18em;
-        border:none;
-        height:3em;
-        color:white;        }
-      .customDropdown .btn .dropdown-item{
-        color:white;
-        background-color:transparent;
-      }
-      .customDropdown .btn .dropdown-toggle::after{
-        color:white;
-      }
-      .customDropdown .btn:not(:last-child) {
-          margin-right: 0.1rem !important;
+      table{
+        border:none !important;
       }
       `}
     />
     <Row style={{marginBottom:"0.5em"}}>
-      <Col sm="2" className="profile_box_portefeuille_col1">
+      <Col sm="2">
          <Image
          src="/assets/img/icons/retrait/wallet.svg"
          alt="..."
-         height={25} width={25}
+         height={20} width={20}
          />
       </Col>
-      <Col sm="2" className="profile_box_portefeuille_col2"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
-      <Col sm="4">
-          <p style={{cursor:"pointer",marginLeft:"1em",fontSize:"1.1em",color:"black",fontWeight:"bold"}} onClick={toggleCollapse}> Ouvrir</p>
+      <Col sm="5"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
+      <Col sm="5">
+          <p style={{cursor:"pointer",marginLeft:"2em",fontSize:"1.1em",color:"black",fontWeight:"bold"}} onClick={toggleCollapse}>Ouvrir</p>
           <Collapse isOpen={isOpenCollapse}>
             <Card>
               <CardBody>
-                <Table borderless>
+                <Table borderles>
                       <thead>
                         <tr>
+                          <th>Nom</th>
                           <th>Adresse</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
+                          <td>{item.nom}</td>
                           <td>{item.address}</td>
                         </tr>
                       </tbody>
