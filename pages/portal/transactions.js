@@ -113,7 +113,7 @@ function Transactions() {
           <Link label="Retrait" path="/portal/retrait" style={{ margin: '10px',height:'35px' ,backgroundColor: '#CE1126', cursor:'pointer', padding:'8px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
           <Link label="Transfert" path="/portal/transfert" style={{ margin: '10px',height:'35px' ,backgroundColor: '#CC9933', cursor:'pointer', padding:'8px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
         </Row>
-        <Row clbt-3assName="">
+        <Row >
           <Text text = "Historique"/>
         </Row>
         <NavPil data = {transData} handleSetHTabs =  {handleSetHTabs}  currentHTabsIcons =  {currentHTabsIcons}/>

@@ -110,12 +110,13 @@ export default function Profileform({isAccount,setAccountType}) {
      setValue("telephone",lgrade?.phone);
      setValue("sexe",lgrade?.gender);
      setValue("adresse", lgrade?.address.city + ", "+lgrade?.address.country.name +", "+ lgrade?.address.street );
-     setProfile({val: lgrade?.typeprofile || profile.val});
-     setGender({val: lgrade?.gender || gender.val});
-     setusername(lgrade?.psedo);
-     setname(lgrade.lastName +" "+ lgrade.firstName);
-     setAccountType(lgrade.typeprofile);
-  })
+
+    //  setProfile({val: lgrade?.typeprofile || profile.val});
+    //   setGender({val: lgrade?.gender || gender.val});
+    //  setusername(lgrade?.psedo);
+    //  setname(lgrade.lastName +" "+ lgrade.firstName);
+  },[])
+
   const handleCountryOption = (value) => {
   setSelectedCountry(value);
   setCountryIndic({flag: value.flag, code: value.callingCodes[0]});

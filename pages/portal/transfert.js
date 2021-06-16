@@ -180,6 +180,7 @@ const optionstype = [INTERNE,EXTERNE];
    const wn = dw?.data.wallets.filter((item)=> item.type === constantes.wallets.n) ;
    useEffect(() => {
       // Prefetch the dashboard page
+      
       router.prefetch('/portal/dashboard');
     }, [])
   return (
