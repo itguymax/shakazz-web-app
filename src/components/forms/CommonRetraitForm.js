@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRetrait, usePortefeuille, useWallets} from '../../../src/hooks'
 import { useAppContext } from '../../../src/context';
 import { retraitSchema } from "../../../src/validations";
-
+import {operateurs} from '../../../src/helpers/operatorsList';
 export default function CommonRetraitForm({labelRib,moyen}) {
   const context = useAppContext();
   const {mutateAsync, isLoading, isError, isSuccess}  = useRetrait();
@@ -34,17 +34,27 @@ export default function CommonRetraitForm({labelRib,moyen}) {
     resolver: yupResolver(retraitSchema),
   });
   let typeDePortefeuille = "";
-  if(moyen === "VISA" || moyen === "MasterCard"){
-    typeDePortefeuille = "carte";
-  }else if(moyen === "OrangeMoney"){
-    typeDePortefeuille = "orange";
-  }else if(moyen === "MtnMoney"){
-    typeDePortefeuille = "mtn";
-  }else if(moyen === "Bitcoin"){
-    typeDePortefeuille = "btc";
+  if(moyen === operateurs.nom[0]){
+    typeDePortefeuille = operateurs.code[0];
+  }else if(moyen === operateurs.nom[1]){
+    typeDePortefeuille = operateurs.code[1];
+  }else if(moyen === operateurs.nom[2]){
+    typeDePortefeuille = operateurs.code[2];
+  }else if(moyen === operateurs.nom[3]){
+    typeDePortefeuille = operateurs.code[3];
+  }else if(moyen === operateurs.nom[4]){
+    typeDePortefeuille = operateurs.code[4];
+  }else if(moyen === operateurs.nom[5]){
+    typeDePortefeuille = operateurs.code[5];
+  }else if(moyen === operateurs.nom[6]){
+    typeDePortefeuille = operateurs.code[6];
+  }else if(moyen === operateurs.nom[7]){
+    typeDePortefeuille = operateurs.code[7];
   }
   const [portefeuilleOptions, setPortefeuille] = useState(dt.data.porte_feuilles.filter(item => item.type === typeDePortefeuille));
-  let defaultPortefeuilleA = portefeuilleOptions[0]?portefeuilleOptions[0]["_id"]:0;
+  console.log(portefeuilleOptions)
+  console.log(dt)
+  let defaultPortefeuilleA = portefeuilleOptions[0]?portefeuilleOptions[0]["type"]:0;
   const [portefeuilleA, setPortefeuilleA] = useState(defaultPortefeuilleA);
   const portefeuilleChange = (event) => {
     let elt = event.target.selectedIndex;
@@ -68,7 +78,7 @@ export default function CommonRetraitForm({labelRib,moyen}) {
         },
         currency:actualCurrency
     }
-  };console.log(body.data)
+  };
     const res =  await mutateAsync({accessToken: context.appState.accessToken,data:body});
     const {error, message,success, data} = res;
         if(error && !success){
@@ -125,7 +135,7 @@ export default function CommonRetraitForm({labelRib,moyen}) {
           <Label>Nom du portefeuille à créditer</Label>
           <Input onChange={portefeuilleChange} type="select" name="portefeuille" placeholder="Choisisez un portefeuille">
               {portefeuilleOptions.map( (option, i) => (
-                  <option data-idPortefeuille={option["_id"]} key={i}>
+                  <option data-idportefeuille={option["_id"]} key={i}>
                       {option.nom}
                   </option>
 

@@ -8,6 +8,7 @@ import {
   Col,Button,Spinner,
   Row, Form, Label,FormText,Alert
 } from "reactstrap";
+import {operateurs} from '../../../src/helpers/operatorsList'
 import Sinput from "./Sinput";
 import Toast from "./Toast";
 import Dot from '../common/dot'
@@ -31,7 +32,7 @@ export default function VisaForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="VISA" labelRib="Numéro de Carte VISA pour le retrait"/>
+        <CommonRetraitForm moyen={operateurs.nom[0]} labelRib="Numéro de Carte VISA pour le retrait"/>
     </>
   )
 }

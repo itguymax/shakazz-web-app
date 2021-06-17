@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { portefeuilleSchema} from "../../validations";
 import Sinput from '../../../src/components/forms/Sinput';
-
+import {operateurs} from '../../../src/helpers/operatorsList';
 const SButton = styled.button`
 		    background-color: #679966;
 		    border-radius: 20px;
@@ -66,8 +66,8 @@ export default function CreatePortefeuille({ operateurChoix,addPossa, selectposs
                           inline
                           name="type"
                           labelColor="#444444"
-                          options={["VISA","MasterCard","Orange Money","MTN Mobile Money","Moov Money","Flooz Mobile Money","Mobicash","Bitcoin"]}
-                          defaultOption="Bitcoin"
+                          options={operateurs.nom}
+                          defaultOption={operateurs.nom[7]}
                           onSelect={selectpossatype}
                           placeholder="type de portefeuille"
                           register={register}

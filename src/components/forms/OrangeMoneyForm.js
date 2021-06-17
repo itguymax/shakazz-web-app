@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import CommonRetraitForm from "./CommonRetraitForm";
 import { useDeposit} from '../../../src/hooks';
 import { useAppContext } from '../../../src/context';
-
+import {operateurs} from '../../../src/helpers/operatorsList'
 export default function OrangeMoneyForm({}) {
   const context = useAppContext();
   const {mutateAsync, isLoading, isError, isSuccess}  = useDeposit();
@@ -31,7 +31,7 @@ export default function OrangeMoneyForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="OrangeMoney" labelRib="Numéro de téléphone Orange Money pour le retrait"/>
+        <CommonRetraitForm moyen={operateurs.nom[2]} labelRib="Numéro de téléphone Orange Money pour le retrait"/>
     </>
   )
 }

@@ -17,7 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import CommonRetraitForm from "./CommonRetraitForm";
 import { useDeposit} from '../../../src/hooks';
 import { useAppContext } from '../../../src/context';
-
+import {operateurs} from '../../../src/helpers/operatorsList'
 export default function MoovMoneyForm({}) {
   const context = useAppContext();
   const {mutateAsync, isLoading, isError, isSuccess}  = useDeposit();
@@ -31,7 +31,7 @@ export default function MoovMoneyForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="MoovMoney" labelRib="Numéro de téléphone MoovMoney pour le retrait"/>
+        <CommonRetraitForm moyen={operateurs.nom[4]} labelRib="Numéro de téléphone MoovMoney pour le retrait"/>
     </>
   )
 }

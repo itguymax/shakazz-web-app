@@ -21,7 +21,7 @@ export default function possa() {
   const [responseAlert, setResponseAlert] = useState({});
   const onDismiss = () => setAlertVisible(false);
    const [successMsg, setsuccessMsg] = useState('');
-   const [typePossa, setPossaType] = useState('btc')
+   const [typePossa, setPossaType] = useState(operateurs.code[6])
    const [errorMsg, seterrorMsg] = useState('');
    const [isOpenCollapse, setIsOpenCollapse] = useState(false);
    const toggleCollapse = () => setIsOpenCollapse(!isOpenCollapse);
@@ -50,7 +50,8 @@ export default function possa() {
   }
 }
 const selectpossatype = (l) => {
-  setPossaType(l.value);
+  let indexCode = operateurs.nom.indexOf(l.value);
+  setPossaType(operateurs.code[indexCode]);
   if(l.value === operateurs.nom[0] || l.value === operateurs.nom[1]){
     setOperateurChoix({nom:"Numéro de carte",placeholder:"xxxx xxxx xxxx xxx"});
   }else if(l.value === operateurs.nom[6]){

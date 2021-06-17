@@ -17,6 +17,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import CommonRetraitForm from "./CommonRetraitForm";
 import { useDeposit} from '../../../src/hooks';
 import { useAppContext } from '../../../src/context';
+import {operateurs} from '../../../src/helpers/operatorsList'
 
 export default function MasterCardForm({}) {
   const context = useAppContext();
@@ -31,7 +32,7 @@ export default function MasterCardForm({}) {
   }
   return (
     <>
-        <CommonRetraitForm moyen="Bitcoin" labelRib="Adresse Bitcoin pour le retrait"/>
+        <CommonRetraitForm moyen={operateurs.nom[7]} labelRib="Adresse Bitcoin pour le retrait"/>
     </>
   )
 }
