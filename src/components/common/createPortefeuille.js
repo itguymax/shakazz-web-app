@@ -66,8 +66,8 @@ export default function CreatePortefeuille({ operateurChoix,addPossa, selectposs
                           inline
                           name="type"
                           labelColor="#444444"
-                          options={["btc","orange","mtn","carte"]}
-                          defaultOption="btc"
+                          options={["VISA","MasterCard","Orange Money","MTN Mobile Money","Moov Money","Flooz Mobile Money","Mobicash","Bitcoin"]}
+                          defaultOption="Bitcoin"
                           onSelect={selectpossatype}
                           placeholder="type de portefeuille"
                           register={register}
