@@ -83,8 +83,7 @@ function Sdropdown({portefeuille,flag, idDd, sample, phone, label, register, nam
          {sample && <DropdownMenu  name={name}  aria-labelledby="navbarDropdownMenuLink2">
             {options.map( (option, i) => (
                 <li key={i}>
-                  <DropdownItem  tag="button" onClick={ () => {onOptionClicked(option)
-                  dropdown_toggle.dropdown_toggle(option.val,idDd)}}>
+                  <DropdownItem  tag="button" onClick={onOptionClicked(option)}>
                     {option.val}
                   </DropdownItem>
                 </li>
