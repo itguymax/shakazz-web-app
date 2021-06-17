@@ -14,7 +14,7 @@ const METHOD = {
 
 
 
-    const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
+     const apiBaseUrl = "https://shakazz-server.herokuapp.com/api/v1/services";
 
     //const apiBaseUrl = "http://localhost:5000/api/v1/services";
 

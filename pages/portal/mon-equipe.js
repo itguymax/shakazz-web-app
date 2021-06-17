@@ -56,7 +56,7 @@ const generationCardData = [
  function Equipe() {
     const context = useAppContext();
   const {data, isLoading} = useWallets(context.appState.accessToken);
-  const { data: treeData, isLoading: treeLoading} = useFetchUserTree(context.appState.accessToken);
+  const { data: treeData, isLoading: treeLoading, isError} = useFetchUserTree(context.appState.accessToken);
   const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
   const [showPopulation, setShowPopulation] = useState(false);
   const [selectedGen, setselectedGen] = useState(false);
@@ -95,6 +95,10 @@ const generationCardData = [
 }
 if(treeLoading){
   return <DataLoader/>
+}
+if(isError){
+  alert("erreur serveur");
+  return;
 }
 console.log("user tree", treeData);
   return (
