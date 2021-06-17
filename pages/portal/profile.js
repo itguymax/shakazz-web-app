@@ -85,6 +85,9 @@ const [grade, setgrade]= useState('');
           background-color: #f0f0f0 !important;
           border:1px solid white !important;
         }
+        input[name="telephone"]{
+          width:17em !important;
+        }
         .dropdown-menu.show{
           max-height:'2em !important';
         }
@@ -116,18 +119,6 @@ const [grade, setgrade]= useState('');
           width:auto !important;
         }
         /*Responsive*/
-        @media ${device.mPhone}{
-             .profileColWrapper{
-               display:flex;
-               flex-direction: column;
-             }
-             .createPortefeuille{
-               width:14em !important;
-             }
-             #navbarDropdownMenuLink2{
-                width:17em !important;
-              }
-          }
         @media ${device.bPhone} {
              .profileColWrapper{
                display:flex;
@@ -157,12 +148,54 @@ const [grade, setgrade]= useState('');
             width:6em !important;
           }
           #navbarDropdownMenuLink2{
-            width:13em !important;
+            width:20em !important;
           }
         }
         @media ${device.bTablet} {
           .createPortefeuille{
             height:17em !important;
+          }
+          input[name="telephone"]{
+            width:12em !important;
+          }
+        }
+        @media ${device.surfaceDuo} {
+          input[name="telephone"]{
+            width:17em !important;
+          }
+          #navbarDropdownMenuLink2{
+            width:20em !important;
+          }
+        }
+        @media ${device.mPhone}{
+             .profileColWrapper{
+               display:flex;
+               flex-direction: column;
+             }
+             .createPortefeuille{
+               width:14em !important;
+             }
+             #navbarDropdownMenuLink2{
+                width:18em !important;
+              }
+              input[name="telephone"]{
+                width:12em !important;
+              }
+          }
+          @media ${device.mPhone}{
+                input[name="telephone"]{
+                  width:12em !important;
+                }
+            }
+        @media ${device.vsPhone} {
+          .createPortefeuille{
+            height:17em !important;
+          }
+          input[name="telephone"]{
+            width:10em !important;
+          }
+          #navbarDropdownMenuLink2{
+            width:18em !important;
           }
         }
       `}

@@ -57,7 +57,7 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
          />
       </Col>
       <Col sm="5"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
-      <Col sm="5">
+      <Col sm="2">
       <Image
       src="/assets/img/arrowBottom.png"
       alt="..."
