@@ -110,7 +110,7 @@ export default function Profileform({isAccount,setAccountType}) {
      setValue("dob", lgrade?.dateOfbirth);
      setValue("telephone",lgrade?.phone);
      setValue("sexe",lgrade?.gender);
-     setValue("adresse", lgrade?.address.city + ", "+lgrade?.address.country.name +", "+ lgrade?.address.street );
+     setValue("adresse", (lgrade?.address.city && lgrade?.address.country.name && lgrade?.address.street) ?lgrade?.address.city + ", "+lgrade?.address.country.name +", "+ lgrade?.address.street : '');
      setProfile({val: lgrade?.typeprofile || profile.val});
      setGender({val: lgrade?.gender || gender.val});
      setCountryIndic({name: lgrade?.address.country.name || selectedCountry.name, flag: lgrade?.address.country.flag || selectedCountry.flag, code: lgrade?.address.country.indicatif || selectedCountry.callingCodes[0]});
