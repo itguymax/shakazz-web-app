@@ -132,7 +132,9 @@ export default function CommonRetraitForm({labelRib,moyen}) {
                 ))}
           </Input>
         </FormGroup>
-        {moyen!=="Bitcoin" && <FormGroup><Input onChange={currencyChange} type="select" name="currency" placeholder="Choisissez une monaie de retrait">
+        {moyen!=="Bitcoin" && <FormGroup>
+        <Label>Monaie de retrait</Label>
+        <Input onChange={currencyChange} type="select" name="currency" placeholder="Choisissez une monaie de retrait">
             {["XAF","XOF","CDF"].map( (option, i) => (
                 <option key={i}>
                     {option}

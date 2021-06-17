@@ -24,6 +24,9 @@ import OrangeMoneyForm from "../../src/components/forms/OrangeMoneyForm";
 import MtnMoneyForm from "../../src/components/forms/MtnMoneyForm";
 import VisaForm from "../../src/components/forms/VisaForm";
 import MasterCardForm from "../../src/components/forms/MasterCardForm";
+import MobiCashForm from "../../src/components/forms/MobiCashForm";
+import MoovMoneyForm from "../../src/components/forms/MoovMoneyForm";
+import FloozMobileMoneyForm from "../../src/components/forms/FloozMobileMoneyForm";
 import BitcoinForm from "../../src/components/forms/BitcoinForm";
 import { useConverter, useRetrait, usePortefeuille, useWallets} from '../../src/hooks'
 import { useAppContext } from '../../src/context';
@@ -47,7 +50,7 @@ function Retrait() {
   const [portefeuilleOptions, setPortefeuille] = useState([]);
   const operateurs = {
     code:["OP100","OP101","OP102","OP102","OP103","OP104","OP104","OP105"],
-    nom:["VISA","MasterCard","Orange Money","MTN Money","Moov Money","Flooz Mobile Money","Mobicash","Bitcoin"]
+    nom:["VISA","MasterCard","Orange Money","MTN Money","Moov Money","Flooz Mobile Money","MobiCash","Bitcoin"]
   }
   const [typePorteFeuilleOptions, setTypePorteFeuille] = useState(operateurs.nom);
   const [selectedOption, setSelectedOption] = useState("");
@@ -83,6 +86,15 @@ function Retrait() {
     }else if(selectedOptionMode === 'MasterCard'){
       setModalTitle('MasterCard');
         return setActualModalPage(<MasterCardForm/>);
+    }else if(selectedOptionMode === 'MobiCash'){
+      setModalTitle('MobiCash');
+        return setActualModalPage(<MobiCashForm/>);
+    }else if(selectedOptionMode === 'Moov Money'){
+      setModalTitle('MoovMoney');
+        return setActualModalPage(<MoovMoneyForm/>);
+    }else if(selectedOptionMode === 'Flooz Mobile Money'){
+      setModalTitle('FloozMobileMoney');
+        return setActualModalPage(<FloozMobileMoneyForm/>);
     }else if(selectedOptionMode === 'Bitcoin'){
       setModalTitle('Bitcoin');
         return setActualModalPage(<BitcoinForm/>);
