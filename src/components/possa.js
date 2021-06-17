@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import CreatePortefeuille from './common/createPortefeuille';
 import CreatePortefeuilleD from './common/createPortefeuilleD';
 import Toast from "./forms/Toast";
+import {operateurs} from '../helpers/operatorsList'
 import {
   FormGroup,
   Form,
@@ -48,12 +49,12 @@ export default function possa() {
 }
 const selectpossatype = (l) => {
   setPossaType(l.value);
-  if(l.value === "carte"){
+  if(l.value === operateurs.nom[0] || l.value === operateurs.nom[1]){
     setOperateurChoix({nom:"Numéro de carte",placeholder:"xxxx xxxx xxxx xxx"});
-  }else if(l.value === "orange" || l.value === "mtn"){
-    setOperateurChoix({nom:"Numéro "+l.value,placeholder:"(code pays) xxx xxx xxx"});
-  }else{
+  }else if(l.value === operateurs.nom[6]){
     setOperateurChoix({nom:"Adresse Bitcoin",placeholder:"FRA2017univ2021"});
+  }else{
+    setOperateurChoix({nom:"Numéro "+l.value,placeholder:"(code pays) xxx xxx xxx"});
   }
 }
   return (
@@ -98,7 +99,7 @@ const selectpossatype = (l) => {
                       {
                          dataLoading? null : <>
                            {
-                             data?.data.porte_feuilles.map((item ,key) => <CreatePortefeuilleD operateurChoix={operateurChoix} key={key} nb={key +1} item={item}/>)
+                             data?.data.porte_feuilles.map((item ,key) => <CreatePortefeuilleD operateurChoix={operateurs.nom} key={key} nb={key +1} item={item}/>)
                            }
                          </>
                       }

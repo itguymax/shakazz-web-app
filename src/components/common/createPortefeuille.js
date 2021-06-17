@@ -84,7 +84,7 @@ export default function CreatePortefeuille({ operateurChoix,addPossa, selectposs
                           placeholder="Projet d'études"
                           register={register}
                           iStyle={{width:"10em",border:"1px solid #d9d2d2",
-                             borderRadius:"15px",overflow:"hidden",marginTop:"-1em"}}
+                             borderRadius:"15px",overflow:"hidden",marginTop:"-0.3em"}}
                           type="text"
                         />
                         {errors.nom && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
