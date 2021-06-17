@@ -58,7 +58,12 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
       </Col>
       <Col sm="5"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
       <Col sm="5">
-          <p style={{cursor:"pointer",marginLeft:"2em",fontSize:"1.1em",color:"black",fontWeight:"bold"}} onClick={toggleCollapse}>Ouvrir</p>
+      <Image
+      src="/assets/img/arrowBottom.png"
+      alt="..."
+      height={10} width={15}
+      onClick={toggleCollapse}
+      />
           <Collapse isOpen={isOpenCollapse}>
             <Card>
               <CardBody>
