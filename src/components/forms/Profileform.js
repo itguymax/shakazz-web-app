@@ -59,6 +59,7 @@ export default function Profileform({isAccount,setAccountType}) {
   const [gender, setGender] = useState({});
   const [uname,setname] = useState();
   const [username, setusername] = useState();
+  const [dobirth, setdobirth] = useState();
   const [countryIndic, setCountryIndic ] = useState({name: selectedCountry.name, flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
   const { register, handleSubmit, errors ,setValue} = useForm({
       resolver: yupResolver(profileSchema)
@@ -82,7 +83,7 @@ export default function Profileform({isAccount,setAccountType}) {
          companyName:"",
          name: uname || name,
          userName: username,
-         birthday : dob,
+         birthday : dobirth || dob,
          gender: gender.val,
          email : email,
          phone: telephone,
@@ -115,6 +116,7 @@ export default function Profileform({isAccount,setAccountType}) {
      setCountryIndic({name: lgrade?.address.country.name || selectedCountry.name, flag: lgrade?.address.country.flag || selectedCountry.flag, code: lgrade?.address.country.indicatif || selectedCountry.callingCodes[0]});
      setusername(lgrade?.psedo);
      setname(lgrade.lastName +" "+ lgrade.firstName);
+     setdobirth(lgrade?.dateOfbirth);
   },[])
 
   const handleCountryOption = (value) => {
@@ -188,11 +190,11 @@ console.log("selectedCountry",selectedCountry);
                        <Sinput
                        name="dob"
                       label="Date de naissance"
-                      placeholder='YYYY-MM-DD'
+                      placeholder='DD/MM/YYYY'
                       register={register}
                       iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
-                      type="date"
+                      type="text"
                       handleOnchange={()=>{}}
                       />
                       {errors.dob && <div className="text-muted font-italic">
