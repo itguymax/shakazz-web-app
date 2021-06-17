@@ -14,7 +14,7 @@ import {
   Container,
   Row,
   Col,
-  Media,Table,
+  Media,List,
   DropdownItem,
   Label,Collapse
 } from "reactstrap";
@@ -67,28 +67,34 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
       </Col>
     </Row>
     <Row style={{marginBottom:"0.5em"}}>
-    <Col sm="12">
     <Collapse isOpen={isOpenCollapse}>
-      <Card>
-        <CardBody>
-          <Table size="sm">
-                <thead>
-                  <tr>
-                    <th>Nom</th>
-                    <th>Adresse</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{item.nom}</td>
-                    <td>{item.address}</td>
-                  </tr>
-                </tbody>
-            </Table>
-        </CardBody>
-      </Card>
-    </Collapse>
+    <Row>
+    <Col sm="4">
+      <List type="unstyled">
+        <li><strong>Nom</strong>
+          <center>{item.nom}
+          </center>
+        </li>
+      </List>
     </Col>
+    <Col sm="4">
+      <List type="unstyled">
+        <li><strong>Adresse</strong>
+          <center>{item.address}
+          </center>
+        </li>
+      </List>
+    </Col>
+    <Col sm="4">
+      <List type="unstyled">
+        <li><strong>Montant</strong>
+          <center>{item.montantUSD}
+          </center>
+        </li>
+      </List>
+    </Col>
+    </Row>
+    </Collapse>
     </Row>
     </>
   )
