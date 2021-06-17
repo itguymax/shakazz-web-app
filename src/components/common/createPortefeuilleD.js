@@ -64,27 +64,31 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
       height={10} width={15}
       onClick={toggleCollapse}
       />
-          <Collapse isOpen={isOpenCollapse}>
-            <Card>
-              <CardBody>
-                <Table borderles>
-                      <thead>
-                        <tr>
-                          <th>Nom</th>
-                          <th>Adresse</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>{item.nom}</td>
-                          <td>{item.address}</td>
-                        </tr>
-                      </tbody>
-                  </Table>
-              </CardBody>
-            </Card>
-          </Collapse>
       </Col>
+    </Row>
+    <Row style={{marginBottom:"0.5em"}}>
+    <Col sm="12">
+    <Collapse isOpen={isOpenCollapse}>
+      <Card>
+        <CardBody>
+          <Table size="sm">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{item.nom}</td>
+                    <td>{item.address}</td>
+                  </tr>
+                </tbody>
+            </Table>
+        </CardBody>
+      </Card>
+    </Collapse>
+    </Col>
     </Row>
     </>
   )
