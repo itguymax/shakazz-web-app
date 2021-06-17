@@ -31,6 +31,7 @@ import BitcoinForm from "../../src/components/forms/BitcoinForm";
 import { useConverter, useRetrait, usePortefeuille, useWallets} from '../../src/hooks'
 import { useAppContext } from '../../src/context';
 import { filterwallet } from '../../src/helpers/filterWallet'
+import {operateurs} from '../../src/helpers/operatorsList'
 import {constantes} from '../../src/config';
 import {Global,css} from "@emotion/react"
 import { useRouter } from 'next/router';
@@ -48,10 +49,6 @@ function Retrait() {
   const [show, setShow] = useState(false);
   const [token,setToken] = useState(context.appState.accessToken)
   const [portefeuilleOptions, setPortefeuille] = useState([]);
-  const operateurs = {
-    code:["OP100","OP101","OP102","OP102","OP103","OP104","OP104","OP105"],
-    nom:["VISA","MasterCard","Orange Money","MTN Money","Moov Money","Flooz Mobile Money","MobiCash","Bitcoin"]
-  }
   const [typePorteFeuilleOptions, setTypePorteFeuille] = useState(operateurs.nom);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedOptionMode, setSelectedOptionMode] = useState("");
