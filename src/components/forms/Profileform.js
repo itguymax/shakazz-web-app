@@ -57,8 +57,9 @@ export default function Profileform({isAccount,setAccountType}) {
   const [selectedCountry, setSelectedCountry] = useState(country[41]);
   const [profile, setProfile] = useState({});
   const [gender, setGender] = useState({});
-  const [uname,setname]=useState();
+  const [uname,setname] = useState();
   const [username, setusername] = useState();
+  const [dobirth, setdobirth] = useState();
   const [countryIndic, setCountryIndic ] = useState({name: selectedCountry.name, flag: selectedCountry.flag, code: selectedCountry.callingCodes[0] });
   const { register, handleSubmit, errors ,setValue} = useForm({
       resolver: yupResolver(profileSchema)
@@ -82,7 +83,7 @@ export default function Profileform({isAccount,setAccountType}) {
          companyName:"",
          name: uname || name,
          userName: username,
-         birthday : dob,
+         birthday : dobirth || dob,
          gender: gender.val,
          email : email,
          phone: telephone,
@@ -110,26 +111,25 @@ export default function Profileform({isAccount,setAccountType}) {
      setValue("telephone",lgrade?.phone);
      setValue("sexe",lgrade?.gender);
      setValue("adresse", lgrade?.address.city + ", "+lgrade?.address.country.name +", "+ lgrade?.address.street );
-
-    //  setProfile({val: lgrade?.typeprofile || profile.val});
-    //   setGender({val: lgrade?.gender || gender.val});
-    //  setusername(lgrade?.psedo);
-    //  setname(lgrade.lastName +" "+ lgrade.firstName);
+     setProfile({val: lgrade?.typeprofile || profile.val});
+     setGender({val: lgrade?.gender || gender.val});
+     setCountryIndic({name: lgrade?.address.country.name || selectedCountry.name, flag: lgrade?.address.country.flag || selectedCountry.flag, code: lgrade?.address.country.indicatif || selectedCountry.callingCodes[0]});
+     setusername(lgrade?.psedo);
+     setname(lgrade.lastName +" "+ lgrade.firstName);
+     setdobirth(lgrade?.dateOfbirth);
   },[])
 
   const handleCountryOption = (value) => {
   setSelectedCountry(value);
-  setCountryIndic({flag: value.flag, code: value.callingCodes[0]});
-  console.log("country option", value);
+  setCountryIndic({flag: value.flag, name:value.name, code: value.callingCodes[0]});
 }
 const handleprofile = (e) => {
-   setProfile({val: e})
+   setProfile( e)
   console.log("valllllll profile",e,  e);
-
 }
 const handlesex = (e) => {
   console.log("e.target.value",e);
-  setGender({val:  e});
+  setGender(e);
 }
 
 console.log("gender",gender);
@@ -167,7 +167,7 @@ console.log("selectedCountry",selectedCountry);
                    <Col md={12} lg={6}>
                     <FormGroup>
                         {/* <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
-                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays" flag register={register} selectedOption={selectedCountry} handleOnSelect={handleCountryOption} options={country||[]}/>
+                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays" flag register={register} selectedOption={ countryIndic || selectedCountry } handleOnSelect={handleCountryOption} options={country||[]}/>
                               {errors.nationnalite && <div className="text-muted font-italic">
                                   <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
                               </div> }
@@ -190,11 +190,11 @@ console.log("selectedCountry",selectedCountry);
                        <Sinput
                        name="dob"
                       label="Date de naissance"
-                      placeholder='YYYY-MM-DD'
+                      placeholder='DD/MM/YYYY'
                       register={register}
                       iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
-                      type="date"
+                      type="text"
                       handleOnchange={()=>{}}
                       />
                       {errors.dob && <div className="text-muted font-italic">
