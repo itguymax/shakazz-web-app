@@ -115,8 +115,10 @@ const [grade, setgrade]= useState('');
           cursor:pointer;
         }
         #navbarDropdownMenuLink2{
-          min-width:3em !important;
-          width:auto !important;
+          width:25em !important;
+        }
+        #navbarDropdownMenuLink4{
+          min-width:23em !important;
         }
         /*Responsive*/
         @media ${device.bPhone} {
@@ -158,6 +160,12 @@ const [grade, setgrade]= useState('');
           input[name="telephone"]{
             width:12em !important;
           }
+          #navbarDropdownMenuLink2{
+            width:18em !important;
+          }
+          #navbarDropdownMenuLink4{
+            min-width:18em !important;
+          }
         }
         @media ${device.surfaceDuo} {
           input[name="telephone"]{
@@ -167,26 +175,29 @@ const [grade, setgrade]= useState('');
             width:20em !important;
           }
         }
-        @media ${device.mPhone}{
-             .profileColWrapper{
-               display:flex;
-               flex-direction: column;
-             }
-             .createPortefeuille{
-               width:14em !important;
-             }
-             #navbarDropdownMenuLink2{
-                width:18em !important;
-              }
-              input[name="telephone"]{
-                width:12em !important;
-              }
-          }
-          @media ${device.mPhone}{
+          @media ${device.sPhone}{
                 input[name="telephone"]{
                   width:12em !important;
                 }
             }
+            @media ${device.mPhone}{
+                 .profileColWrapper{
+                   display:flex;
+                   flex-direction: column;
+                 }
+                 .createPortefeuille{
+                   width:14em !important;
+                 }
+                 #navbarDropdownMenuLink2{
+                    width:18em !important;
+                  }
+                  input[name="telephone"]{
+                    width:10em !important;
+                  }
+                  #navbarDropdownMenuLink4{
+                    min-width:18em !important;
+                  }
+              }
         @media ${device.vsPhone} {
           .createPortefeuille{
             height:17em !important;

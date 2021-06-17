@@ -167,7 +167,7 @@ console.log("selectedCountry",selectedCountry);
                    <Col md={12} lg={6}>
                     <FormGroup>
                         {/* <DropDownPhone name="country" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays:" flag register={()=>{}} name="canal" selectedOption={country[41].name} handleOnSelect={()=>{}} options={country||[]}/> */}
-                         <DropDownPhone name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays" flag register={register} selectedOption={ countryIndic || selectedCountry } handleOnSelect={handleCountryOption} options={country||[]}/>
+                         <DropDownPhone phoneName="nationnalite" name="nationnalite" country idDdM={"dt_country_img_1"} idDd={"dt_country_flag"} label="Pays" flag register={register} selectedOption={ countryIndic || selectedCountry } handleOnSelect={handleCountryOption} options={country||[]}/>
                               {errors.nationnalite && <div className="text-muted font-italic">
                                   <span className="text-danger font-weight-700">{errors.nationnalite.message}</span>
                               </div> }
