@@ -99,8 +99,8 @@ function Sdropdown({flag,country, idDd,idDdM,phoneName,phoneValue,pickPhone, sam
             {"+" + selectedOptionP.code}
          </DropdownItem>
         </DropdownToggle>}
-        {phone &&<Input innerRef={register()}  name={phoneName} onChange={pickPhone} value={phoneValue} style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"8em",zIndex:"900 !important"}}/>}
-        
+        {phone &&<Input innerRef={register()} type="number" name={phoneName} onChange={pickPhone} value={phoneValue} style={{marginTop:"-2.998em",borderRadius:"0px 15px 15px 0px",width:"15em !important",marginLeft:"8em",zIndex:"900 !important"}}/>}
+
         {country &&<DropdownToggle  innerRef={register()}  caret color="" id="navbarDropdownMenuLink4" className="d-flex justify-content-between align-items-center mr-0" style={{ padding:'5px', backgroundColor:'#fff', border:'1px solid #707070', borderRadius:"25px"}}>
            <Image id={idDdM}
                     src={selectedOption.flag}
@@ -119,7 +119,7 @@ function Sdropdown({flag,country, idDd,idDdM,phoneName,phoneValue,pickPhone, sam
                       src={option.flag}
                       alt={option.name}
                       height={25} width={50}
-                  /> 
+                  />
                           {/* handleOnSelect(option.name,idDd,idDdM,option.alpha3Code.toLowerCase()+'.svg') */}
                   <DropdownItem  id={idDd} tag="button" onClick={onOptionClicked(option)}>
                     {option.name}

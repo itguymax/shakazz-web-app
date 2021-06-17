@@ -70,7 +70,14 @@ const resetPasswordSchema = yup.object().shape({
 
 const profileSchema = yup.object().shape({
   name: yup.string(),
-  dob: yup.string().required("La date de naissance est requise"),
+  dob: yup.string()
+    .required('Le format de la date ne correspond pas(YYYY/DD/MM)!')
+    .matches(
+      /^\d{4}(\/)(((0)[0-9])|((1)[0-2]))(\/)([0-2][0-9]|(3)[0-1])$/,
+      `Le format de la date ne correspond pas(YYYY/DD/MM)!`
+    ).test('checkDobUnique', 'Le format de la date ne correspond pas(YYYY/DD/MM)!', async (value) =>{
+     return true;
+   }),
   adresse: yup.string().required("L'adresse est requise"),
   telephone: yup.number().required("Le numéro de téléphone est requis"),
   username: yup.string(),
@@ -86,6 +93,7 @@ const profileSchema = yup.object().shape({
   account_type: yup.string(),
   sexe: yup.string(),
   nationnalite: yup.string(),
+  canal: yup.string()
 })
 
 const depotBTCSchema = yup.object().shape({

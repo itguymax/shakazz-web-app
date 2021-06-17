@@ -190,7 +190,7 @@ console.log("selectedCountry",selectedCountry);
                        <Sinput
                        name="dob"
                       label="Date de naissance"
-                      placeholder='DD/MM/YYYY'
+                      placeholder='YYYY/MM/DD'
                       register={register}
                       iStyle={{borderRadius:"15px", overflow:"hidden"}}
                       inputBg="#fff"
@@ -273,7 +273,7 @@ console.log("selectedCountry",selectedCountry);
                 </SButton>
 
           {/* second column */}
-
+          <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
       </Form>
 
   )

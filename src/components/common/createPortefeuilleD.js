@@ -58,28 +58,37 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
       </Col>
       <Col sm="5"><p style={{color:"black",fontSize:"1em",fontWeight:100}}>{"Portefeuille"+nb}</p></Col>
       <Col sm="5">
-          <p style={{cursor:"pointer",marginLeft:"2em",fontSize:"1.1em",color:"black",fontWeight:"bold"}} onClick={toggleCollapse}>Ouvrir</p>
-          <Collapse isOpen={isOpenCollapse}>
-            <Card>
-              <CardBody>
-                <Table borderles>
-                      <thead>
-                        <tr>
-                          <th>Nom</th>
-                          <th>Adresse</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>{item.nom}</td>
-                          <td>{item.address}</td>
-                        </tr>
-                      </tbody>
-                  </Table>
-              </CardBody>
-            </Card>
-          </Collapse>
+      <Image
+      src="/assets/img/arrowBottom.png"
+      alt="..."
+      height={10} width={15}
+      onClick={toggleCollapse}
+      />
       </Col>
+    </Row>
+    <Row style={{marginBottom:"0.5em"}}>
+    <Col sm="12">
+    <Collapse isOpen={isOpenCollapse}>
+      <Card>
+        <CardBody>
+          <Table size="sm">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{item.nom}</td>
+                    <td>{item.address}</td>
+                  </tr>
+                </tbody>
+            </Table>
+        </CardBody>
+      </Card>
+    </Collapse>
+    </Col>
     </Row>
     </>
   )
