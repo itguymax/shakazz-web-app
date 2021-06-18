@@ -27,6 +27,7 @@ export default function possa() {
    const [successMsg, setsuccessMsg] = useState('');
    const [typePossa, setPossaType] = useState(operateurs.code[7])
    const [errorMsg, seterrorMsg] = useState('');
+    const [imagePortefeuille, setImagePortefeuille] = useState('add.svg');
    const [isOpenCollapse, setIsOpenCollapse] = useState(false);
    const toggleCollapse = () => setIsOpenCollapse(!isOpenCollapse);
   const { mutateAsync, isLoading } = useAddPortefeuille();
@@ -85,10 +86,17 @@ const selectpossatype = (l) => {
          <Col sm="2"></Col>
          <Col sm="2"><p>Portefeuille</p></Col>
          <Col sm="2">  <Image
-             src="/assets/img/icons/add.svg"
+             src={"/assets/img/icons/"+imagePortefeuille}
              alt="..."
              id="detectToolipComp"
-             onClick={toggleCollapse}
+             onClick={()=>{
+               toggleCollapse();
+               if(isOpenCollapse === false){
+                 setImagePortefeuille("clic_button_down.svg");
+               }else{
+                 setImagePortefeuille("add.svg");
+               }
+             }}
              height={20} width={20}
              style={{backgroundColor:"#000",margin:"auto"}}
              />

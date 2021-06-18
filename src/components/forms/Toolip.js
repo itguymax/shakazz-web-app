@@ -10,7 +10,7 @@ export default function ToolipComp({tooltipOpen,toggle,message}) {
     `}
   />
   <div>
-      <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="detectToolipComp" toggle={toggle}>
+      <Tooltip placement="right" isOpen={tooltipOpen} autohide={false} target="detectToolipComp" toggle={toggle}>
         {message}
       </Tooltip>
     </div>
