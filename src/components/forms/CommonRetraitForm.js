@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Global,css} from "@emotion/react"
 import {
   FormGroup,
   Input,
@@ -11,6 +12,7 @@ import {
 import Sinput from "./Sinput";
 import Toast from "./Toast";
 import Dot from '../common/dot'
+import { device } from '../../../src/lib/device.js';
 import { useConverter } from '../../../src/hooks'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -97,7 +99,8 @@ export default function CommonRetraitForm({labelRib,moyen}) {
     }
   })*/
   return (
-    <><Form onSubmit={handleSubmit(onSubmit)}>
+    <>
+    <Form onSubmit={handleSubmit(onSubmit)}>
     <FormGroup>
       <Sinput
         label="Montant USD"

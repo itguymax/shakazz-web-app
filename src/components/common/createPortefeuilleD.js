@@ -82,7 +82,7 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
     <Col sm="4">
       <List type="unstyled">
         <li><strong>Montant</strong>
-          <center>{item.montantUSD}
+          <center>{item.montantUSD+"$"}
           </center>
         </li>
       </List>
