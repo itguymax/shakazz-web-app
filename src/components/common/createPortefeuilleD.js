@@ -81,16 +81,16 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
     </Col>
     <Col sm="4">
       <List type="unstyled">
-        <li><strong>Adresse</strong>
-          <center>{item.address}
+        <li><strong>Montant</strong>
+          <center>{item.montantUSD}
           </center>
         </li>
       </List>
     </Col>
     <Col sm="4">
       <List type="unstyled">
-        <li><strong>Montant</strong>
-          <center>{item.montantUSD}
+        <li><strong>Adresse</strong>
+          <center>{item.address}
           </center>
         </li>
       </List>
