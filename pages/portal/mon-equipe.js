@@ -98,7 +98,7 @@ if(treeLoading){
 }
 if(isError){
   alert("erreur serveur");
-  return;
+  
 }
 console.log("user tree", treeData);
   return (
