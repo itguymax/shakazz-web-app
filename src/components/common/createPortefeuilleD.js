@@ -24,6 +24,8 @@ import Sinput from '../../../src/components/forms/Sinput';
 export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
   const [isOpenCollapse, setIsOpenCollapse] = useState(false);
   const toggleCollapse = () => setIsOpenCollapse(!isOpenCollapse);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const toggle = () => setTooltipOpen(!tooltipOpen);
 	  const Button = styled.button`
 		    background-color: #679966;
 		    border-radius: 20px;
@@ -79,16 +81,16 @@ export default function CreatePortefeuilleD({nb,item,operateurChoix}) {
     </Col>
     <Col sm="4">
       <List type="unstyled">
-        <li><strong>Adresse</strong>
-          <center>{item.address}
+        <li><strong>Montant</strong>
+          <center>{item.montantUSD+"$"}
           </center>
         </li>
       </List>
     </Col>
     <Col sm="4">
       <List type="unstyled">
-        <li><strong>Montant</strong>
-          <center>{item.montantUSD}
+        <li><strong>Adresse</strong>
+          <center>{item.address}
           </center>
         </li>
       </List>

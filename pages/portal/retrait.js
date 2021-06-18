@@ -140,6 +140,11 @@ function Retrait() {
     <div>
     <Global
     styles={css`
+      @media ${device.iphoneX} {
+          .modal-content {
+            width:22.5em !important;
+          }
+        }
       @media ${device.sPhone} {
         .modal-content {
           width:21.5em !important;
@@ -150,14 +155,14 @@ function Retrait() {
           width:19em !important;
         }
         }
-      @media ${device.iphoneX} {
-          .modal-content {
-            width:22.5em;
-          }
-        }
       @media ${device.bPhone} {
         .modal-content {
-          width:25em;
+          width:24.5em;
+        }
+      }
+      @media ${device.vsPhone} {
+        .modal-content {
+          width:16.5em !important;
         }
       }
     `}
