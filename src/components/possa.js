@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import CreatePortefeuille from './common/createPortefeuille';
 import CreatePortefeuilleD from './common/createPortefeuilleD';
 import Toast from "./forms/Toast";
+import ToolipComp from './forms/Toolip';
 import {operateurs} from '../helpers/operatorsList';
+import {scrollToBottom} from '../helpers/scrollToBottom';
 import {
   FormGroup,
   Form,
@@ -16,12 +18,14 @@ import {useAppContext} from "../context";
 import Image from 'next/image';
 export default function possa() {
   const context = useAppContext();
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const tooltipToggle = () => setTooltipOpen(!tooltipOpen);
   const [operateurChoix, setOperateurChoix] = useState({nom:"Adresse Bitcoin",placeholder:"FRA2017univ2021"});
   const [visibleAlert, setAlertVisible] = useState(false);
   const [responseAlert, setResponseAlert] = useState({});
   const onDismiss = () => setAlertVisible(false);
    const [successMsg, setsuccessMsg] = useState('');
-   const [typePossa, setPossaType] = useState(operateurs.code[6])
+   const [typePossa, setPossaType] = useState(operateurs.code[7])
    const [errorMsg, seterrorMsg] = useState('');
    const [isOpenCollapse, setIsOpenCollapse] = useState(false);
    const toggleCollapse = () => setIsOpenCollapse(!isOpenCollapse);
@@ -83,10 +87,13 @@ const selectpossatype = (l) => {
          <Col sm="2">  <Image
              src="/assets/img/icons/add.svg"
              alt="..."
+             id="detectToolipComp"
              onClick={toggleCollapse}
              height={20} width={20}
              style={{backgroundColor:"#000",margin:"auto"}}
-             /></Col>
+             />
+             <ToolipComp message="Ouvrez un porte feuille pour vos vos retraits" tooltipOpen={tooltipOpen} toggle={tooltipToggle}/>
+             </Col>
        </Row>
        <Collapse isOpen={isOpenCollapse}>
            <Row className="profileColWrapper" >
