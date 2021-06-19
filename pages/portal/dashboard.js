@@ -9,7 +9,7 @@ import settings from "../../src/__MOCK__/settings";
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
+import {Global,css} from "@emotion/react"
 import {useAppContext} from "../../src/context";
 import moment from "moment";
 import Image from "next/image";
@@ -23,7 +23,7 @@ import {
   Button,
   Table,
   Progress,
-  Media,
+  Media,Jumbotron
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal.js";
@@ -33,6 +33,7 @@ import {
   parseOptions,
 } from "../../variables/charts.js";
 import  { Link } from "../../src/components/Link";
+import  ToolipComp from "../../src/components/forms/Toolip";
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import DashboardWallets from '../../src/components/DashboardWallets';
 import ProgressBar from "../../src/components/ProgressBar";
@@ -45,6 +46,8 @@ import DataLoader from "../../src/components/common/DataLoader";
 let c;
 function Dashboard( props ) {
   const [activeNav, setActiveNav] = useState(1);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const tooltipToggle = () => setTooltipOpen(!tooltipOpen);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
   const [page, setPage] = useState(1);
   const [transData, setTransData] = useState([])
@@ -88,23 +91,57 @@ function Dashboard( props ) {
    const badge ="starter";
   return (
     <Portal>
+    <Global
+    styles={css`
+      /*Responsive*/
+      .dashboard_presentation_box{
+        border-radius:6px;
+        padding-top:0.5em;
+        padding-bottom:0.6em;
+        background-color:#f6f6f6 !important;
+      }
+      .dashboard_presentation_conatainer{
+      }
+      .dashboard_presentation_box h2{
+        color:black;
+      }
+    `}
+  />
       <Container>
        {userDataLoading? null : (
          <div style={{display: "flex", flexDirextion:"row"}}>
-          <div style={{cursor: "pointer"}}>
-          <h2>Votre lien d'affiliation </h2>
-          <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
-          onCopy={() =>
-            setCopied(true)
-          }>
-          <span>{userData? userData?.data?.user?.affiliationLink: ""}</span>
-        </CopyToClipboard>
-          {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
-        </div>
-        <div className="ml-4">
-          <h2>{`chiffre d'affaire`}</h2>
-           <p>{(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
-        </div>
+         <Row>
+          <Col class="sm-6">
+            <div style={{paddingBottom:"0em"}}>
+               <Jumbotron fluid className="dashboard_presentation_box">
+                 <Container id="detectToolipComp" fluid className="dashboard_presentation_conatainer">
+                   <h2 className="display-4">Votre lien d'affiliation</h2>
+                   <div style={{cursor: "pointer"}}>
+                   <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
+                   onCopy={() =>
+                     setCopied(true)
+                   }>
+                   {copied ? <span style={{color: '#cc9933'}}>{userData? userData?.data?.user?.affiliationLink: ""}</span> : <span style={{color: 'black'}}>{userData? userData?.data?.user?.affiliationLink: ""}</span>}
+                 </CopyToClipboard>
+                 </div>
+                 <ToolipComp position="bottom" message="Cliquez sur le lien pour le copier" tooltipOpen={tooltipOpen} toggle={tooltipToggle}/>
+                 </Container>
+               </Jumbotron>
+             </div>
+          </Col>
+          <Col class="sm-6">
+          <div>
+             <Jumbotron fluid className="dashboard_presentation_box">
+               <Container fluid>
+                 <h2 className="display-4">Votre chiffre d'affaire</h2>
+                 <div className="ml-4 display-5">
+                    {(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                 </div>
+               </Container>
+             </Jumbotron>
+           </div>
+          </Col>
+         </Row>
         </div>
        ) }
          <Row className="mt-5">
