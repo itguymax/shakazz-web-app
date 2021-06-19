@@ -29,7 +29,7 @@ function Transactions() {
   const {mutateAsync} = useFetchWallettransactions();
   const {mutateAsync: allMutation } = useFetchAlltransactions();
   const [transData, setTransData] = useState([])
-  
+
   function indexPrimaty(tabIndex){
       setHTabsIcons("hTabsIcons-1");
   }
@@ -57,7 +57,7 @@ function Transactions() {
   const handleSetHTabs = async (indic) => {
     console.log("transaction data", indic);
      setHTabsIcons(indic);
-     
+
     switch (indic) {
       case "hTabsIcons-1" :
       // all
@@ -67,7 +67,7 @@ function Transactions() {
       // principal
          let wal1 = allWallet?.data.wallets[allWallet?.data.wallets.findIndex((w) => w.type === "principal")];
           let re = await  fetchwData(wal1.type);
-       
+
          console.log("wal indexed", wal1, re);
         break;
       case "hTabsIcons-3" :
@@ -91,7 +91,7 @@ function Transactions() {
       default:
         break;
     }
-   
+
   }
 
   useEffect(()=> {
@@ -105,7 +105,7 @@ function Transactions() {
   return (
     <Portal>
       <Container fluid>
-        <Row className="justify-content-md-center">
+        <Row className="justify-content-md-center" style={{marginLeft:"0.5em"}}>
           <Text text = "Faites une transaction:"/>
         </Row>
         <Row className="justify-content-md-center">
@@ -113,7 +113,7 @@ function Transactions() {
           <Link label="Retrait" path="/portal/retrait" style={{ margin: '10px',height:'35px' ,backgroundColor: '#CE1126', cursor:'pointer', padding:'8px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
           <Link label="Transfert" path="/portal/transfert" style={{ margin: '10px',height:'35px' ,backgroundColor: '#CC9933', cursor:'pointer', padding:'8px', borderRadius:'10px', width:'9em',fontStyle :'normal', fontSize:'15px', color:'#FFFFFF', fontFamily:'Ubuntu', fontWeight:'bold', textAlign:'center'}}/>
         </Row>
-        <Row >
+        <Row style={{marginLeft:"0.5em"}}>
           <Text text = "Historique"/>
         </Row>
         <NavPil data = {transData} handleSetHTabs =  {handleSetHTabs}  currentHTabsIcons =  {currentHTabsIcons}/>
