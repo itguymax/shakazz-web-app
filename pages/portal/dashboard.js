@@ -69,7 +69,7 @@ function Dashboard( props ) {
      page, element
    }
     const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
-  
+
      console.log("init data", initData);
     setTransData(initData.transactions);
   }
@@ -94,7 +94,7 @@ function Dashboard( props ) {
           <div style={{cursor: "pointer"}}>
           <h2>Votre lien d'affiliation </h2>
           <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
-          onCopy={() => 
+          onCopy={() =>
             setCopied(true)
           }>
           <span>{userData? userData?.data?.user?.affiliationLink: ""}</span>
@@ -110,6 +110,7 @@ function Dashboard( props ) {
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
+              <Row>
                 <Col xl="8" className="p-4 col-xl-8" >
                   <div>
                       <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >{`Bon retour ${userData?.data.user.psedo || ""},`}</h2>
@@ -120,6 +121,7 @@ function Dashboard( props ) {
                 <Col xl="4" style={{ display: 'flex', alignItems:'center', justifyContent: 'center'}} >
                     <ProgressBar percentage={userData?.data.user?.generalPercentage || 0}  bgc="#f6f6f6"/>
                 </Col>
+                </Row>
              </LightBoxContainer>
              <Row className="mt-5">
                 <Col xl="8">
@@ -144,11 +146,11 @@ function Dashboard( props ) {
                             <th scope="col">Montant</th>
                           </tr>
                         </thead>
-                       
+
                         { isLoading? <span> Loading...</span>:
                            <tbody>
                            {
-                          transData.slice(0,10).map((item, key)=> 
+                          transData.slice(0,10).map((item, key)=>
                             <tr key={key}>
                             <th scope="row"> {item._id}</th>
                             <td>{ moment(item.createdAt).format('YYYY/MM/DD')}</td>
@@ -157,15 +159,15 @@ function Dashboard( props ) {
                             <td>{(item?.montantUSD || 0 ).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                           </tr>
                           )
-                        
+
                          }
                          </tbody>
                         }
-                          
-                       
+
+
                       </Table>
                    </LightBoxContainer>
-                  
+
                 </Col>
                   <Col xl="4">
                     <DashboardWallets/>
@@ -261,7 +263,7 @@ function Dashboard( props ) {
 // }
 
 // export async function getStaticProps(context) {
-  
+
 //   return {
 //     props: { userData }, // will be passed to the page component as props
 //   }

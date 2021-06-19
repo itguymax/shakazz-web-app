@@ -178,6 +178,35 @@ const defaultOption = selectedType;
           padding-top:1.5em;
           cursor:pointer !important;
         }
+        @media ${device.bTablet} {
+          .lightBoxContainerHeaderDiv{
+            margin-left:-1em;
+          }
+          .lightBoxContainerHeaderFluid{
+            width:40em !important;
+            margin-left:-1em;
+            font-size:0.8em;
+            text-align:center;
+          }
+        }
+        @media ${device.sTablet} {
+          .lightBoxContainerHeaderFluid{
+            width:40!important;
+            margin-left:-3em;
+          }
+          .lightBoxContainerHeaderDiv{
+            width:10em;
+            margin-left:-1.8em;
+          }
+        }
+        @media ${device.surfaceDuoTablet} {
+          .lightBoxContainerHeaderFluid{
+            width:39em !important;
+            margin-left:0em;
+            font-size:0.8em;
+            margin-left:0.3em;
+          }
+        }
         @media ${device.sPhone} {
           }
         @media ${device.mPhone} {
@@ -192,21 +221,6 @@ const defaultOption = selectedType;
           }
           .lightBoxContainerHeaderDiv{
             width:17em !important;
-          }
-        }
-        @media ${device.sTablet} {
-          .lightBoxContainerHeaderFluid{
-            width:38em;
-            margin-left:-3em;
-          }
-          .lightBoxContainerHeaderDiv{
-            width:10em;
-            margin-left:-1.8em;
-          }
-        }
-        @media ${device.bTablet} {
-          .lightBoxContainerHeaderDiv{
-            margin-left:-1em;
           }
         }
       `}
@@ -240,7 +254,7 @@ const defaultOption = selectedType;
             name="wallets"
             onChange={onSelect}
 
-        />
+        /><br/>
         {errormsg && <div className="text-muted font-italic py-4 mt-1">
 
                   <span className="text-danger font-weight-700">{errormsg}</span>
