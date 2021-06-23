@@ -67,47 +67,6 @@ function selectComponent(){
       {/* <Header /> */}
       {userData?.data?.user.licence ?(
       <Container fluid>
-      <Global
-      styles={css`
-        .lightBoxContainerHeaderDiv{
-          width:12em;
-          height:4em;
-          padding-top:1.5em;
-          cursor:pointer !important;
-        }
-        @media ${device.sPhone} {
-          }
-        @media ${device.mPhone} {
-          }
-        @media ${device.iphoneX} {
-          }
-        @media ${device.bPhone} {
-          .lightBoxContainerHeaderFluid{
-            flex-direction: column !important;
-            width:20em !important;
-            margin:auto !important;
-          }
-          .lightBoxContainerHeaderDiv{
-            width:17em !important;
-          }
-        }
-        @media ${device.sTablet} {
-          .lightBoxContainerHeaderFluid{
-            width:38em;
-            margin-left:-3em;
-          }
-          .lightBoxContainerHeaderDiv{
-            width:10em;
-            margin-left:-1.8em;
-          }
-        }
-        @media ${device.bTablet} {
-          .lightBoxContainerHeaderDiv{
-            margin-left:-1em;
-          }
-        }
-      `}
-      />
         {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
         <div className="align-items-center mt-5">
           <Row className="" style =  {{  }}>
