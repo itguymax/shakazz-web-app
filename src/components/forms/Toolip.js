@@ -1,7 +1,7 @@
 import React , {useState} from 'react'
 import {Global,css} from "@emotion/react"
 import { Tooltip } from 'reactstrap';
-export default function ToolipComp({tooltipOpen,toggle,message}) {
+export default function ToolipComp({tooltipOpen,toggle,message,position="right"}) {
   return (
     <>
     <Global
@@ -10,7 +10,7 @@ export default function ToolipComp({tooltipOpen,toggle,message}) {
     `}
   />
   <div>
-      <Tooltip placement="right" isOpen={tooltipOpen} autohide={false} target="detectToolipComp" toggle={toggle}>
+      <Tooltip placement={position} isOpen={tooltipOpen} autohide={false} target="detectToolipComp" toggle={toggle}>
         {message}
       </Tooltip>
     </div>

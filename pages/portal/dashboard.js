@@ -9,7 +9,7 @@ import settings from "../../src/__MOCK__/settings";
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-
+import {Global,css} from "@emotion/react"
 import {useAppContext} from "../../src/context";
 import moment from "moment";
 import Image from "next/image";
@@ -23,7 +23,7 @@ import {
   Button,
   Table,
   Progress,
-  Media,
+  Media,Jumbotron
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal.js";
@@ -33,6 +33,7 @@ import {
   parseOptions,
 } from "../../variables/charts.js";
 import  { Link } from "../../src/components/Link";
+import  ToolipComp from "../../src/components/forms/Toolip";
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
 import DashboardWallets from '../../src/components/DashboardWallets';
 import ProgressBar from "../../src/components/ProgressBar";
@@ -45,6 +46,8 @@ import DataLoader from "../../src/components/common/DataLoader";
 let c;
 function Dashboard( props ) {
   const [activeNav, setActiveNav] = useState(1);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const tooltipToggle = () => setTooltipOpen(!tooltipOpen);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
   const [page, setPage] = useState(1);
   const [transData, setTransData] = useState([])
@@ -69,7 +72,7 @@ function Dashboard( props ) {
      page, element
    }
     const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
-  
+
      console.log("init data", initData);
     setTransData(initData.transactions);
   }
@@ -88,28 +91,63 @@ function Dashboard( props ) {
    const badge ="starter";
   return (
     <Portal>
+    <Global
+    styles={css`
+      /*Responsive*/
+      .dashboard_presentation_box{
+        border-radius:6px;
+        padding-top:0.5em;
+        padding-bottom:0.6em;
+        background-color:#f6f6f6 !important;
+      }
+      .dashboard_presentation_conatainer{
+      }
+      .dashboard_presentation_box h2{
+        color:black;
+      }
+    `}
+  />
       <Container>
        {userDataLoading? null : (
          <div style={{display: "flex", flexDirextion:"row"}}>
-          <div style={{cursor: "pointer"}}>
-          <h2>Votre lien d'affiliation </h2>
-          <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
-          onCopy={() => 
-            setCopied(true)
-          }>
-          <span>{userData? userData?.data?.user?.affiliationLink: ""}</span>
-        </CopyToClipboard>
-          {copied ? <span style={{color: '#007A5E'}}>Copié</span> : <span style={{color: '#cc9933'}}>Copie</span>}
-        </div>
-        <div className="ml-4">
-          <h2>{`chiffre d'affaire`}</h2>
-           <p>{(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
-        </div>
+         <Row>
+          <Col class="sm-6">
+            <div style={{paddingBottom:"0em"}}>
+               <Jumbotron fluid className="dashboard_presentation_box">
+                 <Container id="detectToolipComp" fluid className="dashboard_presentation_conatainer">
+                   <h2 className="display-4">Votre lien d'affiliation</h2>
+                   <div style={{cursor: "pointer"}}>
+                   <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
+                   onCopy={() =>
+                     setCopied(true)
+                   }>
+                   {copied ? <span style={{color: '#cc9933'}}>{userData? userData?.data?.user?.affiliationLink: ""}</span> : <span style={{color: 'black'}}>{userData? userData?.data?.user?.affiliationLink: ""}</span>}
+                 </CopyToClipboard>
+                 </div>
+                 <ToolipComp position="bottom" message="Cliquez sur le lien pour le copier" tooltipOpen={tooltipOpen} toggle={tooltipToggle}/>
+                 </Container>
+               </Jumbotron>
+             </div>
+          </Col>
+          <Col class="sm-6">
+          <div>
+             <Jumbotron fluid className="dashboard_presentation_box">
+               <Container fluid>
+                 <h2 className="display-4">Votre chiffre d'affaire</h2>
+                 <div className="ml-4 display-5">
+                    {(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                 </div>
+               </Container>
+             </Jumbotron>
+           </div>
+          </Col>
+         </Row>
         </div>
        ) }
          <Row className="mt-5">
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
+              <Row>
                 <Col xl="8" className="p-4 col-xl-8" >
                   <div>
                       <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >{`Bon retour ${userData?.data.user.psedo || ""},`}</h2>
@@ -120,6 +158,7 @@ function Dashboard( props ) {
                 <Col xl="4" style={{ display: 'flex', alignItems:'center', justifyContent: 'center'}} >
                     <ProgressBar percentage={userData?.data.user?.generalPercentage || 0}  bgc="#f6f6f6"/>
                 </Col>
+                </Row>
              </LightBoxContainer>
              <Row className="mt-5">
                 <Col xl="8">
@@ -144,11 +183,11 @@ function Dashboard( props ) {
                             <th scope="col">Montant</th>
                           </tr>
                         </thead>
-                       
+
                         { isLoading? <span> Loading...</span>:
                            <tbody>
                            {
-                          transData.slice(0,10).map((item, key)=> 
+                          transData.slice(0,10).map((item, key)=>
                             <tr key={key}>
                             <th scope="row"> {item._id}</th>
                             <td>{ moment(item.createdAt).format('YYYY/MM/DD')}</td>
@@ -157,15 +196,15 @@ function Dashboard( props ) {
                             <td>{(item?.montantUSD || 0 ).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                           </tr>
                           )
-                        
+
                          }
                          </tbody>
                         }
-                          
-                       
+
+
                       </Table>
                    </LightBoxContainer>
-                  
+
                 </Col>
                   <Col xl="4">
                     <DashboardWallets/>
@@ -261,7 +300,7 @@ function Dashboard( props ) {
 // }
 
 // export async function getStaticProps(context) {
-  
+
 //   return {
 //     props: { userData }, // will be passed to the page component as props
 //   }
