@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import { Badge } from 'reactstrap';
@@ -10,12 +10,14 @@ import transactions from '../../../src/helpers/transactions.js'
 import {page_data,stakePeriode,portefeuille_data} from '../../../src/__MOCK__/daily_transactions.js';
 import withAuth from '../../../src/hoc/withAuth';
 import AdminBleu from '../../../src/layouts/AdminBleu'
+import { useAppContext } from '../../../src/context';
+import {useWallets, useFetchOptions,useFetchUserChest, useAddChest} from '../../../src/hooks';
 // reactstrap components
 import {
- 
+
   Container,
   Row,
-  Col,
+  Col,Spinner
 
 } from "reactstrap";
 // layout for this page
@@ -40,6 +42,13 @@ function Daily_transactions(props) {
       background-color:white;
   }
 `
+const [statutCoffre, setStatutCoffre] = useState(false);
+const context = useAppContext();
+const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
+useEffect(()=> {
+    console.log(isLoadingChest);
+   isLoadingChest === true?setStatutCoffre(true):"";
+},[])
 let actual_page = {
   page:1,
   paginationId:"pagination1"
@@ -50,7 +59,6 @@ let table_transaction_state = {
   sortie_composee:'decroissant',
   pourcentage_quotidien:'decroissant'
 };
-console.log("daily props", props);
   return (
     <AdminBleu menu>
       {/* Page content */}
@@ -165,7 +173,7 @@ console.log("daily props", props);
           margin-top:-0.1em !important;
           border-radius: 10px !important;
           padding:0.3em !important;
-          float:right;
+          margin-left:3em;
         }
          .buttonCustom:hover{
           color:#D20000 !important;
@@ -198,7 +206,7 @@ console.log("daily props", props);
         }
         .dropdown-toggle::after {
             display: inline-block;
-            margin-right: -15.5em;
+            margin-right: -18.5em;
             vertical-align: 7em !important;
             margin-top:-2.4em;
             content: "";
@@ -209,15 +217,16 @@ console.log("daily props", props);
         }
         .customDropdown .dropdown{
            background-color:transparent;
-           width:15em;
+           width:20em;
         }
         .customDropdown .btn{
           background-color:#143427;
           border-radius:16px;
-          width:18em;
+          width:23em;
           border:none;
           height:3em;
-          color:white;        }
+          color:white;
+          }
         .customDropdown .btn .dropdown-item{
           color:white;
           background-color:transparent;
@@ -267,18 +276,18 @@ console.log("daily props", props);
         </span> Retour
       </h1>
       <Row className="dt_rowBlock1">
-         <Col className="dt_rowBlock1_col1" xs="6" sm="4"><p>Package de sortie de composition</p></Col>
-         <Col xs="6" sm="4">
-            <Row>
-               <Col className="customDropdown" xs="6" sm="6">
-                   <DropdownSample idDd={"dt_portefeuilles"} selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
+         <Col className="dt_rowBlock1_col1" sm="4"><p>Package de sortie de composition</p></Col>
+         <Col sm="6">
+            {statutCoffre === false?<Spinner style={{ width: '2rem', height: '2rem' , color:"#cc9933"}}/>:<Row>
+               <Col className="customDropdown" sm="6">
+               <DropdownSample idDd={"dt_coffre"} selectedOption="Mes coffres-forts" handleOnSelect={()=>{}} options={chestData?.data.chests.length > 0?chestData.data.chests:[]} />
                </Col>
-               <Col xs="6" sm="6">
+               <Col sm="6">
                 <Button onClick={()=>{transactions.getTransactions(page_data)}} className="buttonCustom2">Voir</Button>
                </Col>
-            </Row>
+            </Row>}
          </Col>
-         <Col xs="6" sm="3"><Button className="buttonCustom">Arrêter de compiler</Button></Col>
+         <Col sm="2"><Button className="buttonCustom">Arrêter de compiler</Button></Col>
       </Row>
        <Row className="dt_rowBlock2">
          <Col className="dt_rowBlock1_col2" xs="2" sm="2"><p>Résultats:</p>

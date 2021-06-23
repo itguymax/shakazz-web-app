@@ -23,14 +23,14 @@ function DropdownSample({idDd, sample, phone, label,name, handleOnSelect,selecte
         <DropdownToggle caret>
                       {selectedOption && (
                          <p id={idDd}>
-                           {selectedOption.val}
+                           {selectedOption}
                         </p>
                         )}
                     </DropdownToggle>
                   <DropdownMenu>
                        {options.map( (option, i) => (
-                            <DropdownItem key={i} onClick={()=>dropdown_toggle.dropdown_toggle(option.val,idDd)}>
-                              {option.val}
+                            <DropdownItem key={i} onClick={()=>dropdown_toggle.dropdown_toggle(option.montantUSD+" : "+option.createdAt,idDd)}>
+                              {option.montantUSD+" : "+option.createdAt}
                             </DropdownItem>
 
                         ))}
