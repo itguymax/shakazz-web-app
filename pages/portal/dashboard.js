@@ -100,7 +100,7 @@ function Dashboard( props ) {
         padding-bottom:0.6em;
         background-color:#f6f6f6 !important;
       }
-      .dashboard_presentation_conatainer{
+      .dashboard_presentation_container{
       }
       .dashboard_presentation_box h2{
         color:black;
@@ -111,11 +111,11 @@ function Dashboard( props ) {
        {userDataLoading? null : (
          <div style={{display: "flex", flexDirextion:"row"}}>
          <Row>
-          <Col class="sm-6">
+          <Col class="sm-8">
             <div style={{paddingBottom:"0em"}}>
                <Jumbotron fluid className="dashboard_presentation_box">
-                 <Container id="detectToolipComp" fluid className="dashboard_presentation_conatainer">
-                   <h2 className="display-4">Votre lien d'affiliation</h2>
+                 <Container id="detectToolipComp" fluid className="dashboard_presentation_container">
+                   <h2 className="display-5">Votre lien d'affiliation</h2>
                    <div style={{cursor: "pointer"}}>
                    <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
                    onCopy={() =>
@@ -129,11 +129,11 @@ function Dashboard( props ) {
                </Jumbotron>
              </div>
           </Col>
-          <Col class="sm-6">
+          <Col class="sm-4">
           <div>
              <Jumbotron fluid className="dashboard_presentation_box">
                <Container fluid>
-                 <h2 className="display-4">Votre chiffre d'affaire</h2>
+                 <h2 className="display-5">Votre chiffre d'affaire</h2>
                  <div className="ml-4 display-5">
                     {(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
                  </div>
@@ -144,18 +144,22 @@ function Dashboard( props ) {
          </Row>
         </div>
        ) }
-         <Row className="mt-5">
+         <Row>
            <Col className="mb-5 mb-xl-0" xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
-              <Row>
-                <Col xl="8" className="p-4 col-xl-8" >
+              <Row style={{width:"100%"}}>
+                <Col className="p-4 col-xl-8">
                   <div>
-                      <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >{`Bon retour ${userData?.data.user.psedo || ""},`}</h2>
-                      <p style={{fontSize: '14px', lineHeight: '1.5'}}>La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
-                      <Link label="Consulter" path="/portal/crowdlending" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                    <Jumbotron style={{backgroundColor:"#f6f6f6"}}>
+                      <h1 className="display-5" style={{color:"black"}}>{`Bon retour ${userData?.data.user.psedo || ""},`}</h1>
+                      <p className="lead">La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
+                      <p className="lead">
+                        <Link label="Consulter" path="/portal/crowdlending" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                      </p>
+                    </Jumbotron>
                   </div>
                 </Col>
-                <Col xl="4" style={{ display: 'flex', alignItems:'center', justifyContent: 'center'}} >
+                <Col sm="4" style={{display: 'flex', alignItems:'center', justifyContent: 'center'}} className="p-4 col-xl-4">
                     <ProgressBar percentage={userData?.data.user?.generalPercentage || 0}  bgc="#f6f6f6"/>
                 </Col>
                 </Row>
