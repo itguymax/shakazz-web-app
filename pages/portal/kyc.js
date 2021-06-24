@@ -121,8 +121,6 @@ const submitKycDoc =  async (file,doc) => {
               display:none !important;
             }
         }
-        @media only screen and (max-width: 1024px) {
-        }
       `}
     />
      <Container fluid>

@@ -32,6 +32,7 @@ import {
   chartOptions,
   parseOptions,
 } from "../../variables/charts.js";
+import { device } from '../../src/lib/device';
 import  { Link } from "../../src/components/Link";
 import  ToolipComp from "../../src/components/forms/Toolip";
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
@@ -108,6 +109,36 @@ function Dashboard( props ) {
       .dashboard_presentation_box h2{
         color:black;
       }
+      @media ${device.sTablet} {
+        .lightBoxContainer{
+          height:25em;
+        }
+        }
+        @media ${device.surfaceDuo} {
+          .lightBoxContainer{
+            height:20em;
+          }
+          }
+          @media ${device.iphoneX} {
+            .lightBoxContainer{
+              height:20em !important;
+            }
+            }
+          @media ${device.bPhone} {
+            .lightBoxContainer{
+              height:18em;
+            }
+            }
+          @media ${device.sPhone} {
+            .lightBoxContainer{
+              height:22em !important;
+            }
+            }
+      @media ${device.mPhone} {
+        .lightBoxContainer{
+          height:24em !important;
+        }
+        }
     `}
   />
       <Container>
@@ -149,16 +180,16 @@ function Dashboard( props ) {
        ) }
          <Row>
            <Col xl="9">
-              <LightBoxContainer className="lightBoxContainer" borderLess bg="#f6f6f6" direction="row">
+              <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
               <Row style={{width:"100%",marginTop:"-2em"}}>
                 <Col className="col-xl-8">
-                  <div>
+                  <div style={{paddingBottom:"0.5em !important"}} className="lightBoxContainer">
                     <Jumbotron style={{backgroundColor:"#f6f6f6"}}>
                       <h1 className="display-5" style={{color:"black"}}>{`Bon retour ${userData?.data.user.psedo || ""},`}</h1>
                       <p className="lead">La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
                       <p className="lead">
                         <Link label="Consulter" path="/portal/crowdlending" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                      </p>
+                      </p >
                     </Jumbotron>
                   </div>
                 </Col>

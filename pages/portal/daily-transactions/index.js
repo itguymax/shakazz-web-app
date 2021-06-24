@@ -202,7 +202,7 @@ let table_transaction_state = {
           margin-top:-0.1em !important;
           border-radius: 10px !important;
           padding:0.3em !important;
-          margin-left:3em;
+          margin-left:0.5em;
         }
          .buttonCustom:hover{
           color:#D20000 !important;
@@ -267,31 +267,6 @@ let table_transaction_state = {
             margin-right: 0.1rem !important;
         }
         /*Responsive*/
-        @media only screen and (max-width: 360px) {
-
-          }
-        @media only screen and (max-width: 414px) {
-
-        }
-        @media only screen and (max-width: 768px) {
-
-        }
-        @media only screen and (max-width: 1024px) {
-         .dt_rowBlock1_col1 p{
-          font-size:0.9em;
-          }
-          .buttonCustom{
-            width:10em !important;
-            margin-right:-4em;
-          }
-          .buttonCustom2{
-            width:5em !important;
-            margin-right:-6em;
-          }
-          .dt_rowBlock3_col2{
-            margin-right:-2em !important;
-          }
-        }
       `}
     />
     <Container className="bigContainer">
@@ -308,15 +283,14 @@ let table_transaction_state = {
          <Col className="dt_rowBlock1_col1" sm="4"><p>Package de sortie de composition</p></Col>
          <Col sm="6">
             {statutCoffre === false?<Spinner style={{ width: '2rem', height: '2rem' , color:"#cc9933"}}/>:<Row>
-               <Col className="customDropdown" sm="6">
+               <Col className="customDropdown" sm="7">
                <DropdownSample setActualCoffreId={setActualCoffreId} idDd={"dt_coffre"} selectedOption="Sélectionner un coffre-fort" handleOnSelect={()=>{}} options={chestData?.data.chests.length > 0?chestData.data.chests:[]} />
                </Col>
-               <Col sm="6">
+               <Col sm="2">
                 <Button onClick={openTransactionsPage} className="buttonCustom2">{isLoadingTransactions? <Spinner size="sm" color="#cc993a" />: "Voir"}</Button>
                </Col>
             </Row>}
          </Col>
-         <Col sm="2"><Button className="buttonCustom">Arrêter de compiler</Button></Col>
       </Row>
        <Row className="dt_rowBlock2">
          <Col className="dt_rowBlock1_col2" xs="2" sm="2"><p>Résultats:</p>
