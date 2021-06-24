@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import Image from 'next/image';
 
-function DropdownSample({idDd, sample, phone, label,name, handleOnSelect,selectedOption,options}) {
+function DropdownSample({setActualCoffreId,idDd, sample, phone, label,name, handleOnSelect,selectedOption,options}) {
 
   const [open, setIsOpen] = useState(false);
    const toggle = () => setIsOpen(prevState => !prevState);
@@ -29,7 +29,11 @@ function DropdownSample({idDd, sample, phone, label,name, handleOnSelect,selecte
                     </DropdownToggle>
                   <DropdownMenu>
                        {options.map( (option, i) => (
-                            <DropdownItem key={i} onClick={()=>dropdown_toggle.dropdown_toggle(option.montantUSD+" : "+option.createdAt,idDd)}>
+                            <DropdownItem key={i} onClick={()=>{
+                              setActualCoffreId(option._id);
+                              dropdown_toggle.dropdown_toggle(option.montantUSD+" : "+option.createdAt,idDd);
+                            }
+                            }>
                               {option.montantUSD+" : "+option.createdAt}
                             </DropdownItem>
 

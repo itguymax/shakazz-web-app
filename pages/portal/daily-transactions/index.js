@@ -11,14 +11,16 @@ import {page_data,stakePeriode,portefeuille_data} from '../../../src/__MOCK__/da
 import withAuth from '../../../src/hoc/withAuth';
 import AdminBleu from '../../../src/layouts/AdminBleu'
 import { useAppContext } from '../../../src/context';
-import {useWallets, useFetchOptions,useFetchUserChest, useAddChest} from '../../../src/hooks';
+import {fetchDailytransactions} from '../../../src/services';
+import {useFetchDailytransactions, useWallets, useFetchOptions,useFetchUserChest, useAddChest} from '../../../src/hooks';
+import { useQuery, useQueryClient,QueryClient } from 'react-query';
+import Toast from "../../../src/components/forms/Toast";
 // reactstrap components
 import {
 
   Container,
   Row,
   Col,Spinner
-
 } from "reactstrap";
 // layout for this page
 // import Bleu from "../../../src/layouts/Bleu.js";
@@ -27,6 +29,15 @@ import Image from 'next/image'
 // import UserHeader from "../../../src/components/Headers/UserHeader.js";
 
 function Daily_transactions(props) {
+  const [statutCoffre, setStatutCoffre] = useState(false);
+  const context = useAppContext();
+  const { mutateAsync: callAllTransactions, isLoading:isLoadingTransactions } =  useFetchDailytransactions();
+  const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const [actualCoffreId, setActualCoffreId] = useState("");
+  const [actualPage, setActualPage] = useState(1);
+  const onDismiss = () => setAlertVisible(false);
   const Button = styled.button`
     background-color: #679966;
     border-radius: 20px;
@@ -42,11 +53,29 @@ function Daily_transactions(props) {
       background-color:white;
   }
 `
-const [statutCoffre, setStatutCoffre] = useState(false);
-const context = useAppContext();
-const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
+const body = {
+  page:actualPage,
+  id:actualCoffreId,
+  element:50
+}
+const openTransactionsPage = async ()=>{
+  try {
+    const res = await callAllTransactions({accessToken:context.appState.accessToken,data:body});
+      const {error, message,success, data} = res;
+           if(error){
+           setResponseAlert({error:true,message:message});
+           setAlertVisible(true);
+          }
+          if(success) {
+             setResponseAlert({error:false,message:message});
+             setAlertVisible(true);
+             console.log(data);
+             //transactions.getTransactions(page_data);
+          }
+        }catch(err){}
+};
+
 useEffect(()=> {
-    console.log(isLoadingChest);
    isLoadingChest === true?setStatutCoffre(true):"";
 },[])
 let actual_page = {
@@ -280,10 +309,10 @@ let table_transaction_state = {
          <Col sm="6">
             {statutCoffre === false?<Spinner style={{ width: '2rem', height: '2rem' , color:"#cc9933"}}/>:<Row>
                <Col className="customDropdown" sm="6">
-               <DropdownSample idDd={"dt_coffre"} selectedOption="Mes coffres-forts" handleOnSelect={()=>{}} options={chestData?.data.chests.length > 0?chestData.data.chests:[]} />
+               <DropdownSample setActualCoffreId={setActualCoffreId} idDd={"dt_coffre"} selectedOption="Sélectionner un coffre-fort" handleOnSelect={()=>{}} options={chestData?.data.chests.length > 0?chestData.data.chests:[]} />
                </Col>
                <Col sm="6">
-                <Button onClick={()=>{transactions.getTransactions(page_data)}} className="buttonCustom2">Voir</Button>
+                <Button onClick={openTransactionsPage} className="buttonCustom2">{isLoadingTransactions? <Spinner size="sm" color="#cc993a" />: "Voir"}</Button>
                </Col>
             </Row>}
          </Col>
@@ -439,6 +468,7 @@ let table_transaction_state = {
               </Row>
          </Col>
       </Row>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </Container>
     </AdminBleu>
   );
