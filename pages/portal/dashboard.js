@@ -94,6 +94,9 @@ function Dashboard( props ) {
     <Global
     styles={css`
       /*Responsive*/
+      .lightBoxContainer{
+        height:20em;
+      }
       .dashboard_presentation_box{
         border-radius:6px;
         padding-top:0.5em;
@@ -146,7 +149,7 @@ function Dashboard( props ) {
        ) }
          <Row>
            <Col xl="9">
-              <LightBoxContainer borderLess bg="#f6f6f6" direction="row" height="20em">
+              <LightBoxContainer className="lightBoxContainer" borderLess bg="#f6f6f6" direction="row">
               <Row style={{width:"100%",marginTop:"-2em"}}>
                 <Col className="col-xl-8">
                   <div>
