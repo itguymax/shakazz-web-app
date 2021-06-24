@@ -145,10 +145,10 @@ function Dashboard( props ) {
         </div>
        ) }
          <Row>
-           <Col className="mb-5 mb-xl-0" xl="9">
-              <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
-              <Row style={{width:"100%"}}>
-                <Col className="p-4 col-xl-8">
+           <Col xl="9">
+              <LightBoxContainer borderLess bg="#f6f6f6" direction="row" height="20em">
+              <Row style={{width:"100%",marginTop:"-2em"}}>
+                <Col className="col-xl-8">
                   <div>
                     <Jumbotron style={{backgroundColor:"#f6f6f6"}}>
                       <h1 className="display-5" style={{color:"black"}}>{`Bon retour ${userData?.data.user.psedo || ""},`}</h1>
@@ -159,7 +159,7 @@ function Dashboard( props ) {
                     </Jumbotron>
                   </div>
                 </Col>
-                <Col sm="4" style={{display: 'flex', alignItems:'center', justifyContent: 'center'}} className="p-4 col-xl-4">
+                <Col sm="4" style={{display: 'flex', alignItems:'center', justifyContent: 'center'}} className="col-xl-4">
                     <ProgressBar percentage={userData?.data.user?.generalPercentage || 0}  bgc="#f6f6f6"/>
                 </Col>
                 </Row>
