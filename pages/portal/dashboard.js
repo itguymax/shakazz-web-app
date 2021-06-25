@@ -135,7 +135,9 @@ function Dashboard( props ) {
                <Container fluid>
                  <h2 className="display-4">Votre chiffre d'affaire</h2>
                  <div className="ml-4 display-5">
-                    {(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                    <span>Personnel :  </span>{(userData?.data?.user?.chiffreDaffaire?.generalPersonnel).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                    <br/>
+                    <span> Géneration:  </span>{(userData?.data?.user?.chiffreDaffaire?.generalChildren).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
                  </div>
                </Container>
              </Jumbotron>
