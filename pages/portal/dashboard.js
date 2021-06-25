@@ -193,7 +193,9 @@ function Dashboard( props ) {
                         { isLoading? <span> Loading...</span>:
                            <tbody>
                            {
-                          transData.slice(0,10).map((item, key)=>
+                           transData.length > 0 ? <>
+                           {
+                               transData.slice(0,10).map((item, key)=>
                             <tr key={key}>
                             <th scope="row"> {item._id}</th>
                             <td>{ moment(item.createdAt).format('YYYY/MM/DD')}</td>
@@ -203,6 +205,7 @@ function Dashboard( props ) {
                           </tr>
                           )
 
+                           }</>: <div style={{display: 'flex', alignItems:'center', justifyContent: 'center'}}> <span>Aucune transactions</span></div>
                          }
                          </tbody>
                         }
@@ -232,11 +235,11 @@ function Dashboard( props ) {
                     <div >
                     <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Profil</h2>
                      <Media className="">
-                         {userData?.data.user?.avatarUrl && <img
+                          <img
                           className=" avatar rounded-circle mr-3"
                             alt={userData?.data.user?.lastName + "avatar"}
                             src={userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
-                          ></img> } 
+                          ></img> 
                       <div style={{flexDirection:"column", display:"flex"}}>
                         <span className=" name  ">
                           {userData?.data.user?.lastName}
@@ -251,8 +254,8 @@ function Dashboard( props ) {
                       </div>
                     </Media>
                     <div>
-                      <img src={userData?.data.user.address?.country?.flag}  style={{width:"50px", height:"50px"}}/> <span>{userData?.data.user.address?.country?.name}</span>
-                      <p>{"+"+userData?.data.user.address?.country?.indicatif + userData?.data.user.phone}</p>
+                      {userData?.data.user.address?.country?.flag && <><img src={userData?.data.user.address?.country?.flag}  style={{width:"50px", height:"50px"}}/> <span>{userData?.data.user.address?.country?.name}</span> </>}
+                      {userData?.data.user.phone && <p>{"+"+userData?.data.user.address?.country?.indicatif + userData?.data.user.phone}</p>}
                     </div>
                   </div>
                     <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
