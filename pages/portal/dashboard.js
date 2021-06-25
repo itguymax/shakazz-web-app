@@ -135,7 +135,9 @@ function Dashboard( props ) {
                <Container fluid>
                  <h2 className="display-5">Votre chiffre d'affaire</h2>
                  <div className="ml-4 display-5">
-                    {(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                    <span>Personnel :  </span>{(userData?.data?.user?.chiffreDaffaire?.generalPersonnel).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                    <br/>
+                    <span> Géneration:  </span>{(userData?.data?.user?.chiffreDaffaire?.generalChildren).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
                  </div>
                </Container>
              </Jumbotron>
@@ -230,11 +232,11 @@ function Dashboard( props ) {
                     <div >
                     <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Profil</h2>
                      <Media className="">
-                          <img
+                         {userData?.data.user?.avatarUrl && <img
                           className=" avatar rounded-circle mr-3"
                             alt={userData?.data.user?.lastName + "avatar"}
                             src={userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
-                          ></img>
+                          ></img> } 
                       <div style={{flexDirection:"column", display:"flex"}}>
                         <span className=" name  ">
                           {userData?.data.user?.lastName}
@@ -242,9 +244,10 @@ function Dashboard( props ) {
                         <span className="  mb-0 text-sm">
                           {userData?.data?.user?.gender}
                         </span>
-                        <span className=" mb-0 text-sm">
+                        {userData?.data?.user?.dateOfbirth && <span className=" mb-0 text-sm">
                          {new Date().getFullYear() - new Date(userData?.data?.user?.dateOfbirth).getFullYear()}
-                        </span>
+                        </span>}
+                        
                       </div>
                     </Media>
                     <div>

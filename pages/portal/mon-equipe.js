@@ -101,6 +101,7 @@ if(isError){
 
 }
 console.log("user tree", treeData);
+console.log("generation children", children);
   return (
     <Portal>
       <Container fluid>

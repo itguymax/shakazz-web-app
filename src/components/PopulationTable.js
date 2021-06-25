@@ -29,7 +29,7 @@ export default function PopulationTable({popData}) {
                   <td> <Image height={25} width={40} src={item.address?.country?.flag || "/assets/img/country-flags/cameroun.png"} priority={true}/> </td>	 
                   <td> <h3 style={{fontWeight:"100", color:"#444"}}>{ (item?.address?.country?.indicatif && item?.phone)? item?.address?.country?.indicatif.concat("",item?.phone) : "pas de numero"}</h3> </td> 
                   <td> <h1 style={{fontWeight:"100", color:"#444"}}>{item?.grade || "starter"}</h1> </td>  
-                   <td> <h1>{item?.turnover || "0"}</h1></td>    
+                   <td> <h1>{(parseInt(item?.turnover?.generalPersonnel) + parseInt(item?.turnover?.generalChildren)).toLocaleString('en-US', { style: 'currency', currency: 'USD'}) || "0"}</h1></td>    
 				      </tr>
                 })
               }
