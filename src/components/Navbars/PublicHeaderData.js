@@ -18,5 +18,10 @@ export default [
   {
     path: '/contactez-nous',
     label: 'NOUS CONTACTER'
+  },
+    {
+    path: '/achat-cryptos',
+    label: 'ACHAT CRYPTOS'
   }
+
 ];

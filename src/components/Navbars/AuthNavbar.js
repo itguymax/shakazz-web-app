@@ -96,8 +96,8 @@ function AdminNavbar() {
                   }
                `}>
                <Button 
-              //  onClick={()=> router.push('/auth/pre-inscription')}
-              onClick={()=> router.push('/auth/login')}
+                onClick={()=> router.push('/auth/pre-inscription')}
+              // onClick={()=> router.push('/auth/login')}
                className="btn-white mr-lg-3" 
                style={{height: '40px', border: '2px solid #707070', width: '130px', border:"1px solid #707070 "}}
               //  disabled={router.asPath==="/auth/pre-inscription"}
@@ -105,8 +105,8 @@ function AdminNavbar() {
               </div>
               <div className="text-center">
                <Button 
-              //  onClick={()=> router.push('/auth/pre-inscription')}
-              onClick={()=> router.push('/auth/register')}
+                onClick={()=> router.push('/auth/pre-inscription')}
+              // onClick={()=> router.push('/auth/register')}
                style={{height: '40px', border:'none', color:"#fff", width: '130px', backgroundColor:"#707070"}} 
                className="btn-default"
               //  disabled={router.asPath==="/auth/pre-inscription"} 

@@ -187,7 +187,7 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
 		  </Container>
     </div>
 		 <PreInscription/>
-     <div style={{width:"100%"}}  className="mb-8 mt-5">
+     {/* <div style={{width:"10%"}}  className="mb-8 mt-5">
       <Container fluid className=" d-flex justify-content-center">
 					<Row style={{width: "80%"}} css={css`
 				   @media ${device.smMobileMax}{
@@ -252,7 +252,7 @@ moteur de la finance 2.0 en Afrique d’ici 2035. C’est un avenir libéré des
 						<TeamCard nom="Ludovic FEUTSE" poste="Developpeur web" img="/assets/img/photoequipe/ludo.png"/>
 				</Row>
 			</Container>
-		 </div>
+		 </div> */}
     </div>
   </>
   )

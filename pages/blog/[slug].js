@@ -13,6 +13,7 @@ import {Container} from "reactstrap";
 function BlogPage(){
   const router = useRouter();
 
+<<<<<<< HEAD
   // let featuredImageUrl="";
   // let authorInfo="";
   // if(post.featuredImage){
@@ -26,6 +27,16 @@ function BlogPage(){
     return <div>Loading...</div>
   }
 //  console.log("blog post article", post);
+=======
+  let featuredImageUrl="";
+  let authorInfo="";
+  if(post?.featuredImage){
+   featuredImageUrl =  post?.featuredImage?.node.sourceUrl;
+  }
+  if(post?.author){
+     authorInfo = post?.author.node;
+  }
+>>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
   return (
     <>
     <Head>
@@ -90,7 +101,7 @@ function BlogPage(){
               
             `}
           >
-            {post.title}
+            {post?.title}
           </h1>
           {featuredImageUrl && (
             <div
@@ -105,7 +116,7 @@ function BlogPage(){
             >
               <Image
                 src={featuredImageUrl}
-                alt={post.title}
+                alt={post?.title}
                 width={700}
                 height={400}
               />
@@ -114,11 +125,17 @@ function BlogPage(){
           )}
           <br />
          
-           <div dangerouslySetInnerHTML={{ __html: post.content }} />
+           <div dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Container>
+<<<<<<< HEAD
     
       </article>   */}
          <div
+=======
+       
+      </article> */}
+      <div
+>>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
       css={css`
         width: 100%;
         height: 100vh;
@@ -155,15 +172,24 @@ function BlogPage(){
 //         }
 //     `
 //   });
+<<<<<<< HEAD
 //    const paths = result.data.posts.nodes.map(({slug})=>{
 //       console.log("path path path", slug);
+=======
+//   return {
+//     paths: result.data.posts.nodes.map(({slug})=>{
+>>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 //       return  {
 //         params: { slug }
 //       }
 //     }
+<<<<<<< HEAD
 //     )
 //   return {
 //     paths,
+=======
+//     ),
+>>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 //     fallback: true,
 //   }
 
@@ -175,6 +201,7 @@ function BlogPage(){
 //     query: gql`
 //       query GetWordPressPostBySlug($slug: ID!) {
 //          post(idType: SLUG, id: $slug) {
+<<<<<<< HEAD
 //              content
 //               title
 //               # author {
@@ -186,6 +213,19 @@ function BlogPage(){
 //               #     # description
 //               #   }
 //               # }
+=======
+//              content(format: RENDERED)
+//               title
+//               author {
+//                 node {
+//                   avatar {
+//                     url
+//                   }
+//                   # username
+//                   # description
+//                 }
+//               }
+>>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 //             featuredImage {
 //               node {
 //                 sourceUrl
@@ -200,8 +240,12 @@ function BlogPage(){
 //     props: {
 //       post: result.data.post,
 //     },
+<<<<<<< HEAD
 //     revalidate: 1,
 //   }
+=======
+//   };
+>>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 // }
 
 BlogPage.layout = Public;
