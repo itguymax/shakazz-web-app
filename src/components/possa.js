@@ -59,7 +59,7 @@ const selectpossatype = (l) => {
   setPossaType(operateurs.code[indexCode]);
   if(l.value === operateurs.nom[0] || l.value === operateurs.nom[1]){
     setOperateurChoix({nom:"Numéro de carte",placeholder:"xxxx xxxx xxxx xxx"});
-  }else if(l.value === operateurs.nom[6]){
+  }else if(l.value === operateurs.nom[7]){
     setOperateurChoix({nom:"Adresse Bitcoin",placeholder:"FRA2017univ2021"});
   }else{
     setOperateurChoix({nom:"Numéro "+l.value,placeholder:"(code pays) xxx xxx xxx"});
