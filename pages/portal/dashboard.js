@@ -169,7 +169,9 @@ function Dashboard( props ) {
                <Container fluid>
                  <h2 className="display-5">Votre chiffre d'affaire</h2>
                  <div className="ml-4 display-5">
-                    {(userData?.data?.user?.chiffreDaffaire).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                    <span>Personnel :  </span>{(userData?.data?.user?.chiffreDaffaire?.generalPersonnel).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                    <br/>
+                    <span> Géneration:  </span>{(userData?.data?.user?.chiffreDaffaire?.generalChildren).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
                  </div>
                </Container>
              </Jumbotron>
@@ -225,7 +227,9 @@ function Dashboard( props ) {
                         { isLoading? <span> Loading...</span>:
                            <tbody>
                            {
-                          transData.slice(0,10).map((item, key)=>
+                           transData.length > 0 ? <>
+                           {
+                               transData.slice(0,10).map((item, key)=>
                             <tr key={key}>
                             <th scope="row"> {item._id}</th>
                             <td>{ moment(item.createdAt).format('YYYY/MM/DD')}</td>
@@ -235,6 +239,7 @@ function Dashboard( props ) {
                           </tr>
                           )
 
+                           }</>: <div style={{display: 'flex', alignItems:'center', justifyContent: 'center'}}> <span>Aucune transactions</span></div>
                          }
                          </tbody>
                         }
@@ -268,7 +273,7 @@ function Dashboard( props ) {
                           className=" avatar rounded-circle mr-3"
                             alt={userData?.data.user?.lastName + "avatar"}
                             src={userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
-                          ></img>
+                          ></img> 
                       <div style={{flexDirection:"column", display:"flex"}}>
                         <span className=" name  ">
                           {userData?.data.user?.lastName}
@@ -276,14 +281,15 @@ function Dashboard( props ) {
                         <span className="  mb-0 text-sm">
                           {userData?.data?.user?.gender}
                         </span>
-                        <span className=" mb-0 text-sm">
+                        {userData?.data?.user?.dateOfbirth && <span className=" mb-0 text-sm">
                          {new Date().getFullYear() - new Date(userData?.data?.user?.dateOfbirth).getFullYear()}
-                        </span>
+                        </span>}
+                        
                       </div>
                     </Media>
                     <div>
-                      <img src={userData?.data.user.address?.country?.flag}  style={{width:"50px", height:"50px"}}/> <span>{userData?.data.user.address?.country?.name}</span>
-                      <p>{"+"+userData?.data.user.address?.country?.indicatif + userData?.data.user.phone}</p>
+                      {userData?.data.user.address?.country?.flag && <><img src={userData?.data.user.address?.country?.flag}  style={{width:"50px", height:"50px"}}/> <span>{userData?.data.user.address?.country?.name}</span> </>}
+                      {userData?.data.user.phone && <p>{"+"+userData?.data.user.address?.country?.indicatif + userData?.data.user.phone}</p>}
                     </div>
                   </div>
                     <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
