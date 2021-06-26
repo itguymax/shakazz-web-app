@@ -7,7 +7,7 @@ import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import DropdownSample from '../../../src/components/forms/dropdownSample'
 import transactions from '../../../src/helpers/transactions.js'
-import {page_data,stakePeriode,portefeuille_data} from '../../../src/__MOCK__/daily_transactions.js';
+//import {page_data,stakePeriode,portefeuille_data} from '../../../src/__MOCK__/daily_transactions.js';
 import withAuth from '../../../src/hoc/withAuth';
 import AdminBleu from '../../../src/layouts/AdminBleu'
 import { useAppContext } from '../../../src/context';
@@ -58,6 +58,7 @@ const body = {
   id:actualCoffreId,
   element:50
 }
+const [page_data, setPageData] = useState([]);
 const openTransactionsPage = async ()=>{
   try {
     const res = await callAllTransactions({accessToken:context.appState.accessToken,data:body});
@@ -67,10 +68,17 @@ const openTransactionsPage = async ()=>{
            setAlertVisible(true);
           }
           if(success) {
-             setResponseAlert({error:false,message:message});
-             setAlertVisible(true);
-             console.log(data);
-             //transactions.getTransactions(page_data);
+             let tempData = [];
+             data.transactions.map((transac_value, i)=>{
+               tempData.push({
+                 s_nom:i,
+                 sortie_composee:transac_value.montantUSD,
+                 date:transac_value.updatedAt,
+                 pourcentage_quotidien:0
+               });
+             });
+              setPageData(tempData);
+             transactions.getTransactions(tempData);console.log(data.transactions)
           }
         }catch(err){}
 };
@@ -284,7 +292,7 @@ let table_transaction_state = {
          <Col sm="6">
             {statutCoffre === false?<Spinner style={{ width: '2rem', height: '2rem' , color:"#cc9933"}}/>:<Row>
                <Col className="customDropdown" sm="7">
-               <DropdownSample setActualCoffreId={setActualCoffreId} idDd={"dt_coffre"} selectedOption="Sélectionner un coffre-fort" handleOnSelect={()=>{}} options={chestData?.data.chests.length > 0?chestData.data.chests:[]} />
+               <DropdownSample setActualCoffreId={setActualCoffreId} idDd={"dt_coffre"} selectedOption="Sélectionnez un coffre-fort" handleOnSelect={()=>{}} options={chestData?.data.chests.length > 0?chestData.data.chests:[]} />
                </Col>
                <Col sm="2">
                 <Button onClick={openTransactionsPage} className="buttonCustom2">{isLoadingTransactions? <Spinner size="sm" color="#cc993a" />: "Voir"}</Button>
