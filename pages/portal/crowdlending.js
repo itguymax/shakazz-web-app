@@ -170,61 +170,6 @@ const defaultOption = selectedType;
     `}
   />
       <Container fluid>
-      <Global
-      styles={css`
-        .lightBoxContainerHeaderDiv{
-          width:12em;
-          height:4em;
-          padding-top:1.5em;
-          cursor:pointer !important;
-        }
-        @media ${device.bTablet} {
-          .lightBoxContainerHeaderDiv{
-            margin-left:-1em;
-          }
-          .lightBoxContainerHeaderFluid{
-            width:40em !important;
-            margin-left:-1em;
-            font-size:0.8em;
-            text-align:center;
-          }
-        }
-        @media ${device.sTablet} {
-          .lightBoxContainerHeaderFluid{
-            width:40!important;
-            margin-left:-3em;
-          }
-          .lightBoxContainerHeaderDiv{
-            width:10em;
-            margin-left:-1.8em;
-          }
-        }
-        @media ${device.surfaceDuoTablet} {
-          .lightBoxContainerHeaderFluid{
-            width:39em !important;
-            margin-left:0em;
-            font-size:0.8em;
-            margin-left:0.3em;
-          }
-        }
-        @media ${device.sPhone} {
-          }
-        @media ${device.mPhone} {
-          }
-        @media ${device.iphoneX} {
-          }
-        @media ${device.bPhone} {
-          .lightBoxContainerHeaderFluid{
-            flex-direction: column !important;
-            width:20em !important;
-            margin:auto !important;
-          }
-          .lightBoxContainerHeaderDiv{
-            width:17em !important;
-          }
-        }
-      `}
-      />
       {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
 
      <Row className="mt-xl-3 mb-5">

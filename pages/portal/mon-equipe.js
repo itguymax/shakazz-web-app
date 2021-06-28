@@ -98,60 +98,13 @@ if(treeLoading){
 }
 if(isError){
   alert("erreur serveur");
-  
+
 }
 console.log("user tree", treeData);
 console.log("generation children", children);
   return (
     <Portal>
       <Container fluid>
-      <Global
-      styles={css`
-        .lightBoxContainerHeaderDiv{
-          width:12em;
-          height:4em;
-          padding-top:1.5em;
-          cursor:pointer !important;
-        }
-        @media ${device.sPhone} {
-          }
-        @media ${device.mPhone} {
-          }
-        @media ${device.iphoneX} {
-          }
-        @media ${device.bPhone} {
-          .lightBoxContainerHeaderFluid{
-            flex-direction: column !important;
-            width:20em !important;
-            margin:auto !important;
-          }
-          .lightBoxContainerHeaderDiv{
-            width:17em !important;
-          }
-        }
-        @media ${device.sTablet} {
-          .lightBoxContainerHeaderFluid{
-            width:38em;
-            margin-left:-3em;
-          }
-          .lightBoxContainerHeaderDiv{
-            width:10em;
-            margin-left:-1.8em;
-          }
-          .equipe_list_generation_block{
-            flex-direction: column;
-          }
-          .equipe_list_generation_block button{
-            margin-top:1em;
-          }
-        }
-        @media ${device.bTablet} {
-          .lightBoxContainerHeaderDiv{
-            margin-left:-1em;
-          }
-        }
-      `}
-      />
          {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
               <div css={css`
 
