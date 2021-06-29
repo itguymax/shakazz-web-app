@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BuyBTC() {
+export default function BuyCryptos() {
   return (
     <div>
       Achat des BTC
