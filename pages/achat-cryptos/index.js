@@ -18,7 +18,9 @@ import {
   Form,Modal, ModalHeader, ModalBody, ModalFooter
 } from "reactstrap"
 import Sinput from "../../src/components/forms/Sinput";
-import { useConverter } from '../../src/hooks'
+import {cp_init} from "../../src/helpers/cp";
+import { useConverter } from '../../src/hooks';
+import { v4 as uuidv4 } from 'uuid';
 export default function BuyCryptos() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(achatCrypto),
@@ -49,9 +51,10 @@ export default function BuyCryptos() {
   }
   const handleOnSelectAmount = (type) => {
     setAmountUSD(event.target.value);
+    setAmountXAF(event.target.value*650);
   }
   const handleMoney = async ()=>{
-    //
+    cp_init(uuidv4(),amountXAF,"Achat de Cryptomonaie : "+actualCrypto);
   };
   return (
     <Public>
@@ -154,6 +157,7 @@ export default function BuyCryptos() {
                <Button className="mt-3 mb-1"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
                POURSUIVRE L'ACHAT
               </Button>
+              <div id="cinetpay_payment_result" style={{color:"red",fontSize:"1.1em"}}></div>
           </Col>
         </Row>
       </Form>
