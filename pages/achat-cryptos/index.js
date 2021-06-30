@@ -6,8 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { depotBTCSchema } from "../../src/validations";
 import { useAppContext } from '../../src/context';
 import { useRouter } from 'next/router';
-import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
-import CinetPayForm from "../../src/components/forms/CinetPayForm";
 import {
   Card,
   Container,
@@ -25,11 +23,13 @@ export default function BuyCryptos() {
   const optionstype = ["Bitcoin","USDT"];
   const context = useAppContext();
   const router = useRouter();
+  const [dataConverter, setDataConverter] = useState("BTC");
   const {data:dtc} = useConverter("BTC","USD");
+  const {data:dtc2} = useConverter("USDT","USD");
   const [amountUSD, setAmountUSD] = useState(0);
   const [amountCrypto, setAmountCrypto] = useState(0);
   const [amountXAF, setAmountXAF] = useState(0);
-  const [actualCrypto, setActualCrypto] = useState("");
+  const [actualCrypto, setActualCrypto] = useState("Bitcoin");
   const [selectedType, setType] = useState("");
   const [destinationOption, setDestinationOption] = useState(["Bitcoin","USDT"]);
   const [modal, setModal] = useState(false);
@@ -37,6 +37,11 @@ export default function BuyCryptos() {
     if(selectedType !== "") setModal(!modal);
   };
   const handleOnSelectTypeCrypto = (type) => {
+          if(type.value === "Bitcoin"){
+            setDataConverter("BTC");
+          }else{
+            setDataConverter("USDT");
+          }
           setActualCrypto(type.value);
   }
   const handleOnSelectAmount = (type) => {
@@ -115,14 +120,14 @@ export default function BuyCryptos() {
                 <tr>
                   <th>Montant USD</th>
                   <th>{"Equivalence "+actualCrypto}</th>
-                  <th>Total XAF</th>
+                  <th>Total à payer</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{amountUSD+"$"}</td>
-                  <td>{(amountUSD/ dtc?.USD).toFixed(5)}</td>
-                  <td>{amountUSD*650}</td>
+                  <td>{(amountUSD/dtc?.USD).toFixed(5)}</td>
+                  <td>{amountUSD*650+" XAF"}</td>
                 </tr>
               </tbody>
             </Table>
