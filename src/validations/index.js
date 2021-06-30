@@ -100,9 +100,15 @@ const depotBTCSchema = yup.object().shape({
   depot_btc_montant_usd: yup.number("Veuillez entrez un nombre").min(100, "Le Montant Minimum de depot est de 100 usd").required("Entrez le montant en USD"),
 })
 
+const achatCrypto = yup.object().shape({
+  wallet: yup.string("Veuillez entré une adresse valide").required("Entrez l'adresse de votre wallet"),
+  amount: yup.number("Veuillez entré un nombre").min(10, "Le Montant Minimum de retrait est de 10 usd").required("Entrez le montant"),
+  email: yup.string().required("Adresse email nécessaire").matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "Entrez une adresse email valide")
+})
+
 const retraitSchema = yup.object().shape({
-  amount: yup.number("Veuillez entrez un nombre").min(10, "Le Montant Minimum de retrait est de 10 usd").required("Entrez le montant en USD"),
-  rib: yup.string("Veuillez entrez un nombre").required("Entrez le RIB/Numero de dépôt/Adresse Bitcoin"),
+  amount: yup.number("Veuillez entré un nombre").min(10, "Le Montant Minimum de retrait est de 10 usd").required("Entrez le montant en USD"),
+  rib: yup.string("Veuillez entré un nombre").required("Entrez le RIB/Numero de dépôt/Adresse Bitcoin"),
   transactionPassword: yup.string().required("Entrez le mot de passe de transaction")
 })
 const legacySchema = yup.object().shape({
@@ -166,4 +172,4 @@ const portefeuilleSchema = yup.object().shape({
 })
 
 
-export { kycSchema,profileSchema,portefeuilleSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotBTCSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+export { kycSchema,achatCrypto,profileSchema,portefeuilleSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotBTCSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;

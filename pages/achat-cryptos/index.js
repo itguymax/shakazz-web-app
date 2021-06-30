@@ -3,7 +3,7 @@ import Public from '../../src/layouts/Public'
 import {Global,css} from "@emotion/react"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { depotBTCSchema } from "../../src/validations";
+import { achatCrypto } from "../../src/validations";
 import { useAppContext } from '../../src/context';
 import { useRouter } from 'next/router';
 import {
@@ -20,6 +20,9 @@ import {
 import Sinput from "../../src/components/forms/Sinput";
 import { useConverter } from '../../src/hooks'
 export default function BuyCryptos() {
+  const { register, handleSubmit, watch, errors } = useForm({
+    resolver: yupResolver(achatCrypto),
+  });
   const optionstype = ["Bitcoin","USDT"];
   const context = useAppContext();
   const router = useRouter();
@@ -47,6 +50,9 @@ export default function BuyCryptos() {
   const handleOnSelectAmount = (type) => {
     setAmountUSD(event.target.value);
   }
+  const handleMoney = async ()=>{
+    //
+  };
   return (
     <Public>
     <Global
@@ -70,6 +76,7 @@ export default function BuyCryptos() {
     <div style={{backgroundColor:"#244230",paddingBottom:"2em",paddingTop:"2em"}}>
     <Container>
     <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}>Formulaire d'achat de cryptomonaie</h1>
+      <Form onSubmit={handleSubmit(handleMoney)}>
       <Row>
           <Col sm={{ size: '9', offset: 1 }}>
                 <Sinput
@@ -85,14 +92,19 @@ export default function BuyCryptos() {
                />
                <Sinput
                 label="Adresse wallet à créditer"
-                name="adresse"
+                name="wallet"
                 inline
                 placeholder="dfjidjdayuaz668"
                 type="text"
                 inputBg="#679966"
-                register={()=>{}}
+                register={register}
                 onSelect={()=>{}}
               />
+              {errors.wallet && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
+
+                 <span className="text-danger font-weight-700">{errors.wallet.message}</span>
+
+             </div>}
                <Sinput
                 label="Montant à verser"
                 name="amount"
@@ -101,20 +113,28 @@ export default function BuyCryptos() {
                 usd
                 inputBg="#679966"
                 type="number"
-                register={()=>{}}
+                register={register}
                 handleOnchange={handleOnSelectAmount}
                 inputvalue={amountUSD}
-              />
+              />{errors.amount && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
+
+                 <span className="text-danger font-weight-700">{errors.amount.message}</span>
+
+             </div>}
               <Sinput
                label="Email"
-               name="amount"
+               name="email"
                inline
                inputBg="#679966"
                placeholder="Entrez votre adresse mail"
-               type="email"
-               register={()=>{}}
+               type="text"
+               register={register}
                onSelect={()=>{}}
-             />
+             />{errors.email && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
+
+                <span className="text-danger font-weight-700">{errors.email.message}</span>
+
+            </div>}
              <Table bordered>
               <thead>
                 <tr>
@@ -131,11 +151,12 @@ export default function BuyCryptos() {
                 </tr>
               </tbody>
             </Table>
-               <Button onClick={toggleModal} className="mt-3 mb-1"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
+               <Button className="mt-3 mb-1"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
                POURSUIVRE L'ACHAT
               </Button>
           </Col>
         </Row>
+      </Form>
       </Container>
     </div>
   </Public>
