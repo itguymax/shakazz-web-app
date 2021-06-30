@@ -1,6 +1,5 @@
-
 import { gql } from '@apollo/client';
-import { client } from '../../src/lib/apollo'; 
+import { client } from '../../src/lib/apollo';
 import Head from "next/head";
 import Image from "next/image"
 import Public from '../../src/layouts/Public';
@@ -10,24 +9,9 @@ import BlogPostFooter from "../../src/components/blog/BlogPostFooter"
 // reactstrap components
 import {Container} from "reactstrap";
 
-function BlogPage(){
+function BlogPage({post, ...rest}){
   const router = useRouter();
 
-<<<<<<< HEAD
-  // let featuredImageUrl="";
-  // let authorInfo="";
-  // if(post.featuredImage){
-  //  featuredImageUrl =  post?.featuredImage?.node.sourceUrl;
-  // }
-  // if(post.author){
-  //    authorInfo = post.author.node;
-  // }
-
-   if (router.isFallback) {
-    return <div>Loading...</div>
-  }
-//  console.log("blog post article", post);
-=======
   let featuredImageUrl="";
   let authorInfo="";
   if(post?.featuredImage){
@@ -36,7 +20,6 @@ function BlogPage(){
   if(post?.author){
      authorInfo = post?.author.node;
   }
->>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
   return (
     <>
     <Head>
@@ -78,13 +61,13 @@ function BlogPage(){
     {/* <div>
       <h1>{post.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      
+
     </div> */}
      {/* <article
         css={css`
           width: 100%;
           display: flex;
-         
+
         `}
       >
         <Container
@@ -98,7 +81,7 @@ function BlogPage(){
               text-align: center;
               margin-bottom: 20px;
               margin-top: 0;
-              
+
             `}
           >
             {post?.title}
@@ -107,11 +90,10 @@ function BlogPage(){
             <div
               css={css`
                 text-align: center;
-
                 p {
                   margin-bottom: 0;
                 }
-               
+
               `}
             >
               <Image
@@ -120,22 +102,16 @@ function BlogPage(){
                 width={700}
                 height={400}
               />
-             
+
             </div>
           )}
           <br />
-         
+
            <div dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Container>
-<<<<<<< HEAD
-    
-      </article>   */}
-         <div
-=======
-       
+
       </article> */}
       <div
->>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
       css={css`
         width: 100%;
         height: 100vh;
@@ -147,7 +123,7 @@ function BlogPage(){
     >
       <h1>POST PAGE NOT FOUND</h1>
       <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
-    </div> 
+    </div>
        {/* <Container css={css`
             padding-top: 20px;
             width: 70%;
@@ -172,24 +148,13 @@ function BlogPage(){
 //         }
 //     `
 //   });
-<<<<<<< HEAD
-//    const paths = result.data.posts.nodes.map(({slug})=>{
-//       console.log("path path path", slug);
-=======
 //   return {
 //     paths: result.data.posts.nodes.map(({slug})=>{
->>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 //       return  {
 //         params: { slug }
 //       }
 //     }
-<<<<<<< HEAD
-//     )
-//   return {
-//     paths,
-=======
 //     ),
->>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 //     fallback: true,
 //   }
 
@@ -201,19 +166,6 @@ function BlogPage(){
 //     query: gql`
 //       query GetWordPressPostBySlug($slug: ID!) {
 //          post(idType: SLUG, id: $slug) {
-<<<<<<< HEAD
-//              content
-//               title
-//               # author {
-//               #   node {
-//               #     avatar {
-//               #       url
-//               #     }
-//               #     # username
-//               #     # description
-//               #   }
-//               # }
-=======
 //              content(format: RENDERED)
 //               title
 //               author {
@@ -225,7 +177,6 @@ function BlogPage(){
 //                   # description
 //                 }
 //               }
->>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 //             featuredImage {
 //               node {
 //                 sourceUrl
@@ -240,12 +191,7 @@ function BlogPage(){
 //     props: {
 //       post: result.data.post,
 //     },
-<<<<<<< HEAD
-//     revalidate: 1,
-//   }
-=======
 //   };
->>>>>>> 01c0c729ab7ca0c92a01161df2840ead4c248f97
 // }
 
 BlogPage.layout = Public;
