@@ -11,8 +11,16 @@ const makeDeposit = async ({accessToken, data}) => {
     console.log(err);
   }
   }
-
+  const makeDepositCrypto = async (data) => {
+      const url = "/crypto/achat/init";
+      try {
+      let responseJson =  apiV1.unAuthPostJson(url, data);
+      return responseJson;
+    } catch(err) {
+      console.log(err);
+    }
+    }
 
 export {
-  makeDeposit,
+  makeDeposit,makeDepositCrypto
 };

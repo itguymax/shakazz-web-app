@@ -6,13 +6,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { achatCrypto } from "../../src/validations";
 import { useAppContext } from '../../src/context';
 import { useRouter } from 'next/router';
+import {useDepositCrypto} from '../../src/hooks';
+import Toast from "../../src/components/forms/Toast";
 import {
   Card,
   Container,
   Row,
   Col,
   CardHeader,
-  Button,
+  Button,Spinner,
   Table,
   Progress,
   Form,Modal, ModalHeader, ModalBody, ModalFooter
@@ -21,6 +23,7 @@ import Sinput from "../../src/components/forms/Sinput";
 import {cp_init} from "../../src/helpers/cp";
 import { useConverter } from '../../src/hooks';
 import { v4 as uuidv4 } from 'uuid';
+import {useMutation, useQueryClient} from 'react-query';
 export default function BuyCryptos() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(achatCrypto),
@@ -28,6 +31,9 @@ export default function BuyCryptos() {
   const optionstype = ["Bitcoin","USDT"];
   const context = useAppContext();
   const router = useRouter();
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
   const [dataConverter, setDataConverter] = useState("BTC");
   const {data:dtc} = useConverter("BTC","USD");
   const {data:dtc2} = useConverter("USDT","USD");
@@ -53,8 +59,28 @@ export default function BuyCryptos() {
     setAmountUSD(event.target.value);
     setAmountXAF(event.target.value*650);
   }
-  const handleMoney = async ()=>{
-    cp_init(uuidv4(),amountXAF,"Achat de Cryptomonaie : "+actualCrypto,"achat");
+  const {mutateAsync, isLoading, isError, isSuccess}  = useDepositCrypto();
+  const handleMoney = async (hookData)=>{
+    const {wallet, amount, email } = hookData;
+    const body = {
+      data: {
+          address:wallet,
+          email:email,
+          crypto:"btc"
+      }
+    };
+    const res = await mutateAsync(body);
+    // const res2 = await mutateAsyncCp({accessToken: context.appState.accessToken ,data:{
+    //   //trans_id:paymentInfo.cpm_trans_id
+    //   trans_id:""
+    // }});
+    if(res.error && !res.success){
+        setResponseAlert(res);
+        setAlertVisible(true);
+       } else {
+         cp_init(res.data.transactionId,amountXAF,"Achat de Cryptomonaie : "+actualCrypto,"achat");
+         //cp_init(res.data.transactionId,amountVal);
+     }
   };
   return (
     <Public>
@@ -155,13 +181,14 @@ export default function BuyCryptos() {
               </tbody>
             </Table>
                <Button className="mt-3 mb-1"  type="submit" style={{ backgroundColor:'#CC9933', borderColor:'#CC9933'}} >
-               POURSUIVRE L'ACHAT
+               {isLoading? <Spinner size="sm" color="#cc993a" />: "POURSUIVRE L'ACHAT"}
               </Button>
               <div id="cinetpay_payment_result" style={{color:"red",fontSize:"1.1em"}}></div>
           </Col>
         </Row>
       </Form>
       </Container>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </div>
   </Public>
   )
