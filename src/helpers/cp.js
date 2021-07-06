@@ -1,4 +1,4 @@
-const cp_init = async (token,amountVal,des=null)=>{
+const cp_init = async (token,amountVal,des=null,cpm_custom="depot")=>{
     const body = {
       data: {
       }
@@ -7,7 +7,7 @@ const cp_init = async (token,amountVal,des=null)=>{
     const amount = amountVal;
     const currency = document.getElementById("cinetpay_currency")||null;
     const result_div = document.getElementById('cinetpay_payment_result');
-    let custom = "";
+    let custom = cpm_custom;
     //-------------Configuration
     CinetPay.setConfig({
         apikey: '4758178085f46b2e7dc69e3.86025892',

@@ -54,7 +54,7 @@ export default function BuyCryptos() {
     setAmountXAF(event.target.value*650);
   }
   const handleMoney = async ()=>{
-    cp_init(uuidv4(),amountXAF,"Achat de Cryptomonaie : "+actualCrypto);
+    cp_init(uuidv4(),amountXAF,"Achat de Cryptomonaie : "+actualCrypto,"achat");
   };
   return (
     <Public>
