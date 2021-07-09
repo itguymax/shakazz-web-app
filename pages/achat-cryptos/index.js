@@ -28,7 +28,15 @@ export default function BuyCryptos() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(achatCrypto),
   });
-  const optionstype = ["Bitcoin","USDT"];
+  const cryptos = [{
+    nom:"Bitcoin",
+    code:"CRYPTO100"
+  },{
+    nom:"USDT",
+    code:"CRYPTO101"
+  }];
+
+  const optionstype = [cryptos[0].nom,cryptos[1].nom];
   const context = useAppContext();
   const router = useRouter();
   const [visibleAlert, setAlertVisible] = useState(false);
@@ -40,20 +48,21 @@ export default function BuyCryptos() {
   const [amountUSD, setAmountUSD] = useState(0);
   const [amountCrypto, setAmountCrypto] = useState(0);
   const [amountXAF, setAmountXAF] = useState(0);
-  const [actualCrypto, setActualCrypto] = useState("Bitcoin");
+  const [actualCrypto, setActualCrypto] = useState(cryptos[0].code);
   const [selectedType, setType] = useState("");
-  const [destinationOption, setDestinationOption] = useState(["Bitcoin","USDT"]);
+  const [destinationOption, setDestinationOption] = useState([cryptos[0].nom,cryptos[1].nom]);
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
     if(selectedType !== "") setModal(!modal);
   };
   const handleOnSelectTypeCrypto = (type) => {
-          if(type.value === "Bitcoin"){
+          if(type.value === cryptos[0].nom){
             setDataConverter("BTC");
+            setActualCrypto(cryptos[0].code);
           }else{
             setDataConverter("USDT");
+            setActualCrypto(cryptos[1].code);
           }
-          setActualCrypto(type.value);
   }
   const handleOnSelectAmount = (type) => {
     setAmountUSD(event.target.value);
@@ -66,14 +75,10 @@ export default function BuyCryptos() {
       data: {
           address:wallet,
           email:email,
-          crypto:"btc"
+          crypto:actualCrypto
       }
-    };
+    };console.log(body);
     const res = await mutateAsync(body);
-    // const res2 = await mutateAsyncCp({accessToken: context.appState.accessToken ,data:{
-    //   //trans_id:paymentInfo.cpm_trans_id
-    //   trans_id:""
-    // }});
     if(res.error && !res.success){
         setResponseAlert(res);
         setAlertVisible(true);
