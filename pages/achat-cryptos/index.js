@@ -21,8 +21,8 @@ import {
 } from "reactstrap"
 import Sinput from "../../src/components/forms/Sinput";
 import {cp_init} from "../../src/helpers/cp";
-import { useConverter } from '../../src/hooks';
-import { v4 as uuidv4 } from 'uuid';
+import { useConverter,useConverterAl1 } from '../../src/hooks';
+//import { v4 as uuidv4 } from 'uuid';
 import {useMutation, useQueryClient} from 'react-query';
 export default function BuyCryptos() {
   const { register, handleSubmit, watch, errors } = useForm({
@@ -44,7 +44,7 @@ export default function BuyCryptos() {
   const onDismiss = () => setAlertVisible(false);
   const [dataConverter, setDataConverter] = useState("BTC");
   const {data:dtc} = useConverter("BTC","USD");
-  const {data:dtc2} = useConverter("USDT","USD");
+  const {data:dtc2} = useConverterAl1("USDT","USD");
   const [amountUSD, setAmountUSD] = useState(0);
   const [amountCrypto, setAmountCrypto] = useState(0);
   const [amountXAF, setAmountXAF] = useState(0);
@@ -75,9 +75,10 @@ export default function BuyCryptos() {
       data: {
           address:wallet,
           email:email,
-          crypto:actualCrypto
+          crypto:"btc"
+          //crypto:actualCrypto
       }
-    };console.log(body);
+    };
     const res = await mutateAsync(body);
     if(res.error && !res.success){
         setResponseAlert(res);
@@ -128,7 +129,7 @@ export default function BuyCryptos() {
                 label="Adresse wallet à créditer"
                 name="wallet"
                 inline
-                placeholder="dfjidjdayuaz668"
+                placeholder="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5"
                 type="text"
                 inputBg="#679966"
                 register={register}
@@ -173,14 +174,14 @@ export default function BuyCryptos() {
               <thead>
                 <tr>
                   <th>Montant USD</th>
-                  <th>{"Equivalence "+actualCrypto}</th>
+                  <th>{"Equivalence "+destinationOption}</th>
                   <th>Total à payer</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{amountUSD+"$"}</td>
-                  <td>{(amountUSD/dtc?.USD).toFixed(5)}</td>
+                  <td>{actualCrypto===cryptos[0].code?(amountUSD/dtc?.USD).toFixed(5):(amountUSD/dtc2?.USD).toFixed(5)}</td>
                   <td>{amountUSD*650+" XAF"}</td>
                 </tr>
               </tbody>
