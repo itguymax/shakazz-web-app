@@ -26,7 +26,7 @@ import {
   Media,Jumbotron
 } from "reactstrap";
 // layout for this page
-import Portal from "../../src/layouts/Portal.js";
+import Portal_Crypto from "../../src/layouts/Portal_Crypto.js";
 // core components
 import {
   chartOptions,
@@ -46,56 +46,41 @@ import {  useFetchAlltransactions,useFetchUserInfos } from "../../src/hooks";
 import DataLoader from "../../src/components/common/DataLoader";
 let c;
 function Dashboard( props ) {
-  const [activeNav, setActiveNav] = useState(1);
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  const tooltipToggle = () => setTooltipOpen(!tooltipOpen);
-  const [chartExample1Data, setChartExample1Data] = useState("data1");
-  const [page, setPage] = useState(1);
-  const [transData, setTransData] = useState([])
-  const [element, setElement] = useState(10);
-  const [copied, setCopied] = useState(false);
   const context = useAppContext();
   const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
   const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
   const [token, setToken]= useState(context.appState.accessToken);
-  const [isUserInfoCompleted , setUserInfoCompleted] = useState(false);
-  if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-  }
 
-  const toggleNavs = (e, index) => {
-    e.preventDefault();
-    setActiveNav(index);
-    setChartExample1Data("data" + index);
-  };
-    const fetchInitData = async () => {
-    const body = {
-     page, element
-   }
-    const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
-
-     console.log("init data", initData);
-    setTransData(initData.transactions);
-  }
-
-
-  useEffect( async()=> {
-   await fetchInitData();
-
-  },[])
-
-  if(userDataLoading){
-    return <DataLoader/>
-  }
   return (
-    <Portal>
+    <Portal_Crypto>
     <Global
     styles={css`
     `}
   />
       <Container>
+      <br/>
+      <center><h1>Mes achats</h1></center>
+      <Table bordered>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Crypto</th>
+            <th>Montant</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>07/10/2021</td>
+            <td>100$</td>
+            <td>En attente</td>
+          </tr>
+        </tbody>
+      </Table>
       </Container>
-    </Portal>
+    </Portal_Crypto>
   )
 }
 

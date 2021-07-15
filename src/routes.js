@@ -1,5 +1,5 @@
 
-var routes = [
+/*var routes = [
   {
     path: "/dashboard",
     name: "Home",
@@ -43,7 +43,7 @@ var routes = [
       displayName: "Statistiques équipe",
       layout: "/portal"
     },
-  
+
   ],
   },
   // {
@@ -88,5 +88,16 @@ var routes = [
     },
   ]
   }
-];
+];*/
+var routes = [
+  {
+    path: "/dashboard_crypto",
+    name: "Dashboard",
+    displayName: "Dashboard",
+    icon:  "far fa-address-card",
+    icon1:"/assets/img/icons/dashboard/home.svg",
+    icon2:"/assets/img/icons/dashboard/home1.svg",
+    layout: "/portal",
+    children:[],
+  }];
 export default routes;
