@@ -147,7 +147,7 @@ function Login() {
           <CardHeader className="bg-transparent px-lg-5 ">
 
             <div className="text-muted mt-2 mb-1">
-              <h2 style={{marginBottom:'0px'}} className="text-md-right mb-md-4">Inscription</h2>
+              <h2 style={{marginBottom:'0px'}} className="text-md-right mb-md-4">Connexion</h2>
 
               <a style={{font: 'normal normal bold 42px/48px Ubuntu', color: '#121212'}} onClick={(e) => e.preventDefault()}>
                   Hi, welcome back

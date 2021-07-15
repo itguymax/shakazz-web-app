@@ -12,7 +12,7 @@ import {
   Row,
   Col,
   Button,
-  
+
 } from "reactstrap";
 import { css } from "@emotion/react";
 import { device } from "../../lib/device"
@@ -23,7 +23,7 @@ import Image from "next/image";
 
 function AdminNavbar() {
   const router = useRouter();
- 
+
   const isBlog = router.asPath.startsWith("/blog") ? true: false;
   return (
     <>
@@ -31,7 +31,7 @@ function AdminNavbar() {
         <Container className="px-4" css={css` 
               .navbar-horizontal .navbar-brand img {
                     height: 46px ;
-                    width: 100%;    
+                    width: 100%;
                 }
         `}>
           <Link href="/">
@@ -51,7 +51,7 @@ function AdminNavbar() {
             </span>
           </Link>
           <button className="navbar-toggler" id="navbar-collapse-main">
-            
+
             {isBlog? <svg viewBox="0 0 100 80" width="40" height="40">
   <rect width="80" height="10"></rect>
   <rect y="20" width="80" height="10"></rect>
@@ -83,11 +83,11 @@ function AdminNavbar() {
               menuItems.map(({path, label}, i)=>(
               <NavItem key={i}>
                <NavigationLink label={label} href={path}/>
-              </NavItem>    
+              </NavItem>
               ))
             }
-            
-             
+
+
             </Nav>
              <div className="text-center" css={css`
                   @media ${device.smMobileMax}{
@@ -95,21 +95,21 @@ function AdminNavbar() {
                     margin-top: 10px;
                   }
                `}>
-               <Button 
-                onClick={()=> router.push('/auth/pre-inscription')}
+               <Button
+                onClick={()=> router.push('/auth/crypto/login')}
               // onClick={()=> router.push('/auth/login')}
-               className="btn-white mr-lg-3" 
+               className="btn-white mr-lg-3"
                style={{height: '40px', border: '2px solid #707070', width: '130px', border:"1px solid #707070 "}}
               //  disabled={router.asPath==="/auth/pre-inscription"}
                >Connexion</Button>
               </div>
               <div className="text-center">
-               <Button 
-                onClick={()=> router.push('/auth/pre-inscription')}
+               <Button
+                onClick={()=> router.push('/auth/crypto/register')}
               // onClick={()=> router.push('/auth/register')}
-               style={{height: '40px', border:'none', color:"#fff", width: '130px', backgroundColor:"#707070"}} 
+               style={{height: '40px', border:'none', color:"#fff", width: '130px', backgroundColor:"#707070"}}
                className="btn-default"
-              //  disabled={router.asPath==="/auth/pre-inscription"} 
+              //  disabled={router.asPath==="/auth/pre-inscription"}
                >Inscription</Button>
               </div>
           </UncontrolledCollapse>
