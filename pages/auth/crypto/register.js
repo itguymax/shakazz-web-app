@@ -10,7 +10,7 @@ import {
   Col,
   Spinner,
 } from "reactstrap";
-import { signupUser } from '../../../src/services/auth.service'
+import { signupUserCrypto } from '../../../src/services/auth.service'
 // layout for this page
 import Auth from "../../../src/layouts/Auth.js";
 import { useRouter } from 'next/router'
@@ -87,14 +87,12 @@ const { register, handleSubmit, watch, errors } = useForm({
   };
 
   const handletoggle = () => setProfil(!isParticular);
-  const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUser);
+  const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUserCrypto);
 
   const {data:iLRefData, isLoading:iLRef, isSuccess:sRef} =  UseNetworkerByInvitation(iref);
 
 
   const onSubmit =  async (hookFormData) => {
-
-
    if(verified){
     setSubmitting(true);
     const {confirmpassword, ...rest } = hookFormData;
@@ -409,7 +407,7 @@ const { register, handleSubmit, watch, errors } = useForm({
                     <small>Vous avez déjà un compte?</small>
                   </a>{" "}
                   <a
-                    href="/auth/login"
+                    href="/auth/crypto/login"
                   >
                     <small className="text-bold font-weight-bold ml-1">Se connecter</small>
                   </a>

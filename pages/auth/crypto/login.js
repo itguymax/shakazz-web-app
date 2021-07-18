@@ -225,7 +225,7 @@ function Login() {
                     <small>Vous n'avez pas encore de compte?</small>
                   </a>{" "}
                   <a
-                    href="/auth/register"
+                    href="/auth/crypto/register"
                   >
                     <small className="text-bold font-weight-bold ml-1" >S'inscrire</small>
                   </a>

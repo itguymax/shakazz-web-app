@@ -7,13 +7,23 @@ import { useRouter } from "next/router";
     const url = '/auth/signup';
     try {
        let responseJson = await  apiV1.unAuthPostJson(url, data);
-       
+
     return responseJson;
   } catch(err) {
      console.log(err);
   }
 }
-  
+const signupUserCrypto = async (data) => {
+  const url = 'crypto/auth/signup';
+  try {
+     let responseJson = await  apiV1.unAuthPostJson(url, data);
+
+  return responseJson;
+} catch(err) {
+   console.log(err);
+}
+}
+
 const loginUser = async (data) => {
     const url = "/auth/login";
     try {
@@ -28,7 +38,7 @@ const loginUser = async (data) => {
   const requestUserPasswordReset = async (data) => {
     const url = "/requestPasswordReset";
     try {
-  
+
     let responseJson =  apiV1.unAuthPostJson(url, data);
     return responseJson;
   } catch(err) {
@@ -50,7 +60,7 @@ const loginUser = async (data) => {
    const logOutUser =  async (router) => {
      if(window !== undefined){
          localStorage.removeItem(config.localStoreToken);
-          router.replace("/auth/login");      
+          router.replace("/auth/login");
      }
      return null ;
    }
@@ -76,6 +86,7 @@ const loginUser = async (data) => {
 
 export {
   signupUser,
+  signupUserCrypto,
   resetUserPassword,
   loginUser,
   requestUserPasswordReset,
