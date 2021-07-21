@@ -13,7 +13,7 @@ password: yup.string()
 email: yup.string().email("Entrez une email valide ").required("l'email est requis")
                     .matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide")
                     .test('checkEmailUnique', 'Email existe deja.', async (value) =>{
-                     const res = await  fetch(`${config.root}/auth/uniqueEmail/${value}`);
+                     const res = await  fetch(`${config.root}/crypto/auth/uniqueEmail/${value}`);
                      const resp = await res.json();
 
                      return "ok"
@@ -25,13 +25,29 @@ term: yup.boolean().oneOf([true], 'Acceptez les termes et conditions'),
 userName: yup.string().required("Le nom d'utilisateur est requis")
 .min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres")
 .test('checkUsernameUnique', 'user existe deja.', async (value) =>{
-                     const res = await  fetch(`${config.root}/auth/uniqueUserName/${value}`);
+                     const res = await  fetch(`${config.root}/crypto/auth/uniqueUserName/${value}`);
                      const resp = await res.json();
                      return !resp.data.used
                     }),
 
 });
+const registrationSchemaCrypto = yup.object().shape({
+confirmpassword: yup.string().required().oneOf([yup.ref('password'), null], 'Le mot de passe de confirmation doit etre identique'),
+password: yup.string()
+    .required('Entrez un mot de passe')
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "Doit contenir 8 caractères, une majuscule, une minuscule, un chiffre et un caractère de cas particulier"
+    ),
+email: yup.string().email("Entrez une email valide ").required("L'email est requis")
+                    .matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "entrez une email valide"),
+firstName: yup.string().required('Votre prénom est requis'),
+lastName: yup.string().required("Votre nom est requis"),
+term: yup.boolean().oneOf([true], 'Acceptez les termes et conditions'),
+userName: yup.string().required("Le nom d'utilisateur est requis")
+.min(6, "Le nom d'utilisateur doit avoir minimum 6 characteres"),
 
+});
 const loginSchema = yup.object().shape({
 password: yup.string()
     .required('Entrez un mot de passe')
@@ -172,4 +188,4 @@ const portefeuilleSchema = yup.object().shape({
 })
 
 
-export { kycSchema,achatCrypto,profileSchema,portefeuilleSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotBTCSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;
+export { registrationSchemaCrypto,kycSchema,achatCrypto,profileSchema,portefeuilleSchema,registrationSchema,transactionPasswordSchema,subscriptionFormSchema,passwordSchema,contactFormSchema, twofaSchema,legacySchema, depotBTCSchema, loginSchema, retraitSchema, forgotPasswordSchema, resetPasswordSchema} ;

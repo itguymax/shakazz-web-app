@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
   }
 }
 const signupUserCrypto = async (data) => {
-  const url = 'crypto/auth/signup';
+  const url = '/crypto/auth/signup';
   try {
      let responseJson = await  apiV1.unAuthPostJson(url, data);
 
@@ -23,7 +23,15 @@ const signupUserCrypto = async (data) => {
    console.log(err);
 }
 }
-
+const loginUserCrypto = async (data) => {
+    const url = "/crypto/auth/login";
+    try {
+    let responseJson =  apiV1.unAuthPostJson(url, data);
+    return responseJson;
+  } catch(err) {
+    console.log(err);
+  }
+  }
 const loginUser = async (data) => {
     const url = "/auth/login";
     try {
@@ -85,6 +93,7 @@ const loginUser = async (data) => {
    }
 
 export {
+  loginUserCrypto,
   signupUser,
   signupUserCrypto,
   resetUserPassword,

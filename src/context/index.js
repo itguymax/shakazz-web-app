@@ -37,13 +37,13 @@ export const initialState = {
      method:"",
   },
   portefeuille:[]
- 
+
 };
 export const reducer = (state, action) => {
 
 
   switch (action.type) {
-    
+
      case 'wallets': {
        console.log("reducer", action.type, action.value);
       return { ...state, wallets: action.value };
@@ -56,6 +56,10 @@ export const reducer = (state, action) => {
         }
       } }
     }
+    case 'userInfoCrypto': {
+      console.log("user reducer",action.type, action.value )
+      return {...state, user : { ...state.user} }
+    }
     default:
       return { ...state, [action.type]: action.value };
     // throw new Error();
@@ -65,7 +69,7 @@ export const reducer = (state, action) => {
 
 export function AppWrapper({ children }) {
    const [appState, dispatch] = useReducer(reducer, initialState);
-   
+
 
   return (
     <AppContext.Provider value={{appState, dispatch}}>

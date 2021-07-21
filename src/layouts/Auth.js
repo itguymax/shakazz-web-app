@@ -65,12 +65,12 @@ function Auth(props) {
               </h3>
               <div style={{width:'400px', height:'400px', margin:'50px auto 0px auto'}}>
                 <Image
-                  src={ router.pathname === "/auth/login" ? "/assets/img/login.png" : "/assets/img/inscription.png"}
+                  src={ router.pathname === "/auth/crypto/login" ? "/assets/img/login.png" : "/assets/img/inscription.png"}
                   // layout="responsive"
                   width={500}
                   height={500}
                   className="object-center object-cover pointer-events-none"
-                  alt= {router.pathname === "/auth/login" ? "Login page ilustration": "register page ilustration"}
+                  alt= {router.pathname === "/auth/crypto/login" ? "Login page ilustration": "register page ilustration"}
                 />
               </div>
               <AuthFooter />

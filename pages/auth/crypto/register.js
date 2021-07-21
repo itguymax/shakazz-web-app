@@ -20,16 +20,14 @@ import Captcha from "../../../src/components/Captcha";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Sinput from "../../../src/components/forms/Sinput";
-import { registrationSchema } from "../../../src/validations";
+import { registrationSchemaCrypto } from "../../../src/validations";
 import Head from "next/head";
 import config from "../../../src/config";
-import { fetchNetworkers } from "../../../src/services";
 import {useMutation,QueryClient, useQueryClient} from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import {useAppContext} from "../../../src/context";
 import {Global,css} from "@emotion/react"
 import { device } from '../../../src/lib/device.js';
-import {  UseNetworkerByInvitation } from '../../../src/hooks'
 import Toast from "../../../src/components/forms/Toast";
 
 const options = [
@@ -60,7 +58,7 @@ const options = [
 ]
 function Register(props) {
 const { register, handleSubmit, watch, errors } = useForm({
-    resolver: yupResolver(registrationSchema),
+    resolver: yupResolver(registrationSchemaCrypto),
   });
   const router = useRouter();
   const recaptchaRef = useRef();
@@ -74,22 +72,17 @@ const { register, handleSubmit, watch, errors } = useForm({
   const [submitting, setSubmitting] = useState(false);
   const [iref,setiref ] = useState(router.query.ref);
   const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
-  // const { setUserDataContext } = useAppContext();
+  const { setUserDataContext } = useAppContext();
   const togglebg = {
     backgroundColor: isParticular ? '#CC9933':'#fff'
   }
   const [visibleAlert, setAlertVisible] = useState(false);
   const [responseAlert, setResponseAlert] = useState("");
   const onDismiss = () => setAlertVisible(false);
-  const handleParainOption = ( value ) => {
-    // console.log("parainnnnn", value);
-    setSelectedOption(value);
-  };
 
   const handletoggle = () => setProfil(!isParticular);
   const { mutateAsync, isLoading, isSuccess,isError} = useMutation('Inscription', signupUserCrypto);
 
-  const {data:iLRefData, isLoading:iLRef, isSuccess:sRef} =  UseNetworkerByInvitation(iref);
 
 
   const onSubmit =  async (hookFormData) => {
@@ -100,7 +93,7 @@ const { register, handleSubmit, watch, errors } = useForm({
    let  userdata = {...additionaldata, ...rest};
    try{
     let datares = await mutateAsync( userdata);
-    // console.log("response", datares);
+    console.log("response", datares);
        const { data, error, success, message} = datares;
        if(error){
         setSuccessmsg(null);
@@ -113,8 +106,8 @@ const { register, handleSubmit, watch, errors } = useForm({
          setSubmitting(true);
          setErrormsg(null);
          setSuccessmsg(message);
-        //  setUserDataContext(data.user);
-         router.push('/confirmation-inscription');
+        //setUserDataContext(data.user);
+         router.push('/portal/dashboard_crypto');
        }
 
    }catch(err){
@@ -133,23 +126,6 @@ const { register, handleSubmit, watch, errors } = useForm({
   const handleOnBlur = () => {
 
   }
-  useEffect( async () =>{
-    let addData={}
-    if(router.query.ref){
-      console.log("%%%%%%%%",router.query.ref);
-         setiref(router.query.ref);
-         addData['profil'] = isParticular? "Particulier":"Entreprise";
-         addData['parent'] = router.query.ref;
-
-    } else {
-       addData['profil']= isParticular? "Particulier":"Entreprise";
-       addData['parent'] = selectedOption.invitation;
-    }
-
-        setUserAdditionalData(addData);
-    // console.log("invidation", addData);
-
-  }, [selectedOption,isParticular])
 
   // if(router.query.ref && iLRef) return <Spinner size="lg" color="#aa9933" />
 
@@ -197,7 +173,7 @@ const { register, handleSubmit, watch, errors } = useForm({
         />
         <link
           rel="canonical"
-          href={`${config.canonicalLink}/auth/login`}
+          href={`${config.canonicalLink}/auth/crypto/login`}
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="website" />
@@ -212,7 +188,7 @@ const { register, handleSubmit, watch, errors } = useForm({
         />
         <meta
           property="og:url"
-          content={`${config.canonicalLink}/auth/register`}
+          content={`${config.canonicalLink}/auth/crypto/register`}
         />
         <meta property="og:site_name" content="Shakazz"/>
         <meta property="og:image:width" content="1200"/>

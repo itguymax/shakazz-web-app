@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from "react";
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginUser } from '../../../src/services/auth.service'
+import { loginUserCrypto } from '../../../src/services/auth.service'
 import connfig from '../../../src/config';
 import { device } from '../../../src/lib/device.js';
 import {Global,css} from "@emotion/react"
@@ -31,7 +31,7 @@ import { useAppContext } from '../../../src/context';
 
 function Login() {
   const context = useAppContext();
-  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Login User",loginUser)
+  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Login User",loginUserCrypto)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
@@ -67,9 +67,9 @@ function Login() {
             setUTToLS(data.user_token);
              setErrormsg(null);
          setSuccessmsg(message);
-         setSubmitting(isLoading)
-        //  context.dispatch({type:"userInfo", value: datares.data.user});
-         router.push('/portal/dashboard');
+         setSubmitting(isLoading);
+         //context.dispatch({type:"userInfoCrypto", value: datares.data.user});
+         router.push('/portal/dashboard_crypto');
          }
        }
 
@@ -83,7 +83,7 @@ function Login() {
  };
  useEffect(() => {
     // Prefetch the dashboard page
-    router.prefetch('/portal/dashboard');
+    router.prefetch('/portal/dashboard_crypto');
   }, [])
   return (
     <>

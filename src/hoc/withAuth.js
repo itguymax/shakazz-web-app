@@ -28,14 +28,14 @@ const withAuth = (WrappedComponent) => {
     console.log("test error", isError);
     if(isError){
       alert("Une erreur s'est produite")
-       Router.replace("/auth/login");
+       Router.replace("/auth/crypto/login");
     }
     useEffect(async () => {
     if(typeof window !== "undefined"){
            const accessToken = localStorage.getItem(config.localStoreToken);
       // if no accessToken was found,then we redirect to "/" page.
       if (!accessToken) {
-        Router.replace("/auth/login");
+        Router.replace("/auth/crypto/login");
       } else {
         // setVerified(true);
         // we call the api that verifies the token.
@@ -48,7 +48,7 @@ const withAuth = (WrappedComponent) => {
            console.log("HOC 4");
           // If the token was fraud we first remove it from localStorage and then redirect to "/"
            localStorage.removeItem(config.localStoreToken);
-           Router.replace("/auth/login");
+           Router.replace("/auth/crypto/login");
         }
        }
       }
