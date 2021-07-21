@@ -67,9 +67,9 @@ function Login() {
             setUTToLS(data.user_token);
              setErrormsg(null);
          setSuccessmsg(message);
-         setSubmitting(isLoading)
-        //  context.dispatch({type:"userInfo", value: datares.data.user});
-         router.push('/portal/dashboard');
+         setSubmitting(isLoading);
+        context.dispatch({type:"userInfo", value: data.user});
+         //router.push('/portal/dashboard');
          }
        }
 

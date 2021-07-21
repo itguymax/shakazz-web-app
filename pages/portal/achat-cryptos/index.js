@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react'
-import Public from '../../src/layouts/Public'
+import Public from '../../../src/layouts/Public'
 import {Global,css} from "@emotion/react"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { achatCrypto } from "../../src/validations";
-import { useAppContext } from '../../src/context';
+import { achatCrypto } from "../../../src/validations";
+import { useAppContext } from '../../../src/context';
 import { useRouter } from 'next/router';
-import {useDepositCrypto} from '../../src/hooks';
-import Toast from "../../src/components/forms/Toast";
+import {useDepositCrypto} from '../../../src/hooks';
+import Toast from "../../../src/components/forms/Toast";
+import withAuth from '../../../src/hoc/withAuth';
+import Portal from "../../../src/layouts/Portal.js";
 import {
   Card,
   Container,
@@ -19,12 +21,12 @@ import {
   Progress,
   Form,Modal, ModalHeader, ModalBody, ModalFooter
 } from "reactstrap"
-import Sinput from "../../src/components/forms/Sinput";
-import {cp_init} from "../../src/helpers/cp";
-import { useConverter,useConverterAl1 } from '../../src/hooks';
+import Sinput from "../../../src/components/forms/Sinput";
+import {cp_init} from "../../../src/helpers/cp";
+import { useConverter,useConverterAl1 } from '../../../src/hooks';
 //import { v4 as uuidv4 } from 'uuid';
 import {useMutation, useQueryClient} from 'react-query';
-export default function BuyCryptos() {
+function BuyCryptos() {
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(achatCrypto),
   });
@@ -89,7 +91,7 @@ export default function BuyCryptos() {
      }
   };
   return (
-    <Public>
+    <Portal>
     <Global
     styles={css`
       /*Responsive*/
@@ -98,19 +100,19 @@ export default function BuyCryptos() {
       }
         .table th{
           background-color:white !important;
-          color:#244230 !important;
+          color:#143527 !important;
           font-size:1.3em;
         }
         .table td{
-          color:white !important;
+          color:#143527 !important;
           font-size:1.3em;
           text-align:center;
         }
     `}
   />
-    <div style={{backgroundColor:"#244230",paddingBottom:"2em",paddingTop:"2em"}}>
+    <div style={{paddingBottom:"2em",paddingTop:"2em"}}>
     <Container>
-    <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#fff"}}>Formulaire d'achat de cryptomonaie</h1>
+    <h1 style={{font: 'normal normal italic 30px/35px Ubuntu', color: "#143527"}}>Formulaire d'achat de cryptomonaie</h1>
       <Form onSubmit={handleSubmit(handleMoney)}>
       <Row>
           <Col sm={{ size: '9', offset: 1 }}>
@@ -122,6 +124,7 @@ export default function BuyCryptos() {
                  defaultOption={""}
                  placeholder="Choix de la cryptomonaie à acheter"
                  dd
+                 labelColor="#143527"
                  register={()=>{}}
                  onSelect={handleOnSelectTypeCrypto}
                />
@@ -129,6 +132,7 @@ export default function BuyCryptos() {
                 label="Adresse wallet à créditer"
                 name="wallet"
                 inline
+                labelColor="#143527"
                 placeholder="3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5"
                 type="text"
                 inputBg="#679966"
@@ -144,6 +148,7 @@ export default function BuyCryptos() {
                 label="Montant à verser"
                 name="amount"
                 inline
+                labelColor="#143527"
                 placeholder="0"
                 usd
                 inputBg="#679966"
@@ -161,6 +166,7 @@ export default function BuyCryptos() {
                name="email"
                inline
                inputBg="#679966"
+               labelColor="#143527"
                placeholder="Entrez votre adresse mail"
                type="text"
                register={register}
@@ -196,6 +202,7 @@ export default function BuyCryptos() {
       </Container>
       <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </div>
-  </Public>
+  </Portal>
   )
 }
+export default withAuth(BuyCryptos);

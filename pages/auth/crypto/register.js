@@ -105,8 +105,8 @@ const { register, handleSubmit, watch, errors } = useForm({
        if(success) {
          setSubmitting(true);
          setErrormsg(null);
-         setSuccessmsg(message);
-        //setUserDataContext(data.user);
+         setSuccessmsg(message);console.log(data);
+        setUserDataContext(data.user);
          router.push('/portal/dashboard_crypto');
        }
 

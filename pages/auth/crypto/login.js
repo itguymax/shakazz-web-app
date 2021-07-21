@@ -2,7 +2,7 @@ import React, {useRef, useState, useEffect} from "react";
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { loginUserCrypto } from '../../../src/services/auth.service'
+import { loginUserCrypto,loginUser } from '../../../src/services/auth.service'
 import connfig from '../../../src/config';
 import { device } from '../../../src/lib/device.js';
 import {Global,css} from "@emotion/react"
@@ -31,7 +31,7 @@ import { useAppContext } from '../../../src/context';
 
 function Login() {
   const context = useAppContext();
-  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Login User",loginUserCrypto)
+  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Login User",loginUser)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
@@ -67,7 +67,7 @@ function Login() {
             setUTToLS(data.user_token);
              setErrormsg(null);
          setSuccessmsg(message);
-         setSubmitting(isLoading);
+         setSubmitting(isLoading);console.log(data);
          //context.dispatch({type:"userInfoCrypto", value: datares.data.user});
          router.push('/portal/dashboard_crypto');
          }

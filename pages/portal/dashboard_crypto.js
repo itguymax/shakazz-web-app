@@ -26,7 +26,7 @@ import {
   Media,Jumbotron
 } from "reactstrap";
 // layout for this page
-import Portal_Crypto from "../../src/layouts/Portal_Crypto.js";
+import Portal from "../../src/layouts/Portal.js";
 // core components
 import {
   chartOptions,
@@ -50,9 +50,11 @@ function Dashboard( props ) {
   const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
   const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
   const [token, setToken]= useState(context.appState.accessToken);
-
+      if(userDataLoading){
+        return <DataLoader/>
+      }
   return (
-    <Portal_Crypto>
+    <Portal>
     <Global
     styles={css`
     `}
@@ -80,7 +82,7 @@ function Dashboard( props ) {
         </tbody>
       </Table>
       </Container>
-    </Portal_Crypto>
+    </Portal>
   )
 }
 

@@ -23,7 +23,7 @@ function Portal(props) {
         return routes[i].displayName;
       }
       if(routes[i].children){
-       
+
          for (let j = 0; j < routes[i].children.length; j++){
            if (router.route.indexOf(routes[i].children[j].layout + routes[i].children[j].path) !== -1) {
         return routes[i].children[j].displayName;
@@ -33,7 +33,7 @@ function Portal(props) {
     }
     return "SHAKAZZ";
   };
-  
+
   return (
     <>
       <Sidebar
@@ -46,7 +46,7 @@ function Portal(props) {
         }}
       />
       <div className="main-content" ref={mainContentRef}>
-        <AdminNavbar {...props} brandText={getBrandText()} />
+        {/*<AdminNavbar {...props} brandText={getBrandText()} />*/}
         {props.children}
         {/* <Container fluid>
           <AdminFooter />

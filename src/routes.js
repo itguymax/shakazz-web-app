@@ -89,7 +89,7 @@
   ]
   }
 ];*/
-var routes = [
+const routes = [
   {
     path: "/dashboard_crypto",
     name: "Dashboard",
@@ -99,5 +99,16 @@ var routes = [
     icon2:"/assets/img/icons/dashboard/home1.svg",
     layout: "/portal",
     children:[],
+  },
+  {
+    path: "/achat-cryptos",
+    name: "Achat de Crypto",
+    displayName: "Achat de Crypto",
+    icon: "ni ni-world-2 text-blue",
+    layout: "/portal",
+    icon1:"/assets/img/icons/dashboard/crowndlending.svg",
+    icon2:"/assets/img/icons/dashboard/crowndlending1.svg",
+    children:[],
+
   }];
 export default routes;
