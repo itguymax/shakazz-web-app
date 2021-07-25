@@ -75,9 +75,9 @@ function Dashboard( props ) {
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>07/10/2021</td>
-            <td>100$</td>
-            <td>En attente</td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </Table>

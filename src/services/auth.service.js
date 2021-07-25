@@ -67,8 +67,8 @@ const loginUser = async (data) => {
 
    const logOutUser =  async (router) => {
      if(window !== undefined){
-         localStorage.removeItem(config.localStoreToken);
-          router.replace("/auth/login");
+         sessionStorage.setItem(config.localStoreToken,"");
+          router.replace("/auth/crypto/login");
      }
      return null ;
    }

@@ -6,7 +6,6 @@ export default {
   info: 'info',
 };
 
-
 const constantes = {
   wallets:{
     p:"principal",

@@ -118,8 +118,7 @@ const depotBTCSchema = yup.object().shape({
 
 const achatCrypto = yup.object().shape({
   wallet: yup.string("Veuillez entré une adresse valide").required("Entrez l'adresse de votre wallet"),
-  amount: yup.number("Veuillez entré un nombre").min(10, "Le Montant Minimum de retrait est de 10 usd").required("Entrez le montant"),
-  email: yup.string().required("Adresse email nécessaire").matches(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, "Entrez une adresse email valide")
+  amount: yup.number("Veuillez entré un nombre").min(10, "Le Montant Minimum de retrait est de 10 usd").required("Entrez le montant")
 })
 
 const retraitSchema = yup.object().shape({

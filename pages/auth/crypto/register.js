@@ -10,7 +10,7 @@ import {
   Col,
   Spinner,
 } from "reactstrap";
-import { signupUserCrypto } from '../../../src/services/auth.service'
+import { signupUserCrypto,signupUser } from '../../../src/services/auth.service'
 // layout for this page
 import Auth from "../../../src/layouts/Auth.js";
 import { useRouter } from 'next/router'
@@ -72,7 +72,7 @@ const { register, handleSubmit, watch, errors } = useForm({
   const [submitting, setSubmitting] = useState(false);
   const [iref,setiref ] = useState(router.query.ref);
   const [selectedOption, setSelectedOption] = useState(options[Math.floor(Math.random() * options.length )]);
-  const { setUserDataContext } = useAppContext();
+  //const { setUserDataContext } = useAppContext();
   const togglebg = {
     backgroundColor: isParticular ? '#CC9933':'#fff'
   }
@@ -99,14 +99,14 @@ const { register, handleSubmit, watch, errors } = useForm({
         setSuccessmsg(null);
         setErrormsg(message);
          setSubmitting(false);
-        setResponseAlert({error:true,message:"Une erreur s'est produite"});
+        setResponseAlert(data);
         setAlertVisible(true);
        }
        if(success) {
          setSubmitting(true);
          setErrormsg(null);
          setSuccessmsg(message);console.log(data);
-        setUserDataContext(data.user);
+        //setUserDataContext(data.user);
          router.push('/portal/dashboard_crypto');
        }
 

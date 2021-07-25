@@ -72,11 +72,10 @@ function BuyCryptos() {
   }
   const {mutateAsync, isLoading, isError, isSuccess}  = useDepositCrypto();
   const handleMoney = async (hookData)=>{
-    const {wallet, amount, email } = hookData;
+    const {wallet, amount} = hookData;
     const body = {
       data: {
           address:wallet,
-          email:email,
           crypto:"btc"
           //crypto:actualCrypto
       }
@@ -161,21 +160,6 @@ function BuyCryptos() {
                  <span className="text-danger font-weight-700">{errors.amount.message}</span>
 
              </div>}
-              <Sinput
-               label="Email"
-               name="email"
-               inline
-               inputBg="#679966"
-               labelColor="#143527"
-               placeholder="Entrez votre adresse mail"
-               type="text"
-               register={register}
-               onSelect={()=>{}}
-             />{errors.email && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
-
-                <span className="text-danger font-weight-700">{errors.email.message}</span>
-
-            </div>}
              <Table bordered>
               <thead>
                 <tr>
