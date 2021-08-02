@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { passwordSchema } from "../validations";
 import Sinput from "../components/forms/Sinput"
-import { Form, Button} from 'reactstrap'; 
-
-export default function Modificationpwd({onSubmit,Schema, label, sublabel}) {
+import { Form, Button, Spinner} from 'reactstrap'; 
+import {css} from "@emotion/react";
+import {device } from "../lib/device";
+export default function Modificationpwd({successmsg,errormsg,onSubmit,schema,loading, label, sublabel}) {
   const { register, handleSubmit, watch, errors } = useForm({
-    resolver: yupResolver(passwordSchema),
+    resolver: yupResolver(schema),
   });
   const [show, setShow] = useState(false);
   const [shownp, setShownp] = useState(false);
@@ -16,10 +17,15 @@ export default function Modificationpwd({onSubmit,Schema, label, sublabel}) {
   const handleToggleshow = () => setShow(!show);
   const handleToggleshowrnp = () => setShowrnp(!showrnp);
   return (
-    <Form role="form" className="my-3" onSubmit={handleSubmit(onSubmit)}>
+    <Form role="form" className="mt-3 mb-5" onSubmit={handleSubmit(onSubmit)}>
         <div><h3 style={{font: "normal normal bold 20px/24px Ubuntu", color:"#679966"}}>{label}</h3></div>
          {sublabel &&<h5 style={{color: "#707070", fontSize:"16px"}}>{sublabel}</h5>}
-        <div style={{marginRight:"200px"}}>
+        <div css={css`
+              
+              @media ${device.laptop} {
+                margin-right:100px;
+          }
+        `}>
            <Sinput
               name="oldPassword"
               placeholder="********************"
@@ -76,8 +82,18 @@ export default function Modificationpwd({onSubmit,Schema, label, sublabel}) {
                   <span className="text-danger font-weight-700">{errors.repeatNewPassword.message}</span>
                
               </div> }
+              { successmsg && ( <div className="text-muted font-italic">
+                
+                  <span className="text-success font-weight-700">{successmsg}</span>
+               
+              </div>)} 
+              { errormsg && ( <div className="text-muted font-italic">
+                
+                  <span className="text-danger font-weight-700">{errormsg}</span>
+               
+              </div>) }
           <Button className="py-0 mb--4" type="submit"  style={{ backgroundColor:'#679966', borderColor:'#679966', borderRadius:'40px', height:"40px"}} >
-            Confirmer
+            {loading ? <Spinner size="sm" color="#cc993a" />: "Confirmer"}
           </Button>
         </div>
     </Form>

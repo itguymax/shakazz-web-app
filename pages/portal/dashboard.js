@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
@@ -6,7 +6,13 @@ import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
 import settings from "../../src/__MOCK__/settings";
-
+import { QueryClient, useQuery } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {Global,css} from "@emotion/react"
+import {useAppContext} from "../../src/context";
+import moment from "moment";
+import Image from "next/image";
 // reactstrap components
 import {
   Card,
@@ -17,7 +23,7 @@ import {
   Button,
   Table,
   Progress,
-  Media,
+  Media,Jumbotron
 } from "reactstrap";
 // layout for this page
 import Portal from "../../src/layouts/Portal.js";
@@ -26,17 +32,33 @@ import {
   chartOptions,
   parseOptions,
 } from "../../variables/charts.js";
+import { device } from '../../src/lib/device';
 import  { Link } from "../../src/components/Link";
+import  ToolipComp from "../../src/components/forms/Toolip";
 import  LightBoxContainer from '../../src/components/common/lightBoxContainer';
+import DashboardWallets from '../../src/components/DashboardWallets';
 import ProgressBar from "../../src/components/ProgressBar";
 import { currentUser } from "../../src/__MOCK__/user";
 import { isDirective } from "graphql";
 import withAuth from '../../src/hoc/withAuth';
-
-function Dashboard() {
+import { constantes  } from "../../src/config/";
+import {  useFetchAlltransactions,useFetchUserInfos } from "../../src/hooks";
+import DataLoader from "../../src/components/common/DataLoader";
+let c;
+function Dashboard( props ) {
   const [activeNav, setActiveNav] = useState(1);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const tooltipToggle = () => setTooltipOpen(!tooltipOpen);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
-
+  const [page, setPage] = useState(1);
+  const [transData, setTransData] = useState([])
+  const [element, setElement] = useState(10);
+  const [copied, setCopied] = useState(false);
+  const context = useAppContext();
+  const { data: userData, isLoading: userDataLoading } = useFetchUserInfos(context.appState.accessToken);
+  const {mutateAsync: allMutation, isLoading } = useFetchAlltransactions();
+  const [token, setToken]= useState(context.appState.accessToken);
+  const [isUserInfoCompleted , setUserInfoCompleted] = useState(false);
   if (window.Chart) {
     parseOptions(Chart, chartOptions());
   }
@@ -46,24 +68,137 @@ function Dashboard() {
     setActiveNav(index);
     setChartExample1Data("data" + index);
   };
+    const fetchInitData = async () => {
+    const body = {
+     page, element
+   }
+    const {data: initData} = await allMutation({accessToken:context.appState.accessToken, data:body});
+
+     console.log("init data", initData);
+    setTransData(initData.transactions);
+  }
+
+
+  useEffect( async()=> {
+   await fetchInitData();
+
+  },[])
+
+  if(userDataLoading){
+    return <DataLoader/>
+  }
+   console.log("user data loading", userData);
+  // console.log("slice 10", transData.slice(0,10))
+   const badge ="starter";
   return (
     <Portal>
+    <Global
+    styles={css`
+      /*Responsive*/
+      .lightBoxContainer{
+        height:20em;
+      }
+      .dashboard_presentation_box{
+        border-radius:6px;
+        padding-top:0.5em;
+        padding-bottom:0.6em;
+        background-color:#f6f6f6 !important;
+      }
+      .dashboard_presentation_container{
+      }
+      .dashboard_presentation_box h2{
+        color:black;
+      }
+      @media ${device.sTablet} {
+        .lightBoxContainer{
+          height:25em;
+        }
+        }
+        @media ${device.surfaceDuo} {
+          .lightBoxContainer{
+            height:20em;
+          }
+          }
+          @media ${device.iphoneX} {
+            .lightBoxContainer{
+              height:20em !important;
+            }
+            }
+          @media ${device.bPhone} {
+            .lightBoxContainer{
+              height:18em;
+            }
+            }
+          @media ${device.sPhone} {
+            .lightBoxContainer{
+              height:22em !important;
+            }
+            }
+      @media ${device.mPhone} {
+        .lightBoxContainer{
+          height:24em !important;
+        }
+        }
+    `}
+  />
       <Container>
-      <h1>Dashboard</h1>
-      <a href="/portal/daily_transactions">daily t</a>
-         <Row className="mt-5">
-           <Col className="mb-5 mb-xl-0" xl="9">
+       {userDataLoading? null : (
+         <div style={{display: "flex", flexDirextion:"row"}}>
+         <Row>
+          <Col class="sm-8">
+            <div style={{paddingBottom:"0em"}}>
+               <Jumbotron fluid className="dashboard_presentation_box">
+                 <Container id="detectToolipComp" fluid className="dashboard_presentation_container">
+                   <h2 className="display-5">Votre lien d'affiliation</h2>
+                   <div style={{cursor: "pointer"}}>
+                   <CopyToClipboard className="mr-2" text={userData? userData?.data?.user?.affiliationLink:""}
+                   onCopy={() =>
+                     setCopied(true)
+                   }>
+                   {copied ? <span style={{color: '#cc9933'}}>{userData? userData?.data?.user?.affiliationLink: ""}</span> : <span style={{color: 'black'}}>{userData? userData?.data?.user?.affiliationLink: ""}</span>}
+                 </CopyToClipboard>
+                 </div>
+                 <ToolipComp position="bottom" message="Cliquez sur le lien pour le copier" tooltipOpen={tooltipOpen} toggle={tooltipToggle}/>
+                 </Container>
+               </Jumbotron>
+             </div>
+          </Col>
+          <Col class="sm-4">
+          <div>
+             <Jumbotron fluid className="dashboard_presentation_box">
+               <Container fluid>
+                 <h2 className="display-5">Votre chiffre d'affaire</h2>
+                 <div className="ml-4 display-5">
+                    <span>Personnel :  </span>{(userData?.data?.user?.chiffreDaffaire?.generalPersonnel).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                    <br/>
+                    <span> Géneration:  </span>{(userData?.data?.user?.chiffreDaffaire?.generalChildren).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+                 </div>
+               </Container>
+             </Jumbotron>
+           </div>
+          </Col>
+         </Row>
+        </div>
+       ) }
+         <Row>
+           <Col xl="9">
               <LightBoxContainer borderLess bg="#f6f6f6" direction="row">
-                <Col xl="8" className="p-4 col-xl-8" >
-                  <div>
-                      <h2 style={{font:'normal italic bold 18px/19px Ubuntu', color: '#444'}} >Bon retour Yvan,</h2>
-                      <p style={{fontSize: '14px', lineHeight: '1.5'}}>La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
-                      <Link label="Consulter" path="/portal/legacy" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+              <Row style={{width:"100%",marginTop:"-2em"}}>
+                <Col className="col-xl-8">
+                  <div style={{paddingBottom:"0.5em !important"}} className="lightBoxContainer">
+                    <Jumbotron style={{backgroundColor:"#f6f6f6"}}>
+                      <h1 className="display-5" style={{color:"black"}}>{`Bon retour ${userData?.data.user.psedo || ""},`}</h1>
+                      <p className="lead">La liquidité est débloquée au terme <br/> des 360 jours après l'ouverture et  <br/> création du vault</p>
+                      <p className="lead">
+                        <Link label="Consulter" path="/portal/crowdlending" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                      </p >
+                    </Jumbotron>
                   </div>
                 </Col>
-                <Col xl="4" >
-                    <ProgressBar percentage={75}  bgc="#f6f6f6"/>
+                <Col sm="4" style={{display: 'flex', alignItems:'center', justifyContent: 'center'}} className="col-xl-4">
+                    <ProgressBar percentage={userData?.data.user?.generalPercentage || 0}  bgc="#f6f6f6"/>
                 </Col>
+                </Row>
              </LightBoxContainer>
              <Row className="mt-5">
                 <Col xl="8">
@@ -86,100 +221,36 @@ function Dashboard() {
                             <th scope="col">Type</th>
                             <th scope="col">Status</th>
                             <th scope="col">Montant</th>
-                            <th scope="col">Détails</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>4,569</td>
-                            <td>340</td>
-                            <td>4,569</td>
-                            <td>340</td>
-                            <td>
-                              46,53%
-                            </td>
+
+                        { isLoading? <span> Loading...</span>:
+                           <tbody>
+                           {
+                           transData.length > 0 ? <>
+                           {
+                               transData.slice(0,10).map((item, key)=>
+                            <tr key={key}>
+                            <th scope="row"> {item._id}</th>
+                            <td>{ moment(item.createdAt).format('YYYY/MM/DD')}</td>
+                            <td>{item.type}</td>
+                            <td>{item.statut}</td>
+                            <td>{(item?.montantUSD || 0 ).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</td>
                           </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>3,985</td>
-                            <td>319</td>
-                            <td>3,985</td>
-                            <td>319</td>
-                            <td>
-                              46,53%
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>3,513</td>
-                            <td>294</td>
-                            <td>3,513</td>
-                            <td>294</td>
-                            <td>
-                              36,49%
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>2,050</td>
-                            <td>147</td>
-                            <td>2,050</td>
-                            <td>147</td>
-                            <td>
-                            50,87%
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">/argon/</th>
-                            <td>1,795</td>
-                            <td>190</td>
-                            <td>1,795</td>
-                            <td>190</td>
-                            <td>
-                              46,53%
-                            </td>
-                          </tr>
-                        </tbody>
+                          )
+
+                           }</>: <div style={{display: 'flex', alignItems:'center', justifyContent: 'center'}}> <span>Aucune transactions</span></div>
+                         }
+                         </tbody>
+                        }
+
+
                       </Table>
                    </LightBoxContainer>
+
                 </Col>
                   <Col xl="4">
-                    <LightBoxContainer>
-                      <div className="container p-4">
-                        <div >
-                          <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet principal</h2>
-                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 30px/35px Ubuntu',color: '#444',  lineHeight: '1.2'}}> {(29000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
-                          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
-                            <Link label="Dépôt" path="/portal/depot" style={{ background: '#007A5E 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                            <Link label="Retrait" path="/portal/retrait" style={{ background: '#CE1126 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                            <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                          </div>
-                        </div>
-                      </div>
-                   </LightBoxContainer>
-                    <LightBoxContainer>
-                      <div className="container p-4">
-                        <div >
-                          <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet vault</h2>
-                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 40px/45px Ubuntu',color: '#444',  lineHeight: '1.2'}}>{(250000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
-                          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
-                            <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                          </div>
-                        </div>
-                      </div>
-                   </LightBoxContainer>
-                    <LightBoxContainer>
-                      <div className="container p-4">
-                        <div >
-                          <h2 style={{font: 'normal normal italic 16px/18px Ubuntu', color: '#444'}} >Wallet Networking</h2>
-                          <h1 className="mb-4 mt-4" style={{font: 'normal normal normal 40px/45px Ubuntu',color: '#444',  lineHeight: '1.2'}}> {(29000).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</h1>
-                          <div style={{display: 'flex', flexDirection: 'row', justifyContent:'space-between'}}>
-                            <Link label="Transfert" path="/portal/transfert" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                          </div>
-                        </div>
-                      </div>
-                   </LightBoxContainer>
+                    <DashboardWallets/>
                  </Col>
              </Row>
            </Col>
@@ -198,41 +269,57 @@ function Dashboard() {
                     <div >
                     <h2 style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Profil</h2>
                      <Media className="">
-                      
                           <img
                           className=" avatar rounded-circle mr-3"
-                            alt={currentUser.name + "avatar"}
-                            src={currentUser.avatarUrl}
-                          ></img>
-                        
+                            alt={userData?.data.user?.lastName + "avatar"}
+                            src={userData?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
+                          ></img> 
                       <div style={{flexDirection:"column", display:"flex"}}>
                         <span className=" name  ">
-                          {currentUser.name}
+                          {userData?.data.user?.lastName}
                         </span>
                         <span className="  mb-0 text-sm">
-                          {currentUser.gender}
+                          {userData?.data?.user?.gender}
                         </span>
-                        <span className=" mb-0 text-sm">
-                         {currentUser.age}
-                        </span>
+                        {userData?.data?.user?.dateOfbirth && <span className=" mb-0 text-sm">
+                         {new Date().getFullYear() - new Date(userData?.data?.user?.dateOfbirth).getFullYear()}
+                        </span>}
+                        
                       </div>
                     </Media>
                     <div>
-                      <img src={currentUser.address.country.flag} /> <span>{currentUser.address.country.name}</span>
-                      <p>{currentUser.phone}</p>
+                      {userData?.data.user.address?.country?.flag && <><img src={userData?.data.user.address?.country?.flag}  style={{width:"50px", height:"50px"}}/> <span>{userData?.data.user.address?.country?.name}</span> </>}
+                      {userData?.data.user.phone && <p>{"+"+userData?.data.user.address?.country?.indicatif + userData?.data.user.phone}</p>}
                     </div>
                   </div>
-                    <Link label="Mettre à jour le profil" path="/portal/profile" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
-                    
+                    <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+                       <Link label="Mettre à jour le profil" path="/portal/profile" style={{ background: '#cc993a 0% 0% no-repeat padding-box', flex:"5", cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
+                       <div style={{display:"flex", flex:"1", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                         <Image src={`/assets/img/badges/${badge}.png`} width={50} height={50} priority={true}/>
+                         <small>{userData?.data?.user?.grade}</small>
+                       </div>
+                       {/* <span
+                          style={{
+                            display: 'inline-block',
+                            marginLeft: '.5rem',
+                            width: 10,
+                            height: 10,
+                            background:  !userData?.data.user.phone || !userData?.data.user.address?.country?.name ? 'green' : 'transparent',
+                            transition: !userData?.data.user.phone || !userData?.data.user.address?.country?.name  ? 'all .3s ease' : 'none',
+                            borderRadius: '100%',
+                            transform: 'scale(2)',
+                          }}
+                       /> */}
+                    </div>
                   </div>
               </LightBoxContainer>
              <LightBoxContainer height="300px">
                 <div className="container p-4" >
                 <div className="mb-5" >
                   <h2 className="mb-3" style={{font: 'normal normal bold 16px/18px Ubuntu', color: '#444'}} >Sécurité </h2>
-                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Double vérification</p> {settings.securite.twofaActivated? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
-                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Mot de passe de transaction</p>  {settings.securite.transactionPasswordChanged? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
-                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>KYC</p>  {settings.securite.submitKyc? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Verification Email </p> {userData?.data.user.emailIsVerified? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>Double vérification</p>  {userData?.data.user.twofaIsVerified? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
+                  <div style={{display:'flex', flexDirection:"row", justifyContent:"space-between"}}> <p style={{fontSize: '16px', lineHeight: '1.2'}}>KYC</p>  {userData?.data.user.kycIsVerified? <span style={{color:"#32DC00", fontSize:'25px', marginTop:'-5px'}}>&#10003;</span>:<span style={{color:"#EF2929", fontSize:'25px', marginTop:'-5px'}}>&#10007;</span>}</div>
                 </div>
                 <Link label="Mettre à jour votre sécurité" path="/portal/securite" style={{ background: '#cc993a 0% 0% no-repeat padding-box', cursor:'pointer', padding:'10px', borderRadius:'6px',  font: 'normal italic normal 13px/14px Ubuntu', color:'#fff'}}/>
                 </div>
@@ -244,5 +331,23 @@ function Dashboard() {
   )
 }
 
+// export async function getStaticProps() {
+//   const queryClient = new QueryClient()
+
+//   await queryClient.prefetchQuery(['posts', 10], () => fetchPosts(10))
+
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   }
+// }
+
+// export async function getStaticProps(context) {
+
+//   return {
+//     props: { userData }, // will be passed to the page component as props
+//   }
+// }
 
 export default withAuth(Dashboard);

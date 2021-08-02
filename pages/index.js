@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Router from "next/router"; 
+import Router from "next/router";
 import Public from '../src/layouts/Public';
 import UserHeader from '../src/components/Headers/UserHeader';
 import SEO from '../src/components/Seo';
@@ -61,9 +61,9 @@ function Index() {
         />
       </Head>
       <div>
-    <Carousel className="home_page_section_shakazz" 
+    <Carousel className="home_page_section_shakazz"
         css={css` 
-             
+
               .carousel-indicators .active {
                 background-color: #CC9933;
                 opacity: 1;
@@ -77,7 +77,7 @@ function Index() {
               }
               }
         `}
-    > 
+    >
       <Carousel.Item>
           <Jumbotron className="home_page_section_shakazz_jumbotron mb-7" css={css`
           @media ${device.smMobileMax}{
@@ -85,7 +85,7 @@ function Index() {
           }
       `}>
             <h1>Découvrez  et profitez de la puissance du crowdlending.</h1>
-            <p> 
+            <p>
               Shakazz vous propose de participer à des  pools de liquidités avec des récompenses échelonnées sur l’année.  Profitez-en et choisissez l’échéance qui vous convient dans nos plans.
             </p>
             <p>
@@ -99,7 +99,7 @@ function Index() {
         <Jumbotron className="home_page_section_shakazz_jumbotron" >
             <h1>Faites croître votre patrimoine</h1>
             <p>
-              Avec Shakazz, construisez une relation forte de confiance dans un système qui récompense efficacement ceux qui l’alimente. 
+              Avec Shakazz, construisez une relation forte de confiance dans un système qui récompense efficacement ceux qui l’alimente.
             </p>
             <p>
               <Button onClick={gotoService} variant="primary">En savoir plus</Button>
@@ -134,21 +134,21 @@ function Index() {
         <p>
          Shakazz est une plateforme de solution financières par le biais de crypto-monnaies.
 Nous implémentons un ensemble de solutions connectées, pour divers clients, grâce aux possibilités nombreuses et
-avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et du networking implémentés par nos algorithmes. 
+avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et du networking implémentés par nos algorithmes.
         </p>
         <br/>
-        
+
        <Link href="/about-us">
-           <h4> En savoir plus <img className = "home_page_section_presentation_jombotron_icon" src = "/assets/img/icons/arrow white.svg"/> </h4> 
+           <h4> En savoir plus <img className = "home_page_section_presentation_jombotron_icon" src = "/assets/img/icons/arrow white.svg"/> </h4>
        </Link>
 
     </Jumbotron>
      <NousChoisir/>
-     <NotreMarche/> 
+     <NotreMarche/>
      <Plans/>
-     <PreInscription bleu/>    
-     
-    
+     <PreInscription bleu/>
+
+
       <Confiance/>
        <Container fluid className=" py-6 home_page_section_started">
         <Row className="jutify-content-center">
@@ -159,16 +159,16 @@ avant-gardistes qu’offrent la blockchain. Il s’agit ainsi du crowdlending et
             <Jumbotron className="home_page_section_started_jumbotron">
               <h1>Prêt à commencer ?</h1>
               <p>
-                Rejoignez-nous à Yaoundé Cameroun, 
-au lieu-dit Quartier Fouda, 
+                Rejoignez-nous à Yaoundé Cameroun,
+au lieu-dit Quartier Fouda,
 Rue 113
               </p>
               <p>
-                <center><Button className="px-5 py-2" onClick={()=> {
+                <Button className="px-5 py-2 text-center" onClick={()=> {
                   if(window){
                     window.open(config.preInscriptionLink);
                   }
-                }} >Commencez</Button></center>
+                }} >Commencez</Button>
               </p>
                 </Jumbotron>
           </Col>

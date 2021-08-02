@@ -3,8 +3,10 @@ import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../src/services/auth.service'
-import {Spinner} from "reactstrap"
 import connfig from '../../src/config';
+import { device } from '../../src/lib/device.js';
+import {Global,css} from "@emotion/react"
+import Toast from "../../src/components/forms/Toast";
 // reactstrap components
 import {
   Button,
@@ -13,6 +15,7 @@ import {
   CardBody,
   Form,
   Row,
+  Spinner,
 } from "reactstrap";
 // layout for this page
 import Auth from "../../src/layouts/Auth.js";
@@ -22,17 +25,20 @@ import { loginSchema } from "../../src/validations";
 import Head from "next/head";
 import config from "../../src/config";
 import {useMutation, useQueryClient} from 'react-query';
+import { setUTToLS } from '../../src/helpers/token';
+import { useAppContext } from '../../src/context';
 
 
 function Login() {
-  const { mutateAsync, isLoading} = useMutation("Login User",loginUser)
+  const context = useAppContext();
+  const { mutateAsync, isLoading, isError, isSuccess} = useMutation("Login User",loginUser)
   const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(loginSchema),
   });
-  useEffect(()=>{
-    router.push("pre-inscription");
-  })
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const onDismiss = () => setAlertVisible(false);
   const recaptchaRef = useRef();
   const [show, setShow] = useState(false);
   const [verified, setVerified]= useState(false);
@@ -42,7 +48,7 @@ function Login() {
   const handleToggleshow = () => setShow(!show);
   const executeCaptcha = () => setVerified(!verified);
   const onSubmit = async (hookData)  => {
-    
+
      let userdata;
     if(verified){
       setSubmitting(isLoading);
@@ -54,26 +60,52 @@ function Login() {
        if(error && !success){
         setSuccessmsg(null);
         setErrormsg(message);
-       
+
        } else {
          if( typeof window !== "undefined"){
-             localStorage.setItem(config.localStoreToken, data.user_token);
+           //console.log("window", data.user_token);
+            setUTToLS(data.user_token);
              setErrormsg(null);
          setSuccessmsg(message);
-         setSubmitting(isLoading)
-         router.push('/portal/dashboard');
-         }     
+         setSubmitting(isLoading);
+        context.dispatch({type:"userInfo", value: data.user});
+         //router.push('/portal/dashboard');
+         }
        }
-       
+
    }catch(err){
         console.log("error", err);
    }
    } else {
-     alert("Vous n'êtes pas humain")
+     setResponseAlert({error:true,message:"Vous n'êtes pas humain!"});
+     setAlertVisible(true);
    }
-  };
+ };
+ useEffect(() => {
+    // Prefetch the dashboard page
+    router.prefetch('/portal/dashboard');
+  }, [])
   return (
     <>
+    <Global
+    styles={css`
+      @media only screen and ${device.mPhone} {
+        .auth_block_illustration{
+          display:none;
+        }
+        }
+      @media only screen and ${device.bPhone} {
+        .auth_block_illustration{
+          display:none;
+        }
+      }
+      @media only screen and ${device.sTablet} {
+        .auth_block_illustration{
+          display:none;
+        }
+      }
+    `}
+    />
       <Head>
         {/* META tags */}
         <title>Connexion | Shakazz</title>
@@ -113,10 +145,10 @@ function Login() {
       <Row>
         <Card className="bg-white container border-0" style={{minWidth:'100%'}}>
           <CardHeader className="bg-transparent px-lg-5 ">
-        
+
             <div className="text-muted mt-2 mb-1">
               <h2 style={{marginBottom:'0px'}} className="text-md-right mb-md-4">Inscription</h2>
-              
+
               <a style={{font: 'normal normal bold 42px/48px Ubuntu', color: '#121212'}} onClick={(e) => e.preventDefault()}>
                   Hi, welcome back
                 </a>
@@ -138,9 +170,9 @@ function Login() {
               iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
             />
              {errors.userName && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.userName.message}</span>
-               
+
               </div> }
             <Sinput
               label="Mot de passe"
@@ -155,9 +187,9 @@ function Login() {
               iStyle={{ borderRadius:"10px",backgroundColor: "#f5f5f5", overflow:"hidden"}}
             />
                {errors.password && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errors.password.message}</span>
-               
+
               </div> }
               <div className="text-right ">
                <a
@@ -168,22 +200,22 @@ function Login() {
                   <span className="text-muted">Mot de passe oublié?</span>
                 </a>
               </div>
-              
+
              <Captcha recaptchaRef={recaptchaRef} onChange={executeCaptcha}/>
-             
+
               <div className="text-center" >
                   {errormsg && <div className="text-muted font-italic">
-                
+
                   <span className="text-danger font-weight-700">{errormsg}</span>
-               
+
               </div> }
               {successmsg && <div className="text-muted font-italic">
-                
+
                   <span className="text-success font-weight-700">{successmsg}</span>
-               
+
               </div> }
                 <Button className="mt-3 mb-1"  disabled={isLoading} type="submit" style={{width:'50%', backgroundColor:'#679966', borderColor:'#679966'}} >
-                    {isLoading? <Spinner size="sm" color="#cc993a" />: "S'identifier"}  
+                    {isLoading? <Spinner size="sm" color="#cc993a" />: "S'identifier"}
                 </Button>
                 <div>
                   <a
@@ -193,19 +225,19 @@ function Login() {
                     <small>Vous n'avez pas encore de compte?</small>
                   </a>{" "}
                   <a
-                    href="/auth/register" 
+                    href="/auth/register"
                   >
                     <small className="text-bold font-weight-bold ml-1" >S'inscrire</small>
                   </a>
-                
+
              </div>
               </div>
-              
+
             </Form>
           </CardBody>
         </Card>
-        
       </Row>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   );
 }

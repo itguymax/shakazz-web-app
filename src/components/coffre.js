@@ -1,18 +1,29 @@
 import React, {useEffect, useState} from 'react'
 import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import LightBoxContainer from "../components/common/lightBoxContainer";
-import { Container, Row,Col } from "reactstrap";
+import { Container, Row,Col, Spinner } from "reactstrap";
 import {  FlatButton} from "./common/SButton";
 import ProgressBar from "../components/ProgressBar";
+import {useClaimChest, useChestDailyTransactions}  from "../hooks";
+import { useAppContext } from '../context';
+import { useRouter } from 'next/router';
+import Toast from "./forms/Toast";
 
-export default function coffre( {pool, capital, periode, interet, index, date}) {
+export default function coffre( {pool, item, index}) {
+
+  const context = useAppContext();
+  const router = useRouter();
+  const { mutateAsync, isLoading } = useClaimChest();
+  const onDismiss = () => setAlertVisible(false);
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  // const {mutateAsync: dailyTMutation, isLoading: dailyTLoad } = useChestDailyTransactions();
      const calculateTimeLeft = () => {
-      const createdTime = new Date(date);
-    const difference =  createdTime.setDate(createdTime.getDate() + 7)  - +new Date()  ;
+      const createdTime = new Date(item.createdAt);
+    const difference =  createdTime.setDate(createdTime.getDate() + 1)  - +new Date()  ;
   //  console.log("created time", createdTime);
   //  console.log("7 days later", createdTime.setDate(createdTime.getDate() + 7) )
     let timeLeft = {};
-
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)) || "00",
@@ -48,9 +59,27 @@ export default function coffre( {pool, capital, periode, interet, index, date}) 
       setTimeLeft(calculateTimeLeft());
     }, 1000);
   });
-  const percentage = 75;
-
-  // let interet = (parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence);
+  useEffect(()=>{
+    router.prefetch("/portal/daily-transactions");
+  }, []);
+  const percentage =((item.chestReciveROI/item.interet) * 100).toFixed(2);
+  // console.log("pourcentageeeee", percentage,item.chestReciveROI,item.interet )
+ const claimgain = async () => {
+   try{
+     const res = await mutateAsync({accessToken: context.appState.accessToken, chestID:item._id});
+    //  console.log("claim response ", res);
+    setResponseAlert(res);
+    setAlertVisible(true);
+   } catch(err){
+     console.log(err);
+   }
+  //  console.log("claim chest", item);
+ }
+ const handleChestDailyTransactions = () => {
+       router.push({pathname:'/portal/daily-transactions', query: { id: item._id },});
+ }
+  // le = (parseIn) * (parseFloat(taux)/100)) * / pool.frequence);
+  // console.log("gg item item", item);
   return (
     <>
       <LightBoxContainer>
@@ -58,33 +87,34 @@ export default function coffre( {pool, capital, periode, interet, index, date}) 
             <Row className="py-3">
                <Col xl="4">
                  <h4 style={{color:"#444", fontWeight:"600", marginBottom:"15px"}}>{`Coffre fort ${index+1}`} </h4>
-                 <h4 style={{color:"#cc9933", fontWeight:"bold"}}>{pool.name}</h4>
-                 <h4 style={{color:"#444", fontWeight:"100"}}>Montant du capital:{" "} <span style={{color:"#444", fontWeight:"bold"}}>{capital}</span></h4> 
-                 <h4 style={{color:"#444", fontWeight:"100"}}>Total récompenses:{" "}<span style={{color:"#444", fontWeight:"bold"}}>{interet}</span> </h4> 
-                 <h4 style={{color:"#444"}}>{periode}{" "}jours</h4>
+                 <h4 style={{color:"#cc9933", fontWeight:"bold"}}>{item.denominationPool || ""}</h4>
+                 <h4 style={{color:"#444", fontWeight:"100"}}>Montant d:{" "} <span style={{color:"#444", fontWeight:"bold"}}>{item.montantUSD}</span></h4>
+                 <h4 style={{color:"#444", fontWeight:"100"}}>Total récompenses:{" "}<span style={{color:"#444", fontWeight:"bold"}}>{item.interet}</span> </h4>
+                 <h4 style={{color:"#444"}}>{item.stakePeriode}{" "}jours</h4>
                </Col>
-             
+
                <Col style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
                  {timerComponents.length ? <>
-                 
+
                     <p>Votre compte sera actif dans:</p>
                     <div style={{display:"flex",flexDirection:"row", justifyContent:"space-around"}}>{timerComponents}</div>
-                 
+
                </> :
-                 
-                    (<ProgressBar percentage={percentage}/>)
-              
+
+                    (<ProgressBar percentage={percentage|| 0}  handleClick={handleChestDailyTransactions}/>)
+
                 }
                </Col>
              <Col xl="4" style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}} >
                 <div style={{display: "flex", justifyContent:"center", flexDirection:"column", alignItems:"center"}}>
-                    <h1 style={{color:"#444"}}>0 {" "}$</h1>
-                    <FlatButton label="Reclamer" bgc="#cc9933" width="150px"/>
+                    <h1 style={{color:"#444"}}> {`${item.gain}` + " "}$</h1>
+                    {isLoading? <Spinner size="sm" color="#cc9933" /> : <FlatButton  handleClick={claimgain} label="Reclamer" bgc="#cc9933" width="150px"/> }
                 </div>
              </Col>
             </Row>
-          </Container>  
-      </LightBoxContainer> 
+          </Container>
+      </LightBoxContainer>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </>
   )
 }

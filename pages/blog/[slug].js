@@ -1,6 +1,5 @@
-
 import { gql } from '@apollo/client';
-import { client } from '../../src/lib/apollo'; 
+import { client } from '../../src/lib/apollo';
 import Head from "next/head";
 import Image from "next/image"
 import Public from '../../src/layouts/Public';
@@ -62,13 +61,13 @@ function BlogPage({post, ...rest}){
     {/* <div>
       <h1>{post.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      
+
     </div> */}
      {/* <article
         css={css`
           width: 100%;
           display: flex;
-         
+
         `}
       >
         <Container
@@ -82,7 +81,7 @@ function BlogPage({post, ...rest}){
               text-align: center;
               margin-bottom: 20px;
               margin-top: 0;
-              
+
             `}
           >
             {post?.title}
@@ -91,11 +90,10 @@ function BlogPage({post, ...rest}){
             <div
               css={css`
                 text-align: center;
-
                 p {
                   margin-bottom: 0;
                 }
-               
+
               `}
             >
               <Image
@@ -104,14 +102,14 @@ function BlogPage({post, ...rest}){
                 width={700}
                 height={400}
               />
-             
+
             </div>
           )}
           <br />
-         
+
            <div dangerouslySetInnerHTML={{ __html: post?.content }} />
         </Container>
-       
+
       </article> */}
       <div
       css={css`
@@ -125,7 +123,7 @@ function BlogPage({post, ...rest}){
     >
       <h1>POST PAGE NOT FOUND</h1>
       <p>{`You just hit a route that doesn't exist... the sadness.`}</p>
-    </div> 
+    </div>
        {/* <Container css={css`
             padding-top: 20px;
             width: 70%;

@@ -13,10 +13,12 @@ import "../public/assets/css/shakazz.css";
 import 'react-circular-progressbar/dist/styles.css';
 import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Hydrate} from 'react-query/hydration'
 const queryClient = new QueryClient();
 // import "../styles/nextjs-argon-dashboard.css"
 import {client } from "../src/lib/apollo"
 import { AppWrapper } from '../src/context'
+import config from "../src/config/index.js";
 
 Router.events.on("routeChangeStart", (url) => {
 
@@ -39,6 +41,11 @@ export default class MyApp extends App {
   componentDidMount() {
     let comment = document.createComment(`build by itguymax@gmail.com`);
     document.insertBefore(comment, document.documentElement);
+    if(localStorage.getItem(config.localStoreToken) && Router.asPath.indexOf("portal") !== 1){
+      Router.push('/portal/dashboard')
+    } else {
+      return;
+    }
   }
  
   render() {
@@ -56,13 +63,13 @@ export default class MyApp extends App {
         />
         <link rel="manifest" href="/manifest.json" />
         <link
-          href="assets/img/brand/apple-icon.png"
+          href="/assets/img/brand/apple-icon.png"
           rel="icon"
           type="image/png"
           sizes="16x16"
         />
         <link
-          href="assets/img/brand/apple-icon.png"
+          href="/assets/img/brand/apple-icon.png"
           rel="icon"
           type="image/png"
           sizes="32x32"
@@ -71,28 +78,24 @@ export default class MyApp extends App {
           <link
             rel="apple-touch-icon"
             sizes="76x76"
-            href="assets/img/brand/apple-icon.png"
+            href="/assets/img/brand/apple-icon.png"
           />
        
         <meta name="theme-color" content="#317EFB" />
           <title>Shakazz web App</title>
-          
-          {/* <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> */}
         </Head>
-        
         <Layout>
-       
           <ApolloProvider client={client}>
           <QueryClientProvider client={queryClient}>
           <AppWrapper>
               <ReactQueryDevtools initialIsOpen={false}/>
-              <Component {...pageProps} />
+              <Hydrate state={pageProps.dehydratedState}>
+                 <Component {...pageProps} />
+              </Hydrate>
           </AppWrapper>
           </QueryClientProvider>
         </ApolloProvider>
-      
-        </Layout>
-        
+        </Layout> 
       </React.Fragment>
     );
   }

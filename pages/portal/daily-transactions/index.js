@@ -1,29 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
 import { Badge } from 'reactstrap';
-import Sinput from '../../src/components/forms/Sinput';
+import Sinput from '../../../src/components/forms/Sinput';
 import { Table } from 'reactstrap';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-import DropdownSample from '../../src/components/forms/dropdownSample'
-import transactions from '../../src/helpers/transactions.js'
-import {page_data,stakePeriode,portefeuille_data} from '../../src/__MOCK__/daily_transactions.js';
-import withAuth from '../../src/hoc/withAuth';
+import DropdownSample from '../../../src/components/forms/dropdownSample'
+import transactions from '../../../src/helpers/transactions.js'
+//import {page_data,stakePeriode,portefeuille_data} from '../../../src/__MOCK__/daily_transactions.js';
+import withAuth from '../../../src/hoc/withAuth';
+import AdminBleu from '../../../src/layouts/AdminBleu'
+import { useAppContext } from '../../../src/context';
+import {fetchDailytransactions} from '../../../src/services';
+import {useFetchDailytransactions, useWallets, useFetchOptions,useFetchUserChest, useAddChest} from '../../../src/hooks';
+import { useQuery, useQueryClient,QueryClient } from 'react-query';
+import Toast from "../../../src/components/forms/Toast";
 // reactstrap components
 import {
- 
+
   Container,
   Row,
-  Col,
-
+  Col,Spinner
 } from "reactstrap";
 // layout for this page
-import Bleu from "../../src/layouts/Bleu.js";
+// import Bleu from "../../../src/layouts/Bleu.js";
 import Image from 'next/image'
 // core components
-import UserHeader from "../../src/components/Headers/UserHeader.js";
+// import UserHeader from "../../../src/components/Headers/UserHeader.js";
 
-function Daily_transactions() {
+function Daily_transactions(props) {
+  const [statutCoffre, setStatutCoffre] = useState(false);
+  const context = useAppContext();
+  const { mutateAsync: callAllTransactions, isLoading:isLoadingTransactions } =  useFetchDailytransactions();
+  const {data: chestData, isLoading:isLoadingChest} = useFetchUserChest(context.appState.accessToken);
+  const [visibleAlert, setAlertVisible] = useState(false);
+  const [responseAlert, setResponseAlert] = useState({});
+  const [actualCoffreId, setActualCoffreId] = useState("");
+  const [actualPage, setActualPage] = useState(1);
+  const onDismiss = () => setAlertVisible(false);
   const Button = styled.button`
     background-color: #679966;
     border-radius: 20px;
@@ -39,6 +53,39 @@ function Daily_transactions() {
       background-color:white;
   }
 `
+const body = {
+  page:actualPage,
+  id:actualCoffreId,
+  element:50
+}
+const [page_data, setPageData] = useState([]);
+const openTransactionsPage = async ()=>{
+  try {
+    const res = await callAllTransactions({accessToken:context.appState.accessToken,data:body});
+      const {error, message,success, data} = res;
+           if(error){
+           setResponseAlert({error:true,message:message});
+           setAlertVisible(true);
+          }
+          if(success) {
+             let tempData = [];
+             data.transactions.map((transac_value, i)=>{
+               tempData.push({
+                 s_nom:i,
+                 sortie_composee:transac_value.montantUSD,
+                 date:transac_value.updatedAt,
+                 pourcentage_quotidien:0
+               });
+             });
+              setPageData(tempData);
+             transactions.getTransactions(tempData);console.log(data.transactions)
+          }
+        }catch(err){}
+};
+
+useEffect(()=> {
+   isLoadingChest === true?setStatutCoffre(true):"";
+},[])
 let actual_page = {
   page:1,
   paginationId:"pagination1"
@@ -50,12 +97,12 @@ let table_transaction_state = {
   pourcentage_quotidien:'decroissant'
 };
   return (
-    <>
+    <AdminBleu menu>
       {/* Page content */}
 
       <Global
       styles={css`
-        .bigContainer{
+        .bigContainer {
           width:90em !important;
           margin-top:5em;
         }
@@ -163,7 +210,7 @@ let table_transaction_state = {
           margin-top:-0.1em !important;
           border-radius: 10px !important;
           padding:0.3em !important;
-          float:right;
+          margin-left:0.5em;
         }
          .buttonCustom:hover{
           color:#D20000 !important;
@@ -196,7 +243,7 @@ let table_transaction_state = {
         }
         .dropdown-toggle::after {
             display: inline-block;
-            margin-right: -15.5em;
+            margin-right: -18.5em;
             vertical-align: 7em !important;
             margin-top:-2.4em;
             content: "";
@@ -207,15 +254,16 @@ let table_transaction_state = {
         }
         .customDropdown .dropdown{
            background-color:transparent;
-           width:15em;
+           width:20em;
         }
         .customDropdown .btn{
           background-color:#143427;
           border-radius:16px;
-          width:18em;
+          width:23em;
           border:none;
           height:3em;
-          color:white;        }
+          color:white;
+          }
         .customDropdown .btn .dropdown-item{
           color:white;
           background-color:transparent;
@@ -227,31 +275,6 @@ let table_transaction_state = {
             margin-right: 0.1rem !important;
         }
         /*Responsive*/
-        @media only screen and (max-width: 360px) {
-
-          }
-        @media only screen and (max-width: 414px) {
-
-        }
-        @media only screen and (max-width: 768px) {
-
-        }
-        @media only screen and (max-width: 1024px) {
-         .dt_rowBlock1_col1 p{
-          font-size:0.9em;
-          }
-          .buttonCustom{
-            width:10em !important;
-            margin-right:-4em;
-          }
-          .buttonCustom2{
-            width:5em !important;
-            margin-right:-6em;
-          }
-          .dt_rowBlock3_col2{
-            margin-right:-2em !important;
-          }
-        }
       `}
     />
     <Container className="bigContainer">
@@ -265,18 +288,17 @@ let table_transaction_state = {
         </span> Retour
       </h1>
       <Row className="dt_rowBlock1">
-         <Col className="dt_rowBlock1_col1" xs="6" sm="4"><p>Package de sortie de composition</p></Col>
-         <Col xs="6" sm="4">
-            <Row>
-               <Col className="customDropdown" xs="6" sm="6">
-                   <DropdownSample idDd={"dt_portefeuilles"} selectedOption={ portefeuille_data[0]} handleOnSelect={()=>{}} options={ portefeuille_data||[]}/>
+         <Col className="dt_rowBlock1_col1" sm="4"><p>Package de sortie de composition</p></Col>
+         <Col sm="6">
+            {statutCoffre === false?<Spinner style={{ width: '2rem', height: '2rem' , color:"#cc9933"}}/>:<Row>
+               <Col className="customDropdown" sm="7">
+               <DropdownSample setActualCoffreId={setActualCoffreId} idDd={"dt_coffre"} selectedOption="Sélectionnez un coffre-fort" handleOnSelect={()=>{}} options={chestData?.data.chests.length > 0?chestData.data.chests:[]} />
                </Col>
-               <Col xs="6" sm="6">
-                <Button onClick={()=>{transactions.getTransactions(page_data)}} className="buttonCustom2">Voir</Button>
+               <Col sm="2">
+                <Button onClick={openTransactionsPage} className="buttonCustom2">{isLoadingTransactions? <Spinner size="sm" color="#cc993a" />: "Voir"}</Button>
                </Col>
-            </Row>
+            </Row>}
          </Col>
-         <Col xs="6" sm="3"><Button className="buttonCustom">Arrêter de compiler</Button></Col>
       </Row>
        <Row className="dt_rowBlock2">
          <Col className="dt_rowBlock1_col2" xs="2" sm="2"><p>Résultats:</p>
@@ -428,11 +450,12 @@ let table_transaction_state = {
               </Row>
          </Col>
       </Row>
+      <Toast visibleAlert={visibleAlert} onDismiss={onDismiss} responseAlert={responseAlert}/>
     </Container>
-    </>
+    </AdminBleu>
   );
 }
 
-Daily_transactions.layout = Bleu;
+// Daily_transactions.layout = Bleu;
 
 export default withAuth(Daily_transactions);

@@ -15,15 +15,16 @@ export default function SimulationTable({periode,pool,capital,taux}) {
   // } else{
   //   taux = pool.taux1800;
   // }
-  let recompense = parseInt(capital) * (parseFloat(taux)/100);
-  let interet = (parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence);
-  let resume =  parseInt(capital) + interet;
+  let recompense = (parseInt(capital) * (parseFloat(taux)/100)).toFixed(2);
+  let interet = ((parseInt(capital) * (parseFloat(taux)/100)) * (periode / pool.frequence)).toFixed(2);
+  let resume =  parseInt(capital) + parseFloat(interet);
+  console.log("polllll", pool);
   return (
    <Table responsive  css={css` `} >
 				    <thead style={{backgroundColor: "#e2e2e2"}}>
 				      <tr>
 				        <th>periode</th>
-				        <th>{`Récompense` + " " + pool.name.split(" ")[1]}</th>
+				        <th>{`Récompense` + " " + pool?.name?.split(" ")[1]}</th>
 				        <th>Total</th>
 				        <th>Total + capital</th>
 				      </tr>

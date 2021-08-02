@@ -1,4 +1,3 @@
-import {stakePeriode} from '../__MOCK__/daily_transactions.js'
 const getTransactions = (data)=>{
     displayTransactions(data);
 };
@@ -46,11 +45,11 @@ const displayTransactions = (data)=>{
     let total_pourcentage_quotidien = 0;
     let cpt = 1;
     data.map((x)=>{
-      let pourcentageQuotidien = x.pourcentage_quotidien/parseInt(stakePeriode);
+      let pourcentageQuotidien = x.pourcentage_quotidien;
            wrapper +=`<tr>
                           <th>${cpt}</th>
                           <td>${x.date}</td>
-                          <td>${x.sortie_composee}</td>
+                          <td>${x.sortie_composee}$</td>
                           <td>${Math.round((pourcentageQuotidien + Number.EPSILON) * 10000) / 10000}%</td>
                         </tr>`;
                         total_sortie_composee += parseFloat(x.sortie_composee);
@@ -60,7 +59,7 @@ const displayTransactions = (data)=>{
     wrapper+=`<tr>
                  <th></th>
                           <td>Total</strong></td>
-                          <td><strong>${Math.round((total_sortie_composee + Number.EPSILON) * 100) / 100}</strong></td>
+                          <td><strong>${Math.round((total_sortie_composee + Number.EPSILON) * 100) / 100}$</strong></td>
                           <td><strong>${Math.round((total_pourcentage_quotidien + Number.EPSILON) * 100) / 100}</strong></td>
                           <td></td>
                         </tr>`;

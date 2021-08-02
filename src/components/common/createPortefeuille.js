@@ -1,24 +1,16 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Global,css} from "@emotion/react"
 import styled from '@emotion/styled'
+import { device } from '../../../src/lib/device';
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  Container,
-  Row,
-  Col,
-  Media,
-  DropdownItem,
-  Label,
+  Container,Row,Label,Form, Spinner,Input,
 } from "reactstrap";
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { portefeuilleSchema} from "../../validations";
 import Sinput from '../../../src/components/forms/Sinput';
-export default function CreatePortefeuille() {
-	  const Button = styled.button`
+import {operateurs} from '../../../src/helpers/operatorsList';
+const SButton = styled.button`
 		    background-color: #679966;
 		    border-radius: 20px;
 		    margin-top:1.8em;
@@ -33,47 +25,105 @@ export default function CreatePortefeuille() {
 		      background-color:white;
 		  }
 		`
-  return (
-      <Container className="createPortefeuille" style={{
-                      width:"100%",
-                      height:"14em",
-                      marginLeft:"2em",
-                      backgroundColor:"#f0f0f0",
-                      borderRadius:"16px",
-                      padding:"1em",paddingTop:"2em"}}>
-                       <Row style={{display:"flex",
-                      justifyContent: "space-around"}}>
-                        <Label>Projet d'études:</Label>
+export default function CreatePortefeuille({ operateurChoix,addPossa, selectpossatype, successmsg, errormsg,loading }) {
+    const { register, handleSubmit, watch, errors } = useForm({
+      resolver: yupResolver(portefeuilleSchema),
+    });
+  return (<>
+    <Global
+    styles={css`
+      .createPortefeuille{
+        background-color:#F0F0F0;
+        padding:1em;
+        border-radius: 26px;
+        height:auto !important;
+      }
+      .createPortefeuille input{
+        color:#444444 !important;
+        background: #D9D2D2 !important;
+        border:none !important;
+      }
+
+      @media ${device.vsPhone}{
+        .createPortefeuille{
+          width:16em !important;
+        }
+        }
+    `}
+    />
+      <Form className="createPortefeuille"
+      onSubmit={handleSubmit(addPossa)}>
+                         {/* <Input onChange={(d)=>{console.log("ooooo",d.target.value)}} type="select" name="portefeuille">
+                              {[{nom:"btc"},{nom:"orange"}, {nom:"mtn"}, {nom:"carte"}].map( (option, i) => (
+                                  <option data-adresse={option.nom} key={i}>
+                                      {option.nom}
+                                  </option>
+
+                                ))}
+                          </Input> */}
                         <Sinput
-                          name="name"
-                          placeholder="projet d'études"
-                          register={()=>{}}
-                          iStyle={{width:"10em",
-                             backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
-                             borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
+                          label="Type de porte feuille"
+                          inline
+                          name="type"
+                          labelColor="#444444"
+                          options={operateurs.nom}
+                          defaultOption={operateurs.nom[7]}
+                          onSelect={selectpossatype}
+                          placeholder="type de portefeuille"
+                          register={register}
+
                           inputBg="#fff"
                           type="text"
-                          handleOnchange={()=>{}}
+                          dd
                         />
-                         </Row>
-                        <Row style={{display:"flex",
-                        justifyContent: "space-around"}}>
-                          <Label>Projet d'études:</Label>
+                        <Sinput
+                          label="Nom"
+                          inline
+                          name="nom"
+                          labelColor="#444444"
+                          placeholder="Projet d'études"
+                          register={register}
+                          iStyle={{width:"10em",border:"1px solid #d9d2d2",
+                             borderRadius:"15px",overflow:"hidden",marginTop:"-0.3em"}}
+                          type="text"
+                        />
+                        {errors.nom && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
+
+                           <span className="text-danger font-weight-700">{errors.nom.message}</span>
+
+                       </div>}
                           <Sinput
-                            name="name"
-                            placeholder="projet d'études"
-                            register={()=>{}}
-                            iStyle={{width:"10em",
-                               backgroundColor:"#d9d2d2 !important",width:"10em !important",border:"1px solid #d9d2d2",
-                               borderRadius:"15px", marginTop:"-1.3em",overflow:"hidden"}}
-                            inputBg="#fff"
+                            label={operateurChoix.nom}
+                            inline
+                            labelColor="#444444"
+                            name="address"
+                            placeholder={operateurChoix.placeholder}
+                            register={register}
+                            inputBg="#D9D2D2"
                             type="text"
-                            handleOnchange={()=>{}}
+                            iStyle={{width:"10em",border:"1px solid #d9d2d2",
+                               borderRadius:"15px", marginTop:"0em",overflow:"hidden"}}
+
                           />
-                         </Row>
+                          {errors.address && <div className="text-muted font-italic" style={{marginBottom:"2em"}}>
+
+                             <span className="text-danger font-weight-700">{errors.address.message}</span>
+
+                         </div>}
                        <Row>
-                          <Button style={{margin:"auto",marginTop:"1em"}}>Confirmer</Button>
-                       </Row> 
-                      </Container>
+                       { successmsg && ( <div className="text-muted font-italic">
+
+                  <span className="text-success font-weight-700">{successmsg}</span>
+
+              </div>)}
+              { errormsg && ( <div className="text-muted font-italic">
+
+                  <span className="text-danger font-weight-700">{errormsg}</span>
+
+              </div>) }
+                          <SButton type="submit" disabled={loading} style={{margin:"auto",marginTop:"1em"}}> {loading ? <Spinner size="sm" color="#cc993a" />: "Confirmer"}</SButton>
+                       </Row>
+    </Form>
+    </>
   )
 }

@@ -17,16 +17,25 @@ import {
   Container,
   Media,
 } from "reactstrap";
+import { logOutUser } from "../../services/auth.service";
+import { useRouter } from "next/router";
+import {useAppContext} from "../../context";
+import {  useFetchUserInfos } from "../../hooks";
+
 
 function AdminNavbar({ brandText, l }) {
+  const router = useRouter();
+  const context = useAppContext();
+   const { data, isLoading } = useFetchUserInfos(context.appState.accessToken);
+   //console.log("user dataaaaaaaaaa", data);
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
         <Container fluid>
           <Link href="/">
             <>
-              {l&& <h3 style={{textAlign: "left", marginTop:'1.25rem'}} className='px-3 mt-4'> 
-                <a style={{font:'normal normal bold 25px/29px Ubuntu', color:'#fff' }} href="/">SHAKAZZ</a>
+              {l&& <h3 style={{textAlign: "left", marginTop:'1.25rem'}} className='px-3 mt-4'>
+                <a style={{font:'normal normal bold 25px/29px Ubuntu', color:'#fff' }} href="/portal/dashboard">SHAKAZZ</a>
           </h3>}
             <a className="h4 mb-0  font-weight-bold text-uppercase d-none d-lg-inline-block">
               {brandText}
@@ -51,13 +60,13 @@ function AdminNavbar({ brandText, l }) {
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
                     <img
-                      alt="..."
-                      src="/assets/img/theme/team-4-800x800.jpg"
+                      alt={data?.data.user?.lastName + "avatar"}
+                      src={ data?.data.user?.avatarUrl || "/assets/img/def-user-profile.png"}
                     />
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      Yvan Fotso
+                      {data?.data.user.lastName}
                     </span>
                   </Media>
                 </Media>
@@ -69,29 +78,14 @@ function AdminNavbar({ brandText, l }) {
                 <Link href="/portal/profile">
                   <DropdownItem>
                     <i className="ni ni-single-02" />
-                    <span>My profile</span>
-                  </DropdownItem>
-                </Link>
-                <Link href="/portal/profile">
-                  <DropdownItem>
-                    <i className="ni ni-settings-gear-65" />
-                    <span>Settings</span>
-                  </DropdownItem>
-                </Link>
-                <Link href="/portal/profile">
-                  <DropdownItem>
-                    <i className="ni ni-calendar-grid-58" />
-                    <span>Activity</span>
-                  </DropdownItem>
-                </Link>
-                <Link href="/portal/profile">
-                  <DropdownItem>
-                    <i className="ni ni-support-16" />
-                    <span>Support</span>
+                    <span>Mon profile</span>
                   </DropdownItem>
                 </Link>
                 <DropdownItem divider />
-                <DropdownItem href="#itguymax" onClick={(e) => e.preventDefault()}>
+                <DropdownItem href="#itguymax" onClick={(e) => {
+                  e.preventDefault();
+                  logOutUser(router)
+                }}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>

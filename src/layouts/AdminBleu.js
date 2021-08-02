@@ -11,9 +11,10 @@ import {Link} from '../components/Link'
 
 function AdminBleu(props) {
   const router = useRouter();
+  
 
   return (  
-      <Container fluid style={{backgroundColor: '#143427'}} >
+      <Container fluid style={{backgroundColor: props.wh?"#fff":'#143427'}} >
         <div style={{minHeight: '100vh', backgroundColor: '#143427'}}>
         <AdminNavbar l/>
           <Container>
@@ -23,10 +24,10 @@ function AdminBleu(props) {
             {props.menu && <Link path="/portal/dashboard">{`<--- Menu`}</Link>}
             <hr style={{backgroundColor: '#679966', height:'2px', width: '100%'}}/>
             </Row>
+              <AuthFooter white/>
           </Container>
-           
-          <AuthFooter white/>  
         </div>
+        
        </Container>
   );
 }

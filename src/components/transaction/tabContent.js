@@ -1,11 +1,20 @@
-import React from "react";
-
+import React, { useState } from 'react';
+import moment from "moment";
 // reactstrap components
 import {
-    Table,
+    Table,Button, Modal, ModalHeader, ModalBody, ModalFooter
 } from "reactstrap";
-
+import Image from 'next/image';
+import {css} from "@emotion/react";
 export default function TabContent(props) {
+  const {
+    buttonLabel,
+    className
+  } = props;
+
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
     return (
         <>
             <Table responsive className="" css={css`
@@ -19,20 +28,20 @@ export default function TabContent(props) {
         tr:last-child { border-top-right-radius: 10px; }
         tr:first-child { border-bottom-left-radius: 10px; }
         tr:last-child { border-bottom-right-radius: 10px; }
-          
+
         th:nth-child(1){
             /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-            -webkit-border-radius: 10px 0px 0px 10px; 
+            -webkit-border-radius: 10px 0px 0px 10px;
             /* Firefox 1-3.6 */
-            -moz-border-radius: 10px 0px 0px 10px; 
+            -moz-border-radius: 10px 0px 0px 10px;
             /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-            border-radius: 10px 0px 0px 10px; 
+            border-radius: 10px 0px 0px 10px;
         }
         th:nth-last-child(1){
             /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-            -webkit-border-radius: 0px 10px 10px 0px;   
+            -webkit-border-radius: 0px 10px 10px 0px;
             /* Firefox 1-3.6 */
-            -moz-border-radius: 0px 10px 10px 0px; 
+            -moz-border-radius: 0px 10px 10px 0px;
             /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
             border-radius: 0px 10px 10px 0px;
         }
@@ -59,10 +68,11 @@ export default function TabContent(props) {
                         <th><div>Type</div></th>
                         <th><div >Statut</div></th>
                         <th><div >Montant</div></th>
+                        {/* <th><div >Détails</div></th> */}
                     </tr>
                 </thead>
                 <tbody className="" css={css`
-            td{ 
+            td{
                 padding: 0px;
                 margin : 3px;
                 // vertical-align: middle;
@@ -81,20 +91,45 @@ export default function TabContent(props) {
                 opacity: 1!important;
             }
             `}>
-                {props.data.map( (item, key)=> {
-                    return <>
+                { 
+                    props.data?.length < 1 ? <div css={css`
+             
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: center;
+            `}> {` Vous n'avez aucune transactions`} </div> : <>
+                    { props.data?.map( (item, key)=> <React.Fragment key={key}> 
                     <tr style={{ }}>
-                        <td ><div >{item.date}</div></td>
-                        <td><div >{item.date}</div></td>
-                        <td><div >{item.type}</div></td>
-                        <td><div >{item.statut}</div></td>
-                        <td><div >{item.montant}</div></td>
-                    </tr>
-                    <div></div>
-              </>
-                })}
-                </tbody>
+                            <td ><div >{item._id}</div></td>
+                            <td><div >{ moment(item.createdAt).format('YYYY/MM/DD')}</div></td>
+                            <td><div >{item.type}</div></td>
+                            <td><div >{item.statut}</div></td>
+                            <td><div >{(item.montantUSD ).toLocaleString('en-US', { style: 'currency', currency: 'USD',})}</div></td>
+                            {/* <td><div style={{padding:"0px",paddingTop:"5px",cursor:"pointer"}}><Image
+                            onClick={toggle}
+                            src="/assets/img/icons/add.svg"
+                            alt="..."
+                            height={2} width={2}
+                            /></div></td> */}
+                        </tr>
+                        <div></div>
+                        </React.Fragment>
+                    )
+                    }
+                    </>
+                }
+            </tbody>
             </Table>
+            <Modal isOpen={modal} toggle={toggle} className={className}>
+             <ModalHeader toggle={toggle}>Détails sur la transaction</ModalHeader>
+             <ModalBody>
+                Des détails que des détails et encore plus de détails.
+             </ModalBody>
+             <ModalFooter>
+               <Button style={{backgroundColor:"#cc9932",border:"none"}} onClick={toggle}>Cancel</Button>
+             </ModalFooter>
+           </Modal>
         </>
     );
 }

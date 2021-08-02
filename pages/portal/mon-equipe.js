@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'reactstrap';
 import WalletHeader from "../../src/layouts/WalletHeader";
 import user from "../../src/__MOCK__/user";
 import Portal from "../../src/layouts/Portal";
-import {css} from "@emotion/react";
 import {device } from "../../src/lib/device";
 import TabH from "../../src/components/TabH";
 import downlines from "../../src/__MOCK__/downlines"
@@ -17,6 +16,15 @@ import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 import {  FlatButton} from "../../src/components/common/SButton";
 import PopulationTable from '../../src/components/PopulationTable';
 import withAuth from '../../src/hoc/withAuth';
+import { useAppContext } from '../../src/context';
+import {useWallets, useFetchUserTree} from '../../src/hooks';
+import {Global,css} from "@emotion/react";
+import {
+  useQuery,
+  useQueryClient,
+  QueryClient,
+} from 'react-query'
+import DataLoader from "../../src/components/common/DataLoader.js";
 const generationCardData = [
   {
     id:1,
@@ -46,54 +54,60 @@ const generationCardData = [
 ]
 
  function Equipe() {
-
-   const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
-    const [showPopulation, setShowPopulation] = useState(false);
-     const [selectedGen, setselectedGen] = useState(false);
-     const [children, setChildren] = useState([]);
+    const context = useAppContext();
+  const {data, isLoading} = useWallets(context.appState.accessToken);
+  const { data: treeData, isLoading: treeLoading, isError} = useFetchUserTree(context.appState.accessToken);
+  const [hTabsIcons, setHTabsIcons] = useState("hTabsIcons-1");
+  const [showPopulation, setShowPopulation] = useState(false);
+  const [selectedGen, setselectedGen] = useState(false);
+  const [children, setChildren] = useState([]);
   const handleSetHTabs = ( indic) => {
     setHTabsIcons(indic);
   }
   const findChildren = (childrenGen) => {
-    
-     
+
+
    return  childrenGen.map((id, key)=> {
      return  downlines.filter(item => item.id === id)
     }).flat();
 
   }
-  const getGenerationPopulation = (item) => {
+  const getGenerationPopulation = (item, text) => {
+    console.log("get gene pop", item);
       setselectedGen(item);
-       switch(item.id){
-         case 1:
-           setChildren( findChildren(user.children.child1));
+
+       switch(text){
+         case "all":
+           setChildren(item);
            break;
-        case 2:
-           setChildren(findChildren(user.children.child2));
-           break;
-        case 3:
-           setChildren(findChildren(user.children.child3));
-           break;
-        case 4:
-           setChildren(findChildren(user.children.child4));
-           break;
-        case 5:
-           setChildren(findChildren(user.children.child5));
+        case "actif":
+            setChildren(item.filter(l => l.licence));
+         break;
+         case "non-actif":
+           setChildren(item.filter(l => !l.licence));
            break;
         default:
-          setChildren([]);
-          break;
-       } 
+           setChildren([]);
+           break;
+        }
       setShowPopulation(true);
-  
-}
 
+}
+if(treeLoading){
+  return <DataLoader/>
+}
+if(isError){
+  alert("erreur serveur");
+
+}
+console.log("user tree", treeData);
+console.log("generation children", children);
   return (
     <Portal>
       <Container fluid>
-        <WalletHeader wallets={user.wallet}/>
+         {isLoading? "Loading wallets...": (<WalletHeader wallets={data.data.wallets}/>)}
               <div css={css`
-        
+
         .nav-pills .nav-link{
           box-shadow: none;
           margin-bottom:0px;
@@ -103,7 +117,7 @@ const generationCardData = [
         }
         .nav-pills .nav-link.active, .nav-pills .nav-link, h1 {
               color:#333;
-  
+
               background-color:#fff;
               padding:0px;
         }
@@ -127,7 +141,7 @@ const generationCardData = [
        }
     `}>
 
-        <Nav className="nav-fill flex-column flex-lg-row flex-md-row" pills role="tablist" 
+        <Nav className="nav-fill flex-column flex-lg-row flex-md-row" pills role="tablist"
           style={{ position: "relative"}}
          css={css`
             border-bottom:2px solid #B7B7B7;
@@ -158,22 +172,56 @@ const generationCardData = [
         <div>
           <TabContent id="myTabContent" activeTab={hTabsIcons}>
             <TabPane  className="py-4"  tabId={`hTabsIcons-1`} role="tabpanel">
-              {!showPopulation ? <div  style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
-                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto="2000" gp="10" handleClick={() => getGenerationPopulation(item)}/>)}
-                
+              {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
+                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].filter(item => item.license).length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "actif")}/>)}
+
               </div> :
                 <div >
-                    <div style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+                    <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
                        {
-                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(item)}/>)
-                       } 
+                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "actif")}/>)
+                       }
                     </div>
                     <PopulationTable popData={children}/>
                 </div>
-              
+
                }
-             
-            </TabPane>  
+
+            </TabPane>
+               <TabPane  className="py-4"  tabId={`hTabsIcons-2`} role="tabpanel">
+              {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
+                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].filter(item => !item.license).length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`],"non-actif")}/>)}
+
+              </div> :
+                <div >
+                    <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+                       {
+                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "non-actif")}/>)
+                       }
+                    </div>
+                    <PopulationTable popData={children}/>
+                </div>
+
+               }
+
+            </TabPane>
+               <TabPane  className="py-4"  tabId={`hTabsIcons-3`} role="tabpanel">
+              {!showPopulation ? <div style={{display: "flex", flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
+                { generationCardData.map((item, key)=> <GenerationCard key={key} g={item.id} gbgc={item.bgc} gto={treeData?.data.user.teamTurnover[`child${item.id}`]} gp={treeData?.data.user.tree[`child${item.id}`].length} handleClick={() => getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "all")}/>)}
+
+              </div> :
+                <div >
+                    <div className="equipe_list_generation_block" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+                       {
+                         generationCardData.map((item, key) =>  <FlatButton key={key} label={item.name} width="200px" bgc={item.bgc} handleClick={ ()=>getGenerationPopulation(treeData?.data.user.tree[`child${item.id}`], "all")}/>)
+                       }
+                    </div>
+                    <PopulationTable popData={children}/>
+                </div>
+
+               }
+
+            </TabPane>
           </TabContent>
         </div>
 
